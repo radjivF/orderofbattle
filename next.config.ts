@@ -2,11 +2,11 @@ import type { NextConfig } from "next";
 
 const contentSecurityPolicy = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.clarity.ms https://scripts.clarity.ms https://analytics.ahrefs.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
+  "img-src 'self' data: blob: https://www.clarity.ms https://c.clarity.ms https://c.bing.com",
   "font-src 'self' data:",
-  "connect-src 'self'",
+  "connect-src 'self' https://www.clarity.ms https://scripts.clarity.ms https://c.clarity.ms https://c.bing.com https://analytics.ahrefs.com",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

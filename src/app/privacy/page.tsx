@@ -51,6 +51,34 @@ export default function PrivacyPage() {
           That hosting telemetry is separate from your army lists, which stay on
           your device unless you export or share them yourself.
         </p>
+        <p className="mt-3">
+          We also use Microsoft Clarity to see how people use the website
+          (pages, clicks, and session recordings). Clarity does not receive your
+          army lists. Microsoft processes that usage data under{" "}
+          <a
+            href="https://www.microsoft.com/privacy/privacystatement"
+            rel="noopener noreferrer"
+            target="_blank"
+            className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
+          >
+            Microsoft’s privacy statement
+          </a>
+          .
+        </p>
+        <p className="mt-3">
+          We use Ahrefs Web Analytics for traffic stats (pages, referrers,
+          device type). It does not use cookies and does not receive your army
+          lists. Ahrefs processes that data under{" "}
+          <a
+            href="https://ahrefs.com/privacy"
+            rel="noopener noreferrer"
+            target="_blank"
+            className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
+          >
+            Ahrefs’ privacy policy
+          </a>
+          .
+        </p>
       </section>
 
       <section>
@@ -65,9 +93,12 @@ export default function PrivacyPage() {
         <p className="mt-3">
           The site may be hosted by a standard web host or CDN. Those providers
           process request data under their own terms in order to deliver the
-          pages. Catalogue content is derived from the community BSData project
-          on GitHub; visiting external links (for example GitHub) is governed by
-          those sites’ policies.
+          pages. We use Microsoft Clarity and Ahrefs Web Analytics for site
+          usage; those are governed by Microsoft’s and Ahrefs’ privacy
+          policies. Catalogue content is
+          derived from the community BSData project on GitHub; visiting
+          external links (for example GitHub) is governed by those sites’
+          policies.
         </p>
       </section>
 

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cinzel, Instrument_Sans } from "next/font/google";
+import Script from "next/script";
 import { JsonLd } from "@/components/JsonLd";
 import { graph, softwareApplicationNode } from "@/lib/jsonLd";
 import {
@@ -94,6 +95,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <link rel="alternate" type="text/plain" href="/llms-full.txt" title="llms-full.txt" />
       </head>
       <body className="min-h-full font-sans" suppressHydrationWarning>
+        <Script
+          src="https://analytics.ahrefs.com/analytics.js"
+          strategy="beforeInteractive"
+          data-key="lAHSqQ1oPzAYiQnF/4yUWQ"
+        />
+        <Script id="microsoft-clarity" strategy="afterInteractive">
+          {`(function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y8rbeg2r71");`}
+        </Script>
         <JsonLd data={graph([softwareApplicationNode()])} />
         {children}
       </body>
