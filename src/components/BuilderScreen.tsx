@@ -1405,11 +1405,10 @@ function pickerUnitsFor(
     return available(list, faction, heroesOf(faction, realm), current);
   }
   if (picker.kind === "aux") {
-    return available(
-      list,
-      faction,
-      unitsForRealm(faction, realm).filter((unit) => !unit.hero),
-    );
+    // GHB: heroes may be auxiliaries unless they have compulsory regiment
+    // options. Our catalogues only model optional slots, so include heroes
+    // (e.g. Harbinger of Decay as a priest aux).
+    return available(list, faction, unitsForRealm(faction, realm));
   }
   if (picker.kind !== "unit") {
     return null;
