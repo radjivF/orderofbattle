@@ -21,6 +21,19 @@ export function SiteFooter() {
           ads, no accounts, no paid features in this app.
         </p>
         <p className="mt-3 text-sm leading-relaxed text-parchment/80">
+          Order of Battle does not host game data files. Age of Sigmar catalogue
+          data is maintained by the BSData community and sourced from{" "}
+          <a
+            href="https://github.com/BSData"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
+          >
+            GitHub
+          </a>
+          .
+        </p>
+        <p className="mt-3 text-sm leading-relaxed text-parchment/80">
           If you want this list builder, or you want me to make one, contact me.
           Commission the work or buy it. I would rather the community keep a
           helper than see it closed down.
@@ -46,20 +59,8 @@ export function SiteFooter() {
       <div className="gold-rule mx-auto mb-6 w-28" aria-hidden="true" />
       <p>
         Not affiliated with Games Workshop. Just a hobby helper for the
-        community.
-      </p>
-      <p className="mt-2">
-        Order of Battle does not host game data files. Age of Sigmar catalogue
-        data is maintained by the BSData community and sourced from{" "}
-        <a
-          href="https://github.com/BSData"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={linkClass}
-        >
-          GitHub
-        </a>
-        . Confirm points and rules with official sources before you play.
+        community. Confirm points and rules with official sources before you
+        play.
       </p>
       <p className="mt-2">
         Made to help the community. Be nice. JW (James Workshop) is a joke, not
