@@ -17,7 +17,8 @@
           "effect": "You can use the 'Sneaky Sneakin'' Dirty Trick ability twice per turn instead of only once per turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -33,7 +34,8 @@
           "effect": "Companion weapons used by friendly Kruleboyz units have Crit (2 Hits).",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -49,7 +51,8 @@
           "effect": "Friendly Kruleboyz units that are wholly within 3\" of a terrain feature are not visible to enemy units that are more than 12\" away from them.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -65,7 +68,8 @@
           "effect": "For the rest of the turn, add 3\" to the Range characteristic of the targets' ranged weapons.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -81,7 +85,8 @@
           "effect": "For the rest of the turn, add 1 to the Attacks characteristic of the target's melee weapons.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -97,7 +102,8 @@
           "effect": "Until the start of your next turn, each time the target uses a Move ability and does not end that move closer to the Insult Hurla than it was at the start of the move, inflict D6 mortal damage on the target after that Move ability has been resolved.",
           "keywords": "Dirty Trick",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -115,7 +121,8 @@
           "effect": "The effect of a Dirty Trick ability is only applied if you make a successful dirty trick roll. The success of a dirty trick roll depends on the number of Dirty Trick abilities your army has already used this battle round: First: 2+ Second: 3+ Third: 4+ Fourth or subsequent: 5+",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Venom-encrusted Weapons",
@@ -125,7 +132,8 @@
           "effect": "Until the start of your next turn, the target's attacks score critical hits on unmodified hit rolls of 5+.",
           "keywords": "Dirty Trick",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Lethal Surprise",
@@ -135,7 +143,8 @@
           "effect": "Inflict D3 mortal damage on the target. In addition, for the rest of the turn, the target's weapons cannot be affected by the Charge (+1 Damage) weapon ability",
           "keywords": "Dirty Trick",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Sneaky Sneakin'",
@@ -145,7 +154,8 @@
           "effect": "Remove the target from the battlefield and set it up again wholly within 3\" of a terrain feature and more than 9\" from all enemy units.",
           "keywords": "Dirty Trick",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Noisy Racket",
@@ -155,7 +165,8 @@
           "effect": "The target has Strike-last for the rest of the turn.",
           "keywords": "Dirty Trick",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -173,7 +184,8 @@
           "effect": "Subtract 1 from the Attacks characteristic of the target's weapons until the start of your next turn.",
           "keywords": "Spell",
           "castingValue": "7",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Da Black Pit",
@@ -183,7 +195,8 @@
           "effect": "Roll a dice for each model in the target unit. For each 6, inflict 1 mortal damage on the target.",
           "keywords": "Spell, Unlimited",
           "castingValue": "5",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Mork's Kunnin'",
@@ -193,7 +206,8 @@
           "effect": "Until the start of your next turn, add 1 to save rolls for attacks that target that friendly unit",
           "keywords": "Spell",
           "castingValue": "6",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -235,7 +249,8 @@
               "effect": "This Manifestation can move a distance up to its Move characteristic in one direction (see 'The Pendulum Swings'). It can pass through models during that move and can end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move or that are within 1/2\" of it to be the targets. Roll a D6 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
               "keywords": "Core, Move",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "The Pendulum Swings",
@@ -245,7 +260,8 @@
               "effect": "This Manifestation cannot use Charge or Fight abilities. In addition, when this Manifestation moves, it must move in a straight line either in the direction in which the tip of the pendulum blade is pointing or in the opposite direction to the direction in which the tip of the pendulum blade is pointing",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -256,7 +272,8 @@
             "effect": "Set up an Aethervoid Pendulum wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -284,7 +301,8 @@
               "effect": "If there are any friendly Wizards within 3\" of this Manifestation, pick 1 of the following effects: *Increase Time Flow*: Until the start of your next turn, you can re-roll charge rolls for friendly units while they are wholly within 12\" of this Manifestation. *Decrease Time Flow*: Until the start of your next turn, subtract 1 from hit rolls for attacks that target friendly Wizards while they are wholly within 12\" of this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -295,7 +313,8 @@
             "effect": "Set up a Chronomantic Cogs endless spell wholly within 12\" of the caster and visible to them.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -336,7 +355,8 @@
               "effect": "Ward rolls cannot be made for damage points inflicted by this Manifestation's attacks.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -347,7 +367,8 @@
             "effect": "Set up a Quicksilver Swords endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -405,7 +426,8 @@
               "effect": "Roll a dice. If the roll is less than the number of models in the target unit that were slain this phase, the target cannot use commands for the rest of the turn.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -416,7 +438,8 @@
             "effect": "Set up a Horrorghast endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -457,7 +480,8 @@
               "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, remove the target from the battlefield and set them up again on the battlefield within 3\" of this Manifestation and not in combat. Then, inflict 1 mortal damage on the target.",
               "keywords": "Core, Move",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -468,7 +492,8 @@
             "effect": "Set up a Lauchon the Soulseeker endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -496,7 +521,8 @@
               "effect": "Pick a part of this Manifestation, remove it from the battlefield and set it up again on the battlefield wholly within 9\" of the other part and more than 3\" from all enemy units.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Multiple Parts",
@@ -506,7 +532,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Ensnaring Soul-drain",
@@ -516,7 +543,8 @@
               "effect": "Each time an enemy unit uses a Move ability while it is within 9\" of any parts of this Manifestation, the effects of the 'Fly' ability do not apply to that unit. Enemy units cannot be set up within 9\" of either part of this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -527,7 +555,8 @@
             "effect": "Set up a Shards of Valagharr endless spell wholly within 18\" of the caster and visible to them. A Shards of Valagharr endless spell has 2 parts that must be set up within 9\" of each other.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -555,7 +584,8 @@
               "effect": "Remove the target from the battlefield and set it up again on the battlefield wholly within 6\" of the other part of this Manifestation and more than 9\" from all enemy units.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Multiple Parts",
@@ -565,7 +595,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -576,7 +607,8 @@
             "effect": "Set up a Soulscream Bridge wholly within 18\" of the caster and visible to them. A Soulscream Bridge has 2 parts that must be set up within 9\" of each other.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -624,7 +656,8 @@
               "effect": "If this Manifestation destroyed any enemy Manifestations this turn, Heal (6) this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Arcane Predator",
@@ -634,7 +667,8 @@
               "effect": "You can add 1 to the number of dice rolled when making charge rolls for this Manifestation, to a maximum of 3, while it is within 18\" of any enemy Manifestations, but if you do so, it must end the charge move within 1/2\" of an enemy Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Wild Form",
@@ -644,7 +678,8 @@
               "effect": "Each time this Manifestation is targeted by the 'Banish Manifestation' ability, if it would be banished, it is not banished. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points).",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -655,7 +690,8 @@
             "effect": "Set up a Krondspine Incarnate of Ghur endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "8",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -702,7 +738,8 @@
               "effect": "Roll a dice for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Then, this Manifestation is destroyed.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Necrotic Vortex",
@@ -712,7 +749,8 @@
               "effect": "Give this Manifestation 1 maelstrom point each time: \u2022 This Manifestation is set up. \u2022 A unit successfully casts a spell while it is within 12\" of this Manifestation. \u2022 A model is slain within 12\" of this Manifestation. This Manifestation can have a maximum of 6 maelstrom points at once.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -723,7 +761,8 @@
             "effect": "Set up a a Malevolent Maelstrom endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -764,7 +803,8 @@
               "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move to be the targets. Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
               "keywords": "Core, Move",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Pull of the Nadir",
@@ -774,7 +814,8 @@
               "effect": "Subtract 1 from save rolls for friendly and enemy units while they are within 3\" of this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -785,7 +826,8 @@
             "effect": "Set up a Purple Sun of Shyish endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "8",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -813,7 +855,8 @@
               "effect": "Roll a D3 for each target. On a 2+: \u2022 Inflict an amount of mortal damage on the target equal to the roll. \u2022 Subtract a number of inches equal to the roll from the target's Move characteristic for the rest of the turn.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Multiple Parts",
@@ -823,7 +866,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and all its parts are removed from play.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -834,7 +878,8 @@
             "effect": "Set up a Soulsnare Shackles endless spell wholly within 18\" of the caster and visible to them. A Soulsnare Shackles endless spell has 3 parts that must each be set up within 3\" of at least 1 other part.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -875,7 +920,8 @@
               "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, you can pick an enemy unit that this Manifestation passed across during that move to be the target. Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
               "keywords": "Core, Move",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -886,7 +932,8 @@
             "effect": "Set up a Suffocating Gravetide endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "8",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -933,7 +980,8 @@
               "effect": "Enemy units cannot use commands while they are within 3\" of either part of this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Multiple Parts",
@@ -943,7 +991,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play. Each time this Manifestation moves, both its parts must end within 9\" of each other. Each part of this Manifestation is armed with Tendrils of Light and Shadow.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -954,7 +1003,8 @@
             "effect": "Set up a Geminids of Uhl-Gysh endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units. A Geminids of Uhl-Gysh endless spell has 2 parts that must be set up within 9\" of each other.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -982,7 +1032,8 @@
               "effect": "This Manifestation cannot be targeted by shooting attacks. In addition, a unit cannot be targeted by shooting attacks if it is impossible to draw a straight line from a model in the attacking unit to a model in the target unit without that line passing across this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -993,7 +1044,8 @@
             "effect": "Set up a Prismatic Palisade wholly within 18\" of the caster and visible to them.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -1021,7 +1073,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Arcane Passage",
@@ -1031,7 +1084,8 @@
               "effect": "The next time the target uses a non-Summon Spell ability this phase, add 1 to the casting value of that spell. When picking targets for that spell, you can measure range and visibility from either part of this Manifestation instead of from the caster, and your opponent can measure range and visibility to either part of this Manifestation instead of to the caster for the purposes of the 'Unbind' ability.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -1042,7 +1096,8 @@
             "effect": "Set up an Umbral Spellportal wholly within 18\" of the caster and visible to them. An Umbral Spellportal has 2 parts that must be set up within 9\" of each other.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -1089,7 +1144,8 @@
               "effect": "Heal (3) this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Bounteous Healing",
@@ -1099,7 +1155,8 @@
               "effect": "Heal (3) the target.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -1110,7 +1167,8 @@
             "effect": "Set up a Emerald Lifeswarm endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -1150,7 +1208,8 @@
               "effect": "Roll 10 dice. For each 5+, inflict 1 mortal damage on the target.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -1161,7 +1220,8 @@
             "effect": "Set up a Ravenak's Gnashing Jaws endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -1213,7 +1273,8 @@
               "effect": "Each time this Manifestation uses a Shoot ability, after that ability has been resolved, allocate 1 damage point to this Manifestation (ward rolls cannot be made for that damage point).",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": null
@@ -1234,9 +1295,11 @@
           "effect": "If this unit is not a Wizard, it can use the 'Unbind' ability as if it had Wizard (1). Otherwise, add 1 to this unit's power level.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
-      ]
+      ],
+      "pack": "Krule Artefacts"
     },
     {
       "id": "cb2d-475-47e8-83ba",
@@ -1250,9 +1313,11 @@
           "effect": "For the rest of the turn, friendly Kruleboyz units have Ward (5+) while they are wholly within 12\" of this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
-      ]
+      ],
+      "pack": "Krule Artefacts"
     },
     {
       "id": "ca1c-f1f1-ed88-1c2b",
@@ -1266,9 +1331,11 @@
           "effect": "Subtract 1 from hit rolls and wound rolls for the target's attacks for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
-      ]
+      ],
+      "pack": "Krule Artefacts"
     }
   ],
   "heroicTraits": [
@@ -1284,9 +1351,11 @@
           "effect": "If this unit is in combat, roll a dice. On a 3+, it can immediately use the 'Retreat' ability as if it were your movement phase without any mortal damage being inflicted on it.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
-      ]
+      ],
+      "pack": "Kunnin' Warlords"
     },
     {
       "id": "862c-abb9-b793-9c2d",
@@ -1300,9 +1369,12 @@
           "effect": "While this unit is within the combat range of a friendly non-Hero Kruleboyz Infantry unit: \u2022 This unit has Ward (4+). \u2022 Each time you make a successful ward roll for this unit, allocate 1 damage point to a friendly non-Hero Kruleboyz Infantry unit within this unit's combat range after the damage sequence for this unit has been resolved (ward rolls cannot be made for those damage points).",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
-      ]
+      ],
+      "points": 10,
+      "pack": "Kunnin' Warlords"
     },
     {
       "id": "e5c6-347e-bdd4-8e46",
@@ -1316,9 +1388,11 @@
           "effect": "Inflict D3 mortal damage on the target. Add 1 to the mortal damage inflicted for each friendly Kruleboyz unit in combat with the target in addition to the first two Kruleboyz units.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
-      ]
+      ],
+      "pack": "Kunnin' Warlords"
     }
   ],
   "monstrousTraits": [
@@ -1334,7 +1408,8 @@
           "effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "points": 10,
@@ -1352,7 +1427,8 @@
           "effect": "Add half your fury level (rounding up) to run rolls and charge rolls for this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "points": 20,
@@ -1370,7 +1446,8 @@
           "effect": "This unit is armed with Caustic Saliva, where X is equal to your fury level.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "points": 20,
@@ -1388,7 +1465,8 @@
           "effect": "Add 1 to hit rolls for attacks made with this unit's Companion weapons.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -1404,7 +1482,8 @@
           "effect": "This unit can use the 'Normal Move' or 'Retreat' ability as if it were your movement phase. In addition, no mortal damage is inflicted on this unit by Retreat abilities this phase.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -1420,7 +1499,8 @@
           "effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -1451,7 +1531,8 @@
           "effect": "While this terrain feature has a Shouty Boss: \u2022 The Shouty Boss cannot use Move abilities. \u2022 Instead of measuring range or visibility to the Shouty Boss, measure to this terrain feature instead. \u2022 All attacks that would target the Shouty Boss target this terrain feature instead. \u2022 If this terrain feature is destroyed, before removing it from the battlefield, inflict D3 mortal damage on the Shouty Boss. Then, set up the Shouty Boss on the battlefield within 3\" of this terrain feature and not in combat. That unit is no longer the Shouty Boss. If it is not possible to set up the Shouty Boss, it is slain.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Up We Go!",
@@ -1461,7 +1542,8 @@
           "effect": "Place the target on this terrain feature. The target is now a Shouty Boss (see 'Man da Tower').",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Sinister Stare",
@@ -1471,7 +1553,8 @@
           "effect": "Add 1 to dirty trick rolls for friendly Kruleboyz units wholly within 12\" of this terrain feature or for enemy units within 12\" of this terrain feature. If this terrain feature has a Shouty Boss, add 1 to dirty trick rolls for friendly Kruleboyz units wholly within 18\" of this terrain feature instead of wholly within 12\" or for enemy units within 18\" of this terrain feature instead of within 12\".",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "I'm Off!",
@@ -1481,7 +1564,8 @@
           "effect": "If this terrain feature has a Shouty Boss that was not placed on it this turn, set up the Shouty Boss on the battlefield wholly within 6\" of this terrain feature and not in combat. That unit is no longer the Shouty Boss.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -1541,7 +1625,8 @@
           "effect": "Roll a dice. If the roll exceeds the target's Health characteristic, 1 model in the target unit is slain.",
           "keywords": "Rampage",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Breaka-harness",
@@ -1551,7 +1636,8 @@
           "effect": "Make a breaka-roll of D3. \u2022 Inflict an amount of mortal damage on this unit equal to the breaka-roll. \u2022 Double the breaka-roll and add that value to the Attacks characteristic of this unit's Mirebrute's Clubs for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Regeneration",
@@ -1561,7 +1647,8 @@
           "effect": "Heal (D3) this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -1648,7 +1735,8 @@
           "effect": "While this unit has 10 or more damage points, the Attacks characteristic of Killabeak's Talons and Beak is 5.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Screamin' Mandrakk",
@@ -1658,7 +1746,8 @@
           "effect": "This unit uses the 'Unbind' ability but the unbinding roll is 3D6 instead of 2D6.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Crush to Death",
@@ -1668,7 +1757,8 @@
           "effect": "Roll a dice. If the roll exceeds the target's Health characteristic, 1 model in the target unit is slain.",
           "keywords": "Rampage",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Mork Sez No!",
@@ -1678,7 +1768,8 @@
           "effect": "Each time this unit unbinds a spell, inflict D3 mortal damage on the caster. If the unbinding roll was 10+, inflict D6 mortal damage on the caster instead.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Strangle Hex",
@@ -1688,7 +1779,8 @@
           "effect": "Roll a number of dice equal to the target's Health characteristic, to a maximum of 10. For each 4+, inflict 1 mortal damage on the target.",
           "keywords": "Spell",
           "castingValue": "6",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -1754,7 +1846,8 @@
           "effect": "Roll 2D6. If the roll exceeds the target's Health characteristic, it is automatically destroyed.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Kompany Taktikz",
@@ -1764,7 +1857,8 @@
           "effect": "Pick a friendly Hobgrot Slittaz unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight ability used by this unit has been resolved. If it is picked to do so, add 1 to wound rolls for the target's attacks for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -1852,7 +1946,8 @@
           "effect": "While this unit has 10 or more damage points, the Attacks characteristic of Vulcha's Talons and Beak is 5.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Commanding View",
@@ -1862,7 +1957,8 @@
           "effect": "If you roll a 1-3 when determining the distance that unit can move, you can use a value of 4 instead.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Vulcha Dive",
@@ -1872,7 +1968,8 @@
           "effect": "Roll a number of dice equal to the unmodified charge roll. For each 4+, inflict 1 mortal damage on the target.",
           "keywords": "Rampage",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -1944,7 +2041,8 @@
           "effect": "While this unit is contesting an objective you do not control, add 1 to hit rolls for combat attacks made by friendly Kruleboyz units wholly within 12\" of this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "All Part of da Plan",
@@ -1954,7 +2052,8 @@
           "effect": "Add 3 to the target's control score until the start of your next turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2026,7 +2125,8 @@
           "effect": "If this unit is wholly within 6\" of the battlefield edge, remove it from the battlefield and set it up again wholly within 6\" of the battlefield edge and more than 9\" from all enemy units.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Drag 'Em Out",
@@ -2036,7 +2136,8 @@
           "effect": "Roll 2D6. This unit can move a distance in inches up to the value of the roll. Then, if possible, your opponent must remove the target from the battlefield and set it up again within 1\" of this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2108,7 +2209,8 @@
           "effect": "Roll 2D6. This unit can move a distance in inches up to the value of the roll. Then, if possible, your opponent must remove the target from the battlefield and set it up again within 1\" of this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Prowling the Flanks",
@@ -2118,7 +2220,8 @@
           "effect": "If this unit is wholly within 6\" of the battlefield edge, remove this unit from the battlefield and set it up again wholly within 6\" of the battlefield edge and more than 9\" from all enemy units.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2190,7 +2293,8 @@
           "effect": "If this unit is wholly within 12\" of the unit using the 'All-out Attack' command, add 1 to wound rolls for combat attacks made by that unit for the rest of the phase.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Unleash the Stab-grot!",
@@ -2200,7 +2304,8 @@
           "effect": "Pick 1 of the following effects: \u2022 Pick an enemy unit in combat with this unit to be the target. Inflict D3 mortal damage on the target. \u2022 This unit has Ward (5+) for the rest of the turn. After resolving either effect, remove this unit's Stab-grot from the battlefield.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Stab-grot",
@@ -2210,7 +2315,8 @@
           "effect": "This unit's Stab-grot is a token. If this unit's Stab grot has been removed, it can no longer attack with its Stab-grot's Shiv and it cannot use the 'Unleash the Stab-grot!' ability.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2265,7 +2371,8 @@
           "effect": "Roll a number of dice equal to your fury level. You can spend 1 rage dice. If you do: \u2022 Add 1 to each roll. \u2022 If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, for each 3+, inflict 1 mortal damage on the target.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Jump 'Em, Ladz, Or Else!",
@@ -2275,7 +2382,8 @@
           "effect": "Pick a friendly Gutrippaz or Hobgrot Slittaz unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight ability used by this unit has been resolved. If it is picked to do so, add 1 to the Attacks characteristic of the target's melee weapons for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2330,7 +2438,8 @@
           "effect": "Friendly Kruleboyz units have Ward (6+) while they are wholly within 12\" of this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Breath of the Mire-drakes",
@@ -2340,7 +2449,8 @@
           "effect": "Roll a dice for each target. On a 1, this ability has no effect. On a 2-5, inflict 1 mortal damage on the target. On a 6, inflict D3 mortal damage on the target.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2417,7 +2527,8 @@
           "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Sludgeraker's Talons is 4.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Festering Wounds",
@@ -2427,7 +2538,8 @@
           "effect": "Roll a D3 for each target. On a 2+: \u2022 Inflict an amount of mortal damage on the target equal to the roll. \u2022 Subtract 1 from wound rolls for the target's attacks until the end of the next turn.",
           "keywords": "Rampage",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Sludgeraker Venom",
@@ -2437,7 +2549,8 @@
           "effect": "That unit has the Sludgeraker Venom keyword for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2520,7 +2633,8 @@
           "effect": "While this unit has 10 or more damage points, the Attacks characteristic of Sloppklaw's Talons is 4.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Kountin' Krew",
@@ -2530,7 +2644,8 @@
           "effect": "For the rest of the battle, the target's Slitta-knives have Crit (Mortal) while they are wholly within 12\" of this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Aggravate Wounds",
@@ -2540,7 +2655,8 @@
           "effect": "Roll a number of dice equal to the number of damage points the target has. For each 5+, inflict 1 mortal damage on the target.",
           "keywords": "Rampage",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Bet-master",
@@ -2550,7 +2666,8 @@
           "effect": "Add 1 to wound rolls for attacks made by this unit and friendly Hobgrot Slittaz units that target the bet.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2627,7 +2744,8 @@
           "effect": "While this unit has 10 or more damage points, the Attacks characteristic of Sloppklaw's Bite and Talons is 4.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Rigged Odds",
@@ -2637,7 +2755,8 @@
           "effect": "The first time you fail a dirty trick roll each turn, give this unit 1 betting chip. Each time you make a dirty trick roll for an ability that targets a unit wholly within 12\" of this unit, you can spend any number of betting chips after seeing the result of the roll. For each betting chip you spend, add 1 to that dirty trick roll.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Thrashing Tail",
@@ -2647,7 +2766,8 @@
           "effect": "Roll a dice. If the roll is less than or equal to the number of models in the target unit, for the rest of the turn, each time this unit uses an Attack ability, if all of the attacks target that enemy unit, those attacks score critical hits on unmodified hit rolls of 5+. This ability also affects Companion weapons.",
           "keywords": "Rampage",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2713,7 +2833,8 @@
           "effect": "This unit's Pot-grot is a token. Add 1 to casting rolls for this unit while its Pot-grot is on the battlefield. If you make an unmodified casting roll of 4 or less for this unit, remove its Pot-grot from the battlefield.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Foul Elixirs",
@@ -2723,7 +2844,8 @@
           "effect": "Roll a dice. On a 2+, add 1 to save rolls for the target for the rest of the turn. On a 1, inflict D3 mortal damage on the target.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2787,7 +2909,8 @@
           "effect": "For the rest of the turn, the Damage characteristic of this unit's Beast-skewer Bolts is 6 if the target is a Monster.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Pick 'Em Off",
@@ -2797,7 +2920,8 @@
           "effect": "If this unit has not used a Move ability this turn and was not set up this turn, add 1 to hit rolls for this unit's shooting attacks for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -2847,7 +2971,8 @@
           "effect": "Roll a dice. If the roll is at least double the target's Health characteristic, 1 model in the target unit is slain.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -2898,7 +3023,8 @@
           "effect": "Roll a dice. On a 3+, subtract 1 from the Attacks characteristic of the target's melee weapons for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -2948,7 +3074,8 @@
           "effect": "Roll a dice. On a 3+, subtract 1 from hit rolls for attacks made by non-Hero units that target this unit for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3009,7 +3136,8 @@
           "effect": "Roll a dice. On a 3+: \u2022 Inflict 1 mortal damage on the target. \u2022 This unit can immediately use the 'Retreat' ability as if it were your movement phase without any mortal damage being inflicted on it.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3058,7 +3186,8 @@
           "effect": "This unit's Klutcha-grot is a token. If it is removed from the battlefield, this unit cannot use the 'A Tough Grot to Swallow' ability.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Bait and Trap",
@@ -3068,7 +3197,8 @@
           "effect": "Roll a dice. Add 1 to the roll if the target is damaged. On a 3+, the target has Strike-last for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "A Tough Grot to Swallow",
@@ -3078,7 +3208,8 @@
           "effect": "Roll a dice. On a 2+, that Rampage ability has no effect. On a 1, remove this unit's Klutcha-grot from the battlefield.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3148,7 +3279,8 @@
           "effect": "Each time this unit uses a Shoot ability, pick either the Hasty Shot or Aimed Shot weapon characteristics for all the attacks it makes with its Man\u2011skewer Crossbows.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Pick 'Em Off",
@@ -3158,7 +3290,8 @@
           "effect": "If this unit has not used a Move ability this turn and was not set up this turn, add 1 to hit rolls for this unit's shooting attacks for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3216,7 +3349,8 @@
           "effect": "While they are wholly within 12\" of this unit, friendly Kruleboyz Infantry units can use Charge abilities even if they used a Run ability in the same turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Regeneration",
@@ -3226,7 +3360,8 @@
           "effect": "Heal (D3) this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],

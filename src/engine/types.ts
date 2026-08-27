@@ -32,6 +32,8 @@ export type UnitAbility = {
   keywords: string;
   castingValue: string;
   chantingValue: string;
+  /** Command point cost from BSData, when present (e.g. "1", "2"). */
+  cost?: string;
 };
 
 export type NamedOption = {

@@ -18,7 +18,8 @@
           "effect": "The following cumulative effects apply to friendly Grand Forgehost units in each battle round after the first. Battle Round 2: *Daemonic Weaponry:* Those units' weapons have Crit (2 Hits). Battle Round 3: *Harnessed Sorcery:* Add 1 to casting rolls and chanting rolls for those units. Battle Round 4: *Channeled Power:* Attacks made by those units score critical hits on unmodified hit rolls of 5+. Battle Round 5: *Arcane Dominance:* Add 1 to the power level of those units if they are a Wizard or Priest.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Dread Ranks Unbroken",
@@ -28,7 +29,8 @@
           "effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 6\" of the battlefield edge and more than 9\" from all enemy units.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": "1"
         },
         {
           "name": "Skilled Skirmishers",
@@ -38,7 +40,8 @@
           "effect": "Friendly Grand Forgehost War Machines have Ward (6+).",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -56,7 +59,8 @@
           "effect": "For the rest of the turn, the target's attacks cannot score critical hits (treat them as regular hits instead).",
           "keywords": "Spell",
           "castingValue": "7",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -72,7 +76,8 @@
           "effect": "Until the start of your next turn, ignore the first damage point allocated to each friendly Helsmiths of Hashut unit in each phase while they are wholly within 12\" of the caster.",
           "keywords": "Spell, Unlimited",
           "castingValue": "7",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -90,7 +95,8 @@
           "effect": "Subtract 1 from the Attacks characteristic of the target's melee weapons until the start of your next turn. If the chanting roll was 8+, the target also has Strike-last until the start of your next turn.",
           "keywords": "Prayer, Unlimited",
           "castingValue": "",
-          "chantingValue": "4"
+          "chantingValue": "4",
+          "cost": ""
         }
       ]
     },
@@ -106,7 +112,8 @@
           "effect": "If the chanting roll was 7+, pick an additional enemy unit to be a target. Inflict D3 mortal damage on each target.",
           "keywords": "Prayer",
           "castingValue": "",
-          "chantingValue": "5"
+          "chantingValue": "5",
+          "cost": ""
         }
       ]
     }
@@ -142,7 +149,8 @@
               "effect": "This Manifestation can move a distance up to its Move characteristic in one direction (see 'The Pendulum Swings'). It can pass through models during that move and can end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move or that are within 1/2\" of it to be the targets. Roll a D6 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
               "keywords": "Core, Move",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "The Pendulum Swings",
@@ -152,7 +160,8 @@
               "effect": "This Manifestation cannot use Charge or Fight abilities. In addition, when this Manifestation moves, it must move in a straight line either in the direction in which the tip of the pendulum blade is pointing or in the opposite direction to the direction in which the tip of the pendulum blade is pointing",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -163,7 +172,8 @@
             "effect": "Set up an Aethervoid Pendulum wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -191,7 +201,8 @@
               "effect": "If there are any friendly Wizards within 3\" of this Manifestation, pick 1 of the following effects: *Increase Time Flow*: Until the start of your next turn, you can re-roll charge rolls for friendly units while they are wholly within 12\" of this Manifestation. *Decrease Time Flow*: Until the start of your next turn, subtract 1 from hit rolls for attacks that target friendly Wizards while they are wholly within 12\" of this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -202,7 +213,8 @@
             "effect": "Set up a Chronomantic Cogs endless spell wholly within 12\" of the caster and visible to them.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -243,7 +255,8 @@
               "effect": "Ward rolls cannot be made for damage points inflicted by this Manifestation's attacks.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -254,7 +267,8 @@
             "effect": "Set up a Quicksilver Swords endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -312,7 +326,8 @@
               "effect": "Roll a dice. If the roll is less than the number of models in the target unit that were slain this phase, the target cannot use commands for the rest of the turn.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -323,7 +338,8 @@
             "effect": "Set up a Horrorghast endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -364,7 +380,8 @@
               "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, remove the target from the battlefield and set them up again on the battlefield within 3\" of this Manifestation and not in combat. Then, inflict 1 mortal damage on the target.",
               "keywords": "Core, Move",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -375,7 +392,8 @@
             "effect": "Set up a Lauchon the Soulseeker endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -403,7 +421,8 @@
               "effect": "Pick a part of this Manifestation, remove it from the battlefield and set it up again on the battlefield wholly within 9\" of the other part and more than 3\" from all enemy units.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Multiple Parts",
@@ -413,7 +432,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Ensnaring Soul-drain",
@@ -423,7 +443,8 @@
               "effect": "Each time an enemy unit uses a Move ability while it is within 9\" of any parts of this Manifestation, the effects of the 'Fly' ability do not apply to that unit. Enemy units cannot be set up within 9\" of either part of this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -434,7 +455,8 @@
             "effect": "Set up a Shards of Valagharr endless spell wholly within 18\" of the caster and visible to them. A Shards of Valagharr endless spell has 2 parts that must be set up within 9\" of each other.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -462,7 +484,8 @@
               "effect": "Remove the target from the battlefield and set it up again on the battlefield wholly within 6\" of the other part of this Manifestation and more than 9\" from all enemy units.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Multiple Parts",
@@ -472,7 +495,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -483,7 +507,8 @@
             "effect": "Set up a Soulscream Bridge wholly within 18\" of the caster and visible to them. A Soulscream Bridge has 2 parts that must be set up within 9\" of each other.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -531,7 +556,8 @@
               "effect": "If this Manifestation destroyed any enemy Manifestations this turn, Heal (6) this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Arcane Predator",
@@ -541,7 +567,8 @@
               "effect": "You can add 1 to the number of dice rolled when making charge rolls for this Manifestation, to a maximum of 3, while it is within 18\" of any enemy Manifestations, but if you do so, it must end the charge move within 1/2\" of an enemy Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Wild Form",
@@ -551,7 +578,8 @@
               "effect": "Each time this Manifestation is targeted by the 'Banish Manifestation' ability, if it would be banished, it is not banished. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points).",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -562,7 +590,8 @@
             "effect": "Set up a Krondspine Incarnate of Ghur endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "8",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -609,7 +638,8 @@
               "effect": "Roll a dice for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Then, this Manifestation is destroyed.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Necrotic Vortex",
@@ -619,7 +649,8 @@
               "effect": "Give this Manifestation 1 maelstrom point each time: \u2022 This Manifestation is set up. \u2022 A unit successfully casts a spell while it is within 12\" of this Manifestation. \u2022 A model is slain within 12\" of this Manifestation. This Manifestation can have a maximum of 6 maelstrom points at once.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -630,7 +661,8 @@
             "effect": "Set up a a Malevolent Maelstrom endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -671,7 +703,8 @@
               "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move to be the targets. Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
               "keywords": "Core, Move",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Pull of the Nadir",
@@ -681,7 +714,8 @@
               "effect": "Subtract 1 from save rolls for friendly and enemy units while they are within 3\" of this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -692,7 +726,8 @@
             "effect": "Set up a Purple Sun of Shyish endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "8",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -720,7 +755,8 @@
               "effect": "Roll a D3 for each target. On a 2+: \u2022 Inflict an amount of mortal damage on the target equal to the roll. \u2022 Subtract a number of inches equal to the roll from the target's Move characteristic for the rest of the turn.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Multiple Parts",
@@ -730,7 +766,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and all its parts are removed from play.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -741,7 +778,8 @@
             "effect": "Set up a Soulsnare Shackles endless spell wholly within 18\" of the caster and visible to them. A Soulsnare Shackles endless spell has 3 parts that must each be set up within 3\" of at least 1 other part.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -782,7 +820,8 @@
               "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, you can pick an enemy unit that this Manifestation passed across during that move to be the target. Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
               "keywords": "Core, Move",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -793,7 +832,8 @@
             "effect": "Set up a Suffocating Gravetide endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "8",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -840,7 +880,8 @@
               "effect": "Enemy units cannot use commands while they are within 3\" of either part of this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Multiple Parts",
@@ -850,7 +891,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play. Each time this Manifestation moves, both its parts must end within 9\" of each other. Each part of this Manifestation is armed with Tendrils of Light and Shadow.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -861,7 +903,8 @@
             "effect": "Set up a Geminids of Uhl-Gysh endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units. A Geminids of Uhl-Gysh endless spell has 2 parts that must be set up within 9\" of each other.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -889,7 +932,8 @@
               "effect": "This Manifestation cannot be targeted by shooting attacks. In addition, a unit cannot be targeted by shooting attacks if it is impossible to draw a straight line from a model in the attacking unit to a model in the target unit without that line passing across this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -900,7 +944,8 @@
             "effect": "Set up a Prismatic Palisade wholly within 18\" of the caster and visible to them.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -928,7 +973,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Arcane Passage",
@@ -938,7 +984,8 @@
               "effect": "The next time the target uses a non-Summon Spell ability this phase, add 1 to the casting value of that spell. When picking targets for that spell, you can measure range and visibility from either part of this Manifestation instead of from the caster, and your opponent can measure range and visibility to either part of this Manifestation instead of to the caster for the purposes of the 'Unbind' ability.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -949,7 +996,8 @@
             "effect": "Set up an Umbral Spellportal wholly within 18\" of the caster and visible to them. An Umbral Spellportal has 2 parts that must be set up within 9\" of each other.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -996,7 +1044,8 @@
               "effect": "Heal (3) this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Bounteous Healing",
@@ -1006,7 +1055,8 @@
               "effect": "Heal (3) the target.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -1017,7 +1067,8 @@
             "effect": "Set up a Emerald Lifeswarm endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -1057,7 +1108,8 @@
               "effect": "Roll 10 dice. For each 5+, inflict 1 mortal damage on the target.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -1068,7 +1120,8 @@
             "effect": "Set up a Ravenak's Gnashing Jaws endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -1120,7 +1173,8 @@
               "effect": "Each time this Manifestation uses a Shoot ability, after that ability has been resolved, allocate 1 damage point to this Manifestation (ward rolls cannot be made for that damage point).",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": null
@@ -1141,7 +1195,8 @@
           "effect": "Subtract 1 from hit rolls for attacks that target this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -1159,7 +1214,8 @@
           "effect": "Each time a friendly Grand Forgehost unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -1214,7 +1270,8 @@
           "effect": "If this unit is contesting an objective, a Place of Power or a terrain feature and that objective, Place of Power or terrain feature has a friendly desolation token, give this unit 1 ritual point.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Stoked Fanaticism",
@@ -1224,7 +1281,8 @@
           "effect": "Ignore the first damage point allocated to each friendly non-Hobgrot Helsmiths of Hashut unit each phase while it is wholly within 6\" of this unit. Add 6\" to the range of this ability for each daemonic power point this unit has",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -1299,7 +1357,8 @@
           "effect": "Heal (D3+X) the target, where X is the number of daemonic power points this unit has.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -1388,7 +1447,8 @@
           "effect": "Inflict D3 mortal damage on the target. Then, roll 2D6. This unit can move a distance up to the value of the roll. during that move, this unit can pass through models in the target unit but must end that move in combat.",
           "keywords": "Rampage",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Peerless Among Daemonsmiths",
@@ -1398,7 +1458,8 @@
           "effect": "Apply the effect below that corresponds with the number of daemonic power points this unit has: 1 This unit has Ward (6+). 2 Add 1 to casting rolls for this unit. In addition, this unit has Ward (5+). 3 Add 2 to casting rolls for this unit. In addition, this unit has Ward (4+) against damage inflicted by Spells, Prayers, and abilites used by Manifestations. Otherwise, it has Ward (5+).",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "The Curse of Stone",
@@ -1408,7 +1469,8 @@
           "effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
           "keywords": "Spell",
           "castingValue": "7",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Battle Damaged",
@@ -1418,7 +1480,8 @@
           "effect": "While this unit has 10 or more damage points, the Attacks characteristic of Ghorrakos's Horns and Hooves is 4.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Master of Daemonic Power",
@@ -1428,7 +1491,8 @@
           "effect": "Remove up to 3 daemonic power points in total from any combination of friendly units wholly within 18\" of this unit. Then, allocate them to a different friendly non-Hobgrot Helsmiths of Hashut unit wholly within 18\" of this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -1492,7 +1556,8 @@
           "effect": "Pick a friendly non-Hero Helsmiths of Hashut Infantry unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight ability used by this unit has been resolved. If it is picked to do so, add 1 to the Attacks characteristic of its melee weapons for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Black-Hearted Conqueror",
@@ -1502,7 +1567,8 @@
           "effect": "Add 3 to the control scores of friendly Helsmith of Hashut Infantry units while they are wholly within 6\" of this unit. Add 6\" to the range of this ability for each daemonic power point this unit has.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -1560,7 +1626,8 @@
           "effect": "While this unit has any daemonic power points, friendly non\u2011Hobgrot Helsmiths of Hashut units, excluding War Despots, with 0 daemonic power points count as having 1 daemonic power point while they are wholly within 9\" of and visible to this unit. Add 3\" to the range of this ability while this unit has 2 daemonic power points. Add 6\" to the range of this ability instead while this unit has 3 daemonic power points. Designer's Note: *If a friendly unit with 0 daemonic power points is affected by this ability and subsequently gains 1 or more daemonic power points, this ability would stop affecting that unit. Also, Urak Taar's 'Master of Daemonic Power' ability has no effect on units affected by this ability*",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Daemonfire Pistol",
@@ -1570,7 +1637,8 @@
           "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the enemy target equal to the roll. If there is a friendly target, for the rest of the turn: \u2022 It can use a Retreat ability and still use Shoot and/or Charge abilities later in the turn. \u2022 Add 2\" to the distance it can move when using Retreat abilities. \u2022 No mortal damage is inflicted on it by Retreat abilities.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -1635,7 +1703,8 @@
           "effect": "For the rest of the turn, the Damage characteristic of this unit's Hashu-Zharr Rockets is 5 if the target is a Monster or War Machine.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Watch Them Burn",
@@ -1645,7 +1714,8 @@
           "effect": "Roll a number of dice equal to the number of daemonic power points this unit has for each other enemy unit within the combat range of the target of this unit's shooting attacks. For each 3+, inflict 1 mortal damage on the enemy unit being rolled for.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -1694,7 +1764,8 @@
           "effect": "If this unit is in combat with any enemy Heroes, it can use 2 Fight abilities this phase. After the first is used, however, this unit has Strike-last for the rest of the phase and can only be picked to use a second Fight ability if it is still in combat with any enemy Heroes.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Daemonic Strength",
@@ -1704,7 +1775,8 @@
           "effect": "For each daemonic power point this unit has: \u2022 Add 1\" to its Move characteristic \u2022 Add 1 to the Attacks characteristic of its weapons.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -1764,7 +1836,8 @@
           "effect": "For the rest of the turn, add 2 to the Attacks characteristic of this unit's Immolation Cannons for each unit picked to be the target of this ability, but each time this unit uses a Shoot ability, it must target each of those units with at least 3 of its attacks.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Daemonic Strength",
@@ -1774,7 +1847,8 @@
           "effect": "For each daemonic power point this unit has: \u2022 Add 1\" to its Move characteristic \u2022 Add 1 to the Attacks characteristic of its weapons.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -1826,7 +1900,8 @@
           "effect": "When making run rolls for this unit, if you roll a 1-3, you can use a value of 4 instead.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Daemonic Resilience",
@@ -1836,7 +1911,8 @@
           "effect": "Apply the effect below that corresponds with the number of daemonic power points this unit has: 1 This unit has Ward (6+). 2 This unit has Ward (5+). 3 This unit has Ward (4+) against damage inflicted by Spells, Prayers, and abilites used by Manifestations. Otherwise, it has Ward (5+).",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Sacred Gongs",
@@ -1846,7 +1922,8 @@
           "effect": "This unit's Gong Carriers are tokens. There is 1 Gong Carrier for every Musician in this unit. If this unit uses the 'Rally' command, as a reaction, you can remove a Gong Carrier to make an additional rally roll of D6.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -1898,7 +1975,8 @@
           "effect": "Remove up to 3 models from this unit. Then, if the target is an Infantry unit, return a number of slain models to the target equal to the number of models you removed from this unit. If the target is a War Machine, heal a number of damage points allocated to the target equal to the number of models you removed from this unit. Models removed from this unit by this ability cannot be returned to this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Daemonic Resilience",
@@ -1908,7 +1986,8 @@
           "effect": "Apply the effect below that corresponds with the number of daemonic power points this unit has: 1 This unit has Ward (6+). 2 This unit has Ward (5+). 3 This unit has Ward (4+) against damage inflicted by Spells, Prayers, and abilites used by Manifestations. Otherwise, it has Ward (5+).",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Sanctified Gongs",
@@ -1918,7 +1997,8 @@
           "effect": "This unit's Gong Carriers are tokens. There is 1 Gong Carrier for every Musician in this unit. If this unit uses the 'Rally' command, make 2 additional rally rolls of D6 for each Gong Carrier in this unit, but for each unmodified rally roll of 1, you must remove a Gong Carrier from this unit after the command has been resolved.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -1970,7 +2050,8 @@
           "effect": "Roll a dice. On a 3+, give the target 1 daemonic power point. Designer's Note: *You cannot make more than one roll for each objective in each turn regardless of how many friendly units with this ability are contesting that objective.*",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Daemonic Resilience",
@@ -1980,7 +2061,8 @@
           "effect": "Apply the effect below that corresponds with the number of daemonic power points this unit has: 1 This unit has Ward (6+). 2 This unit has Ward (5+). 3 This unit has Ward (4+) against damage inflicted by Spells, Prayers, and abilites used by Manifestations. Otherwise, it has Ward (5+).",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Sacred Gongs",
@@ -1990,7 +2072,8 @@
           "effect": "This unit's Gong Carriers are tokens. There is 1 Gong Carrier for every Musician in this unit. If this unit uses the 'Rally' command, as a reaction, you can remove a Gong Carrier to make an additional rally roll of D6.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -2051,7 +2134,8 @@
           "effect": "Roll a dice and add the number of enemy models in the target unit slain by attacks made by this unit this turn. If the result is 6+, the target has Strike-last for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Manglers of Metal",
@@ -2061,7 +2145,8 @@
           "effect": "Add 1 to the Rend characteristic of this unit's ranged weapons for each daemonic power point this unit has.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -2122,7 +2207,8 @@
           "effect": "Roll a dice. On a 3+, subtract an amount equal to the roll from the target's control score until the start of your next turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Manglers of Metal",
@@ -2132,7 +2218,8 @@
           "effect": "Add 1 to the Rend characteristic of this unit's ranged weapons for each daemonic power point this unit has.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -2206,7 +2293,8 @@
           "effect": "Apply the effect(s) below that corresponds with the number of daemonic power points this unit has. These effects are cumulative. 1+ Add 1\" to this unit's Move characteristic. 2+ Add 1 to wound rolls for this unit's combat attacks. 3+ Add 1 to the Rend characteristic of this unit's melee weapons.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -2265,7 +2353,8 @@
           "effect": "Roll a dice for each target. On a 3+, that unit cannot use commands until the start of your next turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Calculated Trajectory",
@@ -2275,7 +2364,8 @@
           "effect": "Add 1 to hit rolls for this unit's shooting attacks that target an enemy unit with 5 or more models that is more than 12\" from this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],

@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import {
+  commandAbilityCost,
   coreCommandsForPhase,
   isCommandAbility,
   type CoreCommand,
@@ -24,8 +25,12 @@ import type {
   FactionCatalogue,
   UnitWeapon,
 } from "@/engine/types";
+import { ModalFrame } from "./ModalFrame";
 
 type PhaseSubTab = "abilities" | "weapons" | "command";
+
+const UNIVERSAL_COMMAND_RULES =
+  "You generate 4 CP each battle round (underdog +1). One command per unit per phase; each command once per army per phase. Cost is shown on each command.";
 
 type Props = {
   list: ArmyList;
@@ -43,6 +48,7 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
   const [subTabByPhase, setSubTabByPhase] = useState<
     Partial<Record<PlayPhaseId, PhaseSubTab>>
   >({});
+  const [commandRulesOpen, setCommandRulesOpen] = useState(false);
   const active =
     boards.find((board) => board.phase.id === phaseId) ?? boards[0] ?? null;
   const showCombatMods =
@@ -292,11 +298,45 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
 
                     {coreCommands.length > 0 ? (
                       <div>
-                        <p className="text-sm text-sheet-muted">
-                          Universal commands · 4 CP each battle round (underdog
-                          +1). One command per unit per phase; each command once
-                          per army per phase.
-                        </p>
+                        <div className="flex items-center justify-between gap-2">
+                          <h3 className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
+                            Universal
+                          </h3>
+                          <button
+                            type="button"
+                            onClick={() => setCommandRulesOpen(true)}
+                            aria-label="How universal commands work"
+                            className="inline-flex size-11 shrink-0 items-center justify-center rounded-full text-sheet-muted"
+                          >
+                            <svg
+                              viewBox="0 0 20 20"
+                              aria-hidden="true"
+                              className="size-5"
+                            >
+                              <circle
+                                cx="10"
+                                cy="10"
+                                r="8.25"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="1.75"
+                              />
+                              <path
+                                d="M10 9v5"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="1.75"
+                                strokeLinecap="round"
+                              />
+                              <circle
+                                cx="10"
+                                cy="6.25"
+                                r="1.1"
+                                fill="currentColor"
+                              />
+                            </svg>
+                          </button>
+                        </div>
                         <ul className="mt-3 flex flex-col gap-3">
                           {coreCommands.map((command) => (
                             <li key={command.id}>
@@ -316,6 +356,27 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
             </p>
           )}
         </section>
+      ) : null}
+
+      {commandRulesOpen ? (
+        <ModalFrame
+          label="How universal commands work"
+          onClose={() => setCommandRulesOpen(false)}
+          panelClassName="parchment-card w-full max-w-sm rounded-2xl p-5 text-parchment-ink"
+          zClass="z-[60]"
+        >
+          <h2 className="font-serif text-2xl">Universal commands</h2>
+          <p className="mt-3 text-base leading-relaxed text-sheet-muted">
+            {UNIVERSAL_COMMAND_RULES}
+          </p>
+          <button
+            type="button"
+            onClick={() => setCommandRulesOpen(false)}
+            className="gold-plate mt-5 min-h-11 w-full rounded-xl text-base font-semibold text-ink"
+          >
+            Got it
+          </button>
+        </ModalFrame>
       ) : null}
     </div>
   );
@@ -443,16 +504,26 @@ function AbilityCard({
   onOpen: () => void;
 }) {
   const { ability } = row;
+  const cpCost = commandAbilityCost(ability);
   return (
     <button
       type="button"
       onClick={onOpen}
       className="w-full rounded-xl bg-parchment-ink/5 px-3 py-3 text-left"
     >
-      <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-        {row.unitName}
-      </p>
-      <p className="mt-1 font-serif text-lg leading-tight">{ability.name}</p>
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
+            {row.unitName}
+          </p>
+          <p className="mt-1 font-serif text-lg leading-tight">{ability.name}</p>
+        </div>
+        {cpCost != null ? (
+          <span className="shrink-0 rounded-md bg-parchment-ink/10 px-2 py-0.5 text-xs font-semibold tracking-wide text-sheet-muted">
+            {cpCost} CP
+          </span>
+        ) : null}
+      </div>
       {ability.castingValue || ability.chantingValue ? (
         <p className="mt-1 text-sm font-semibold tracking-wide uppercase text-sheet-muted">
           {[

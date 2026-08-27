@@ -1,5 +1,6 @@
 "use client";
 
+import { unitSizeLabel } from "@/engine/queries";
 import type { CatalogueUnit, UnitAbility } from "@/engine/types";
 import { ModalFrame } from "./ModalFrame";
 
@@ -99,9 +100,11 @@ function PickerRow({
           <span className="block font-serif text-lg leading-tight">
             {unit.name}
           </span>
-          {unit.unique ? (
-            <span className="text-xs text-sheet-muted">Unique</span>
-          ) : null}
+          <span className="mt-0.5 block text-xs text-sheet-muted">
+            {unitSizeLabel(unit)}
+            {unit.unique ? " · Unique" : ""}
+            {unit.reinforce ? " · can reinforce" : ""}
+          </span>
         </span>
         <span className="font-medium text-sigmarite">{unit.points}</span>
       </button>

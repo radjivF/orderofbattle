@@ -1,5 +1,6 @@
 "use client";
 
+import { commandAbilityCost } from "@/engine/commands";
 import { unitWard } from "@/engine/queries";
 import type {
   CatalogueUnit,
@@ -114,10 +115,14 @@ function AbilityBlock({ abilities }: { abilities: UnitAbility[] }) {
             <p className="font-serif text-lg leading-tight">{ability.name}</p>
             {ability.keywords ||
             ability.castingValue ||
-            ability.chantingValue ? (
+            ability.chantingValue ||
+            commandAbilityCost(ability) != null ? (
               <p className="mt-0.5 text-sm font-semibold tracking-wide uppercase text-sheet-muted">
                 {[
                   ability.keywords,
+                  commandAbilityCost(ability) != null
+                    ? `${commandAbilityCost(ability)} CP`
+                    : "",
                   ability.castingValue ? `Cast ${ability.castingValue}` : "",
                   ability.chantingValue ? `Chant ${ability.chantingValue}` : "",
                 ]

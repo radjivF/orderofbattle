@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
-import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, factionHasScourge, resolveUnitIdForRealm, unitBaseName, unitsForRealm, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel, type ScourgeRealm } from "@/engine/queries";
+import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, factionHasScourge, resolveUnitIdForRealm, unitBaseName, unitsForRealm, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel, type ScourgeRealm } from "@/engine/queries";
 import { combatModifierNotes } from "@/engine/magic";
+import { exportArmyListText, exportFileName } from "@/engine/exportText";
 import { summarize } from "@/engine/validate";
 import { formatPoints } from "@/engine/pointsCap";
 import type { ArmyList, CatalogueUnit, DatasheetSubject, EnhancementOption, FactionCatalogue, NamedOption } from "@/engine/types";
@@ -14,8 +15,15 @@ import {
   saveArmy,
   subscribeArmies,
 } from "@/lib/storage";
+import {
+  getListOpenFactionServerSnapshot,
+  getListOpenFactionSnapshot,
+  subscribeListOpenFaction,
+} from "@/lib/listTransition";
 import { DatasheetSheet } from "./DatasheetSheet";
 import { FactionBackdrop } from "./FactionBackdrop";
+import { ListLoadingSplash } from "./ListLoadingSplash";
+import { ModalFrame } from "./ModalFrame";
 import { ChoiceSheet, PickerSheet } from "./PickerSheet";
 import { PointsCapField } from "./PointsCapField";
 import { ManifestationCard } from "./ManifestationCard";
@@ -50,14 +58,21 @@ export function BuilderScreen({ listId }: Props) {
     getArmiesSnapshot,
     getArmiesServerSnapshot,
   );
+  const rememberedId = useSyncExternalStore(
+    subscribeListOpenFaction,
+    getListOpenFactionSnapshot,
+    getListOpenFactionServerSnapshot,
+  );
   const list = lists?.find((item) => item.id === listId);
   const faction = list ? getFaction(list.factionId) : undefined;
 
   if (lists === undefined) {
+    const remembered = rememberedId ? getFaction(rememberedId) : undefined;
     return (
-      <div className="min-h-full bg-ink px-6 py-10 text-ink-muted">
-        Opening list…
-      </div>
+      <ListLoadingSplash
+        factionId={rememberedId}
+        factionName={remembered?.name}
+      />
     );
   }
 
@@ -96,7 +111,13 @@ function BuilderReady({
   const [datasheet, setDatasheet] = useState<DatasheetSubject | null>(null);
   const [playMode, setPlayMode] = useState(false);
   const [playTab, setPlayTab] = useState<"units" | "magic" | "phases">("units");
+  const [exportOpen, setExportOpen] = useState(false);
+  const [exportCopied, setExportCopied] = useState(false);
   const totals = useMemo(() => summarize(list, faction), [list, faction]);
+  const exportText = useMemo(
+    () => exportArmyListText(list, faction),
+    [list, faction],
+  );
   const bindNotes = useMemo(
     () => (playMode ? combatModifierNotes(list, faction) : []),
     [playMode, list, faction],
@@ -110,6 +131,27 @@ function BuilderReady({
 
   async function commit(next: ArmyList) {
     await saveArmy(next);
+  }
+
+  async function copyExportText() {
+    try {
+      await navigator.clipboard.writeText(exportText);
+      setExportCopied(true);
+    } catch {
+      setExportCopied(false);
+    }
+  }
+
+  function downloadExportText() {
+    const blob = new Blob([exportText], {
+      type: "text/plain;charset=utf-8",
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = exportFileName(list.name);
+    link.click();
+    URL.revokeObjectURL(url);
   }
 
   useEffect(() => {
@@ -455,11 +497,165 @@ function BuilderReady({
       <main className="mx-auto flex w-full max-w-3xl min-w-0 flex-col gap-5 px-4 py-6 pb-28">
         {!playMode ? (
         <div className="flex min-w-0 flex-col gap-4">
-          <PointsCapField
-            value={list.pointsCap}
-            onChange={(pointsCap) => void commit({ ...list, pointsCap })}
-            variant="ink"
-          />
+          <details className="group min-w-0 rounded-2xl bg-ink-raised ring-1 ring-parchment/12 open:pb-4">
+            <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm text-parchment/85 marker:content-none [&::-webkit-details-marker]:hidden">
+              <span className="font-medium tracking-wide">Options</span>
+              <span className="flex items-center gap-2 text-xs text-ink-muted">
+                <span className="group-open:hidden">
+                  Points · Lores · Export
+                </span>
+                <span aria-hidden="true" className="transition group-open:rotate-180">
+                  ▾
+                </span>
+              </span>
+            </summary>
+            <div className="flex min-w-0 flex-col gap-4 border-t border-parchment/10 px-4 pt-4">
+              <PointsCapField
+                value={list.pointsCap}
+                onChange={(pointsCap) => void commit({ ...list, pointsCap })}
+                variant="ink"
+              />
+
+              {factionHasScourge(faction) ? (
+                <label className="flex flex-col gap-2 text-sm text-parchment/80">
+                  Datasheet season
+                  <select
+                    value={list.scourgeRealm ?? ""}
+                    onChange={(event) => {
+                      const realm = (event.target.value ||
+                        null) as ScourgeRealm | null;
+                      void commit(applyScourgeRealm(list, faction, realm));
+                    }}
+                    className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
+                  >
+                    <option value="">Core datasheets</option>
+                    <option value="aqshy">Scourge of Aqshy</option>
+                    <option value="ghyran">Scourge of Ghyran</option>
+                  </select>
+                  <span className="text-xs text-ink-muted">
+                    Replaces matching warscrolls; other units keep their core
+                    sheet.
+                  </span>
+                </label>
+              ) : null}
+
+              {faction.spellLores.length > 0 ? (
+                <div className="flex flex-col gap-2">
+                  <label className="flex flex-col gap-2 text-sm text-parchment/80">
+                    Spell lore
+                    <select
+                      value={list.spellLoreId ?? ""}
+                      onChange={(event) =>
+                        void commit({
+                          ...list,
+                          spellLoreId: event.target.value || null,
+                        })
+                      }
+                      className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
+                    >
+                      <option value="">None</option>
+                      {faction.spellLores.map((lore) => (
+                        <option key={lore.id} value={lore.id}>
+                          {lore.name}
+                        </option>
+                      ))}
+                    </select>
+                    {!hasWizard ? (
+                      <span className="text-xs text-ink-muted">
+                        Needs a Wizard in the list to use.
+                      </span>
+                    ) : null}
+                  </label>
+                  {faction.spellLores.length > 1 &&
+                  spellLore &&
+                  spellLore.powers.length > 0 ? (
+                    <ul className="min-w-0 break-words rounded-2xl bg-parchment px-4 py-3 text-parchment-ink shadow-sm">
+                      {spellLore.powers.map((power) => (
+                        <li
+                          key={power.name}
+                          className="border-b border-parchment-ink/10 py-3 last:border-b-0 last:pb-0 first:pt-0"
+                        >
+                          <p className="font-serif text-lg leading-tight">
+                            {power.name}
+                          </p>
+                          <p className="mt-1 text-xs tracking-wide uppercase text-aether">
+                            {[
+                              power.castingValue
+                                ? `Cast ${power.castingValue}`
+                                : "",
+                              power.kind,
+                            ]
+                              .filter(Boolean)
+                              .join(" · ")}
+                          </p>
+                          {power.timing ? (
+                            <p className="mt-1 font-serif text-base leading-snug text-parchment-ink/80">
+                              {power.timing}
+                            </p>
+                          ) : null}
+                          {power.declare ? (
+                            <p className="mt-2 text-sm leading-relaxed text-parchment-ink/75">
+                              <span className="text-sheet-muted">
+                                Declare ·{" "}
+                              </span>
+                              {power.declare}
+                            </p>
+                          ) : null}
+                          {power.effect ? (
+                            <p className="mt-1 text-sm leading-relaxed text-parchment-ink/75">
+                              <span className="text-sheet-muted">
+                                Effect ·{" "}
+                              </span>
+                              {power.effect}
+                            </p>
+                          ) : null}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </div>
+              ) : null}
+
+              {faction.prayerLores.length > 0 ? (
+                <label className="flex flex-col gap-2 text-sm text-parchment/80">
+                  Prayer lore
+                  <select
+                    value={list.prayerLoreId ?? ""}
+                    onChange={(event) =>
+                      void commit({
+                        ...list,
+                        prayerLoreId: event.target.value || null,
+                      })
+                    }
+                    className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
+                  >
+                    <option value="">None</option>
+                    {faction.prayerLores.map((lore) => (
+                      <option key={lore.id} value={lore.id}>
+                        {lore.name}
+                      </option>
+                    ))}
+                  </select>
+                  {!hasPriest ? (
+                    <span className="text-xs text-ink-muted">
+                      Needs a Priest in the list to use.
+                    </span>
+                  ) : null}
+                </label>
+              ) : null}
+
+              <button
+                type="button"
+                onClick={() => {
+                  setExportCopied(false);
+                  setExportOpen(true);
+                }}
+                className="min-h-11 w-full rounded-xl text-sm text-sigmarite ring-1 ring-sigmarite/30"
+              >
+                Export list as text
+              </button>
+            </div>
+          </details>
           {faction.formations.length > 0 ? (
           <div className="flex min-w-0 flex-col gap-2">
             <label className="flex min-w-0 flex-col gap-2 text-sm text-parchment/80">
@@ -510,128 +706,6 @@ function BuilderReady({
               </ul>
             ) : null}
           </div>
-          ) : null}
-
-          {factionHasScourge(faction) ? (
-            <label className="flex flex-col gap-2 text-sm text-parchment/80">
-              Datasheet season
-              <select
-                value={list.scourgeRealm ?? ""}
-                onChange={(event) => {
-                  const realm = (event.target.value || null) as ScourgeRealm | null;
-                  void commit(applyScourgeRealm(list, faction, realm));
-                }}
-                className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
-              >
-                <option value="">Core datasheets</option>
-                <option value="aqshy">Scourge of Aqshy</option>
-                <option value="ghyran">Scourge of Ghyran</option>
-              </select>
-              <span className="text-xs text-ink-muted">
-                Replaces matching warscrolls; other units keep their core sheet.
-              </span>
-            </label>
-          ) : null}
-
-          {faction.spellLores.length > 0 ? (
-            <div className="flex flex-col gap-2">
-              <label className="flex flex-col gap-2 text-sm text-parchment/80">
-                Spell lore
-                <select
-                  value={list.spellLoreId ?? ""}
-                  onChange={(event) =>
-                    void commit({
-                      ...list,
-                      spellLoreId: event.target.value || null,
-                    })
-                  }
-                  className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
-                >
-                  <option value="">None</option>
-                  {faction.spellLores.map((lore) => (
-                    <option key={lore.id} value={lore.id}>
-                      {lore.name}
-                    </option>
-                  ))}
-                </select>
-                {!hasWizard ? (
-                  <span className="text-xs text-ink-muted">
-                    Needs a Wizard in the list to use.
-                  </span>
-                ) : null}
-              </label>
-              {faction.spellLores.length > 1 &&
-              spellLore &&
-              spellLore.powers.length > 0 ? (
-                <ul className="min-w-0 break-words rounded-2xl bg-parchment px-4 py-3 text-parchment-ink shadow-sm">
-                  {spellLore.powers.map((power) => (
-                    <li
-                      key={power.name}
-                      className="border-b border-parchment-ink/10 py-3 last:border-b-0 last:pb-0 first:pt-0"
-                    >
-                      <p className="font-serif text-lg leading-tight">
-                        {power.name}
-                      </p>
-                      <p className="mt-1 text-xs tracking-wide uppercase text-aether">
-                        {[
-                          power.castingValue
-                            ? `Cast ${power.castingValue}`
-                            : "",
-                          power.kind,
-                        ]
-                          .filter(Boolean)
-                          .join(" · ")}
-                      </p>
-                      {power.timing ? (
-                        <p className="mt-1 font-serif text-base leading-snug text-parchment-ink/80">
-                          {power.timing}
-                        </p>
-                      ) : null}
-                      {power.declare ? (
-                        <p className="mt-2 text-sm leading-relaxed text-parchment-ink/75">
-                          <span className="text-sheet-muted">Declare · </span>
-                          {power.declare}
-                        </p>
-                      ) : null}
-                      {power.effect ? (
-                        <p className="mt-1 text-sm leading-relaxed text-parchment-ink/75">
-                          <span className="text-sheet-muted">Effect · </span>
-                          {power.effect}
-                        </p>
-                      ) : null}
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-            </div>
-          ) : null}
-
-          {faction.prayerLores.length > 0 ? (
-            <label className="flex flex-col gap-2 text-sm text-parchment/80">
-              Prayer lore
-              <select
-                value={list.prayerLoreId ?? ""}
-                onChange={(event) =>
-                  void commit({
-                    ...list,
-                    prayerLoreId: event.target.value || null,
-                  })
-                }
-                className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
-              >
-                <option value="">None</option>
-                {faction.prayerLores.map((lore) => (
-                  <option key={lore.id} value={lore.id}>
-                    {lore.name}
-                  </option>
-                ))}
-              </select>
-              {!hasPriest ? (
-                <span className="text-xs text-ink-muted">
-                  Needs a Priest in the list to use.
-                </span>
-              ) : null}
-            </label>
           ) : null}
         </div>
         ) : playTab === "units" ? (
@@ -1059,8 +1133,12 @@ function BuilderReady({
                           </span>
                         ) : null}
                       </p>
-                      <p className="mt-0.5 text-sm text-gold-deep">
-                        {selectionPoints(unit, slot.reinforced)} pts
+                      <p className="mt-0.5 text-sm text-sheet-muted">
+                        {unitSizeLabel(unit, slot.reinforced)}
+                        <span className="text-gold-deep">
+                          {" "}
+                          · {selectionPoints(unit, slot.reinforced)} pts
+                        </span>
                       </p>
                     </div>
                     <div className="flex shrink-0 items-stretch">
@@ -1333,6 +1411,47 @@ function BuilderReady({
           }}
           onClose={() => setPicker(null)}
         />
+      ) : null}
+
+      {exportOpen ? (
+        <ModalFrame
+          label="Export list as text"
+          onClose={() => setExportOpen(false)}
+          panelClassName="parchment-card flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl text-parchment-ink"
+        >
+          <div className="flex shrink-0 items-center justify-between gap-3 px-5 pt-5 pb-3">
+            <h2 className="font-serif text-2xl">Export as text</h2>
+            <button
+              type="button"
+              onClick={() => setExportOpen(false)}
+              className="min-h-11 px-3 text-sm text-parchment-ink/70"
+            >
+              Close
+            </button>
+          </div>
+          <textarea
+            readOnly
+            value={exportText}
+            aria-label="Exported list text"
+            className="mx-5 mb-4 min-h-[16rem] flex-1 resize-none rounded-xl bg-parchment-ink/5 px-3 py-3 font-mono text-xs leading-relaxed text-parchment-ink outline-none ring-1 ring-parchment-ink/10"
+          />
+          <div className="flex shrink-0 gap-2 px-5 pb-5">
+            <button
+              type="button"
+              onClick={() => void copyExportText()}
+              className="gold-plate min-h-11 flex-1 rounded-xl text-base font-semibold text-ink"
+            >
+              {exportCopied ? "Copied" : "Copy"}
+            </button>
+            <button
+              type="button"
+              onClick={downloadExportText}
+              className="min-h-11 flex-1 rounded-xl bg-parchment-ink/5 text-base"
+            >
+              Download .txt
+            </button>
+          </div>
+        </ModalFrame>
       ) : null}
     </div>
   );

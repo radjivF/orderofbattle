@@ -402,6 +402,7 @@ def ability_from_profile(profile: ET.Element) -> dict | None:
         "keywords": chars.get("Keywords", ""),
         "castingValue": chars.get("Casting Value", ""),
         "chantingValue": chars.get("Chanting Value", ""),
+        "cost": chars.get("Cost", ""),
     }
 
 

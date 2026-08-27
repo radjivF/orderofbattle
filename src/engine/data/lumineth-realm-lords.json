@@ -17,7 +17,8 @@
           "effect": "Spell abilities from the Lore of Hysh or the Lore of the Awakened Realms used by friendly Lumineth Realm-lords Wizards have the Unlimited keyword. However, you cannot pick the same unit to be the target of the same Spell ability in the same turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -33,7 +34,8 @@
           "effect": "Friendly Lumineth Realm-lords units can use the 'Power Through' command even if they have not charged this turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -49,7 +51,8 @@
           "effect": "When players are alternating picking units to use a Fight ability, when it is your turn to pick a unit, you can pick 2 friendly Lumineth Realm-lords units instead of 1. Resolve the second Fight ability immediately after the first.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -65,7 +68,8 @@
           "effect": "For the rest of the turn, ignore the first damage point that would be allocated to each visible friendly Lumineth Realm-lords unit in each phase while it is wholly within 12\" of the target.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -83,7 +87,8 @@
           "effect": "Pick 1 of the following runes to depict on your battle scripture. The effect and conditional enhanced effects of that rune last for the rest of the battle round. Each rune remains on your battle scripture for the rest of the battle or until it is removed or replaced by another ability. Varinor, Rune of Strength: Pick up to 2 friendly Lumineth Realm-lords units for each instance of this rune depicted on your battle scripture to be the targets. Add 1 to run rolls and charge rolls for each target. In addition, the following enhanced effects apply: \u2022 While Ydriliqi, Rune of the River is depicted on your battle scripture, add 1 to wound rolls for each target's combat attacks. \u2022 While Oreali, Rune of the Wind is depicted on your battle scripture, each target can use Shoot and/or Charge abilities even if it used a Retreat ability in the same turn. Alaithi, Rune of the Mountain: Pick up to 2 friendly Lumineth Realm-lords units for each instance of this rune depicted on your battle scripture to be the targets. Each target has Ward (5+). In addition, the following enhanced effects apply: \u2022 While Varinor, Rune of Strength is depicted on your battle scripture, the targets' melee weapons have Anti-charge (+1 Rend). \u2022 While Ydriliqi, Rune of the River is depicted on your battle scripture,subtract 1 from wound rolls for attacks made by enemy units while they are in combat with any of the targets. Ydriliqi, Rune of the River: Pick up to 2 friendly ^^Lumineth Realm-lords units for each instance of this rune depicted on your battle scripture to be the targets. Subtract 2 from charge rolls for enemy units while they are within 12\" of any of the targets. In addition, the following enhanced effects apply: \u2022 While Alaithi, Rune of the Mountain is depicted on your battle scripture, ignore negative modifiers to hit rolls and wound rolls for attacks made by the targets. \u2022 If Oreali, Rune of the Wind is depicted on your battle scripture, each target can immediately move 3\". They can pass through the combat ranges of enemy units and can end that move in combat. Oreali, Rune of the Wind: Pick up to 2 friendly Lumineth Realm-lords units for each instance of this rune depicted on your battle scripture to be the targets. Subtract 1 from hit rolls for attacks made by enemy units while they are in combat with any of the targets. In addition, the following enhanced effects apply: \u2022 While Varinor, Rune of Strength is depicted on your battle scripture, add 4\" to each target's Move characteristic. \u2022 While Alaithi, Rune of the Mountain is depicted on your battle scripture, add 5 to each target's control score. Thalari, Rune of the Zenith: Add 2 to casting rolls for friendly Lumineth Realm-lords units. In addition, if you have 4 or more unique runes depicted on your battle scripture, add 4\" to the Move characteristic of friendly Lumineth Realm-lords units and friendly Lumineth Realm-lords units' attacks score critical hits on unmodified hit rolls of 5+. Designer's Note: *We recommend noting the runes you have inscribed in each battle round on a piece of paper to keep track of which are currently depicted on your battle scripture. Feel free to note them by type (Strength, River, Mountain etc.), by initial (each has a different first letter) or if you are feeling particularly adventurous, you can try your hand at aelven calligraphy and learn to draw each rune!*",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -101,7 +106,8 @@
           "effect": "Halve the target's Move characteristic until the start of your next turn, then roll a dice. If the roll equals or exceeds the target's Save characteristic, inflict D3 mortal damage on it.",
           "keywords": "Spell",
           "castingValue": "7",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Piercing Refraction",
@@ -111,7 +117,8 @@
           "effect": "Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
           "keywords": "Spell",
           "castingValue": "7",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Beacon of Hysh",
@@ -121,7 +128,8 @@
           "effect": "Until the start of your next turn, if the unmodified hit roll for an attack that targets that friendly unit is 1-3, the attack fails and the attack sequence ends.",
           "keywords": "Spell, Unlimited",
           "castingValue": "6",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -137,7 +145,8 @@
           "effect": "The target can move up to 5\". It can pass through the combat ranges of enemy units but cannot end that move in combat.",
           "keywords": "Spell",
           "castingValue": "6",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Realmshield",
@@ -147,7 +156,8 @@
           "effect": "Until the start of your next turn, friendly Lumineth Realm-lord units have Ward (5+) while they are wholly within 12\" of the caster.",
           "keywords": "Spell",
           "castingValue": "7",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Focused Erosion",
@@ -157,7 +167,8 @@
           "effect": "Subtract 1 from the Rend characteristic of the target's weapons until the start of your next turn.",
           "keywords": "Spell, Unlimited",
           "castingValue": "6",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -207,7 +218,8 @@
               "effect": "Each time a unit (friendly or enemy) successfully casts a spell while it is within 12\" of this Manifestation, give this Manifestation 1 arcane charge point. This Manifestation can have a maximum of 6 arcane charge points.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Release Arcane Charge",
@@ -217,7 +229,8 @@
               "effect": "Add this Manifestation's arcane charge points to the casting roll or unbinding roll. Then, reset this Manifestation's arcane charge points to 0.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -228,7 +241,8 @@
             "effect": "Set up a Hyshian Twinstones endless spell wholly within 18\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -258,7 +272,8 @@
               "effect": "Roll a D3 for each enemy unit within 6\" of this Manifestation. On a 2+, inflict an amount of mortal damage on the target equal to the roll. If an enemy unit has at least 3 mortal damage inflicted on it by this ability this turn, it has Strike-last for the rest of the turn.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -269,7 +284,8 @@
             "effect": "Set up a Rune of Petrification wholly within 12\" of the caster and visible to them.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -299,7 +315,8 @@
               "effect": "While a friendly unit with a Health characteristic of 10 or less is wholly inside the ring formed by this Manifestation: \u2022 That unit is not visible to enemy units that are not within its combat range. \u2022 Enemy abilities that would target this unit must target this Manifestation instead.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -310,7 +327,8 @@
             "effect": "Set up a Sanctum of Amyntok within 12\" of the caster and more than 3\" from all enemy units. A Sanctum of Amyntok has 3 parts that must be set up touching each other so that they form a ring.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -345,7 +363,8 @@
               "effect": "This Manifestation can move a distance up to its Move characteristic in one direction (see 'The Pendulum Swings'). It can pass through models during that move and can end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move or that are within 1/2\" of it to be the targets. Roll a D6 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
               "keywords": "Core, Move",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "The Pendulum Swings",
@@ -355,7 +374,8 @@
               "effect": "This Manifestation cannot use Charge or Fight abilities. In addition, when this Manifestation moves, it must move in a straight line either in the direction in which the tip of the pendulum blade is pointing or in the opposite direction to the direction in which the tip of the pendulum blade is pointing",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -366,7 +386,8 @@
             "effect": "Set up an Aethervoid Pendulum wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -394,7 +415,8 @@
               "effect": "If there are any friendly Wizards within 3\" of this Manifestation, pick 1 of the following effects: *Increase Time Flow*: Until the start of your next turn, you can re-roll charge rolls for friendly units while they are wholly within 12\" of this Manifestation. *Decrease Time Flow*: Until the start of your next turn, subtract 1 from hit rolls for attacks that target friendly Wizards while they are wholly within 12\" of this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -405,7 +427,8 @@
             "effect": "Set up a Chronomantic Cogs endless spell wholly within 12\" of the caster and visible to them.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -446,7 +469,8 @@
               "effect": "Ward rolls cannot be made for damage points inflicted by this Manifestation's attacks.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -457,7 +481,8 @@
             "effect": "Set up a Quicksilver Swords endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -515,7 +540,8 @@
               "effect": "Roll a dice. If the roll is less than the number of models in the target unit that were slain this phase, the target cannot use commands for the rest of the turn.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -526,7 +552,8 @@
             "effect": "Set up a Horrorghast endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -567,7 +594,8 @@
               "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, remove the target from the battlefield and set them up again on the battlefield within 3\" of this Manifestation and not in combat. Then, inflict 1 mortal damage on the target.",
               "keywords": "Core, Move",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -578,7 +606,8 @@
             "effect": "Set up a Lauchon the Soulseeker endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -606,7 +635,8 @@
               "effect": "Pick a part of this Manifestation, remove it from the battlefield and set it up again on the battlefield wholly within 9\" of the other part and more than 3\" from all enemy units.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Multiple Parts",
@@ -616,7 +646,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Ensnaring Soul-drain",
@@ -626,7 +657,8 @@
               "effect": "Each time an enemy unit uses a Move ability while it is within 9\" of any parts of this Manifestation, the effects of the 'Fly' ability do not apply to that unit. Enemy units cannot be set up within 9\" of either part of this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -637,7 +669,8 @@
             "effect": "Set up a Shards of Valagharr endless spell wholly within 18\" of the caster and visible to them. A Shards of Valagharr endless spell has 2 parts that must be set up within 9\" of each other.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -665,7 +698,8 @@
               "effect": "Remove the target from the battlefield and set it up again on the battlefield wholly within 6\" of the other part of this Manifestation and more than 9\" from all enemy units.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Multiple Parts",
@@ -675,7 +709,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -686,7 +721,8 @@
             "effect": "Set up a Soulscream Bridge wholly within 18\" of the caster and visible to them. A Soulscream Bridge has 2 parts that must be set up within 9\" of each other.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -734,7 +770,8 @@
               "effect": "If this Manifestation destroyed any enemy Manifestations this turn, Heal (6) this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Arcane Predator",
@@ -744,7 +781,8 @@
               "effect": "You can add 1 to the number of dice rolled when making charge rolls for this Manifestation, to a maximum of 3, while it is within 18\" of any enemy Manifestations, but if you do so, it must end the charge move within 1/2\" of an enemy Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Wild Form",
@@ -754,7 +792,8 @@
               "effect": "Each time this Manifestation is targeted by the 'Banish Manifestation' ability, if it would be banished, it is not banished. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points).",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -765,7 +804,8 @@
             "effect": "Set up a Krondspine Incarnate of Ghur endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "8",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -812,7 +852,8 @@
               "effect": "Roll a dice for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Then, this Manifestation is destroyed.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Necrotic Vortex",
@@ -822,7 +863,8 @@
               "effect": "Give this Manifestation 1 maelstrom point each time: \u2022 This Manifestation is set up. \u2022 A unit successfully casts a spell while it is within 12\" of this Manifestation. \u2022 A model is slain within 12\" of this Manifestation. This Manifestation can have a maximum of 6 maelstrom points at once.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -833,7 +875,8 @@
             "effect": "Set up a a Malevolent Maelstrom endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -874,7 +917,8 @@
               "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move to be the targets. Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
               "keywords": "Core, Move",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Pull of the Nadir",
@@ -884,7 +928,8 @@
               "effect": "Subtract 1 from save rolls for friendly and enemy units while they are within 3\" of this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -895,7 +940,8 @@
             "effect": "Set up a Purple Sun of Shyish endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "8",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -923,7 +969,8 @@
               "effect": "Roll a D3 for each target. On a 2+: \u2022 Inflict an amount of mortal damage on the target equal to the roll. \u2022 Subtract a number of inches equal to the roll from the target's Move characteristic for the rest of the turn.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Multiple Parts",
@@ -933,7 +980,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and all its parts are removed from play.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -944,7 +992,8 @@
             "effect": "Set up a Soulsnare Shackles endless spell wholly within 18\" of the caster and visible to them. A Soulsnare Shackles endless spell has 3 parts that must each be set up within 3\" of at least 1 other part.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -985,7 +1034,8 @@
               "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, you can pick an enemy unit that this Manifestation passed across during that move to be the target. Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
               "keywords": "Core, Move",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -996,7 +1046,8 @@
             "effect": "Set up a Suffocating Gravetide endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "8",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -1043,7 +1094,8 @@
               "effect": "Enemy units cannot use commands while they are within 3\" of either part of this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Multiple Parts",
@@ -1053,7 +1105,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play. Each time this Manifestation moves, both its parts must end within 9\" of each other. Each part of this Manifestation is armed with Tendrils of Light and Shadow.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -1064,7 +1117,8 @@
             "effect": "Set up a Geminids of Uhl-Gysh endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units. A Geminids of Uhl-Gysh endless spell has 2 parts that must be set up within 9\" of each other.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -1092,7 +1146,8 @@
               "effect": "This Manifestation cannot be targeted by shooting attacks. In addition, a unit cannot be targeted by shooting attacks if it is impossible to draw a straight line from a model in the attacking unit to a model in the target unit without that line passing across this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -1103,7 +1158,8 @@
             "effect": "Set up a Prismatic Palisade wholly within 18\" of the caster and visible to them.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -1131,7 +1187,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Arcane Passage",
@@ -1141,7 +1198,8 @@
               "effect": "The next time the target uses a non-Summon Spell ability this phase, add 1 to the casting value of that spell. When picking targets for that spell, you can measure range and visibility from either part of this Manifestation instead of from the caster, and your opponent can measure range and visibility to either part of this Manifestation instead of to the caster for the purposes of the 'Unbind' ability.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -1152,7 +1210,8 @@
             "effect": "Set up an Umbral Spellportal wholly within 18\" of the caster and visible to them. An Umbral Spellportal has 2 parts that must be set up within 9\" of each other.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -1199,7 +1258,8 @@
               "effect": "Heal (3) this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Bounteous Healing",
@@ -1209,7 +1269,8 @@
               "effect": "Heal (3) the target.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -1220,7 +1281,8 @@
             "effect": "Set up a Emerald Lifeswarm endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -1260,7 +1322,8 @@
               "effect": "Roll 10 dice. For each 5+, inflict 1 mortal damage on the target.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -1271,7 +1334,8 @@
             "effect": "Set up a Ravenak's Gnashing Jaws endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -1323,7 +1387,8 @@
               "effect": "Each time this Manifestation uses a Shoot ability, after that ability has been resolved, allocate 1 damage point to this Manifestation (ward rolls cannot be made for that damage point).",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": null
@@ -1344,9 +1409,11 @@
           "effect": "If this unit is not a Wizard, it can use the 'Unbind' ability as if it had Wizard (1). Otherwise, add 1 to casting rolls for this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
-      ]
+      ],
+      "pack": "Heirlooms of Hysh"
     },
     {
       "id": "78f2-d016-a23b-a09c",
@@ -1360,9 +1427,11 @@
           "effect": "Remove this unit from the battlefield and set it up again wholly within friendly territory and more than 9\" from all enemy units.",
           "keywords": "Core",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
-      ]
+      ],
+      "pack": "Heirlooms of Hysh"
     },
     {
       "id": "4613-9bbd-2a04-ba17",
@@ -1376,9 +1445,11 @@
           "effect": "The first time this unit would be destroyed, before removing it from play, roll a dice. On a 3+, this unit is not destroyed and any remaining damage points inflicted on it have no effect. Then, Heal (D3) this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
-      ]
+      ],
+      "pack": "Heirlooms of Hysh"
     }
   ],
   "heroicTraits": [
@@ -1394,9 +1465,11 @@
           "effect": "Each target can use the 'Normal Move' ability as if it were your movement phase.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
-      ]
+      ],
+      "pack": "Facets of Brilliance"
     },
     {
       "id": "b529-e265-113b-6bbe",
@@ -1410,9 +1483,11 @@
           "effect": "If you roll a 1-3 when determining the distance that unit can move, you can use a value of 4 instead.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
-      ]
+      ],
+      "pack": "Facets of Brilliance"
     },
     {
       "id": "5378-7875-43c4-4eb1",
@@ -1426,11 +1501,15 @@
           "effect": "That Hero can be picked as an additional target the next time you use the 'Depict Rune' ability.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
-      ]
+      ],
+      "pack": "Facets of Brilliance"
     }
   ],
+  "monstrousTraits": [],
+  "visionsOfFate": [],
   "terrain": [
     {
       "id": "dda1-f11e-f025-a2b7",
@@ -1457,7 +1536,8 @@
           "effect": "While this terrain feature has a Shrine Guardian: \u2022 This terrain feature has a Move characteristic of 6\" and can use non-command non-Charge Move abilities as if it were a unit. It cannot end a Move ability within the combat range of an enemy unit. \u2022 The Shrine Guardian cannot use Move abilities and remains on this terrain feature each time it moves. \u2022 Instead of measuring range or visibility to the Shrine Guardian, measure to this terrain feature instead. \u2022 All attacks that would target the Shrine Guardian target this terrain feature instead. \u2022 If this terrain feature is destroyed, before removing it from the battlefield, inflict D3 mortal damage on the Shrine Guardian. Then, set up the Shrine Guardian on the battlefield wholly within 3\" of this terrain feature and not in combat. That unit is no longer a Shrine Guardian. If it is not possible to set up the Shrine Guardian, it is slain.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Enter the Shrine",
@@ -1467,7 +1547,8 @@
           "effect": "Place the target on this terrain feature. The target is now a Shrine Guardian (see 'Shrine Guardian').",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Cleansing Rituals",
@@ -1477,7 +1558,8 @@
           "effect": "While this terrain feature has a Shrine Guardian, you can re-roll the casting roll for that spell.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Exit the Shrine",
@@ -1487,7 +1569,8 @@
           "effect": "If this terrain feature has a Shrine Guardian that was not placed on it this turn, set up the Shrine Guardian on the battlefield wholly within 6\" of this terrain feature and not in combat. That unit is no longer a Shrine Guardian.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -1538,7 +1621,8 @@
           "effect": "For the rest of the turn: \u2022 Add 1 to the Rend characteristic of the target's melee weapons. \u2022 The target cannot make pile-in moves.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Raise the Earth",
@@ -1548,7 +1632,8 @@
           "effect": "Until the start of your next turn, each time a non-Fly unit (friendly or enemy) that is contesting the target objective uses a Move ability, inflict D6 mortal damage on that unit after that ability has been resolved.",
           "keywords": "Spell",
           "castingValue": "7",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -1615,7 +1700,8 @@
           "effect": "If this unit is picked to be a target of the 'Depict Rune' ability, for the rest of that battle round, when resolving the damage sequence for a friendly Lumineth Realm-lords unit while it is wholly within 12\" of this unit, if you spend rage dice as part of the 'Fight Through the Pain' ability, remove 1 damage point from that unit's damage pool on a 2+ instead of a 3+.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Earth's Grip",
@@ -1625,7 +1711,8 @@
           "effect": "For the rest of the battle, the target is gripped until this unit is destroyed, the target breaks free or you pick a different target for this spell. While the target is gripped, each time it uses a Move ability, your opponent must roll a dice as a reaction and add their fury level to the roll. On a 7+, the target breaks free. Otherwise, that Move ability has no effect.",
           "keywords": "Spell",
           "castingValue": "7",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -1717,7 +1804,8 @@
           "effect": "While this unit has 10 or more damage points, the Attacks characteristic of Celennar's Moonbright Talons is 3.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Aura of Celennar",
@@ -1727,7 +1815,8 @@
           "effect": "Add 1 to casting rolls and banishment rolls for friendly Lumineth Realm\u2011lords Wizards while they are wholly within 12\" of this unit. In addition, this unit can use Spell abilities from the Lore of Hysh, the Lore of Awakened Realms, and the warscrolls of all friendly Lumineth Realm-lords Wizards on the battlefield.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Archmage",
@@ -1737,7 +1826,8 @@
           "effect": "Pick 1 of the following: *Magical Supremacy:* Instead of making a casting roll for the next Spell ability used by this unit this turn, you can use a value of 12 for the roll that cannot be modified. *Drain Power*: Pick a visible enemy Wizard or Priest within 18\" of this unit to be the target. Subtract 1 from the target's power level, to a minimum of 0, until the start of your next turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Discs of the Aelementiri",
@@ -1747,7 +1837,8 @@
           "effect": "Depict a rune of your choice on your battle scripture. Designer's Note: *This allows you to have that rune depicted earlier in the battle scripture for the purposes of other abilities. Do not resolve the effect of the 'Depict Rune' ability as part of this ability. There is a smaller diamond in the battle scripture diamond in the Rules Reference where you can record this extra rune.*",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "The Light of Truth",
@@ -1757,7 +1848,8 @@
           "effect": "Inflict D3 mortal damage on each target.",
           "keywords": "Spell",
           "castingValue": "7",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -1830,7 +1922,8 @@
           "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Firestealer Hammers is 4.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Call of the Mountains",
@@ -1840,7 +1933,8 @@
           "effect": "While a visible friendly Alarith unit is wholly within 12\" of this unit: \u2022 You are treated as having 1 additional instance of Alaithi, Rune of the Mountain depicted on your battle scripture for the purposes of the abilities on that unit's warscroll. \u2022 If that unit is picked to be the target of the 'Depict Rune' ability, you can apply the enhanced effects of that ability to that unit as if you had an instance of Alaithi, Rune of the Mountain on your battle scripture.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Unbreakable Bulwark",
@@ -1850,7 +1944,8 @@
           "effect": "Roll a dice. On a 3+, for the rest of the turn, while that enemy unit is in combat with this unit, all attacks made by models in that unit within this unit's combat range must target this unit.",
           "keywords": "Rampage",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "With the Force of a Landslide",
@@ -1860,7 +1955,8 @@
           "effect": "Add 1 to the Attacks characteristic of this unit's Firestealer Hammers for each instance of Alaithi, Rune of the Mountain depicted on your battle scripture.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -1953,7 +2049,8 @@
           "effect": "Until the start of your next turn, the first time an enemy unit within 18\" of this unit uses a command, unless your opponent spends 1 additional command point, the command has no effect, it still counts as having been used and the command points spent to use the command are still lost.",
           "keywords": "Spell",
           "castingValue": "8",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Equal Prodigies",
@@ -1963,7 +2060,8 @@
           "effect": "If Ellania leads, until the start of your next turn, add 1 to this unit's power level and it has Ward (4+). If Ellathor leads, until the start of your next turn, add the current battle round number to the Damage characteristic of Altairi.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Sudden Translocation",
@@ -1973,7 +2071,8 @@
           "effect": "Heal (D6) this unit. Then, remove it from the battlefield and set it up again on the battlefield more than 9\" from all enemy units.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2048,7 +2147,8 @@
           "effect": "For the rest of the turn, each target can use a Run ability and still use Shoot and/or Charge abilities later in the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Transporting Vortex",
@@ -2058,7 +2158,8 @@
           "effect": "Remove the target from the battlefield and set it up again on the battlefield more than 9\" from all enemy units.",
           "keywords": "Spell",
           "castingValue": "7",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2148,7 +2249,8 @@
           "effect": "This unit has Strike-first for the rest of the turn.",
           "keywords": "Spell",
           "castingValue": "5",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Champion of the Lord Phoenix",
@@ -2158,7 +2260,8 @@
           "effect": "While a visible friendly Vanari unit is wholly within 12\" of this unit: \u2022 You are treated as having 1 additional instance of Varinor, Rune of Strength depicted on your battle scripture for the purposes of the abilities on that unit's warscroll. \u2022 If that unit is picked to be the target of the 'Depict Rune' ability, you can apply the enhanced effects of that ability to that unit as if you had an instance of Varinor, Rune of Strength on your battle scripture.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2221,7 +2324,8 @@
           "effect": "Replace 1 instance of a rune on your battle scripture with 1 of the following: \u2022 Varinor, Rune of Strength \u2022 Ydriliqi, Rune of the River \u2022 Alaithi, Rune of the Mountain \u2022 Oreali, Rune of the Wind",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2288,7 +2392,8 @@
           "effect": "Roll a dice. On a 3+, the target cannot use commands until the start of your next turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2366,7 +2471,8 @@
           "effect": "If that spell is successfully cast, roll a dice. On a 4+, after resolving the effect of that spell, this unit can immediately cast that spell a second time using the same casting roll. Do not count the second spell towards the number of Spell abilities this unit can use this turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Clarity of Thought",
@@ -2376,7 +2482,8 @@
           "effect": "Until the start of your next turn, attacks that target that friendly unit cannot score critical hits (treat them as regular hits instead).",
           "keywords": "Spell, Unlimited",
           "castingValue": "7",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2454,7 +2561,8 @@
           "effect": "For the rest of the battle, add 1 to casting rolls for units (friendly and enemy) while they are within 3\" of the target.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Independent Operative",
@@ -2464,7 +2572,8 @@
           "effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2542,7 +2651,8 @@
           "effect": "If this unit is in combat with the target, the corresponding effect below applies until the start of your next turn. Otherwise, roll a dice. On a 3+, the corresponding effect below applies until the start of your next turn: ***Holder of Forbidden Treasures*: If the target has an artefact of power, that artefact of power has no effect. *An Insignificant Underling*: If the target does not have an artefact of power, other than the Companion** weapon ability, weapon abilities for the target's combat attacks have no effect.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Leashed Fury",
@@ -2552,7 +2662,8 @@
           "effect": "If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, for the rest of the turn: \u2022 Each time this unit is picked to use the 'Eruption of Fury' ability, if you spend 1 rage dice as part of that ability, it counts as 3 rage dice. \u2022 This unit can be picked to use the 'Eruption of Fury' ability even if you have already used it this turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2631,7 +2742,8 @@
           "effect": "While a visible friendly Hurakan unit is wholly within 12\" of this unit: \u2022 You are treated as having 1 additional instance of Oreali, Rune of the Wind depicted on your battle scripture for the purposes of the abilities on that unit's warscroll. \u2022 If that unit is picked to be the target of the 'Depict Rune' ability, you can apply the enhanced effects of that ability to that unit as if you had an instance of Oreali, Rune of the Wind on your battle scripture.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Searing Desert Winds",
@@ -2641,7 +2753,8 @@
           "effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll and subtract 1 from wound rolls for the target's attacks for the rest of the turn.",
           "keywords": "Rampage",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Spirit of the Wind",
@@ -2651,7 +2764,8 @@
           "effect": "If this unit used a Shoot ability this phase, this unit can move D6\". Add 2 to the roll for each instance of Oreali, Rune of the Wind depicted on your battle scripture. It cannot end that move in combat.",
           "keywords": "Move",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2742,7 +2856,8 @@
           "effect": "Ignore negative modifiers to hit rolls and wound rolls for this unit's attacks.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Valorous Intervention",
@@ -2752,7 +2867,8 @@
           "effect": "Remove this unit from the battlefield and set it up again within 1\" of the target, within 1\" of an enemy unit and in combat. This unit has charged.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": "1"
         }
       ],
       "regimentOptions": [
@@ -2838,7 +2954,8 @@
           "effect": "Ignore negative modifiers to hit rolls and wound rolls for this unit's attacks. In addition, ignore negative modifiers to the characteristics of this unit's melee weapons.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Eternal Light",
@@ -2848,7 +2965,8 @@
           "effect": "If this unit is destroyed and if a friendly Lumineth Realm-lords Wizard successfully casts a Summon spell, instead of resolving the effect of that Summon spell, you can set up a replacement unit for this unit more than 9\" from all enemy units and wholly within 12\" of the unit that used that Summon spell. This ability is still in effect even if this unit is not on the battlefield.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2911,7 +3029,8 @@
           "effect": "While a visible friendly Lumineth Realm-lords unit is wholly within 12\" of this unit, it can use the 'Rally' command even if it is in combat.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2968,7 +3087,8 @@
           "effect": "Add 1 to save rolls for friendly Vanari Infantry units while they are contesting the same objective as this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -3025,7 +3145,8 @@
           "effect": "Each time a friendly Lumineth Realm-lords unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Wall of Blades",
@@ -3035,7 +3156,8 @@
           "effect": "Roll a dice for each model in the wall of blades that is within 3\" of the target. For each 5+, inflict 1 mortal damage on the target.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -3107,7 +3229,8 @@
           "effect": "You can re-roll charge rolls for friendly Lumineth Realm-lords units while they are wholly within 6\" of this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Purest Aetherquartz",
@@ -3117,7 +3240,8 @@
           "effect": "For the rest of the turn, add 1 to hit rolls for this unit's attacks and subtract 1 from hit rolls for attacks that target this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -3193,7 +3317,8 @@
           "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Stoneheart Worldhammer is 3.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Rain of Stone",
@@ -3203,7 +3328,8 @@
           "effect": "Roll a D3. Add 2 to the roll if the target charged this turn. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
           "keywords": "Rampage",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "With the Force of a Landslide",
@@ -3213,7 +3339,8 @@
           "effect": "Add 1 to the Attacks characteristic of this unit's Stoneheart Worldhammer for each instance of Alaithi, Rune of the Mountain depicted on your battle scripture.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3264,7 +3391,8 @@
           "effect": "While you have 2 or more instances of Alaithi, Rune of the Mountain depicted on your battle scripture, this unit's Save characteristic is 3+.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3325,7 +3453,8 @@
           "effect": "The Damage characteristic of this unit's Bow of the Wind's Vengeance is 3 for attacks that target Monsters.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Spirit of the Wind",
@@ -3335,7 +3464,8 @@
           "effect": "If this unit used a Shoot ability this phase, this unit can move D6\". Add 2 to the roll for each instance of Oreali, Rune of the Wind depicted on your battle scripture. It cannot end that move in combat.",
           "keywords": "Move",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Hurricane Winds",
@@ -3345,7 +3475,8 @@
           "effect": "Roll a dice. On a 3+, the target has Strike-last for the rest of the turn.",
           "keywords": "Rampage",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3418,7 +3549,8 @@
           "effect": "While you have 2 or more instances of Oreali, Rune of the Wind depicted on your battle scripture, add 6\" to the Range characteristic of this unit's Windcharger Bows.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3482,7 +3614,8 @@
           "effect": "While this unit's Myari Lightcaller is on the battlefield, it has Wizard (1) and the Scinari keyword.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Dazzling Light",
@@ -3492,7 +3625,8 @@
           "effect": "Until the start of your next turn, subtract 1 from hit rolls for attacks made by enemy units that are contesting that objective.",
           "keywords": "Spell",
           "castingValue": "6",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3566,7 +3700,8 @@
           "effect": "This unit's Tzul is a token. After setting up this unit on the battlefield for the first time, place its Tzul next to it. \u2022 While this unit's Tzul is next to it, it has Fly. \u2022 While this unit's Thyrielle is on the battlefield, it has Wizard (1).",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "One with the Wind",
@@ -3576,7 +3711,8 @@
           "effect": "Place this unit's Tzul next to the target.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "The Living Gale",
@@ -3586,7 +3722,8 @@
           "effect": "Place this unit's Tzul next to this unit. \u2022 You can move the target up to D3\". \u2022 Then, if this unit is within 6\" of the target, you can move this unit up to D6\". It cannot end that move in combat. Add 2\" to the distance each unit can move for each instance of Oreali, Rune of the Wind depicted on your battle scripture. Designer's Note: *If your opponent would prefer to move their own models, pre-measure the distance and indicate where they should move their models to.*",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3647,7 +3784,8 @@
           "effect": "For the rest of the turn, add 6\" to the Range characteristic of this unit's Auralan Bows but subtract 1 from hit rolls for this unit's shooting attacks.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3697,7 +3835,8 @@
           "effect": "If this unit has not charged this turn, ignore the effect of the Charge (+1 Damage) ability for combat attacks made by enemy units that target this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3747,7 +3886,8 @@
           "effect": "Add 1 to the Rend characteristic of this unit's Sunmental Blades for each instance of Varinor, Rune of Strength depicted on your battle scripture.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Guardians of the Scinari",
@@ -3757,7 +3897,8 @@
           "effect": "While any friendly Scinari Heroes are wholly within this unit's combat range, both this unit and those friendly units have Ward (5+).",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3819,7 +3960,8 @@
           "effect": "Add 1 to the Rend characteristic of this unit's Dawnrider Lances and Blades if it charged in the same turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3878,7 +4020,8 @@
           "effect": "Roll a dice. Add 1 to the roll if the target is a Monster. On a 3+, subtract 1 from hit rolls for the target's attacks for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Scryhawks",
@@ -3888,7 +4031,8 @@
           "effect": "Add 6\" to the Range characteristic of this unit's Starshard Bolts while it is wholly within 12\" of any friendly Vanari Auralan Sentinels units.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3949,7 +4093,8 @@
           "effect": "If this unit is in combat, it can move 2D6\". It can pass through models in enemy units but must end that move in combat.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Travel the Waterways",
@@ -3959,7 +4104,8 @@
           "effect": "Remove this unit from the battlefield and set it up again on the battlefield wholly within 6\" of a battlefield edge and more than 9\" from all enemy units. If you picked to depict Ydriliqui, Rune of the River on your battle scripture this battle round, you can instead set up this unit anywhere on the battlefield more than 9\" from all enemy units.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],

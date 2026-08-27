@@ -17,7 +17,8 @@
           "effect": "Return D3 slain models to each friendly Daughters of Khaine Aelf Infantry unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -33,7 +34,8 @@
           "effect": "For the rest of the phase, friendly Daughters of Khaine Aelf Infantry units have Ward (5+) until they have used a Fight ability",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -49,7 +51,8 @@
           "effect": "While each model in a friendly Daughters of Khaine unit is contesting an objective you control, those models are not visible to enemy models more than 9\" away.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -65,7 +68,8 @@
           "effect": "Roll a dice for each objective you control. For each 3+, subtract 1 from castitng rolls and chanting rolls for the target for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -81,7 +85,8 @@
           "effect": "Pick a friendly non-Hero Daughters of Khaine unit that has not used a Fight ability this turn and is within that anointed unit's combat range to the the target. The target can be picked to use a Fight ability immediately after the Fight ability used by that anointed unit has been resolved. If it is picked to do so, the target's melee weapons have Crit (Auto-wound) for the rest of the turn. If the melee weapons already have Crit (Auto-wound), they have Crit (Mortal) for the rest of the turn instead.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -97,7 +102,8 @@
           "effect": "Return up to D3 slain models to each target that has a Health characteristic of up to 2. Return up to 1 slain model to each target that that has a Health characteristic of 3 or more.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -115,7 +121,8 @@
           "effect": "You perform a blood rite each time: \u2022 An enemy unit is destroyed and any damage points were allocated to that unit by a friendly anointed unit's combat attacks in the same turn. \u2022 A friendly anointed unit is destroyed. \u2022 A friendly unit contesting an objective you control is destroyed. \u2022 An enemy unit is destroyed by a friendly Daughters of Khaine unit's attacks and any models in that enemy unit were contesting an objective you do not control in the same phase. \u2022 A unit (friendly or enemy) is destroyed and it was within 3\" of a Place of Power at the start of the phase. Only one blood rite can be performed per unit destroyed.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Anointed Ritualist",
@@ -125,7 +132,8 @@
           "effect": "The target is anointed for the rest of the battle, even if it has been destroyed. Friendly anointed units on the battlefield treat Exalted abilities on the warscrolls of friendly anointed units that have been destroyed as if they were on their warscroll.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Bloody Succession",
@@ -135,7 +143,8 @@
           "effect": "Each time a friendly anointed unit is destroyed, after removing it from play, you can immediately use the 'Anointed Ritualist' ability as if it were the start of the first battle round.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Strident War Cry",
@@ -145,7 +154,8 @@
           "effect": "Pick a friendly non-Hero Daughters of Khaine unit that is not in combat, is wholly within 12\" of that anointed unit and has not charged this turn to be the target. If that anointed unit charges, after that Charge ability has been resolved, the target can immediately use the 'Charge' ability even if it is not your charge phase. In addition, you can re-roll charge rolls for the target for the rest of the phase.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Blessings of Khaine",
@@ -155,7 +165,8 @@
           "effect": "Pick 1 of the following blessings that is not active. That blessing is active. While a blessing is active, its effect applies to friendly Daughters of Khaine units. The effects of more than 1 blessing can apply to a unit at the same time. \u2022 Blessing of Ruthlessness: Add 1 to hit rolls for those units' combat attacks. \u2022 Blessing of Hatred: Add 1 to wound rolls for those units' combat attacks. \u2022 Blessing of Haste: Add 3\" to those units' Move characteristic. \u2022 Blessing of Zeal: If those units charged in the same turn, they have Ward (5+) for the rest of the turn. \u2022 Blessing of Shadow: Subtract 1 from hit rolls for shooting attacks that target those units. \u2022 Blessing of Cruelty: Those units can use Charge and/or Shoot abilities even if they have used a Retreat ability in the same turn. \u2022 Blessing of Clarity: Add 1 to chanting rolls and casting rolls for those units.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -173,7 +184,8 @@
           "effect": "The target can use Charge abilities this turn even if it used a Run ability in the same turn.",
           "keywords": "Spell, Unlimited",
           "castingValue": "6",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Mindrazor",
@@ -183,7 +195,8 @@
           "effect": "The target's melee weapons have Charge (+1 Damage) until the start of your next turn.",
           "keywords": "Spell",
           "castingValue": "7",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Black Horror of Ulgu",
@@ -193,7 +206,8 @@
           "effect": "The targets cannot use Run abilities until the start of your next turn.",
           "keywords": "Spell",
           "castingValue": "6",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -211,7 +225,8 @@
           "effect": "Add 10 to the target's control score until the start of your next turn. In addition, if the chanting roll was 6+, ignore the first damage point that would be allocated to the target in each phase until the start of your next turn.",
           "keywords": "Prayer",
           "castingValue": "",
-          "chantingValue": "3"
+          "chantingValue": "3",
+          "cost": ""
         },
         {
           "name": "Catechism of Murder",
@@ -221,7 +236,8 @@
           "effect": "The target's melee weapons have Crit (Auto-wound) until the start of your next turn. In addition, if the chanting roll was 7+, the target's combat attacks score critical hits on unmodified hit rolls of 5+ until the start of your next turn.",
           "keywords": "Prayer, Unlimited",
           "castingValue": "",
-          "chantingValue": "3"
+          "chantingValue": "3",
+          "cost": ""
         },
         {
           "name": "Dance of Doom",
@@ -231,7 +247,8 @@
           "effect": "Add 1 to the Attacks characteristic of the target's melee weapons for the rest of the turn. In addition, if the chanting roll was 10+, the target can use 2 Fight abilities this turn. After the first is used, however, the target has Strike-Last for the rest of the turn.",
           "keywords": "Prayer",
           "castingValue": "",
-          "chantingValue": "4"
+          "chantingValue": "4",
+          "cost": ""
         }
       ]
     }
@@ -281,7 +298,8 @@
               "effect": "If any damage points are allocated to the target this phase by this Manifestation's combat attacks, ward rolls cannot be made for the target for the rest of the battle.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -292,7 +310,8 @@
             "effect": "Set up a Bladewind wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -334,7 +353,8 @@
               "effect": "Roll a dice. On a 3+, the target has Strike-last for the rest of the turn.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Bind and Bite",
@@ -344,7 +364,8 @@
               "effect": "This unit's combat attacks score critical hits on unmodified hit rolls of 4+ if the target of those attacks has Strike-Last.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -355,7 +376,8 @@
             "effect": "Set up a Bloodwrack Viper wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -385,7 +407,8 @@
               "effect": "Subtract 1 from wound rolls for attacks that target friendly Daughters of Khaine Infantry units while they are wholly within 12\" of this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -396,7 +419,8 @@
             "effect": "Set up a Heart of Fury wholly within 18\" of the caster and visible to them.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -431,7 +455,8 @@
               "effect": "This Manifestation can move a distance up to its Move characteristic in one direction (see 'The Pendulum Swings'). It can pass through models during that move and can end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move or that are within 1/2\" of it to be the targets. Roll a D6 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
               "keywords": "Core, Move",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "The Pendulum Swings",
@@ -441,7 +466,8 @@
               "effect": "This Manifestation cannot use Charge or Fight abilities. In addition, when this Manifestation moves, it must move in a straight line either in the direction in which the tip of the pendulum blade is pointing or in the opposite direction to the direction in which the tip of the pendulum blade is pointing",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -452,7 +478,8 @@
             "effect": "Set up an Aethervoid Pendulum wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -480,7 +507,8 @@
               "effect": "If there are any friendly Wizards within 3\" of this Manifestation, pick 1 of the following effects: *Increase Time Flow*: Until the start of your next turn, you can re-roll charge rolls for friendly units while they are wholly within 12\" of this Manifestation. *Decrease Time Flow*: Until the start of your next turn, subtract 1 from hit rolls for attacks that target friendly Wizards while they are wholly within 12\" of this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -491,7 +519,8 @@
             "effect": "Set up a Chronomantic Cogs endless spell wholly within 12\" of the caster and visible to them.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -532,7 +561,8 @@
               "effect": "Ward rolls cannot be made for damage points inflicted by this Manifestation's attacks.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -543,7 +573,8 @@
             "effect": "Set up a Quicksilver Swords endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -601,7 +632,8 @@
               "effect": "Roll a dice. If the roll is less than the number of models in the target unit that were slain this phase, the target cannot use commands for the rest of the turn.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -612,7 +644,8 @@
             "effect": "Set up a Horrorghast endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -653,7 +686,8 @@
               "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, remove the target from the battlefield and set them up again on the battlefield within 3\" of this Manifestation and not in combat. Then, inflict 1 mortal damage on the target.",
               "keywords": "Core, Move",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -664,7 +698,8 @@
             "effect": "Set up a Lauchon the Soulseeker endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -692,7 +727,8 @@
               "effect": "Pick a part of this Manifestation, remove it from the battlefield and set it up again on the battlefield wholly within 9\" of the other part and more than 3\" from all enemy units.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Multiple Parts",
@@ -702,7 +738,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Ensnaring Soul-drain",
@@ -712,7 +749,8 @@
               "effect": "Each time an enemy unit uses a Move ability while it is within 9\" of any parts of this Manifestation, the effects of the 'Fly' ability do not apply to that unit. Enemy units cannot be set up within 9\" of either part of this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -723,7 +761,8 @@
             "effect": "Set up a Shards of Valagharr endless spell wholly within 18\" of the caster and visible to them. A Shards of Valagharr endless spell has 2 parts that must be set up within 9\" of each other.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -751,7 +790,8 @@
               "effect": "Remove the target from the battlefield and set it up again on the battlefield wholly within 6\" of the other part of this Manifestation and more than 9\" from all enemy units.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Multiple Parts",
@@ -761,7 +801,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -772,7 +813,8 @@
             "effect": "Set up a Soulscream Bridge wholly within 18\" of the caster and visible to them. A Soulscream Bridge has 2 parts that must be set up within 9\" of each other.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -820,7 +862,8 @@
               "effect": "If this Manifestation destroyed any enemy Manifestations this turn, Heal (6) this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Arcane Predator",
@@ -830,7 +873,8 @@
               "effect": "You can add 1 to the number of dice rolled when making charge rolls for this Manifestation, to a maximum of 3, while it is within 18\" of any enemy Manifestations, but if you do so, it must end the charge move within 1/2\" of an enemy Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Wild Form",
@@ -840,7 +884,8 @@
               "effect": "Each time this Manifestation is targeted by the 'Banish Manifestation' ability, if it would be banished, it is not banished. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points).",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -851,7 +896,8 @@
             "effect": "Set up a Krondspine Incarnate of Ghur endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "8",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -898,7 +944,8 @@
               "effect": "Roll a dice for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Then, this Manifestation is destroyed.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Necrotic Vortex",
@@ -908,7 +955,8 @@
               "effect": "Give this Manifestation 1 maelstrom point each time: \u2022 This Manifestation is set up. \u2022 A unit successfully casts a spell while it is within 12\" of this Manifestation. \u2022 A model is slain within 12\" of this Manifestation. This Manifestation can have a maximum of 6 maelstrom points at once.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -919,7 +967,8 @@
             "effect": "Set up a a Malevolent Maelstrom endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -960,7 +1009,8 @@
               "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move to be the targets. Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
               "keywords": "Core, Move",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Pull of the Nadir",
@@ -970,7 +1020,8 @@
               "effect": "Subtract 1 from save rolls for friendly and enemy units while they are within 3\" of this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -981,7 +1032,8 @@
             "effect": "Set up a Purple Sun of Shyish endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "8",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -1009,7 +1061,8 @@
               "effect": "Roll a D3 for each target. On a 2+: \u2022 Inflict an amount of mortal damage on the target equal to the roll. \u2022 Subtract a number of inches equal to the roll from the target's Move characteristic for the rest of the turn.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Multiple Parts",
@@ -1019,7 +1072,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and all its parts are removed from play.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -1030,7 +1084,8 @@
             "effect": "Set up a Soulsnare Shackles endless spell wholly within 18\" of the caster and visible to them. A Soulsnare Shackles endless spell has 3 parts that must each be set up within 3\" of at least 1 other part.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -1071,7 +1126,8 @@
               "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, you can pick an enemy unit that this Manifestation passed across during that move to be the target. Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
               "keywords": "Core, Move",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -1082,7 +1138,8 @@
             "effect": "Set up a Suffocating Gravetide endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "8",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -1129,7 +1186,8 @@
               "effect": "Enemy units cannot use commands while they are within 3\" of either part of this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Multiple Parts",
@@ -1139,7 +1197,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play. Each time this Manifestation moves, both its parts must end within 9\" of each other. Each part of this Manifestation is armed with Tendrils of Light and Shadow.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -1150,7 +1209,8 @@
             "effect": "Set up a Geminids of Uhl-Gysh endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units. A Geminids of Uhl-Gysh endless spell has 2 parts that must be set up within 9\" of each other.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -1178,7 +1238,8 @@
               "effect": "This Manifestation cannot be targeted by shooting attacks. In addition, a unit cannot be targeted by shooting attacks if it is impossible to draw a straight line from a model in the attacking unit to a model in the target unit without that line passing across this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -1189,7 +1250,8 @@
             "effect": "Set up a Prismatic Palisade wholly within 18\" of the caster and visible to them.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -1217,7 +1279,8 @@
               "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Arcane Passage",
@@ -1227,7 +1290,8 @@
               "effect": "The next time the target uses a non-Summon Spell ability this phase, add 1 to the casting value of that spell. When picking targets for that spell, you can measure range and visibility from either part of this Manifestation instead of from the caster, and your opponent can measure range and visibility to either part of this Manifestation instead of to the caster for the purposes of the 'Unbind' ability.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -1238,7 +1302,8 @@
             "effect": "Set up an Umbral Spellportal wholly within 18\" of the caster and visible to them. An Umbral Spellportal has 2 parts that must be set up within 9\" of each other.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         }
       ]
@@ -1285,7 +1350,8 @@
               "effect": "Heal (3) this Manifestation.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             },
             {
               "name": "Bounteous Healing",
@@ -1295,7 +1361,8 @@
               "effect": "Heal (3) the target.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -1306,7 +1373,8 @@
             "effect": "Set up a Emerald Lifeswarm endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "6",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -1346,7 +1414,8 @@
               "effect": "Roll 10 dice. For each 5+, inflict 1 mortal damage on the target.",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": {
@@ -1357,7 +1426,8 @@
             "effect": "Set up a Ravenak's Gnashing Jaws endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
             "keywords": "Spell, Summon",
             "castingValue": "7",
-            "chantingValue": ""
+            "chantingValue": "",
+            "cost": ""
           }
         },
         {
@@ -1409,7 +1479,8 @@
               "effect": "Each time this Manifestation uses a Shoot ability, after that ability has been resolved, allocate 1 damage point to this Manifestation (ward rolls cannot be made for that damage point).",
               "keywords": "",
               "castingValue": "",
-              "chantingValue": ""
+              "chantingValue": "",
+              "cost": ""
             }
           ],
           "summon": null
@@ -1430,9 +1501,11 @@
           "effect": "You can re-roll charge rolls for this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
-      ]
+      ],
+      "pack": "Gifts of Morathi"
     },
     {
       "id": "09d5-be51-ad38-7372",
@@ -1446,9 +1519,11 @@
           "effect": "Roll a dice. On a 3+, the target can immediately use the 'Retreat' ability as if it were your movement phase.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
-      ]
+      ],
+      "pack": "Gifts of Morathi"
     },
     {
       "id": "d60a-298e-9b66-7b30",
@@ -1462,9 +1537,11 @@
           "effect": "Roll a dice. On a 3+, ignore negative modifiers to save rolls for the target until the start of your next turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
-      ]
+      ],
+      "pack": "Gifts of Morathi"
     }
   ],
   "heroicTraits": [
@@ -1480,9 +1557,11 @@
           "effect": "If you roll a 1-3 when determining the distance that unit can move, you can use a value of 4 instead.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
-      ]
+      ],
+      "pack": "Paragons of Murder"
     },
     {
       "id": "1c53-51cd-2912-1486",
@@ -1496,9 +1575,11 @@
           "effect": "Roll 2D6. If the roll exceeds the target's Health characteristic, it is automatically destroyed. If the target is destroyed by this ability, this unit can use 2 Fight abilities this phase. After the first is used, however, this unit has Strike-Last for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
-      ]
+      ],
+      "pack": "Paragons of Murder"
     },
     {
       "id": "a6fc-8042-9ee1-78b2",
@@ -1512,11 +1593,15 @@
           "effect": "Roll 2D6. If the roll equals or exceeds the target's Control characteristic, for the rest of the turn, if this unit is in combat with the target when the target is picked to use a Fight ability, all of the target's attacks must target this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
-      ]
+      ],
+      "pack": "Paragons of Murder"
     }
   ],
+  "monstrousTraits": [],
+  "visionsOfFate": [],
   "terrain": [
     {
       "id": "0745-c2a2-2a26-afb5",
@@ -1543,7 +1628,8 @@
           "effect": "The target is in dark communion until this terrain feature uses this ability again or until this terrain feature is removed from the battlefield, whichever comes first. While the target is in dark communion, you can re-roll 1 casting roll or 1 chanting roll for the target each turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Call to Murder",
@@ -1553,7 +1639,8 @@
           "effect": "Pick a blessing from the 'Blessings of Khaine' ability that is active. That blessing is no longer active. Then, pick a blessing that is not active. That blessing is now active. Designer's Note: When you use this ability, you are not using the 'Blessings of Khaine' ability.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -1603,7 +1690,8 @@
           "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Then, if any enemy models were slain by that mortal damage, inflict an amount of mortal damage on the target equal to its Health characteristic.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Arcane Resonance",
@@ -1613,7 +1701,8 @@
           "effect": "Add 1 to casting rolls for this unit when it uses a Summon ability and add 1 to banishment rolls for this unit.",
           "keywords": "Exalted",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -1680,7 +1769,8 @@
           "effect": "Until the start of your next turn: \u2022 Enemy Manifestations cannot be set up within 12\" of this unit. \u2022 This unit has Ward (4+) against mortal damage inflicted by Spell abilities, Prayer abilities and abilities used by Manifestations.",
           "keywords": "Exalted",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Born of Slaughter",
@@ -1690,7 +1780,8 @@
           "effect": "Set up an Avatar of Khaine wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
           "keywords": "Spell, Summon",
           "castingValue": "6",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Agonising Spasms",
@@ -1700,7 +1791,8 @@
           "effect": "After that Shoot ability has been resolved, if all of this unit's attacks made as part of that Shoot ability targeted the same enemy unit and any enemy models were slain by those attacks, roll a dice. On a 3+, that enemy unit has a maximum control score of 1 for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -1773,7 +1865,8 @@
           "effect": "Roll a dice. If the roll is equal to or less than that enemy unit's Health characteristic, for the rest of the phase, you can re-roll failed hit rolls for attacks made by this unit that target that enemy unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Reflected Agony",
@@ -1783,7 +1876,8 @@
           "effect": "Until the start of your next turn, enemy units and enemy Manifestations cannot be set up within 12\" of this unit.",
           "keywords": "",
           "castingValue": "5",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -1845,7 +1939,8 @@
           "effect": "For the rest of the turn, each time a visible friendly Daughters of Khaine unit wholly within 12\" of this unit uses a Fight ability, after that ability has been resolved, you can pick a visible friendly Daughters of Khaine Priest wholly within 12\" of this unit. That Priest gains 1 ritual point.",
           "keywords": "Exalted",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -1919,7 +2014,8 @@
           "effect": "The targets have Ward (5+) for the rest of the turn.",
           "keywords": "Exalted",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Roaring Idol",
@@ -1929,7 +2025,8 @@
           "effect": "Roll a dice. On a 3+, the target cannot be picked to be the target of Banish abilities used by enemy units until the start of your next turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -1992,7 +2089,8 @@
           "effect": "If this unit is in combat, add 1 to the Rend characteristic of the target's melee weapons for the rest of the turn. If this unit is not in combat, roll a dice. On a 3+, add 1 to the Rend characteristic of the target's melee weapons for the rest of the turn.",
           "keywords": "Exalted",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2056,7 +2154,8 @@
           "effect": "Each time you perform a blood rite, immediately after the ability that destroyed a unit has been resolved, give this unit 1 prophecy token. \u2022 While this unit has 2 or more prophecy tokens, this unit cannot be picked to be the target of shooting attacks or Spell abilities used by enemy units. \u2022 While this unit has 3 or more prophecy tokens, you can re-roll unmodified chanting rolls of 1 for this unit. \u2022 While this unit has 4 or more prophecy tokens, if the unmodified hit roll for an attack that targets this unit is 1-4, the attack fails and the attack sequence ends.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Omens of Doom",
@@ -2066,7 +2165,8 @@
           "effect": "Pick 1 of the following effects. If the chanting roll was 10+, pick up to 2 different effects instead. Prophecy of Exile: Pick a visible enemy Wizard or Priest within 18\" of this unit. Subtract 1 from that unit's power level until the start of your next turn. Prophecy of Dark Wings: Pick a visible friendly Daughters of Khaine Infantry unit wholly within 12\" of this unit. That unit can immediately use the 'Normal Move' ability as if it were your movement phase and counts as having used a Run ability this turn. Prophecy of Futile Endeavours: Pick a visible enemy unit within 12\" of this unit. Until the start of your next turn, that unit's attacks cannot score critical hits (treat them as regular hits instead).",
           "keywords": "Prayer",
           "castingValue": "",
-          "chantingValue": "4"
+          "chantingValue": "4",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2131,7 +2231,8 @@
           "effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 9\" of a battlefield edge and more than 9\" from all enemy units.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": "1"
         },
         {
           "name": "Blood Ritual",
@@ -2141,7 +2242,8 @@
           "effect": "Pick 1 of the following effects to apply until the start of your next turn: *Prophecy of Tyranny:* Enemy units cannot use commands while they are in combat with the target. *Prophecy of Shelter:* Other than the Companion ability, weapon abilities used by enemy units while they are in combat with the target have no effect. *Prophecy of Retribution:* Subtract 1 from ward rolls made for damage points inflicted by the target's combat attacks. If the chanting roll was 9+, all of the above effects apply",
           "keywords": "Prayer",
           "castingValue": "",
-          "chantingValue": "3"
+          "chantingValue": "3",
+          "cost": ""
         },
         {
           "name": "The Croneseer",
@@ -2151,7 +2253,8 @@
           "effect": "Give this unit D3 ritual points.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2226,7 +2329,8 @@
           "effect": "If this unit has not been deployed, set up this unit in reserve in hiding. It has now been deployed.",
           "keywords": "Deploy",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Strike from the Shadows",
@@ -2236,7 +2340,8 @@
           "effect": "Roll a dice. On a 3+, set up this unit anywhere on the battlefield wholly within 6\" of the target. If you do so, this unit must be set up in combat and has Strike-first for the rest of the turn. On a failed roll, this unit remains in hiding but you automatically pass the roll the next time you use this ability.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Vial of Secrets",
@@ -2246,7 +2351,8 @@
           "effect": "If the unmodified hit roll for an attack that targets this unit is 1-4, the attack fails and the attack sequence ends.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2302,7 +2408,8 @@
           "effect": "For the rest of the phase, each time a model in a target unit is slain by a combat attack, roll a dice. If that unit is a Blood Sisters or Blood Stalkers unit, roll 2 dice instead. For each 5+, inflict 1 mortal damage on the attacking unit.",
           "keywords": "Exalted",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2358,7 +2465,8 @@
           "effect": "Roll a dice. If this unit is in combat, you can re-roll the dice. If the roll is lower than your fury level, add 1 to the Attacks characteristic of weapons used by this unit and the target until the start of your next turn.",
           "keywords": "Exalted",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2417,7 +2525,8 @@
           "effect": "If the target is a friendly Shadow Queen, it can immediately use a Fight ability as if it were your combat phase. Otherwise, inflict D3 mortal damage on each enemy unit in combat with the target.",
           "keywords": "Spell",
           "castingValue": "7",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "The Iron Heart of Khaine",
@@ -2427,7 +2536,8 @@
           "effect": "Each time you perform a blood rite, immediately after the ability that destroyed a unit has been resolved, pick 1 of the following effects: \u2022 Until the start of your next turn, this unit is only visible to enemy units while those units are within its combat range. \u2022 Heal (D6) this unit or a friendly Shadow Queen. \u2022 A friendly Shadow Queen can immediately use the 'Normal Move' or 'Retreat' ability as if it was your movement phase even if it has already used that ability or another Core ability this phase. Designer's Note: *If the Shadow Queen retreats with the 'Iron Heart of Khaine' ability, she cannot subsequently use the 'Fight' ability in the same combat phase.* \u2022 Remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units. \u2022 For the rest of the turn, set this unit's Control characteristic to 5 and a friendly Shadow Queen's Control characteristic to 15.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Divine Matriarch",
@@ -2437,7 +2547,8 @@
           "effect": "Add 1 to casting rolls and chanting rolls for the target until the start of your next turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2505,7 +2616,8 @@
           "effect": "Roll a dice. On a 3+, pick a blessing from the 'Blessings of Khaine' ability that is not active. The effect of that blessing applies to the target until the start of your next turn as if it were active. If you have used the 'Blessings of Khaine' ability 3 or more times this battle, you can pick 2 blessings instead of 1.",
           "keywords": "Exalted",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2579,7 +2691,8 @@
           "effect": "Add 1 to save rolls for friendly Daughters of Khaine Infantry units while they are wholly within 12\" of this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Icon of Slaughter",
@@ -2589,7 +2702,8 @@
           "effect": "Each time a friendy Daughters of Khaine unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6. In addition, if there are any friendly Hag Queens on Cauldrons of Blood on the battlefield when that command is used, you receive D3 additional rally points.",
           "keywords": "Exalted",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -2663,7 +2777,8 @@
           "effect": "While this unit is wholly within 12\" of a friendly Hag Queen on Cauldron of Blood, Slaughter Queen on Cauldron of Blood or Shrine of Dark Tribute, this unit's melee weapons have Anti-charge (+1 Rend).",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Crimson Offerings",
@@ -2673,7 +2788,8 @@
           "effect": "If an enemy unit was destroyed by this unit's combat attacks this turn, when resolving that ability, you can pick 2 blessings instead of 1.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -2723,7 +2839,8 @@
           "effect": "Roll a dice. If the roll is equal to or less than the target's Health characteristic, the target has Strike-last for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -2784,7 +2901,8 @@
           "effect": "After that Shoot ability has been resolved, if all of this unit's attacks targeted the same enemy unit, roll a dice. Add 1 to the roll if any other friendly Blood Stalkers units picked that enemy unit to be the target of all of their shooting attacks this turn. On a 3+, until the start of your next turn, subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -2857,7 +2975,8 @@
           "effect": "When this unit uses the 'Redeploy' command, if you roll a 1-3 when determining the distance this unit can move, you can use a value of 4 instead.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -2909,7 +3028,8 @@
           "effect": "For the rest of the turn, while this unit is in combat with the target, its combat attacks must target that enemy unit. In addition, if any of this unit's attacks score a critical hit on the target this phase, the target has Strike-last for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -2970,7 +3090,8 @@
           "effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3031,7 +3152,8 @@
           "effect": "If the target is more than 3\" from all other friendly units, apply the effect below. Otherwise, roll a dice. On a 3+, apply the effect below. Your opponent must remove the target from the battlefield and set it up again in combat with this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3082,7 +3204,8 @@
           "effect": "After that Shoot ability has been resolved, this unit can move 2D6\". It cannot move into combat during any part of that move.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3133,7 +3256,8 @@
           "effect": "If this unit is in combat, it can move 12\". It can pass through the combat ranges of enemy units but cannot end that move in combat. Then, roll a D3 for each enemy unit that this unit passed across during that move. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll.",
           "keywords": "Core, Attack, Fight",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3195,7 +3319,8 @@
           "effect": "Roll 6 dice: \u2022 For each 1, add 1 to the Attacks characteristic of this unit's melee weapons until the start of your next turn. \u2022 For each 3, add 1\" to this unit's Move characteristic until the start of your next turn. \u2022 If any of the rolls are a 6, add 1 to save rolls for this unit until the start of your next turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3258,7 +3383,8 @@
           "effect": "While this unit's Morgwaeth the Bloodied is on the battlefield, it has Priest (1).",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Witchbrew",
@@ -3268,7 +3394,8 @@
           "effect": "Roll a dice. On a 3+, the target has Ward (5+) for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3320,7 +3447,8 @@
           "effect": "Subtract 1 from hit rolls and wound rolls for the target's combat attacks for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3383,7 +3511,8 @@
           "effect": "Roll a dice. On a 3+, the target cannot use commands for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Shadow Leap",
@@ -3393,7 +3522,8 @@
           "effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -3445,7 +3575,8 @@
           "effect": "Add 1 to the Rend characteristic of this unit's melee weapons if it charged in the same turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],

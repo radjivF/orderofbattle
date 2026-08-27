@@ -18,6 +18,7 @@ export function BrandMark({
       sizes={`${size}px`}
       quality={80}
       priority={priority}
+      loading={priority ? "eager" : "lazy"}
       className={className}
     />
   );

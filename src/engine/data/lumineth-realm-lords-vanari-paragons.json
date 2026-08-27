@@ -18,7 +18,8 @@
           "effect": "Give the target 1 artefact of power from the 'Vanari Paragons' Army of Renown rules. Designer's Note: *This artefact of power is given to the* Hero *during the deployment phase, not during army composition.*",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Labour of Control",
@@ -28,7 +29,8 @@
           "effect": "Add 1 to the number of labours you have completed. For the rest of the battle, add 2\" to the Move characteristic of friendly Lumineth Realm-lords units.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Labour of Might",
@@ -38,7 +40,8 @@
           "effect": "Add 1 to the number of labours you have completed. For the rest of the battle, add 1 to wound rolls for combat attacks made by friendly Lumineth Realm-lords units.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Blessing of Tyrion",
@@ -48,7 +51,8 @@
           "effect": "For the rest of the battle, friendly Lumineth Realm-lords units have Ward (5+).",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -69,7 +73,8 @@
           "effect": "Add 2\" to the target's Move characteristic for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -85,7 +90,8 @@
           "effect": "This unit's combat attacks score critical hits on unmodified hit rolls of 5+.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     },
@@ -101,7 +107,8 @@
           "effect": "This unit can use the 'Unbind' ability as if it had Wizard (1).",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -119,7 +126,8 @@
           "effect": "Roll a dice. On a 4+: \u2022 If the target has an artefact of power, it no longer has that artefact of power. \u2022 The target has Strike-last for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -152,7 +160,8 @@
           "effect": "While this terrain feature has a Shrine Guardian: \u2022 This terrain feature has a Move characteristic of 6\" and can use non-command non-Charge Move abilities as if it were a unit. It cannot end a Move ability within the combat range of an enemy unit. \u2022 The Shrine Guardian cannot use Move abilities and remains on this terrain feature each time it moves. \u2022 Instead of measuring range or visibility to the Shrine Guardian, measure to this terrain feature instead. \u2022 All attacks that would target the Shrine Guardian target this terrain feature instead. \u2022 If this terrain feature is destroyed, before removing it from the battlefield, inflict D3 mortal damage on the Shrine Guardian. Then, set up the Shrine Guardian on the battlefield wholly within 3\" of this terrain feature and not in combat. That unit is no longer a Shrine Guardian. If it is not possible to set up the Shrine Guardian, it is slain.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Enter the Shrine",
@@ -162,7 +171,8 @@
           "effect": "Place the target on this terrain feature. The target is now a Shrine Guardian (see 'Shrine Guardian').",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Cleansing Rituals",
@@ -172,7 +182,8 @@
           "effect": "While this terrain feature has a Shrine Guardian, you can re-roll the casting roll for that spell.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Exit the Shrine",
@@ -182,7 +193,8 @@
           "effect": "If this terrain feature has a Shrine Guardian that was not placed on it this turn, set up the Shrine Guardian on the battlefield wholly within 6\" of this terrain feature and not in combat. That unit is no longer a Shrine Guardian.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ]
     }
@@ -257,7 +269,8 @@
           "effect": "Ignore negative modifiers to hit rolls and wound rolls for this unit's attacks.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Valorous Intervention",
@@ -267,7 +280,8 @@
           "effect": "Remove this unit from the battlefield and set it up again within 1\" of the target, within 1\" of an enemy unit and in combat. This unit has charged.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": "1"
         }
       ],
       "regimentOptions": [
@@ -354,7 +368,8 @@
           "effect": "Ignore negative modifiers to hit rolls and wound rolls for this unit's attacks. In addition, ignore negative modifiers to the characteristics of this unit's melee weapons.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Eternal Light",
@@ -364,7 +379,8 @@
           "effect": "If this unit is destroyed and if a friendly Lumineth Realm-lords Wizard successfully casts a Summon spell, instead of resolving the effect of that Summon spell, you can set up a replacement unit for this unit more than 9\" from all enemy units and wholly within 12\" of the unit that used that Summon spell. This ability is still in effect even if this unit is not on the battlefield.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -428,7 +444,8 @@
           "effect": "While a visible friendly Lumineth Realm-lords unit is wholly within 12\" of this unit, it can use the 'Rally' command even if it is in combat.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -486,7 +503,8 @@
           "effect": "Add 1 to save rolls for friendly Vanari Infantry units while they are contesting the same objective as this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -544,7 +562,8 @@
           "effect": "Each time a friendly Lumineth Realm-lords unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Wall of Blades",
@@ -554,7 +573,8 @@
           "effect": "Roll a dice for each model in the wall of blades that is within 3\" of the target. For each 5+, inflict 1 mortal damage on the target.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -627,7 +647,8 @@
           "effect": "You can re-roll charge rolls for friendly Lumineth Realm-lords units while they are wholly within 6\" of this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Purest Aetherquartz",
@@ -637,7 +658,8 @@
           "effect": "For the rest of the turn, add 1 to hit rolls for this unit's attacks and subtract 1 from hit rolls for attacks that target this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [
@@ -716,7 +738,8 @@
           "effect": "For the rest of the turn, add 6\" to the Range characteristic of this unit's Auralan Bows but subtract 1 from hit rolls for this unit's shooting attacks.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -767,7 +790,8 @@
           "effect": "If this unit has not charged this turn, ignore the effect of the Charge (+1 Damage) ability for combat attacks made by enemy units that target this unit.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -818,7 +842,8 @@
           "effect": "Add 1 to the Rend characteristic of this unit's Sunmental Blades for each instance of Varinor, Rune of Strength depicted on your battle scripture.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Guardians of the Scinari",
@@ -828,7 +853,8 @@
           "effect": "While any friendly Scinari Heroes are wholly within this unit's combat range, both this unit and those friendly units have Ward (5+).",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -891,7 +917,8 @@
           "effect": "Add 1 to the Rend characteristic of this unit's Dawnrider Lances and Blades if it charged in the same turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],
@@ -951,7 +978,8 @@
           "effect": "Roll a dice. Add 1 to the roll if the target is a Monster. On a 3+, subtract 1 from hit rolls for the target's attacks for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         },
         {
           "name": "Scryhawks",
@@ -961,7 +989,8 @@
           "effect": "Add 6\" to the Range characteristic of this unit's Starshard Bolts while it is wholly within 12\" of any friendly Vanari Auralan Sentinels units.",
           "keywords": "",
           "castingValue": "",
-          "chantingValue": ""
+          "chantingValue": "",
+          "cost": ""
         }
       ],
       "regimentOptions": [],

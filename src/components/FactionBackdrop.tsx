@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState, type ReactNode } from "react";
 import { factionArtSrc, factionBackdropArtClass } from "@/lib/factionArt";
+import { consumeSkipListSplash } from "@/lib/listTransition";
 import { BrandMark } from "./BrandMark";
 
 /** Short enough to stay snappy; long enough to read the art. */
@@ -18,6 +19,7 @@ type Props = {
 /**
  * Short faction splash, then list UI over a dimmed art background.
  * No art → plain ink (unchanged).
+ * Skipped when we already showed ListLoadingSplash during navigation.
  */
 export function FactionBackdrop({ factionId, factionName, children }: Props) {
   const src = factionArtSrc(factionId);
@@ -27,6 +29,12 @@ export function FactionBackdrop({ factionId, factionName, children }: Props) {
 
   useEffect(() => {
     if (!src) {
+      setSplash(false);
+      setContentIn(true);
+      return;
+    }
+
+    if (consumeSkipListSplash()) {
       setSplash(false);
       setContentIn(true);
       return;
@@ -90,7 +98,7 @@ export function FactionBackdrop({ factionId, factionName, children }: Props) {
 
       {splash ? (
         <div
-          className={`fixed inset-0 z-50 flex flex-col items-center justify-end pb-16 transition-opacity duration-300 ${
+          className={`fixed inset-0 z-50 flex flex-col items-center justify-center transition-opacity duration-300 ${
             contentIn ? "pointer-events-none opacity-0" : "opacity-100"
           }`}
           aria-busy={!contentIn}
@@ -106,17 +114,27 @@ export function FactionBackdrop({ factionId, factionName, children }: Props) {
             unoptimized
             className={artClass}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/25 to-transparent" />
-          <div className="relative z-10 flex flex-col items-center gap-3 px-6 text-center">
-            <BrandMark size={48} className="h-12 w-auto drop-shadow-lg" />
+          <div className="absolute inset-0 bg-gradient-to-b from-ink/45 via-ink/50 to-ink/70" />
+          <div className="relative z-10 flex flex-col items-center gap-4 px-6 text-center">
+            <BrandMark
+              size={48}
+              className="h-12 w-auto drop-shadow-lg"
+              priority
+            />
             {factionName ? (
               <p className="gold-text font-serif text-2xl drop-shadow-md sm:text-3xl">
                 {factionName}
               </p>
             ) : null}
-            <p className="text-xs tracking-[0.3em] text-parchment/80 uppercase">
-              Opening list
-            </p>
+            <div className="flex flex-col items-center gap-3">
+              <span
+                className="size-7 animate-spin rounded-full border-2 border-parchment/25 border-t-sigmarite"
+                aria-hidden="true"
+              />
+              <p className="text-xs tracking-[0.3em] text-parchment/80 uppercase">
+                Opening list
+              </p>
+            </div>
           </div>
         </div>
       ) : null}

@@ -40,7 +40,11 @@ export function TryLanding() {
       <IndexBackdrop veil="hero">
         <header className="relative z-20 mx-auto flex w-full max-w-3xl items-center justify-between px-5 pt-[max(1.25rem,env(safe-area-inset-top))] pb-4 sm:px-6 sm:py-6 lg:max-w-5xl">
           <Link href="/" className="flex min-h-11 items-center gap-2.5">
-            <BrandMark size={36} className="h-8 w-auto drop-shadow-md" />
+            <BrandMark
+              size={36}
+              className="h-8 w-auto drop-shadow-md"
+              priority
+            />
           </Link>
           <Link
             href="/dashboard"

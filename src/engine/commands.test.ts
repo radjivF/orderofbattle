@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  commandAbilityCost,
   coreCommandsForPhase,
   isCommandAbility,
 } from "@/engine/commands";
@@ -78,6 +79,18 @@ describe("faction Command abilities", () => {
     expect(coreCommandsForPhase("combat").map((c) => c.name)).toEqual(
       expect.arrayContaining(["All-out Attack", "All-out Defence"]),
     );
+  });
+
+  it("keeps The Goddess Of Life as a 2 CP command", () => {
+    const faction = getFaction("sylvaneth")!;
+    const alarielle = faction.units.find((unit) =>
+      unit.name.includes("Alarielle"),
+    );
+    const ability = alarielle?.abilities.find(
+      (item) => item.name === "The Goddess Of Life",
+    );
+    expect(ability?.kind).toBe("Command");
+    expect(commandAbilityCost(ability!)).toBe(2);
   });
 
   it("surfaces battle-trait and formation Commands on the matching phase board", () => {

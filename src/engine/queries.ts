@@ -456,6 +456,15 @@ export function selectionModelCount(
   return reinforced && unit.reinforce ? base * 2 : base;
 }
 
+/** Human-readable size for pickers and roster rows, e.g. "10 models". */
+export function unitSizeLabel(
+  unit: CatalogueUnit,
+  reinforced = false,
+): string {
+  const count = selectionModelCount(unit, reinforced);
+  return count === 1 ? "1 model" : `${count} models`;
+}
+
 export type SelectionPlayState = {
   damage: number;
   health: number;

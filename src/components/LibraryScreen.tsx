@@ -8,7 +8,7 @@ import { getFaction, listArmiesOfRenown, listFactions, armyOfRenownName } from "
 import { formatPoints } from "@/engine/pointsCap";
 import { summarize } from "@/engine/validate";
 import type { ArmyList, FactionCatalogue } from "@/engine/types";
-import { catalogueArtClass, catalogueArtSrc } from "@/lib/factionArt";
+import { catalogueArtClass, catalogueArtSrc, factionArtSrc } from "@/lib/factionArt";
 import {
   blankArmy,
   deleteArmy,
@@ -18,8 +18,10 @@ import {
   saveArmy,
   subscribeArmies,
 } from "@/lib/storage";
+import { rememberListOpen } from "@/lib/listTransition";
 import { BrandMark } from "./BrandMark";
 import { IndexBackdrop } from "./IndexBackdrop";
+import { ListLoadingSplash } from "./ListLoadingSplash";
 import { ModalFrame } from "./ModalFrame";
 import { PointsCapField } from "./PointsCapField";
 import { SiteFooter } from "./SiteFooter";
@@ -31,7 +33,7 @@ export function LibraryScreen() {
     getArmiesSnapshot,
     getArmiesServerSnapshot,
   );
-  const [confirmId, setConfirmId] = useState<string | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<ArmyList | null>(null);
   const [picking, setPicking] = useState(false);
   const [draftFaction, setDraftFaction] = useState<FactionCatalogue | null>(
     null,
@@ -41,32 +43,49 @@ export function LibraryScreen() {
   );
   const [draftName, setDraftName] = useState("");
   const [draftPoints, setDraftPoints] = useState(2000);
+  const [creating, setCreating] = useState(false);
+
+  function openList(listId: string, factionId: string | null | undefined) {
+    const faction = getFaction(factionId ?? "");
+    const artId =
+      faction?.parentFactionIds?.[0] ??
+      (factionArtSrc(factionId) ? factionId : null) ??
+      factionId;
+    rememberListOpen(artId);
+    router.push(`/lists/${listId}`);
+  }
 
   async function onCreate() {
-    if (!draftFaction) {
+    if (!draftFaction || creating) {
       return;
     }
-    const list = blankArmy(draftFaction.id, draftName, draftPoints);
-    await saveArmy(list);
-    setPicking(false);
-    setDraftFaction(null);
-    setDraftParent(null);
-    setDraftName("");
-    setDraftPoints(2000);
-    router.push(`/lists/${list.id}`);
+    setCreating(true);
+    const artFactionId =
+      draftParent?.id ??
+      draftFaction.parentFactionIds?.[0] ??
+      draftFaction.id;
+    rememberListOpen(artFactionId);
+    try {
+      const list = blankArmy(draftFaction.id, draftName, draftPoints);
+      await saveArmy(list);
+      setPicking(false);
+      router.push(`/lists/${list.id}`);
+    } catch {
+      setCreating(false);
+    }
   }
 
   async function onDuplicate(list: ArmyList) {
     await saveArmy(duplicateArmy(list));
   }
 
-  async function onDelete(id: string) {
-    if (confirmId !== id) {
-      setConfirmId(id);
+  async function confirmDelete() {
+    if (!deleteTarget) {
       return;
     }
+    const id = deleteTarget.id;
+    setDeleteTarget(null);
     await deleteArmy(id);
-    setConfirmId(null);
   }
 
   async function onRename(list: ArmyList, name: string) {
@@ -78,6 +97,9 @@ export function LibraryScreen() {
   }
 
   function closePicker() {
+    if (creating) {
+      return;
+    }
     setPicking(false);
     setDraftFaction(null);
     setDraftParent(null);
@@ -90,7 +112,11 @@ export function LibraryScreen() {
       <header className="sticky top-0 z-20 border-b border-sigmarite/15 bg-ink/45 backdrop-blur-md">
         <div className="mx-auto flex w-full max-w-3xl items-center justify-between gap-3 px-5 pt-[max(1.25rem,env(safe-area-inset-top))] pb-4 sm:px-6 sm:py-5 lg:max-w-5xl">
           <Link href="/" className="flex min-w-0 items-center gap-3">
-            <BrandMark size={44} className="h-10 w-auto shrink-0" />
+            <BrandMark
+              size={44}
+              className="h-10 w-auto shrink-0"
+              priority
+            />
             <div className="min-w-0">
               <p className="gold-text font-serif text-xl leading-none font-semibold sm:text-3xl">
                 Order of Battle
@@ -150,7 +176,7 @@ export function LibraryScreen() {
                       />
                       <button
                         type="button"
-                        onClick={() => router.push(`/lists/${list.id}`)}
+                        onClick={() => openList(list.id, list.factionId)}
                         className="mt-2 flex w-full flex-1 items-center gap-2 text-left"
                       >
                         <span className="min-w-0 flex-1">
@@ -189,11 +215,9 @@ export function LibraryScreen() {
                         <button
                           type="button"
                           className="min-h-10 px-2.5 text-sm text-illegal sm:min-h-11 sm:px-3 sm:text-base"
-                          onClick={() => void onDelete(list.id)}
+                          onClick={() => setDeleteTarget(list)}
                         >
-                          {confirmId === list.id
-                            ? "Confirm delete"
-                            : "Delete"}
+                          Delete
                         </button>
                       </div>
                     </div>
@@ -202,7 +226,7 @@ export function LibraryScreen() {
                       <button
                         type="button"
                         aria-label={`Open ${list.name}`}
-                        onClick={() => router.push(`/lists/${list.id}`)}
+                        onClick={() => openList(list.id, list.factionId)}
                         className="relative min-h-[8.5rem] overflow-hidden border-l border-parchment-ink/10"
                       >
                         <Image
@@ -232,7 +256,39 @@ export function LibraryScreen() {
       </main>
       <SiteFooter />
 
-      {picking ? (
+      {deleteTarget ? (
+        <ModalFrame
+          label="Delete list"
+          onClose={() => setDeleteTarget(null)}
+          panelClassName="parchment-card w-full max-w-sm rounded-2xl p-5 text-parchment-ink"
+        >
+          <h2 className="font-serif text-2xl">Delete this list?</h2>
+          <p className="mt-2 text-base text-sheet-muted">
+            <span className="font-serif text-parchment-ink">
+              {deleteTarget.name}
+            </span>{" "}
+            will be removed from this device. This cannot be undone.
+          </p>
+          <div className="mt-5 flex gap-2">
+            <button
+              type="button"
+              onClick={() => setDeleteTarget(null)}
+              className="min-h-11 flex-1 rounded-xl bg-parchment-ink/5 text-base"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={() => void confirmDelete()}
+              className="min-h-11 flex-1 rounded-xl bg-illegal text-base font-semibold text-parchment"
+            >
+              Delete
+            </button>
+          </div>
+        </ModalFrame>
+      ) : null}
+
+      {picking && !creating ? (
         <ModalFrame
           label="New list"
           onClose={closePicker}
@@ -312,21 +368,23 @@ export function LibraryScreen() {
                 <div className="flex gap-2">
                   <button
                     type="button"
+                    disabled={creating}
                     onClick={() => {
                       setDraftFaction(null);
                       setDraftParent(null);
                       setDraftName("");
                     }}
-                    className="min-h-11 flex-1 rounded-xl bg-parchment-ink/5 text-base"
+                    className="min-h-11 flex-1 rounded-xl bg-parchment-ink/5 text-base disabled:opacity-60"
                   >
                     Back
                   </button>
                   <button
                     type="button"
+                    disabled={creating}
                     onClick={() => void onCreate()}
-                    className="gold-plate min-h-11 flex-1 rounded-xl text-base font-semibold text-ink"
+                    className="gold-plate min-h-11 flex-1 rounded-xl text-base font-semibold text-ink disabled:opacity-60"
                   >
-                    Create
+                    {creating ? "Creating…" : "Create"}
                   </button>
                 </div>
               </div>
@@ -356,6 +414,18 @@ export function LibraryScreen() {
               </ul>
             )}
         </ModalFrame>
+      ) : null}
+
+      {creating && draftFaction ? (
+        <ListLoadingSplash
+          factionId={
+            draftParent?.id ??
+            draftFaction.parentFactionIds?.[0] ??
+            draftFaction.id
+          }
+          factionName={(draftParent ?? draftFaction).name}
+          label="Creating your list"
+        />
       ) : null}
     </IndexBackdrop>
   );

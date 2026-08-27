@@ -150,3 +150,19 @@ export function coreCommandsForPhase(phaseId: PlayPhaseId): CoreCommand[] {
 export function isCommandAbility(kind: string): boolean {
   return kind.trim().toLowerCase() === "command";
 }
+
+/** CP cost for a warscroll/trait Command ability (defaults to 1). */
+export function commandAbilityCost(ability: {
+  kind: string;
+  cost?: string;
+}): number | null {
+  if (!isCommandAbility(ability.kind)) {
+    return null;
+  }
+  const raw = ability.cost?.trim();
+  if (!raw) {
+    return 1;
+  }
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
+}

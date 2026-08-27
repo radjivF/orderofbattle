@@ -9,6 +9,7 @@ import {
   getUnit,
   selectionPlayState,
   selectionPoints,
+  unitSizeLabel,
 } from "@/engine/queries";
 import type { CombatModifierNote } from "@/engine/magic";
 import type {
@@ -578,7 +579,10 @@ function SlotLine({
             </span>
           ) : null}
         </p>
-        <p className="mt-0.5 text-sm text-sigmarite">{points} pts</p>
+        <p className="mt-0.5 text-sm text-sheet-muted">
+          {unitSizeLabel(unit, Boolean(reinforced))}
+          <span className="text-sigmarite"> · {points} pts</span>
+        </p>
       </div>
       <div className="flex shrink-0 items-stretch">
         <button

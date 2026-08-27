@@ -26,7 +26,7 @@ export function ContentDoc({
     <div className="min-h-full bg-ink text-parchment">
       <header className="mx-auto flex max-w-3xl items-center justify-between px-5 pt-[max(1.25rem,env(safe-area-inset-top))] pb-4 sm:px-6 sm:py-6">
         <Link href="/" className="flex min-h-11 items-center gap-3">
-          <BrandMark size={40} className="h-9 w-auto" />
+          <BrandMark size={40} className="h-9 w-auto" priority />
           <span className="gold-text font-serif text-xl leading-none sm:text-2xl">
             Order of Battle
           </span>
