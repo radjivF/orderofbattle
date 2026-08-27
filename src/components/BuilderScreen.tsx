@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
-import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, factionHasScourge, resolveUnitIdForRealm, unitBaseName, unitsForRealm, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel, type ScourgeRealm } from "@/engine/queries";
+import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, factionHasScourge, resolveUnitIdForRealm, unitBaseName, auxiliaryPickerUnits, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel, type ScourgeRealm } from "@/engine/queries";
 import { combatModifierNotes } from "@/engine/magic";
 import { exportArmyListText, exportFileName } from "@/engine/exportText";
 import { summarize } from "@/engine/validate";
@@ -1524,10 +1524,7 @@ function pickerUnitsFor(
     return available(list, faction, heroesOf(faction, realm), current);
   }
   if (picker.kind === "aux") {
-    // GHB: heroes may be auxiliaries unless they have compulsory regiment
-    // options. Our catalogues only model optional slots, so include heroes
-    // (e.g. Harbinger of Decay as a priest aux).
-    return available(list, faction, unitsForRealm(faction, realm));
+    return available(list, faction, auxiliaryPickerUnits(faction, realm));
   }
   if (picker.kind !== "unit") {
     return null;

@@ -166,3 +166,8 @@ export function commandAbilityCost(ability: {
   const parsed = Number.parseInt(raw, 10);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
 }
+
+/** Shown behind the Universal commands info control — not inline on mobile. */
+export const UNIVERSAL_COMMAND_RULES =
+  "You generate 4 CP each battle round (underdog +1). One command per unit per phase; each command once per army per phase. Cost is shown on each command.";
+

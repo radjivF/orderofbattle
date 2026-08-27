@@ -200,6 +200,17 @@ export function resolveUnitIdForRealm(
   return preferred?.id ?? unitId;
 }
 
+/** Units available for the auxiliary picker — includes heroes. */
+export function auxiliaryPickerUnits(
+  faction: FactionCatalogue,
+  realm: ScourgeRealm | null,
+): CatalogueUnit[] {
+  // GHB: heroes may be auxiliaries unless they have compulsory regiment
+  // options. Catalogues only model optional slots, so include heroes
+  // (e.g. Harbinger of Decay as a priest aux).
+  return unitsForRealm(faction, realm);
+}
+
 /** One datasheet per warscroll, matching the army scourge realm. */
 export function unitsForRealm(
   faction: FactionCatalogue,

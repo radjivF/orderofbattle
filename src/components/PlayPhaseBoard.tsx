@@ -6,6 +6,7 @@ import {
   coreCommandsForPhase,
   isCommandAbility,
   type CoreCommand,
+  UNIVERSAL_COMMAND_RULES,
 } from "@/engine/commands";
 import { combatModifierNotes } from "@/engine/magic";
 import {
@@ -28,9 +29,6 @@ import type {
 import { ModalFrame } from "./ModalFrame";
 
 type PhaseSubTab = "abilities" | "weapons" | "command";
-
-const UNIVERSAL_COMMAND_RULES =
-  "You generate 4 CP each battle round (underdog +1). One command per unit per phase; each command once per army per phase. Cost is shown on each command.";
 
 type Props = {
   list: ArmyList;

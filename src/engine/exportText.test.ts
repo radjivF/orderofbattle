@@ -57,4 +57,42 @@ describe("exportArmyListText", () => {
     expect(exportFileName("My Cool List!")).toBe("My-Cool-List.txt");
     expect(exportFileName("   ")).toBe("army-list.txt");
   });
+
+  it("marks reinforced units and lists auxiliaries", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const hero = heroesOf(faction)[0];
+    const companion = unitsForRealm(faction, null).find(
+      (unit) => !unit.hero && unit.reinforce && unit.points > 0,
+    );
+    expect(hero && companion).toBeTruthy();
+    if (!hero || !companion) return;
+
+    const regimentId = createId();
+    const list = {
+      ...blankArmy(faction.id, "Export Aux", 2000),
+      generalRegimentId: regimentId,
+      regiments: [
+        {
+          id: regimentId,
+          hero: { id: createId(), unitId: hero.id, reinforced: false },
+          units: [],
+        },
+      ],
+      auxiliaries: [
+        {
+          id: createId(),
+          unitId: companion.id,
+          reinforced: true,
+        },
+      ],
+    };
+
+    const text = exportArmyListText(list, faction);
+    expect(text).toContain("Auxiliaries");
+    expect(text).toContain("reinforced");
+    expect(text).toContain(companion.name);
+  });
 });

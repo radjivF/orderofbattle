@@ -1,19 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
+import { shouldLoadAnalytics } from "@/lib/analyticsEnv";
 
 const AHREFS_KEY = "lAHSqQ1oPzAYiQnF/4yUWQ";
 const CLARITY_ID = "y8rbeg2r71";
-
-function isLocalHost() {
-  const host = window.location.hostname;
-  return (
-    host === "localhost" ||
-    host === "127.0.0.1" ||
-    host === "[::1]" ||
-    host.endsWith(".local")
-  );
-}
 
 /**
  * Inject third-party analytics via DOM (not React <script> / next/script).
@@ -22,7 +13,7 @@ function isLocalHost() {
  */
 export function AnalyticsScripts() {
   useEffect(() => {
-    if (process.env.NODE_ENV !== "production" || isLocalHost()) {
+    if (!shouldLoadAnalytics(window.location.hostname)) {
       return;
     }
 

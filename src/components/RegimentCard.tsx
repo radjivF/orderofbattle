@@ -19,6 +19,7 @@ import type {
   Selection,
   UnitAbility,
 } from "@/engine/types";
+import { damageStepperActions } from "@/lib/damageStepper";
 
 type Props = {
   regiment: Regiment;
@@ -748,6 +749,7 @@ export function PlayHealthTrack({
 }) {
   const singleModel = track.modelsMax <= 1;
   const dead = track.damage >= track.healthMax;
+  const [dec, inc] = damageStepperActions(track.damage, track.healthMax);
 
   if (aside) {
     return (
@@ -767,9 +769,9 @@ export function PlayHealthTrack({
           <>
             <div className="flex items-center gap-1.5">
               <StepperButton
-                label="+"
-                onClick={() => onChange(track.damage + 1)}
-                disabled={track.damage >= track.healthMax}
+                label={dec.label}
+                onClick={() => onChange(dec.nextDamage)}
+                disabled={dec.disabled}
               />
               <p className="min-w-[2.75rem] text-center font-serif text-base tabular-nums leading-none">
                 {track.damage}
@@ -778,9 +780,9 @@ export function PlayHealthTrack({
                 </span>
               </p>
               <StepperButton
-                label="−"
-                onClick={() => onChange(track.damage - 1)}
-                disabled={track.damage <= 0}
+                label={inc.label}
+                onClick={() => onChange(inc.nextDamage)}
+                disabled={inc.disabled}
               />
             </div>
             <p className="text-xs tabular-nums text-sheet-muted">
@@ -812,9 +814,9 @@ export function PlayHealthTrack({
         <>
           <div className="flex items-center gap-1.5">
             <StepperButton
-              label="+"
-              onClick={() => onChange(track.damage + 1)}
-              disabled={track.damage >= track.healthMax}
+              label={dec.label}
+              onClick={() => onChange(dec.nextDamage)}
+              disabled={dec.disabled}
             />
             <p className="min-w-[3.5rem] text-center font-serif text-base tabular-nums leading-none">
               {track.damage}
@@ -823,9 +825,9 @@ export function PlayHealthTrack({
               </span>
             </p>
             <StepperButton
-              label="−"
-              onClick={() => onChange(track.damage - 1)}
-              disabled={track.damage <= 0}
+              label={inc.label}
+              onClick={() => onChange(inc.nextDamage)}
+              disabled={inc.disabled}
             />
           </div>
           <p className="text-xs tabular-nums text-sheet-muted">

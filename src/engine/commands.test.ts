@@ -3,6 +3,7 @@ import {
   commandAbilityCost,
   coreCommandsForPhase,
   isCommandAbility,
+  UNIVERSAL_COMMAND_RULES,
 } from "@/engine/commands";
 import {
   buildPhaseBoards,
@@ -42,6 +43,33 @@ function commandAbilitiesIn(
   }
   return rows;
 }
+
+describe("commandAbilityCost", () => {
+  it("returns null for non-command abilities", () => {
+    expect(
+      commandAbilityCost({ kind: "Activated", cost: "2" }),
+    ).toBeNull();
+  });
+
+  it("defaults Command abilities without cost to 1 CP", () => {
+    expect(commandAbilityCost({ kind: "Command" })).toBe(1);
+    expect(commandAbilityCost({ kind: "Command", cost: "" })).toBe(1);
+  });
+
+  it("reads explicit CP costs from catalogue data", () => {
+    expect(commandAbilityCost({ kind: "Command", cost: "2" })).toBe(2);
+    expect(commandAbilityCost({ kind: " command ", cost: "1" })).toBe(1);
+  });
+});
+
+describe("UNIVERSAL_COMMAND_RULES", () => {
+  it("does not claim every universal command costs 1 CP", () => {
+    expect(UNIVERSAL_COMMAND_RULES.toLowerCase()).not.toContain("cost 1 cp");
+    expect(UNIVERSAL_COMMAND_RULES.toLowerCase()).not.toMatch(
+      /universal commands cost/,
+    );
+  });
+});
 
 describe("faction Command abilities", () => {
   it("maps every Command timing to a play phase (no silent dump to Army)", () => {
@@ -90,6 +118,7 @@ describe("faction Command abilities", () => {
       (item) => item.name === "The Goddess Of Life",
     );
     expect(ability?.kind).toBe("Command");
+    expect(ability?.cost).toBe("2");
     expect(commandAbilityCost(ability!)).toBe(2);
   });
 
