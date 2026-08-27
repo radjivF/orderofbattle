@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { LegalDoc } from "@/components/LegalDoc";
 
 export const metadata: Metadata = {
-  title: "Terms of use | Order of Battle",
+  title: "Terms of use",
   description:
     "Terms for Order of Battle, a free unofficial Age of Sigmar hobby helper.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

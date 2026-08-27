@@ -1,5 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import { Cinzel, Instrument_Sans } from "next/font/google";
+import { JsonLd } from "@/components/JsonLd";
+import { graph, softwareApplicationNode } from "@/lib/jsonLd";
+import {
+  SITE_DESCRIPTION,
+  SITE_KEYWORDS,
+  SITE_NAME,
+  SITE_SHORT_DESCRIPTION,
+  getSiteUrl,
+} from "@/lib/site";
 import "./globals.css";
 
 const instrument = Instrument_Sans({
@@ -14,29 +23,41 @@ const cinzel = Cinzel({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  ),
+  metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "Order of Battle",
-    template: "%s | Order of Battle",
+    default: `${SITE_NAME} | Free Age of Sigmar Army Builder`,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "Free unofficial Age of Sigmar army builder and table companion. Lists stay on your device.",
-  applicationName: "Order of Battle",
-  authors: [{ name: "Order of Battle" }],
+  description: SITE_DESCRIPTION,
+  keywords: SITE_KEYWORDS,
+  applicationName: SITE_NAME,
+  authors: [{ name: SITE_NAME, url: getSiteUrl() }],
+  creator: SITE_NAME,
+  category: "games",
+  alternates: {
+    types: {
+      "text/plain": "/llms.txt",
+    },
+  },
   openGraph: {
-    title: "Order of Battle",
-    description:
-      "Free unofficial Age of Sigmar army builder and table companion. Lists stay on your device.",
+    title: `${SITE_NAME} | Free Age of Sigmar Army Builder`,
+    description: SITE_DESCRIPTION,
     type: "website",
-    images: [{ url: "/brand/og.jpg", width: 1200, height: 630, alt: "Order of Battle" }],
+    siteName: SITE_NAME,
+    locale: "en_US",
+    images: [
+      {
+        url: "/brand/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Order of Battle, free Age of Sigmar army builder",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Order of Battle",
-    description:
-      "Free unofficial Age of Sigmar army builder and table companion.",
+    title: `${SITE_NAME} | Free Age of Sigmar Army Builder`,
+    description: SITE_SHORT_DESCRIPTION,
     images: ["/brand/og.jpg"],
   },
   icons: {
@@ -50,6 +71,10 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
 };
 
@@ -64,7 +89,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${instrument.variable} ${cinzel.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="llms-txt" href="/llms.txt" />
+        <link rel="alternate" type="text/plain" href="/llms-full.txt" title="llms-full.txt" />
+      </head>
       <body className="min-h-full font-sans" suppressHydrationWarning>
+        <JsonLd data={graph([softwareApplicationNode()])} />
         {children}
       </body>
     </html>

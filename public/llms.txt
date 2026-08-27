@@ -1,0 +1,33 @@
+# Order of Battle
+
+> Order of Battle is a free unofficial Age of Sigmar 4th edition army builder and table companion. Build lists with regiments and Regiments of Renown, then track wounds, spells, and phase abilities at the table. No account; lists stay on your device.
+
+## About
+
+Order of Battle is a browser hobby helper for Warhammer Age of Sigmar (4th edition). Free fan project: no ads, no subscriptions, no Games Workshop affiliation. Catalogue data comes from the community BSData Age of Sigmar 4th edition project. Points and rules in the app are helpers only. Confirm them with official Games Workshop publications before you play.
+
+## Contact
+
+- Website: /
+- Email: contact@zheat.xyz
+- Maker site: https://zheat.xyz (this AoS app is free and not for sale; commission or buy list-builder work so the community keeps a helper rather than seeing it closed down)
+- GitHub: https://github.com/radjivF/orderofbattle
+
+## Product
+
+- [Order of Battle](/): Free Age of Sigmar army builder and table companion
+- [Open the builder](/app): Create and play lists in the browser (lists stay on the device; this route is a client app)
+
+## Key information
+
+- [FAQ](/faq): Account, privacy, official status, factions, and Play mode
+- [How to build an Age of Sigmar army list](/guides/how-to-build-an-age-of-sigmar-army-list): 4th edition list construction
+- [Free Age of Sigmar army builder](/guides/free-age-of-sigmar-army-builder): What the app does next to other tools
+- [Factions](/factions): Age of Sigmar 4th edition armies you can build
+- [About](/about): Fan project, data source, and legal status
+- [Privacy policy](/privacy): Lists stay on the device
+- [Terms of use](/terms): Unofficial helper; not a Games Workshop product
+
+## Optional
+
+- [llms-full.txt](/llms-full.txt): Longer machine-readable summary

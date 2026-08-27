@@ -1,5 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { listFactions } from "@/engine/queries";
+import { GEO_FAQS } from "@/lib/geoContent";
+import { SITE_DESCRIPTION } from "@/lib/site";
 import { BrandMark } from "./BrandMark";
 import { IndexBackdrop } from "./IndexBackdrop";
 import { LandingMotion } from "./LandingMotion";
@@ -38,7 +41,6 @@ export function TryLanding() {
         <header className="relative z-20 mx-auto flex w-full max-w-3xl items-center justify-between px-5 pt-[max(1.25rem,env(safe-area-inset-top))] pb-4 sm:px-6 sm:py-6 lg:max-w-5xl">
           <Link href="/" className="flex min-h-11 items-center gap-2.5">
             <BrandMark size={36} className="h-8 w-auto drop-shadow-md" />
-            <span className="sr-only">Order of Battle</span>
           </Link>
           <Link
             href="/app"
@@ -83,9 +85,12 @@ export function TryLanding() {
                 <p className="mt-5 text-xs font-semibold tracking-[0.28em] text-parchment uppercase [text-shadow:0_2px_10px_rgba(0,0,0,0.95),0_0_2px_rgba(0,0,0,1)] sm:text-sm sm:tracking-[0.32em]">
                   Age of Sigmar · 4th edition
                 </p>
-                <h1 className="mx-auto mt-3 max-w-lg font-serif text-[1.65rem] leading-snug font-semibold text-parchment [text-shadow:0_2px_16px_rgba(0,0,0,0.95),0_1px_3px_rgba(0,0,0,1)] sm:mt-4 sm:text-4xl">
-                  Build the list. Play the battle.
+                <h1 className="mx-auto mt-3 max-w-xl font-serif text-[1.65rem] leading-snug font-semibold text-parchment [text-shadow:0_2px_16px_rgba(0,0,0,0.95),0_1px_3px_rgba(0,0,0,1)] sm:mt-4 sm:text-4xl">
+                  Free Age of Sigmar army builder
                 </h1>
+                <p className="mx-auto mt-2 max-w-lg font-serif text-lg text-parchment/90 [text-shadow:0_2px_12px_rgba(0,0,0,0.95)] sm:text-xl">
+                  Build the list. Play the battle.
+                </p>
               </div>
 
               <div
@@ -94,9 +99,8 @@ export function TryLanding() {
               />
 
               <div data-rise="cta">
-                <p className="mx-auto mt-7 max-w-md text-[0.95rem] leading-relaxed font-medium text-parchment [text-shadow:0_2px_12px_rgba(0,0,0,0.95)] sm:mt-8 sm:text-lg">
-                  Unofficial army builder and table companion. Muster regiments,
-                  then switch to Play for wounds, magic, and phase abilities.
+                <p className="mx-auto mt-7 max-w-lg text-[0.95rem] leading-relaxed font-medium text-parchment [text-shadow:0_2px_12px_rgba(0,0,0,0.95)] sm:mt-8 sm:text-lg">
+                  {SITE_DESCRIPTION}
                 </p>
                 <div className="mt-8 sm:mt-10">
                   <Link
@@ -142,19 +146,25 @@ export function TryLanding() {
           </section>
 
           <section aria-labelledby="play-section" className="mt-12 sm:mt-16">
-            <p className="text-[0.7rem] tracking-[0.35em] text-sigmarite uppercase [text-shadow:0_1px_8px_rgba(0,0,0,0.8)]">
-              The part players love
-            </p>
-            <h2
-              id="play-section"
-              className="gold-text mt-2 font-serif text-2xl font-semibold [text-shadow:0_1px_10px_rgba(0,0,0,0.75)] sm:text-3xl"
+            <div
+              data-rise="card"
+              className="gilded-card rounded-2xl p-5 sm:p-8"
             >
-              Play mode
-            </h2>
-            <p className="mt-3 max-w-lg text-sm leading-relaxed font-medium text-parchment [text-shadow:0_1px_8px_rgba(0,0,0,0.8)] sm:text-base">
-              Open a list, hit Play, and run the game from your phone. Track the
-              fight without flipping warscrolls all night.
-            </p>
+              <p className="text-[0.7rem] tracking-[0.35em] text-sigmarite uppercase">
+                The part players love
+              </p>
+              <h2
+                id="play-section"
+                className="gold-text mt-2 font-serif text-xl sm:text-2xl"
+              >
+                Play mode
+              </h2>
+              <div className="gold-rule mt-4 w-20" aria-hidden="true" />
+              <p className="mt-5 text-sm leading-relaxed text-parchment/70 sm:text-base">
+                Open a list, hit Play, and run the game from your phone. Track
+                the fight without flipping warscrolls all night.
+              </p>
+            </div>
             <ul className="mt-6 grid gap-3 sm:grid-cols-3 sm:gap-4">
               {playFeatures.map((feature) => (
                 <li
@@ -174,7 +184,7 @@ export function TryLanding() {
             <div data-rise="card" className="mt-6 text-center sm:mt-8">
               <Link
                 href="/app"
-                className="inline-flex min-h-11 items-center justify-center rounded-xl border border-sigmarite/45 bg-ink/45 px-6 text-sm text-sigmarite backdrop-blur-sm active:bg-ink/60 lg:hover:border-sigmarite lg:hover:text-gold-bright"
+                className="inline-flex min-h-11 items-center justify-center rounded-xl border border-sigmarite/45 bg-ink/80 px-6 text-sm text-sigmarite backdrop-blur-sm active:bg-ink lg:hover:border-sigmarite lg:hover:text-gold-bright"
               >
                 Open My lists and try Play
               </Link>
@@ -200,7 +210,94 @@ export function TryLanding() {
             </p>
             <p className="mt-4 text-sm leading-relaxed text-parchment/70">
               Catalogue data is BSData, not Games Workshop. Double-check points
-              with your opponent or TO before you play.
+              with your opponent or TO before you play.{" "}
+              <Link
+                href="/guides/free-age-of-sigmar-army-builder"
+                className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
+              >
+                Free army builder
+              </Link>
+              {" · "}
+              <Link
+                href="/about"
+                className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
+              >
+                About
+              </Link>
+              .
+            </p>
+          </section>
+
+          <section
+            data-rise="card"
+            aria-labelledby="factions-section"
+            className="gilded-card mt-12 rounded-2xl p-5 sm:mt-16 sm:p-8"
+          >
+            <h2
+              id="factions-section"
+              className="gold-text font-serif text-xl sm:text-2xl"
+            >
+              Factions you can build
+            </h2>
+            <div className="gold-rule mt-4 w-20" aria-hidden="true" />
+            <p className="mt-5 text-sm leading-relaxed text-parchment/70">
+              4th edition catalogues in the app. Open a faction for counts, then
+              create a list.
+            </p>
+            <ul className="mt-5 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-2">
+              {listFactions().map((faction) => (
+                <li key={faction.id}>
+                  <Link
+                    href={`/factions/${faction.id}`}
+                    className="inline-flex min-h-10 items-center text-sm font-medium text-parchment underline decoration-sigmarite/50 underline-offset-2 lg:hover:text-gold-bright"
+                  >
+                    {faction.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section
+            aria-labelledby="faq-section"
+            className="mt-12 sm:mt-16"
+          >
+            <h2
+              id="faq-section"
+              className="gold-text font-serif text-2xl font-semibold [text-shadow:0_1px_10px_rgba(0,0,0,0.75)] sm:text-3xl"
+            >
+              Age of Sigmar army builder FAQ
+            </h2>
+            <dl className="mt-6 space-y-5">
+              {GEO_FAQS.slice(0, 5).map((item) => (
+                <div
+                  key={item.question}
+                  data-rise="card"
+                  className="gilded-card rounded-2xl p-5 sm:p-6"
+                >
+                  <dt className="font-serif text-lg text-parchment">
+                    {item.question}
+                  </dt>
+                  <dd className="mt-2 text-sm leading-relaxed text-parchment/70">
+                    {item.answer}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-5 text-sm text-parchment/80">
+              <Link
+                href="/faq"
+                className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
+              >
+                All questions
+              </Link>
+              {" · "}
+              <Link
+                href="/guides/how-to-build-an-age-of-sigmar-army-list"
+                className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
+              >
+                How to build a list
+              </Link>
             </p>
           </section>
         </main>

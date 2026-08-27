@@ -12,7 +12,7 @@ export function BrandMark({
   return (
     <Image
       src="/brand/crest-mark.webp"
-      alt=""
+      alt="Order of Battle"
       width={size}
       height={Math.round(size * 0.86)}
       sizes={`${size}px`}

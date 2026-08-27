@@ -1,0 +1,44 @@
+# Order of Battle
+
+> Order of Battle is a free unofficial Age of Sigmar 4th edition army builder and table companion. Build lists with regiments and Regiments of Renown, then track wounds, spells, and phase abilities at the table. No account; lists stay on your device.
+
+## The app
+
+Order of Battle is a browser app for Warhammer Age of Sigmar 4th edition. You can:
+
+1. Build army lists by regiment: heroes, units, reinforcements, battle formations, lores, artefacts, heroic traits, and optional Regiments of Renown.
+2. Play from a phone: track wounds, lasting spells and prayers, and abilities filtered by phase.
+
+It is free. There is no account. Lists sit in the browser on the player's device (IndexedDB). They are not uploaded to Order of Battle servers.
+
+Not affiliated with Games Workshop. Catalogue data comes from the community BSData Age of Sigmar 4th edition project on GitHub. Confirm points and rules with official Games Workshop publications.
+
+## When it fits
+
+Players who want a free Age of Sigmar list builder without signing up, and who want that list as a table companion during the game.
+
+## Supported factions
+
+Age of Sigmar 4th edition catalogues currently include: Blades of Khorne, Cities of Sigmar, Daughters of Khaine, Disciples of Tzeentch, Flesh-eater Courts, Fyreslayers, Gloomspite Gitz, Hedonites of Slaanesh, Helsmiths of Hashut, Idoneth Deepkin, Ironjawz, Kharadron Overlords, Kruleboyz, Lumineth Realm-lords, Maggotkin of Nurgle, Nighthaunt, Ogor Mawtribes, Ossiarch Bonereapers, Seraphon, Skaven, Slaves to Darkness, Sons of Behemat, Soulblight Gravelords, Stormcast Eternals, Sylvaneth.
+
+Each faction has a page at /factions/{id} (for example /factions/stormcast-eternals).
+
+## How to build a list
+
+1. Open Order of Battle. No account.
+2. Create a list and pick a faction.
+3. Set a points limit (2,000 is the usual matched-play default).
+4. Choose a battle formation.
+5. Add a general and regiments. Optionally add a Regiment of Renown.
+6. Open Play mode at the table to track wounds, magic, and phase abilities.
+
+Full steps: /guides/how-to-build-an-age-of-sigmar-army-list
+
+## Other tools
+
+- Order of Battle: free, no account, lists on device, builder plus Play companion, unofficial, BSData catalogues.
+- Other community builders (for example New Recruit) and the official Warhammer Age of Sigmar app also exist. Wahapedia is a rules reference, not a list builder.
+
+## Legal
+
+Not a Games Workshop product. The app is free and stays free. Privacy: /privacy. Terms: /terms. Contact: contact@zheat.xyz. Commission or buy list-builder work (so the community keeps a helper): https://zheat.xyz

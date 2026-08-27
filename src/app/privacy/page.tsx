@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { LegalDoc } from "@/components/LegalDoc";
 
 export const metadata: Metadata = {
-  title: "Privacy policy | Order of Battle",
+  title: "Privacy policy",
   description:
     "How Order of Battle handles data. Free hobby app. Lists stay on your device.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

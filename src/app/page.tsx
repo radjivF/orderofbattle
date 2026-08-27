@@ -1,12 +1,33 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
 import { TryLanding } from "@/components/TryLanding";
+import { faqPageNode } from "@/lib/jsonLd";
+import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, sitePath } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Order of Battle | Age of Sigmar Army Builder",
-  description:
-    "Build Age of Sigmar lists, add Regiments of Renown, then Play: track wounds, spells, and abilities by phase.",
+  title: {
+    absolute: `${SITE_NAME} | Free Age of Sigmar Army Builder`,
+  },
+  description: SITE_DESCRIPTION,
+  keywords: SITE_KEYWORDS,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: `${SITE_NAME} | Free Age of Sigmar Army Builder`,
+    description: SITE_DESCRIPTION,
+    type: "website",
+  },
 };
 
 export default function Home() {
-  return <TryLanding />;
+  return (
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          ...faqPageNode(sitePath("/")),
+        }}
+      />
+      <TryLanding />
+    </>
+  );
 }

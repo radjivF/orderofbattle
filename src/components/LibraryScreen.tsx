@@ -196,6 +196,7 @@ export function LibraryScreen() {
                         <Image
                           src={artSrc}
                           alt=""
+                          aria-hidden
                           fill
                           sizes="152px"
                           quality={68}
