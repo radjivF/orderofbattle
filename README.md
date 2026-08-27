@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Order of Battle
 
-## Getting Started
+Unofficial Age of Sigmar army builder and table companion.
 
-First, run the development server:
+**Free. No account. Lists stay on your device.** Made for the hobby community — not a commercial product, and not affiliated with Games Workshop.
+
+<p align="center">
+  <img src="public/brand/crest.webp" alt="Order of Battle crest" width="220" />
+</p>
+
+## What it does
+
+- **Build** — regiments, reinforcements, formations, spell/prayer lores, Regiments of Renown
+- **Play** — wounds, lasting magic/prayer notes, abilities by phase
+- **Local-only** — saved in the browser (IndexedDB); nothing uploaded to our servers
+
+Catalogue data comes from the community [BSData](https://github.com/BSData) Age of Sigmar 4th edition project. Always confirm points and rules with official Games Workshop materials and your opponent or TO before you play.
+
+## Quick start
 
 ```bash
-npm run dev
-# or
+yarn install
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn lint
+yarn build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Stack
 
-## Learn More
+- Next.js (App Router) + React + TypeScript
+- Tailwind CSS
+- Pure domain logic under `src/engine/`
+- UI under `src/components/`; thin routes under `src/app/`
 
-To learn more about Next.js, take a look at the following resources:
+## Legal
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Privacy policy at `/privacy`
+- Terms of use at `/terms`
+- Code license: [MIT](./LICENSE) (with trademark notice)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Warhammer, Age of Sigmar, and related marks are property of Games Workshop. This is fan work. The “JW / James Workshop” line in the footer is a joke, not affiliation.
 
-## Deploy on Vercel
+If you are a rights holder and want artwork removed, contact [contact@zheat.xyz](mailto:contact@zheat.xyz).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contact
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[contact@zheat.xyz](mailto:contact@zheat.xyz)

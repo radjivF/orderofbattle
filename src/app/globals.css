@@ -1,26 +1,188 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Hammered antique gold on void black, sampled from the crest */
+  --ink: #050505;
+  --ink-raised: #12110f;
+  --parchment: #e8dcc4;
+  --parchment-ink: #16120c;
+  /* Readable muted text (avoid /40–/55 grays on mobile) */
+  --sheet-muted: #4a4338;
+  --ink-muted: #cfc3a8;
+  --sigmarite: #c5b38a;
+  --sigmarite-hover: #e5d9c3;
+  --gold-bright: #efe4c8;
+  --gold-deep: #6b542e;
+  --steel: #9a9a9a;
+  --aether: #1f7a74;
+  --legal: #4a7c59;
+  --illegal: #8b2e2e;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: var(--ink);
+  --color-ink-raised: var(--ink-raised);
+  --color-parchment: var(--parchment);
+  --color-parchment-ink: var(--parchment-ink);
+  --color-sheet-muted: var(--sheet-muted);
+  --color-ink-muted: var(--ink-muted);
+  --color-sigmarite: var(--sigmarite);
+  --color-sigmarite-hover: var(--sigmarite-hover);
+  --color-gold-bright: var(--gold-bright);
+  --color-gold-deep: var(--gold-deep);
+  --color-steel: var(--steel);
+  --color-aether: var(--aether);
+  --color-legal: var(--legal);
+  --color-illegal: var(--illegal);
+  --font-sans: var(--font-instrument);
+  --font-serif: var(--font-cinzel);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html,
+body {
+  background: var(--ink);
+  color: var(--parchment);
+  font-family: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Slightly larger type on phones — primary use case */
+html {
+  font-size: 106.25%;
+}
+
+@media (min-width: 640px) {
+  html {
+    font-size: 100%;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100%;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+button,
+select,
+input {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Engraved gold, as on the wordmark */
+.gold-text {
+  background: linear-gradient(
+    175deg,
+    var(--gold-bright) 0%,
+    var(--sigmarite) 42%,
+    var(--gold-deep) 78%,
+    var(--gold-bright) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gold-plate {
+  background: linear-gradient(
+    180deg,
+    var(--gold-bright) 0%,
+    var(--sigmarite) 46%,
+    var(--gold-deep) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 248, 230, 0.7),
+    inset 0 -2px 5px rgba(50, 36, 12, 0.55),
+    0 6px 18px -8px rgba(197, 179, 138, 0.5);
+}
+
+.gold-plate:active {
+  filter: brightness(0.96);
+}
+
+@media (min-width: 1024px) {
+  .gold-plate:hover {
+    filter: brightness(1.07);
+  }
+}
+
+/* Hairline with center diamond (the "OF" divider) */
+.gold-rule {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--sigmarite) 18%,
+    var(--gold-bright) 50%,
+    var(--sigmarite) 82%,
+    transparent
+  );
+}
+
+.gold-rule::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: var(--gold-bright);
+  box-shadow: 0 0 8px rgba(239, 228, 200, 0.75);
+}
+
+.hero-glow {
+  background: radial-gradient(
+    ellipse 80% 50% at 50% 28%,
+    rgba(197, 179, 138, 0.16),
+    transparent 68%
+  );
+}
+
+.gilded-card {
+  background: linear-gradient(180deg, #161411 0%, #0c0b0a 100%);
+  border: 1px solid rgba(197, 179, 138, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(232, 220, 196, 0.06),
+    0 14px 36px -18px rgba(0, 0, 0, 0.85);
+}
+
+.parchment-card {
+  background: linear-gradient(180deg, #efe6d2 0%, #e0d2b4 100%);
+  border: 1px solid rgba(107, 84, 46, 0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 252, 245, 0.7),
+    0 10px 28px -14px rgba(0, 0, 0, 0.7);
+}
+
+/* Desktop shine only. Phones skip hover glints. */
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shine::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      115deg,
+      transparent 28%,
+      rgba(255, 252, 235, 0.5) 50%,
+      transparent 72%
+    );
+    transform: translateX(-130%);
+    transition: transform 0.75s ease;
+  }
+
+  .shine:hover::before {
+    transform: translateX(130%);
+  }
 }

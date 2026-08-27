@@ -1,0 +1,3208 @@
+{
+  "id": "fyreslayers",
+  "name": "Fyreslayers",
+  "game": "Age of Sigmar 4th",
+  "source": "https://github.com/BSData/age-of-sigmar-4th",
+  "pointsCapDefault": 2000,
+  "formations": [
+    {
+      "id": "8a01-5328-6a1-dfe9",
+      "name": "Forge Brethren",
+      "abilities": [
+        {
+          "name": "Bulwark of Molten Stone",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to save rolls for friendly Fyreslayers Infantry units while they are wholly within friendly territory.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "9904-e6cf-27df-81a6",
+      "name": "Scales of Vulcatrix",
+      "abilities": [
+        {
+          "name": "Ancient Bloodlines",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 2 to the Health characteristic of friendly Magmadroth units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "57e1-db1e-6cbb-cf26",
+      "name": "Warrior Kinband",
+      "abilities": [
+        {
+          "name": "Berserk Kindred",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to wound rolls for combat attacks made by friendly Fyreslayers Infantry units that charged in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "3644-d3dc-68eb-a10b",
+      "name": "Lords of the Lodge",
+      "abilities": [
+        {
+          "name": "Martial Pride and Stubborn Will",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 3 to the control scores of friendly Fyreslayers Heroes. In addition, the control scores of Fyreslayers Heroes cannot be modified by enemy abilities.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "d272-b44a-2b04-4f2b",
+      "name": "Fyreslayers",
+      "abilities": [
+        {
+          "name": "Rune of Fiery Determination",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Any Hero Phase",
+          "declare": "",
+          "effect": "You can only use this ability if you have not used any Ur-gold Rune abilities this battle round. Friendly Fyreslayers units have Ward (5+) for the rest of the battle round.",
+          "keywords": "Ur-gold Rune",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Rune of Farsight",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Any Shooting Phase",
+          "declare": "You can only use this ability if you have not used any Ur-gold Rune abilities this battle round. Pick any number of enemy units within 10\" of any visible friendly Fyreslayers units to be targets.",
+          "effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. In addition, for the rest of the battle round, ranged weapons, including Companion weapons, used by friendly Fyreslayers units have Crit (2 Hits).",
+          "keywords": "Ur-gold Rune",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Rune of Relentless Zeal",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Your Movement Phase",
+          "declare": "",
+          "effect": "You can only use this ability if you have not used any Ur-gold Rune abilities this battle round. For the rest of the battle round, friendly Fyreslayers units can use Charge abilities even if they used a Run ability in the same turn.",
+          "keywords": "Ur-gold Rune",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Rune of Searing Heat",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Any Combat Phase",
+          "declare": "",
+          "effect": "You can only use this ability if you have not used any Ur-gold Rune abilities this battle round. Melee weapons used by friendly Fyreslayers units have Crit (Mortal) for the rest of the battle round.",
+          "keywords": "Ur-gold Rune",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Rune of Fury",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Start of Any Turn",
+          "declare": "",
+          "effect": "You can only use this ability if you have not used any Ur-gold Rune abilities this battle round. For the rest of the battle round, friendly Fyreslayers units have Strike-first while they are in combat with an enemy unit that charged in the same turn.",
+          "keywords": "Ur-gold Rune",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "spellLores": [],
+  "prayerLores": [
+    {
+      "id": "3b2b-a46b-82b5-a3e7",
+      "name": "Zharrgrim Blessings",
+      "powers": [
+        {
+          "name": "Prayer of Ash",
+          "kind": "Prayer",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Fyreslayers Priest to chant this prayer, pick a visible friendly Fyreslayers unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+          "effect": "Subtract 1 from wound rolls for attacks that target that friendly unit until the start of your next turn. If the chanting roll was 8+, also subtract 1 from the Rend characteristic of attacks that target that friendly unit until the start of your next turn.",
+          "keywords": "Prayer, Unlimited",
+          "castingValue": "",
+          "chantingValue": "4"
+        },
+        {
+          "name": "Prayer of Grimnir's Fury",
+          "kind": "Prayer",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Fyreslayers Priest to chant this prayer, pick a visible friendly Fyreslayers Infantry Hero wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+          "effect": "The target can use 2 Fight abilities this turn. After the first is used, however, the target has Strike-last for the rest of the turn. If the chanting roll was 8+, also add 1 to wound rolls for the target's combat attacks for the rest of the turn.",
+          "keywords": "Prayer",
+          "castingValue": "",
+          "chantingValue": "4"
+        },
+        {
+          "name": "Wrath of Vulcatrix",
+          "kind": "Prayer",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Fyreslayers Priest to chant this prayer, pick a visible friendly Magmadroth unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+          "effect": "For the rest of the turn, the 'Battle Damaged' ability has no effect on the target and add 1 to the Attacks characteristic of the target's Companion weapons. If the chanting roll was 8+, add 1 to the Attacks characteristic of the target's Companion weapons for every 4 damage points the target has instead.",
+          "keywords": "Prayer",
+          "castingValue": "",
+          "chantingValue": "4"
+        }
+      ]
+    }
+  ],
+  "manifestationLores": [
+    {
+      "id": "c13c-d6a2-3674-91d6",
+      "name": "Magmic Invocations",
+      "manifestations": [
+        {
+          "id": "bc11-e1c6-f5de-ed0b",
+          "name": "Molten Infernoth",
+          "stats": {
+            "move": "8\"",
+            "health": "10",
+            "save": "5+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "INVOCATION",
+            "FLY",
+            "ORDER",
+            "FYRESLAYERS"
+          ],
+          "weapons": [
+            {
+              "name": "Raging Torrents of Lava",
+              "kind": "ranged",
+              "range": "8\"",
+              "attacks": "2",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "D3",
+              "ability": "Shoot in Combat"
+            },
+            {
+              "name": "Molten Claws",
+              "kind": "melee",
+              "range": "",
+              "attacks": "6",
+              "hit": "4+",
+              "wound": "2+",
+              "rend": "1",
+              "damage": "D3",
+              "ability": "Crit (Mortal)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Flamescarred",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "Pick an enemy unit that had any damage points allocated to it this turn by this Manifestation's attacks to be the target.",
+              "effect": "Subtract 1 from wound rolls for the target's combat attacks until the end of your next turn.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Molten Infernoth",
+            "kind": "Prayer",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Molten Infernoth on the battlefield, pick a friendly Fyreslayers Priest to chant this prayer, then make a chanting roll of D6.",
+            "effect": "Set up a Molten Infernoth wholly within 12\" of the chanter, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Prayer, Summon",
+            "castingValue": "",
+            "chantingValue": "6"
+          }
+        },
+        {
+          "id": "62d9-5397-25fb-ec2",
+          "name": "Runic Fyrewall",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "3+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "INVOCATION",
+            "ORDER",
+            "FYRESLAYERS"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Roaring Rune-fire",
+              "kind": "Activated",
+              "timing": "Enemy Movement Phase",
+              "declare": "Pick up to 3 enemy units within 6\" of this Manifestation to be the targets.",
+              "effect": "Roll a D3 for each target. On a 2+: \u2022 Inflict an amount of mortal damage on the target equal to the roll. \u2022 Subtract 3 from the target's control score for the rest of the turn.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Runic Fyrewall",
+            "kind": "Prayer",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Runic Fyrewall on the battlefield, pick a friendly Fyreslayers Priest to chant this prayer, then make a chanting roll of D6.",
+            "effect": "Set up a Runic Fyrewall wholly within 12\" of the chanter and visible to them.",
+            "keywords": "Prayer, Summon",
+            "castingValue": "",
+            "chantingValue": "4"
+          }
+        },
+        {
+          "id": "f214-324b-6674-cf4",
+          "name": "Zharrgron Flame-spitter",
+          "stats": {
+            "move": "-",
+            "health": "5",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "INVOCATION",
+            "ORDER",
+            "FYRESLAYERS"
+          ],
+          "weapons": [
+            {
+              "name": "Magma Blast",
+              "kind": "ranged",
+              "range": "18\"",
+              "attacks": "8",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Crit (2 Hits)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Magma Blast",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Add 1 to hit rolls for this Manifestation's shooting attacks if the target unit has 10 or more models. Add 1 to hit rolls and wound rolls instead if the target unit has 15 or more models.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Zharrgron Flame-spitter",
+            "kind": "Prayer",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Zharrgron Flame-spitter on the battlefield, pick a friendly Fyreslayers Priest to chant this prayer, then make a chanting roll of D6.",
+            "effect": "Set up a Zharrgron Flame-spitter wholly within 12\" of the chanter and visible to them.",
+            "keywords": "Prayer, Summon",
+            "castingValue": "",
+            "chantingValue": "4"
+          }
+        }
+      ]
+    },
+    {
+      "id": "db7f-2a40-6ebc-907b",
+      "name": "Aetherwrought Machineries",
+      "manifestations": [
+        {
+          "id": "fcb6-ae80-2e58-aadb",
+          "name": "Aethervoid Pendulum",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Scything Blade",
+              "kind": "Activated",
+              "timing": "Any Movement Phase",
+              "declare": "",
+              "effect": "This Manifestation can move a distance up to its Move characteristic in one direction (see 'The Pendulum Swings'). It can pass through models during that move and can end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move or that are within 1/2\" of it to be the targets. Roll a D6 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "The Pendulum Swings",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "This Manifestation cannot use Charge or Fight abilities. In addition, when this Manifestation moves, it must move in a straight line either in the direction in which the tip of the pendulum blade is pointing or in the opposite direction to the direction in which the tip of the pendulum blade is pointing",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Aethervoid Pendulum",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Aethervoid Pendulumon the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up an Aethervoid Pendulum wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "1aba-bc38-e988-d79f",
+          "name": "Chronomantic Cogs",
+          "stats": {
+            "move": "-",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Mechanisms of Time",
+              "kind": "Activated",
+              "timing": "Once Per Turn, Your Hero Phase",
+              "declare": "",
+              "effect": "If there are any friendly Wizards within 3\" of this Manifestation, pick 1 of the following effects: *Increase Time Flow*: Until the start of your next turn, you can re-roll charge rolls for friendly units while they are wholly within 12\" of this Manifestation. *Decrease Time Flow*: Until the start of your next turn, subtract 1 from hit rolls for attacks that target friendly Wizards while they are wholly within 12\" of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Chronomantic Cogs",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Chronomantic Cogs endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Chronomantic Cogs endless spell wholly within 12\" of the caster and visible to them.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "8cde-fafe-2b2a-ced5",
+          "name": "Quicksilver Swords",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Quicksilver Blades",
+              "kind": "melee",
+              "range": "",
+              "attacks": "12",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Crit (Mortal)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Dancing Blades",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Ward rolls cannot be made for damage points inflicted by this Manifestation's attacks.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Quicksilver Swords",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Quicksilver Swords endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Quicksilver Swords endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "9fd2-a506-6462-a6c8",
+      "name": "Forbidden Power",
+      "manifestations": [
+        {
+          "id": "f935-2383-94ba-3be2",
+          "name": "Horrorghast",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Scream of Terror",
+              "kind": "ranged",
+              "range": "10\"",
+              "attacks": "6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "1",
+              "ability": "Shoot in Combat, Anti-INFANTRY (+1 Rend)"
+            },
+            {
+              "name": "Deathly Touch",
+              "kind": "melee",
+              "range": "",
+              "attacks": "4",
+              "hit": "4+",
+              "wound": "4+",
+              "rend": "-",
+              "damage": "1",
+              "ability": "-"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Harbinger of Horror",
+              "kind": "Activated",
+              "timing": "Any Shooting Phase",
+              "declare": "Pick an enemy unit that was targeted by this Manifestation's shooting attacks this phase to be the target.",
+              "effect": "Roll a dice. If the roll is less than the number of models in the target unit that were slain this phase, the target cannot use commands for the rest of the turn.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Horrorghast",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Horrorghast endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Horrorghast endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "a26b-cd08-8f9d-90b0",
+          "name": "Lauchon the Soulseeker",
+          "stats": {
+            "move": "12\"",
+            "health": "10",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Scything Oar",
+              "kind": "melee",
+              "range": "",
+              "attacks": "3",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "D3",
+              "ability": "Crit (2 Hits)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Traverse the Tides of Death",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "Pick a friendly Infantry Wizard Hero within 3\" of this Manifestation to be the target",
+              "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, remove the target from the battlefield and set them up again on the battlefield within 3\" of this Manifestation and not in combat. Then, inflict 1 mortal damage on the target.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Lauchon the Soulseeker",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Lauchon the Soulseeker endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Lauchon the Soulseeker endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "94f6-4321-fd80-f20e",
+          "name": "Shards of Valagharr",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Phantasmal Translocation",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "",
+              "effect": "Pick a part of this Manifestation, remove it from the battlefield and set it up again on the battlefield wholly within 9\" of the other part and more than 3\" from all enemy units.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Ensnaring Soul-drain",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time an enemy unit uses a Move ability while it is within 9\" of any parts of this Manifestation, the effects of the 'Fly' ability do not apply to that unit. Enemy units cannot be set up within 9\" of either part of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Shards of Valagharr",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Shards of Valagharr endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Shards of Valagharr endless spell wholly within 18\" of the caster and visible to them. A Shards of Valagharr endless spell has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "523f-bd78-e418-9922",
+          "name": "Soulscream Bridge",
+          "stats": {
+            "move": "-",
+            "health": "12",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Deathly Passage",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "Pick a friendly unit wholly within 6\" of one part of this Manifestation to be the target.",
+              "effect": "Remove the target from the battlefield and set it up again on the battlefield wholly within 6\" of the other part of this Manifestation and more than 9\" from all enemy units.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Soulscream Bridge",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Soulscream Bridge endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Soulscream Bridge wholly within 18\" of the caster and visible to them. A Soulscream Bridge has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "93f1-1e9f-b52b-ff3c",
+      "name": "Krondspine Incarnate",
+      "manifestations": [
+        {
+          "id": "4ba0-e87-36e0-db58",
+          "name": "Krondspine Incarnate of Ghur",
+          "stats": {
+            "move": "10\"",
+            "health": "12",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "8+",
+          "categories": [
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "WARD (6+)",
+            "FLY",
+            "INCARNATE"
+          ],
+          "weapons": [
+            {
+              "name": "Amberbone Claws and Fangs",
+              "kind": "melee",
+              "range": "",
+              "attacks": "6",
+              "hit": "4+",
+              "wound": "2+",
+              "rend": "2",
+              "damage": "3",
+              "ability": "Anti-Manifestation(+1 Rend)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Devourer of Magics",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "",
+              "effect": "If this Manifestation destroyed any enemy Manifestations this turn, Heal (6) this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Arcane Predator",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "You can add 1 to the number of dice rolled when making charge rolls for this Manifestation, to a maximum of 3, while it is within 18\" of any enemy Manifestations, but if you do so, it must end the charge move within 1/2\" of an enemy Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Wild Form",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time this Manifestation is targeted by the 'Banish Manifestation' ability, if it would be banished, it is not banished. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points).",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Krondspine Incarnate of Ghur",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Krondspine Incarnate of Ghur endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Krondspine Incarnate of Ghur endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "8",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "b4d2-4178-ff43-a44b",
+      "name": "Morbid Conjuration",
+      "manifestations": [
+        {
+          "id": "e699-49b7-d2b8-d5fc",
+          "name": "Malevolent Maelstrom",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Lashing Tendrils of Energy",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "-",
+              "damage": "1",
+              "ability": "Crit (2 Hits)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Morbid Detonation",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "You must, and can only, use this ability if this unit has 6 maelstrom points. Pick each unit (friendly and enemy) within 9\" of it to be the targets.",
+              "effect": "Roll a dice for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Then, this Manifestation is destroyed.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Necrotic Vortex",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Give this Manifestation 1 maelstrom point each time: \u2022 This Manifestation is set up. \u2022 A unit successfully casts a spell while it is within 12\" of this Manifestation. \u2022 A model is slain within 12\" of this Manifestation. This Manifestation can have a maximum of 6 maelstrom points at once.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Malevolent Maelstrom",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly a Malevolent Maelstrom endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a a Malevolent Maelstrom endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "e7a5-e611-4c13-22d0",
+          "name": "Purple Sun of Shyish",
+          "stats": {
+            "move": "8\"",
+            "health": "10",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Transmuting Rays",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Crit (Mortal)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "End Given Form",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "",
+              "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move to be the targets. Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Pull of the Nadir",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Subtract 1 from save rolls for friendly and enemy units while they are within 3\" of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Purple Sun of Shyish",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Purple Sun of Shyish endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Purple Sun of Shyish endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "8",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "dee3-92a0-27e7-252a",
+          "name": "Soulsnare Shackles",
+          "stats": {
+            "move": "-",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Bound for the Great Oubliette",
+              "kind": "Activated",
+              "timing": "Any Hero Phase",
+              "declare": "For each part of this Manifestation, you can pick an enemy unit within 3\" of that part to be the targets. You cannot pick the same unit to be the target of this ability more than once per turn.",
+              "effect": "Roll a D3 for each target. On a 2+: \u2022 Inflict an amount of mortal damage on the target equal to the roll. \u2022 Subtract a number of inches equal to the roll from the target's Move characteristic for the rest of the turn.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and all its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Soulsnare Shackles",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Soulsnare Shackles endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Soulsnare Shackles endless spell wholly within 18\" of the caster and visible to them. A Soulsnare Shackles endless spell has 3 parts that must each be set up within 3\" of at least 1 other part.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "1885-a1aa-bf5d-6d0d",
+          "name": "Suffocating Gravetide",
+          "stats": {
+            "move": "12\"",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Spectral Riptide",
+              "kind": "melee",
+              "range": "",
+              "attacks": "8",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Charge (+1 Damage)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Pulled to the Grave",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "",
+              "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, you can pick an enemy unit that this Manifestation passed across during that move to be the target. Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Suffocating Gravetide",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Suffocating Gravetide endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Suffocating Gravetide endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "8",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "83f1-e447-c26-c5c",
+      "name": "Twilit Sorceries",
+      "manifestations": [
+        {
+          "id": "d420-1699-5ad9-1956",
+          "name": "Geminids of Uhl-Gysh",
+          "stats": {
+            "move": "8\"",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "6+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Tendrils of Light and Shadow",
+              "kind": "melee",
+              "range": "",
+              "attacks": "4",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "D3",
+              "ability": "-"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Tendrils of Light and Shadow",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Enemy units cannot use commands while they are within 3\" of either part of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play. Each time this Manifestation moves, both its parts must end within 9\" of each other. Each part of this Manifestation is armed with Tendrils of Light and Shadow.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Geminids of Uhl-Gysh",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Geminids of Uhl-Gysh endless spell on the battlefield, pick a friendly Wizardto cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Geminids of Uhl-Gysh endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units. A Geminids of Uhl-Gysh endless spell has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "015a-4e4f-322f-ccff",
+          "name": "Prismatic Palisade",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Blinding Light",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "This Manifestation cannot be targeted by shooting attacks. In addition, a unit cannot be targeted by shooting attacks if it is impossible to draw a straight line from a model in the attacking unit to a model in the target unit without that line passing across this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Prismatic Palisade",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Prismatic Palisade endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Prismatic Palisade wholly within 18\" of the caster and visible to them.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "0552-183c-1b2a-d117",
+          "name": "Umbral Spellportal",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "6+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Arcane Passage",
+              "kind": "Activated",
+              "timing": "Your Hero Phase",
+              "declare": "Pick a friendly Wizard within 3\" of this Manifestation to be the target.",
+              "effect": "The next time the target uses a non-Summon Spell ability this phase, add 1 to the casting value of that spell. When picking targets for that spell, you can measure range and visibility from either part of this Manifestation instead of from the caster, and your opponent can measure range and visibility to either part of this Manifestation instead of to the caster for the purposes of the 'Unbind' ability.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Umbral Spellportal",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Umbral Spellportal endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up an Umbral Spellportal wholly within 18\" of the caster and visible to them. An Umbral Spellportal has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "7217-5951-aaf0-47e8",
+      "name": "Primal Energy",
+      "manifestations": [
+        {
+          "id": "3071-fc11-4eb8-bbcc",
+          "name": "Emerald Lifeswarm",
+          "stats": {
+            "move": "8\"",
+            "health": "5",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Swarming Bites",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "4+",
+              "rend": "-",
+              "damage": "1",
+              "ability": "Anti-Infantry (+1 Rend)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Restored Vigour",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "",
+              "effect": "Heal (3) this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Bounteous Healing",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "Pick a friendly unit within 3\" of this Manifestation to be the target.",
+              "effect": "Heal (3) the target.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Emerald Lifeswarm",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Emerald Lifeswarm endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Emerald Lifeswarm endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "41c4-2f6a-0d3c-a23e",
+          "name": "Ravenak's Gnashing Jaws",
+          "stats": {
+            "move": "3D6\"",
+            "health": "10",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [
+            {
+              "name": "Gnashing Jaws",
+              "kind": "melee",
+              "range": "",
+              "attacks": "10",
+              "hit": "4+",
+              "wound": "2+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Charge (+1 Damage)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Ravening Hunger",
+              "kind": "Activated",
+              "timing": "Any Charge Phase",
+              "declare": "If this Manifestation charged this turn, pick an enemy unit within 1\" of it to be the target.",
+              "effect": "Roll 10 dice. For each 5+, inflict 1 mortal damage on the target.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Ravenak's Gnashing Jaws",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Ravenak's Gnashing Jaws endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Ravenak's Gnashing Jaws endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "e1cc-64dc-f765-b9cc",
+          "name": "The Burning Head",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "6+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Burning Breath",
+              "kind": "ranged",
+              "range": "10\"",
+              "attacks": "D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "1",
+              "ability": "Shoot in Combat, Anti-WAR MACHINE (+1 Rend)"
+            },
+            {
+              "name": "Flaming Maw",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "1",
+              "ability": "Anti-WAR MACHINE (+1 Rend)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Burning Up",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time this Manifestation uses a Shoot ability, after that ability has been resolved, allocate 1 damage point to this Manifestation (ward rolls cannot be made for that damage point).",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": null
+        }
+      ]
+    }
+  ],
+  "artefacts": [
+    {
+      "id": "9e14-87d3-79be-2fd3",
+      "name": "Droth-helm",
+      "abilities": [
+        {
+          "name": "Droth-helm",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to hit rolls for Companion weapons used by friendly Fyreslayers units while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "3467-5875-55a2-8c32",
+      "name": "Draught of the Finest Magmalt",
+      "abilities": [
+        {
+          "name": "Draught of the Finest Magmalt",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "",
+          "effect": "Add 3 to the Attacks characteristic of this unit's melee weapons for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "e5e-10bb-4236-e18d",
+      "name": "Ash-cloud Rune",
+      "abilities": [
+        {
+          "name": "Ash-cloud Rune",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Enemy Hero Phase",
+          "declare": "",
+          "effect": "Until the start of your next turn, friendly Infantry units cannot be targeted by shooting attacks while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "heroicTraits": [
+    {
+      "id": "5a32-71bf-d54c-96e0",
+      "name": "Ash-beard",
+      "abilities": [
+        {
+          "name": "Ash-beard",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit is not a Priest, they have Priest (1). If this unit was already a Priest, add 1 to this unit's chanting rolls.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "fa21-f6e9-3a56-77",
+      "name": "Blood of the Berzerker",
+      "abilities": [
+        {
+          "name": "Blood of the Berzerker",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to charge rolls for friendly Fyreslayers units while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "9001-7d5c-6216-8ce6",
+      "name": "Fiercely Competitive",
+      "abilities": [
+        {
+          "name": "Fiercely Competitive",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit is in combat with an enemy unit that has Strike-first, this unit has Strike-first. If this unit is in combat with an enemy unit that uses the 'All-out Attack' command, add 1 to hit rolls for this unit's attacks for the rest of the turn",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "terrain": [
+    {
+      "id": "d4be-ace4-55bc-ea7c",
+      "name": "Magmic Battleforge",
+      "stats": {
+        "move": "-",
+        "health": "8",
+        "save": "3+",
+        "control": "-"
+      },
+      "categories": [
+        "FACTION TERRAIN",
+        "FYRESLAYERS",
+        "ORDER",
+        "WARD (6+)"
+      ],
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "Spending the Forge",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Your Hero Phase",
+          "declare": "Pick a friendly Fyreslayers Priest within this terrain feature's combat range to expend the power of the forge.",
+          "effect": "Heal (D3) each friendly Fyreslayers unit on the battlefield. Once this ability has been used, this terrain feature cannot use the 'Molten Blessing' abiity for the rest of the battle.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Molten Blessing",
+          "kind": "Activated",
+          "timing": "Start of Any Turn",
+          "declare": "Pick a friendly Fyreslayers Priest within this terrain feature's combat range to be the target.",
+          "effect": "Add 1 to chanting rolls for the target for the rest of the turn. In addition, the target can use the 'Unbind' ability this turn as if it had Wizard (1).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "4a5c-a6be-cecb-a47a",
+      "name": "Auric Flamekeeper",
+      "points": 80,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Brazier Axe",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Masterflame Rune",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Hero Phase",
+          "declare": "If any friendly units have been destroyed during the battle, pick a friendly Fyreslayers Infantry unit wholly within 12\" of this unit to be the target.",
+          "effect": "Roll a dice. If the roll is equal to or less than the number of Fyreslayers units that have been destroyed during the battle, pick 1 of the following effects to apply until the start of your next turn: *Grimnir's Grit:* The target has Ward (5+). *Grimnir's Resolve:* Add 2 to charge rolls for the target. *Grimnir's Vengeance:* Add 1 to the Damage characteristic of the target's melee weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6a02-a995-fd92-d806",
+          "name": "FYRESLAYERS"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "aa8-9db3-b817-6324",
+      "name": "Auric Runefather",
+      "points": 130,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "WARMASTER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Latchkey Grandaxe",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Royal Retinue",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Deployment Phase",
+          "declare": "Pick a friendly non-Hero Fyreslayers Infantry unit within this unit's combat range to be the royal retinue.",
+          "effect": "For the rest of the battle, while the royal retinue is wholly within 6\" of this unit, add 1 to hit rolls for attacks made by the royal retinue and this unit has Ward (4+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Commanding Presence",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "Add the current battle round number to the control scores of friendly Fyreslayers Infantry units wholly within 12\" of this unit for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6a02-a995-fd92-d806",
+          "name": "FYRESLAYERS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "a5bc-2ee-f320-b3e7",
+          "name": "Grimnir's Chosen"
+        }
+      ]
+    },
+    {
+      "id": "37e2-9685-abe9-bc10",
+      "name": "Auric Runefather on Magmadroth",
+      "points": 320,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "MONSTER",
+        "ORDER",
+        "WARMASTER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN",
+        "MAGMADROTH",
+        "Vulcatrix's Chosen"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "14",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Latchkey Grandaxe",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "-"
+        },
+        {
+          "name": "Roaring Fyrestream",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Anti\u2011Infantry (+1 Rend), Companion"
+        },
+        {
+          "name": "Magmadroth's Blazing Maw",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Magmadroth's Claws and Horns",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Volcanic Blood",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the Fight ability has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Warrior-kings",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Your Combat Phase",
+          "declare": "",
+          "effect": "For the rest of the turn, add 1 to the Attacks characteristic of melee weapons used by friendly Fyreslayers units while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Raging Inferno",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, subtract 1 from save rolls for the target for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6a02-a995-fd92-d806",
+          "name": "FYRESLAYERS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "a5bc-2ee-f320-b3e7",
+          "name": "Grimnir's Chosen"
+        },
+        {
+          "type": "category",
+          "id": "e2b4-defb-ae24-3954",
+          "name": "Vulcatrix's Chosen"
+        }
+      ]
+    },
+    {
+      "id": "21bf-d0a3-f872-2def",
+      "name": "Auric Runemaster",
+      "points": 160,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN",
+        "INFANTRY",
+        "PRIEST (2)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Brazier Staff",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "High Priest of the Zharrgrim",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time a Prayer chanted by this unit is answered, this unit gains a magmic power token.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Master of the Runes",
+          "kind": "Activated",
+          "timing": "Reaction: You declared an Ur-gold Rune ability",
+          "declare": "",
+          "effect": "Remove 3 of this unit's magmic power tokens. If you do so, apply the effect below that corresponds to the Ur-gold Rune ability that was used: *Rune of Fury:* For the rest of the battle round, add 1 to wound rolls for combat attacks made by friendly Fyreslayers units while they have Strike-first. *Rune of Fiery Determination:* Add 1 to save rolls for friendly Fyreslayers units for the rest of the battle round. *Rune of Relentless Zeal:* Add 1 to run rolls and charge rolls for friendly Fyreslayers units for the rest of the battle round. *Rune of Searing Heat:* Add 1 to the Rend characteristic of melee weapons used by friendly Fyreslayers units for the rest of the battle round. *Rune of Farsight:* Increase the range of the 'Rune of Farsight' ability to 16\".",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6a02-a995-fd92-d806",
+          "name": "FYRESLAYERS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "a5bc-2ee-f320-b3e7",
+          "name": "Grimnir's Chosen"
+        }
+      ]
+    },
+    {
+      "id": "7b03-4613-6b5b-a9ce",
+      "name": "Auric Runesmiter",
+      "points": 90,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN",
+        "INFANTRY",
+        "PRIEST (1)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Latch-axe",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Emergence",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick this unit if it is underground.",
+          "effect": "Set up this unit anywhere on the battlefield more than 9\" from all enemy units. Then, set up the other unit that was set up underground with it (if any) wholly within 6\" of this unit and more than 9\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Magmic Tunnelling",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "Pick this unit and any number of other units in its regiment if none of those units have been deployed.",
+          "effect": "Set up those units in reserve underground. They have now been deployed.",
+          "keywords": "Deploy",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6a02-a995-fd92-d806",
+          "name": "FYRESLAYERS"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "268e-676d-c731-7d26",
+      "name": "Auric Runesmiter on Magmadroth",
+      "points": 280,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "MONSTER",
+        "ORDER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN",
+        "MAGMADROTH",
+        "PRIEST (1)"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "14",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Latch-axe",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        },
+        {
+          "name": "Roaring Fyrestream",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Anti\u2011Infantry (+1 Rend), Companion"
+        },
+        {
+          "name": "Magmadroth's Blazing Maw",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Magmadroth's Claws and Horns",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Volcanic Blood",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the Fight ability has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Runic Empowerment",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Fyreslayers unit wholly within 12\" of this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, add 1 to wound rolls for the target's attacks for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Lashing Tail",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll 2D6. If the roll is equal to or less than the number of models in the target unit, inflict D3+3 mortal damage on the target.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6a02-a995-fd92-d806",
+          "name": "FYRESLAYERS"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "94e6-d5d5-c8e6-7282",
+      "name": "Auric Runeson",
+      "points": 90,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN",
+        "INFANTRY",
+        "Grimnir's Chosen"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Ancestral Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti\u2011Monster (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Fearless Charge",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit charged this turn, for the rest of the turn, add 1 to charge rolls for friendly Fyreslayers Infantry units while they are wholly within 18\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Dauntless Assault",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a Fight ability for this unit",
+          "declare": "",
+          "effect": "Pick a friendly non-Hero Fyreslayers Infantry unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight ability used by this unit has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6a02-a995-fd92-d806",
+          "name": "FYRESLAYERS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "a5bc-2ee-f320-b3e7",
+          "name": "Grimnir's Chosen"
+        }
+      ]
+    },
+    {
+      "id": "de0d-34a7-ac61-53de",
+      "name": "Auric Runeson on Magmadroth",
+      "points": 240,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "MONSTER",
+        "ORDER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN",
+        "MAGMADROTH",
+        "Vulcatrix's Chosen"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "14",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Ancestral Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti\u2011Monster (+1 Rend)"
+        },
+        {
+          "name": "Roaring Fyrestream",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Anti\u2011Infantry (+1 Rend), Companion"
+        },
+        {
+          "name": "Magmadroth's Blazing Maw",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Magmadroth's Claws and Horns",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Volcanic Blood",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the Fight ability has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Dominating Roar",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Any Turn",
+          "declare": "Pick an enemy Monster in combat with this unit to be the target.",
+          "effect": "If this unit has fewer damage points than the target, subtract 10 from the target's control score for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Vying for Glory",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time this unit destroys a Monster, add 1 to the Attacks characteristic of this unit's Ancestral Weapons for the rest of the battle. This unit can be affected by this ability multiple times and the effects are cumulative.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6a02-a995-fd92-d806",
+          "name": "FYRESLAYERS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "a5bc-2ee-f320-b3e7",
+          "name": "Grimnir's Chosen"
+        }
+      ]
+    },
+    {
+      "id": "d7ea-c712-766e-4585",
+      "name": "Auric Runeson on Magmadroth (Scourge of Aqshy)",
+      "points": 330,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "MONSTER",
+        "ORDER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN",
+        "MAGMADROTH",
+        "Vulcatrix's Chosen"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "14",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Ancestral Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti\u2011Monster (+1 Rend)"
+        },
+        {
+          "name": "Roaring Fyrestream",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Anti\u2011Infantry (+1 Rend), Companion"
+        },
+        {
+          "name": "Magmadroth's Blazing Maw",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Magmadroth's Claws and Horns",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Volcanic Blood",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the Fight ability has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Fire, Blood and Vengeance",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "Pick a friendly Auric Runefather on Magmadroth on the battlefield to be the target.",
+          "effect": "Add 1 to the Damage characteristic of this unit's melee weapons, including Companion weapons, while the target is in combat, damaged or destroyed.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Seeing Red",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "",
+          "effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, pick 1 of the following effects: ***Channelled Ire*: Add 1 to the Attacks characteristic of this unit's Companion melee weapons for the rest of the turn. *Cathartic Release*: Roll a number of dice equal to your fury level. For each 4+, Heal (1) this unit. *Shield of Anger*:** This unit has Ward (5+) for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6a02-a995-fd92-d806",
+          "name": "FYRESLAYERS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "a5bc-2ee-f320-b3e7",
+          "name": "Grimnir's Chosen"
+        }
+      ]
+    },
+    {
+      "id": "153d-5d1c-c0c6-54cc",
+      "name": "Auric Runeson on Magmadroth (Scourge of Ghyran)",
+      "points": 340,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "MONSTER",
+        "ORDER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN",
+        "MAGMADROTH",
+        "Vulcatrix's Chosen"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "14",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Ancestral Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti\u2011Monster (+1 Rend)"
+        },
+        {
+          "name": "Roaring Fyrestream",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Anti\u2011Infantry (+1 Rend), Companion"
+        },
+        {
+          "name": "Magmadroth's Blazing Maw",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Magmadroth's Claws and Horns",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Volcanic Blood",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If you make an unmodified save roll of 1 for a combat attack that targets this unit, inflict 1 mortal damage on the attacking unit after the Fight ability has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Magmadroth's Claws and Horns is 4.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Fire, Blood, and Vengeance",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Deployment Phase",
+          "declare": "Pick a friendly Auric Runefather on Magmadroth on the battlefield to be the target.",
+          "effect": "Add 1 to the Damage characteristic of this unit's melee weapons, including Companion weapons, while the target is in combat, damaged, or destroyed.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Calamitous Crash",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6a02-a995-fd92-d806",
+          "name": "FYRESLAYERS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "a5bc-2ee-f320-b3e7",
+          "name": "Grimnir's Chosen"
+        }
+      ]
+    },
+    {
+      "id": "eb16-2bd1-6982-c82d",
+      "name": "Battlesmith",
+      "points": 100,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN",
+        "INFANTRY",
+        "Grimnir's Chosen"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "5",
+        "save": "5+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Ancestral Battle-axe",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Icon of Grimnir",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Ignore negative modifiers to the control scores of friendly Fyreslayers units while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Bard of the Lodge",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If a friendly unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6a02-a995-fd92-d806",
+          "name": "FYRESLAYERS"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "2a37-8d73-b1ba-576d",
+      "name": "Doomseeker",
+      "points": 80,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN",
+        "INFANTRY",
+        "Grimnir's Chosen"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Doomseeker Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Runic Power",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Damage characteristic of this unit's melee weapons while this unit has 1 damage point. Add 2 to the Damage characteristic of this unit's melee weapons instead while this unit has 2 or more damage points.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Oathbound",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "Pick an enemy unit to be this unit's quarry. You can pick a unit that has been deployed in reserve.",
+          "effect": "Add 1 to hit rolls and wound rolls for attacks made by this unit that target its quarry. If this unit is destroyed while it is in combat with its quarry, inflict 3 mortal damage on this unit's quarry immediately after the ability that destroyed this unit has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6a02-a995-fd92-d806",
+          "name": "FYRESLAYERS"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "145f-e68f-3a4e-c25a",
+      "name": "Grimhold Exile",
+      "points": 90,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN",
+        "INFANTRY",
+        "Grimnir's Chosen"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "6",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Fyre-rune Hammers",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Honour to Grimnir!",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Hero Phase",
+          "declare": "Pick up to 3 friendly Fyreslayers Infantry units wholly within 12\" of this unit to be the targets.",
+          "effect": "You can re-roll charge rolls for the targets for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Last of the Lodge-fire",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll a number of dice equal to the target's Health characteristic. For each 4+, inflict 1 mortal damage on the target.",
+          "keywords": "Core, Attack, Fight",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6a02-a995-fd92-d806",
+          "name": "FYRESLAYERS"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "1b3c-edf1-cb89-c9",
+      "name": "Grimwrath Berzerker",
+      "points": 110,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN",
+        "INFANTRY",
+        "Grimnir's Chosen"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Fyrestorm Greataxe",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Grimwrath Oaths",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "",
+          "effect": "Pick 1 of the following oaths for this unit to swear: *'I will guard them with my life!':* While this unit is wholly within 6\" of another friendly Fyreslayers Hero: \u2022 Add 1 to hit rolls for this unit's attacks. \u2022 Add 1 to ward rolls for this unit. If a friendly Fyreslayers Hero wholly within 6\" of this unit is destroyed, this effect no longer applies. *'I will not be stopped!':* Add 1 to charge rolls for this unit, and add 1 to save rolls for this unit while it is in combat. If this unit uses the 'Retreat' or 'Rally' abilities, this effect no longer applies.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Battle-fury",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "",
+          "effect": "If this unit is in combat, it can use 2 Fight abilities this phase. After the first is used, however, this unit has Strike-last for the rest of the phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6a02-a995-fd92-d806",
+          "name": "FYRESLAYERS"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "c2d0-1db-e516-2344",
+      "name": "Auric Hearthguard",
+      "points": 100,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "CHAMPION",
+        "ORDER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN",
+        "MUSICIAN (1/10)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "2",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Magmapike",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Molten Rockbolts",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time a shooting attack made by this unit scores a critical hit, subtract 1\" from the target unit's Move characteristic until the start of your next turn. This ability cannot reduce the target unit's unmodified Move characteristic below half",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "d6c7-9adb-d1fd-2446",
+      "name": "Hearthguard Berzerkers with Berzerker Broadaxes",
+      "points": 100,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "CHAMPION",
+        "ORDER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "2",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Berzerker Broadaxe",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Duty Unto Death",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While any friendly Fyreslayers Infantry Heroes are wholly within this unit's combat range, both this unit and those friendly units have Ward (5+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Fires of Vengeance",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit is within the combat ranges of any damaged friendly Fyreslayers Heroes, add 1 to the Attacks characteristic of this unit's melee weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "194c-db4d-bae8-1372",
+      "name": "Hearthguard Berzerkers with Flamestrike Poleaxes",
+      "points": 110,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "CHAMPION",
+        "ORDER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "2",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Flamestrike Poleaxe",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Duty Unto Death",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While any friendly Fyreslayers Infantry Heroes are wholly within this unit's combat range, both this unit and those friendly units have Ward (5+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Smouldering Braziers",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "79e4-f929-c8d1-d8cf",
+      "name": "The Chosen Axes",
+      "points": 120,
+      "hero": false,
+      "unique": true,
+      "reinforce": false,
+      "models": 4,
+      "categories": [
+        "ORDER",
+        "INFANTRY",
+        "UNIQUE",
+        "CHAMPION",
+        "Legends",
+        "WARD (6+)",
+        "DUARDIN",
+        "FYRESLAYERS"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "3",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Fyresteel Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "-"
+        },
+        {
+          "name": "Latchkey Grandaxe",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Berserk Fury",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking unit, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the Fight ability has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Fjul's Retinue",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit's Fjul-Grimnir is on the battlefield, ignore the first damage point that would be allocated to this unit each phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "b1bf-7551-a8ec-80f",
+      "name": "Vulkite Berzerkers with Bladed Slingshields",
+      "points": 140,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 10,
+      "categories": [
+        "INFANTRY",
+        "CHAMPION",
+        "ORDER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN",
+        "MUSICIAN (1/10)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "2",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Fyresteel Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Berserk Fury",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking unit, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the Fight ability has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "88f4-30cc-1cfd-b6fa",
+      "name": "Vulkite Berzerkers with Fyresteel Weapons",
+      "points": 120,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 10,
+      "categories": [
+        "INFANTRY",
+        "CHAMPION",
+        "ORDER",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN",
+        "MUSICIAN (1/10)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "2",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Fyresteel Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Whirlwind of Destruction",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Attacks characteristic of this unit's melee weapons if this unit charged this turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "f6d4-e62b-c0a9-ba01",
+      "name": "Vulkyn Flameseekers",
+      "points": 150,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 9,
+      "categories": [
+        "INFANTRY",
+        "ORDER",
+        "CHAMPION (1/9)",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "2",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Vulkyn Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Anti-Monster (+1 Rend)"
+        },
+        {
+          "name": "Emberteeth",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "2",
+          "ability": "Crit (Mortal), Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Drothmasters",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy Monster in combat with this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, subtract D3 from the Damage characteristic of the target's Companion melee weapons for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "3358-ef6e-0c9f-fc84",
+      "name": "Vulkyn Flameseekers (Scourge of Aqshy)",
+      "points": 160,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 9,
+      "categories": [
+        "INFANTRY",
+        "ORDER",
+        "CHAMPION (1/9)",
+        "WARD (6+)",
+        "FYRESLAYERS",
+        "DUARDIN"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "2",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Vulkyn Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Anti-Monster (+1 Rend)"
+        },
+        {
+          "name": "Emberteeth",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "2",
+          "ability": "Crit (Mortal), Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Fiery Disposition",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Hero Phase",
+          "declare": "",
+          "effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, pick 1 of the following effects to apply until the start of your next turn, where X is equal to your fury level. ***Vigour of the Ur-Salamander*: Add X\" to this unit's Move characteristic. *Fiery Determination*: Add X to this unit's control score. *Kyndlewrath*: Add X to the Attacks characteristic of this unit's Emberteeth**.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

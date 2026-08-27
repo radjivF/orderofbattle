@@ -1,0 +1,4433 @@
+{
+  "id": "seraphon",
+  "name": "Seraphon",
+  "game": "Age of Sigmar 4th",
+  "source": "https://github.com/BSData/age-of-sigmar-4th",
+  "pointsCapDefault": 2000,
+  "formations": [
+    {
+      "id": "b97a-6930-afde-a025",
+      "name": "Thunderquake Starhost",
+      "abilities": [
+        {
+          "name": "Scaly Monstrosities",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 2 to the Health characteristic of friendly Seraphon Monster units",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "5cc-6d3e-8b37-912f",
+      "name": "Eternal Starhost",
+      "abilities": [
+        {
+          "name": "Celestial Translocation",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Movement Phase",
+          "declare": "Pick a friendly Seraphon unit wholly within 12\" of a friendly Seraphon Wizard to use this ability",
+          "effect": "Remove that unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "7633-86a-1c15-3fb7",
+      "name": "Shadowstrike Starhost",
+      "abilities": [
+        {
+          "name": "Nimble and Quick",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Shooting Phase",
+          "declare": "Pick up to 3 friendly Skink Infantry or Skink Cavalry units that are not in combat to be the targets.",
+          "effect": "Each target can move D6\". Each target cannot move into combat during any part of that move.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "8468-aa4c-c167-b4f4",
+      "name": "Sunclaw Starhost",
+      "abilities": [
+        {
+          "name": "Vengeance of Azyr",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Any Turn",
+          "declare": "Pick up to 3 friendly Saurus or Kroxigor units that are in combat to be the targets.",
+          "effect": "For each target: \u2022 Make a pile-in move. \u2022 Then, pick an enemy unit in combat with the target and roll a D3. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "3ac6-526e-bb2b-edd8",
+      "name": "Seraphon",
+      "abilities": [
+        {
+          "name": "Itzl the Tamer",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Companion weapons used by friendly Seraphon units have Crit (2 Hits).",
+          "keywords": "Asterism",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Further the Great Plan",
+          "kind": "Activated",
+          "timing": "Once Per Battle Round, Start of Battle Round",
+          "declare": "You cannot use this ability in the first battle round. Pick an Asterism that you have prophesied. You cannot pick an Asterism that you have previously picked this battle. If you do not meet the condition below that corresponds to that Asterism, this ability has no effect. *Itzl the Tamer:* 3 or more enemy units have been destroyed. *Quetzl the Preserver:* There are no enemy units wholly within friendly territory. *Sotek the Deliverer:* The enemy general is in combat or has been destroyed. *Tepok the Seer:* There are any friendly Slann units on the battlefield and no friendly Slann units are in combat or have been destroyed.",
+          "effect": "Pick an Asterism ability to be prophesied. Its effects apply in addition to those of all other prophesied Asterism abilities.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "The Great Plan",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Deployment Phase",
+          "declare": "You must use this ability. Pick an Asterism ability to be prophesied.",
+          "effect": "That Asterism ability can be used for the rest of the battle, but the others cannot, unless prophesied by the 'Further the Great Plan' ability",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Quetzl the Preserver",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from the Rend characteristic of melee weapons for attacks that target friendly Seraphon units that are wholly within friendly territory.",
+          "keywords": "Asterism",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Sotek the Deliverer",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 2 to the Move characteristic of friendly Seraphon units.",
+          "keywords": "Asterism",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Tepok the Seer",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to casting rolls for friendly Seraphon units.",
+          "keywords": "Asterism",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "spellLores": [
+    {
+      "id": "952b-16dc-5986-cf19",
+      "name": "Lore of Celestial Manipulation",
+      "powers": [
+        {
+          "name": "Comet's Call",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Seraphon Wizard to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
+          "effect": "Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+          "keywords": "Spell",
+          "castingValue": "7",
+          "chantingValue": ""
+        },
+        {
+          "name": "Mystical Unforging",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Seraphon Wizard to cast this spell, pick a visible enemy unit within 12\" of them to be the target, then make a casting roll of 2D6.",
+          "effect": "Subtract 1 from the Rend characteristic of the target's weapons until the start of your next turn.",
+          "keywords": "Spell, Unlimited",
+          "castingValue": "6",
+          "chantingValue": ""
+        },
+        {
+          "name": "Speed of Huanchi",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Seraphon Wizard to cast this spell, pick a visible friendly Seraphon unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+          "effect": "Until the start of your next turn, the target can use a Run ability and still use Shoot and/or Charge abilities later in the turn.",
+          "keywords": "Spell",
+          "castingValue": "6",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "647e-9f31-ad47-a89f",
+      "name": "Lore of Primal Jungles",
+      "powers": [
+        {
+          "name": "Empowered Celestite",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Seraphon Wizard to cast this spell, pick a visible friendly Saurus unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+          "effect": "Add 1 to the Rend characteristic of the target's melee weapons for the rest of the turn.",
+          "keywords": "Spell",
+          "castingValue": "7",
+          "chantingValue": ""
+        },
+        {
+          "name": "Light of Chotec",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Seraphon Wizard to cast this spell, pick a visible friendly Seraphon unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+          "effect": "Roll a number of dice equal to the number of damage points the target has. For each 4+, Heal (1) the target.",
+          "keywords": "Spell, Unlimited",
+          "castingValue": "6",
+          "chantingValue": ""
+        },
+        {
+          "name": "The Earth Trembles",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Seraphon Wizard to cast this spell, pick a point on the battlefield within 18\" of them to be the target point, then make a casting roll of 2D6.",
+          "effect": "Draw a straight line between the target point and the closest part on the caster's base. Roll a D3 for each unit (friendly and enemy) that has models passed across by this line. On a 2+, inflict an amount of mortal damage on that unit equal to the roll.",
+          "keywords": "Spell",
+          "castingValue": "8",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "prayerLores": [],
+  "manifestationLores": [
+    {
+      "id": "db7f-2a40-6ebc-907b",
+      "name": "Aetherwrought Machineries",
+      "manifestations": [
+        {
+          "id": "fcb6-ae80-2e58-aadb",
+          "name": "Aethervoid Pendulum",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Scything Blade",
+              "kind": "Activated",
+              "timing": "Any Movement Phase",
+              "declare": "",
+              "effect": "This Manifestation can move a distance up to its Move characteristic in one direction (see 'The Pendulum Swings'). It can pass through models during that move and can end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move or that are within 1/2\" of it to be the targets. Roll a D6 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "The Pendulum Swings",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "This Manifestation cannot use Charge or Fight abilities. In addition, when this Manifestation moves, it must move in a straight line either in the direction in which the tip of the pendulum blade is pointing or in the opposite direction to the direction in which the tip of the pendulum blade is pointing",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Aethervoid Pendulum",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Aethervoid Pendulumon the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up an Aethervoid Pendulum wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "1aba-bc38-e988-d79f",
+          "name": "Chronomantic Cogs",
+          "stats": {
+            "move": "-",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Mechanisms of Time",
+              "kind": "Activated",
+              "timing": "Once Per Turn, Your Hero Phase",
+              "declare": "",
+              "effect": "If there are any friendly Wizards within 3\" of this Manifestation, pick 1 of the following effects: *Increase Time Flow*: Until the start of your next turn, you can re-roll charge rolls for friendly units while they are wholly within 12\" of this Manifestation. *Decrease Time Flow*: Until the start of your next turn, subtract 1 from hit rolls for attacks that target friendly Wizards while they are wholly within 12\" of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Chronomantic Cogs",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Chronomantic Cogs endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Chronomantic Cogs endless spell wholly within 12\" of the caster and visible to them.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "8cde-fafe-2b2a-ced5",
+          "name": "Quicksilver Swords",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Quicksilver Blades",
+              "kind": "melee",
+              "range": "",
+              "attacks": "12",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Crit (Mortal)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Dancing Blades",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Ward rolls cannot be made for damage points inflicted by this Manifestation's attacks.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Quicksilver Swords",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Quicksilver Swords endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Quicksilver Swords endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "9fd2-a506-6462-a6c8",
+      "name": "Forbidden Power",
+      "manifestations": [
+        {
+          "id": "f935-2383-94ba-3be2",
+          "name": "Horrorghast",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Scream of Terror",
+              "kind": "ranged",
+              "range": "10\"",
+              "attacks": "6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "1",
+              "ability": "Shoot in Combat, Anti-INFANTRY (+1 Rend)"
+            },
+            {
+              "name": "Deathly Touch",
+              "kind": "melee",
+              "range": "",
+              "attacks": "4",
+              "hit": "4+",
+              "wound": "4+",
+              "rend": "-",
+              "damage": "1",
+              "ability": "-"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Harbinger of Horror",
+              "kind": "Activated",
+              "timing": "Any Shooting Phase",
+              "declare": "Pick an enemy unit that was targeted by this Manifestation's shooting attacks this phase to be the target.",
+              "effect": "Roll a dice. If the roll is less than the number of models in the target unit that were slain this phase, the target cannot use commands for the rest of the turn.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Horrorghast",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Horrorghast endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Horrorghast endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "a26b-cd08-8f9d-90b0",
+          "name": "Lauchon the Soulseeker",
+          "stats": {
+            "move": "12\"",
+            "health": "10",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Scything Oar",
+              "kind": "melee",
+              "range": "",
+              "attacks": "3",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "D3",
+              "ability": "Crit (2 Hits)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Traverse the Tides of Death",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "Pick a friendly Infantry Wizard Hero within 3\" of this Manifestation to be the target",
+              "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, remove the target from the battlefield and set them up again on the battlefield within 3\" of this Manifestation and not in combat. Then, inflict 1 mortal damage on the target.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Lauchon the Soulseeker",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Lauchon the Soulseeker endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Lauchon the Soulseeker endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "94f6-4321-fd80-f20e",
+          "name": "Shards of Valagharr",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Phantasmal Translocation",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "",
+              "effect": "Pick a part of this Manifestation, remove it from the battlefield and set it up again on the battlefield wholly within 9\" of the other part and more than 3\" from all enemy units.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Ensnaring Soul-drain",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time an enemy unit uses a Move ability while it is within 9\" of any parts of this Manifestation, the effects of the 'Fly' ability do not apply to that unit. Enemy units cannot be set up within 9\" of either part of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Shards of Valagharr",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Shards of Valagharr endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Shards of Valagharr endless spell wholly within 18\" of the caster and visible to them. A Shards of Valagharr endless spell has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "523f-bd78-e418-9922",
+          "name": "Soulscream Bridge",
+          "stats": {
+            "move": "-",
+            "health": "12",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Deathly Passage",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "Pick a friendly unit wholly within 6\" of one part of this Manifestation to be the target.",
+              "effect": "Remove the target from the battlefield and set it up again on the battlefield wholly within 6\" of the other part of this Manifestation and more than 9\" from all enemy units.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Soulscream Bridge",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Soulscream Bridge endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Soulscream Bridge wholly within 18\" of the caster and visible to them. A Soulscream Bridge has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "93f1-1e9f-b52b-ff3c",
+      "name": "Krondspine Incarnate",
+      "manifestations": [
+        {
+          "id": "4ba0-e87-36e0-db58",
+          "name": "Krondspine Incarnate of Ghur",
+          "stats": {
+            "move": "10\"",
+            "health": "12",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "8+",
+          "categories": [
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "WARD (6+)",
+            "FLY",
+            "INCARNATE"
+          ],
+          "weapons": [
+            {
+              "name": "Amberbone Claws and Fangs",
+              "kind": "melee",
+              "range": "",
+              "attacks": "6",
+              "hit": "4+",
+              "wound": "2+",
+              "rend": "2",
+              "damage": "3",
+              "ability": "Anti-Manifestation(+1 Rend)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Devourer of Magics",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "",
+              "effect": "If this Manifestation destroyed any enemy Manifestations this turn, Heal (6) this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Arcane Predator",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "You can add 1 to the number of dice rolled when making charge rolls for this Manifestation, to a maximum of 3, while it is within 18\" of any enemy Manifestations, but if you do so, it must end the charge move within 1/2\" of an enemy Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Wild Form",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time this Manifestation is targeted by the 'Banish Manifestation' ability, if it would be banished, it is not banished. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points).",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Krondspine Incarnate of Ghur",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Krondspine Incarnate of Ghur endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Krondspine Incarnate of Ghur endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "8",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "b4d2-4178-ff43-a44b",
+      "name": "Morbid Conjuration",
+      "manifestations": [
+        {
+          "id": "e699-49b7-d2b8-d5fc",
+          "name": "Malevolent Maelstrom",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Lashing Tendrils of Energy",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "-",
+              "damage": "1",
+              "ability": "Crit (2 Hits)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Morbid Detonation",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "You must, and can only, use this ability if this unit has 6 maelstrom points. Pick each unit (friendly and enemy) within 9\" of it to be the targets.",
+              "effect": "Roll a dice for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Then, this Manifestation is destroyed.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Necrotic Vortex",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Give this Manifestation 1 maelstrom point each time: \u2022 This Manifestation is set up. \u2022 A unit successfully casts a spell while it is within 12\" of this Manifestation. \u2022 A model is slain within 12\" of this Manifestation. This Manifestation can have a maximum of 6 maelstrom points at once.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Malevolent Maelstrom",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly a Malevolent Maelstrom endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a a Malevolent Maelstrom endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "e7a5-e611-4c13-22d0",
+          "name": "Purple Sun of Shyish",
+          "stats": {
+            "move": "8\"",
+            "health": "10",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Transmuting Rays",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Crit (Mortal)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "End Given Form",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "",
+              "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move to be the targets. Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Pull of the Nadir",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Subtract 1 from save rolls for friendly and enemy units while they are within 3\" of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Purple Sun of Shyish",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Purple Sun of Shyish endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Purple Sun of Shyish endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "8",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "dee3-92a0-27e7-252a",
+          "name": "Soulsnare Shackles",
+          "stats": {
+            "move": "-",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Bound for the Great Oubliette",
+              "kind": "Activated",
+              "timing": "Any Hero Phase",
+              "declare": "For each part of this Manifestation, you can pick an enemy unit within 3\" of that part to be the targets. You cannot pick the same unit to be the target of this ability more than once per turn.",
+              "effect": "Roll a D3 for each target. On a 2+: \u2022 Inflict an amount of mortal damage on the target equal to the roll. \u2022 Subtract a number of inches equal to the roll from the target's Move characteristic for the rest of the turn.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and all its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Soulsnare Shackles",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Soulsnare Shackles endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Soulsnare Shackles endless spell wholly within 18\" of the caster and visible to them. A Soulsnare Shackles endless spell has 3 parts that must each be set up within 3\" of at least 1 other part.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "1885-a1aa-bf5d-6d0d",
+          "name": "Suffocating Gravetide",
+          "stats": {
+            "move": "12\"",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Spectral Riptide",
+              "kind": "melee",
+              "range": "",
+              "attacks": "8",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Charge (+1 Damage)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Pulled to the Grave",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "",
+              "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, you can pick an enemy unit that this Manifestation passed across during that move to be the target. Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Suffocating Gravetide",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Suffocating Gravetide endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Suffocating Gravetide endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "8",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "83f1-e447-c26-c5c",
+      "name": "Twilit Sorceries",
+      "manifestations": [
+        {
+          "id": "d420-1699-5ad9-1956",
+          "name": "Geminids of Uhl-Gysh",
+          "stats": {
+            "move": "8\"",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "6+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Tendrils of Light and Shadow",
+              "kind": "melee",
+              "range": "",
+              "attacks": "4",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "D3",
+              "ability": "-"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Tendrils of Light and Shadow",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Enemy units cannot use commands while they are within 3\" of either part of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play. Each time this Manifestation moves, both its parts must end within 9\" of each other. Each part of this Manifestation is armed with Tendrils of Light and Shadow.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Geminids of Uhl-Gysh",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Geminids of Uhl-Gysh endless spell on the battlefield, pick a friendly Wizardto cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Geminids of Uhl-Gysh endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units. A Geminids of Uhl-Gysh endless spell has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "015a-4e4f-322f-ccff",
+          "name": "Prismatic Palisade",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Blinding Light",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "This Manifestation cannot be targeted by shooting attacks. In addition, a unit cannot be targeted by shooting attacks if it is impossible to draw a straight line from a model in the attacking unit to a model in the target unit without that line passing across this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Prismatic Palisade",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Prismatic Palisade endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Prismatic Palisade wholly within 18\" of the caster and visible to them.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "0552-183c-1b2a-d117",
+          "name": "Umbral Spellportal",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "6+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Arcane Passage",
+              "kind": "Activated",
+              "timing": "Your Hero Phase",
+              "declare": "Pick a friendly Wizard within 3\" of this Manifestation to be the target.",
+              "effect": "The next time the target uses a non-Summon Spell ability this phase, add 1 to the casting value of that spell. When picking targets for that spell, you can measure range and visibility from either part of this Manifestation instead of from the caster, and your opponent can measure range and visibility to either part of this Manifestation instead of to the caster for the purposes of the 'Unbind' ability.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Umbral Spellportal",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Umbral Spellportal endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up an Umbral Spellportal wholly within 18\" of the caster and visible to them. An Umbral Spellportal has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "7217-5951-aaf0-47e8",
+      "name": "Primal Energy",
+      "manifestations": [
+        {
+          "id": "3071-fc11-4eb8-bbcc",
+          "name": "Emerald Lifeswarm",
+          "stats": {
+            "move": "8\"",
+            "health": "5",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Swarming Bites",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "4+",
+              "rend": "-",
+              "damage": "1",
+              "ability": "Anti-Infantry (+1 Rend)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Restored Vigour",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "",
+              "effect": "Heal (3) this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Bounteous Healing",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "Pick a friendly unit within 3\" of this Manifestation to be the target.",
+              "effect": "Heal (3) the target.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Emerald Lifeswarm",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Emerald Lifeswarm endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Emerald Lifeswarm endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "41c4-2f6a-0d3c-a23e",
+          "name": "Ravenak's Gnashing Jaws",
+          "stats": {
+            "move": "3D6\"",
+            "health": "10",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [
+            {
+              "name": "Gnashing Jaws",
+              "kind": "melee",
+              "range": "",
+              "attacks": "10",
+              "hit": "4+",
+              "wound": "2+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Charge (+1 Damage)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Ravening Hunger",
+              "kind": "Activated",
+              "timing": "Any Charge Phase",
+              "declare": "If this Manifestation charged this turn, pick an enemy unit within 1\" of it to be the target.",
+              "effect": "Roll 10 dice. For each 5+, inflict 1 mortal damage on the target.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Ravenak's Gnashing Jaws",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Ravenak's Gnashing Jaws endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Ravenak's Gnashing Jaws endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "e1cc-64dc-f765-b9cc",
+          "name": "The Burning Head",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "6+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Burning Breath",
+              "kind": "ranged",
+              "range": "10\"",
+              "attacks": "D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "1",
+              "ability": "Shoot in Combat, Anti-WAR MACHINE (+1 Rend)"
+            },
+            {
+              "name": "Flaming Maw",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "1",
+              "ability": "Anti-WAR MACHINE (+1 Rend)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Burning Up",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time this Manifestation uses a Shoot ability, after that ability has been resolved, allocate 1 damage point to this Manifestation (ward rolls cannot be made for that damage point).",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": null
+        }
+      ]
+    }
+  ],
+  "artefacts": [
+    {
+      "id": "8512-c133-c055-2804",
+      "name": "Incandescent Rectrices",
+      "abilities": [
+        {
+          "name": "Incandescent Rectrices",
+          "kind": "Activated",
+          "timing": "Any Hero Phase",
+          "declare": "",
+          "effect": "Heal (D3) this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "58bf-a607-bb0e-2d8f",
+      "name": "Coatl Familiar",
+      "abilities": [
+        {
+          "name": "Coatl Familiar",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Reaction: You declared a Spell ability for a friendly Seraphon Wizard within this unit's combat range",
+          "declare": "",
+          "effect": "Add D6 to the casting roll for that spell.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "2d46-8a01-5cfe-e548",
+      "name": "Bloodrage Pendant",
+      "abilities": [
+        {
+          "name": "Bloodrage Pendant",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Attacks characteristic of this unit's melee weapons. Add 2 instead if the number of damage points allocated to this unit is equal to or greater than half of this unit's Health characteristic (rounding up).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "heroicTraits": [
+    {
+      "id": "249e-88d9-32cd-8e77",
+      "name": "Being of the Stars",
+      "abilities": [
+        {
+          "name": "Being of the Stars",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Ignore modifiers to save rolls for this unit (positive and negative).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "6b3b-52d3-4b70-71a8",
+      "name": "Reptilian Cunning",
+      "abilities": [
+        {
+          "name": "Reptilian Cunning",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit charged this turn, if a friendly unit wholly within 12\" of this unit uses the 'All-out Attack' command in the combat phase, no command points are spent.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "57-2ab5-758-806b",
+      "name": "Beastmaster",
+      "abilities": [
+        {
+          "name": "Beastmaster",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 2\" to the Move characteristic of friendly Seraphon Cavalry and Seraphon Monster units for the rest of the phase if they are wholly within 12\" of this unit at the start of the move.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "terrain": [
+    {
+      "id": "dbb9-da98-e92e-b31e",
+      "name": "Realmshaper Engine",
+      "stats": {
+        "move": "-",
+        "health": "15",
+        "save": "4+",
+        "control": "-"
+      },
+      "categories": [
+        "FACTION TERRAIN",
+        "SERAPHON",
+        "ORDER"
+      ],
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "Fierce Guardians",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to hit rolls for combat attacks made by friendly Saurus or Kroxigor units that target an enemy unit while that enemy unit is within 9\" of this terrain feature.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Power Unleashed",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "If there are any friendly Seraphon Wizards within 3\" of this terrain feature, pick another terrain feature within 24\" of this terrain feature, then pick up to 3 enemy units within 3\" of that terrain feature to be the targets.",
+          "effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. If that terrain feature has a Health characteristic, inflict D3 mortal damage on it.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "df01-5aa1-a502-7a0c",
+      "name": "Lord Kroak",
+      "points": 410,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "UNIQUE",
+        "HERO",
+        "FLY",
+        "WARMASTER",
+        "ORDER",
+        "WIZARD (3)",
+        "WARD (4+)",
+        "SERAPHON",
+        "SLANN"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "18",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Azyrite Force Barrier",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2D6",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit (Mortal)"
+        },
+        {
+          "name": "Gaze of Kroak",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "1",
+          "hit": "2+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D6",
+          "ability": "Shoot in Combat"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Arcane Vassal",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Any Hero Phase",
+          "declare": "Pick a friendly Skink Wizard wholly within 18\" of this unit to be the target.",
+          "effect": "Measure the range and visibility of the next Spell ability used by this unit from the target instead of from this unit. The target is treated as the caster for the purpose of other abilities or spell effects, such as 'Unbind' or 'The Earth Trembles'.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Supreme Master of Order",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 2 to casting rolls, and add 1 to unbinding rolls and banishment rolls for this unit. In addition, this unit can use an Unbind ability if an enemy Wizard anywhere on the battlefield uses a Spell ability instead of an enemy Wizard within 30\" of this unit, and when using the 'Banish Manifestation' ability, this unit can pick a manifestation anywhere on the battlefield instead of within 30\" of it.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Dead for Innumerable Ages",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "This unit must use this ability each turn while it is damaged. Roll 3D6 and add the number of damage points this unit has to the roll. On a 20+, this unit is destroyed. Otherwise, Heal (18) this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Celestial Deliverance",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "This unit can cast this spell more than once per phase. Pick up to 3 different visible enemy units within 18\" of this unit to be the targets, then make a casting roll of 2D6.",
+          "effect": "Inflict D3 mortal damage on each target.",
+          "keywords": "Spell",
+          "castingValue": "7",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "9554-d069-a0dd-4f2d",
+          "name": "SERAPHON"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "d252-534-cc7e-8040",
+          "name": "Favoured Spawning"
+        },
+        {
+          "type": "unit",
+          "id": "abb5-c657-a20e-6e47",
+          "name": "Skink Starpriest"
+        }
+      ]
+    },
+    {
+      "id": "d8da-70c-5bcc-cf9e",
+      "name": "Ripperdactyl Chief",
+      "points": 110,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "SERAPHON",
+        "SKINK",
+        "CAVALRY",
+        "FLY"
+      ],
+      "stats": {
+        "move": "14\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Skyblade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (Auto-wound)"
+        },
+        {
+          "name": "Ripperdactyl's Tearing Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge (+1 Damage), Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Blot Toad",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Deployment Phase",
+          "declare": "You receive 1 Blot Toad token for each Ripperdactyl Chief or Ripperdactyl Riders unit in your army, to a maximum of 3 tokens. Pick a number of enemy units equal to the number of Blot Toads you have to be the targets.",
+          "effect": "Place a Blot Toad next to each target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Toad Rage",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Attacks characteristic of this unit's Ripperdactyl's Tearing Jaws while it is in combat with any units that have a Blot Toad.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Ripperdactyl Assault",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "",
+          "effect": "Add 1 to the Attacks characteristic of Moonstone Warspears used by friendly Ripperdactyl Riders units wholly within 12\" of this unit for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6d54-625c-d063-13e2",
+          "name": "MONSTER"
+        },
+        {
+          "type": "category",
+          "id": "b224-8c8e-ca93-9860",
+          "name": "BEAST"
+        },
+        {
+          "type": "category",
+          "id": "dd00-d0ba-418f-2053",
+          "name": "Skink Cavalry"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "4b2-de6c-326c-97b6",
+      "name": "Saurus Astrolith Bearer",
+      "points": 100,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "SERAPHON",
+        "INFANTRY",
+        "SAURUS",
+        "Favoured Spawning"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "6",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Celestite Warclub",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Celestial Conduit",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a Spell ability for a friendly Seraphon Wizard wholly within 12\" of this unit",
+          "declare": "",
+          "effect": "If that spell is successfully cast, for the rest of the turn, add 3 to the control scores of friendly Seraphon units while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Revivifying Energies",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Friendly Seraphon Infantry units have Ward (6+) while they are wholly within 12\" of this unit. If a unit already has Ward (6+), it has Ward (5+) instead.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "fb8b-128-28e4-5e0a",
+          "name": "SAURUS"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "3516-7156-6daf-a047",
+      "name": "Saurus Oldblood",
+      "points": 90,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "SERAPHON",
+        "SAURUS",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "7",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Relic Celestite Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Predatory Exemplar",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a Fight ability for this unit",
+          "declare": "",
+          "effect": "Pick a friendly non-Hero Saurus Infantry unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight ability used by this unit has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Wrath of the Seraphon",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "",
+          "effect": "For the rest of the turn, add 1 to wound rolls for combat attacks made by friendly Saurus Infantry units while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "9554-d069-a0dd-4f2d",
+          "name": "SERAPHON"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "d252-534-cc7e-8040",
+          "name": "Favoured Spawning"
+        }
+      ]
+    },
+    {
+      "id": "21e1-6ffe-85a6-7d9a",
+      "name": "Saurus Oldblood on Carnosaur",
+      "points": 220,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "SERAPHON",
+        "MONSTER",
+        "SAURUS"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "14",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Sunbolt Gauntlet",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "D6",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Shoot in Combat"
+        },
+        {
+          "name": "Sunstone Spear",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Charge (+1 Damage)"
+        },
+        {
+          "name": "Carnosaur's Massive Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Carnosaur's Clawed Forelimbs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Terror",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 2 from the control scores of enemy units while they are in combat with this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Carnosaur's Massive Jaws is 2.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Spearhead of the Charge",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit charged this turn, add 1 to charge rolls for friendly Saurus units while they are wholly within 18\" of this unit for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Blood Frenzy",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "",
+          "effect": "If this unit is in combat with any damaged enemy Monsters, roll a dice. On a 3+, this unit has Strike-first for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "9554-d069-a0dd-4f2d",
+          "name": "SERAPHON"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "d252-534-cc7e-8040",
+          "name": "Favoured Spawning"
+        }
+      ]
+    },
+    {
+      "id": "9a0f-114d-138a-ff72",
+      "name": "Saurus Oldblood on Carnosaur (Scourge of Ghyran)",
+      "points": 320,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "SERAPHON",
+        "MONSTER",
+        "SAURUS"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "14",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Sunstone Spear and Sunbolt Gauntlet",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Charge (+1 Damage)"
+        },
+        {
+          "name": "Carnosaur's Massive Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "4",
+          "ability": "Companion"
+        },
+        {
+          "name": "Carnosaur's Clawed Forelimbs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Alpha Predator",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Friendly Aggradon Lancers do not lose rage tokens at the end of the turn while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Carnosaur's Massive Jaws is 2.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Frenzied by Blood",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Damage characteristic of this unit's Companion weapons while it is within 6\" of any damaged enemy units or while it is within 6\" of any enemy units that had any models slain in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Thunderous Roar",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, the target cannot use commands for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "9554-d069-a0dd-4f2d",
+          "name": "SERAPHON"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "d252-534-cc7e-8040",
+          "name": "Favoured Spawning"
+        }
+      ]
+    },
+    {
+      "id": "bbf6-9575-ec45-946e",
+      "name": "Saurus Scar-Veteran on Aggradon",
+      "points": 140,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "SERAPHON",
+        "SAURUS",
+        "CAVALRY"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "8",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Celestite Spear or Club",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "2",
+          "ability": "Charge (+1 Damage)"
+        },
+        {
+          "name": "Aggradon's Rending Bites and Striking Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Primal Rage",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "This unit must use this ability each turn. If this unit used any Fight abilities this turn, place a rage token next to it, to a maximum of 3. If this unit did not use any Fight abilities this turn, remove all rage tokens it has. Add 1 to the Attacks characteristic of this unit's Companion weapons for each rage token it has until the end of the next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Alpha Roar",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Any Combat Phase",
+          "declare": "Pick this unit and each friendly Aggradon Lancers unit wholly within 12\" of it to be the targets.",
+          "effect": "Add 1 to the Attacks characteristic of the targets' Companion weapons for the rest of the turn. In addition, place a rage token next to each target, to a maximum of 3 per unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "fb8b-128-28e4-5e0a",
+          "name": "SAURUS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "d252-534-cc7e-8040",
+          "name": "Favoured Spawning"
+        }
+      ]
+    },
+    {
+      "id": "f0b9-c2bc-44f3-a9ec",
+      "name": "Saurus Scar-Veteran on Aggradon (Scourge of Aqshy)",
+      "points": 130,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "SERAPHON",
+        "SAURUS",
+        "CAVALRY",
+        "Favoured Spawning"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "8",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Celestite Spear or Club",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "2",
+          "ability": "Charge (+1 Damage)"
+        },
+        {
+          "name": "Aggradon's Rending Bites and Striking Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "The Hunt Begins",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Deployment Phase",
+          "declare": "Pick this unit and up to 1 friendly Seraphon Cavalry unit if those units have not been deployed.",
+          "effect": "Set up that friendly Cavalry unit in reserve stalking the prey. Then, either set up this unit in reserve stalking the prey or set up this unit wholly within friendly territory and more than 9\" from enemy territory. Those units have now been deployed.",
+          "keywords": "Deploy",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Saurian Ambush",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick each friendly unit that is stalking the prey to be the targets.",
+          "effect": "Set up the targets on the battlefield wholly within 7\" of the battlefield edge and more than 9\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Reptilian Instincts",
+          "kind": "Activated",
+          "timing": "Reaction: Opponent declared a Shoot ability",
+          "declare": "",
+          "effect": "This unit can use this ability even if it is in reserve. Pick each friendly unit that is stalking the prey to be the targets. After that Shoot ability has been resolved, set up each target on the battlefield more than 9\" from all enemy units and within 18\" of the unit that used the Shoot ability. Then, you can spend up to 3 rage dice. If you do: \u2022 If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. \u2022 Each target can move up to X\", where X is the number of rage dice spent. It must end that move no further from the unit that used the Shoot ability than it was at the start of the move. Then, for the rest of the turn, each time a target uses a Charge ability, it must end that charge move in combat with the unit that used the Shoot ability",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "fb8b-128-28e4-5e0a",
+          "name": "SAURUS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "d252-534-cc7e-8040",
+          "name": "Favoured Spawning"
+        }
+      ]
+    },
+    {
+      "id": "6a0c-795a-49f9-67e9",
+      "name": "Saurus Scar-Veteran on Carnosaur",
+      "points": 200,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "SERAPHON",
+        "MONSTER",
+        "SAURUS"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "14",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Relic Celestite Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        },
+        {
+          "name": "Carnosaur's Massive Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Carnosaur's Clawed Forelimbs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Terror",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 2 from the control scores of enemy units while they are in combat with this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Carnosaur's Massive Jaws is 2.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Maim and Tear",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Any Turn",
+          "declare": "Pick an enemy Hero in combat with this unit to be the target.",
+          "effect": "Roll a number of dice equal to the number of damage points the target has. For each 5+, inflict 1 mortal damage on the target.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "fb8b-128-28e4-5e0a",
+          "name": "SAURUS"
+        },
+        {
+          "type": "category",
+          "id": "6d54-625c-d063-13e2",
+          "name": "MONSTER"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "d252-534-cc7e-8040",
+          "name": "Favoured Spawning"
+        }
+      ]
+    },
+    {
+      "id": "2d05-d5ba-8359-bb2",
+      "name": "Skink Oracle on Troglodon",
+      "points": 200,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "SERAPHON",
+        "MONSTER",
+        "WIZARD (1)",
+        "SKINK"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "14",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Troglodon's Noxious Spittle",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "D6",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Shoot in Combat, Companion"
+        },
+        {
+          "name": "Divining Rod",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "-"
+        },
+        {
+          "name": "Troglodon's Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "Crit (Mortal), Companion"
+        },
+        {
+          "name": "Troglodon's Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Terror",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 2 from the control scores of enemy units while they are in combat with this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Troglodon's Jaws is 2.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Troglodon Regeneration",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "Heal (D3) this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Noxious Roar",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick up to 3 enemy units in combat with this unit to be the targets.",
+          "effect": "Roll a dice for each target. On a 3+, subtract 1 from hit rolls for the target's attacks for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6d54-625c-d063-13e2",
+          "name": "MONSTER"
+        },
+        {
+          "type": "category",
+          "id": "b224-8c8e-ca93-9860",
+          "name": "BEAST"
+        },
+        {
+          "type": "category",
+          "id": "f92c-bd1c-c488-79c0",
+          "name": "KROXIGOR"
+        },
+        {
+          "type": "category",
+          "id": "33b4-c29b-45c8-7bf4",
+          "name": "Non-Monster Skink"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "abb5-c657-a20e-6e47",
+      "name": "Skink Starpriest",
+      "points": 90,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "SERAPHON",
+        "SKINK",
+        "WIZARD (1)",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "5",
+        "save": "6+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Serpent Staff",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Serpent Staff",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly Seraphon unit wholly within 18\" of this unit to be the target.",
+          "effect": "Roll a dice. On a 2+, the target's melee weapons have Crit (Auto-wound) until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6d54-625c-d063-13e2",
+          "name": "MONSTER"
+        },
+        {
+          "type": "category",
+          "id": "b224-8c8e-ca93-9860",
+          "name": "BEAST"
+        },
+        {
+          "type": "category",
+          "id": "f92c-bd1c-c488-79c0",
+          "name": "KROXIGOR"
+        },
+        {
+          "type": "category",
+          "id": "33b4-c29b-45c8-7bf4",
+          "name": "Non-Monster Skink"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "cde3-25dc-fe17-858c",
+      "name": "Skink Starseer",
+      "points": 140,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "SERAPHON",
+        "SKINK",
+        "INFANTRY",
+        "WIZARD (2)",
+        "FLY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "6",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Astromancer's Staff",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Scry the Stars",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Your Hero Phase",
+          "declare": "",
+          "effect": "Roll a number of dice equal to the current battle round number. For each 3+, pick a friendly Seraphon unit wholly within 18\" of this unit. That unit has Ward (5+) until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Celestial Doom",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible enemy unit within 18\" to be the target, then make a casting roll of 2D6.",
+          "effect": "Ward rolls cannot be made for the target for the rest of the turn.",
+          "keywords": "Spell",
+          "castingValue": "7",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6d54-625c-d063-13e2",
+          "name": "MONSTER"
+        },
+        {
+          "type": "category",
+          "id": "b224-8c8e-ca93-9860",
+          "name": "BEAST"
+        },
+        {
+          "type": "category",
+          "id": "f92c-bd1c-c488-79c0",
+          "name": "KROXIGOR"
+        },
+        {
+          "type": "category",
+          "id": "33b4-c29b-45c8-7bf4",
+          "name": "Non-Monster Skink"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "5165-b82-49a6-36b",
+      "name": "Slann Starmaster",
+      "points": 260,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "FLY",
+        "ORDER",
+        "WIZARD (3)",
+        "SERAPHON",
+        "SLANN",
+        "WARD (6+)",
+        "INFANTRY",
+        "WARMASTER"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "9",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Azure Lightning",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Masters of Order",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to casting rolls for this unit. In addition, this unit can use an Unbind ability if an enemy Wizard anywhere on the battlefield uses a Spell ability instead of an enemy Wizard within 30\" of this unit, and when using the 'Banish Manifestation' ability, this unit can pick a manifestation anywhere on the battlefield instead of within 30\" of it.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Celestial Reinforcements",
+          "kind": "Command",
+          "timing": "Once Per Turn (Army), Your Hero Phase",
+          "declare": "Pick a friendly Seraphon unit that started the battle with 3 or more models and that has been destroyed to be the target.",
+          "effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this unit and more than 9\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Celestial Equilibrium",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Make a casting roll of 2D6.",
+          "effect": "For the rest of the turn, add 1 to casting rolls made for other friendly Seraphon Wizards while they are wholly within 12\" of this unit.",
+          "keywords": "Spell",
+          "castingValue": "6",
+          "chantingValue": ""
+        },
+        {
+          "name": "Arcane Vassal",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Any Hero Phase",
+          "declare": "Pick a friendly Skink Wizard wholly within 18\" of this unit to be the target.",
+          "effect": "Measure the range and visibility of the next Spell ability used by this unit from the target instead of from this unit. The target is treated as the caster for the purpose of other abilities or spell effects, such as 'Unbind' or 'The Earth Trembles'.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "9554-d069-a0dd-4f2d",
+          "name": "SERAPHON"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "d252-534-cc7e-8040",
+          "name": "Favoured Spawning"
+        },
+        {
+          "type": "unit",
+          "id": "abb5-c657-a20e-6e47",
+          "name": "Skink Starpriest"
+        }
+      ]
+    },
+    {
+      "id": "f354-afb4-3845-9bfe",
+      "name": "Slann Starmaster (Scourge of Aqshy)",
+      "points": 230,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "FLY",
+        "ORDER",
+        "WIZARD (3)",
+        "SERAPHON",
+        "SLANN",
+        "WARD (6+)",
+        "INFANTRY",
+        "WARMASTER"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "9",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Azure Lightning",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Cometary Alignment",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Deployment Phase",
+          "declare": "",
+          "effect": "Pick a battle round. At the start of that battle round, set your and your opponent's fury levels to 7. Then, at the start of the battle round after the one you picked, set your and your opponent's fury levels to 1",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Arcane Aureole",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Combat Phase",
+          "declare": "Pick a friendly Manifestation wholly within 18\" of this unit to be the target.",
+          "effect": "Spend up to 3 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, for the rest of the turn, add X to the Damage characteristic of the target's melee weapons, where X is the number of rage dice spent.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Celestial Unmaking",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
+          "effect": "Until the start of your next turn, other than the Companion weapon ability, weapon abilities for the target's attacks have no effect.",
+          "keywords": "Spell",
+          "castingValue": "7",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "9554-d069-a0dd-4f2d",
+          "name": "SERAPHON"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "d252-534-cc7e-8040",
+          "name": "Favoured Spawning"
+        },
+        {
+          "type": "unit",
+          "id": "abb5-c657-a20e-6e47",
+          "name": "Skink Starpriest"
+        }
+      ]
+    },
+    {
+      "id": "cd8a-43c6-6598-bd0a",
+      "name": "Stegadon Chief",
+      "points": 160,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "SERAPHON",
+        "MONSTER",
+        "SKINK"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "14",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Handlers' Meteoric Javelins",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Shoot in Combat"
+        },
+        {
+          "name": "Meteoric Warspear",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "-"
+        },
+        {
+          "name": "Stegadon's Horns and Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Charge (+1 Damage), Companion"
+        },
+        {
+          "name": "Skystreak Bow",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti\u2011Monster (+1 Rend)"
+        },
+        {
+          "name": "Sunfire Throwers",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "2D6",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Anti\u2011Infantry (+1 Rend), Crit (2 Hits)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Skink Coordination",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If a friendly non-Monster Skink unit uses the 'Redeploy' command while it is wholly within 18\" of this unit, no command points are spent.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Stegadon's Horns and Jaws is 4.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Crushing Stomps",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Add 2 to the amount of mortal damage inflicted, if any, if this unit charged this turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6d54-625c-d063-13e2",
+          "name": "MONSTER"
+        },
+        {
+          "type": "category",
+          "id": "b224-8c8e-ca93-9860",
+          "name": "BEAST"
+        },
+        {
+          "type": "category",
+          "id": "f92c-bd1c-c488-79c0",
+          "name": "KROXIGOR"
+        },
+        {
+          "type": "category",
+          "id": "33b4-c29b-45c8-7bf4",
+          "name": "Non-Monster Skink"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "1cbd-7a3b-323b-827e",
+      "name": "Sunblood Pack",
+      "points": 150,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "ORDER",
+        "SERAPHON",
+        "SAURUS",
+        "HERO",
+        "INFANTRY",
+        "Favoured Spawning"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "3",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Celestite Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Starspawned",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Ignore the first damage point that would be allocated to friendly Saurus and Kroxigor units each phase while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Venomite Swarm",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "If this unit's Venomites token is on the battlefield, roll a D3. On a 1, remove this unit's Venomites token from the battlefield. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Scaled Protectors",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Ignore negative and positive modifiers to save rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "9554-d069-a0dd-4f2d",
+          "name": "SERAPHON"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "767f-699-a82d-ca70",
+      "name": "Terradon Chief",
+      "points": 100,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "SERAPHON",
+        "SKINK",
+        "CAVALRY",
+        "FLY"
+      ],
+      "stats": {
+        "move": "14\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Skyblade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (Auto-wound)"
+        },
+        {
+          "name": "Terradon's Razor-sharp Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Chief's Deadly Cargo",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick an enemy unit that this unit passed across this phase to be the target.",
+          "effect": "Roll a dice and add 2 to the roll if this unit is within the combat ranges of any friendly Terradon Riders units. On a 5+: \u2022 Inflict D3 mortal damage on the target. \u2022 If any damage points are allocated by this ability and the target does not have Fly, the target cannot use Run abilities until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Attack from On High",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from hit rolls for shooting attacks that target this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6d54-625c-d063-13e2",
+          "name": "MONSTER"
+        },
+        {
+          "type": "category",
+          "id": "b224-8c8e-ca93-9860",
+          "name": "BEAST"
+        },
+        {
+          "type": "category",
+          "id": "dd00-d0ba-418f-2053",
+          "name": "Skink Cavalry"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "e485-3d5d-84ae-6f08",
+      "name": "Aggradon Lancers",
+      "points": 200,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "CHAMPION",
+        "CAVALRY",
+        "STANDARD BEARER (1/3)",
+        "MUSICIAN (1/3)",
+        "ORDER",
+        "SERAPHON",
+        "SAURUS"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "5",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Aggradon's Rending Bites and Striking Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "2",
+          "ability": "Companion"
+        },
+        {
+          "name": "Celestite Spear and Club",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge (+1 Damage), , Anti\u2011Monster (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Primal Rage",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "This unit must use this ability each turn. If this unit used any Fight abilities this turn, place a rage token next to it, to a maximum of 3. If this unit did not use any Fight abilities this turn, remove all rage tokens it has. Add 1 to the Attacks characteristic of this unit's Companion weapons for each rage token it has until the end of the next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "69e4-4d9e-3916-cdbb",
+      "name": "Bastiladon with Ark of Sotek",
+      "points": 230,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "ORDER",
+        "SERAPHON",
+        "SKINK",
+        "MONSTER"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "12",
+        "save": "2+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Bludgeoning Tail",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Handlers' Meteoric Javelins",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Shoot in Combat"
+        },
+        {
+          "name": "Ark of Sotek",
+          "kind": "melee",
+          "range": "",
+          "attacks": "20",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit (Mortal), Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Ark of Sotek",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick up to 3 different enemy units within 9\" of this unit to be the targets.",
+          "effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "4fee-26df-ea45-a2d6",
+      "name": "Bastiladon with Solar Engine",
+      "points": 200,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "ORDER",
+        "SERAPHON",
+        "MONSTER",
+        "SKINK"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "12",
+        "save": "2+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Bludgeoning Tail",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Handlers' Meteoric Javelins",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Shoot in Combat"
+        },
+        {
+          "name": "Solar Engine",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Crit (2 Hits)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Tail Swipe",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll a dice for each model in the target unit, to a maximum of 8. For each 5+, inflict 1 mortal damage on the target.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "67a9-676f-158a-e087",
+      "name": "Engine of the Gods",
+      "points": 150,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "ORDER",
+        "SERAPHON",
+        "MONSTER",
+        "SKINK"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "14",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Stegadon's Horns and Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Charge (+1 Damage), Companion"
+        },
+        {
+          "name": "Handlers' Meteoric Javelins",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Shoot in Combat"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Stegadon's Horns and Jaws is 4.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Crest of Horns",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
+          "effect": "Roll a D3. On a 2+: \u2022 Inflict an amount of mortal damage on the target equal to the roll. \u2022 Add 1 to save rolls for attacks made by that enemy unit that target this unit for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Cosmic Engine",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick if this unit will harness or reserve the power of its cosmic engine.",
+          "effect": "If it will reserve the power, place a cosmic power token next to this unit. If it will harness the power, roll a dice and add the number of cosmic power tokens this unit has to the roll. Then, remove all cosmic power tokens this unit has and pick 1 of the following effects (if possible). *Healing Light:* On a 3+, you can Heal (D3) all friendly Seraphon units wholly within 12\" of this unit. *Starlight Summons:* On a 5+, you can pick up to 3 friendly Seraphon units wholly within 12\" of this unit. Return 1 slain model to each unit. *Time Slows:* On a 6+, you can pick up to 3 friendly Seraphon units wholly within 12\" of this unit. Those units have Strike-first for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "85bb-bb0c-b1e9-e870",
+      "name": "Hunters of Huanchi with Dartpipes",
+      "points": 80,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "SERAPHON",
+        "ORDER",
+        "MUSICIAN (1/5)",
+        "SKINK",
+        "INFANTRY",
+        "WARD (5+)",
+        "CHAMPION (1/5)",
+        "Non-Monster Skink"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Feeble Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        },
+        {
+          "name": "Dartpipe",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit (Auto-wound)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Hidden Hunters",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "Pick this unit if it has not been deployed.",
+          "effect": "Set up this unit in reserve in ambush. It has now been deployed.",
+          "keywords": "Deploy",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Star-venom",
+          "kind": "Activated",
+          "timing": "Any Shooting Phase",
+          "declare": "Pick an enemy unit that had any damage points allocated to it this turn by attacks made with this unit's Dartpipe to be the target.",
+          "effect": "Roll a dice. On a 2+, subtract 1 from wound rolls for the target's combat attacks for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Chameleon Ambush",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick this unit if it is in ambush.",
+          "effect": "Set up this unit anywhere on the battlefield more than 9\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "aeda-8cda-b49c-c295",
+      "name": "Hunters of Huanchi with Starstone Bolas",
+      "points": 90,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "ORDER",
+        "CHAMPION (1/5)",
+        "MUSICIAN (1/5)",
+        "WARD (5+)",
+        "SERAPHON",
+        "SKINK",
+        "Non-Monster Skink"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Hunter Javelin",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        },
+        {
+          "name": "Starstone Bolas",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        },
+        {
+          "name": "Moonstone Club",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Starstone Bolas",
+          "kind": "Activated",
+          "timing": "Any Shooting Phase",
+          "declare": "Pick an enemy unit that was targeted by this unit's Starstone Bolas this turn to be the target.",
+          "effect": "Roll a dice. On a 3+, until the start of your next turn, subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Hidden Hunters",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "Pick this unit if it has not been deployed.",
+          "effect": "Set up this unit in reserve in ambush. It has now been deployed.",
+          "keywords": "Deploy",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Chameleon Ambush",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick this unit if it is in ambush.",
+          "effect": "Set up this unit anywhere on the battlefield more than 9\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "9544-33d8-1d69-2be9",
+      "name": "Kroxigor",
+      "points": 200,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "INFANTRY",
+        "ORDER",
+        "SERAPHON",
+        "KROXIGOR"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "6",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Moonstone Hammer",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "Anti\u2011Infantry (+1 Rend)"
+        },
+        {
+          "name": "Drakebite Maul",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti\u2011Infantry (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Brutal Blows",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Damage characteristic of this unit's melee weapons for attacks that target an enemy unit that has 10 or more models.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "a2e4-77e6-9246-b9f4",
+      "name": "Kroxigor Warspawned",
+      "points": 200,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "INFANTRY",
+        "ORDER",
+        "SERAPHON",
+        "KROXIGOR"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "6",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Starfang Warpick",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "Anti\u2011Monster (+1 Rend)"
+        },
+        {
+          "name": "Drakefang Warpick",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti\u2011Monster (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Spawn of Sotek",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Damage characteristic of this unit's melee weapons while this unit is wholly within 12\" of any friendly Skink Infantry or Skink Cavalry units in combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Heavy-scaled Skin",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from the Rend characteristic of ranged weapons used for shooting attacks that target this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "4908-4322-32bb-8ee7",
+      "name": "Raptadon Chargers",
+      "points": 140,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "CHAMPION",
+        "SERAPHON",
+        "ORDER",
+        "STANDARD BEARER (1/5)",
+        "MUSICIAN (1/5)",
+        "SKINK",
+        "CAVALRY",
+        "Non-Monster Skink",
+        "Skink Cavalry"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "3",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Raptadon's Serrated Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Tepok Lance",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge (+1 Damage)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Cold-blooded Unity",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to hit rolls for this unit's combat attacks if they target an enemy unit that was targeted by shooting attacks made by a friendly Raptadon Hunters unit in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "dde-6a11-e8d6-ed5",
+      "name": "Raptadon Hunters",
+      "points": 120,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "CHAMPION",
+        "SERAPHON",
+        "ORDER",
+        "STANDARD BEARER (1/5)",
+        "MUSICIAN (1/5)",
+        "SKINK",
+        "CAVALRY",
+        "Skink Cavalry",
+        "Non-Monster Skink"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "3",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Starstone Atlatl",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "2",
+          "damage": "1",
+          "ability": "-"
+        },
+        {
+          "name": "Raptadon's Serrated Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Weighted Moonstone Club",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Deadly Cohesion",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "If this unit is not in combat, pick a friendly Raptadon Chargers unit that charged this turn and is within 12\" of this unit to be the target.",
+          "effect": "This unit can use a Shoot ability as if it were your shooting phase. It must target a visible enemy unit in combat with the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "29dd-d95f-3d4a-5d4",
+      "name": "Ripperdactyl Riders",
+      "points": 100,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "CHAMPION",
+        "SERAPHON",
+        "ORDER",
+        "CAVALRY",
+        "FLY",
+        "SKINK",
+        "Skink Cavalry",
+        "Non-Monster Skink"
+      ],
+      "stats": {
+        "move": "14\"",
+        "health": "3",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Moonstone Warspear",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Anti-Cavalry (+1 Rend)"
+        },
+        {
+          "name": "Ripperdactyl's Tearing Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge (+1 Damage), Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Toad Rage",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Attacks characteristic of this unit's Ripperdactyl's Tearing Jaws while it is in combat with any units that have a Blot Toad.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Blot Toad",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Deployment Phase",
+          "declare": "You receive 1 Blot Toad token for each Ripperdactyl Chief or Ripperdactyl Riders unit in your army, to a maximum of 3 tokens. Pick a number of enemy units equal to the number of Blot Toads you have to be the targets.",
+          "effect": "Place a Blot Toad next to each target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "e16-5c12-f381-3006",
+      "name": "Saurus Guard",
+      "points": 110,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "CHAMPION",
+        "SERAPHON",
+        "SAURUS",
+        "ORDER",
+        "INFANTRY",
+        "STANDARD BEARER (1/5)",
+        "MUSICIAN (1/5)"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "2",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Celestite Polearm",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Selfless Protectors",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While any friendly Slann units are within this unit's combat range, both this unit and those Slann units have Ward (5+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "f5a9-66a7-bb69-533f",
+      "name": "Saurus Warriors",
+      "points": 140,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 10,
+      "categories": [
+        "CHAMPION",
+        "SERAPHON",
+        "SAURUS",
+        "ORDER",
+        "STANDARD BEARER (1/10)",
+        "MUSICIAN (1/10)",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "2",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Celestite Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Ordered Cohorts",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to save rolls for this unit while each model in this unit is contesting an objective you control.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "ffd6-47c8-4137-1f3a",
+      "name": "Skinks",
+      "points": 80,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 10,
+      "categories": [
+        "CHAMPION",
+        "SERAPHON",
+        "ORDER",
+        "INFANTRY",
+        "SKINK",
+        "Non-Monster Skink"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Javelins and Boltspitters",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Shoot in Combat"
+        },
+        {
+          "name": "Celestite Daggers and Moonstone Clubs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Swift and Nimble",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "When this unit uses the 'Redeploy' command, when determining the distance this unit can move, you can roll 2 dice instead of 1 and pick either result.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "f663-5cfc-1f0e-690b",
+      "name": "Spawn of Chotec",
+      "points": 100,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "ORDER",
+        "SERAPHON",
+        "BEAST",
+        "SKINK",
+        "Non-Monster Skink"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "8",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Stream of Fire",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "5",
+          "hit": "2+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Anti\u2011Infantry (+1 Rend), Companion"
+        },
+        {
+          "name": "Glob of Flame Acid",
+          "kind": "ranged",
+          "range": "16\"",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "D3+3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Fiery Maw",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Acid-fuelled Flame",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time this unit uses a Shoot ability, you must pick either its Glob of Flame Acid or its Stream of Fire ranged weapon. In addition, after resolving shooting attacks made with this unit's Glob of Flame Acid, if any damage points were allocated to an enemy unit by those attacks, subtract 1 from save rolls for that enemy unit for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Sun Acolytes",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit has a crew of 3 Sun Acolytes that are tokens. Add 1 to this unit's control score for each Sun Acolyte it has. If this unit has no Sun Acolytes, it has a maximum control score of 1 for the rest of the battle. Each time you make an unmodified save roll of 1 for this unit, remove 1 of its Sun Acolytes from the battlefield after the Attack ability has been resolved (the damage point is still inflicted).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "967b-8047-ea59-d6ea",
+      "name": "Stegadon",
+      "points": 150,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "ORDER",
+        "SERAPHON",
+        "MONSTER",
+        "SKINK"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "14",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Stegadon's Horns and Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Charge (+1 Damage), Companion"
+        },
+        {
+          "name": "Handlers' Meteoric Javelins",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Shoot in Combat"
+        },
+        {
+          "name": "Skystreak Bow",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti\u2011Monster (+1 Rend)"
+        },
+        {
+          "name": "Sunfire Throwers",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "2D6",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Anti\u2011Infantry (+1 Rend), Crit (2 Hits)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Stegadon's Horns and Jaws is 4.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Unstoppable Stampede",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Charge Phase",
+          "declare": "If this unit charged this phase, pick an enemy Infantry unit in combat with it to be the target.",
+          "effect": "Inflict D3 mortal damage on the target. Then, this unit can move 2D6\". This unit can pass through models in the target unit but must end that move in combat.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "66ed-4817-f929-7c3e",
+      "name": "Terradon Riders",
+      "points": 90,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "CHAMPION",
+        "SERAPHON",
+        "ORDER",
+        "CAVALRY",
+        "FLY",
+        "SKINK",
+        "Skink Cavalry",
+        "Non-Monster Skink"
+      ],
+      "stats": {
+        "move": "14\"",
+        "health": "3",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Javelins and Bolas",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit (Auto-wound)"
+        },
+        {
+          "name": "Terradon's Razor-sharp Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Attack from On High",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from hit rolls for shooting attacks that target this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Deadly Cargo",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick an enemy unit that this unit passed across this phase to be the target.",
+          "effect": "Roll a dice for each model in this unit, and add 2 to each roll if this unit is within the combat ranges of any friendly Terradon Chief units. For each 5+: \u2022 Inflict 1 mortal damage on the target. \u2022 If any damage points are allocated by this ability and the target does not have Fly, the target cannot use Run abilities until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Dispersed Formation",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit has a coherency range of 2\".",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "c272-3fef-afc9-4f30",
+      "name": "Terrawings",
+      "points": 70,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "SERAPHON",
+        "ORDER",
+        "BEAST",
+        "FLY"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "2",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Snapping Beaks",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Nerve-shredding Screeches",
+          "kind": "Activated",
+          "timing": "Your Shooting Phase",
+          "declare": "Pick an enemy unit within 10\" of this unit to be the target.",
+          "effect": "Roll a D3. If the roll exceeds the target's Control characteristic, the target cannot use commands for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "6959-3eb1-4769-ee0c",
+      "name": "The Jaws of Itzl",
+      "points": 120,
+      "hero": false,
+      "unique": true,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "ORDER",
+        "INFANTRY",
+        "UNIQUE",
+        "Legends",
+        "SERAPHON",
+        "SAURUS"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "3",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Celestite Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "-"
+        },
+        {
+          "name": "Relic Celestite Warmace",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Scaled Protectors",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit's Kro-Jax is on the battlefield, ignore the first damage point that would be allocated to this unit in each phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Venomite Swarm",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "This unit's Sotek's Venomites is a token. If this unit's Sotek's Venomites is on the battlefield, roll a D3. On a 1, remove this unit's Sotek's Venomites from the battlefield. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "04d2-230d-c311-024f",
+      "name": "The Starblood Stalkers",
+      "points": 110,
+      "hero": false,
+      "unique": true,
+      "reinforce": false,
+      "models": 6,
+      "categories": [
+        "ORDER",
+        "INFANTRY",
+        "UNIQUE",
+        "CHAMPION",
+        "Legends",
+        "SERAPHON",
+        "SKINK",
+        "SAURUS",
+        "Non-Monster Skink"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "2",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Relic Celestite Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        },
+        {
+          "name": "Starblood Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Klaq-Trok",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit's Klaq-Trok is on the battlefield, ignore the first damage point that would be allocated to this unit each phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Kixi-Taka, the Diviner",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit's Kixi-Taka, the Diviner is on the battlefield, it has Wizard (1).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Otapatl's Dartpipe",
+          "kind": "Activated",
+          "timing": "Your Shooting Phase",
+          "declare": "If this unit's Otapatl is on the battlefield, pick a visible enemy unit within 18\" of this unit to be the target.",
+          "effect": "Roll a dice. On a 4+, inflict 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

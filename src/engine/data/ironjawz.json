@@ -1,0 +1,2885 @@
+{
+  "id": "ironjawz",
+  "name": "Ironjawz",
+  "game": "Age of Sigmar 4th",
+  "source": "https://github.com/BSData/age-of-sigmar-4th",
+  "pointsCapDefault": 2000,
+  "formations": [
+    {
+      "id": "c2f8-2ea8-7d8b-5670",
+      "name": "Weirdfist",
+      "abilities": [
+        {
+          "name": "Spirit of Gork",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Friendly Ironjawz Infantry units have Ward (6+) while they are wholly within 12\" of any friendly Ironjawz Wizards or Priests.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "f065-c325-c819-c441",
+      "name": "Ironjawz Brawl",
+      "abilities": [
+        {
+          "name": "Natural Disaster",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If you make an unmodified charge roll of 8+ for a friendly non-Hero Ironjawz unit, add 1 to the Attacks characteristic of that unit's melee weapons for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "6c2d-5429-6255-9f2a",
+      "name": "Grunta Stampede",
+      "abilities": [
+        {
+          "name": "'Ere We Come",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add the number of enemy units that have been destroyed this battle to the Move characteristic of friendly Gore-gruntas and Maw-grunta units, to a maximum of +4.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "5327-56c8-288a-e5c6",
+      "name": "Ironfist",
+      "abilities": [
+        {
+          "name": "Smashin' and Bashin'",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "The first time each turn that an enemy unit is destroyed by a Fight ability used by a friendly Ironjawz unit, add 1 to hit rolls for combat attacks made by the next friendly Ironjawz unit that is picked to use a Fight ability for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "dffe-0ce5-0355-59ae",
+      "name": "Brutefist",
+      "abilities": [
+        {
+          "name": "Mightiest Destroyers",
+          "kind": "Activated",
+          "timing": "Once Per Battle Round (Army), Any Hero Phase",
+          "declare": "",
+          "effect": "If there are any friendly Megabosses on the battlefield, for the rest of the turn, you can pick another eligible unit to be a second target when using the 'Mighty Destroyers' ability. If there are no friendly Megabosses on the battlefield, roll a dice. On a 3+, for the rest of the turn, you can pick another eligible unit to be a second target when using the 'Mighty Destroyers' ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "82c0-4f14-0619-0bf1",
+      "name": "Bigsnikkaz",
+      "abilities": [
+        {
+          "name": "Duff Up da Big Thing",
+          "kind": "Activated",
+          "timing": "One Per Turn (Army), Any Combat Phase",
+          "declare": "Pick a friendly Ironjawz unit to be the target.",
+          "effect": "For the rest of the turn, add 1 to wound rolls for the target's combat attacks that target an enemy unit that has a Health characteristic greater than its own.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "d8ca-c367-a211-97b3",
+      "name": "Ironjawz",
+      "abilities": [
+        {
+          "name": "Ironjawz Waaagh!",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Charge Phase",
+          "declare": "Pick a friendly Ironjawz Hero to be the target. You cannot pick the same Hero to be the target of this ability more than once per battle.",
+          "effect": "For the rest of the turn, the following effects apply to friendly Ironjawz units while they are wholly within 18\" of the target: \u2022 Add 1 to charge rolls for those units. \u2022 Add 1 to the Attacks characteristic of those units' melee weapons.",
+          "keywords": "Waaagh!",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Mighty Destroyers",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Hero Phase",
+          "declare": "Pick a friendly Ironjawz unit that was not set up this turn to be the target.",
+          "effect": "The target can move up to 3\". It can move into combat. If it was in combat at the start of the move, it must end that move in combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "spellLores": [
+    {
+      "id": "4936-321c-38e9-4dc",
+      "name": "Lore of the Weird",
+      "powers": [
+        {
+          "name": "Bash 'Em, Ladz",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Ironjawz Wizard to cast this spell, pick a visible friendly Ironjawz unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+          "effect": "The target's melee weapons have Crit (2 Hits) until the start of your next turn",
+          "keywords": "Spell, Unlimited",
+          "castingValue": "6",
+          "chantingValue": ""
+        },
+        {
+          "name": "Da Great Big Green Hand of Gork",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Ironjawz Wizard to cast this spell, pick a visible friendly unit wholly within 12\" of them and not in combat to be the target, then make a casting roll of 2D6.",
+          "effect": "Remove the target from the battlefield and set it up again wholly within 24\" of the caster and more than 9\" from all enemy units.",
+          "keywords": "Spell",
+          "castingValue": "7",
+          "chantingValue": ""
+        },
+        {
+          "name": "Mighty 'Eadbutt",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Ironjawz Wizard to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
+          "effect": "Inflict D3 mortal damage on the target. If the target is a Wizard, inflict 3 mortal damage on the target instead.",
+          "keywords": "Spell",
+          "castingValue": "6",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "prayerLores": [
+    {
+      "id": "36aa-af55-d210-d137",
+      "name": "Warbeats",
+      "powers": [
+        {
+          "name": "Fixin' Beat",
+          "kind": "Prayer",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Ironjawz Priest to chant this prayer, pick a visible friendly Ironjawz unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+          "effect": "Heal (D6) the target. If the chanting roll was 8+, Heal (D3+3) the target instead.",
+          "keywords": "Prayer",
+          "castingValue": "",
+          "chantingValue": "4"
+        },
+        {
+          "name": "Get 'Em Beat",
+          "kind": "Prayer",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Ironjawz Priest to chant this prayer, pick a visible friendly Ironjawz unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+          "effect": "For the rest of the turn, add 1 to charge rolls for the target. In addition, if the chanting roll was 8+, add 1 to the number of dice rolled when making charge rolls for the target, to a maximum of 3.",
+          "keywords": "Prayer, Unlimited",
+          "castingValue": "",
+          "chantingValue": "4"
+        },
+        {
+          "name": "Killa Beat",
+          "kind": "Prayer",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Ironjawz Priest to chant this prayer, pick a visible friendly Ironjawz unit wholly within 12\" of them to be the target, then make a chanting roll of D6.",
+          "effect": "Add 1 to the Damage characteristic of the target's melee weapons until the start of your next turn. If the chanting roll was 10+, you can pick up to 2 eligible units to be the targets instead of 1.",
+          "keywords": "Prayer",
+          "castingValue": "",
+          "chantingValue": "5"
+        }
+      ]
+    }
+  ],
+  "manifestationLores": [
+    {
+      "id": "2fad-f066-fa21-42f6",
+      "name": "Manifestations of Gorkamorka",
+      "manifestations": []
+    },
+    {
+      "id": "db7f-2a40-6ebc-907b",
+      "name": "Aetherwrought Machineries",
+      "manifestations": [
+        {
+          "id": "fcb6-ae80-2e58-aadb",
+          "name": "Aethervoid Pendulum",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Scything Blade",
+              "kind": "Activated",
+              "timing": "Any Movement Phase",
+              "declare": "",
+              "effect": "This Manifestation can move a distance up to its Move characteristic in one direction (see 'The Pendulum Swings'). It can pass through models during that move and can end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move or that are within 1/2\" of it to be the targets. Roll a D6 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "The Pendulum Swings",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "This Manifestation cannot use Charge or Fight abilities. In addition, when this Manifestation moves, it must move in a straight line either in the direction in which the tip of the pendulum blade is pointing or in the opposite direction to the direction in which the tip of the pendulum blade is pointing",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Aethervoid Pendulum",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Aethervoid Pendulumon the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up an Aethervoid Pendulum wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "1aba-bc38-e988-d79f",
+          "name": "Chronomantic Cogs",
+          "stats": {
+            "move": "-",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Mechanisms of Time",
+              "kind": "Activated",
+              "timing": "Once Per Turn, Your Hero Phase",
+              "declare": "",
+              "effect": "If there are any friendly Wizards within 3\" of this Manifestation, pick 1 of the following effects: *Increase Time Flow*: Until the start of your next turn, you can re-roll charge rolls for friendly units while they are wholly within 12\" of this Manifestation. *Decrease Time Flow*: Until the start of your next turn, subtract 1 from hit rolls for attacks that target friendly Wizards while they are wholly within 12\" of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Chronomantic Cogs",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Chronomantic Cogs endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Chronomantic Cogs endless spell wholly within 12\" of the caster and visible to them.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "8cde-fafe-2b2a-ced5",
+          "name": "Quicksilver Swords",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Quicksilver Blades",
+              "kind": "melee",
+              "range": "",
+              "attacks": "12",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Crit (Mortal)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Dancing Blades",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Ward rolls cannot be made for damage points inflicted by this Manifestation's attacks.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Quicksilver Swords",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Quicksilver Swords endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Quicksilver Swords endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "9fd2-a506-6462-a6c8",
+      "name": "Forbidden Power",
+      "manifestations": [
+        {
+          "id": "f935-2383-94ba-3be2",
+          "name": "Horrorghast",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Scream of Terror",
+              "kind": "ranged",
+              "range": "10\"",
+              "attacks": "6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "1",
+              "ability": "Shoot in Combat, Anti-INFANTRY (+1 Rend)"
+            },
+            {
+              "name": "Deathly Touch",
+              "kind": "melee",
+              "range": "",
+              "attacks": "4",
+              "hit": "4+",
+              "wound": "4+",
+              "rend": "-",
+              "damage": "1",
+              "ability": "-"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Harbinger of Horror",
+              "kind": "Activated",
+              "timing": "Any Shooting Phase",
+              "declare": "Pick an enemy unit that was targeted by this Manifestation's shooting attacks this phase to be the target.",
+              "effect": "Roll a dice. If the roll is less than the number of models in the target unit that were slain this phase, the target cannot use commands for the rest of the turn.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Horrorghast",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Horrorghast endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Horrorghast endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "a26b-cd08-8f9d-90b0",
+          "name": "Lauchon the Soulseeker",
+          "stats": {
+            "move": "12\"",
+            "health": "10",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Scything Oar",
+              "kind": "melee",
+              "range": "",
+              "attacks": "3",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "D3",
+              "ability": "Crit (2 Hits)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Traverse the Tides of Death",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "Pick a friendly Infantry Wizard Hero within 3\" of this Manifestation to be the target",
+              "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, remove the target from the battlefield and set them up again on the battlefield within 3\" of this Manifestation and not in combat. Then, inflict 1 mortal damage on the target.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Lauchon the Soulseeker",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Lauchon the Soulseeker endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Lauchon the Soulseeker endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "94f6-4321-fd80-f20e",
+          "name": "Shards of Valagharr",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Phantasmal Translocation",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "",
+              "effect": "Pick a part of this Manifestation, remove it from the battlefield and set it up again on the battlefield wholly within 9\" of the other part and more than 3\" from all enemy units.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Ensnaring Soul-drain",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time an enemy unit uses a Move ability while it is within 9\" of any parts of this Manifestation, the effects of the 'Fly' ability do not apply to that unit. Enemy units cannot be set up within 9\" of either part of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Shards of Valagharr",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Shards of Valagharr endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Shards of Valagharr endless spell wholly within 18\" of the caster and visible to them. A Shards of Valagharr endless spell has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "523f-bd78-e418-9922",
+          "name": "Soulscream Bridge",
+          "stats": {
+            "move": "-",
+            "health": "12",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Deathly Passage",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "Pick a friendly unit wholly within 6\" of one part of this Manifestation to be the target.",
+              "effect": "Remove the target from the battlefield and set it up again on the battlefield wholly within 6\" of the other part of this Manifestation and more than 9\" from all enemy units.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Soulscream Bridge",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Soulscream Bridge endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Soulscream Bridge wholly within 18\" of the caster and visible to them. A Soulscream Bridge has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "93f1-1e9f-b52b-ff3c",
+      "name": "Krondspine Incarnate",
+      "manifestations": [
+        {
+          "id": "4ba0-e87-36e0-db58",
+          "name": "Krondspine Incarnate of Ghur",
+          "stats": {
+            "move": "10\"",
+            "health": "12",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "8+",
+          "categories": [
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "WARD (6+)",
+            "FLY",
+            "INCARNATE"
+          ],
+          "weapons": [
+            {
+              "name": "Amberbone Claws and Fangs",
+              "kind": "melee",
+              "range": "",
+              "attacks": "6",
+              "hit": "4+",
+              "wound": "2+",
+              "rend": "2",
+              "damage": "3",
+              "ability": "Anti-Manifestation(+1 Rend)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Devourer of Magics",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "",
+              "effect": "If this Manifestation destroyed any enemy Manifestations this turn, Heal (6) this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Arcane Predator",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "You can add 1 to the number of dice rolled when making charge rolls for this Manifestation, to a maximum of 3, while it is within 18\" of any enemy Manifestations, but if you do so, it must end the charge move within 1/2\" of an enemy Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Wild Form",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time this Manifestation is targeted by the 'Banish Manifestation' ability, if it would be banished, it is not banished. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points).",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Krondspine Incarnate of Ghur",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Krondspine Incarnate of Ghur endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Krondspine Incarnate of Ghur endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "8",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "b4d2-4178-ff43-a44b",
+      "name": "Morbid Conjuration",
+      "manifestations": [
+        {
+          "id": "e699-49b7-d2b8-d5fc",
+          "name": "Malevolent Maelstrom",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Lashing Tendrils of Energy",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "-",
+              "damage": "1",
+              "ability": "Crit (2 Hits)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Morbid Detonation",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "You must, and can only, use this ability if this unit has 6 maelstrom points. Pick each unit (friendly and enemy) within 9\" of it to be the targets.",
+              "effect": "Roll a dice for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Then, this Manifestation is destroyed.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Necrotic Vortex",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Give this Manifestation 1 maelstrom point each time: \u2022 This Manifestation is set up. \u2022 A unit successfully casts a spell while it is within 12\" of this Manifestation. \u2022 A model is slain within 12\" of this Manifestation. This Manifestation can have a maximum of 6 maelstrom points at once.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Malevolent Maelstrom",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly a Malevolent Maelstrom endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a a Malevolent Maelstrom endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "e7a5-e611-4c13-22d0",
+          "name": "Purple Sun of Shyish",
+          "stats": {
+            "move": "8\"",
+            "health": "10",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Transmuting Rays",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Crit (Mortal)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "End Given Form",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "",
+              "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move to be the targets. Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Pull of the Nadir",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Subtract 1 from save rolls for friendly and enemy units while they are within 3\" of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Purple Sun of Shyish",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Purple Sun of Shyish endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Purple Sun of Shyish endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "8",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "dee3-92a0-27e7-252a",
+          "name": "Soulsnare Shackles",
+          "stats": {
+            "move": "-",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Bound for the Great Oubliette",
+              "kind": "Activated",
+              "timing": "Any Hero Phase",
+              "declare": "For each part of this Manifestation, you can pick an enemy unit within 3\" of that part to be the targets. You cannot pick the same unit to be the target of this ability more than once per turn.",
+              "effect": "Roll a D3 for each target. On a 2+: \u2022 Inflict an amount of mortal damage on the target equal to the roll. \u2022 Subtract a number of inches equal to the roll from the target's Move characteristic for the rest of the turn.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and all its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Soulsnare Shackles",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Soulsnare Shackles endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Soulsnare Shackles endless spell wholly within 18\" of the caster and visible to them. A Soulsnare Shackles endless spell has 3 parts that must each be set up within 3\" of at least 1 other part.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "1885-a1aa-bf5d-6d0d",
+          "name": "Suffocating Gravetide",
+          "stats": {
+            "move": "12\"",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Spectral Riptide",
+              "kind": "melee",
+              "range": "",
+              "attacks": "8",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Charge (+1 Damage)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Pulled to the Grave",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "",
+              "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, you can pick an enemy unit that this Manifestation passed across during that move to be the target. Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Suffocating Gravetide",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Suffocating Gravetide endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Suffocating Gravetide endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "8",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "83f1-e447-c26-c5c",
+      "name": "Twilit Sorceries",
+      "manifestations": [
+        {
+          "id": "d420-1699-5ad9-1956",
+          "name": "Geminids of Uhl-Gysh",
+          "stats": {
+            "move": "8\"",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "6+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Tendrils of Light and Shadow",
+              "kind": "melee",
+              "range": "",
+              "attacks": "4",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "D3",
+              "ability": "-"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Tendrils of Light and Shadow",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Enemy units cannot use commands while they are within 3\" of either part of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play. Each time this Manifestation moves, both its parts must end within 9\" of each other. Each part of this Manifestation is armed with Tendrils of Light and Shadow.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Geminids of Uhl-Gysh",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Geminids of Uhl-Gysh endless spell on the battlefield, pick a friendly Wizardto cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Geminids of Uhl-Gysh endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units. A Geminids of Uhl-Gysh endless spell has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "015a-4e4f-322f-ccff",
+          "name": "Prismatic Palisade",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Blinding Light",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "This Manifestation cannot be targeted by shooting attacks. In addition, a unit cannot be targeted by shooting attacks if it is impossible to draw a straight line from a model in the attacking unit to a model in the target unit without that line passing across this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Prismatic Palisade",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Prismatic Palisade endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Prismatic Palisade wholly within 18\" of the caster and visible to them.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "0552-183c-1b2a-d117",
+          "name": "Umbral Spellportal",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "6+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Arcane Passage",
+              "kind": "Activated",
+              "timing": "Your Hero Phase",
+              "declare": "Pick a friendly Wizard within 3\" of this Manifestation to be the target.",
+              "effect": "The next time the target uses a non-Summon Spell ability this phase, add 1 to the casting value of that spell. When picking targets for that spell, you can measure range and visibility from either part of this Manifestation instead of from the caster, and your opponent can measure range and visibility to either part of this Manifestation instead of to the caster for the purposes of the 'Unbind' ability.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Umbral Spellportal",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Umbral Spellportal endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up an Umbral Spellportal wholly within 18\" of the caster and visible to them. An Umbral Spellportal has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "7217-5951-aaf0-47e8",
+      "name": "Primal Energy",
+      "manifestations": [
+        {
+          "id": "3071-fc11-4eb8-bbcc",
+          "name": "Emerald Lifeswarm",
+          "stats": {
+            "move": "8\"",
+            "health": "5",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Swarming Bites",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "4+",
+              "rend": "-",
+              "damage": "1",
+              "ability": "Anti-Infantry (+1 Rend)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Restored Vigour",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "",
+              "effect": "Heal (3) this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Bounteous Healing",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "Pick a friendly unit within 3\" of this Manifestation to be the target.",
+              "effect": "Heal (3) the target.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Emerald Lifeswarm",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Emerald Lifeswarm endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Emerald Lifeswarm endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "41c4-2f6a-0d3c-a23e",
+          "name": "Ravenak's Gnashing Jaws",
+          "stats": {
+            "move": "3D6\"",
+            "health": "10",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [
+            {
+              "name": "Gnashing Jaws",
+              "kind": "melee",
+              "range": "",
+              "attacks": "10",
+              "hit": "4+",
+              "wound": "2+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Charge (+1 Damage)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Ravening Hunger",
+              "kind": "Activated",
+              "timing": "Any Charge Phase",
+              "declare": "If this Manifestation charged this turn, pick an enemy unit within 1\" of it to be the target.",
+              "effect": "Roll 10 dice. For each 5+, inflict 1 mortal damage on the target.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Ravenak's Gnashing Jaws",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Ravenak's Gnashing Jaws endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Ravenak's Gnashing Jaws endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "e1cc-64dc-f765-b9cc",
+          "name": "The Burning Head",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "6+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Burning Breath",
+              "kind": "ranged",
+              "range": "10\"",
+              "attacks": "D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "1",
+              "ability": "Shoot in Combat, Anti-WAR MACHINE (+1 Rend)"
+            },
+            {
+              "name": "Flaming Maw",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "1",
+              "ability": "Anti-WAR MACHINE (+1 Rend)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Burning Up",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time this Manifestation uses a Shoot ability, after that ability has been resolved, allocate 1 damage point to this Manifestation (ward rolls cannot be made for that damage point).",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": null
+        }
+      ]
+    }
+  ],
+  "artefacts": [
+    {
+      "id": "bfe4-ee9c-3d28-7a61",
+      "name": "Trophy Skulls",
+      "abilities": [
+        {
+          "name": "Trophy Skulls",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 10 to this unit's control score.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "9e11-9291-83d3-4c4",
+      "name": "Armour of Gork",
+      "abilities": [
+        {
+          "name": "Armour of Gork",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit has Ward (6+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "f21a-9f82-b790-2bbb",
+      "name": "Amberbone Whetstone",
+      "abilities": [
+        {
+          "name": "Amberbone Whetstone",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "",
+          "effect": "Pick 1 of this unit's weapons. Add 1 to the Rend characteristic of that weapon for the rest of the battle.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "heroicTraits": [
+    {
+      "id": "ebbf-ad8f-14de-47d1",
+      "name": "Hulking Brute",
+      "abilities": [
+        {
+          "name": "Hulking Brute",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "If this unit charged this turn, pick an enemy unit within 1\" of it to be the target.",
+          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll. If this unit's unmodified charge roll this turn was 8+, roll a D6 instead of a D3.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "1497-d7a7-91c8-4985",
+      "name": "Mega Bossy",
+      "abilities": [
+        {
+          "name": "Mega Bossy",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit charged this turn, for the rest of the turn, add 1 to charge rolls for friendly Ironjawz units while they are wholly within 18\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "6c1d-e8c2-645d-f041",
+      "name": "An Eye for da Fight",
+      "abilities": [
+        {
+          "name": "An Eye for da Fight",
+          "kind": "Activated",
+          "timing": "Reaction: You declared the 'Redeploy' command for a friendly Ironjawz unit wholly within 12\" of this unit",
+          "declare": "",
+          "effect": "If you roll a 1-3 when determining the distance that unit can move, you can use a value of 4 instead.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "terrain": [
+    {
+      "id": "092c-1ddc-6678-db32",
+      "name": "Bossrokk Tower",
+      "stats": {
+        "move": "-",
+        "health": "12",
+        "save": "4+",
+        "control": "-"
+      },
+      "categories": [
+        "FACTION TERRAIN",
+        "IRONJAWZ",
+        "DESTRUCTION"
+      ],
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "Man da Tower!",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this terrain feature has a Shouty Boss: \u2022 The Shouty Boss cannot use Move abilities. \u2022 Instead of measuring range or visibility to the Shouty Boss, measure to this terrain feature instead. \u2022 All attacks that would target the Shouty Boss target this terrain feature instead. \u2022 If this terrain feature is destroyed, before removing it from the battlefield, inflict D3 mortal damage on the Shouty Boss. Then, set up the Shouty Boss on the battlefield within 3\" of this terrain feature and not in combat. That unit is no longer the Shouty Boss. If it is not possible to set up the Shouty Boss, it is slain.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Up We Go!",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "If this terrain feature does not have a Shouty Boss , pick a friendly Ironjawz Infantry Hero that is not in combat and is within 3\" of it to be the target.",
+          "effect": "Place the target on this terrain feature. The target is now a Shouty Boss (see 'Man da Tower').",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Aggressively Bossy",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Your Hero Phase",
+          "declare": "Pick a visible enemy unit within 18\" of this terrain feature to be the target.",
+          "effect": "Roll a dice. Add 1 to the roll if this terrain feature has a Shouty Boss. On a 4+, pick 1 of the following effects to apply to the target until the start of your next turn: *Dat's Ours, Ya Git!:* Subtract 3 from the target's control score. *Zog Off Wiv Ya Magic!:* Subtract 1 from casting rolls and/or chanting rolls for the target. *Oi! Hold it!:* Subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "I'm Off!",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "",
+          "effect": "If this terrain feature has a Shouty Boss that was not placed on it this turn, set up the Shouty Boss on the battlefield wholly within 6\" of this terrain feature and not in combat. That unit is no longer a Shouty Boss.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "e020-20c4-a638-6d2b",
+      "name": "Ardboy Big Boss",
+      "points": 90,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "DESTRUCTION",
+        "IRONJAWZ",
+        "INFANTRY",
+        "Headstompa"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "6",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Boss-hacka and Choppa",
+          "kind": "melee",
+          "range": "",
+          "attacks": "7",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Iron-fisted Commander",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If a friendly Ardboyz unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Get Bashin'!",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to shield bash rolls for friendly Ardboyz units while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "75d6-6995-dfcc-3898",
+          "name": "INFANTRY"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "b8a1-7664-687e-c0d9",
+      "name": "Gordrakk, the Fist of Gork",
+      "points": 340,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "UNIQUE",
+        "MONSTER",
+        "WARMASTER",
+        "DESTRUCTION",
+        "IRONJAWZ",
+        "MAW-KRUSHA",
+        "FLY"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "20",
+        "save": "3+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Smasha and Kunnin'",
+          "kind": "melee",
+          "range": "",
+          "attacks": "8",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti-Hero (+1 Rend)"
+        },
+        {
+          "name": "Bigteef's Fists and Tail",
+          "kind": "melee",
+          "range": "",
+          "attacks": "8",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "Anti-Monster (+1 Rend), Companion"
+        },
+        {
+          "name": "Bigteef's Roar",
+          "kind": "ranged",
+          "range": "8\"",
+          "attacks": "6",
+          "hit": "2+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Shoot in Combat, Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of Bigteef's Fists and Tail is 6.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Monster Grapple",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy Monster in combat with this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, pick 1 of the target's weapons. You must pick a Companion weapon if it has any. Halve the Attacks characteristic of that weapon (rounding up) for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Voice of Gork",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Reaction: You declared a Waaagh! ability",
+          "declare": "",
+          "effect": "Until the start of your next turn, add 1 to hit rolls for combat attacks made by friendly Ironjawz units while they are wholly within 18\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Strength From Victory",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "If any damage points were allocated to an enemy unit by this unit's combat attacks this turn and that enemy unit has been destroyed, give this unit a Waaagh! token, to a maximum of 3. Until the end of the next turn, add 1 to the Attacks characteristic of this unit's weapons for each Waaagh! token it has.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "c1ca-4b17-3512-89f",
+          "name": "IRONJAWZ"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "9e01-f4e1-28d8-eae4",
+          "name": "Headstompa"
+        },
+        {
+          "type": "category",
+          "id": "39cc-b594-a456-f407",
+          "name": "Tusk Wrangler"
+        }
+      ]
+    },
+    {
+      "id": "4e07-f63a-6315-b48b",
+      "name": "Megaboss",
+      "points": 130,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "DESTRUCTION",
+        "INFANTRY",
+        "IRONJAWZ",
+        "Headstompa"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "8",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Boss-choppa",
+          "kind": "melee",
+          "range": "",
+          "attacks": "8",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Lead da Brutes",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a Fight ability for this unit",
+          "declare": "",
+          "effect": "Pick a friendly Brute unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight ability used by this unit has been resolved. If it is picked to do so, add 1 to the Attacks characteristic of that unit's melee weapons for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Strength From Victory",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "If any damage points were allocated to an enemy unit by this unit's combat attacks this turn and that enemy unit has been destroyed, give this unit a Waaagh! token, to a maximum of 3. Until the end of the next turn, add 1 to the Attacks characteristic of this unit's weapons for each Waaagh! token it has.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "c1ca-4b17-3512-89f",
+          "name": "IRONJAWZ"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "9e01-f4e1-28d8-eae4",
+          "name": "Headstompa"
+        }
+      ]
+    },
+    {
+      "id": "215e-afa9-d599-8f10",
+      "name": "Megaboss (Scourge of Aqshy)",
+      "points": 150,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "DESTRUCTION",
+        "INFANTRY",
+        "IRONJAWZ",
+        "Headstompa"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "8",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Boss-choppa",
+          "kind": "melee",
+          "range": "",
+          "attacks": "8",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Get In There And Wallop 'Em!",
+          "kind": "Activated",
+          "timing": "Once Per Battle Round (Army), Any Hero Phase",
+          "declare": "Pick a friendly Ironjawz unit wholly within 12\" of this unit and that was not set up this turn to be the target.",
+          "effect": "For the rest of the turn, when you use the 'Mighty Destroyers' ability, you can pick that friendly unit to be a second target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "You Ain't Gonna Show Me Up",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Any Turn",
+          "declare": "",
+          "effect": "If this unit used a Fight ability this turn, spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, add 1 to the Damage characteristic of this unit's Boss-choppa for the rest of the battle. This unit can be affected by this ability multiple times and the effects are cumulative.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "c1ca-4b17-3512-89f",
+          "name": "IRONJAWZ"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "9e01-f4e1-28d8-eae4",
+          "name": "Headstompa"
+        }
+      ]
+    },
+    {
+      "id": "8400-417c-251b-860a",
+      "name": "Megaboss on Maw-krusha",
+      "points": 330,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "MONSTER",
+        "DESTRUCTION",
+        "IRONJAWZ",
+        "MAW-KRUSHA",
+        "FLY"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "18",
+        "save": "3+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Boss-choppa or Boss-hacka",
+          "kind": "melee",
+          "range": "",
+          "attacks": "8",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti-Infantry (+1 Rend)"
+        },
+        {
+          "name": "Maw-krusha's Fists and Tail",
+          "kind": "melee",
+          "range": "",
+          "attacks": "8",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "Anti-Infantry (+1 Rend), Companion"
+        },
+        {
+          "name": "Maw-krusha's Roar",
+          "kind": "ranged",
+          "range": "8\"",
+          "attacks": "6",
+          "hit": "2+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Shoot in Combat, Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its  Maw-krusha's Fists and Tail is 5.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Destructive Bulk",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "",
+          "effect": "If this unit charged this turn, roll a D3. On a 2+, this unit can move 2D6\". It can move through the combat range of enemy units and can end that move in combat. Then, pick an enemy unit that this unit passed across during that move. Inflict an amount of mortal damage on the target equal to the D3 roll. If the target is Infantry, double the mortal damage inflicted.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Strength From Victory",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "If any damage points were allocated to an enemy unit by this unit's combat attacks this turn and that enemy unit has been destroyed, give this unit a Waaagh! token, to a maximum of 3. Until the end of the next turn, add 1 to the Attacks characteristic of this unit's weapons for each Waaagh! token it has.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "c1ca-4b17-3512-89f",
+          "name": "IRONJAWZ"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "9e01-f4e1-28d8-eae4",
+          "name": "Headstompa"
+        },
+        {
+          "type": "category",
+          "id": "39cc-b594-a456-f407",
+          "name": "Tusk Wrangler"
+        }
+      ]
+    },
+    {
+      "id": "3520-fc6a-d4fc-1c1f",
+      "name": "Tuskboss on Maw-grunta",
+      "points": 270,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "MONSTER",
+        "DESTRUCTION",
+        "IRONJAWZ",
+        "MAW-GRUNTA",
+        "Tusk Wrangler"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "14",
+        "save": "3+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Pig-hacka",
+          "kind": "melee",
+          "range": "",
+          "attacks": "7",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        },
+        {
+          "name": "Maw-grunta's Tusks",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "2",
+          "ability": "Companion"
+        },
+        {
+          "name": "Maw-grunta's Trotters",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "5+",
+          "wound": "2+",
+          "rend": "-",
+          "damage": "D3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Kill-choppas",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Maw-grunta's Tusks is 3.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Head of the Stampede",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Charge Phase",
+          "declare": "If this unit charged this phase, pick up to 3 friendly Maw\u2011grunta units wholly within 12\" of this unit that charged this turn to be the targets.",
+          "effect": "Add 1 momentum point to each target.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Unstoppable Momentum",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time this unit has charged as a result of using a Charge ability, it gains 1 momentum point. Each time it uses a Run ability, it gains 2 momentum points. It can have a maximum of 3 momentum points at once. Add the number of momentum points this unit has to the Damage characteristic of its Maw-grunta's Tusks. At the end of each battle round, subtract 1 from its momentum points, to a minimum of 0.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "c1ca-4b17-3512-89f",
+          "name": "IRONJAWZ"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "9e01-f4e1-28d8-eae4",
+          "name": "Headstompa"
+        }
+      ]
+    },
+    {
+      "id": "7d89-20b4-7ed4-6ca0",
+      "name": "Warchanter",
+      "points": 110,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "DESTRUCTION",
+        "INFANTRY",
+        "IRONJAWZ",
+        "PRIEST (1)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "6",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Gorkstikk and Morkstikk",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "D3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Rhythm of Destruction",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "If any enemy models were slain this turn by this unit's combat attacks, give this unit D3 ritual points.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "c1ca-4b17-3512-89f",
+          "name": "IRONJAWZ"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "e824-4e07-12f6-309c",
+      "name": "Weirdnob Shaman",
+      "points": 110,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "DESTRUCTION",
+        "INFANTRY",
+        "IRONJAWZ",
+        "WIZARD (1)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "6",
+        "save": "6+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Green Puke",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "4",
+          "hit": "2+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "D3",
+          "ability": "Shoot in Combat"
+        },
+        {
+          "name": "Waaagh! Staff",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Brutal Power",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to this unit's power level while there are any friendly Ironjawz units that have 10 or more models wholly within 12\" of it.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "c1ca-4b17-3512-89f",
+          "name": "IRONJAWZ"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "d4c-6af5-1346-a8ab",
+      "name": "Zoggrok Anvilsmasha",
+      "points": 160,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "UNIQUE",
+        "DESTRUCTION",
+        "IRONJAWZ",
+        "INFANTRY",
+        "Headstompa"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "7",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Skull-crushing Basha",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        },
+        {
+          "name": "Ward-smashing Choppa",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "-"
+        },
+        {
+          "name": "Grunta-tongs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Klonk",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Klonk is a token. You can re-roll forgin' rolls for this unit while this unit's Klonk is on the battlefield. If you make an unmodified save roll of 1 for this unit, remove this unit's Klonk from the battlefield after the Attack ability has been resolved (the damage point is still inflicted).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Power of da Great Green God",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly Ironjawz Infantry unit wholly within 12\" of this unit to be the target.",
+          "effect": "Make a forgin' roll of D6. Add 1 to the roll if this unit is armed with Grunta-tongs. On a 4+, the target's melee weapons have Crit (Mortal) until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Ward-smashing Choppa",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If an attack made with this unit's Ward-smashing Choppa scores a hit, the target has the Ward\u2011smashed keyword for the rest of the battle. Ward rolls cannot be made for a Ward\u2011smashed unit even if this unit has been destroyed.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "c1ca-4b17-3512-89f",
+          "name": "IRONJAWZ"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "f757-3f6b-a13a-546a",
+      "name": "Ardboyz",
+      "points": 160,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 10,
+      "categories": [
+        "INFANTRY",
+        "CHAMPION",
+        "DESTRUCTION",
+        "IRONJAWZ",
+        "STANDARD BEARER (1/10)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "2",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Choppa or Stikka",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Anti-charge (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Shield Bash",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy unit within 1\" of this unit to be the target.",
+          "effect": "Make a shield bash roll of D6 for each model in this unit that is within 3\" of the target. For each 6+, inflict 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "75d6-6995-dfcc-3898",
+          "name": "INFANTRY"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "d77b-a0ba-7d99-28d5",
+      "name": "Brute Ragerz",
+      "points": 100,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "INFANTRY",
+        "DESTRUCTION",
+        "IRONJAWZ",
+        "BRUTE"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "3",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Rager Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti-Monster (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Berserkers",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit can use a Run ability and still use Charge abilities later in the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Unleashed Rage",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit has Strike-first if it charged in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "f330-c2f2-f018-d93b",
+      "name": "Brutes",
+      "points": 160,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "CHAMPION",
+        "DESTRUCTION",
+        "IRONJAWZ",
+        "BRUTE"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "3",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Brute Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti-Infantry (+1 Rend)"
+        },
+        {
+          "name": "Gore-choppa",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "You Messin'?",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Enemy units with a Health characteristic of 1 or 2 cannot contest objectives while they are in combat with this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "9e76-1d70-7eea-03b6",
+      "name": "Brutes (Scourge of Aqshy)",
+      "points": 160,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "CHAMPION",
+        "DESTRUCTION",
+        "IRONJAWZ",
+        "BRUTE"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "3",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Brute Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti-Infantry (+1 Rend)"
+        },
+        {
+          "name": "Gore-choppa",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "You Call Dat A Punch?",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Reaction: Opponent declared an Attack ability that targeted this unit",
+          "declare": "",
+          "effect": "For the rest of the turn, add 1 to hit rolls and wound rolls for this unit's combat attacks that target that enemy unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "f4bd-9f1c-cc46-5b5e",
+      "name": "Gore-gruntas",
+      "points": 160,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "CHAMPION",
+        "DESTRUCTION",
+        "IRONJAWZ",
+        "CAVALRY"
+      ],
+      "stats": {
+        "move": "9\"",
+        "health": "5",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Choppa or Hacka",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Anti-Cavalry(+1 Rend)"
+        },
+        {
+          "name": "Grunta's Tusks",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Charge (+1 Damage), Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Gore-grunta Charge",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
+          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Add 1 to the mortal damage inflicted (if any) if the target is Cavalry.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "f0c2-47b3-2266-1a6f",
+      "name": "Gore-gruntas (Scourge of Ghyran)",
+      "points": 170,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "CHAMPION",
+        "DESTRUCTION",
+        "IRONJAWZ",
+        "CAVALRY"
+      ],
+      "stats": {
+        "move": "9\"",
+        "health": "5",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Choppa or Hacka",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge (+1 Damage)"
+        },
+        {
+          "name": "Grunta's Tusks",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge (+1 Damage), Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Barge Through",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "When this unit moves, it can pass through models in enemy Infantry units and can pass through the combat ranges of enemy Infantry units, but it cannot end the move in combat unless specified in the ability used.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "fd56-6594-4cd4-c765",
+      "name": "Ironskull's Boyz",
+      "points": 110,
+      "hero": false,
+      "unique": true,
+      "reinforce": false,
+      "models": 4,
+      "categories": [
+        "UNIQUE",
+        "Legends",
+        "CHAMPION",
+        "DESTRUCTION",
+        "INFANTRY",
+        "IRONJAWZ"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "3",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Ardboy Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Anti-charge (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Dead 'Ard",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from wound rolls for attacks that target this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "ce75-dedf-3b6f-9a7c",
+      "name": "Maw-grunta Gougers",
+      "points": 200,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "MONSTER",
+        "DESTRUCTION",
+        "IRONJAWZ",
+        "MAW-GRUNTA"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "12",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Choppas",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        },
+        {
+          "name": "Maw-grunta's Tusks",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "2",
+          "ability": "Companion"
+        },
+        {
+          "name": "Maw-grunta's Trotters",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "5+",
+          "wound": "2+",
+          "rend": "-",
+          "damage": "D3",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Flattened into the Mud",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "If this unit charged this turn, pick an enemy unit within 1\" of it to be the target.",
+          "effect": "Roll a dice and add the number of momentum points this unit has to the roll. On a 5+, the target has Strike-last for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Unstoppable Momentum",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time this unit has charged as a result of using a Charge ability, it gains 1 momentum point. Each time it uses a Run ability, it gains 2 momentum points. It can have a maximum of 3 momentum points at once. Add the number of momentum points this unit has to the Damage characteristic of its Maw-grunta's Tusks. At the end of each battle round, subtract 1 from its momentum points, to a minimum of 0.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "2ccb-7f24-4e64-9431",
+      "name": "Maw-grunta with Hakkin' Krew",
+      "points": 250,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "MONSTER",
+        "DESTRUCTION",
+        "IRONJAWZ",
+        "MAW-GRUNTA"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "12",
+        "save": "3+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Choppas",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        },
+        {
+          "name": "Maw-grunta's Tusks",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "2",
+          "ability": "Companion"
+        },
+        {
+          "name": "Maw-grunta's Trotters",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "5+",
+          "wound": "2+",
+          "rend": "-",
+          "damage": "D3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Kill-choppas",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Carve a Path",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Movement Phase",
+          "declare": "",
+          "effect": "If this unit is in combat, it can move a distance up to its Move characteristic. It can pass through models and the combat ranges of enemy units, but it cannot end that move in combat. Then, pick each enemy unit that this unit passed across during that move to be the targets. Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Then, this unit gains 2 momentum points.",
+          "keywords": "Core, Move, Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Unstoppable Momentum",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time this unit has charged as a result of using a Charge ability, it gains 1 momentum point. Each time it uses a Run ability, it gains 2 momentum points. It can have a maximum of 3 momentum points at once. Add the number of momentum points this unit has to the Damage characteristic of its Maw-grunta's Tusks. At the end of each battle round, subtract 1 from its momentum points, to a minimum of 0.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "5e0d-b8d1-f5e7-f1df",
+      "name": "Morgok's Krushas",
+      "points": 110,
+      "hero": false,
+      "unique": true,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "UNIQUE",
+        "Legends",
+        "CHAMPION",
+        "DESTRUCTION",
+        "INFANTRY",
+        "IRONJAWZ",
+        "BRUTE"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "3",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Krusha Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti-Monster (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "In Their Element",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "The first time an enemy Monster is destroyed by this unit, add 1 to wound rolls for this unit's attacks for the rest of the battle.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "c08c-f42b-30bb-ccd",
+      "name": "Weirdbrute Wrekkaz",
+      "points": 90,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "INFANTRY",
+        "DESTRUCTION",
+        "IRONJAWZ",
+        "BRUTE",
+        "WARD (5+)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "3",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Chain-smasha",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Anti-Infantry (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Berserkers",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit can use a Run ability and still use Charge abilities later in the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "9582-7259-1066-5bb5",
+      "name": "Weirdbrute Wrekkaz (Scourge of Ghyran)",
+      "points": 90,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "INFANTRY",
+        "DESTRUCTION",
+        "IRONJAWZ",
+        "BRUTE",
+        "WARD (5+)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "3",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Chain-smasha",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Anti-Infantry (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Propa Wonky",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "If this unit is in combat, pick a friendly Ironjawz unit wholly within 12\" of this unit to be the target.",
+          "effect": "Add 1 to hit rolls for the target's combat attacks for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}
