@@ -93,6 +93,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <link rel="llms-txt" href="/llms.txt" />
         <link rel="alternate" type="text/plain" href="/llms-full.txt" title="llms-full.txt" />
+        <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
       </head>
       <body className="min-h-full font-sans" suppressHydrationWarning>
         <Script
