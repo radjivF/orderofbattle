@@ -35,7 +35,7 @@ export function TryLanding() {
   return (
     <LandingMotion>
       <IndexBackdrop veil="hero">
-        <header className="relative z-20 mx-auto flex max-w-3xl items-center justify-between px-5 pt-[max(1.25rem,env(safe-area-inset-top))] pb-4 sm:px-6 sm:py-6">
+        <header className="relative z-20 mx-auto flex w-full max-w-3xl items-center justify-between px-5 pt-[max(1.25rem,env(safe-area-inset-top))] pb-4 sm:px-6 sm:py-6 lg:max-w-5xl">
           <Link href="/" className="flex min-h-11 items-center gap-2.5">
             <BrandMark size={36} className="h-8 w-auto drop-shadow-md" />
             <span className="sr-only">Order of Battle</span>
@@ -48,59 +48,67 @@ export function TryLanding() {
           </Link>
         </header>
 
-        <main className="relative z-10 mx-auto w-full max-w-3xl px-5 pb-16 sm:px-6">
-          <section className="-mx-5 px-5 pt-2 pb-12 text-center sm:-mx-6 sm:px-6 sm:pt-6 sm:pb-16">
-            <div data-rise="crest">
-              <Image
-                src="/brand/crest.webp"
-                alt="Order of Battle crest: sword through O and B, gold laurels"
-                width={512}
-                height={436}
-                sizes="(max-width: 640px) 152px, 224px"
-                quality={82}
-                priority
-                className="mx-auto h-[9.5rem] w-auto drop-shadow-[0_0_40px_rgba(197,179,138,0.28)] sm:h-56"
-              />
-            </div>
-
-            <div data-rise="copy" className="mt-5 sm:mt-7">
-              <Image
-                src="/brand/wordmark.webp"
-                alt="Order of Battle"
-                width={640}
-                height={253}
-                sizes="(max-width: 640px) 320px, 448px"
-                quality={82}
-                className="mx-auto h-auto w-[min(100%,20rem)] drop-shadow-md sm:w-[min(100%,28rem)]"
-              />
-              <p className="mt-5 text-[0.7rem] tracking-[0.38em] text-sigmarite uppercase [text-shadow:0_1px_8px_rgba(0,0,0,0.85)] sm:text-xs">
-                Age of Sigmar · 4th edition
-              </p>
-              <h1 className="mx-auto mt-3 max-w-lg font-serif text-[1.65rem] leading-snug font-semibold text-parchment [text-shadow:0_2px_16px_rgba(0,0,0,0.9),0_1px_3px_rgba(0,0,0,0.95)] sm:mt-4 sm:text-4xl">
-                Build the list. Play the battle.
-              </h1>
-            </div>
-
+        <main className="relative z-10 mx-auto w-full max-w-3xl px-5 pb-16 sm:px-6 lg:max-w-5xl">
+          <section className="relative -mx-5 overflow-hidden px-5 pt-2 pb-12 text-center sm:-mx-6 sm:px-6 sm:pt-6 sm:pb-16">
+            {/* Local dark pool so crest/gold copy don't blend into the battle art */}
             <div
-              className="gold-rule mx-auto mt-7 w-40 sm:mt-8 sm:w-56"
+              className="pointer-events-none absolute inset-x-0 top-0 bottom-8 -z-0 mx-auto max-w-2xl rounded-[2rem] bg-[radial-gradient(ellipse_at_center,rgba(5,5,5,0.82)_0%,rgba(5,5,5,0.55)_48%,transparent_72%)] sm:bottom-4"
               aria-hidden="true"
             />
 
-            <div data-rise="cta">
-              <p className="mx-auto mt-7 max-w-md text-[0.95rem] leading-relaxed font-medium text-parchment [text-shadow:0_1px_10px_rgba(0,0,0,0.9)] sm:mt-8 sm:text-lg">
-                Unofficial army builder and table companion. Muster regiments,
-                then switch to Play for wounds, magic, and phase abilities.
-              </p>
-              <div className="mt-8 sm:mt-10">
-                <Link
-                  href="/app"
-                  className="gold-plate shine inline-flex min-h-12 items-center justify-center rounded-xl px-9 text-base font-semibold tracking-wide text-ink active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sigmarite lg:hover:-translate-y-0.5"
-                >
-                  Try Order of Battle
-                </Link>
-                <p className="mt-4 text-xs font-medium text-parchment/90 [text-shadow:0_1px_8px_rgba(0,0,0,0.9)]">
-                  Free · No account · Lists stay on your device
+            <div className="relative z-10">
+              <div data-rise="crest">
+                <Image
+                  src="/brand/crest.webp"
+                  alt="Order of Battle crest: sword through O and B, gold laurels"
+                  width={512}
+                  height={436}
+                  sizes="(max-width: 640px) 152px, 224px"
+                  quality={82}
+                  priority
+                  className="mx-auto h-[9.5rem] w-auto drop-shadow-[0_8px_28px_rgba(0,0,0,0.75)] sm:h-56"
+                />
+              </div>
+
+              <div data-rise="copy" className="mt-5 sm:mt-7">
+                <Image
+                  src="/brand/wordmark.webp"
+                  alt="Order of Battle"
+                  width={640}
+                  height={253}
+                  sizes="(max-width: 640px) 320px, 448px"
+                  quality={82}
+                  className="mx-auto h-auto w-[min(100%,20rem)] drop-shadow-[0_6px_20px_rgba(0,0,0,0.8)] sm:w-[min(100%,28rem)]"
+                />
+                <p className="mt-5 text-xs font-semibold tracking-[0.28em] text-parchment uppercase [text-shadow:0_2px_10px_rgba(0,0,0,0.95),0_0_2px_rgba(0,0,0,1)] sm:text-sm sm:tracking-[0.32em]">
+                  Age of Sigmar · 4th edition
                 </p>
+                <h1 className="mx-auto mt-3 max-w-lg font-serif text-[1.65rem] leading-snug font-semibold text-parchment [text-shadow:0_2px_16px_rgba(0,0,0,0.95),0_1px_3px_rgba(0,0,0,1)] sm:mt-4 sm:text-4xl">
+                  Build the list. Play the battle.
+                </h1>
+              </div>
+
+              <div
+                className="gold-rule mx-auto mt-7 w-40 sm:mt-8 sm:w-56"
+                aria-hidden="true"
+              />
+
+              <div data-rise="cta">
+                <p className="mx-auto mt-7 max-w-md text-[0.95rem] leading-relaxed font-medium text-parchment [text-shadow:0_2px_12px_rgba(0,0,0,0.95)] sm:mt-8 sm:text-lg">
+                  Unofficial army builder and table companion. Muster regiments,
+                  then switch to Play for wounds, magic, and phase abilities.
+                </p>
+                <div className="mt-8 sm:mt-10">
+                  <Link
+                    href="/app"
+                    className="gold-plate shine inline-flex min-h-12 items-center justify-center rounded-xl px-9 text-base font-semibold tracking-wide text-ink active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sigmarite lg:hover:-translate-y-0.5"
+                  >
+                    Try Order of Battle
+                  </Link>
+                  <p className="mt-4 text-xs font-medium text-parchment [text-shadow:0_2px_10px_rgba(0,0,0,0.95)]">
+                    Free · No account · Lists stay on your device
+                  </p>
+                </div>
               </div>
             </div>
           </section>

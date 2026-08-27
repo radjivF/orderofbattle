@@ -71,9 +71,9 @@ export function FactionBackdrop({ factionId, factionName, children }: Props) {
   }
 
   return (
-    <div className="relative min-h-full text-parchment">
+    <div className="relative min-h-full w-full max-w-[100vw] overflow-x-hidden text-parchment">
       {/* Must stay z-0 (not negative) or body bg-ink paints over it. */}
-      <div className="pointer-events-none fixed inset-0 z-0" aria-hidden="true">
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
         <Image
           src={src}
           alt=""

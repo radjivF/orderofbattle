@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState, useSyncExternalStore } from "react";
 import { getFaction, listFactions } from "@/engine/queries";
 import { summarize } from "@/engine/validate";
 import type { ArmyList, FactionCatalogue } from "@/engine/types";
+import { factionArtSrc } from "@/lib/factionArt";
 import {
   blankArmy,
   deleteArmy,
@@ -74,28 +76,30 @@ export function LibraryScreen() {
 
   return (
     <IndexBackdrop veil="page">
-      <header className="sticky top-0 z-20 flex items-center justify-between gap-3 border-b border-sigmarite/15 bg-ink/55 px-5 pt-[max(1.25rem,env(safe-area-inset-top))] pb-4 backdrop-blur-md sm:px-6 sm:py-6">
-        <Link href="/" className="flex min-w-0 items-center gap-3">
-          <BrandMark size={44} className="h-10 w-auto shrink-0" />
-          <div className="min-w-0">
-            <p className="gold-text font-serif text-xl leading-none font-semibold sm:text-3xl">
-              Order of Battle
-            </p>
-            <p className="mt-1 truncate text-xs font-medium text-parchment/85 sm:text-sm">
-              Army lists for Age of Sigmar
-            </p>
-          </div>
-        </Link>
-        <button
-          type="button"
-          onClick={() => setPicking(true)}
-          className="gold-plate min-h-11 shrink-0 rounded-xl px-4 text-sm font-semibold text-ink sm:px-5"
-        >
-          New list
-        </button>
+      <header className="sticky top-0 z-20 border-b border-sigmarite/15 bg-ink/45 backdrop-blur-md">
+        <div className="mx-auto flex w-full max-w-3xl items-center justify-between gap-3 px-5 pt-[max(1.25rem,env(safe-area-inset-top))] pb-4 sm:px-6 sm:py-5 lg:max-w-5xl">
+          <Link href="/" className="flex min-w-0 items-center gap-3">
+            <BrandMark size={44} className="h-10 w-auto shrink-0" />
+            <div className="min-w-0">
+              <p className="gold-text font-serif text-xl leading-none font-semibold sm:text-3xl">
+                Order of Battle
+              </p>
+              <p className="mt-1 truncate text-xs font-medium text-parchment/90 sm:text-sm">
+                Army lists for Age of Sigmar
+              </p>
+            </div>
+          </Link>
+          <button
+            type="button"
+            onClick={() => setPicking(true)}
+            className="gold-plate min-h-11 shrink-0 rounded-xl px-4 text-sm font-semibold text-ink sm:px-5"
+          >
+            New list
+          </button>
+        </div>
       </header>
 
-      <main className="mx-auto w-full max-w-3xl px-5 pb-20 sm:px-6 sm:pt-2">
+      <main className="mx-auto w-full max-w-3xl px-5 pb-20 sm:px-6 sm:pt-3 lg:max-w-5xl">
         {lists === undefined ? (
           <p className="rounded-2xl bg-ink-raised/90 px-4 py-3 text-parchment/80 ring-1 ring-parchment/10">
             Loading…
@@ -105,77 +109,106 @@ export function LibraryScreen() {
             No armies yet. Make your first list.
           </p>
         ) : (
-          <ul className="flex flex-col gap-4 pt-4">
+          <ul className="grid grid-cols-1 gap-4 pt-2 lg:grid-cols-2 lg:gap-5">
             {lists.map((list) => {
               const faction = getFaction(list.factionId);
               const totals = faction ? summarize(list, faction) : null;
               const formation = faction?.formations.find(
                 (item) => item.id === list.formationId,
               );
+              const artSrc = factionArtSrc(list.factionId);
               return (
                 <li key={list.id}>
-                  <article className="parchment-card rounded-2xl p-5 text-parchment-ink">
-                    <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-                      {faction?.name ?? "Unknown faction"}
-                    </p>
-                    <input
-                      aria-label="List name"
-                      defaultValue={list.name}
-                      onBlur={(event) =>
-                        void onRename(list, event.target.value)
-                      }
-                      onKeyDown={(event) => {
-                        if (event.key === "Enter") {
-                          event.currentTarget.blur();
+                  <article className="parchment-card grid min-h-[8.5rem] grid-cols-[minmax(0,1fr)_7.5rem] overflow-hidden rounded-2xl text-parchment-ink sm:grid-cols-[minmax(0,1fr)_9.5rem]">
+                    <div className="flex min-w-0 flex-col p-4 sm:p-5">
+                      <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
+                        {faction?.name ?? "Unknown faction"}
+                      </p>
+                      <input
+                        aria-label="List name"
+                        defaultValue={list.name}
+                        onBlur={(event) =>
+                          void onRename(list, event.target.value)
                         }
-                      }}
-                      className="mt-1 w-full bg-transparent font-serif text-[1.65rem] leading-tight outline-none sm:text-3xl"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => router.push(`/lists/${list.id}`)}
-                      className="mt-3 flex w-full items-center gap-3 text-left"
-                    >
-                      <span className="min-w-0 flex-1">
-                        <span className="block text-base font-semibold text-gold-deep">
-                          {totals?.points ?? 0} / {list.pointsCap}
-                        </span>
-                        <span className="mt-1 block text-base text-sheet-muted">
-                          {formation?.name ?? "No formation"}
-                        </span>
-                      </span>
-                      <svg
-                        aria-hidden="true"
-                        viewBox="0 0 12 20"
-                        className="size-5 shrink-0 text-parchment-ink/30"
-                      >
-                        <path
-                          d="M2.5 2.5 9.5 10l-7 7.5"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2.25"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                      <span className="sr-only">Open list</span>
-                    </button>
-                    <div className="mt-4 flex gap-2">
+                        onKeyDown={(event) => {
+                          if (event.key === "Enter") {
+                            event.currentTarget.blur();
+                          }
+                        }}
+                        className="mt-1 w-full bg-transparent font-serif text-[1.45rem] leading-tight outline-none sm:text-2xl"
+                      />
                       <button
                         type="button"
-                        className="min-h-11 px-3 text-base text-sheet-muted"
-                        onClick={() => void onDuplicate(list)}
+                        onClick={() => router.push(`/lists/${list.id}`)}
+                        className="mt-2 flex w-full flex-1 items-center gap-2 text-left"
                       >
-                        Duplicate
+                        <span className="min-w-0 flex-1">
+                          <span className="block text-base font-semibold text-gold-deep">
+                            {totals?.points ?? 0} / {list.pointsCap}
+                          </span>
+                          <span className="mt-0.5 block text-sm text-sheet-muted sm:text-base">
+                            {formation?.name ?? "No formation"}
+                          </span>
+                        </span>
+                        <svg
+                          aria-hidden="true"
+                          viewBox="0 0 12 20"
+                          className="size-5 shrink-0 self-center text-parchment-ink/35"
+                        >
+                          <path
+                            d="M2.5 2.5 9.5 10l-7 7.5"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2.25"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        <span className="sr-only">Open list</span>
                       </button>
-                      <button
-                        type="button"
-                        className="min-h-11 px-3 text-base text-illegal"
-                        onClick={() => void onDelete(list.id)}
-                      >
-                        {confirmId === list.id ? "Confirm delete" : "Delete"}
-                      </button>
+                      <div className="mt-3 flex gap-1">
+                        <button
+                          type="button"
+                          className="min-h-10 px-2.5 text-sm text-sheet-muted sm:min-h-11 sm:px-3 sm:text-base"
+                          onClick={() => void onDuplicate(list)}
+                        >
+                          Duplicate
+                        </button>
+                        <button
+                          type="button"
+                          className="min-h-10 px-2.5 text-sm text-illegal sm:min-h-11 sm:px-3 sm:text-base"
+                          onClick={() => void onDelete(list.id)}
+                        >
+                          {confirmId === list.id
+                            ? "Confirm delete"
+                            : "Delete"}
+                        </button>
+                      </div>
                     </div>
+
+                    {artSrc ? (
+                      <button
+                        type="button"
+                        aria-label={`Open ${list.name}`}
+                        onClick={() => router.push(`/lists/${list.id}`)}
+                        className="relative min-h-[8.5rem] overflow-hidden border-l border-parchment-ink/10"
+                      >
+                        <Image
+                          src={artSrc}
+                          alt=""
+                          fill
+                          sizes="152px"
+                          quality={68}
+                          className="object-cover object-[center_28%]"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#efe6d2]/35" />
+                      </button>
+                    ) : (
+                      <div
+                        className="min-h-[8.5rem] border-l border-parchment-ink/10 bg-parchment-ink/5"
+                        aria-hidden="true"
+                      />
+                    )}
                   </article>
                 </li>
               );

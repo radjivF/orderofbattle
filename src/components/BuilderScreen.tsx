@@ -277,9 +277,9 @@ function BuilderReady({
       : null;
 
   return (
-    <div className="min-h-full text-parchment">
+    <div className="min-h-full w-full max-w-[100vw] overflow-x-hidden text-parchment">
       <header className="sticky top-0 z-20 border-b border-sigmarite/15 bg-ink/92 pt-[env(safe-area-inset-top)] backdrop-blur-md">
-        <div className="mx-auto flex max-w-3xl items-center gap-3 px-4 py-3">
+        <div className="mx-auto flex w-full max-w-3xl min-w-0 flex-wrap items-center gap-x-3 gap-y-2 px-4 py-3 sm:flex-nowrap">
           <Link
             href="/app"
             className="gold-plate inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-xl px-3 text-ink active:translate-y-px sm:px-4"
@@ -301,7 +301,7 @@ function BuilderReady({
             <span className="text-sm font-semibold tracking-wide">Lists</span>
           </Link>
           {playMode ? (
-            <p className="min-h-11 flex-1 content-center font-serif text-xl">
+            <p className="min-h-11 min-w-0 flex-1 content-center truncate font-serif text-xl">
               {list.name}
             </p>
           ) : (
@@ -310,19 +310,21 @@ function BuilderReady({
               onChange={(event) => void commit({ ...list, name: event.target.value })}
               aria-label="List name"
               placeholder="Name your list"
-              className="min-h-11 flex-1 border-b border-parchment/20 bg-transparent font-serif text-xl outline-none placeholder:text-parchment/35"
+              className="min-h-11 min-w-0 flex-1 border-b border-parchment/20 bg-transparent font-serif text-xl outline-none placeholder:text-parchment/35"
             />
           )}
-          <div className="ml-auto flex shrink-0 items-center gap-3">
+          <div className="flex w-full min-w-0 shrink-0 items-center justify-between gap-3 sm:ml-auto sm:w-auto">
             {!playMode ? (
-              <div className="text-right">
+              <div className="text-left sm:text-right">
                 <p className="text-lg text-sigmarite">
                   {totals.points}
-                  <span className="text-parchment/40"> / {list.pointsCap}</span>
+                  <span className="text-ink-muted"> / {list.pointsCap}</span>
                 </p>
                 <p className="text-xs text-ink-muted">{totals.drops} drops</p>
               </div>
-            ) : null}
+            ) : (
+              <span className="sm:hidden" />
+            )}
             <div
               role="group"
               aria-label="Mode"
@@ -410,11 +412,11 @@ function BuilderReady({
         )}
       </header>
 
-      <main className="mx-auto flex w-full max-w-3xl flex-col gap-5 px-4 py-6 pb-28">
+      <main className="mx-auto flex w-full max-w-3xl min-w-0 flex-col gap-5 px-4 py-6 pb-28">
         {!playMode ? (
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-2">
-            <label className="flex flex-col gap-2 text-sm text-parchment/80">
+        <div className="flex min-w-0 flex-col gap-4">
+          <div className="flex min-w-0 flex-col gap-2">
+            <label className="flex min-w-0 flex-col gap-2 text-sm text-parchment/80">
               Battle formation
               <select
                 value={list.formationId ?? ""}
@@ -424,7 +426,7 @@ function BuilderReady({
                     formationId: event.target.value || null,
                   })
                 }
-                className="min-h-11 rounded-xl bg-parchment px-3 text-parchment-ink"
+                className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
               >
                 {faction.formations.map((item) => (
                   <option key={item.id} value={item.id}>
@@ -434,7 +436,7 @@ function BuilderReady({
               </select>
             </label>
             {formation && formation.abilities.length > 0 ? (
-              <ul className="rounded-2xl bg-parchment px-4 py-3 text-parchment-ink shadow-sm">
+              <ul className="min-w-0 break-words rounded-2xl bg-parchment px-4 py-3 text-parchment-ink shadow-sm">
                 {formation.abilities.map((ability) => (
                   <li key={ability.name}>
                     <p className="font-serif text-lg leading-tight">
@@ -472,7 +474,7 @@ function BuilderReady({
                   const realm = (event.target.value || null) as ScourgeRealm | null;
                   void commit(applyScourgeRealm(list, faction, realm));
                 }}
-                className="min-h-11 rounded-xl bg-parchment px-3 text-parchment-ink"
+                className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
               >
                 <option value="">Core datasheets</option>
                 <option value="aqshy">Scourge of Aqshy</option>
@@ -496,7 +498,7 @@ function BuilderReady({
                       spellLoreId: event.target.value || null,
                     })
                   }
-                  className="min-h-11 rounded-xl bg-parchment px-3 text-parchment-ink"
+                  className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
                 >
                   <option value="">None</option>
                   {faction.spellLores.map((lore) => (
@@ -514,7 +516,7 @@ function BuilderReady({
               {faction.spellLores.length > 1 &&
               spellLore &&
               spellLore.powers.length > 0 ? (
-                <ul className="rounded-2xl bg-parchment px-4 py-3 text-parchment-ink shadow-sm">
+                <ul className="min-w-0 break-words rounded-2xl bg-parchment px-4 py-3 text-parchment-ink shadow-sm">
                   {spellLore.powers.map((power) => (
                     <li
                       key={power.name}
@@ -568,7 +570,7 @@ function BuilderReady({
                     prayerLoreId: event.target.value || null,
                   })
                 }
-                className="min-h-11 rounded-xl bg-parchment px-3 text-parchment-ink"
+                className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
               >
                 <option value="">None</option>
                 {faction.prayerLores.map((lore) => (
