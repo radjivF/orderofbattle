@@ -144,7 +144,7 @@ export default function FreeBuilderPage() {
         <h2>Start a list</h2>
         <ol>
           <li>
-            Open <Link href="/app">My lists</Link>. No account.
+            Open <Link href="/dashboard">My lists</Link>. No account.
           </li>
           <li>
             Pick a faction from the{" "}

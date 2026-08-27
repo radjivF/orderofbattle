@@ -19,7 +19,7 @@ export function LegalDoc({ title, updated, children }: Props) {
           </span>
         </Link>
         <Link
-          href="/app"
+          href="/dashboard"
           className="min-h-11 rounded-xl border border-sigmarite/30 px-4 text-sm leading-[2.75rem] text-parchment/85"
         >
           My lists

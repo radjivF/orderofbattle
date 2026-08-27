@@ -43,7 +43,7 @@ export function TryLanding() {
             <BrandMark size={36} className="h-8 w-auto drop-shadow-md" />
           </Link>
           <Link
-            href="/app"
+            href="/dashboard"
             className="min-h-11 rounded-xl border border-sigmarite/40 bg-ink/50 px-4 text-sm leading-[2.75rem] text-parchment/90 backdrop-blur-sm active:bg-ink/70 lg:hover:border-sigmarite/70 lg:hover:text-gold-bright"
           >
             My lists
@@ -104,7 +104,7 @@ export function TryLanding() {
                 </p>
                 <div className="mt-8 sm:mt-10">
                   <Link
-                    href="/app"
+                    href="/dashboard"
                     className="gold-plate shine inline-flex min-h-12 items-center justify-center rounded-xl px-9 text-base font-semibold tracking-wide text-ink active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sigmarite lg:hover:-translate-y-0.5"
                   >
                     Try Order of Battle
@@ -183,7 +183,7 @@ export function TryLanding() {
             </ul>
             <div data-rise="card" className="mt-6 text-center sm:mt-8">
               <Link
-                href="/app"
+                href="/dashboard"
                 className="inline-flex min-h-11 items-center justify-center rounded-xl border border-sigmarite/45 bg-ink/80 px-6 text-sm text-sigmarite backdrop-blur-sm active:bg-ink lg:hover:border-sigmarite lg:hover:text-gold-bright"
               >
                 Open My lists and try Play

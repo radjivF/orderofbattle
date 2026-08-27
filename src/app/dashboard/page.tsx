@@ -4,9 +4,9 @@ import { LibraryScreen } from "@/components/LibraryScreen";
 export const metadata: Metadata = {
   title: "My lists",
   robots: { index: false, follow: true },
-  alternates: { canonical: "/app" },
+  alternates: { canonical: "/dashboard" },
 };
 
-export default function AppPage() {
+export default function DashboardPage() {
   return <LibraryScreen />;
 }

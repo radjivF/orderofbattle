@@ -90,7 +90,7 @@ export default function FactionsPage() {
           })}
         </ul>
         <p>
-          <Link href="/app">Open the builder</Link>
+          <Link href="/dashboard">Open the builder</Link>
           {" · "}
           <Link href="/guides/how-to-build-an-age-of-sigmar-army-list">
             How to build a list

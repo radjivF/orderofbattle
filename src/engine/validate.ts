@@ -14,6 +14,7 @@ import {
   warmasterRegiments,
   rorTemplateForSelection,
   rorUnitAsCatalogue,
+  catalogueMatchIds,
 } from "./queries";
 import type { ArmyList, EnhancementPick, FactionCatalogue } from "./types";
 
@@ -111,7 +112,9 @@ export function summarize(
     const ror = getRegimentOfRenown(rorPick.renownId);
     if (!ror) {
       issues.push({ tone: "bad", text: "Unknown Regiment of Renown." });
-    } else if (!ror.factionIds.includes(list.factionId)) {
+    } else if (
+      !catalogueMatchIds(faction).some((id) => ror.factionIds.includes(id))
+    ) {
       issues.push({
         tone: "bad",
         text: `${ror.name} is not available to this faction.`,

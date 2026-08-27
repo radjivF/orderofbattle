@@ -56,6 +56,11 @@ const nextConfig: NextConfig = {
         destination: "/sitemap.xml",
         permanent: true,
       },
+      {
+        source: "/app",
+        destination: "/dashboard",
+        permanent: true,
+      },
     ];
   },
 };

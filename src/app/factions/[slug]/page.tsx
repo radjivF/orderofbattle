@@ -145,7 +145,7 @@ export default async function FactionPage({ params }: Props) {
         <h2>How to start a {faction.name} list</h2>
         <ol>
           <li>
-            Open <Link href="/app">My lists</Link> and create a list.
+            Open <Link href="/dashboard">My lists</Link> and create a list.
           </li>
           <li>Choose {faction.name} as the faction.</li>
           <li>Set points, pick a battle formation, and add a general.</li>

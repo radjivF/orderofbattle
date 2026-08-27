@@ -105,7 +105,7 @@ export default function HowToBuildPage() {
           list with official points and your opponent or TO before an event.
         </p>
         <p>
-          <Link href="/app">Open the builder</Link>
+          <Link href="/dashboard">Open the builder</Link>
           {" · "}
           <Link href="/guides/free-age-of-sigmar-army-builder">
             Free army builder overview

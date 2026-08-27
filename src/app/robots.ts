@@ -17,7 +17,7 @@ const AI_CRAWLERS = [
   "FacebookBot",
 ];
 
-const disallow = ["/app", "/lists/"];
+const disallow = ["/app", "/dashboard", "/lists/"];
 
 export default function robots(): MetadataRoute.Robots {
   return {

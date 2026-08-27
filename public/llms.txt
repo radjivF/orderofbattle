@@ -16,7 +16,7 @@ Order of Battle is a browser hobby helper for Warhammer Age of Sigmar (4th editi
 ## Product
 
 - [Order of Battle](/): Free Age of Sigmar army builder and table companion
-- [Open the builder](/app): Create and play lists in the browser (lists stay on the device; this route is a client app)
+- [Open the builder](/dashboard): Create and play lists in the browser (lists stay on the device; this route is a client app)
 
 ## Key information
 

@@ -65,7 +65,7 @@ export function BuilderScreen({ listId }: Props) {
     return (
       <div className="flex min-h-full flex-col items-start bg-ink px-6 py-10 text-parchment">
         <p className="font-serif text-3xl">This list is gone.</p>
-        <Link href="/app" className="mt-6 min-h-11 text-sigmarite">
+        <Link href="/dashboard" className="mt-6 min-h-11 text-sigmarite">
           Back to library
         </Link>
       </div>
@@ -318,7 +318,7 @@ function BuilderReady({
       <header className="sticky top-0 z-20 border-b border-sigmarite/15 bg-ink/92 pt-[env(safe-area-inset-top)] backdrop-blur-md">
         <div className="mx-auto flex w-full max-w-3xl min-w-0 flex-wrap items-center gap-x-3 gap-y-2 px-4 py-3 sm:flex-nowrap">
           <Link
-            href="/app"
+            href="/dashboard"
             className="gold-plate inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-xl px-3 text-ink active:translate-y-px sm:px-4"
           >
             <svg
