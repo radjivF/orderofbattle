@@ -1,6 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import {
+  coreCommandsForPhase,
+  isCommandAbility,
+  type CoreCommand,
+} from "@/engine/commands";
 import { combatModifierNotes } from "@/engine/magic";
 import {
   getListUnit,
@@ -20,6 +25,8 @@ import type {
   UnitWeapon,
 } from "@/engine/types";
 
+type PhaseSubTab = "abilities" | "weapons" | "command";
+
 type Props = {
   list: ArmyList;
   faction: FactionCatalogue;
@@ -33,10 +40,47 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
     [list, faction],
   );
   const [phaseId, setPhaseId] = useState<PlayPhaseId>("passive");
+  const [subTabByPhase, setSubTabByPhase] = useState<
+    Partial<Record<PlayPhaseId, PhaseSubTab>>
+  >({});
   const active =
     boards.find((board) => board.phase.id === phaseId) ?? boards[0] ?? null;
   const showCombatMods =
     active?.phase.id === "combat" || active?.phase.id === "shooting";
+
+  const phaseAbilities =
+    active?.abilities.filter((row) => !isCommandAbility(row.ability.kind)) ??
+    [];
+  const armyCommands =
+    active?.abilities.filter((row) => isCommandAbility(row.ability.kind)) ?? [];
+  const coreCommands = active
+    ? coreCommandsForPhase(active.phase.id)
+    : [];
+  const hasAbilities = phaseAbilities.length > 0;
+  const hasWeapons = (active?.weapons.length ?? 0) > 0;
+  const hasCommands = coreCommands.length > 0 || armyCommands.length > 0;
+  const hasArmyCommands = armyCommands.length > 0;
+  const defaultSubTab = defaultPhaseSubTab(
+    hasAbilities,
+    hasWeapons,
+    hasCommands,
+    hasArmyCommands,
+  );
+  const availableSubTabs = phaseSubTabs(
+    hasAbilities,
+    hasWeapons,
+    hasCommands,
+  );
+  const remembered = active ? subTabByPhase[active.phase.id] : undefined;
+  const subTab =
+    remembered && availableSubTabs.includes(remembered)
+      ? remembered
+      : defaultSubTab;
+
+  function selectSubTab(next: PhaseSubTab) {
+    if (!active) return;
+    setSubTabByPhase((prev) => ({ ...prev, [active.phase.id]: next }));
+  }
 
   return (
     <div className="flex flex-col gap-4">
@@ -92,113 +136,252 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
             </ul>
           ) : null}
 
-          {active.weapons.length > 0 ? (
-            <div className="mt-5">
-              <h3 className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-                Weapons
-              </h3>
-              <ul className="mt-3 flex flex-col gap-3">
-                {groupWeapons(active.weapons).map((group) => {
-                  const unit = getListUnit(
-                    list,
-                    faction,
-                    findUnitId(list, group.selectionId) ?? "",
-                  );
-                  const damage = selectionDamage(list, group.selectionId, faction);
-                  const unitMods = showCombatMods
-                    ? modifiers.filter(
-                        (note) => note.selectionId === group.selectionId,
-                      )
-                    : [];
+          {availableSubTabs.length > 0 ? (
+            <>
+              <div
+                role="tablist"
+                aria-label={`${active.phase.name} sections`}
+                className="mt-5 flex gap-1 border-b border-parchment-ink/15"
+              >
+                {availableSubTabs.map((tab) => {
+                  const selected = subTab === tab;
                   return (
-                    <li key={group.selectionId}>
-                      <button
-                        type="button"
-                        onClick={() => {
+                    <button
+                      key={tab}
+                      type="button"
+                      role="tab"
+                      aria-selected={selected}
+                      onClick={() => selectSubTab(tab)}
+                      className={`min-h-10 shrink-0 px-3 text-sm tracking-wide uppercase transition-colors ${
+                        selected
+                          ? "-mb-px border-b-2 border-parchment-ink font-semibold text-parchment-ink"
+                          : "text-sheet-muted hover:text-parchment-ink/80"
+                      }`}
+                    >
+                      {subTabLabel(tab)}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div role="tabpanel" className="mt-4">
+                {subTab === "abilities" ? (
+                  <ul className="flex flex-col gap-3">
+                    {phaseAbilities.map((row) => (
+                      <AbilityCard
+                        key={`${row.selectionId}-${row.ability.name}`}
+                        row={row}
+                        onOpen={() => {
                           const sheet = findSheet(
                             list,
                             faction,
-                            group.selectionId,
+                            row.selectionId,
                           );
                           if (sheet) {
                             onOpenSheet(sheet);
                           }
                         }}
-                        className="w-full rounded-xl bg-parchment-ink/5 px-3 py-3 text-left"
-                      >
-                        <p className="font-serif text-lg">{group.unitName}</p>
-                        {unitMods.length > 0 ? (
-                          <ul className="mt-2 flex flex-col gap-1">
-                            {unitMods.map((note) => (
-                              <li
-                                key={`${note.kind}:${note.powerName}`}
-                                className="rounded-md bg-aether/10 px-2 py-1 text-xs text-aether"
-                              >
-                                <span className="font-medium">
-                                  {note.powerName}
-                                </span>
-                                <span className="text-parchment-ink/70">
-                                  {" "}
-                                  · {note.summary}
-                                </span>
-                              </li>
-                            ))}
-                          </ul>
-                        ) : null}
-                        <ul className="mt-2 flex flex-col gap-2">
-                          {group.weapons.map((weapon) => (
-                            <li key={weapon.name} className="text-sm">
-                              <span className="font-medium">{weapon.name}</span>
-                              <WeaponStatLine
-                                weapon={weapon}
-                                unit={unit}
-                                damage={damage}
-                              />
+                      />
+                    ))}
+                  </ul>
+                ) : null}
+
+                {subTab === "weapons" ? (
+                  <ul className="flex flex-col gap-3">
+                    {groupWeapons(active.weapons).map((group) => {
+                      const unit = getListUnit(
+                        list,
+                        faction,
+                        findUnitId(list, group.selectionId) ?? "",
+                      );
+                      const damage = selectionDamage(
+                        list,
+                        group.selectionId,
+                        faction,
+                      );
+                      const unitMods = showCombatMods
+                        ? modifiers.filter(
+                            (note) => note.selectionId === group.selectionId,
+                          )
+                        : [];
+                      return (
+                        <li key={group.selectionId}>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const sheet = findSheet(
+                                list,
+                                faction,
+                                group.selectionId,
+                              );
+                              if (sheet) {
+                                onOpenSheet(sheet);
+                              }
+                            }}
+                            className="w-full rounded-xl bg-parchment-ink/5 px-3 py-3 text-left"
+                          >
+                            <p className="font-serif text-lg">
+                              {group.unitName}
+                            </p>
+                            {unitMods.length > 0 ? (
+                              <ul className="mt-2 flex flex-col gap-1">
+                                {unitMods.map((note) => (
+                                  <li
+                                    key={`${note.kind}:${note.powerName}`}
+                                    className="rounded-md bg-aether/10 px-2 py-1 text-xs text-aether"
+                                  >
+                                    <span className="font-medium">
+                                      {note.powerName}
+                                    </span>
+                                    <span className="text-parchment-ink/70">
+                                      {" "}
+                                      · {note.summary}
+                                    </span>
+                                  </li>
+                                ))}
+                              </ul>
+                            ) : null}
+                            <ul className="mt-2 flex flex-col gap-2">
+                              {group.weapons.map((weapon) => (
+                                <li key={weapon.name} className="text-sm">
+                                  <span className="font-medium">
+                                    {weapon.name}
+                                  </span>
+                                  <WeaponStatLine
+                                    weapon={weapon}
+                                    unit={unit}
+                                    damage={damage}
+                                  />
+                                </li>
+                              ))}
+                            </ul>
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                ) : null}
+
+                {subTab === "command" ? (
+                  <div className="flex flex-col gap-4">
+                    {armyCommands.length > 0 ? (
+                      <div>
+                        <h3 className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
+                          From your army
+                        </h3>
+                        <ul className="mt-3 flex flex-col gap-3">
+                          {armyCommands.map((row) => (
+                            <AbilityCard
+                              key={`${row.selectionId}-${row.ability.name}`}
+                              row={row}
+                              onOpen={() => {
+                                const sheet = findSheet(
+                                  list,
+                                  faction,
+                                  row.selectionId,
+                                );
+                                if (sheet) {
+                                  onOpenSheet(sheet);
+                                }
+                              }}
+                            />
+                          ))}
+                        </ul>
+                      </div>
+                    ) : null}
+
+                    {coreCommands.length > 0 ? (
+                      <div>
+                        <p className="text-sm text-sheet-muted">
+                          Universal commands · 4 CP each battle round (underdog
+                          +1). One command per unit per phase; each command once
+                          per army per phase.
+                        </p>
+                        <ul className="mt-3 flex flex-col gap-3">
+                          {coreCommands.map((command) => (
+                            <li key={command.id}>
+                              <CoreCommandCard command={command} />
                             </li>
                           ))}
                         </ul>
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          ) : null}
-
-          {active.abilities.length > 0 ? (
-            <div className="mt-5">
-              <h3 className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-                Abilities
-              </h3>
-              <ul className="mt-3 flex flex-col gap-3">
-                {active.abilities.map((row) => (
-                  <AbilityCard
-                    key={`${row.selectionId}-${row.ability.name}`}
-                    row={row}
-                    onOpen={() => {
-                      const sheet = findSheet(
-                        list,
-                        faction,
-                        row.selectionId,
-                      );
-                      if (sheet) {
-                        onOpenSheet(sheet);
-                      }
-                    }}
-                  />
-                ))}
-              </ul>
-            </div>
-          ) : null}
-
-          {active.abilities.length === 0 && active.weapons.length === 0 ? (
+                      </div>
+                    ) : null}
+                  </div>
+                ) : null}
+              </div>
+            </>
+          ) : (
             <p className="mt-5 text-sm text-sheet-muted">
               Nothing for this phase on the current list.
             </p>
-          ) : null}
+          )}
         </section>
       ) : null}
     </div>
+  );
+}
+
+function phaseSubTabs(
+  hasAbilities: boolean,
+  hasWeapons: boolean,
+  hasCommands: boolean,
+): PhaseSubTab[] {
+  const tabs: PhaseSubTab[] = [];
+  if (hasAbilities) tabs.push("abilities");
+  if (hasWeapons) tabs.push("weapons");
+  if (hasCommands) tabs.push("command");
+  return tabs;
+}
+
+function defaultPhaseSubTab(
+  hasAbilities: boolean,
+  hasWeapons: boolean,
+  hasCommands: boolean,
+  hasArmyCommands: boolean,
+): PhaseSubTab {
+  // Prefer Command when the list has faction/unit commands for this phase
+  // (e.g. Sylvaneth Fury of the Forest in Combat).
+  if (hasArmyCommands) return "command";
+  if (hasAbilities) return "abilities";
+  if (hasWeapons) return "weapons";
+  if (hasCommands) return "command";
+  return "abilities";
+}
+
+function subTabLabel(tab: PhaseSubTab) {
+  if (tab === "abilities") return "Abilities";
+  if (tab === "weapons") return "Weapons";
+  return "Command";
+}
+
+function CoreCommandCard({ command }: { command: CoreCommand }) {
+  return (
+    <article className="w-full rounded-xl bg-parchment-ink/5 px-3 py-3 text-left">
+      <div className="flex items-start justify-between gap-3">
+        <p className="font-serif text-lg leading-tight">{command.name}</p>
+        <span className="shrink-0 rounded-md bg-parchment-ink/10 px-2 py-0.5 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
+          {command.cost} CP
+        </span>
+      </div>
+      <p className="mt-1 text-sm font-semibold tracking-wide uppercase text-sheet-muted">
+        {command.timing}
+      </p>
+      {command.declare ? (
+        <p className="mt-2 text-sm leading-relaxed text-parchment-ink/75">
+          <span className="text-sheet-muted">Declare · </span>
+          {command.declare}
+        </p>
+      ) : null}
+      <p className="mt-1 text-sm leading-relaxed text-parchment-ink/75">
+        <span className="text-sheet-muted">Effect · </span>
+        {command.effect}
+      </p>
+      {command.keywords ? (
+        <p className="mt-2 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
+          Keywords · {command.keywords}
+        </p>
+      ) : null}
+    </article>
   );
 }
 

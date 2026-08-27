@@ -30,6 +30,7 @@ export const CORE_PLAY_PHASES: PlayPhase[] = [
     name: "Army",
     blurb: "Battle traits, formation, passives, and deploy",
   },
+  { id: "hero", name: "Hero", blurb: "Spells, prayers, hero-phase abilities" },
   { id: "movement", name: "Movement", blurb: "Movement-phase abilities" },
   { id: "shooting", name: "Shooting", blurb: "Ranged weapons and shooting abilities" },
   { id: "charge", name: "Charge", blurb: "Charge-phase abilities" },
@@ -37,15 +38,7 @@ export const CORE_PLAY_PHASES: PlayPhase[] = [
   { id: "end", name: "End of turn", blurb: "End-of-turn abilities" },
 ];
 
-const EXTRA_PLAY_PHASES: PlayPhase[] = [
-  { id: "hero", name: "Hero", blurb: "Spells, prayers, hero-phase abilities" },
-];
-
-export const PLAY_PHASES: PlayPhase[] = [
-  CORE_PLAY_PHASES[0],
-  ...EXTRA_PLAY_PHASES,
-  ...CORE_PLAY_PHASES.slice(1),
-];
+export const PLAY_PHASES: PlayPhase[] = CORE_PLAY_PHASES;
 
 const CORE_PHASE_IDS = new Set(CORE_PLAY_PHASES.map((phase) => phase.id));
 
