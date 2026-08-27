@@ -45,6 +45,10 @@ export type LoreOption = NamedOption & {
 
 export type EnhancementOption = NamedOption & {
   abilities: UnitAbility[];
+  /** Extra points cost from BSData, when present. */
+  points?: number;
+  /** Nested pack name, e.g. Brutal Beasts. */
+  pack?: string;
 };
 
 export type CatalogueUnit = {
@@ -149,8 +153,12 @@ export type FactionCatalogue = {
   manifestationLores: ManifestationLore[];
   artefacts: EnhancementOption[];
   heroicTraits: EnhancementOption[];
+  monstrousTraits?: EnhancementOption[];
+  visionsOfFate?: EnhancementOption[];
   terrain: FactionTerrain[];
   units: CatalogueUnit[];
+  /** Parent matched-play factions. Present on Armies of Renown. */
+  parentFactionIds?: string[];
 };
 
 export type Selection = {
@@ -182,6 +190,8 @@ export type ArmyList = {
   manifestationLoreId: string | null;
   artefact: EnhancementPick | null;
   heroicTrait: EnhancementPick | null;
+  monstrousTrait: EnhancementPick | null;
+  visionOfFate: EnhancementPick | null;
   /** null = core datasheets; aqshy/ghyran replaces matching warscrolls. */
   scourgeRealm: "aqshy" | "ghyran" | null;
   generalRegimentId: string | null;

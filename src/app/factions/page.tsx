@@ -68,6 +68,7 @@ export default function FactionsPage() {
                       alt={`${faction.name} army`}
                       width={64}
                       height={64}
+                      unoptimized
                       className="h-14 w-14 rounded-lg object-cover"
                     />
                   ) : (

@@ -1526,6 +1526,60 @@
       ]
     }
   ],
+  "monstrousTraits": [],
+  "visionsOfFate": [
+    {
+      "id": "7e3f-a1ed-b00b-dc7b",
+      "name": "Vision of Defiant Supremacy",
+      "abilities": [
+        {
+          "name": "Vision of Defiant Supremacy",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Hero Phase",
+          "declare": "",
+          "effect": "If you won the priority roll this battle round and chose for your opponent to take the first turn or if your opponent seized the initiative this battle round, this unit has Strike-first for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "points": 10
+    },
+    {
+      "id": "459b-9a0f-860c-80d5",
+      "name": "Vision of Destined Conquest",
+      "abilities": [
+        {
+          "name": "Vision of Destined Conquest",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Start of Your Turn",
+          "declare": "",
+          "effect": "If this unit is contesting an objective that you control that is wholly outside friendly territory: \u2022 If you are the underdog, gain 1 fate point for each command point you have. \u2022 If you are not the underdog, roll a dice for each command point you have. For each 3+, gain 1 fate point.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "points": 30
+    },
+    {
+      "id": "98bf-841c-d2e3-a635",
+      "name": "Vision of Arcane Sacrifice",
+      "abilities": [
+        {
+          "name": "Vision of Arcane Sacrifice",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While units (friendly or enemy) are within 6\" of this unit: \u2022 Add 1 to unbinding rolls for those units. \u2022 Spells cast by those units are miscast on an unmodified casting roll of 4 or less. The first time this unit is destroyed, gain D6 fate points.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "points": 20
+    }
+  ],
   "terrain": [
     {
       "id": "6ca7-16cb-53a8-71c0",

@@ -21,7 +21,6 @@ export const STATIC_PUBLIC_ROUTES: PublicRoute[] = [
   { path: "/factions", title: "Factions" },
   { path: "/privacy", title: "Privacy policy" },
   { path: "/terms", title: "Terms of use" },
-  { path: "/sitemap", title: "Sitemap" },
 ];
 
 export function listPublicRoutes(): PublicRoute[] {

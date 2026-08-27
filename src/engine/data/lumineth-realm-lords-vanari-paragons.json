@@ -1,0 +1,974 @@
+{
+  "id": "lumineth-realm-lords-vanari-paragons",
+  "name": "Lumineth Realm-lords - Vanari Paragons",
+  "game": "Age of Sigmar 4th",
+  "source": "https://github.com/BSData/age-of-sigmar-4th",
+  "pointsCapDefault": 2000,
+  "formations": [],
+  "battleTraits": [
+    {
+      "id": "5660-62e9-1714-fd59",
+      "name": "Vanari Paragons",
+      "abilities": [
+        {
+          "name": "Rewards of Valour",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Deployment Phase",
+          "declare": "Pick a friendly non-Unique Vanari Hero that does not have an artefact of power to be the target.",
+          "effect": "Give the target 1 artefact of power from the 'Vanari Paragons' Army of Renown rules. Designer's Note: *This artefact of power is given to the* Hero *during the deployment phase, not during army composition.*",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Labour of Control",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), End of Any Turn",
+          "declare": "You can only use this ability if there is at least 1 different friendly unit within 6\" of each battlefield edge.",
+          "effect": "Add 1 to the number of labours you have completed. For the rest of the battle, add 2\" to the Move characteristic of friendly Lumineth Realm-lords units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Labour of Might",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), End of Any Turn",
+          "declare": "You can only use this ability if 3 or more enemy units have been destroyed this battle.",
+          "effect": "Add 1 to the number of labours you have completed. For the rest of the battle, add 1 to wound rolls for combat attacks made by friendly Lumineth Realm-lords units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Blessing of Tyrion",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), End of Any Turn",
+          "declare": "You can only use this ability if you have completed 3 labours.",
+          "effect": "For the rest of the battle, friendly Lumineth Realm-lords units have Ward (5+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "spellLores": [],
+  "prayerLores": [],
+  "manifestationLores": [],
+  "artefacts": [
+    {
+      "id": "57ee-a2c6-1f8c-9150",
+      "name": "Swiftfeather Talisman",
+      "abilities": [
+        {
+          "name": "Swiftfeather Talisman",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick a friendly Lumineth Realm-lords unit to be the target.",
+          "effect": "Add 2\" to the target's Move characteristic for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "3375-51e7-c6ce-2519",
+      "name": "Phoenix Blade",
+      "abilities": [
+        {
+          "name": "Phoenix Blade",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit's combat attacks score critical hits on unmodified hit rolls of 5+.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "a83a-c898-7a4d-01b0",
+      "name": "Nullstone Beads",
+      "abilities": [
+        {
+          "name": "Nullstone Beads",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit can use the 'Unbind' ability as if it had Wizard (1).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "heroicTraits": [
+    {
+      "id": "ac8d-62c4-977a-c9d4",
+      "name": "Master Duellist",
+      "abilities": [
+        {
+          "name": "Master Duellist",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick a visible enemy Hero in combat with this unit to be the target.",
+          "effect": "Roll a dice. On a 4+: \u2022 If the target has an artefact of power, it no longer has that artefact of power. \u2022 The target has Strike-last for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "monstrousTraits": [],
+  "visionsOfFate": [],
+  "terrain": [
+    {
+      "id": "dda1-f11e-f025-a2b7",
+      "name": "Shrine Luminor",
+      "stats": {
+        "move": "-",
+        "health": "12",
+        "save": "3+",
+        "control": "-"
+      },
+      "categories": [
+        "FACTION TERRAIN",
+        "FLY",
+        "ORDER",
+        "LUMINETH REALM-LORDS"
+      ],
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "Shrine Guardian",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this terrain feature has a Shrine Guardian: \u2022 This terrain feature has a Move characteristic of 6\" and can use non-command non-Charge Move abilities as if it were a unit. It cannot end a Move ability within the combat range of an enemy unit. \u2022 The Shrine Guardian cannot use Move abilities and remains on this terrain feature each time it moves. \u2022 Instead of measuring range or visibility to the Shrine Guardian, measure to this terrain feature instead. \u2022 All attacks that would target the Shrine Guardian target this terrain feature instead. \u2022 If this terrain feature is destroyed, before removing it from the battlefield, inflict D3 mortal damage on the Shrine Guardian. Then, set up the Shrine Guardian on the battlefield wholly within 3\" of this terrain feature and not in combat. That unit is no longer a Shrine Guardian. If it is not possible to set up the Shrine Guardian, it is slain.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Enter the Shrine",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "If this terrain feature does not have a Shrine Guardian, pick a friendly Lumineth Realm\u2011lords Infantry Hero within 3\" of it and not in combat to be the target.",
+          "effect": "Place the target on this terrain feature. The target is now a Shrine Guardian (see 'Shrine Guardian').",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Cleansing Rituals",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Reaction: You declared a Spell ability for a Lumineth Realm-lords unit wholly within 12\" of this terrain feature",
+          "declare": "",
+          "effect": "While this terrain feature has a Shrine Guardian, you can re-roll the casting roll for that spell.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Exit the Shrine",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "",
+          "effect": "If this terrain feature has a Shrine Guardian that was not placed on it this turn, set up the Shrine Guardian on the battlefield wholly within 6\" of this terrain feature and not in combat. That unit is no longer a Shrine Guardian.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "d19-ee8b-af86-b163",
+      "name": "The Light of Eltharion",
+      "points": 300,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "UNIQUE",
+        "HERO",
+        "ORDER",
+        "AELF",
+        "LUMINETH REALM-LORDS",
+        "INFANTRY",
+        "WARD (4+)",
+        "VANARI PARAGONS",
+        "Lumineth Paragon"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "7",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Celennari Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "2+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "Anti-Hero (+1 Rend), Anti-Monster (+1 Rend)"
+        },
+        {
+          "name": "Fangsword of Eltharion",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "2+",
+          "wound": "3+",
+          "rend": "3",
+          "damage": "3",
+          "ability": "Crit (2 Hits)"
+        },
+        {
+          "name": "Searing Darts of Light",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "3",
+          "hit": "2+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": "Shoot in Combat"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Supreme Swordmaster",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Ignore negative modifiers to hit rolls and wound rolls for this unit's attacks.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Valorous Intervention",
+          "kind": "Command",
+          "timing": "Any Combat Phase",
+          "declare": "This unit cannot use this ability if it is in combat. Pick a friendly Lumineth Realm-lords unit that is in combat to be the target.",
+          "effect": "Remove this unit from the battlefield and set it up again within 1\" of the target, within 1\" of an enemy unit and in combat. This unit has charged.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "879-a29f-5c33-2e92",
+          "name": "LUMINETH REALM-LORDS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "7068-f652-3ce0-aa77",
+          "name": "Lumineth Paragon"
+        }
+      ]
+    },
+    {
+      "id": "2f0e-de34-fd64-39a6",
+      "name": "The Light of Eltharion (Scourge of Ghyran)",
+      "points": 280,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "UNIQUE",
+        "HERO",
+        "ORDER",
+        "AELF",
+        "LUMINETH REALM-LORDS",
+        "INFANTRY",
+        "WARD (4+)",
+        "VANARI PARAGONS",
+        "Lumineth Paragon"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "6",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Celennari Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "2+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "Anti-Hero (+1 Rend), Anti-Monster (+1 Rend)"
+        },
+        {
+          "name": "Fangsword of Eltharion",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "2+",
+          "wound": "3+",
+          "rend": "3",
+          "damage": "3",
+          "ability": "Crit (2 Hits)"
+        },
+        {
+          "name": "Searing Darts of Light",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "3",
+          "hit": "2+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Supreme Swordmaster",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Ignore negative modifiers to hit rolls and wound rolls for this unit's attacks. In addition, ignore negative modifiers to the characteristics of this unit's melee weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Eternal Light",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit is destroyed and if a friendly Lumineth Realm-lords Wizard successfully casts a Summon spell, instead of resolving the effect of that Summon spell, you can set up a replacement unit for this unit more than 9\" from all enemy units and wholly within 12\" of the unit that used that Summon spell. This ability is still in effect even if this unit is not on the battlefield.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "879-a29f-5c33-2e92",
+          "name": "LUMINETH REALM-LORDS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "7068-f652-3ce0-aa77",
+          "name": "Lumineth Paragon"
+        }
+      ]
+    },
+    {
+      "id": "2df7-ab5b-fecc-341b",
+      "name": "Vanari Bannerblade",
+      "points": 130,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "AELF",
+        "LUMINETH REALM-LORDS",
+        "VANARI",
+        "INFANTRY",
+        "VANARI PARAGONS",
+        "Lumineth Paragon"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Bannerblade's Sword",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "World Banner",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While a visible friendly Lumineth Realm-lords unit is wholly within 12\" of this unit, it can use the 'Rally' command even if it is in combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "9958-c5c0-c246-8010",
+          "name": "VANARI"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "eec0-758b-4528-e3b5",
+      "name": "Vanari Bannerblade (Scourge of Ghyran)",
+      "points": 140,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "AELF",
+        "LUMINETH REALM-LORDS",
+        "VANARI",
+        "INFANTRY",
+        "VANARI PARAGONS",
+        "Lumineth Paragon"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "3+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Bannerblade's Sword",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Defend the Banner",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to save rolls for friendly Vanari Infantry units while they are contesting the same objective as this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "9958-c5c0-c246-8010",
+          "name": "VANARI"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "69db-94ab-507b-0e92",
+      "name": "Vanari Lord Regent",
+      "points": 110,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "AELF",
+        "LUMINETH REALM-LORDS",
+        "VANARI",
+        "INFANTRY",
+        "VANARI PARAGONS",
+        "Lumineth Paragon"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Regent's Sword",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Shining Example",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time a friendly Lumineth Realm-lords unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Wall of Blades",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick a friendly Vanari Auralan Wardens unit wholly within 12\" of this unit to be the wall of blades. Then, pick an enemy unit in combat with the wall of blades to be the target.",
+          "effect": "Roll a dice for each model in the wall of blades that is within 3\" of the target. For each 5+, inflict 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "9958-c5c0-c246-8010",
+          "name": "VANARI"
+        },
+        {
+          "type": "category",
+          "id": "fc79-62e1-45e2-dedd",
+          "name": "fc79-62e1-45e2-dedd"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "2e0b-1a0a-3d2b-8fef",
+      "name": "Vanari Lord Regent on Lightcourser",
+      "points": 150,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "AELF",
+        "LUMINETH REALM-LORDS",
+        "CAVALRY",
+        "VANARI",
+        "VANARI PARAGONS"
+      ],
+      "stats": {
+        "move": "14\"",
+        "health": "7",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Regent's Sword",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (Mortal)"
+        },
+        {
+          "name": "Lightcourser's Horns and Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Lead the Charge",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "You can re-roll charge rolls for friendly Lumineth Realm-lords units while they are wholly within 6\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Purest Aetherquartz",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Hero Phase",
+          "declare": "",
+          "effect": "For the rest of the turn, add 1 to hit rolls for this unit's attacks and subtract 1 from hit rolls for attacks that target this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "9958-c5c0-c246-8010",
+          "name": "VANARI"
+        },
+        {
+          "type": "category",
+          "id": "fc79-62e1-45e2-dedd",
+          "name": "fc79-62e1-45e2-dedd"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "7068-f652-3ce0-aa77",
+          "name": "Lumineth Paragon"
+        }
+      ]
+    },
+    {
+      "id": "49b1-940c-50a1-24c9",
+      "name": "Vanari Auralan Sentinels",
+      "points": 150,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 10,
+      "categories": [
+        "CHAMPION",
+        "INFANTRY",
+        "ORDER",
+        "LUMINETH REALM-LORDS",
+        "AELF",
+        "VANARI",
+        "VANARI PARAGONS"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "1",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Auralan Bow",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit (Auto-wound)"
+        },
+        {
+          "name": "Sentinel Blades",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Lofted Shots",
+          "kind": "Activated",
+          "timing": "Your Shooting Phase",
+          "declare": "",
+          "effect": "For the rest of the turn, add 6\" to the Range characteristic of this unit's Auralan Bows but subtract 1 from hit rolls for this unit's shooting attacks.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "b62e-acea-4717-14bd",
+      "name": "Vanari Auralan Wardens",
+      "points": 120,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 10,
+      "categories": [
+        "CHAMPION",
+        "INFANTRY",
+        "ORDER",
+        "LUMINETH REALM-LORDS",
+        "AELF",
+        "VANARI",
+        "VANARI PARAGONS"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "1",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Warden Pikes and Blades",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Anti-charge (+1 Rend), Crit (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Anticipated Strike",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit has not charged this turn, ignore the effect of the Charge (+1 Damage) ability for combat attacks made by enemy units that target this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "b32e-9c8a-a294-9abe",
+      "name": "Vanari Bladelords",
+      "points": 150,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "CHAMPION",
+        "INFANTRY",
+        "ORDER",
+        "LUMINETH REALM-LORDS",
+        "AELF",
+        "VANARI",
+        "VANARI PARAGONS"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "2",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Sunmetal Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Masters of Combat",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Rend characteristic of this unit's Sunmental Blades for each instance of Varinor, Rune of Strength depicted on your battle scripture.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Guardians of the Scinari",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While any friendly Scinari Heroes are wholly within this unit's combat range, both this unit and those friendly units have Ward (5+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "8f4-ae60-8a15-6d7d",
+      "name": "Vanari Dawnriders",
+      "points": 200,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "CHAMPION",
+        "ORDER",
+        "LUMINETH REALM-LORDS",
+        "AELF",
+        "VANARI",
+        "STANDARD BEARER (1/5)",
+        "CAVALRY",
+        "VANARI PARAGONS"
+      ],
+      "stats": {
+        "move": "14\"",
+        "health": "3",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Dawnrider Lances and Blades",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge (+1 Damage), Crit (Mortal)"
+        },
+        {
+          "name": "Stallions' Hooves",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Dawnrider Charge",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Rend characteristic of this unit's Dawnrider Lances and Blades if it charged in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "ac41-4a7-88c5-9ab2",
+      "name": "Vanari Starshard Ballista",
+      "points": 100,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "ORDER",
+        "LUMINETH REALM-LORDS",
+        "WAR MACHINE",
+        "VANARI",
+        "VANARI PARAGONS"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Starshard Bolts",
+          "kind": "ranged",
+          "range": "24\"",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti-Monster (+1 Rend), Crit (2 Hits)"
+        },
+        {
+          "name": "Crew's Arming Swords",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Blinding Bolts",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Shooting Phase",
+          "declare": "Pick an enemy unit that was targeted by all this unit's shooting attacks this phase to be the target.",
+          "effect": "Roll a dice. Add 1 to the roll if the target is a Monster. On a 3+, subtract 1 from hit rolls for the target's attacks for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Scryhawks",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 6\" to the Range characteristic of this unit's Starshard Bolts while it is wholly within 12\" of any friendly Vanari Auralan Sentinels units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ],
+  "parentFactionIds": [
+    "lumineth-realm-lords"
+  ]
+}

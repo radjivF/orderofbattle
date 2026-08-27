@@ -1,0 +1,2767 @@
+{
+  "id": "flesh-eater-courts-new-summercourt",
+  "name": "Flesh-eater Courts - New Summercourt",
+  "game": "Age of Sigmar 4th",
+  "source": "https://github.com/BSData/age-of-sigmar-4th",
+  "pointsCapDefault": 2000,
+  "formations": [],
+  "battleTraits": [
+    {
+      "id": "c17f-8c0b-7c99-6dc9",
+      "name": "New Summercourt",
+      "abilities": [
+        {
+          "name": "The Summerking's Colours",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Deployment Phase",
+          "declare": "Pick a friendly New Summercourt unit that contains any standard bearers to be the target.",
+          "effect": "For the rest of the battle: \u2022 While the target unit contains any standard bearers, add 10 to the control scores of friendly New \u2022 Summercourt units while they are wholly within 24\" of the target. Once all of the standard bearers in the target unit have been slain, subtract 5 from the control scores of friendly New Summercourt units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "A Duel, Good Sir",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "You must use this ability if the friendly Ushoran is in combat with the friendly general. Pick the enemy general to be the target.",
+          "effect": "Your opponent must decide whether the target will accept or refuse Ushoran's challenge. *Accept:* For the rest of the turn, when the friendly Ushoran and the target are picked to use a Fight ability, all of their attacks must target each other. *Refuse:* The target has Strike-last for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "In Their Sire's Shadow",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Any Charge Phase",
+          "declare": "If the friendly Ushoran is not in combat and has not used any Run or Retreat abilities this turn, pick him to use this ability. Then, pick up to 2 friendly New Summercourt Knights units within his combat range that are not in combat and have not used a Run or Retreat ability this turn to be his royal retinue. Then, make a charge roll of 2D6.",
+          "effect": "The friendly Ushoran can move a distance up to the value of the charge roll. He can move through the combat ranges of enemy units and must end that move within 1/2\" of a visible enemy unit. If he does so, he has charged. If he charged, then after this ability has been resolved, each unit in his royal retinue can immediately use the 'Charge' ability even if it is not your charge phase and you can use the charge roll from this ability instead of making a charge roll when it does so, but it must end the charge move within 3\" of the friendly Ushoran.",
+          "keywords": "Core, Move, Charge",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "The Knight's Vow",
+          "kind": "Activated",
+          "timing": "Once Per Turn(Army), Any Combat Phase",
+          "declare": "Pick each friendly New Summercourt unit that did not charge this turn to be the targets.",
+          "effect": "Start rolling dice, one at a time and one for each target, and stop when you roll a 6. The target you rolled a 6 for can use 2 Fight abilities this phase. After the first is used, however, the target has Strike-last for the rest of the turn. If you rolled for each target and did not roll a 6, this ability has no effect.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Nightmarish Charge",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from hit rolls for combat attacks that target friendly New Summercourt units that charged in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Red Errantry Hosts",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Movement Phase",
+          "declare": "Pick a friendly Knights unit that has been destroyed to be the target.",
+          "effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 6\" of a battlefield edge and more than 9\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "spellLores": [
+    {
+      "id": "0da3-3a92-3dd1-f016",
+      "name": "Deranged Transformation",
+      "powers": [
+        {
+          "name": "Deranged Transformation",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly New Summercourt Wizard to cast this spell, pick a visible friendly New Summercourt Infantry or Cavalry unit wholly within 12\" of them to be the target, then make a casting roll of 2D6.",
+          "effect": "Until the start of your next turn: \u2022 Add 2\" to the target's Move characteristic. \u2022 Add 1 to wound rolls for the target's combat attacks.",
+          "keywords": "Spell, Unlimited",
+          "castingValue": "6",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "1180-eeb6-4c76-86d4",
+      "name": "Miasma of Madness",
+      "powers": [
+        {
+          "name": "Miasma of Madness",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly New Summercourt Wizard to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
+          "effect": "Until the start of your next turn, for each unmodified hit roll of 1 for a combat attack made by the target, inflict 1 mortal damage on the target after the Fight ability has been resolved.",
+          "keywords": "Spell",
+          "castingValue": "7",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "prayerLores": [
+    {
+      "id": "a1cd-f3e1-7036-c7e3",
+      "name": "Excommunication",
+      "powers": [
+        {
+          "name": "Excommunication",
+          "kind": "Prayer",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Flesh-eater Courts Priest to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
+          "effect": "Until the start of your next turn, ignore positive modifiers to save rolls for the target. In addition, if the chanting roll was 10+, ward rolls cannot be made for the target until the start of your next turn.",
+          "keywords": "Prayer, Unlimited",
+          "castingValue": "",
+          "chantingValue": "4"
+        }
+      ]
+    }
+  ],
+  "manifestationLores": [
+    {
+      "id": "8c1d-60e0-f744-a07c",
+      "name": "Summon Corpsemare Stampede",
+      "manifestations": []
+    },
+    {
+      "id": "db7f-2a40-6ebc-907b",
+      "name": "Aetherwrought Machineries",
+      "manifestations": [
+        {
+          "id": "fcb6-ae80-2e58-aadb",
+          "name": "Aethervoid Pendulum",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Scything Blade",
+              "kind": "Activated",
+              "timing": "Any Movement Phase",
+              "declare": "",
+              "effect": "This Manifestation can move a distance up to its Move characteristic in one direction (see 'The Pendulum Swings'). It can pass through models during that move and can end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move or that are within 1/2\" of it to be the targets. Roll a D6 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "The Pendulum Swings",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "This Manifestation cannot use Charge or Fight abilities. In addition, when this Manifestation moves, it must move in a straight line either in the direction in which the tip of the pendulum blade is pointing or in the opposite direction to the direction in which the tip of the pendulum blade is pointing",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Aethervoid Pendulum",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Aethervoid Pendulumon the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up an Aethervoid Pendulum wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "1aba-bc38-e988-d79f",
+          "name": "Chronomantic Cogs",
+          "stats": {
+            "move": "-",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Mechanisms of Time",
+              "kind": "Activated",
+              "timing": "Once Per Turn, Your Hero Phase",
+              "declare": "",
+              "effect": "If there are any friendly Wizards within 3\" of this Manifestation, pick 1 of the following effects: *Increase Time Flow*: Until the start of your next turn, you can re-roll charge rolls for friendly units while they are wholly within 12\" of this Manifestation. *Decrease Time Flow*: Until the start of your next turn, subtract 1 from hit rolls for attacks that target friendly Wizards while they are wholly within 12\" of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Chronomantic Cogs",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Chronomantic Cogs endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Chronomantic Cogs endless spell wholly within 12\" of the caster and visible to them.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "8cde-fafe-2b2a-ced5",
+          "name": "Quicksilver Swords",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Quicksilver Blades",
+              "kind": "melee",
+              "range": "",
+              "attacks": "12",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Crit (Mortal)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Dancing Blades",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Ward rolls cannot be made for damage points inflicted by this Manifestation's attacks.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Quicksilver Swords",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Quicksilver Swords endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Quicksilver Swords endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "9fd2-a506-6462-a6c8",
+      "name": "Forbidden Power",
+      "manifestations": [
+        {
+          "id": "f935-2383-94ba-3be2",
+          "name": "Horrorghast",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Scream of Terror",
+              "kind": "ranged",
+              "range": "10\"",
+              "attacks": "6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "1",
+              "ability": "Shoot in Combat, Anti-INFANTRY (+1 Rend)"
+            },
+            {
+              "name": "Deathly Touch",
+              "kind": "melee",
+              "range": "",
+              "attacks": "4",
+              "hit": "4+",
+              "wound": "4+",
+              "rend": "-",
+              "damage": "1",
+              "ability": "-"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Harbinger of Horror",
+              "kind": "Activated",
+              "timing": "Any Shooting Phase",
+              "declare": "Pick an enemy unit that was targeted by this Manifestation's shooting attacks this phase to be the target.",
+              "effect": "Roll a dice. If the roll is less than the number of models in the target unit that were slain this phase, the target cannot use commands for the rest of the turn.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Horrorghast",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Horrorghast endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Horrorghast endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "a26b-cd08-8f9d-90b0",
+          "name": "Lauchon the Soulseeker",
+          "stats": {
+            "move": "12\"",
+            "health": "10",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Scything Oar",
+              "kind": "melee",
+              "range": "",
+              "attacks": "3",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "D3",
+              "ability": "Crit (2 Hits)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Traverse the Tides of Death",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "Pick a friendly Infantry Wizard Hero within 3\" of this Manifestation to be the target",
+              "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, remove the target from the battlefield and set them up again on the battlefield within 3\" of this Manifestation and not in combat. Then, inflict 1 mortal damage on the target.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Lauchon the Soulseeker",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Lauchon the Soulseeker endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Lauchon the Soulseeker endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "94f6-4321-fd80-f20e",
+          "name": "Shards of Valagharr",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Phantasmal Translocation",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "",
+              "effect": "Pick a part of this Manifestation, remove it from the battlefield and set it up again on the battlefield wholly within 9\" of the other part and more than 3\" from all enemy units.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Ensnaring Soul-drain",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time an enemy unit uses a Move ability while it is within 9\" of any parts of this Manifestation, the effects of the 'Fly' ability do not apply to that unit. Enemy units cannot be set up within 9\" of either part of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Shards of Valagharr",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Shards of Valagharr endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Shards of Valagharr endless spell wholly within 18\" of the caster and visible to them. A Shards of Valagharr endless spell has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "523f-bd78-e418-9922",
+          "name": "Soulscream Bridge",
+          "stats": {
+            "move": "-",
+            "health": "12",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Deathly Passage",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "Pick a friendly unit wholly within 6\" of one part of this Manifestation to be the target.",
+              "effect": "Remove the target from the battlefield and set it up again on the battlefield wholly within 6\" of the other part of this Manifestation and more than 9\" from all enemy units.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Soulscream Bridge",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Soulscream Bridge endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Soulscream Bridge wholly within 18\" of the caster and visible to them. A Soulscream Bridge has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "93f1-1e9f-b52b-ff3c",
+      "name": "Krondspine Incarnate",
+      "manifestations": [
+        {
+          "id": "4ba0-e87-36e0-db58",
+          "name": "Krondspine Incarnate of Ghur",
+          "stats": {
+            "move": "10\"",
+            "health": "12",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "8+",
+          "categories": [
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "WARD (6+)",
+            "FLY",
+            "INCARNATE"
+          ],
+          "weapons": [
+            {
+              "name": "Amberbone Claws and Fangs",
+              "kind": "melee",
+              "range": "",
+              "attacks": "6",
+              "hit": "4+",
+              "wound": "2+",
+              "rend": "2",
+              "damage": "3",
+              "ability": "Anti-Manifestation(+1 Rend)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Devourer of Magics",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "",
+              "effect": "If this Manifestation destroyed any enemy Manifestations this turn, Heal (6) this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Arcane Predator",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "You can add 1 to the number of dice rolled when making charge rolls for this Manifestation, to a maximum of 3, while it is within 18\" of any enemy Manifestations, but if you do so, it must end the charge move within 1/2\" of an enemy Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Wild Form",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time this Manifestation is targeted by the 'Banish Manifestation' ability, if it would be banished, it is not banished. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points).",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Krondspine Incarnate of Ghur",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Krondspine Incarnate of Ghur endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Krondspine Incarnate of Ghur endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "8",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "b4d2-4178-ff43-a44b",
+      "name": "Morbid Conjuration",
+      "manifestations": [
+        {
+          "id": "e699-49b7-d2b8-d5fc",
+          "name": "Malevolent Maelstrom",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Lashing Tendrils of Energy",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "-",
+              "damage": "1",
+              "ability": "Crit (2 Hits)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Morbid Detonation",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "You must, and can only, use this ability if this unit has 6 maelstrom points. Pick each unit (friendly and enemy) within 9\" of it to be the targets.",
+              "effect": "Roll a dice for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Then, this Manifestation is destroyed.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Necrotic Vortex",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Give this Manifestation 1 maelstrom point each time: \u2022 This Manifestation is set up. \u2022 A unit successfully casts a spell while it is within 12\" of this Manifestation. \u2022 A model is slain within 12\" of this Manifestation. This Manifestation can have a maximum of 6 maelstrom points at once.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Malevolent Maelstrom",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly a Malevolent Maelstrom endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a a Malevolent Maelstrom endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "e7a5-e611-4c13-22d0",
+          "name": "Purple Sun of Shyish",
+          "stats": {
+            "move": "8\"",
+            "health": "10",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Transmuting Rays",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Crit (Mortal)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "End Given Form",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "",
+              "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move to be the targets. Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Pull of the Nadir",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Subtract 1 from save rolls for friendly and enemy units while they are within 3\" of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Purple Sun of Shyish",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Purple Sun of Shyish endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Purple Sun of Shyish endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "8",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "dee3-92a0-27e7-252a",
+          "name": "Soulsnare Shackles",
+          "stats": {
+            "move": "-",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Bound for the Great Oubliette",
+              "kind": "Activated",
+              "timing": "Any Hero Phase",
+              "declare": "For each part of this Manifestation, you can pick an enemy unit within 3\" of that part to be the targets. You cannot pick the same unit to be the target of this ability more than once per turn.",
+              "effect": "Roll a D3 for each target. On a 2+: \u2022 Inflict an amount of mortal damage on the target equal to the roll. \u2022 Subtract a number of inches equal to the roll from the target's Move characteristic for the rest of the turn.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and all its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Soulsnare Shackles",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Soulsnare Shackles endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Soulsnare Shackles endless spell wholly within 18\" of the caster and visible to them. A Soulsnare Shackles endless spell has 3 parts that must each be set up within 3\" of at least 1 other part.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "1885-a1aa-bf5d-6d0d",
+          "name": "Suffocating Gravetide",
+          "stats": {
+            "move": "12\"",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Spectral Riptide",
+              "kind": "melee",
+              "range": "",
+              "attacks": "8",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Charge (+1 Damage)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Pulled to the Grave",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "",
+              "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, you can pick an enemy unit that this Manifestation passed across during that move to be the target. Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Suffocating Gravetide",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Suffocating Gravetide endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Suffocating Gravetide endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "8",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "83f1-e447-c26-c5c",
+      "name": "Twilit Sorceries",
+      "manifestations": [
+        {
+          "id": "d420-1699-5ad9-1956",
+          "name": "Geminids of Uhl-Gysh",
+          "stats": {
+            "move": "8\"",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "6+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Tendrils of Light and Shadow",
+              "kind": "melee",
+              "range": "",
+              "attacks": "4",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "D3",
+              "ability": "-"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Tendrils of Light and Shadow",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Enemy units cannot use commands while they are within 3\" of either part of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play. Each time this Manifestation moves, both its parts must end within 9\" of each other. Each part of this Manifestation is armed with Tendrils of Light and Shadow.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Geminids of Uhl-Gysh",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Geminids of Uhl-Gysh endless spell on the battlefield, pick a friendly Wizardto cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Geminids of Uhl-Gysh endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units. A Geminids of Uhl-Gysh endless spell has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "015a-4e4f-322f-ccff",
+          "name": "Prismatic Palisade",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Blinding Light",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "This Manifestation cannot be targeted by shooting attacks. In addition, a unit cannot be targeted by shooting attacks if it is impossible to draw a straight line from a model in the attacking unit to a model in the target unit without that line passing across this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Prismatic Palisade",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Prismatic Palisade endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Prismatic Palisade wholly within 18\" of the caster and visible to them.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "0552-183c-1b2a-d117",
+          "name": "Umbral Spellportal",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "6+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Arcane Passage",
+              "kind": "Activated",
+              "timing": "Your Hero Phase",
+              "declare": "Pick a friendly Wizard within 3\" of this Manifestation to be the target.",
+              "effect": "The next time the target uses a non-Summon Spell ability this phase, add 1 to the casting value of that spell. When picking targets for that spell, you can measure range and visibility from either part of this Manifestation instead of from the caster, and your opponent can measure range and visibility to either part of this Manifestation instead of to the caster for the purposes of the 'Unbind' ability.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Umbral Spellportal",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Umbral Spellportal endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up an Umbral Spellportal wholly within 18\" of the caster and visible to them. An Umbral Spellportal has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "7217-5951-aaf0-47e8",
+      "name": "Primal Energy",
+      "manifestations": [
+        {
+          "id": "3071-fc11-4eb8-bbcc",
+          "name": "Emerald Lifeswarm",
+          "stats": {
+            "move": "8\"",
+            "health": "5",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Swarming Bites",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "4+",
+              "rend": "-",
+              "damage": "1",
+              "ability": "Anti-Infantry (+1 Rend)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Restored Vigour",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "",
+              "effect": "Heal (3) this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Bounteous Healing",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "Pick a friendly unit within 3\" of this Manifestation to be the target.",
+              "effect": "Heal (3) the target.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Emerald Lifeswarm",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Emerald Lifeswarm endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Emerald Lifeswarm endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "41c4-2f6a-0d3c-a23e",
+          "name": "Ravenak's Gnashing Jaws",
+          "stats": {
+            "move": "3D6\"",
+            "health": "10",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [
+            {
+              "name": "Gnashing Jaws",
+              "kind": "melee",
+              "range": "",
+              "attacks": "10",
+              "hit": "4+",
+              "wound": "2+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Charge (+1 Damage)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Ravening Hunger",
+              "kind": "Activated",
+              "timing": "Any Charge Phase",
+              "declare": "If this Manifestation charged this turn, pick an enemy unit within 1\" of it to be the target.",
+              "effect": "Roll 10 dice. For each 5+, inflict 1 mortal damage on the target.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Ravenak's Gnashing Jaws",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Ravenak's Gnashing Jaws endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Ravenak's Gnashing Jaws endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "e1cc-64dc-f765-b9cc",
+          "name": "The Burning Head",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "6+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Burning Breath",
+              "kind": "ranged",
+              "range": "10\"",
+              "attacks": "D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "1",
+              "ability": "Shoot in Combat, Anti-WAR MACHINE (+1 Rend)"
+            },
+            {
+              "name": "Flaming Maw",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "1",
+              "ability": "Anti-WAR MACHINE (+1 Rend)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Burning Up",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time this Manifestation uses a Shoot ability, after that ability has been resolved, allocate 1 damage point to this Manifestation (ward rolls cannot be made for that damage point).",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": null
+        }
+      ]
+    }
+  ],
+  "artefacts": [
+    {
+      "id": "9f83-7b7d-ffd5-24a1",
+      "name": "Feted Coronet",
+      "abilities": [
+        {
+          "name": "Feted Coronet",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit has Ward (4+) until a friendly New Summercourt unit is destroyed.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "heroicTraits": [
+    {
+      "id": "fa8d-5354-3688-83a2",
+      "name": "Tip of the King's Lance",
+      "abilities": [
+        {
+          "name": "Tip of the King's Lance",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "",
+          "effect": "If this unit charged this turn, it can move 2D6\". It can pass through models in enemy units, but it must end that move in combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "monstrousTraits": [],
+  "visionsOfFate": [],
+  "terrain": [
+    {
+      "id": "766f-2e05-b46a-4aa",
+      "name": "Charnel Throne",
+      "stats": {
+        "move": "-",
+        "health": "10",
+        "save": "4+",
+        "control": "-"
+      },
+      "categories": [
+        "DEATH",
+        "FACTION TERRAIN",
+        "FLESH-EATER COURTS"
+      ],
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "Steward of the Realm",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this terrain feature has a Steward: \u2022 The Steward cannot use Move abilities. \u2022 Instead of measuring range or visibility to the Steward, measure to this terrain feature instead. \u2022 All attacks that would target the Steward target this terrain feature instead. \u2022 If this terrain feature is destroyed, before removing it from the battlefield, inflict D3 mortal damage on the Steward. Then, set up the Steward on the battlefield within 3\" of this terrain feature and not in combat. That unit is no longer the Steward. If it is not possible to set up the Steward, it is slain.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Reigning Champion",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "If this terrain feature does not have a Steward, pick a friendly Flesh-eater Courts Infantry Hero within 3\" of it and not in combat to be the target.",
+          "effect": "Place the target on this terrain feature. The target is now the Steward (see 'Steward of the Realm').",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Ruler of All They Survey",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "If this terrain feature has a Steward, pick a visible friendly non-Hero Flesh-eater Courts unit that is not in combat to be the target.",
+          "effect": "The target can move D3\". If the target was set up this turn, it can move D6\" instead. It cannot move into combat during that move.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Duty Calls",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "",
+          "effect": "If this terrain feature has a Steward that was not placed on it this turn, set up the Steward on the battlefield wholly within 6\" of this terrain feature and not in combat. That unit is no longer the Steward.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "cb9f-5427-a3b7-9541",
+      "name": "Abhorrant Archregent",
+      "points": 140,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "DEATH",
+        "HERO",
+        "FLESH-EATER COURTS",
+        "WARD (6+)",
+        "INFANTRY",
+        "ABHORRANT",
+        "WIZARD (1)",
+        "NEW SUMMERCOURT"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "6",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Gory Talons and Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Countless Servants",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Hero Phase",
+          "declare": "Pick a friendly Serfs or Knights unit wholly within 12\" of this unit to be the target.",
+          "effect": "Roll a dice. On a 3+: \u2022 If the target is a Serfs unit, return up to 3 slain models to it. \u2022 If the target is a Knights unit, return 1 slain model to it.",
+          "keywords": "Core",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "8d10-dc24-7ece-50df",
+          "name": "FLESH-EATER COURTS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "384d-44d2-465-b82c",
+          "name": "384d-44d2-465-b82c"
+        }
+      ]
+    },
+    {
+      "id": "2f4b-8632-d9fe-ac87",
+      "name": "Abhorrant Cardinal",
+      "points": 130,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "DEATH",
+        "HERO",
+        "FLESH-EATER COURTS",
+        "WARD (6+)",
+        "INFANTRY",
+        "PRIEST (1)",
+        "ABHORRANT",
+        "NEW SUMMERCOURT"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "6+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Cursed Crosier",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "D3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Insular Contemplations",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit is more than 6\" from all enemy units, add 1 to chanting rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "7c27-1670-92e9-a96",
+          "name": "SERFS"
+        },
+        {
+          "type": "category",
+          "id": "6233-2f5-6c79-e030",
+          "name": "KNIGHTS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "384d-44d2-465-b82c",
+          "name": "384d-44d2-465-b82c"
+        }
+      ]
+    },
+    {
+      "id": "e3c-b6aa-e6eb-d03f",
+      "name": "Abhorrant Ghoul King",
+      "points": 110,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "DEATH",
+        "HERO",
+        "FLESH-EATER COURTS",
+        "ABHORRANT",
+        "FLY",
+        "WIZARD (1)",
+        "WARD (6+)",
+        "INFANTRY",
+        "NEW SUMMERCOURT"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Bloodstained Talons and Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti-Hero (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Vassals, to Arms!",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Reaction: You declared a Fight ability for this unit",
+          "declare": "",
+          "effect": "Pick a friendly Serfs unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight ability used by this unit has been resolved. If it is picked to do so, add 1 to wound rolls for the target's attacks for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "8d10-dc24-7ece-50df",
+          "name": "FLESH-EATER COURTS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "384d-44d2-465-b82c",
+          "name": "384d-44d2-465-b82c"
+        }
+      ]
+    },
+    {
+      "id": "6744-64a7-bdb9-63e8",
+      "name": "Abhorrant Ghoul King (Scourge of Ghyran)",
+      "points": 110,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "DEATH",
+        "HERO",
+        "FLESH-EATER COURTS",
+        "ABHORRANT",
+        "WIZARD (1)",
+        "WARD (6+)",
+        "INFANTRY",
+        "NEW SUMMERCOURT"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Gory Talons and Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti-Hero (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Long Live the King",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit would be destroyed, before removing it from play, friendly non-Unique Flesh-eater Courts units wholly within 12\" of this unit become enraged until the start of your next turn. Melee weapons used by friendly enraged units have Crit (Auto-wound) and score critical hits on unmodified hit rolls of 5+, even if this unit has been destroyed.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "The King's Court",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Attacks characteristic of melee weapons used by other friendly non-Monster Flesh-eater Courts Heroes while they are wholly within 12\" of this unit. In addition, add 1 to the Attacks characteristic of this unit's melee weapons for each other friendly non-Monster Flesh-eater Courts Hero wholly within 12\" of this unit, to a maximum of +3.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "8d10-dc24-7ece-50df",
+          "name": "FLESH-EATER COURTS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "384d-44d2-465-b82c",
+          "name": "384d-44d2-465-b82c"
+        }
+      ]
+    },
+    {
+      "id": "c3e8-13a9-161d-1573",
+      "name": "Abhorrant Ghoul King on Royal Terrorgheist",
+      "points": 400,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "DEATH",
+        "HERO",
+        "MONSTER",
+        "FLESH-EATER COURTS",
+        "ABHORRANT",
+        "FLY",
+        "WIZARD (1)",
+        "WARD (6+)",
+        "NEW SUMMERCOURT"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "16",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Death Shriek",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "D6",
+          "ability": "Shoot in Combat, Companion"
+        },
+        {
+          "name": "Gory Talons and Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        },
+        {
+          "name": "Terrorgheist's Fanged Maw",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "D3+3",
+          "ability": "Crit (Mortal), Companion"
+        },
+        {
+          "name": "Terrorgheist's Skeletal Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (Mortal), Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Necromantic Limits",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit's Terrorgheist's Skeletal Talons have a maximum Attacks characteristic of 10. While this unit has 10 or more damage points, the Attacks characteristic of its Terrorgheist's Skeletal Talons is 4.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Wicked Predator",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "For each champion, standard bearer, and musician in the target unit, add 1 to the Attacks characteristic of this unit's Terrorgheist's Skeletal Talons, to a maximum of 10, for the rest of the phase. Those additional attacks must target that enemy unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Ferocious Hunger",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "",
+          "effect": "Roll a dice. On a 3+, add 1 to hit rolls for attacks made with this unit's Companion melee weapons for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "8d10-dc24-7ece-50df",
+          "name": "FLESH-EATER COURTS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "384d-44d2-465-b82c",
+          "name": "384d-44d2-465-b82c"
+        }
+      ]
+    },
+    {
+      "id": "eac0-ccfe-4b67-34a",
+      "name": "Abhorrant Ghoul King on Royal Zombie Dragon",
+      "points": 400,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "DEATH",
+        "HERO",
+        "MONSTER",
+        "FLESH-EATER COURTS",
+        "ABHORRANT",
+        "FLY",
+        "WIZARD (1)",
+        "WARD (6+)",
+        "NEW SUMMERCOURT"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "16",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Gory Talons and Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        },
+        {
+          "name": "Draconic Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "4",
+          "ability": "Crit (Auto-wound), Companion"
+        },
+        {
+          "name": "Draconic Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "7",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (Auto-wound), Companion"
+        },
+        {
+          "name": "Baneful Breath",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "D6",
+          "hit": "2+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "Shoot in Combat, Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Necromantic Limits",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit's Draconic Claws have a maximum Attacks characteristic of 10. While this unit has 10 or more damage points, the Attacks characteristic of its Draconic Claws is 5.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Monstrous Hunger",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While they are wholly within 12\" of this unit, friendly non-Hero Flesh-eater Courts Monsters can use Charge abilities even if they used a Run ability in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Draconic Terror",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll a dice. If the roll exceeds the target's Control characteristic, the target cannot use commands for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "8d10-dc24-7ece-50df",
+          "name": "FLESH-EATER COURTS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "384d-44d2-465-b82c",
+          "name": "384d-44d2-465-b82c"
+        }
+      ]
+    },
+    {
+      "id": "3a7-f618-ba4d-9f6f",
+      "name": "Abhorrant Gorewarden",
+      "points": 150,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "DEATH",
+        "HERO",
+        "FLESH-EATER COURTS",
+        "ABHORRANT",
+        "FLY",
+        "WIZARD (1)",
+        "WARD (6+)",
+        "INFANTRY",
+        "NEW SUMMERCOURT"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "7",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Gory Talons and Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Lord of the Marches",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "Pick this unit and up to 2 friendly Flesh-eater Courts units in this unit's regiment that have not been deployed to be the targets.",
+          "effect": "Set up the target units in reserve patrolling the borders. They have now been deployed.",
+          "keywords": "Deploy",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Trespassers!",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick this unit if it is patrolling the borders, then pick an enemy unit to be the target.",
+          "effect": "Set up this unit more than 6\" from the target and more than 9\" from all other enemy units. Then, set up the units that were patrolling the borders with this unit wholly within 12\" of this unit and more than 9\" from all enemy units.",
+          "keywords": "Core",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "7c27-1670-92e9-a96",
+          "name": "SERFS"
+        },
+        {
+          "type": "category",
+          "id": "6233-2f5-6c79-e030",
+          "name": "KNIGHTS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "384d-44d2-465-b82c",
+          "name": "384d-44d2-465-b82c"
+        }
+      ]
+    },
+    {
+      "id": "27b9-d95e-ac2b-5f2f",
+      "name": "Abhorrant Gorewarden (Scourge of Ghyran)",
+      "points": 130,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "DEATH",
+        "HERO",
+        "FLESH-EATER COURTS",
+        "ABHORRANT",
+        "FLY",
+        "WIZARD (1)",
+        "WARD (6+)",
+        "INFANTRY",
+        "NEW SUMMERCOURT"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "7",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Gory Talons and Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Swooping Descent",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Enemy Turn",
+          "declare": "",
+          "effect": "Remove this unit from the battlefield, then set it up again more than 9\" from all enemy units and either: \u2022 Wholly within 6\" of the edge of the battlefield, or \u2022 Within 3\" of an objective you do not control.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Glorious Charge",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit is within the combat range of a friendly Knights unit and has charged this turn, this unit has Ward (5+) and its Gory Talons and Fangs have Charge (+1 Damage).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "7c27-1670-92e9-a96",
+          "name": "SERFS"
+        },
+        {
+          "type": "category",
+          "id": "6233-2f5-6c79-e030",
+          "name": "KNIGHTS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "384d-44d2-465-b82c",
+          "name": "384d-44d2-465-b82c"
+        }
+      ]
+    },
+    {
+      "id": "0eac-dd60-75d7-198a",
+      "name": "Crypt Ghast Courtier",
+      "points": 80,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "Legends",
+        "WARD (6+)",
+        "DEATH",
+        "FLESH-EATER COURTS",
+        "NOBLE",
+        "NEW SUMMERCOURT",
+        "Royal Attendant"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "4",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Bone Club and Filthy Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Marshal of the Peasantry",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a Fight ability for this unit",
+          "declare": "",
+          "effect": "Pick a friendly Crypt Ghouls unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "7c27-1670-92e9-a96",
+          "name": "SERFS"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "490b-968d-8f29-a26f",
+      "name": "Crypt Haunter Courtier",
+      "points": 120,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "DEATH",
+        "HERO",
+        "FLESH-EATER COURTS",
+        "WARD (6+)",
+        "INFANTRY",
+        "NOBLE",
+        "NEW SUMMERCOURT",
+        "Royal Attendant"
+      ],
+      "stats": {
+        "move": "7\"",
+        "health": "6",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Massive Bone Club and Rancid Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Knightly Exemplar",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a Fight ability for this unit",
+          "declare": "",
+          "effect": "Pick a friendly Crypt Horrors unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's attacks for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Blessed Blood",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "",
+          "effect": "Heal (D3) this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "7c27-1670-92e9-a96",
+          "name": "SERFS"
+        },
+        {
+          "type": "category",
+          "id": "b7e5-94f0-9f98-5a20",
+          "name": "b7e5-94f0-9f98-5a20"
+        },
+        {
+          "type": "category",
+          "id": "333b-e2c6-4270-3194",
+          "name": "333b-e2c6-4270-3194"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "40ae-fea8-d025-4a21",
+      "name": "Crypt Infernal Courtier",
+      "points": 140,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "DEATH",
+        "HERO",
+        "FLESH-EATER COURTS",
+        "WARD (6+)",
+        "INFANTRY",
+        "NOBLE",
+        "FLY",
+        "NEW SUMMERCOURT",
+        "Royal Attendant"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "6",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Piercing Death Screech",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": "Shoot in Combat"
+        },
+        {
+          "name": "Skewering Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Mind-shattering Cacophony",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Shooting Phase",
+          "declare": "Pick an enemy unit that had any damage points allocated to it this turn by attacks made with this unit's Piercing Death Screech to be the target.",
+          "effect": "For the rest of the turn, add 1 to the Damage characteristic of ranged weapons used by friendly Crypt Flayers units for attacks that target that enemy unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "On Winged Steeds",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Movement Phase",
+          "declare": "Pick a friendly Crypt Flayers ability that used the 'To Our Liege' ability this turn and is wholly within 9\" of this unit to be the target.",
+          "effect": "The target can immediately move D3\" but cannot end that move in combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "7c27-1670-92e9-a96",
+          "name": "SERFS"
+        },
+        {
+          "type": "category",
+          "id": "6a0d-753-3126-5c40",
+          "name": "6a0d-753-3126-5c40"
+        },
+        {
+          "type": "category",
+          "id": "2eba-2164-25f5-514a",
+          "name": "2eba-2164-25f5-514a"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "c9ce-303a-ccbb-65de",
+      "name": "Marrowscroll Herald",
+      "points": 100,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "DEATH",
+        "HERO",
+        "FLESH-EATER COURTS",
+        "WARD (6+)",
+        "INFANTRY",
+        "NOBLE",
+        "NEW SUMMERCOURT",
+        "Royal Attendant"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Bone Scythe",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Infected",
+          "kind": "Activated",
+          "timing": "Reaction: Opponent declared a command, Spell ability or Prayer ability for an Infected unit",
+          "declare": "",
+          "effect": "Roll a dice. On a 5+: \u2022 If they declared a command, that command has no effect, it still counts as having been used and the command points spent to use the command are still lost. \u2022 If they declared a Spell or Prayer ability, that spell or prayer fails. This reaction can be used more than once per phase but only once per command, Spell ability or Prayer ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "The King's Entreaty",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Enemy Charge Phase",
+          "declare": "Pick a visible enemy unit within 6\" of this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, your opponent must decide whether the target will accept or reject the entreaty offered by this unit. *Accept:* The target has the Infected keyword for the rest of the battle. *Reject:* The target has Strike-last for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "7c27-1670-92e9-a96",
+          "name": "SERFS"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "7f54-ad67-e5ae-972d",
+      "name": "Royal Decapitator",
+      "points": 100,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "DEATH",
+        "HERO",
+        "FLESH-EATER COURTS",
+        "WARD (6+)",
+        "INFANTRY",
+        "NOBLE",
+        "NEW SUMMERCOURT"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Headsman's Axe",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Executioner's Entourage",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a Fight ability for this unit",
+          "declare": "",
+          "effect": "Pick a friendly Serfs unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight ability used by this unit has been resolved. If it is picked to do so, the target's melee weapons have Crit (2 Hits) for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Off With Their Head!",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a Fight ability for this unit",
+          "declare": "",
+          "effect": "Immediately after that Fight ability has been resolved, pick an enemy Infantry Hero in combat with this unit to be the target. Roll 2D6. If the roll exceeds the target's Health characteristic, it is automatically destroyed.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "7c27-1670-92e9-a96",
+          "name": "SERFS"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "61ff-6e69-0f1f-5444",
+      "name": "Royal Decapitator (Scourge of Aqshy)",
+      "points": 100,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "DEATH",
+        "HERO",
+        "FLESH-EATER COURTS",
+        "WARD (6+)",
+        "INFANTRY",
+        "NOBLE",
+        "NEW SUMMERCOURT"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Headsman's Axe",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Executioner and Enforcer",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Hero Phase",
+          "declare": "Pick another friendly Flesh-eater Courts Infantry unit within this unit's combat range to be the target.",
+          "effect": "1 model in the target unit is automatically slain. Then, until the start of your next turn, ignore the first damage point that would be allocated to each visible friendly Flesh-eater Courts unit in each phase while it is wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Heads on Pikes",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Any Turn",
+          "declare": "If any damage points were allocated to an enemy Hero by this unit's combat attacks this turn and that enemy Hero has been destroyed, pick an objective or terrain feature within 6\" of this unit to be the target.",
+          "effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, for the rest of the turn, subtract 5 from the control scores of enemy units while they are contesting the target objective or terrain feature.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "7c27-1670-92e9-a96",
+          "name": "SERFS"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "b0a4-76e1-de3-9384",
+      "name": "Ushoran, Mortarch of Delusion",
+      "points": 450,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "DEATH",
+        "UNIQUE",
+        "HERO",
+        "MONSTER",
+        "WARD (5+)",
+        "WARMASTER",
+        "FLESH-EATER COURTS",
+        "WIZARD (2)",
+        "ABHORRANT",
+        "NEW SUMMERCOURT"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "16",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Sceptre of the Carrion King",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "D3+3",
+          "ability": "-"
+        },
+        {
+          "name": "Monstrous Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "8",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Monstrous Talons is 4.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Shroudcage Fragment",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick up to 3 enemy units in combat with this unit to be the targets.",
+          "effect": "Roll a dice for each target. If the roll exceeds the target's Control characteristic, the target has Strike-last for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Epicentre of Delusion",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time you make a delusion roll, you can add 1 or subtract 1 from the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Glimpse of Delusion",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible enemy model within 18\" of this unit to be the target, pick another enemy unit that is visible to the target and within the target's combat range to be the victim, then make a casting roll of 2D6. You can only pick the target's unit to be the victim if that unit has 2 or more models.",
+          "effect": "Pick 1 of the target's melee weapons. Immediately resolve combat attacks made with that weapon against the victim.",
+          "keywords": "Spell",
+          "castingValue": "7",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "8d10-dc24-7ece-50df",
+          "name": "FLESH-EATER COURTS"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "9703-250b-462a-1d41",
+          "name": "Royal Attendant"
+        }
+      ]
+    },
+    {
+      "id": "483a-7f4e-15c1-de78",
+      "name": "Crypt Flayers",
+      "points": 90,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "WARD (6+)",
+        "DEATH",
+        "CHAMPION",
+        "FLY",
+        "FLESH-EATER COURTS",
+        "KNIGHTS",
+        "INFANTRY",
+        "Undersize Unit",
+        "NEW SUMMERCOURT"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "4",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Piercing Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "-"
+        },
+        {
+          "name": "Death Scream",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "1",
+          "ability": "Shoot in Combat"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "To Our Liege",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Movement Phase",
+          "declare": "",
+          "effect": "If this unit is not in combat, remove it from the battlefield and set it up again wholly within 12\" of a friendly Flesh-eater Courts Hero and more than 9\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "bda3-d9b7-ac69-2c8a",
+      "name": "Crypt Horrors",
+      "points": 160,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "WARD (6+)",
+        "DEATH",
+        "CHAMPION",
+        "FLESH-EATER COURTS",
+        "KNIGHTS",
+        "INFANTRY",
+        "NEW SUMMERCOURT"
+      ],
+      "stats": {
+        "move": "7\"",
+        "health": "4",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Club and Septic Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti-Cavalry (+1 Rend), Crit (Auto-wound)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Holy Blades of Bone",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll 2 dice for each model in this unit. Add 2 to each roll if the target is Cavalry. For each 5+, inflict 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "3b30-80e8-cca6-e129",
+      "name": "Morbheg Knights",
+      "points": 170,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "WARD (6+)",
+        "DEATH",
+        "CHAMPION",
+        "FLY",
+        "CAVALRY",
+        "STANDARD BEARER (1/3)",
+        "MUSICIAN (1/3)",
+        "FLESH-EATER COURTS",
+        "KNIGHTS",
+        "NEW SUMMERCOURT"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "4",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Nightshrieker's Claws and Teeth",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        },
+        {
+          "name": "Grisly Lance",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge (+1 Damage)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Predator Knights",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Enemy Turn",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Inflict D3 mortal damage on the target. Then, this unit can use a Retreat ability as if it were your movement phase. No mortal damage is inflicted on this unit by that Retreat ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "9840-3911-50d4-532d",
+      "name": "Varghulf Courtier",
+      "points": 100,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "DEATH",
+        "FLESH-EATER COURTS",
+        "WARD (6+)",
+        "BEAST",
+        "NEW SUMMERCOURT"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "8",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Immense Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "7",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti-Infantry (+1 Rend)"
+        },
+        {
+          "name": "Dagger-like Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Anti-Infantry (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Victory Feast",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "If any models were slain by this unit this turn: \u2022 Heal (D6) this unit. \u2022 If this unit is in combat, this unit can immediately move 10\". It can move through the combat ranges of enemy units but must end that move in combat with the units it was already in combat with at the start of the move. \u2022 If that unit is not in combat, this unit can immediately move 10\" but cannot end that move in combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "a128-61d2-15ef-31d9",
+      "name": "Varghulf Courtier (Scourge of Aqshy)",
+      "points": 110,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "DEATH",
+        "FLESH-EATER COURTS",
+        "WARD (6+)",
+        "BEAST",
+        "NEW SUMMERCOURT"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "8",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Immense Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "7",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti-Infantry (+1 Rend)"
+        },
+        {
+          "name": "Dagger-like Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Anti-Infantry (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "The Howling Saint",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Hero Phase",
+          "declare": "Pick a visible friendly Flesh-eater Courts Priest wholly within 18\" of this unit to be the target.",
+          "effect": "The next time the target uses a Prayer ability this phase: \u2022 When picking targets for that prayer, you can measure range and visibility from this unit instead of from the chanter. \u2022 Add 1 to the chanting roll for that prayer.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Beast",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit has a maximum control score of 1.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ],
+  "parentFactionIds": [
+    "flesh-eater-courts"
+  ]
+}

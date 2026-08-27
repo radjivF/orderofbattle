@@ -8,6 +8,7 @@ import type {
   UnitAbility,
   UnitWeapon,
 } from "@/engine/types";
+import { ModalFrame } from "./ModalFrame";
 
 type Props = {
   sheet: DatasheetSubject;
@@ -41,18 +42,12 @@ export function DatasheetSheet({ sheet, onClose }: Props) {
     (banishment ? 1 : 0);
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
-      <button
-        type="button"
-        aria-label="Close"
-        className="absolute inset-0 bg-ink/70"
-        onClick={onClose}
-      />
-      <div
-        role="dialog"
-        aria-label={`${sheet.name} datasheet`}
-        className="relative z-10 flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-parchment text-parchment-ink shadow-2xl"
-      >
+    <ModalFrame
+      label={`${sheet.name} datasheet`}
+      onClose={onClose}
+      zClass="z-[60]"
+      panelClassName="flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-parchment text-parchment-ink shadow-2xl"
+    >
         <div className="flex shrink-0 items-start justify-between gap-3 px-5 pt-5 pb-3">
           <div>
             <h2 className="font-serif text-2xl leading-tight">{sheet.name}</h2>
@@ -103,8 +98,7 @@ export function DatasheetSheet({ sheet, onClose }: Props) {
             <AbilityBlock abilities={sheet.abilities} />
           ) : null}
         </div>
-      </div>
-    </div>
+    </ModalFrame>
   );
 }
 

@@ -1496,6 +1496,58 @@
       ]
     }
   ],
+  "monstrousTraits": [
+    {
+      "id": "b9a5-f570-eca8-072b",
+      "name": "Horribly Resilient",
+      "abilities": [
+        {
+          "name": "Horribly Resilient",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "Heal (D3) this unit. If this unit is not a Hero, Heal (2D3) this unit instead.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "1042-e4ca-b676-b611",
+      "name": "Savage Abomination",
+      "abilities": [
+        {
+          "name": "Savage Abomination",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Attacks characteristic of this unit's Companion melee weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "a15e-bd88-8b33-1398",
+      "name": "Revered Monstrosity",
+      "abilities": [
+        {
+          "name": "Revered Monstrosity",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to hit rolls for combat attacks made with Companion weapons by other friendly non\u2011Unique Flesh-eater Courts Monsters while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "points": 10
+    }
+  ],
+  "visionsOfFate": [],
   "terrain": [
     {
       "id": "766f-2e05-b46a-4aa",

@@ -1330,6 +1330,111 @@
       ]
     }
   ],
+  "monstrousTraits": [
+    {
+      "id": "f9c3-b052-704b-318e",
+      "name": "Armour Cruncher",
+      "abilities": [
+        {
+          "name": "Armour Cruncher",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll a dice. If the roll equals or exceeds the target's Save characteristic, subtract 1 from save rolls for the target for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "8a16-6139-0eec-ceb1",
+      "name": "Ancient Defender",
+      "abilities": [
+        {
+          "name": "Ancient Defender",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to hit rolls for attacks made by this unit's Companion weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "100d-3876-65f9-ec3c",
+      "name": "Titan of the Land",
+      "abilities": [
+        {
+          "name": "Titan of the Land",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit counts as a terrain piece for the purpose of picking targets for the friendly Realmshaper Engine's 'Power Unleashed' ability. Do not inflict any mortal damage on this unit as part of that ability",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "ea2f-0674-d1c2-81f2",
+      "name": "Armour Cruncher",
+      "abilities": [
+        {
+          "name": "Armour Cruncher",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "You can spend 1 rage dice. If you do: \u2022 Apply the effect below. \u2022 If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Otherwise, roll a dice. If the roll equals or exceeds the target's Save characteristic, apply the effect below. Subtract 1 from save rolls for the target for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "points": 10,
+      "pack": "Beasts of the Dark Jungle"
+    },
+    {
+      "id": "3830-6e9f-43dc-47c3",
+      "name": "Titanic Slam",
+      "abilities": [
+        {
+          "name": "Titanic Slam",
+          "kind": "Activated",
+          "timing": "Your Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll a dice. Add 1 to the roll if this unit charged this turn. On a 3+, the target has Strike\u2011last for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "points": 10,
+      "pack": "Beasts of the Dark Jungle"
+    },
+    {
+      "id": "74db-bd43-e800-f71b",
+      "name": "Chameleonic Camouflage",
+      "abilities": [
+        {
+          "name": "Chameleonic Camouflage",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has not used a Move ability in the same turn, it is not visible to enemy units more than 12\" away",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "points": 10,
+      "pack": "Beasts of the Dark Jungle"
+    }
+  ],
+  "visionsOfFate": [],
   "terrain": [
     {
       "id": "dbb9-da98-e92e-b31e",

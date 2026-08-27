@@ -1,0 +1,3137 @@
+{
+  "id": "gloomspite-gitz-da-king-s-gitz",
+  "name": "Gloomspite Gitz - Da King's Gitz",
+  "game": "Age of Sigmar 4th",
+  "source": "https://github.com/BSData/age-of-sigmar-4th",
+  "pointsCapDefault": 2000,
+  "formations": [],
+  "battleTraits": [
+    {
+      "id": "dd5f-b1f5-f617-f490",
+      "name": "The King's Gitz",
+      "abilities": [
+        {
+          "name": "Da King's Guards",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While a friendly Troggoth unit is within the combat range of a friendly Hero: \u2022 That friendly Hero has Ward (4+). \u2022 Each time you make a successful ward roll for that Hero, allocate 1 damage point to a friendly Troggoth unit within that Hero's combat range after the damage sequence for that Hero has been resolved (ward rolls cannot be made for those damage points).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "The Moon and the Loon",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While a friendly unit is wholly within 9\" of a friendly Skragrott, a friendly Malevolent Moon or a friendly Bad Moon Loonshrine: \u2022 Add 5 to the control scores of friendly non-Squig Moonclan units. \u2022 Instead of rolling the dice to determine the Move characteristic of a friendly Squig unit, you can use a value of 4.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Da Loonking's Court",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Deployment Phase",
+          "declare": "Pick up to D3 friendly non-Unique King's Gitz Heroes that do not have an enhancement.",
+          "effect": "Give each Hero 1 enhancement ftom the 'Da King's Gitz' Army of Renown rules. Designer's Note: *These enhancements are given to the* Heroes *during the deployment phase, not during army composition.*",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "spellLores": [
+    {
+      "id": "c86e-0832-39ef-1cf8",
+      "name": "Right Gitz in da Right Place",
+      "powers": [
+        {
+          "name": "Right Gitz in da Right Place",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly King's Gitz Wizard to chant this prayer, pick a visible friendly unit wholly within 18\" of them to be the target, then make a casting roll of 2D6.",
+          "effect": "The target's weapons have Anti-Hero (+1 Rend) until the start of your next turn.",
+          "keywords": "Spell",
+          "castingValue": "5",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "426f-7f9e-23cc-0e43",
+      "name": "Da Loonking's Command",
+      "powers": [
+        {
+          "name": "Da Loonking's Command",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly King's Gitz Wizard to cast this spell, pick a visible friendly unit wholly within 18\" of them to be the target, then make a casting roll of 2D6.",
+          "effect": "Until the start of your next turn: \u2022 Add 1 to the Attacks characteristic of melee weapons used by champions in the target unit. \u2022 If the target uses the 'Rally' command, you can make 1 additional rally roll of D6. \u2022 Add 1 to the target's control score.",
+          "keywords": "Spell, Unlimited",
+          "castingValue": "5",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "prayerLores": [],
+  "manifestationLores": [
+    {
+      "id": "d481-fc76-7197-39e3",
+      "name": "Summon Malevolent Moon",
+      "manifestations": []
+    },
+    {
+      "id": "db7f-2a40-6ebc-907b",
+      "name": "Aetherwrought Machineries",
+      "manifestations": [
+        {
+          "id": "fcb6-ae80-2e58-aadb",
+          "name": "Aethervoid Pendulum",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Scything Blade",
+              "kind": "Activated",
+              "timing": "Any Movement Phase",
+              "declare": "",
+              "effect": "This Manifestation can move a distance up to its Move characteristic in one direction (see 'The Pendulum Swings'). It can pass through models during that move and can end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move or that are within 1/2\" of it to be the targets. Roll a D6 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "The Pendulum Swings",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "This Manifestation cannot use Charge or Fight abilities. In addition, when this Manifestation moves, it must move in a straight line either in the direction in which the tip of the pendulum blade is pointing or in the opposite direction to the direction in which the tip of the pendulum blade is pointing",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Aethervoid Pendulum",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Aethervoid Pendulumon the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up an Aethervoid Pendulum wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "1aba-bc38-e988-d79f",
+          "name": "Chronomantic Cogs",
+          "stats": {
+            "move": "-",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Mechanisms of Time",
+              "kind": "Activated",
+              "timing": "Once Per Turn, Your Hero Phase",
+              "declare": "",
+              "effect": "If there are any friendly Wizards within 3\" of this Manifestation, pick 1 of the following effects: *Increase Time Flow*: Until the start of your next turn, you can re-roll charge rolls for friendly units while they are wholly within 12\" of this Manifestation. *Decrease Time Flow*: Until the start of your next turn, subtract 1 from hit rolls for attacks that target friendly Wizards while they are wholly within 12\" of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Chronomantic Cogs",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Chronomantic Cogs endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Chronomantic Cogs endless spell wholly within 12\" of the caster and visible to them.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "8cde-fafe-2b2a-ced5",
+          "name": "Quicksilver Swords",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Quicksilver Blades",
+              "kind": "melee",
+              "range": "",
+              "attacks": "12",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Crit (Mortal)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Dancing Blades",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Ward rolls cannot be made for damage points inflicted by this Manifestation's attacks.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Quicksilver Swords",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Quicksilver Swords endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Quicksilver Swords endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "9fd2-a506-6462-a6c8",
+      "name": "Forbidden Power",
+      "manifestations": [
+        {
+          "id": "f935-2383-94ba-3be2",
+          "name": "Horrorghast",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Scream of Terror",
+              "kind": "ranged",
+              "range": "10\"",
+              "attacks": "6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "1",
+              "ability": "Shoot in Combat, Anti-INFANTRY (+1 Rend)"
+            },
+            {
+              "name": "Deathly Touch",
+              "kind": "melee",
+              "range": "",
+              "attacks": "4",
+              "hit": "4+",
+              "wound": "4+",
+              "rend": "-",
+              "damage": "1",
+              "ability": "-"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Harbinger of Horror",
+              "kind": "Activated",
+              "timing": "Any Shooting Phase",
+              "declare": "Pick an enemy unit that was targeted by this Manifestation's shooting attacks this phase to be the target.",
+              "effect": "Roll a dice. If the roll is less than the number of models in the target unit that were slain this phase, the target cannot use commands for the rest of the turn.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Horrorghast",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Horrorghast endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Horrorghast endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "a26b-cd08-8f9d-90b0",
+          "name": "Lauchon the Soulseeker",
+          "stats": {
+            "move": "12\"",
+            "health": "10",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Scything Oar",
+              "kind": "melee",
+              "range": "",
+              "attacks": "3",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "D3",
+              "ability": "Crit (2 Hits)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Traverse the Tides of Death",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "Pick a friendly Infantry Wizard Hero within 3\" of this Manifestation to be the target",
+              "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, remove the target from the battlefield and set them up again on the battlefield within 3\" of this Manifestation and not in combat. Then, inflict 1 mortal damage on the target.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Lauchon the Soulseeker",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Lauchon the Soulseeker endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Lauchon the Soulseeker endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "94f6-4321-fd80-f20e",
+          "name": "Shards of Valagharr",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Phantasmal Translocation",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "",
+              "effect": "Pick a part of this Manifestation, remove it from the battlefield and set it up again on the battlefield wholly within 9\" of the other part and more than 3\" from all enemy units.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Ensnaring Soul-drain",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time an enemy unit uses a Move ability while it is within 9\" of any parts of this Manifestation, the effects of the 'Fly' ability do not apply to that unit. Enemy units cannot be set up within 9\" of either part of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Shards of Valagharr",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Shards of Valagharr endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Shards of Valagharr endless spell wholly within 18\" of the caster and visible to them. A Shards of Valagharr endless spell has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "523f-bd78-e418-9922",
+          "name": "Soulscream Bridge",
+          "stats": {
+            "move": "-",
+            "health": "12",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Deathly Passage",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "Pick a friendly unit wholly within 6\" of one part of this Manifestation to be the target.",
+              "effect": "Remove the target from the battlefield and set it up again on the battlefield wholly within 6\" of the other part of this Manifestation and more than 9\" from all enemy units.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Soulscream Bridge",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Soulscream Bridge endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Soulscream Bridge wholly within 18\" of the caster and visible to them. A Soulscream Bridge has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "93f1-1e9f-b52b-ff3c",
+      "name": "Krondspine Incarnate",
+      "manifestations": [
+        {
+          "id": "4ba0-e87-36e0-db58",
+          "name": "Krondspine Incarnate of Ghur",
+          "stats": {
+            "move": "10\"",
+            "health": "12",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "8+",
+          "categories": [
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "WARD (6+)",
+            "FLY",
+            "INCARNATE"
+          ],
+          "weapons": [
+            {
+              "name": "Amberbone Claws and Fangs",
+              "kind": "melee",
+              "range": "",
+              "attacks": "6",
+              "hit": "4+",
+              "wound": "2+",
+              "rend": "2",
+              "damage": "3",
+              "ability": "Anti-Manifestation(+1 Rend)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Devourer of Magics",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "",
+              "effect": "If this Manifestation destroyed any enemy Manifestations this turn, Heal (6) this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Arcane Predator",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "You can add 1 to the number of dice rolled when making charge rolls for this Manifestation, to a maximum of 3, while it is within 18\" of any enemy Manifestations, but if you do so, it must end the charge move within 1/2\" of an enemy Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Wild Form",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time this Manifestation is targeted by the 'Banish Manifestation' ability, if it would be banished, it is not banished. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points).",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Krondspine Incarnate of Ghur",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Krondspine Incarnate of Ghur endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Krondspine Incarnate of Ghur endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "8",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "b4d2-4178-ff43-a44b",
+      "name": "Morbid Conjuration",
+      "manifestations": [
+        {
+          "id": "e699-49b7-d2b8-d5fc",
+          "name": "Malevolent Maelstrom",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Lashing Tendrils of Energy",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "-",
+              "damage": "1",
+              "ability": "Crit (2 Hits)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Morbid Detonation",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "You must, and can only, use this ability if this unit has 6 maelstrom points. Pick each unit (friendly and enemy) within 9\" of it to be the targets.",
+              "effect": "Roll a dice for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Then, this Manifestation is destroyed.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Necrotic Vortex",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Give this Manifestation 1 maelstrom point each time: \u2022 This Manifestation is set up. \u2022 A unit successfully casts a spell while it is within 12\" of this Manifestation. \u2022 A model is slain within 12\" of this Manifestation. This Manifestation can have a maximum of 6 maelstrom points at once.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Malevolent Maelstrom",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly a Malevolent Maelstrom endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a a Malevolent Maelstrom endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "e7a5-e611-4c13-22d0",
+          "name": "Purple Sun of Shyish",
+          "stats": {
+            "move": "8\"",
+            "health": "10",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Transmuting Rays",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Crit (Mortal)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "End Given Form",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "",
+              "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move to be the targets. Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Pull of the Nadir",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Subtract 1 from save rolls for friendly and enemy units while they are within 3\" of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Purple Sun of Shyish",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Purple Sun of Shyish endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Purple Sun of Shyish endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "8",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "dee3-92a0-27e7-252a",
+          "name": "Soulsnare Shackles",
+          "stats": {
+            "move": "-",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Bound for the Great Oubliette",
+              "kind": "Activated",
+              "timing": "Any Hero Phase",
+              "declare": "For each part of this Manifestation, you can pick an enemy unit within 3\" of that part to be the targets. You cannot pick the same unit to be the target of this ability more than once per turn.",
+              "effect": "Roll a D3 for each target. On a 2+: \u2022 Inflict an amount of mortal damage on the target equal to the roll. \u2022 Subtract a number of inches equal to the roll from the target's Move characteristic for the rest of the turn.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and all its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Soulsnare Shackles",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Soulsnare Shackles endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Soulsnare Shackles endless spell wholly within 18\" of the caster and visible to them. A Soulsnare Shackles endless spell has 3 parts that must each be set up within 3\" of at least 1 other part.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "1885-a1aa-bf5d-6d0d",
+          "name": "Suffocating Gravetide",
+          "stats": {
+            "move": "12\"",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Spectral Riptide",
+              "kind": "melee",
+              "range": "",
+              "attacks": "8",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Charge (+1 Damage)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Pulled to the Grave",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "",
+              "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, you can pick an enemy unit that this Manifestation passed across during that move to be the target. Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Suffocating Gravetide",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Suffocating Gravetide endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Suffocating Gravetide endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "8",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "83f1-e447-c26-c5c",
+      "name": "Twilit Sorceries",
+      "manifestations": [
+        {
+          "id": "d420-1699-5ad9-1956",
+          "name": "Geminids of Uhl-Gysh",
+          "stats": {
+            "move": "8\"",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "6+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Tendrils of Light and Shadow",
+              "kind": "melee",
+              "range": "",
+              "attacks": "4",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "D3",
+              "ability": "-"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Tendrils of Light and Shadow",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Enemy units cannot use commands while they are within 3\" of either part of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play. Each time this Manifestation moves, both its parts must end within 9\" of each other. Each part of this Manifestation is armed with Tendrils of Light and Shadow.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Geminids of Uhl-Gysh",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Geminids of Uhl-Gysh endless spell on the battlefield, pick a friendly Wizardto cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Geminids of Uhl-Gysh endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units. A Geminids of Uhl-Gysh endless spell has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "015a-4e4f-322f-ccff",
+          "name": "Prismatic Palisade",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Blinding Light",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "This Manifestation cannot be targeted by shooting attacks. In addition, a unit cannot be targeted by shooting attacks if it is impossible to draw a straight line from a model in the attacking unit to a model in the target unit without that line passing across this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Prismatic Palisade",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Prismatic Palisade endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Prismatic Palisade wholly within 18\" of the caster and visible to them.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "0552-183c-1b2a-d117",
+          "name": "Umbral Spellportal",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "6+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Arcane Passage",
+              "kind": "Activated",
+              "timing": "Your Hero Phase",
+              "declare": "Pick a friendly Wizard within 3\" of this Manifestation to be the target.",
+              "effect": "The next time the target uses a non-Summon Spell ability this phase, add 1 to the casting value of that spell. When picking targets for that spell, you can measure range and visibility from either part of this Manifestation instead of from the caster, and your opponent can measure range and visibility to either part of this Manifestation instead of to the caster for the purposes of the 'Unbind' ability.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Umbral Spellportal",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Umbral Spellportal endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up an Umbral Spellportal wholly within 18\" of the caster and visible to them. An Umbral Spellportal has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "7217-5951-aaf0-47e8",
+      "name": "Primal Energy",
+      "manifestations": [
+        {
+          "id": "3071-fc11-4eb8-bbcc",
+          "name": "Emerald Lifeswarm",
+          "stats": {
+            "move": "8\"",
+            "health": "5",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Swarming Bites",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "4+",
+              "rend": "-",
+              "damage": "1",
+              "ability": "Anti-Infantry (+1 Rend)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Restored Vigour",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "",
+              "effect": "Heal (3) this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Bounteous Healing",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "Pick a friendly unit within 3\" of this Manifestation to be the target.",
+              "effect": "Heal (3) the target.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Emerald Lifeswarm",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Emerald Lifeswarm endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Emerald Lifeswarm endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "41c4-2f6a-0d3c-a23e",
+          "name": "Ravenak's Gnashing Jaws",
+          "stats": {
+            "move": "3D6\"",
+            "health": "10",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [
+            {
+              "name": "Gnashing Jaws",
+              "kind": "melee",
+              "range": "",
+              "attacks": "10",
+              "hit": "4+",
+              "wound": "2+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Charge (+1 Damage)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Ravening Hunger",
+              "kind": "Activated",
+              "timing": "Any Charge Phase",
+              "declare": "If this Manifestation charged this turn, pick an enemy unit within 1\" of it to be the target.",
+              "effect": "Roll 10 dice. For each 5+, inflict 1 mortal damage on the target.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Ravenak's Gnashing Jaws",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Ravenak's Gnashing Jaws endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Ravenak's Gnashing Jaws endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "e1cc-64dc-f765-b9cc",
+          "name": "The Burning Head",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "6+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Burning Breath",
+              "kind": "ranged",
+              "range": "10\"",
+              "attacks": "D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "1",
+              "ability": "Shoot in Combat, Anti-WAR MACHINE (+1 Rend)"
+            },
+            {
+              "name": "Flaming Maw",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "1",
+              "ability": "Anti-WAR MACHINE (+1 Rend)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Burning Up",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time this Manifestation uses a Shoot ability, after that ability has been resolved, allocate 1 damage point to this Manifestation (ward rolls cannot be made for that damage point).",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": null
+        }
+      ]
+    }
+  ],
+  "artefacts": [
+    {
+      "id": "5db8-151d-1f04-0df5",
+      "name": "Moonhoned Shiv",
+      "abilities": [
+        {
+          "name": "Moonhoned Shiv",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "",
+          "effect": "Pick 1 of this unit's non-Companion melee weapons. Add 1 to the Attacks characteristic of that weapon for the rest of the battle. In addition, each time this unit uses a Retreat ability, add 1 to the Attacks characteristic of that weapon for the rest of the battle. This unit can be affected by this ability multiple times and the effects are cumulative.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "0325-a03f-e96d-7745",
+      "name": "Wotnot of Prestige",
+      "abilities": [
+        {
+          "name": "Wotnot of Prestige",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "Pick a point on the battlefield within 9\" of this unit. Each visible enemy unit within 3\" of that point is a target.",
+          "effect": "Roll a D3 for each target, On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "c598-3813-5960-85c3",
+      "name": "Loonstone Medallion",
+      "abilities": [
+        {
+          "name": "Loonstone Medallion",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit has Ward (6+). While this unit is contesting an objective that is not being coned by any other friendly units, it has Ward (5+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "heroicTraits": [
+    {
+      "id": "08c2-0848-7f23-2b3d",
+      "name": "Da King's Adjutant",
+      "abilities": [
+        {
+          "name": "Da King's Adjutant",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), End of Your Turn",
+          "declare": "You cannot use this ability and the Bad Moon Loonshrine's 'Moonclan Lairs' ability in the same turn. While this unit is within 12\" of a friendly Bad Moon Loonshrine, pick a friendly non-reinforced, non-Hero, non-Monster King's Gitz unit that has been destroyed to be the target.",
+          "effect": "Set up a replacement unit wholly within 12\" of a friendly Bad Moon Loonshrine and more than 3\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "faa0-9d4f-8ed4-d169",
+      "name": "Glarejester",
+      "abilities": [
+        {
+          "name": "Glarejester",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick a friendly Infantry unit within 3\" of this unit and that is not in combat to be the target.",
+          "effect": "Roll a D3. Add the roll to the distance the target can move when using Move abilities this phase. If the target ends a move in this phase within 3\" of this Hero, inflict an amount of mortal damage on this Hero equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "monstrousTraits": [],
+  "visionsOfFate": [],
+  "terrain": [
+    {
+      "id": "d5f4-405d-70b2-2701",
+      "name": "Bad Moon Loonshrine",
+      "stats": {
+        "move": "-",
+        "health": "14",
+        "save": "4+",
+        "control": "-"
+      },
+      "categories": [
+        "FACTION TERRAIN",
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ"
+      ],
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "Moonclan Lairs",
+          "kind": "Command",
+          "timing": "Once Per Turn (Army), End of Your Turn",
+          "declare": "Pick a friendly non-Hero non-Monster non-War Machine Gloomspite Gitz unit that has been destroyed to be the target.",
+          "effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 12\" of this terrain feature and more than 3\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "5f35-ca66-398-bf72",
+      "name": "Fungoid Cave-Shaman",
+      "points": 100,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "INFANTRY",
+        "MOONCLAN",
+        "WIZARD (1)",
+        "KING'S GITZ",
+        "Restrict General"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "5",
+        "save": "6+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Spore Squig's Vicious Teeth",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Moon-sickle",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Deffcap Mushroom",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Hero Phase",
+          "declare": "",
+          "effect": "Add 1 to this unit's power level for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "76e8-7818-115c-6899",
+          "name": "MOONCLAN"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "ab7d-16d4-876a-3066",
+      "name": "Loonboss",
+      "points": 70,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "INFANTRY",
+        "MOONCLAN",
+        "WARD (6+)",
+        "KING'S GITZ",
+        "Restrict General",
+        "Moonclan Agitator"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "5",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Moon-slicer",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "I'm da Boss",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly Moonclan Stabbas unit wholly within 12\" of this unit to be the target.",
+          "effect": "Roll a dice. On a 2+, pick 1 of the following effects: *Get Back 'Ere!:* If the target is not in combat, you can return D6 slain models to it. *Stab 'Em Good!:* Add 1 to wound rolls for the target's attacks until the start of your next turn",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Let's Get Stabbin'!",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a Fight ability for this unit",
+          "declare": "",
+          "effect": "Pick a friendly non-Hero Moonclan Infantry unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight ability used by this unit has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "76e8-7818-115c-6899",
+          "name": "MOONCLAN"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "66d2-f3d2-93a9-581",
+      "name": "Loonboss on Giant Cave Squig",
+      "points": 80,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "MOONCLAN",
+        "SQUIG",
+        "CAVALRY",
+        "KING'S GITZ",
+        "Restrict General",
+        "Moonclan Agitator"
+      ],
+      "stats": {
+        "move": "D6+6\"",
+        "health": "6",
+        "save": "5+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Massive Fang-filled Gob",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Moon-cutta or Loonboss Stabba",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Charge (+1 Damage)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Let's Get Bouncin'!",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a Fight ability for this unit",
+          "declare": "",
+          "effect": "Pick a friendly non-Hero Moonclan Cavalry unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight ability used by this unit has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "76e8-7818-115c-6899",
+          "name": "MOONCLAN"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "93b6-6e08-276d-5728",
+          "name": "Moonclan Agitator"
+        }
+      ]
+    },
+    {
+      "id": "7b26-310a-27fd-151",
+      "name": "Loonboss on Mangler Squigs",
+      "points": 140,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "MOONCLAN",
+        "MONSTER",
+        "FLY",
+        "SQUIG",
+        "KING'S GITZ",
+        "Restrict General"
+      ],
+      "stats": {
+        "move": "D6+8\"",
+        "health": "14",
+        "save": "5+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Balls and Chains",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "D3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Huge Fang-filled Gobs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "D6",
+          "ability": "Companion"
+        },
+        {
+          "name": "Moon-cutta",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Squig Rage",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Huge Fang-filled Gobs is 6.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Bite da Moon!",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Any Combat Phase",
+          "declare": "Pick this unit and all friendly Squig units wholly within 12\" of this unit to be the targets.",
+          "effect": "Add 1 to hit rolls for the targets' Fang-filled Gobs, Massive Fang-filled Gobs and Huge Fang-filled Gobs for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Watch Out!",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit is destroyed, before removing it from play, roll a dice for each enemy unit within this unit's combat range. On a 4+, inflict D3 mortal damage on that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Ker-splat!",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Charge Phase",
+          "declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
+          "effect": "Roll a dice for each model in the target unit, to a maximum of 10. For each 4+, inflict 1 mortal damage on the target.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "76e8-7818-115c-6899",
+          "name": "MOONCLAN"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "93b6-6e08-276d-5728",
+          "name": "Moonclan Agitator"
+        }
+      ]
+    },
+    {
+      "id": "649e-1067-7300-bde2",
+      "name": "Loonboss with Giant Cave Squig",
+      "points": 120,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "Legends",
+        "INFANTRY",
+        "GLOOMSPITE GITZ",
+        "SQUIG",
+        "MOONCLAN",
+        "DESTRUCTION",
+        "KING'S GITZ",
+        "Restrict General",
+        "Moonclan Agitator"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "6",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Moon-prodder",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        },
+        {
+          "name": "Massive Fang-filled Gob",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Gobbled Up",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "Pick an enemy unit within 1\" of this unit to be the target.",
+          "effect": "Roll a dice. If the roll equals or exceeds the target's Health characteristic, 1 model in the target unit is slain.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Goin' Somewhere?",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If a friendly Moonclan Infantry unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6. However, friendly Moonclan Infantry units cannot use Retreat abilities while they are within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "11a4-4608-799e-1ec7",
+      "name": "Madcap Shaman",
+      "points": 80,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "Legends",
+        "INFANTRY",
+        "GLOOMSPITE GITZ",
+        "MOONCLAN",
+        "DESTRUCTION",
+        "WIZARD (1)",
+        "KING'S GITZ",
+        "Restrict General"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "4",
+        "save": "6+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Moon Staff",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Madcap Mushroom",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Hero Phase",
+          "declare": "",
+          "effect": "For the rest of the turn: \u2022 Add 1 to this unit's power level. \u2022 If 2 or more dice in a casting roll for this unit have the same value, inflict D3 mortal damage on this unit after the Spell ability has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "13ce-b7ed-f419-cdd",
+      "name": "Rabble-Rowza",
+      "points": 100,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "INFANTRY",
+        "MOONCLAN",
+        "KING'S GITZ",
+        "Restrict General",
+        "Moonclan Agitator"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Bat Squigs",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "D3",
+          "ability": "Crit (Auto-wound)"
+        },
+        {
+          "name": "Moon-sickle and Basha",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Secret Tunnels",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "Pick this unit if it has not been deployed.",
+          "effect": "Set up this unit in reserve in a secret tunnel. It has now been deployed.",
+          "keywords": "Deploy",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "'Neh Neh Na-neh Neh! Can't Catch Me!\"",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Movement Phase",
+          "declare": "Pick a visible friendly Monster or Beast unit to be the target.",
+          "effect": "For the rest of the turn, the target can use Charge abilities even if it used a Run ability in the same turn, but each time it uses a Move ability, it must end the move closer to this unit. In addition, for the rest of the turn, the first time the target ends a move within this unit's combat range, inflict D6 mortal damage on this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Emerge from the Depths",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick this unit if it is in a secret tunnel.",
+          "effect": "Set up this unit anywhere on the battlefield more than 9\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "6d54-625c-d063-13e2",
+          "name": "MONSTER"
+        },
+        {
+          "type": "category",
+          "id": "e5fb-0063-4e6f-e20c",
+          "name": "Moonclan Infantry"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "fda8-9470-94b7-46fa",
+      "name": "Skragrott, the Loonking",
+      "points": 200,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "UNIQUE",
+        "WARMASTER",
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "INFANTRY",
+        "WIZARD (2)",
+        "WARD (4+)",
+        "MOONCLAN",
+        "KING'S GITZ"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "6",
+        "save": "6+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Da Moon Onna Stikk",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Fangz of da Bad Moon",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
+          "effect": "Roll a number of dice equal to the unmodified casting roll. For each 3+, inflict 1 mortal damage on the target.",
+          "keywords": "Spell",
+          "castingValue": "7",
+          "chantingValue": ""
+        },
+        {
+          "name": "The Loonking's Entreaty",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Reaction: You declared the 'The Faces of the Bad Moon' ability",
+          "declare": "",
+          "effect": "The face of the Bad Moon stays in its current position this battle round instead of moving to the next face in the sequence.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Babbling Wand",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time a friendly Moonclan unit wholly within 12\" of this unit uses the 'Redeploy' command, no command points are spent.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "ce45-cc36-d92e-ef70",
+          "name": "GLOOMSPITE GITZ"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "93b6-6e08-276d-5728",
+          "name": "Moonclan Agitator"
+        }
+      ]
+    },
+    {
+      "id": "3e89-813a-bb70-e48c",
+      "name": "Squigboss with Gnasha-squig",
+      "points": 120,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "INFANTRY",
+        "MOONCLAN",
+        "SQUIG",
+        "KING'S GITZ",
+        "Restrict General",
+        "Moonclan Agitator"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "4",
+        "save": "6+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Fang-filled Gob",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Squig-krook",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Feedin' Time",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Hero Phase",
+          "declare": "Pick a friendly Squig unit within this unit's combat range to be the target.",
+          "effect": "Roll a dice. On a 2+, pick 1 of the following effects to apply for the rest of the turn: *Crimson Deffcap:* Add 3\" to the target's Move characteristic. *Yellow Lurka:* The target's Fang-filled Gobs, Huge Fang-filled Gobs or Massive Fang-filled Gobs have Crit (Mortal).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "76e8-7818-115c-6899",
+          "name": "MOONCLAN"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "93b6-6e08-276d-5728",
+          "name": "Moonclan Agitator"
+        }
+      ]
+    },
+    {
+      "id": "2e50-954-9c1-37cb",
+      "name": "Boingrot Bounderz",
+      "points": 120,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "CAVALRY",
+        "CHAMPION",
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "SQUIG",
+        "MOONCLAN",
+        "FLY",
+        "KING'S GITZ"
+      ],
+      "stats": {
+        "move": "D6+6\"",
+        "health": "2",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Fang-filled Gob",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Pokin' Lance",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge (+1 Damage)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Boing! Smash!",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
+          "effect": "Roll a dice for each model in this unit. For each 4+, inflict 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "9be3-6dc9-3f14-4553",
+      "name": "Dankhold Troggoth",
+      "points": 140,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "MONSTER",
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "TROGGOTH",
+        "KING'S GITZ"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "10",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Colossal Boulder Club",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "D3+3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Wade and Smash",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "",
+          "effect": "This unit can move 6\" but must end that move in combat. Then, roll a D3 for each enemy unit within 1\" of this unit. On a 2+, inflict an amount of mortal damage on that unit equal to the roll.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Magical Resistance",
+          "kind": "Activated",
+          "timing": "Reaction: Opponent declared a Spell ability",
+          "declare": "",
+          "effect": "If this unit was picked to be the target of that spell, roll a dice. On a 4+, ignore the effect of that spell on this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Regeneration",
+          "kind": "Activated",
+          "timing": "Start of Any Turn",
+          "declare": "",
+          "effect": "Heal (D3) this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "3f7c-ecc-b9dc-ccda",
+      "name": "Fellwater Troggoths",
+      "points": 160,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "INFANTRY",
+        "TROGGOTH",
+        "KING'S GITZ"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Noxious Vomit",
+          "kind": "ranged",
+          "range": "6\"",
+          "attacks": "D3",
+          "hit": "2+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "1",
+          "ability": "Shoot in Combat"
+        },
+        {
+          "name": "Spiked Club",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Noxious Vomit",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If any damage points are allocated to an enemy unit by attacks made with this unit's Noxious Vomit, that unit is drenched in vomit until the start of your next turn. While a unit is drenched in vomit: \u2022 Subtract 1 from save rolls for that unit. \u2022 Ignore positive modifiers to save rolls for that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Regeneration",
+          "kind": "Activated",
+          "timing": "Start of Any Turn",
+          "declare": "",
+          "effect": "Heal (D3) this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "6132-f299-106b-97e0",
+      "name": "Fellwater Troggoths (Scourge of Aqshy)",
+      "points": 180,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "INFANTRY",
+        "TROGGOTH",
+        "KING'S GITZ"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Noxious Vomit",
+          "kind": "ranged",
+          "range": "6\"",
+          "attacks": "D3",
+          "hit": "2+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "1",
+          "ability": "Shoot in Combat"
+        },
+        {
+          "name": "Spiked Club",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Gut-Wrenching Stench",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll a dice. You can spend up to 3 rage dice. If you do: \u2022 Add X to the roll, where X is the number of rage dice spent. \u2022 If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, on a 5+, the target has Strike-last for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Regeneration",
+          "kind": "Activated",
+          "timing": "Start of Any Turn",
+          "declare": "",
+          "effect": "Heal (D3) this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "a04f-574e-e278-ea32",
+      "name": "Gobbapalooza",
+      "points": 150,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "INFANTRY",
+        "MOONCLAN",
+        "WIZARD (1)",
+        "KING'S GITZ",
+        "Moonclan Infantry"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "3",
+        "save": "6+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Staff, Stikka or Jaggedy Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Hallucinogenic Fungus Brews",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "In the first battle round, this unit has Ward (4+). In the second battle round, this unit has Ward (5+). In the third and subsequent battle rounds, this unit has Ward (6+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Gobbapalooza Know-wotz",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Hero Phase",
+          "declare": "",
+          "effect": "Roll a dice. On a 3+, pick 1 of the following effects: *Glareface Dance:* Pick a friendly Gloomspite Gitz unit within this unit's combat range. Add 1 to run rolls and charge rolls for that unit until the start of your next turn. *Nasty Poisons:* Pick a friendly Gloomspite Gitz unit within this unit's combat range. Add 1 to the Rend characteristic of that unit's weapons until the start of your next turn. *Mesmerise:* Pick a visible enemy unit within 12\" of this unit. Until the start of your next turn, that unit cannot use commands.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "07da-8a50-69be-b0c1",
+      "name": "Grinkrak's Looncourt",
+      "points": 100,
+      "hero": false,
+      "unique": true,
+      "reinforce": false,
+      "models": 7,
+      "categories": [
+        "INFANTRY",
+        "UNIQUE",
+        "Legends",
+        "CHAMPION",
+        "DESTRUCTION",
+        "MOONCLAN",
+        "GLOOMSPITE GITZ",
+        "KING'S GITZ",
+        "Moonclan Infantry"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "2",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Moon-slicer",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "-"
+        },
+        {
+          "name": "Looncourt Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "-"
+        },
+        {
+          "name": "Squigapult",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3+2",
+          "ability": "Crit (Auto-wound)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Quest's End",
+          "kind": "Activated",
+          "timing": "Start of Any Turn",
+          "declare": "This unit can only use this ability if you control the object of this unit's quest and this unit is contesting it.",
+          "effect": "For the rest of the battle, this unit has Strike-first and Ward (4+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "The Looncourt's Quest",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "",
+          "effect": "Pick an objective or terrain feature within enemy territory to be the object of this unit's quest.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "1ca-65e-4f4a-ffb7",
+      "name": "Loonsmasha Fanatics",
+      "points": 110,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "INFANTRY",
+        "MOONCLAN",
+        "KING'S GITZ",
+        "Moonclan Infantry"
+      ],
+      "stats": {
+        "move": "2D6\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Ball and Chain",
+          "kind": "melee",
+          "range": "",
+          "attacks": "D6",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Whirling Death",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit has Strike-first.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Hidden Loons",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "Pick this unit if it has not been deployed.",
+          "effect": "Set up this unit in reserve hidden among the mobs. It has now been deployed.",
+          "keywords": "Deploy",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Release the Fanatics!",
+          "kind": "Activated",
+          "timing": "Any Movement Phase",
+          "declare": "Pick this unit if it is hidden among the mobs. Then, pick a friendly Moonclan Shootas or Moonclan Stabbas unit that has 10 or more models to be the target.",
+          "effect": "Set up this unit anywhere on the battlefield wholly within 6\" of the target and more than 9\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "5dee-8665-7880-096b",
+      "name": "Loonsmasha Fanatics (Scourge of Ghyran)",
+      "points": 110,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "INFANTRY",
+        "MOONCLAN",
+        "KING'S GITZ",
+        "Moonclan Infantry"
+      ],
+      "stats": {
+        "move": "2D6\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Ball and Chain",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Lost in the Horde",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "Pick this unit if it has not been deployed.",
+          "effect": "Set up this unit in reserve lost in the horde. This unit has now been deployed.",
+          "keywords": "Deploy",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Whirling Destruction",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Charge Phase",
+          "declare": "Pick this unit if it is lost in the horde.",
+          "effect": "Set up this unit anywhere on the battlefield wholly within 3\" of a friendly Moonclan Stabbas or Moonclan Shootas unit. Then, this unit can move 2D6\". It can pass through enemy models and their combat ranges and can end that move in combat. Then, roll a dice for each enemy unit in combat with this unit or that this unit passed across as part of that move. Inflict an amount of mortal damage on that unit equal to the roll. If this unit ended that move in combat, it has charged.",
+          "keywords": "Core, Move, Charge",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "7d29-9cf8-1621-e523",
+      "name": "Mangler Squigs",
+      "points": 130,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "MOONCLAN",
+        "MONSTER",
+        "FLY",
+        "SQUIG",
+        "KING'S GITZ"
+      ],
+      "stats": {
+        "move": "D6+8\"",
+        "health": "14",
+        "save": "5+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Balls and Chains",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "D3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Huge Fang-filled Gobs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "D6",
+          "ability": "Companion"
+        },
+        {
+          "name": "Bashin' Stikks",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Squig Rage",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Huge Fang-filled Gobs is 6.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Watch Out!",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit is destroyed, before removing it from play, roll a dice for each enemy unit within this unit's combat range. On a 4+, inflict D3 mortal damage on that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Giant Boing!",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Charge Phase",
+          "declare": "",
+          "effect": "If this unit charged this turn, roll a dice. On a 3+, this unit can move 3D6\" but must end that move in combat.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "b8a3-fc8f-cbdf-9424",
+      "name": "Moonclan Shootas",
+      "points": 110,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 20,
+      "categories": [
+        "CHAMPION",
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "INFANTRY",
+        "MOONCLAN",
+        "MUSICIAN (1/20)",
+        "STANDARD BEARER (1/20)",
+        "KING'S GITZ",
+        "Moonclan Infantry"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Moonclan Bow",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Netters",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy Infantry unit in combat with this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, subtract 1 from hit rolls for the target's attacks for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "8be0-b46d-7d03-f8e2",
+      "name": "Moonclan Stabbas",
+      "points": 110,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 20,
+      "categories": [
+        "CHAMPION",
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "INFANTRY",
+        "MOONCLAN",
+        "MUSICIAN (1/20)",
+        "STANDARD BEARER (1/20)",
+        "KING'S GITZ",
+        "Moonclan Infantry"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "1",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Stabba",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Netters",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy Infantry unit in combat with this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, subtract 1 from hit rolls for the target's attacks for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "6b55-8302-d5fe-f8b",
+      "name": "Rockgut Troggoths",
+      "points": 170,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "INFANTRY",
+        "TROGGOTH",
+        "WARD (5+)",
+        "KING'S GITZ"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Throwin' Boulders",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "1",
+          "hit": "5+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": "-"
+        },
+        {
+          "name": "Stone Maul or Craggy Hands",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Regeneration",
+          "kind": "Activated",
+          "timing": "Start of Any Turn",
+          "declare": "",
+          "effect": "Heal (D3) this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "3b3c-9e13-1ddc-7f74",
+      "name": "Sneaky Snufflers",
+      "points": 80,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 6,
+      "categories": [
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "INFANTRY",
+        "MOONCLAN",
+        "WARD (5+)",
+        "KING'S GITZ",
+        "Moonclan Infantry"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "2",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Loonfungus Sickle",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        },
+        {
+          "name": "Snufflesquig's Gnashers",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Looncap Mushrooms",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Hero Phase",
+          "declare": "If this unit is not in combat, pick a friendly Moonclan unit wholly within 12\" of it to be the target.",
+          "effect": "Roll a dice. Add 1 to the roll if the face of the Bad Moon is Cacklin' this turn. On a 3+, the target has Ward (5+) until the start of your next turn. On a 6+, also add 1 to the Attacks characteristic of the target's melee weapons until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "618-3bfc-edf1-a568",
+      "name": "Sporesplatta Fanatics",
+      "points": 90,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "INFANTRY",
+        "MOONCLAN",
+        "KING'S GITZ",
+        "Moonclan Infantry"
+      ],
+      "stats": {
+        "move": "2D6\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Spore-ball and Chain",
+          "kind": "melee",
+          "range": "",
+          "attacks": "D3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Puffshroom Frenzy",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Attacks characteristic of melee weapons used by other friendly Moonclan units while they are wholly within 12\" of this unit. Subtract 1 from the Attacks characteristic of melee weapons used by enemy units while they are in combat with this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "A Prod in the Right Direction",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "",
+          "effect": "This unit can use the 'Normal Move' ability as if it were your movement phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "78fe-025d-e1b5-511f",
+      "name": "Sporesplatta Fanatics (Scourge of Ghyran)",
+      "points": 80,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "INFANTRY",
+        "MOONCLAN",
+        "KING'S GITZ",
+        "Moonclan Infantry"
+      ],
+      "stats": {
+        "move": "2D6\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Spore-ball and Chain",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Choking Spore-clouds",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from the Attacks characteristic of weapons used by enemy units while they are in combat with this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Spinning Loons",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Any Turn",
+          "declare": "",
+          "effect": "If this unit was not set up this phase, this unit can move 2D6\". It can move through the combat ranges of enemy units and can finish that move in combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "5e58-eff2-c9a6-7227",
+      "name": "Squig Herd",
+      "points": 100,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 12,
+      "categories": [
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "MOONCLAN",
+        "BEAST",
+        "SQUIG",
+        "KING'S GITZ"
+      ],
+      "stats": {
+        "move": "D6+3\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Fang-filled Gob",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Squig Prodder",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "5+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Squigs Gone Wild",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking unit, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the Fight ability has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Herding Squigs",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "",
+          "effect": "Roll a dice for each Squig Herder in this unit. For each 2+, you can return D3 slain Cave Squigs to this unit. For each 1, 1 Squig Herder in this unit is slain.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "d378-a542-6aa9-ccf9",
+      "name": "Squig Hoppers",
+      "points": 150,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 10,
+      "categories": [
+        "CAVALRY",
+        "CHAMPION",
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "SQUIG",
+        "MOONCLAN",
+        "FLY",
+        "KING'S GITZ"
+      ],
+      "stats": {
+        "move": "D6+8\"",
+        "health": "2",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Fang-filled Gob",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Slitta",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Boing! Boing! Boing!",
+          "kind": "Activated",
+          "timing": "Any Movement Phase",
+          "declare": "Pick an enemy unit that this unit passed across this phase to be the target.",
+          "effect": "Roll a dice for each model in this unit that passed across the target. For each 4+, inflict 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "5ebb-a3a6-b5a9-86c9",
+      "name": "Zarbag's Gitz",
+      "points": 130,
+      "hero": false,
+      "unique": true,
+      "reinforce": false,
+      "models": 9,
+      "categories": [
+        "UNIQUE",
+        "Legends",
+        "CHAMPION",
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "INFANTRY",
+        "MOONCLAN",
+        "KING'S GITZ",
+        "Moonclan Infantry"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "2",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Git Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "-"
+        },
+        {
+          "name": "Moonclan Bow",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Sniffer Spite",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "",
+          "effect": "If this unit's Zarbag is on the battlefield and within 3\" of a terrain feature, roll a dice. On a 4+, add 1 to this unit's power level for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Zarbag",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit's Zarbag is on the battlefield, it has Wizard (1).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ],
+  "parentFactionIds": [
+    "gloomspite-gitz"
+  ]
+}

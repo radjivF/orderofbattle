@@ -1,0 +1,490 @@
+{
+  "id": "ossiarch-bonereapers-the-lance-of-ossia",
+  "name": "Ossiarch Bonereapers - The Lance of Ossia",
+  "game": "Age of Sigmar 4th",
+  "source": "https://github.com/BSData/age-of-sigmar-4th",
+  "pointsCapDefault": 2000,
+  "formations": [],
+  "battleTraits": [
+    {
+      "id": "a987-96c5-65b1-342e",
+      "name": "The Lance of Ossia",
+      "abilities": [
+        {
+          "name": "Praetorian Elite",
+          "kind": "Activated",
+          "timing": "Once Per Battle Round (Army), Start of Battle Round",
+          "declare": "You must use this ability if there are any friendly Lance of Ossia Heroes on the battlefield. Pick a friendly Lance of Ossia Hero to be the target.",
+          "effect": "You gain a number of relentless discipline points equal to a number of shown after the target's Relentless Discipline keyword. At the end of the battle round, any unspent relentless discipline points are lost.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Vengeful Outriders",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick a friendly Lance of Ossia unit that has not used a Relentless Discipline ability this phase to be the target.",
+          "effect": "Spend 1 relentless discipline point. If the target is reinforced and has more than half of its starting models, spend 2 relentless discipline points instead. Add 2\" to the target's Move characteristic for the rest of the phase.",
+          "keywords": "Relentless Discipline",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Kavalos Lance",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "When a friendly Lance of Ossia unit uses the 'Power Through' command, the target does not have to have a lower Health characteristic than that friendly unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Silent Menace",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick a friendly Lance of Ossia unit that has not used a Relentless Discipline ability this phase to use this ability, then pick a visible enemy unit within 12\" of it to be the target.",
+          "effect": "Spend 1 relentless discipline point. If the target is reinforced and has more than half of its starting models, spend 2 relentless discipline points instead. The target cannot use the 'Redeploy' command for the rest of the turn.",
+          "keywords": "Relentless Discipline",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Fury of Zandtos",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "Pick a friendly Lance of Ossia unit that has not used a Relentless Discipline ability this phase to be the target.",
+          "effect": "Spend 1 relentless discipline point. If the target is reinforced and has more than half of its starting models, spend 2 relentless discipline points instead. The target's melee weapons, including Companion weapons, have Crit (2 Hits) for the rest of the turn.",
+          "keywords": "Relentless Discipline",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Blood-smeared Hooves",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick a friendly Lance of Ossia unit that charged this turn and has not used a Relentless Discipline ability this phase to be the target.",
+          "effect": "Spend 1 relentless discipline point. If the target is reinforced and has more than half of its starting models, spend 2 relentless discipline points instead. Add 1 to the Rend characteristic of the target's weapons, including Comapnion weapons, for the rest of the turn.",
+          "keywords": "Relentless Discipline",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "spellLores": [],
+  "prayerLores": [],
+  "manifestationLores": [],
+  "artefacts": [
+    {
+      "id": "d1da-85b3-99d9-be2c",
+      "name": "Helm of Tyranny",
+      "abilities": [
+        {
+          "name": "Helm of Tyranny",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 3 from the control scores of enemy units while they are within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "heroicTraits": [
+    {
+      "id": "c145-cac4-eb97-037e",
+      "name": "Prevailing Tactician",
+      "abilities": [
+        {
+          "name": "Prevailing Tactician",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "",
+          "effect": "If a friendly Arch-Kavalos Zandtos is not wholly within 12\" of this unit, you gain 2 relentless discipline points.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "monstrousTraits": [],
+  "visionsOfFate": [],
+  "terrain": [],
+  "units": [
+    {
+      "id": "3d7d-bb9a-b450-8a47",
+      "name": "Arch-Kavalos Zandtos",
+      "points": 220,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "DEATH",
+        "OSSIARCH BONEREAPERS",
+        "WARD (6+)",
+        "UNIQUE",
+        "CAVALRY",
+        "RELENTLESS DISCIPLINE (7)",
+        "LANCE OF OSSIA"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "8",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Kavalos Steed's Hooves, Teeth, and Barbed Tails",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "The Dark Lance",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "2",
+          "ability": "Charge (+1 Damage)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Unstoppable Charge",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "If this unit charged this turn, pick each enemy unit in combat with it to be the targets.",
+          "effect": "The targets have Strike-last for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Still Their Breath!",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick a friendly non-Hero Ossiarch Bonereapers Cavalry unit wholly within 12\" of this unit to be the target.",
+          "effect": "Spend 1 relentless discipline point. If this unit is in combat, no relentless discipline points are spent. The target's melee weapons have Charge (+1 Damage) for the rest of the turn.",
+          "keywords": "Relentless Discipline",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "5603-d1-a021-331e",
+          "name": "OSSIARCH BONEREAPERS"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "94bd-295c-c868-27ee",
+      "name": "Liege-Kavalos",
+      "points": 180,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "DEATH",
+        "OSSIARCH BONEREAPERS",
+        "WARD (6+)",
+        "CAVALRY",
+        "RELENTLESS DISCIPLINE (6)",
+        "LANCE OF OSSIA"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "7",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Commander's Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Charge (+1 Damage)"
+        },
+        {
+          "name": "Kavalos Steed's Hooves, Teeth, and Barbed Tails",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Deathrider Commander",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit and visible friendly Kavalos Deathriders units wholly within 12\" Of this unit can move 12\" instead of 10\" when they use the 'Deathrider Wedge' ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Master of Cavalry",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a Fight ability for this unit",
+          "declare": "",
+          "effect": "Pick a friendly Kavalos Deathriders unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight ability used by this unit has been resolved. If it is picked to do so, add 1 to hit rolls for the target's combat attacks for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "5603-d1-a021-331e",
+          "name": "OSSIARCH BONEREAPERS"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "81d0-9a4a-fb83-8626",
+      "name": "Liege-Kavalos on War Chariot",
+      "points": 210,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "DEATH",
+        "OSSIARCH BONEREAPERS",
+        "WARD (6+)",
+        "RELENTLESS DISCIPLINE (6)",
+        "WAR MACHINE",
+        "LANCE OF OSSIA"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "12",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Commander's Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Charge (+1 Damage)"
+        },
+        {
+          "name": "Kavalos Steed's Hooves, Teeth, and Barbed Tails",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Grind Them to Dust",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Movement Phase",
+          "declare": "If this unit is in combat, pick this unit and up to 2 visible friendly Kavalos War Chariots wholly within 12\" of this unit and in combat to be the targets.",
+          "effect": "For each target: \u2022 Make a pile-in move. \u2022 Then, pick an enemy unit in combat with the target and roll a D3. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Masterful Charioteer",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "If this unit is in combat and has charged this turn, pick this unit and up to 2 visible friendly Kavalos War Chariots that have charged this turn, that are wholly within 12\" Of this unit and that are in combat to be the targets.",
+          "effect": "Each target has Ward (5+) for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "5603-d1-a021-331e",
+          "name": "OSSIARCH BONEREAPERS"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "efaa-2ff1-8-5f4b",
+      "name": "Kavalos Deathriders",
+      "points": 150,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "OSSIARCH BONEREAPERS",
+        "WARD (6+)",
+        "DEATH",
+        "CHAMPION",
+        "CAVALRY",
+        "STANDARD BEARER (1/5)",
+        "LANCE OF OSSIA"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "3",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Kavalos Blades",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "-"
+        },
+        {
+          "name": "Kavalos Steed's Hooves and Teeth",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Deathrider Wedge",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "If this unit charged this turn, pick an enemy unit in combat with it to be the enemy target. Then, you can pick a friendly Liege-Kavalos within this unit's combat range to be the friendly target.",
+          "effect": "Inflict D3 mortal damage on the enemy target. Inflict an additional D3 mortal damage on the enemy target if you picked a friendly target. Then, this unit and the friendly target (if any) can move 10\". They can move through the combat ranges of enemy units but cannot end that move in combat.",
+          "keywords": "Core, Attack, Fight",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "322d-d9f2-cdc6-64e6",
+      "name": "Kavalos War Chariot",
+      "points": 150,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "DEATH",
+        "OSSIARCH BONEREAPERS",
+        "WARD (6+)",
+        "WAR MACHINE",
+        "LANCE OF OSSIA"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "10",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Charioteers' Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "-"
+        },
+        {
+          "name": "Kavalos Steed's Hooves, Teeth, and Barbed Tails",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Scything Assault",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "If this unit charged this turn, pick an enemy unit in combat with it to be the target.",
+          "effect": "Inflict D3 mortal damage on the target. Then, you can remove this unit from the battlefield and set it up again within 1\" of the target.",
+          "keywords": "Core, Attack, Fight",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Pinning Attacks",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Shooting Phase",
+          "declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
+          "effect": "If this unit is wholly within 12\" of a friendly Liege-Kavalos on War Chariot, apply the effect below. Otherwise, roll a dice. On a 3+, apply the effect below. \u2022 Inflict 1 mortal damage on the target. \u2022 The target cannot make pile-in moves for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ],
+  "parentFactionIds": [
+    "ossiarch-bonereapers"
+  ]
+}

@@ -265,6 +265,8 @@ export function buildPhaseBoards(
 
   pushEnhancementAbilities(list, faction, boards, "artefact");
   pushEnhancementAbilities(list, faction, boards, "heroicTrait");
+  pushEnhancementAbilities(list, faction, boards, "monstrousTrait");
+  pushEnhancementAbilities(list, faction, boards, "visionOfFate");
 
   const lore = faction.manifestationLores.find(
     (item) => item.id === list.manifestationLoreId,
@@ -336,20 +338,33 @@ function pushEnhancementAbilities(
   list: ArmyList,
   faction: FactionCatalogue,
   boards: Map<PlayPhaseId, PhaseBoard>,
-  field: "artefact" | "heroicTrait",
+  field: "artefact" | "heroicTrait" | "monstrousTrait" | "visionOfFate",
 ) {
   const pick = list[field];
   if (!pick) {
     return;
   }
   const options =
-    field === "artefact" ? faction.artefacts : faction.heroicTraits;
+    field === "artefact"
+      ? faction.artefacts
+      : field === "heroicTrait"
+        ? faction.heroicTraits
+        : field === "monstrousTrait"
+          ? (faction.monstrousTraits ?? [])
+          : (faction.visionsOfFate ?? []);
   const option = options.find((item) => item.id === pick.optionId);
   if (!option) {
     return;
   }
   const bearer = rosterUnitName(list, faction, pick.heroSelectionId);
-  const kindLabel = field === "artefact" ? "Artefact" : "Heroic trait";
+  const kindLabel =
+    field === "artefact"
+      ? "Artefact"
+      : field === "heroicTrait"
+        ? "Heroic trait"
+        : field === "monstrousTrait"
+          ? "Monstrous trait"
+          : "Vision of Fate";
   const unitName = bearer
     ? `${bearer} · ${kindLabel}`
     : `${kindLabel} · ${option.name}`;

@@ -1,6 +1,7 @@
 import type {
   ArmyList,
   CatalogueUnit,
+  EnhancementOption,
   FactionCatalogue,
   NamedOption,
   RegimentOfRenown,
@@ -16,15 +17,43 @@ const byRenown = new Map(
 );
 
 export function listFactions(): FactionCatalogue[] {
-  return [...factions].sort((a, b) => {
-    if (a.id === "stormcast-eternals") {
-      return -1;
-    }
-    if (b.id === "stormcast-eternals") {
-      return 1;
-    }
-    return a.name.localeCompare(b.name);
-  });
+  return factions
+    .filter((faction) => !faction.parentFactionIds?.length)
+    .sort((a, b) => {
+      if (a.id === "stormcast-eternals") {
+        return -1;
+      }
+      if (b.id === "stormcast-eternals") {
+        return 1;
+      }
+      return a.name.localeCompare(b.name);
+    });
+}
+
+export function listArmiesOfRenown(
+  factionId: string,
+): FactionCatalogue[] {
+  return factions
+    .filter((faction) => faction.parentFactionIds?.includes(factionId))
+    .sort((a, b) => armyOfRenownName(a).localeCompare(armyOfRenownName(b)));
+}
+
+export function isArmyOfRenown(faction: FactionCatalogue): boolean {
+  return Boolean(faction.parentFactionIds?.length);
+}
+
+export function armyOfRenownName(faction: FactionCatalogue): string {
+  if (!isArmyOfRenown(faction)) {
+    return faction.name;
+  }
+  const parts = faction.name.split(" - ");
+  return parts.length > 1 ? parts.slice(1).join(" - ") : faction.name;
+}
+
+export function catalogueMatchIds(faction: FactionCatalogue): string[] {
+  return faction.parentFactionIds?.length
+    ? faction.parentFactionIds
+    : [faction.id];
 }
 
 export function getFaction(id: string): FactionCatalogue | undefined {
@@ -40,8 +69,10 @@ export function getRegimentOfRenown(
 export function listRegimentsOfRenown(
   factionId: string,
 ): RegimentOfRenown[] {
+  const faction = getFaction(factionId);
+  const ids = faction ? catalogueMatchIds(faction) : [factionId];
   return regimentsOfRenown
-    .filter((item) => item.factionIds.includes(factionId))
+    .filter((item) => item.factionIds.some((id) => ids.includes(id)))
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
@@ -270,6 +301,52 @@ export function unitHasKeyword(unit: CatalogueUnit, keyword: string): boolean {
   );
 }
 
+export function canTakeMonstrousTrait(unit: CatalogueUnit): boolean {
+  return unitHasKeyword(unit, "MONSTER") && !unit.unique;
+}
+
+export function canTakeVisionOfFate(unit: CatalogueUnit): boolean {
+  return !unit.hero && !unit.unique && !unitHasKeyword(unit, "BEAST");
+}
+
+export function enhancementChoiceDetail(
+  option: { points?: number; pack?: string },
+): string | undefined {
+  const parts: string[] = [];
+  if (option.pack) {
+    parts.push(option.pack);
+  }
+  if (option.points) {
+    parts.push(`${option.points} pts`);
+  }
+  return parts.length > 0 ? parts.join(" · ") : undefined;
+}
+
+export function enhancementLabel(
+  options: EnhancementOption[],
+  optionId: string | null | undefined,
+): string | undefined {
+  if (!optionId) {
+    return undefined;
+  }
+  const option = options.find((item) => item.id === optionId);
+  if (!option) {
+    return undefined;
+  }
+  const extra = enhancementChoiceDetail(option);
+  return extra ? `${option.name} · ${extra}` : option.name;
+}
+
+export function pickedEnhancementPoints(
+  pick: { optionId: string } | null | undefined,
+  options: EnhancementOption[] | undefined,
+): number {
+  if (!pick) {
+    return 0;
+  }
+  return options?.find((item) => item.id === pick.optionId)?.points ?? 0;
+}
+
 export function unitIsWarmaster(unit: CatalogueUnit): boolean {
   return unitHasKeyword(unit, "WARMASTER");
 }
@@ -452,6 +529,13 @@ export function weaponAttacksForDamage(
     return { attacks: override.attacks, modified: true };
   }
   return { attacks: baseAttacks, modified: false };
+}
+
+export function getSelection(
+  list: ArmyList,
+  selectionId: string,
+): Selection | undefined {
+  return findSelection(list, selectionId)?.selection;
 }
 
 export function selectionDamage(

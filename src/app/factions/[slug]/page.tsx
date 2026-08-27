@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { ContentDoc } from "@/components/ContentDoc";
 import { JsonLd } from "@/components/JsonLd";
 import { getFaction, listFactions } from "@/engine/queries";
-import { factionArtSrc } from "@/lib/factionArt";
+import { factionArtSize, factionArtSrc } from "@/lib/factionArt";
 import { factionSeoStats } from "@/lib/factionSeo";
 import { articleNode, breadcrumbNode, pageGraph } from "@/lib/jsonLd";
 import { sitePath } from "@/lib/site";
@@ -95,9 +95,11 @@ export default async function FactionPage({ params }: Props) {
           <Image
             src={art}
             alt={`${faction.name} army art used in Order of Battle`}
-            width={960}
-            height={540}
-            className="mb-2 w-full rounded-2xl object-cover"
+            {...factionArtSize(faction.id)}
+            unoptimized
+            priority
+            loading="eager"
+            className="mb-2 h-auto w-full rounded-2xl"
             sizes="(max-width: 768px) 100vw, 768px"
           />
         ) : null}

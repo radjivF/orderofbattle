@@ -1321,6 +1321,111 @@
       ]
     }
   ],
+  "monstrousTraits": [
+    {
+      "id": "d2ca-b06d-4b39-52e1",
+      "name": "Sly 'Un",
+      "abilities": [
+        {
+          "name": "Sly 'Un",
+          "kind": "Activated",
+          "timing": "Once Per Battle, End of Any Turn",
+          "declare": "",
+          "effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 9\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "points": 10,
+      "pack": "Kunnin' Creatures"
+    },
+    {
+      "id": "d0ce-c921-80c1-5b80",
+      "name": "Quick 'Un",
+      "abilities": [
+        {
+          "name": "Quick 'Un",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add half your fury level (rounding up) to run rolls and charge rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "points": 20,
+      "pack": "Kunnin' Creatures"
+    },
+    {
+      "id": "530e-e423-5ad0-7e24",
+      "name": "Spittin' 'Un",
+      "abilities": [
+        {
+          "name": "Spittin' 'Un",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit is armed with Caustic Saliva, where X is equal to your fury level.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "points": 20,
+      "pack": "Kunnin' Creatures"
+    },
+    {
+      "id": "cf28-0b33-c0f5-52b9",
+      "name": "Mean 'Un",
+      "abilities": [
+        {
+          "name": "Mean 'Un",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to hit rolls for attacks made with this unit's Companion weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "c995-6a82-20ed-09ba",
+      "name": "Sneaky 'Un",
+      "abilities": [
+        {
+          "name": "Sneaky 'Un",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Enemy Hero Phase",
+          "declare": "",
+          "effect": "This unit can use the 'Normal Move' or 'Retreat' ability as if it were your movement phase. In addition, no mortal damage is inflicted on this unit by Retreat abilities this phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "13f4-552c-ed77-a8e8",
+      "name": "Tough 'Un",
+      "abilities": [
+        {
+          "name": "Tough 'Un",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "visionsOfFate": [],
   "terrain": [
     {
       "id": "8346-0ba5-9740-dc49",

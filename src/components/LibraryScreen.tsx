@@ -4,10 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useSyncExternalStore } from "react";
-import { getFaction, listFactions } from "@/engine/queries";
+import { getFaction, listArmiesOfRenown, listFactions, armyOfRenownName } from "@/engine/queries";
+import { formatPoints } from "@/engine/pointsCap";
 import { summarize } from "@/engine/validate";
 import type { ArmyList, FactionCatalogue } from "@/engine/types";
-import { factionArtSrc } from "@/lib/factionArt";
+import { catalogueArtClass, catalogueArtSrc } from "@/lib/factionArt";
 import {
   blankArmy,
   deleteArmy,
@@ -19,6 +20,8 @@ import {
 } from "@/lib/storage";
 import { BrandMark } from "./BrandMark";
 import { IndexBackdrop } from "./IndexBackdrop";
+import { ModalFrame } from "./ModalFrame";
+import { PointsCapField } from "./PointsCapField";
 import { SiteFooter } from "./SiteFooter";
 
 export function LibraryScreen() {
@@ -33,17 +36,23 @@ export function LibraryScreen() {
   const [draftFaction, setDraftFaction] = useState<FactionCatalogue | null>(
     null,
   );
+  const [draftParent, setDraftParent] = useState<FactionCatalogue | null>(
+    null,
+  );
   const [draftName, setDraftName] = useState("");
+  const [draftPoints, setDraftPoints] = useState(2000);
 
   async function onCreate() {
     if (!draftFaction) {
       return;
     }
-    const list = blankArmy(draftFaction.id, draftName);
+    const list = blankArmy(draftFaction.id, draftName, draftPoints);
     await saveArmy(list);
     setPicking(false);
     setDraftFaction(null);
+    setDraftParent(null);
     setDraftName("");
+    setDraftPoints(2000);
     router.push(`/lists/${list.id}`);
   }
 
@@ -71,7 +80,9 @@ export function LibraryScreen() {
   function closePicker() {
     setPicking(false);
     setDraftFaction(null);
+    setDraftParent(null);
     setDraftName("");
+    setDraftPoints(2000);
   }
 
   return (
@@ -116,7 +127,7 @@ export function LibraryScreen() {
               const formation = faction?.formations.find(
                 (item) => item.id === list.formationId,
               );
-              const artSrc = factionArtSrc(list.factionId);
+              const artSrc = catalogueArtSrc(faction);
               return (
                 <li key={list.id}>
                   <article className="parchment-card grid min-h-[8.5rem] grid-cols-[minmax(0,1fr)_7.5rem] overflow-hidden rounded-2xl text-parchment-ink sm:grid-cols-[minmax(0,1fr)_9.5rem]">
@@ -144,7 +155,8 @@ export function LibraryScreen() {
                       >
                         <span className="min-w-0 flex-1">
                           <span className="block text-base font-semibold text-gold-deep">
-                            {totals?.points ?? 0} / {list.pointsCap}
+                            {formatPoints(totals?.points ?? 0)} /{" "}
+                            {formatPoints(list.pointsCap)}
                           </span>
                           <span className="mt-0.5 block text-sm text-sheet-muted sm:text-base">
                             {formation?.name ?? "No formation"}
@@ -200,7 +212,8 @@ export function LibraryScreen() {
                           fill
                           sizes="152px"
                           quality={68}
-                          className="object-cover object-[center_28%]"
+                          unoptimized
+                          className={catalogueArtClass(faction)}
                         />
                         <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#efe6d2]/35" />
                       </button>
@@ -220,18 +233,11 @@ export function LibraryScreen() {
       <SiteFooter />
 
       {picking ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <button
-            type="button"
-            aria-label="Close"
-            className="absolute inset-0 bg-ink/70"
-            onClick={closePicker}
-          />
-          <div
-            role="dialog"
-            aria-label="New list"
-            className="parchment-card relative z-10 flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl text-parchment-ink"
-          >
+        <ModalFrame
+          label="New list"
+          onClose={closePicker}
+          panelClassName="parchment-card flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl text-parchment-ink"
+        >
             <div className="flex shrink-0 items-center justify-between px-5 pt-5 pb-3">
               <h2 className="font-serif text-2xl">
                 {draftFaction ? "Name your list" : "Choose a faction"}
@@ -248,8 +254,41 @@ export function LibraryScreen() {
             {draftFaction ? (
               <div className="flex flex-col gap-4 overflow-y-auto px-5 pb-6">
                 <p className="text-base text-sheet-muted">
-                  {draftFaction.name}
+                  {(draftParent ?? draftFaction).name}
                 </p>
+                {draftParent && listArmiesOfRenown(draftParent.id).length > 0 ? (
+                  <label className="flex flex-col gap-2 text-base text-sheet-muted">
+                    Army
+                    <select
+                      value={draftFaction.id}
+                      onChange={(event) => {
+                        const next =
+                          getFaction(event.target.value) ?? draftParent;
+                        setDraftName((current) => {
+                          const previous = armyOfRenownName(draftFaction);
+                          if (
+                            current === `My ${previous}` ||
+                            current === `My ${draftFaction.name}`
+                          ) {
+                            return `My ${armyOfRenownName(next)}`;
+                          }
+                          return current;
+                        });
+                        setDraftFaction(next);
+                      }}
+                      className="min-h-11 w-full rounded-xl bg-parchment-ink/5 px-3 font-serif text-xl text-parchment-ink"
+                    >
+                      <option value={draftParent.id}>
+                        Standard {draftParent.name}
+                      </option>
+                      {listArmiesOfRenown(draftParent.id).map((army) => (
+                        <option key={army.id} value={army.id}>
+                          {armyOfRenownName(army)}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                ) : null}
                 <label className="flex flex-col gap-2 text-base text-sheet-muted">
                   List name
                   <input
@@ -261,15 +300,21 @@ export function LibraryScreen() {
                         void onCreate();
                       }
                     }}
-                    placeholder={`My ${draftFaction.name}`}
-                    className="min-h-11 rounded-xl bg-parchment-ink/5 px-3 font-serif text-xl text-parchment-ink outline-none"
+                    placeholder={`My ${armyOfRenownName(draftFaction)}`}
+                    className="min-h-11 w-full rounded-xl bg-parchment-ink/5 px-3 font-serif text-xl text-parchment-ink outline-none"
                   />
                 </label>
+                <PointsCapField
+                  value={draftPoints}
+                  onChange={setDraftPoints}
+                  variant="parchment"
+                />
                 <div className="flex gap-2">
                   <button
                     type="button"
                     onClick={() => {
                       setDraftFaction(null);
+                      setDraftParent(null);
                       setDraftName("");
                     }}
                     className="min-h-11 flex-1 rounded-xl bg-parchment-ink/5 text-base"
@@ -292,8 +337,10 @@ export function LibraryScreen() {
                     <button
                       type="button"
                       onClick={() => {
+                        setDraftParent(faction);
                         setDraftFaction(faction);
                         setDraftName(`My ${faction.name}`);
+                        setDraftPoints(faction.pointsCapDefault);
                       }}
                       className="flex min-h-12 w-full items-center justify-between rounded-lg px-3 py-2.5 text-left hover:bg-parchment-ink/5"
                     >
@@ -308,8 +355,7 @@ export function LibraryScreen() {
                 ))}
               </ul>
             )}
-          </div>
-        </div>
+        </ModalFrame>
       ) : null}
     </IndexBackdrop>
   );

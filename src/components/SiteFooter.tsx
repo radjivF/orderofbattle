@@ -88,9 +88,9 @@ export function SiteFooter() {
         <Link href="/terms" className={linkClass}>
           Terms
         </Link>
-        <Link href="/sitemap" className={linkClass}>
+        <a href="/sitemap.xml" className={linkClass}>
           Sitemap
-        </Link>
+        </a>
       </p>
     </footer>
   );

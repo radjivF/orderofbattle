@@ -7,12 +7,15 @@ import {
   powerBindKey,
   powerBindRule,
   powerChoiceKey,
+  type BindCandidate,
 } from "@/engine/magic";
 import { armyRoster } from "@/engine/phases";
 import {
   armyHasKeyword,
+  getSelection,
   manifestationStatLine,
   namedOption,
+  selectionPlayState,
 } from "@/engine/queries";
 import type {
   ArmyList,
@@ -250,7 +253,7 @@ function PowerCard({
                   key={candidate.selectionId}
                   value={candidate.selectionId}
                 >
-                  {candidate.unit.name}
+                  {bindCandidateLabel(list, candidate, candidates)}
                 </option>
               ))}
             </select>
@@ -367,4 +370,29 @@ function buildMagicBoard(list: ArmyList, faction: FactionCatalogue) {
     prayers,
     manifestations: manifestationLore?.manifestations ?? [],
   };
+}
+
+function bindCandidateLabel(
+  list: ArmyList,
+  candidate: BindCandidate,
+  candidates: BindCandidate[],
+): string {
+  const selection = getSelection(list, candidate.selectionId);
+  const track = selection
+    ? selectionPlayState(selection, candidate.unit)
+    : null;
+  const twins = candidates.filter(
+    (row) => row.unit.name === candidate.unit.name,
+  );
+  const name =
+    twins.length > 1
+      ? `${candidate.unit.name} (${twins.findIndex((row) => row.selectionId === candidate.selectionId) + 1})`
+      : candidate.unit.name;
+  if (!track) {
+    return name;
+  }
+  if (track.modelsMax > 1 || twins.length > 1) {
+    return `${name} · ${track.models}/${track.modelsMax}`;
+  }
+  return name;
 }

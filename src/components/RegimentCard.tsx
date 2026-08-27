@@ -4,10 +4,13 @@ import { useEffect, useId, useRef, useState } from "react";
 import {
   battleDamagedWarning,
   battleStatLine,
+  canTakeMonstrousTrait,
+  canTakeVisionOfFate,
   getUnit,
   selectionPlayState,
   selectionPoints,
 } from "@/engine/queries";
+import type { CombatModifierNote } from "@/engine/magic";
 import type {
   CatalogueUnit,
   FactionCatalogue,
@@ -30,17 +33,26 @@ type Props = {
   heroicTraitBearerId?: string | null;
   heroicTraitLabel?: string;
   heroicTraitAbilities?: UnitAbility[];
+  monstrousTraitBearerId?: string | null;
+  monstrousTraitLabel?: string;
+  monstrousTraitAbilities?: UnitAbility[];
+  visionBearerId?: string | null;
+  visionLabel?: string;
+  visionAbilities?: UnitAbility[];
   onSelect: () => void;
   onMakeGeneral: () => void;
   onPickHero: () => void;
   onPickUnit: () => void;
   onPickArtefact?: (heroSelectionId: string) => void;
   onPickTrait?: (heroSelectionId: string) => void;
+  onPickMonstrousTrait?: (selectionId: string) => void;
+  onPickVision?: (selectionId: string) => void;
   onOpenDatasheet: (unit: CatalogueUnit) => void;
   onToggleReinforce: (selectionId: string) => void;
   onRemoveUnit: (selectionId: string) => void;
   onRemoveRegiment: () => void;
   onPlayHealth?: (selectionId: string, damage: number) => void;
+  bindNotes?: CombatModifierNote[];
 };
 
 export function RegimentCard({
@@ -57,17 +69,26 @@ export function RegimentCard({
   heroicTraitBearerId,
   heroicTraitLabel,
   heroicTraitAbilities,
+  monstrousTraitBearerId,
+  monstrousTraitLabel,
+  monstrousTraitAbilities,
+  visionBearerId,
+  visionLabel,
+  visionAbilities,
   onSelect,
   onMakeGeneral,
   onPickHero,
   onPickUnit,
   onPickArtefact,
   onPickTrait,
+  onPickMonstrousTrait,
+  onPickVision,
   onOpenDatasheet,
   onToggleReinforce,
   onRemoveUnit,
   onRemoveRegiment,
   onPlayHealth,
+  bindNotes,
 }: Props) {
   const hero = regiment.hero
     ? getUnit(faction, regiment.hero.unitId)
@@ -132,11 +153,12 @@ export function RegimentCard({
             selection={regiment.hero}
             points={selectionPoints(hero, false)}
             playMode={playMode}
+            bindNotes={bindNotes}
             onReplace={onPickHero}
             onOpenDatasheet={() => onOpenDatasheet(hero)}
             onPlayHealth={onPlayHealth}
           />
-          <HeroEnhancements
+          <SlotEnhancements
             selectionId={regiment.hero.id}
             unit={hero}
             playMode={playMode}
@@ -146,8 +168,16 @@ export function RegimentCard({
             heroicTraitBearerId={heroicTraitBearerId}
             heroicTraitLabel={heroicTraitLabel}
             heroicTraitAbilities={heroicTraitAbilities}
+            monstrousTraitBearerId={monstrousTraitBearerId}
+            monstrousTraitLabel={monstrousTraitLabel}
+            monstrousTraitAbilities={monstrousTraitAbilities}
+            visionBearerId={visionBearerId}
+            visionLabel={visionLabel}
+            visionAbilities={visionAbilities}
             onPickArtefact={onPickArtefact}
             onPickTrait={onPickTrait}
+            onPickMonstrousTrait={onPickMonstrousTrait}
+            onPickVision={onPickVision}
           />
         </>
       ) : playMode ? (
@@ -180,12 +210,13 @@ export function RegimentCard({
                 reinforced={slot.reinforced}
                 canReinforce={unit.reinforce}
                 playMode={playMode}
+                bindNotes={bindNotes}
                 onToggleReinforce={() => onToggleReinforce(slot.id)}
                 onRemove={() => onRemoveUnit(slot.id)}
                 onOpenDatasheet={() => onOpenDatasheet(unit)}
                 onPlayHealth={onPlayHealth}
               />
-              <HeroEnhancements
+              <SlotEnhancements
                 selectionId={slot.id}
                 unit={unit}
                 playMode={playMode}
@@ -195,8 +226,16 @@ export function RegimentCard({
                 heroicTraitBearerId={heroicTraitBearerId}
                 heroicTraitLabel={heroicTraitLabel}
                 heroicTraitAbilities={heroicTraitAbilities}
+                monstrousTraitBearerId={monstrousTraitBearerId}
+                monstrousTraitLabel={monstrousTraitLabel}
+                monstrousTraitAbilities={monstrousTraitAbilities}
+                visionBearerId={visionBearerId}
+                visionLabel={visionLabel}
+                visionAbilities={visionAbilities}
                 onPickArtefact={onPickArtefact}
                 onPickTrait={onPickTrait}
+                onPickMonstrousTrait={onPickMonstrousTrait}
+                onPickVision={onPickVision}
               />
             </li>
           );
@@ -219,7 +258,7 @@ export function RegimentCard({
   );
 }
 
-function HeroEnhancements({
+export function SlotEnhancements({
   selectionId,
   unit,
   playMode,
@@ -229,8 +268,16 @@ function HeroEnhancements({
   heroicTraitBearerId,
   heroicTraitLabel,
   heroicTraitAbilities,
+  monstrousTraitBearerId,
+  monstrousTraitLabel,
+  monstrousTraitAbilities,
+  visionBearerId,
+  visionLabel,
+  visionAbilities,
   onPickArtefact,
   onPickTrait,
+  onPickMonstrousTrait,
+  onPickVision,
 }: {
   selectionId: string;
   unit: CatalogueUnit;
@@ -241,18 +288,27 @@ function HeroEnhancements({
   heroicTraitBearerId?: string | null;
   heroicTraitLabel?: string;
   heroicTraitAbilities?: UnitAbility[];
+  monstrousTraitBearerId?: string | null;
+  monstrousTraitLabel?: string;
+  monstrousTraitAbilities?: UnitAbility[];
+  visionBearerId?: string | null;
+  visionLabel?: string;
+  visionAbilities?: UnitAbility[];
   onPickArtefact?: (heroSelectionId: string) => void;
   onPickTrait?: (heroSelectionId: string) => void;
+  onPickMonstrousTrait?: (selectionId: string) => void;
+  onPickVision?: (selectionId: string) => void;
 }) {
-  if (!unit.hero || unit.unique) {
-    return null;
-  }
-
+  const showHero = Boolean(unit.hero && !unit.unique);
+  const showMonstrous = canTakeMonstrousTrait(unit);
+  const showVision = canTakeVisionOfFate(unit);
   const hasArtefact = artefactBearerId === selectionId;
   const hasTrait = heroicTraitBearerId === selectionId;
+  const hasMonstrous = monstrousTraitBearerId === selectionId;
+  const hasVision = visionBearerId === selectionId;
 
   if (playMode) {
-    if (!hasArtefact && !hasTrait) {
+    if (!hasArtefact && !hasTrait && !hasMonstrous && !hasVision) {
       return null;
     }
     return (
@@ -271,85 +327,126 @@ function HeroEnhancements({
             abilities={heroicTraitAbilities}
           />
         ) : null}
+        {hasMonstrous && monstrousTraitLabel ? (
+          <CollapsibleEnhancement
+            kind="Monstrous trait"
+            label={monstrousTraitLabel}
+            abilities={monstrousTraitAbilities}
+          />
+        ) : null}
+        {hasVision && visionLabel ? (
+          <CollapsibleEnhancement
+            kind="Vision of Fate"
+            label={visionLabel}
+            abilities={visionAbilities}
+          />
+        ) : null}
       </div>
     );
   }
 
-  if (!onPickArtefact && !onPickTrait) {
+  const artefactPick = showHero ? onPickArtefact : undefined;
+  const traitPick = showHero ? onPickTrait : undefined;
+  const monstrousPick = showMonstrous ? onPickMonstrousTrait : undefined;
+  const visionPick = showVision ? onPickVision : undefined;
+  if (!artefactPick && !traitPick && !monstrousPick && !visionPick) {
     return null;
   }
 
   return (
     <div className="mt-1.5 flex flex-col gap-1.5">
-      {onPickArtefact ? (
-        hasArtefact && artefactLabel ? (
-          <div className="flex items-start gap-2">
-            <div className="min-w-0 flex-1">
-              <CollapsibleEnhancement
-                kind="Artefact"
-                label={artefactLabel}
-                abilities={artefactAbilities}
-              />
-            </div>
-            <button
-              type="button"
-              className="min-h-9 shrink-0 px-1 text-sm text-sheet-muted"
-              onClick={(event) => {
-                event.stopPropagation();
-                onPickArtefact(selectionId);
-              }}
-            >
-              Change
-            </button>
-          </div>
-        ) : (
-          <button
-            type="button"
-            className="min-h-9 text-left text-sm text-sheet-muted"
-            onClick={(event) => {
-              event.stopPropagation();
-              onPickArtefact(selectionId);
-            }}
-          >
-            Artefact
-          </button>
-        )
-      ) : null}
-      {onPickTrait ? (
-        hasTrait && heroicTraitLabel ? (
-          <div className="flex items-start gap-2">
-            <div className="min-w-0 flex-1">
-              <CollapsibleEnhancement
-                kind="Heroic trait"
-                label={heroicTraitLabel}
-                abilities={heroicTraitAbilities}
-              />
-            </div>
-            <button
-              type="button"
-              className="min-h-9 shrink-0 px-1 text-sm text-sheet-muted"
-              onClick={(event) => {
-                event.stopPropagation();
-                onPickTrait(selectionId);
-              }}
-            >
-              Change
-            </button>
-          </div>
-        ) : (
-          <button
-            type="button"
-            className="min-h-9 text-left text-sm text-sheet-muted"
-            onClick={(event) => {
-              event.stopPropagation();
-              onPickTrait(selectionId);
-            }}
-          >
-            Heroic trait
-          </button>
-        )
-      ) : null}
+      <EnhancementRow
+        has={hasArtefact}
+        kind="Artefact"
+        label={artefactLabel}
+        abilities={artefactAbilities}
+        emptyLabel="Artefact"
+        onPick={
+          artefactPick ? () => artefactPick(selectionId) : undefined
+        }
+      />
+      <EnhancementRow
+        has={hasTrait}
+        kind="Heroic trait"
+        label={heroicTraitLabel}
+        abilities={heroicTraitAbilities}
+        emptyLabel="Heroic trait"
+        onPick={traitPick ? () => traitPick(selectionId) : undefined}
+      />
+      <EnhancementRow
+        has={hasMonstrous}
+        kind="Monstrous trait"
+        label={monstrousTraitLabel}
+        abilities={monstrousTraitAbilities}
+        emptyLabel="Monstrous trait"
+        onPick={
+          monstrousPick ? () => monstrousPick(selectionId) : undefined
+        }
+      />
+      <EnhancementRow
+        has={hasVision}
+        kind="Vision of Fate"
+        label={visionLabel}
+        abilities={visionAbilities}
+        emptyLabel="Vision of Fate"
+        onPick={visionPick ? () => visionPick(selectionId) : undefined}
+      />
     </div>
+  );
+}
+
+function EnhancementRow({
+  has,
+  kind,
+  label,
+  abilities,
+  emptyLabel,
+  onPick,
+}: {
+  has: boolean;
+  kind: string;
+  label?: string;
+  abilities?: UnitAbility[];
+  emptyLabel: string;
+  onPick?: () => void;
+}) {
+  if (!onPick) {
+    return null;
+  }
+  if (has && label) {
+    return (
+      <div className="flex items-start gap-2">
+        <div className="min-w-0 flex-1">
+          <CollapsibleEnhancement
+            kind={kind}
+            label={label}
+            abilities={abilities}
+          />
+        </div>
+        <button
+          type="button"
+          className="min-h-9 shrink-0 px-1 text-sm text-sheet-muted"
+          onClick={(event) => {
+            event.stopPropagation();
+            onPick();
+          }}
+        >
+          Change
+        </button>
+      </div>
+    );
+  }
+  return (
+    <button
+      type="button"
+      className="min-h-9 text-left text-sm text-sheet-muted"
+      onClick={(event) => {
+        event.stopPropagation();
+        onPick();
+      }}
+    >
+      {emptyLabel}
+    </button>
   );
 }
 
@@ -396,6 +493,7 @@ function SlotLine({
   reinforced,
   canReinforce,
   playMode,
+  bindNotes,
   onReplace,
   onToggleReinforce,
   onRemove,
@@ -408,6 +506,7 @@ function SlotLine({
   reinforced?: boolean;
   canReinforce?: boolean;
   playMode: boolean;
+  bindNotes?: CombatModifierNote[];
   onReplace?: () => void;
   onToggleReinforce?: () => void;
   onRemove?: () => void;
@@ -461,6 +560,9 @@ function SlotLine({
             Battle damaged ({warning.threshold}+) · {warning.summary}
           </p>
         ) : null}
+        {selection ? (
+          <PlayBindNotes selectionId={selection.id} notes={bindNotes} />
+        ) : null}
       </div>
     );
   }
@@ -511,6 +613,32 @@ function SlotLine({
         ) : null}
       </div>
     </div>
+  );
+}
+
+export function PlayBindNotes({
+  selectionId,
+  notes,
+}: {
+  selectionId: string;
+  notes?: CombatModifierNote[];
+}) {
+  const mine = (notes ?? []).filter((note) => note.selectionId === selectionId);
+  if (mine.length === 0) {
+    return null;
+  }
+  return (
+    <ul className="mt-2 flex flex-col gap-1">
+      {mine.map((note) => (
+        <li
+          key={`${note.kind}:${note.powerName}`}
+          className="rounded-md bg-aether/10 px-2 py-1 text-xs text-aether"
+        >
+          <span className="font-medium">{note.powerName}</span>
+          <span className="text-parchment-ink/70"> · {note.summary}</span>
+        </li>
+      ))}
+    </ul>
   );
 }
 

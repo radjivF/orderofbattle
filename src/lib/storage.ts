@@ -30,6 +30,8 @@ function normalizeList(list: ArmyList): ArmyList {
     ...list,
     regimentOfRenown: list.regimentOfRenown ?? null,
     powerBinds: list.powerBinds ?? {},
+    monstrousTrait: list.monstrousTrait ?? null,
+    visionOfFate: list.visionOfFate ?? null,
   });
 }
 
@@ -194,6 +196,7 @@ export async function deleteArmy(id: string): Promise<void> {
 export function blankArmy(
   factionId = "stormcast-eternals",
   name?: string,
+  pointsCap?: number,
 ): ArmyList {
   const faction = getFaction(factionId);
   const now = Date.now();
@@ -201,7 +204,7 @@ export function blankArmy(
     id: createId(),
     name: name?.trim() || faction?.name || "New list",
     factionId,
-    pointsCap: faction?.pointsCapDefault ?? 2000,
+    pointsCap: pointsCap ?? faction?.pointsCapDefault ?? 2000,
     formationId: faction?.formations[0]?.id ?? null,
     spellLoreId:
       faction?.spellLores.length === 1 ? faction.spellLores[0].id : null,
@@ -210,6 +213,8 @@ export function blankArmy(
     manifestationLoreId: null,
     artefact: null,
     heroicTrait: null,
+    monstrousTrait: null,
+    visionOfFate: null,
     scourgeRealm: null,
     generalRegimentId: null,
     regiments: [],

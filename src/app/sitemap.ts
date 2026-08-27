@@ -16,8 +16,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
           ? 0.9
           : path.startsWith("/factions/")
             ? 0.8
-            : path === "/sitemap"
-              ? 0.3
-              : 0.7,
+            : 0.7,
   }));
 }

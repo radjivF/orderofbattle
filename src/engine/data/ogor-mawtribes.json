@@ -1343,6 +1343,63 @@
       ]
     }
   ],
+  "monstrousTraits": [
+    {
+      "id": "0abe-53e1-2aad-a245",
+      "name": "Extremely Obstinate",
+      "abilities": [
+        {
+          "name": "Extremely Obstinate",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit has a Control characteristic of 15.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "points": 10,
+      "pack": "Well-Fed Beasts"
+    },
+    {
+      "id": "a8d9-cc1e-18b8-478e",
+      "name": "Horn Toss",
+      "abilities": [
+        {
+          "name": "Horn Toss",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy unit that has no more than 1 model, that is in combat with this unit and that has charged this turn to be the target.",
+          "effect": "Remove the target from the battlefield and set it up again within 1\" of this unit. Then, roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "points": 10,
+      "pack": "Well-Fed Beasts"
+    },
+    {
+      "id": "d031-bfd9-c41e-8c0a",
+      "name": "Grumpy Alpha",
+      "abilities": [
+        {
+          "name": "Grumpy Alpha",
+          "kind": "Activated",
+          "timing": "Enemy Charge Phase",
+          "declare": "If this unit is in combat, pick another visible friendly Ogor Monster wholly within 12\" of this unit that is not in combat to be the target.",
+          "effect": "Spend 1 rage dice. If your opponent's fury level is lower than yours, they must increase their fury level by 1, to a maximum of 7. Then, roll a dice. The target can move a distance in inches up to the roll. It can end that move in combat. If it does so, the target has charged.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "points": 10,
+      "pack": "Well-Fed Beasts"
+    }
+  ],
+  "visionsOfFate": [],
   "terrain": [
     {
       "id": "2586-d28e-7404-b64e",

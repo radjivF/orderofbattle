@@ -1,0 +1,2288 @@
+{
+  "id": "helsmiths-of-hashut-taar-s-grand-forgehost",
+  "name": "Helsmiths of Hashut - Taar's Grand Forgehost",
+  "game": "Age of Sigmar 4th",
+  "source": "https://github.com/BSData/age-of-sigmar-4th",
+  "pointsCapDefault": 2000,
+  "formations": [],
+  "battleTraits": [
+    {
+      "id": "6d9c-100e-1ab4-82da",
+      "name": "Taar's Grand Forgehost",
+      "abilities": [
+        {
+          "name": "Rising Fire",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "The following cumulative effects apply to friendly Grand Forgehost units in each battle round after the first. Battle Round 2: *Daemonic Weaponry:* Those units' weapons have Crit (2 Hits). Battle Round 3: *Harnessed Sorcery:* Add 1 to casting rolls and chanting rolls for those units. Battle Round 4: *Channeled Power:* Attacks made by those units score critical hits on unmodified hit rolls of 5+. Battle Round 5: *Arcane Dominance:* Add 1 to the power level of those units if they are a Wizard or Priest.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Dread Ranks Unbroken",
+          "kind": "Command",
+          "timing": "Once Per Turn (Army), Your Movement Phase",
+          "declare": "Pick a friendly non-Hero Grand Forgehost Infantry unit that has been destroyed to be the target.",
+          "effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 6\" of the battlefield edge and more than 9\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Skilled Skirmishers",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Friendly Grand Forgehost War Machines have Ward (6+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "spellLores": [
+    {
+      "id": "d769-b86f-2bee-6060",
+      "name": "Shackling Curse",
+      "powers": [
+        {
+          "name": "Shackling Curse",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Grand Forgehost Wizard to cast this spell, pick a visible enemy unit within 18\" of them to be the target, then make a casting roll of 2D6.",
+          "effect": "For the rest of the turn, the target's attacks cannot score critical hits (treat them as regular hits instead).",
+          "keywords": "Spell",
+          "castingValue": "7",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "30e9-adbd-383b-6dc5",
+      "name": "Reinforce Daemonsteel",
+      "powers": [
+        {
+          "name": "Reinforce Daemonsteel",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Grand Forgehost Wizard to cast this spell, then make a casting roll of 2D6.",
+          "effect": "Until the start of your next turn, ignore the first damage point allocated to each friendly Helsmiths of Hashut unit in each phase while they are wholly within 12\" of the caster.",
+          "keywords": "Spell, Unlimited",
+          "castingValue": "7",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "prayerLores": [
+    {
+      "id": "95e6-b471-9598-645d",
+      "name": "Grasp of Stone",
+      "powers": [
+        {
+          "name": "Grasp of Stone",
+          "kind": "Prayer",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Grand Forgehost Priest to chant this prayer, pick a visible enemy unit within 18\" of them to be the target, then make a chanting roll of D6.",
+          "effect": "Subtract 1 from the Attacks characteristic of the target's melee weapons until the start of your next turn. If the chanting roll was 8+, the target also has Strike-last until the start of your next turn.",
+          "keywords": "Prayer, Unlimited",
+          "castingValue": "",
+          "chantingValue": "4"
+        }
+      ]
+    },
+    {
+      "id": "318a-ac51-6322-c16e",
+      "name": "Lava Storm",
+      "powers": [
+        {
+          "name": "Lava Storm",
+          "kind": "Prayer",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Grand Forgehost Priest to chant this prayer. Pick an enemy unit to be the target and roll 6 dice. For each 6, pick an additional enemy unit to be a target. Then, make a chanting roll of D6.",
+          "effect": "If the chanting roll was 7+, pick an additional enemy unit to be a target. Inflict D3 mortal damage on each target.",
+          "keywords": "Prayer",
+          "castingValue": "",
+          "chantingValue": "5"
+        }
+      ]
+    }
+  ],
+  "manifestationLores": [
+    {
+      "id": "db7f-2a40-6ebc-907b",
+      "name": "Aetherwrought Machineries",
+      "manifestations": [
+        {
+          "id": "fcb6-ae80-2e58-aadb",
+          "name": "Aethervoid Pendulum",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Scything Blade",
+              "kind": "Activated",
+              "timing": "Any Movement Phase",
+              "declare": "",
+              "effect": "This Manifestation can move a distance up to its Move characteristic in one direction (see 'The Pendulum Swings'). It can pass through models during that move and can end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move or that are within 1/2\" of it to be the targets. Roll a D6 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "The Pendulum Swings",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "This Manifestation cannot use Charge or Fight abilities. In addition, when this Manifestation moves, it must move in a straight line either in the direction in which the tip of the pendulum blade is pointing or in the opposite direction to the direction in which the tip of the pendulum blade is pointing",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Aethervoid Pendulum",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Aethervoid Pendulumon the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up an Aethervoid Pendulum wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "1aba-bc38-e988-d79f",
+          "name": "Chronomantic Cogs",
+          "stats": {
+            "move": "-",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Mechanisms of Time",
+              "kind": "Activated",
+              "timing": "Once Per Turn, Your Hero Phase",
+              "declare": "",
+              "effect": "If there are any friendly Wizards within 3\" of this Manifestation, pick 1 of the following effects: *Increase Time Flow*: Until the start of your next turn, you can re-roll charge rolls for friendly units while they are wholly within 12\" of this Manifestation. *Decrease Time Flow*: Until the start of your next turn, subtract 1 from hit rolls for attacks that target friendly Wizards while they are wholly within 12\" of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Chronomantic Cogs",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Chronomantic Cogs endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Chronomantic Cogs endless spell wholly within 12\" of the caster and visible to them.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "8cde-fafe-2b2a-ced5",
+          "name": "Quicksilver Swords",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Quicksilver Blades",
+              "kind": "melee",
+              "range": "",
+              "attacks": "12",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Crit (Mortal)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Dancing Blades",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Ward rolls cannot be made for damage points inflicted by this Manifestation's attacks.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Quicksilver Swords",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Quicksilver Swords endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Quicksilver Swords endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "9fd2-a506-6462-a6c8",
+      "name": "Forbidden Power",
+      "manifestations": [
+        {
+          "id": "f935-2383-94ba-3be2",
+          "name": "Horrorghast",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Scream of Terror",
+              "kind": "ranged",
+              "range": "10\"",
+              "attacks": "6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "1",
+              "ability": "Shoot in Combat, Anti-INFANTRY (+1 Rend)"
+            },
+            {
+              "name": "Deathly Touch",
+              "kind": "melee",
+              "range": "",
+              "attacks": "4",
+              "hit": "4+",
+              "wound": "4+",
+              "rend": "-",
+              "damage": "1",
+              "ability": "-"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Harbinger of Horror",
+              "kind": "Activated",
+              "timing": "Any Shooting Phase",
+              "declare": "Pick an enemy unit that was targeted by this Manifestation's shooting attacks this phase to be the target.",
+              "effect": "Roll a dice. If the roll is less than the number of models in the target unit that were slain this phase, the target cannot use commands for the rest of the turn.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Horrorghast",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Horrorghast endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Horrorghast endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "a26b-cd08-8f9d-90b0",
+          "name": "Lauchon the Soulseeker",
+          "stats": {
+            "move": "12\"",
+            "health": "10",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Scything Oar",
+              "kind": "melee",
+              "range": "",
+              "attacks": "3",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "D3",
+              "ability": "Crit (2 Hits)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Traverse the Tides of Death",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "Pick a friendly Infantry Wizard Hero within 3\" of this Manifestation to be the target",
+              "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, remove the target from the battlefield and set them up again on the battlefield within 3\" of this Manifestation and not in combat. Then, inflict 1 mortal damage on the target.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Lauchon the Soulseeker",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Lauchon the Soulseeker endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Lauchon the Soulseeker endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "94f6-4321-fd80-f20e",
+          "name": "Shards of Valagharr",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Phantasmal Translocation",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "",
+              "effect": "Pick a part of this Manifestation, remove it from the battlefield and set it up again on the battlefield wholly within 9\" of the other part and more than 3\" from all enemy units.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Ensnaring Soul-drain",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time an enemy unit uses a Move ability while it is within 9\" of any parts of this Manifestation, the effects of the 'Fly' ability do not apply to that unit. Enemy units cannot be set up within 9\" of either part of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Shards of Valagharr",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Shards of Valagharr endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Shards of Valagharr endless spell wholly within 18\" of the caster and visible to them. A Shards of Valagharr endless spell has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "523f-bd78-e418-9922",
+          "name": "Soulscream Bridge",
+          "stats": {
+            "move": "-",
+            "health": "12",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Deathly Passage",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "Pick a friendly unit wholly within 6\" of one part of this Manifestation to be the target.",
+              "effect": "Remove the target from the battlefield and set it up again on the battlefield wholly within 6\" of the other part of this Manifestation and more than 9\" from all enemy units.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Soulscream Bridge",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Soulscream Bridge endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Soulscream Bridge wholly within 18\" of the caster and visible to them. A Soulscream Bridge has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "93f1-1e9f-b52b-ff3c",
+      "name": "Krondspine Incarnate",
+      "manifestations": [
+        {
+          "id": "4ba0-e87-36e0-db58",
+          "name": "Krondspine Incarnate of Ghur",
+          "stats": {
+            "move": "10\"",
+            "health": "12",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "8+",
+          "categories": [
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "WARD (6+)",
+            "FLY",
+            "INCARNATE"
+          ],
+          "weapons": [
+            {
+              "name": "Amberbone Claws and Fangs",
+              "kind": "melee",
+              "range": "",
+              "attacks": "6",
+              "hit": "4+",
+              "wound": "2+",
+              "rend": "2",
+              "damage": "3",
+              "ability": "Anti-Manifestation(+1 Rend)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Devourer of Magics",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "",
+              "effect": "If this Manifestation destroyed any enemy Manifestations this turn, Heal (6) this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Arcane Predator",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "You can add 1 to the number of dice rolled when making charge rolls for this Manifestation, to a maximum of 3, while it is within 18\" of any enemy Manifestations, but if you do so, it must end the charge move within 1/2\" of an enemy Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Wild Form",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time this Manifestation is targeted by the 'Banish Manifestation' ability, if it would be banished, it is not banished. Instead, allocate 6 damage points to it (ward rolls cannot be made for those damage points).",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Krondspine Incarnate of Ghur",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Krondspine Incarnate of Ghur endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Krondspine Incarnate of Ghur endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "8",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "b4d2-4178-ff43-a44b",
+      "name": "Morbid Conjuration",
+      "manifestations": [
+        {
+          "id": "e699-49b7-d2b8-d5fc",
+          "name": "Malevolent Maelstrom",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Lashing Tendrils of Energy",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "-",
+              "damage": "1",
+              "ability": "Crit (2 Hits)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Morbid Detonation",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "You must, and can only, use this ability if this unit has 6 maelstrom points. Pick each unit (friendly and enemy) within 9\" of it to be the targets.",
+              "effect": "Roll a dice for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll. Then, this Manifestation is destroyed.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Necrotic Vortex",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Give this Manifestation 1 maelstrom point each time: \u2022 This Manifestation is set up. \u2022 A unit successfully casts a spell while it is within 12\" of this Manifestation. \u2022 A model is slain within 12\" of this Manifestation. This Manifestation can have a maximum of 6 maelstrom points at once.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Malevolent Maelstrom",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly a Malevolent Maelstrom endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a a Malevolent Maelstrom endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "e7a5-e611-4c13-22d0",
+          "name": "Purple Sun of Shyish",
+          "stats": {
+            "move": "8\"",
+            "health": "10",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Transmuting Rays",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Crit (Mortal)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "End Given Form",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "",
+              "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, pick up to 3 enemy units that this Manifestation passed across during that move to be the targets. Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Pull of the Nadir",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Subtract 1 from save rolls for friendly and enemy units while they are within 3\" of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Purple Sun of Shyish",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Purple Sun of Shyish endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Purple Sun of Shyish endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "8",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "dee3-92a0-27e7-252a",
+          "name": "Soulsnare Shackles",
+          "stats": {
+            "move": "-",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Bound for the Great Oubliette",
+              "kind": "Activated",
+              "timing": "Any Hero Phase",
+              "declare": "For each part of this Manifestation, you can pick an enemy unit within 3\" of that part to be the targets. You cannot pick the same unit to be the target of this ability more than once per turn.",
+              "effect": "Roll a D3 for each target. On a 2+: \u2022 Inflict an amount of mortal damage on the target equal to the roll. \u2022 Subtract a number of inches equal to the roll from the target's Move characteristic for the rest of the turn.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and all its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Soulsnare Shackles",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Soulsnare Shackles endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Soulsnare Shackles endless spell wholly within 18\" of the caster and visible to them. A Soulsnare Shackles endless spell has 3 parts that must each be set up within 3\" of at least 1 other part.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "1885-a1aa-bf5d-6d0d",
+          "name": "Suffocating Gravetide",
+          "stats": {
+            "move": "12\"",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Spectral Riptide",
+              "kind": "melee",
+              "range": "",
+              "attacks": "8",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Charge (+1 Damage)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Pulled to the Grave",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "",
+              "effect": "This Manifestation can move a distance up to its Move characteristic. It can pass through models during that move but cannot end that move in combat. Then, you can pick an enemy unit that this Manifestation passed across during that move to be the target. Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+              "keywords": "Core, Move",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Suffocating Gravetide",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Suffocating Gravetide endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Suffocating Gravetide endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "8",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "83f1-e447-c26-c5c",
+      "name": "Twilit Sorceries",
+      "manifestations": [
+        {
+          "id": "d420-1699-5ad9-1956",
+          "name": "Geminids of Uhl-Gysh",
+          "stats": {
+            "move": "8\"",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "6+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Tendrils of Light and Shadow",
+              "kind": "melee",
+              "range": "",
+              "attacks": "4",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "1",
+              "damage": "D3",
+              "ability": "-"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Tendrils of Light and Shadow",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Enemy units cannot use commands while they are within 3\" of either part of this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play. Each time this Manifestation moves, both its parts must end within 9\" of each other. Each part of this Manifestation is armed with Tendrils of Light and Shadow.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Geminids of Uhl-Gysh",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Geminids of Uhl-Gysh endless spell on the battlefield, pick a friendly Wizardto cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Geminids of Uhl-Gysh endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units. A Geminids of Uhl-Gysh endless spell has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "015a-4e4f-322f-ccff",
+          "name": "Prismatic Palisade",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Blinding Light",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "This Manifestation cannot be targeted by shooting attacks. In addition, a unit cannot be targeted by shooting attacks if it is impossible to draw a straight line from a model in the attacking unit to a model in the target unit without that line passing across this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Prismatic Palisade",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Prismatic Palisade endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Prismatic Palisade wholly within 18\" of the caster and visible to them.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "0552-183c-1b2a-d117",
+          "name": "Umbral Spellportal",
+          "stats": {
+            "move": "-",
+            "health": "8",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "6+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [],
+          "abilities": [
+            {
+              "name": "Multiple Parts",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When a number of damage points equal to this Manifestation's Health characteristic are allocated to it, this Manifestation is destroyed and both its parts are removed from play.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Arcane Passage",
+              "kind": "Activated",
+              "timing": "Your Hero Phase",
+              "declare": "Pick a friendly Wizard within 3\" of this Manifestation to be the target.",
+              "effect": "The next time the target uses a non-Summon Spell ability this phase, add 1 to the casting value of that spell. When picking targets for that spell, you can measure range and visibility from either part of this Manifestation instead of from the caster, and your opponent can measure range and visibility to either part of this Manifestation instead of to the caster for the purposes of the 'Unbind' ability.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Umbral Spellportal",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Umbral Spellportal endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up an Umbral Spellportal wholly within 18\" of the caster and visible to them. An Umbral Spellportal has 2 parts that must be set up within 9\" of each other.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "7217-5951-aaf0-47e8",
+      "name": "Primal Energy",
+      "manifestations": [
+        {
+          "id": "3071-fc11-4eb8-bbcc",
+          "name": "Emerald Lifeswarm",
+          "stats": {
+            "move": "8\"",
+            "health": "5",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Swarming Bites",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "4+",
+              "rend": "-",
+              "damage": "1",
+              "ability": "Anti-Infantry (+1 Rend)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Restored Vigour",
+              "kind": "Activated",
+              "timing": "End of Any Turn",
+              "declare": "",
+              "effect": "Heal (3) this Manifestation.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            },
+            {
+              "name": "Bounteous Healing",
+              "kind": "Activated",
+              "timing": "Your Movement Phase",
+              "declare": "Pick a friendly unit within 3\" of this Manifestation to be the target.",
+              "effect": "Heal (3) the target.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Emerald Lifeswarm",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Emerald Lifeswarm endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Emerald Lifeswarm endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "6",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "41c4-2f6a-0d3c-a23e",
+          "name": "Ravenak's Gnashing Jaws",
+          "stats": {
+            "move": "3D6\"",
+            "health": "10",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "7+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL"
+          ],
+          "weapons": [
+            {
+              "name": "Gnashing Jaws",
+              "kind": "melee",
+              "range": "",
+              "attacks": "10",
+              "hit": "4+",
+              "wound": "2+",
+              "rend": "1",
+              "damage": "1",
+              "ability": "Charge (+1 Damage)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Ravening Hunger",
+              "kind": "Activated",
+              "timing": "Any Charge Phase",
+              "declare": "If this Manifestation charged this turn, pick an enemy unit within 1\" of it to be the target.",
+              "effect": "Roll 10 dice. For each 5+, inflict 1 mortal damage on the target.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": {
+            "name": "Summon Ravenak's Gnashing Jaws",
+            "kind": "Spell",
+            "timing": "Your Hero Phase",
+            "declare": "If there is not a friendly Ravenak's Gnashing Jaws endless spell on the battlefield, pick a friendly Wizard to cast this spell, then make a casting roll of 2D6.",
+            "effect": "Set up a Ravenak's Gnashing Jaws endless spell wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+            "keywords": "Spell, Summon",
+            "castingValue": "7",
+            "chantingValue": ""
+          }
+        },
+        {
+          "id": "e1cc-64dc-f765-b9cc",
+          "name": "The Burning Head",
+          "stats": {
+            "move": "8\"",
+            "health": "6",
+            "save": "6+",
+            "control": ""
+          },
+          "banishment": "6+",
+          "categories": [
+            "WARD (6+)",
+            "MANIFESTATION",
+            "ENDLESS SPELL",
+            "FLY"
+          ],
+          "weapons": [
+            {
+              "name": "Burning Breath",
+              "kind": "ranged",
+              "range": "10\"",
+              "attacks": "D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "1",
+              "ability": "Shoot in Combat, Anti-WAR MACHINE (+1 Rend)"
+            },
+            {
+              "name": "Flaming Maw",
+              "kind": "melee",
+              "range": "",
+              "attacks": "2D6",
+              "hit": "4+",
+              "wound": "3+",
+              "rend": "2",
+              "damage": "1",
+              "ability": "Anti-WAR MACHINE (+1 Rend)"
+            }
+          ],
+          "abilities": [
+            {
+              "name": "Burning Up",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time this Manifestation uses a Shoot ability, after that ability has been resolved, allocate 1 damage point to this Manifestation (ward rolls cannot be made for that damage point).",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": ""
+            }
+          ],
+          "summon": null
+        }
+      ]
+    }
+  ],
+  "artefacts": [
+    {
+      "id": "a72b-e1ba-a51b-dd11",
+      "name": "Talisman of Obsidian",
+      "abilities": [
+        {
+          "name": "Talisman of Obsidian",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from hit rolls for attacks that target this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "heroicTraits": [
+    {
+      "id": "9c18-f4d2-8c14-0b7e",
+      "name": "Ruthless Overseer",
+      "abilities": [
+        {
+          "name": "Ruthless Overseer",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time a friendly Grand Forgehost unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "monstrousTraits": [],
+  "visionsOfFate": [],
+  "terrain": [],
+  "units": [
+    {
+      "id": "3203-cefc-0ca4-1251",
+      "name": "Ashen Elder",
+      "points": 120,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "CHAOS",
+        "HELSMITHS OF HASHUT",
+        "DUARDIN",
+        "INFANTRY",
+        "PRIEST (1)",
+        "Restrict General",
+        "GRAND FORGEHOST"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "6",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Black Hammer of Hashut",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Extract Power",
+          "kind": "Activated",
+          "timing": "End of Your Turn",
+          "declare": "",
+          "effect": "If this unit is contesting an objective, a Place of Power or a terrain feature and that objective, Place of Power or terrain feature has a friendly desolation token, give this unit 1 ritual point.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Stoked Fanaticism",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Ignore the first damage point allocated to each friendly non-Hobgrot Helsmiths of Hashut unit each phase while it is wholly within 6\" of this unit. Add 6\" to the range of this ability for each daemonic power point this unit has",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "905e-30fb-4d0f-4685",
+          "name": "HELSMITHS OF HASHUT"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "b7df-4d4b-6961-6f11",
+          "name": "Hashutite Commander"
+        }
+      ]
+    },
+    {
+      "id": "22ff-9dca-f6e0-76cf",
+      "name": "Daemonsmith",
+      "points": 80,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "CHAOS",
+        "HELSMITHS OF HASHUT",
+        "DUARDIN",
+        "WIZARD (1)",
+        "INFANTRY",
+        "Restrict General",
+        "GRAND FORGEHOST"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "6",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Darkiron Talon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "-"
+        },
+        {
+          "name": "Hurled Daemonfire",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Crit (2 Hits), Shoot in Combat"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Molten Mending",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Hero Phase",
+          "declare": "Pick a friendly Helsmiths of Hashut War Machine wholly within 6\" of this unit to be the target. Add 6\" to the range of this ability for each daemonic power point this unit has.",
+          "effect": "Heal (D3+X) the target, where X is the number of daemonic power points this unit has.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "905e-30fb-4d0f-4685",
+          "name": "HELSMITHS OF HASHUT"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "b7df-4d4b-6961-6f11",
+          "name": "Hashutite Commander"
+        }
+      ]
+    },
+    {
+      "id": "a1f1-b30e-abe9-a234",
+      "name": "Urak Taar, the First Daemonsmith",
+      "points": 340,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "UNIQUE",
+        "WARMASTER",
+        "CHAOS",
+        "WAR MACHINE",
+        "MONSTER",
+        "FLY",
+        "HELSMITHS OF HASHUT",
+        "DUARDIN",
+        "WIZARD (2)",
+        "GRAND FORGEHOST"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "16",
+        "save": "3+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Dumakar",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "-"
+        },
+        {
+          "name": "Ruinous Torrents",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Crit (2 Hits), Shoot in Combat"
+        },
+        {
+          "name": "Ghorrakos's Horns and Hooves",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Charge (+1 Damage), Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Pitiless Trampling",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Charge Phase",
+          "declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
+          "effect": "Inflict D3 mortal damage on the target. Then, roll 2D6. This unit can move a distance up to the value of the roll. during that move, this unit can pass through models in the target unit but must end that move in combat.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Peerless Among Daemonsmiths",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Apply the effect below that corresponds with the number of daemonic power points this unit has: 1 This unit has Ward (6+). 2 Add 1 to casting rolls for this unit. In addition, this unit has Ward (5+). 3 Add 2 to casting rolls for this unit. In addition, this unit has Ward (4+) against damage inflicted by Spells, Prayers, and abilites used by Manifestations. Otherwise, it has Ward (5+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "The Curse of Stone",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a point on the battlefield within 9\" of this unit, then pick a second point on the battlefield within 9\" of the first point. Draw a line between the caster and the first point, and between the first and second points. Each enemy unit the lines pass across is a target. Then, make a casting roll of 2D6.",
+          "effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "Spell",
+          "castingValue": "7",
+          "chantingValue": ""
+        },
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of Ghorrakos's Horns and Hooves is 4.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Master of Daemonic Power",
+          "kind": "Activated",
+          "timing": "Enemy Hero Phase",
+          "declare": "",
+          "effect": "Remove up to 3 daemonic power points in total from any combination of friendly units wholly within 18\" of this unit. Then, allocate them to a different friendly non-Hobgrot Helsmiths of Hashut unit wholly within 18\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "905e-30fb-4d0f-4685",
+          "name": "HELSMITHS OF HASHUT"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "b7df-4d4b-6961-6f11",
+          "name": "Hashutite Commander"
+        }
+      ]
+    },
+    {
+      "id": "9d64-66aa-7eaa-7b55",
+      "name": "War Despot",
+      "points": 80,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "CHAOS",
+        "HELSMITHS OF HASHUT",
+        "DUARDIN",
+        "INFANTRY",
+        "Restrict General",
+        "GRAND FORGEHOST",
+        "Hashutite Commander"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "6",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Daemonflame Glaive",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "'Fight, You Scum!'",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a Fight ability for this unit",
+          "declare": "",
+          "effect": "Pick a friendly non-Hero Helsmiths of Hashut Infantry unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight ability used by this unit has been resolved. If it is picked to do so, add 1 to the Attacks characteristic of its melee weapons for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Black-Hearted Conqueror",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 3 to the control scores of friendly Helsmith of Hashut Infantry units while they are wholly within 6\" of this unit. Add 6\" to the range of this ability for each daemonic power point this unit has.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "905e-30fb-4d0f-4685",
+          "name": "HELSMITHS OF HASHUT"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "c468-1c57-cdaf-d9c1",
+      "name": "War Despot (Scourge of Ghyran)",
+      "points": 130,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "CHAOS",
+        "HELSMITHS OF HASHUT",
+        "DUARDIN",
+        "INFANTRY",
+        "Restrict General",
+        "GRAND FORGEHOST",
+        "Hashutite Commander"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "6",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Daemonflame Glaive",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Triumph or Perish, You Vermin!",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has any daemonic power points, friendly non\u2011Hobgrot Helsmiths of Hashut units, excluding War Despots, with 0 daemonic power points count as having 1 daemonic power point while they are wholly within 9\" of and visible to this unit. Add 3\" to the range of this ability while this unit has 2 daemonic power points. Add 6\" to the range of this ability instead while this unit has 3 daemonic power points. Designer's Note: *If a friendly unit with 0 daemonic power points is affected by this ability and subsequently gains 1 or more daemonic power points, this ability would stop affecting that unit. Also, Urak Taar's 'Master of Daemonic Power' ability has no effect on units affected by this ability*",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Daemonfire Pistol",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Movement Phase",
+          "declare": "Pick a visible enemy unit within 12\" of this unit to be the enemy target. Then, you can pick a friendly Helsmiths of Hashut Infantry unit in combat with the enemy target to be the friendly target.",
+          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the enemy target equal to the roll. If there is a friendly target, for the rest of the turn: \u2022 It can use a Retreat ability and still use Shoot and/or Charge abilities later in the turn. \u2022 Add 2\" to the distance it can move when using Retreat abilities. \u2022 No mortal damage is inflicted on it by Retreat abilities.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "905e-30fb-4d0f-4685",
+          "name": "HELSMITHS OF HASHUT"
+        }
+      ],
+      "regimentHeroes": []
+    },
+    {
+      "id": "b683-bbb0-9fd4-6fcc",
+      "name": "Deathshrieker Rocket Battery",
+      "points": 140,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "CHAOS",
+        "HELSMITHS OF HASHUT",
+        "WAR MACHINE",
+        "GRAND FORGEHOST"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "8",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Hashu-Zharr Rockets",
+          "kind": "ranged",
+          "range": "24\"",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "D3+2",
+          "ability": "Anti-Monster (+1 Rend), Anti-War Machine (+1 Rend)"
+        },
+        {
+          "name": "Artillerist Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Hungering Flames",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Shooting Phase",
+          "declare": "",
+          "effect": "For the rest of the turn, the Damage characteristic of this unit's Hashu-Zharr Rockets is 5 if the target is a Monster or War Machine.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Watch Them Burn",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a Shoot ability for this unit and all of its attacks targeted the same enemy unit",
+          "declare": "",
+          "effect": "Roll a number of dice equal to the number of daemonic power points this unit has for each other enemy unit within the combat range of the target of this unit's shooting attacks. For each 3+, inflict 1 mortal damage on the enemy unit being rolled for.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "c3d1-b2bd-e8d8-d171",
+      "name": "Dominator Engine with Bane Maces",
+      "points": 150,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "CHAOS",
+        "HELSMITHS OF HASHUT",
+        "WAR MACHINE",
+        "AUTOMATON",
+        "GRAND FORGEHOST"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "10",
+        "save": "2+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Bane Maces",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "Charge (+1 Damage)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Engine of Domination",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "",
+          "effect": "If this unit is in combat with any enemy Heroes, it can use 2 Fight abilities this phase. After the first is used, however, this unit has Strike-last for the rest of the phase and can only be picked to use a second Fight ability if it is still in combat with any enemy Heroes.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Daemonic Strength",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "For each daemonic power point this unit has: \u2022 Add 1\" to its Move characteristic \u2022 Add 1 to the Attacks characteristic of its weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "9c89-4ec9-71db-0026",
+      "name": "Dominator Engine with Immolation Cannons",
+      "points": 160,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "CHAOS",
+        "HELSMITHS OF HASHUT",
+        "WAR MACHINE",
+        "AUTOMATON",
+        "GRAND FORGEHOST"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "10",
+        "save": "2+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Immolation Cannons",
+          "kind": "ranged",
+          "range": "8\"",
+          "attacks": "5",
+          "hit": "2+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Anti-Cavalry (+1 Rend), Shoot in Combat"
+        },
+        {
+          "name": "Horns and Pummelling Strikes",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Charge (+1 Damage)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "All Must Burn",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Shooting Phase",
+          "declare": "Pick 2 or more visible enemy units within 8\" of this unit to be the targets.",
+          "effect": "For the rest of the turn, add 2 to the Attacks characteristic of this unit's Immolation Cannons for each unit picked to be the target of this ability, but each time this unit uses a Shoot ability, it must target each of those units with at least 3 of its attacks.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Daemonic Strength",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "For each daemonic power point this unit has: \u2022 Add 1\" to its Move characteristic \u2022 Add 1 to the Attacks characteristic of its weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "15de-86a8-417a-912e",
+      "name": "Infernal Cohort with Hashutite Blades",
+      "points": 90,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 10,
+      "categories": [
+        "INFANTRY",
+        "CHAMPION",
+        "STANDARD BEARER (1/10)",
+        "MUSICIAN (1/10)",
+        "CHAOS",
+        "HELSMITHS OF HASHUT",
+        "DUARDIN",
+        "GRAND FORGEHOST"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "1",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Hashutite Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Anti-Infantry (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Disciplined March",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "When making run rolls for this unit, if you roll a 1-3, you can use a value of 4 instead.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Daemonic Resilience",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Apply the effect below that corresponds with the number of daemonic power points this unit has: 1 This unit has Ward (6+). 2 This unit has Ward (5+). 3 This unit has Ward (4+) against damage inflicted by Spells, Prayers, and abilites used by Manifestations. Otherwise, it has Ward (5+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Sacred Gongs",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit's Gong Carriers are tokens. There is 1 Gong Carrier for every Musician in this unit. If this unit uses the 'Rally' command, as a reaction, you can remove a Gong Carrier to make an additional rally roll of D6.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "42dc-3f22-809b-661d",
+      "name": "Infernal Cohort with Hashutite Blades (Scourge of Ghyran)",
+      "points": 110,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 10,
+      "categories": [
+        "INFANTRY",
+        "CHAMPION",
+        "STANDARD BEARER (1/10)",
+        "MUSICIAN (1/10)",
+        "CHAOS",
+        "HELSMITHS OF HASHUT",
+        "DUARDIN",
+        "GRAND FORGEHOST"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "1",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Hashutite Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Anti-Infantry (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Take Up Their Arms",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Any Turn",
+          "declare": "Pick another visible friendly non-Hobgrot Helsmiths of Hashut Infantry unit, Deathshrieker Rocket Battery or Tormentor Bombard within 12\" of this unit to be the target.",
+          "effect": "Remove up to 3 models from this unit. Then, if the target is an Infantry unit, return a number of slain models to the target equal to the number of models you removed from this unit. If the target is a War Machine, heal a number of damage points allocated to the target equal to the number of models you removed from this unit. Models removed from this unit by this ability cannot be returned to this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Daemonic Resilience",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Apply the effect below that corresponds with the number of daemonic power points this unit has: 1 This unit has Ward (6+). 2 This unit has Ward (5+). 3 This unit has Ward (4+) against damage inflicted by Spells, Prayers, and abilites used by Manifestations. Otherwise, it has Ward (5+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Sanctified Gongs",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit's Gong Carriers are tokens. There is 1 Gong Carrier for every Musician in this unit. If this unit uses the 'Rally' command, make 2 additional rally rolls of D6 for each Gong Carrier in this unit, but for each unmodified rally roll of 1, you must remove a Gong Carrier from this unit after the command has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "a162-ad2f-0c07-681e",
+      "name": "Infernal Cohort with Hashutite Spears",
+      "points": 90,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 10,
+      "categories": [
+        "INFANTRY",
+        "CHAMPION",
+        "STANDARD BEARER (1/10)",
+        "MUSICIAN (1/10)",
+        "CHAOS",
+        "HELSMITHS OF HASHUT",
+        "DUARDIN",
+        "GRAND FORGEHOST"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "1",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Hashutite Spear",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Anti-Cavalry (+1 Rend), Anti-charge (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Conquered Lands",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "If this unit is contesting an objective you control, pick a friendly non-Hobgrot Helsmiths of Hashut unit wholly within 12\" of this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, give the target 1 daemonic power point. Designer's Note: *You cannot make more than one roll for each objective in each turn regardless of how many friendly units with this ability are contesting that objective.*",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Daemonic Resilience",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Apply the effect below that corresponds with the number of daemonic power points this unit has: 1 This unit has Ward (6+). 2 This unit has Ward (5+). 3 This unit has Ward (4+) against damage inflicted by Spells, Prayers, and abilites used by Manifestations. Otherwise, it has Ward (5+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Sacred Gongs",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit's Gong Carriers are tokens. There is 1 Gong Carrier for every Musician in this unit. If this unit uses the 'Rally' command, as a reaction, you can remove a Gong Carrier to make an additional rally roll of D6.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "5c9b-778c-40a8-1fe3",
+      "name": "Infernal Razers with Blunderbusses",
+      "points": 110,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "CHAOS",
+        "INFANTRY",
+        "HELSMITHS OF HASHUT",
+        "DUARDIN",
+        "CHAMPION",
+        "GRAND FORGEHOST"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "1",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Grizmalok Blunderbusses",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "-",
+          "damage": "2",
+          "ability": "-"
+        },
+        {
+          "name": "Weapon Butt",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Hateful Hail",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Shooting Phase",
+          "declare": "If this unit used a Shoot ability this turn and all of its attacks targeted the same enemy unit, that enemy unit is the target.",
+          "effect": "Roll a dice and add the number of enemy models in the target unit slain by attacks made by this unit this turn. If the result is 6+, the target has Strike-last for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Manglers of Metal",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Rend characteristic of this unit's ranged weapons for each daemonic power point this unit has.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "3d15-3f55-b836-84b6",
+      "name": "Infernal Razers with Flamehurlers",
+      "points": 90,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "CHAOS",
+        "INFANTRY",
+        "HELSMITHS OF HASHUT",
+        "DUARDIN",
+        "CHAMPION",
+        "GRAND FORGEHOST"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "1",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Karagthrun Flamehurlers",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "3",
+          "hit": "2+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Shoot in Combat"
+        },
+        {
+          "name": "Weapon Butt",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Scorched Remains",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Shooting Phase",
+          "declare": "If this unit used a Shoot ability this turn and all of its attacks targeted the same enemy Infantry unit, that enemy unit is the target.",
+          "effect": "Roll a dice. On a 3+, subtract an amount equal to the roll from the target's control score until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Manglers of Metal",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Rend characteristic of this unit's ranged weapons for each daemonic power point this unit has.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "35e3-f1fc-1f7a-8151",
+      "name": "The Blood of the Bull",
+      "points": 120,
+      "hero": false,
+      "unique": true,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "UNIQUE",
+        "Legends",
+        "CHAMPION",
+        "CHAOS",
+        "DUARDIN",
+        "STANDARD BEARER (1/5)",
+        "HELSMITHS OF HASHUT"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "2",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Daemonflame Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "-"
+        },
+        {
+          "name": "Blades and Fists",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        },
+        {
+          "name": "Master-crafted Flamehurler",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "4",
+          "hit": "2+",
+          "wound": "4+",
+          "rend": "2",
+          "damage": "1",
+          "ability": "Shoot in Combat"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Infernal Empowerment",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Apply the effect(s) below that corresponds with the number of daemonic power points this unit has. These effects are cumulative. 1+ Add 1\" to this unit's Move characteristic. 2+ Add 1 to wound rolls for this unit's combat attacks. 3+ Add 1 to the Rend characteristic of this unit's melee weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "b198-5cf9-e447-35c6",
+      "name": "Tormentor Bombard",
+      "points": 130,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "CHAOS",
+        "HELSMITHS OF HASHUT",
+        "WAR MACHINE",
+        "GRAND FORGEHOST"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "8",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Torrent of Ruinous Energy",
+          "kind": "ranged",
+          "range": "30\"",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Anti-Cavalry (+1 Rend), Anti-Infantry (+1 Rend)"
+        },
+        {
+          "name": "Artillerist Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Ruinous Bombardment",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Shooting Phase",
+          "declare": "If this unit used a Shoot ability this turn and all of its attacks targeted the same enemy unit, that enemy unit is the target. Then, you can pick a number of enemy units within 6\" of the target equal to the number of daemonic power points this unit has to be additional targets.",
+          "effect": "Roll a dice for each target. On a 3+, that unit cannot use commands until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        },
+        {
+          "name": "Calculated Trajectory",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to hit rolls for this unit's shooting attacks that target an enemy unit with 5 or more models that is more than 12\" from this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ],
+  "parentFactionIds": [
+    "helsmiths-of-hashut"
+  ]
+}

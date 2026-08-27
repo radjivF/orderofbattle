@@ -1,14 +1,19 @@
 import {
   getUnit,
+  getListUnit,
   getRegimentOfRenown,
   canJoinRegiment,
+  canTakeMonstrousTrait,
+  canTakeVisionOfFate,
   selectionPoints,
+  pickedEnhancementPoints,
   armyHasKeyword,
   namedOption,
   unitBaseName,
   unitIsWarmaster,
   warmasterRegiments,
   rorTemplateForSelection,
+  rorUnitAsCatalogue,
 } from "./queries";
 import type { ArmyList, EnhancementPick, FactionCatalogue } from "./types";
 
@@ -136,6 +141,14 @@ export function summarize(
     }
   }
 
+  points += pickedEnhancementPoints(list.artefact, faction.artefacts);
+  points += pickedEnhancementPoints(list.heroicTrait, faction.heroicTraits);
+  points += pickedEnhancementPoints(
+    list.monstrousTrait,
+    faction.monstrousTraits,
+  );
+  points += pickedEnhancementPoints(list.visionOfFate, faction.visionsOfFate);
+
   if (list.regiments.length === 0) {
     issues.push({ tone: "warn", text: "Add a regiment to begin." });
   } else if (list.regiments.length > 5) {
@@ -197,6 +210,8 @@ export function summarize(
 
   warnUniqueEnhancement(list, faction, list.artefact, "artefact", issues);
   warnUniqueEnhancement(list, faction, list.heroicTrait, "heroic trait", issues);
+  warnMonstrousTrait(list, faction, issues);
+  warnVisionOfFate(list, faction, issues);
 
   const remaining = list.pointsCap - points;
   if (issues.length === 0) {
@@ -246,14 +261,27 @@ export function pruneOrphanEnhancements(list: ArmyList): ArmyList {
     list.heroicTrait && ids.has(list.heroicTrait.heroSelectionId)
       ? list.heroicTrait
       : null;
+  const monstrousTrait =
+    list.monstrousTrait && ids.has(list.monstrousTrait.heroSelectionId)
+      ? list.monstrousTrait
+      : null;
+  const visionOfFate =
+    list.visionOfFate && ids.has(list.visionOfFate.heroSelectionId)
+      ? list.visionOfFate
+      : null;
 
-  if (artefact === list.artefact && heroicTrait === list.heroicTrait) {
+  if (
+    artefact === list.artefact &&
+    heroicTrait === list.heroicTrait &&
+    monstrousTrait === (list.monstrousTrait ?? null) &&
+    visionOfFate === (list.visionOfFate ?? null)
+  ) {
     return list;
   }
-  return { ...list, artefact, heroicTrait };
+  return { ...list, artefact, heroicTrait, monstrousTrait, visionOfFate };
 }
 
-function heroSelection(list: ArmyList, selectionId: string) {
+function rosterSelection(list: ArmyList, selectionId: string) {
   for (const regiment of list.regiments) {
     if (regiment.hero?.id === selectionId) {
       return regiment.hero;
@@ -262,6 +290,11 @@ function heroSelection(list: ArmyList, selectionId: string) {
       if (slot.id === selectionId) {
         return slot;
       }
+    }
+  }
+  for (const slot of list.auxiliaries) {
+    if (slot.id === selectionId) {
+      return slot;
     }
   }
   for (const slot of list.regimentOfRenown?.units ?? []) {
@@ -282,7 +315,7 @@ function warnUniqueEnhancement(
   if (!pick) {
     return;
   }
-  const selection = heroSelection(list, pick.heroSelectionId);
+  const selection = rosterSelection(list, pick.heroSelectionId);
   if (!selection) {
     // Orphans are pruned on load/save; skip the confusing status line.
     return;
@@ -314,4 +347,67 @@ function warnUniqueEnhancement(
       text: `Unknown ${label}.`,
     });
   }
+}
+
+function warnMonstrousTrait(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  issues: ListIssue[],
+) {
+  const pick = list.monstrousTrait;
+  if (!pick) {
+    return;
+  }
+  const selection = rosterSelection(list, pick.heroSelectionId);
+  if (!selection) {
+    return;
+  }
+  const unit = unitForSelection(list, faction, selection.unitId, pick.heroSelectionId);
+  if (unit && !canTakeMonstrousTrait(unit)) {
+    issues.push({
+      tone: "warn",
+      text: `${unit.name} cannot take a monstrous trait.`,
+    });
+  }
+  if (!namedOption(faction.monstrousTraits ?? [], pick.optionId)) {
+    issues.push({ tone: "warn", text: "Unknown monstrous trait." });
+  }
+}
+
+function warnVisionOfFate(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  issues: ListIssue[],
+) {
+  const pick = list.visionOfFate;
+  if (!pick) {
+    return;
+  }
+  const selection = rosterSelection(list, pick.heroSelectionId);
+  if (!selection) {
+    return;
+  }
+  const unit = unitForSelection(list, faction, selection.unitId, pick.heroSelectionId);
+  if (unit && !canTakeVisionOfFate(unit)) {
+    issues.push({
+      tone: "warn",
+      text: `${unit.name} cannot take a Vision of Fate.`,
+    });
+  }
+  if (!namedOption(faction.visionsOfFate ?? [], pick.optionId)) {
+    issues.push({ tone: "warn", text: "Unknown Vision of Fate." });
+  }
+}
+
+function unitForSelection(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  unitId: string,
+  selectionId: string,
+) {
+  const rorHero = rorTemplateForSelection(list, selectionId);
+  if (rorHero) {
+    return rorUnitAsCatalogue(rorHero);
+  }
+  return getListUnit(list, faction, unitId);
 }

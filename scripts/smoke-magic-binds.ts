@@ -39,6 +39,8 @@ function baseList(
     manifestationLoreId: null,
     artefact: null,
     heroicTrait: null,
+    monstrousTrait: null,
+    visionOfFate: null,
     scourgeRealm: null,
     generalRegimentId: "r1",
     regiments: [] as unknown[],

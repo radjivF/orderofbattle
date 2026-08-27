@@ -1328,6 +1328,111 @@
       ]
     }
   ],
+  "monstrousTraits": [
+    {
+      "id": "6967-79c3-e674-0b6d",
+      "name": "Big 'Un",
+      "abilities": [
+        {
+          "name": "Big 'Un",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Rend characteristic of this unit's Companion weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "points": 10,
+      "pack": "Brutal Beasts"
+    },
+    {
+      "id": "2faf-963d-1cd5-a34b",
+      "name": "Angry 'Un",
+      "abilities": [
+        {
+          "name": "Angry 'Un",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "If this unit charged this turn, pick a visible enemy unit within 1\" of it to be the target.",
+          "effect": "Roll a number of dice equal to your fury level. For each 3+, inflict 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "points": 10,
+      "pack": "Brutal Beasts"
+    },
+    {
+      "id": "5d40-0c79-9566-101b",
+      "name": "Fast 'Un",
+      "abilities": [
+        {
+          "name": "Fast 'Un",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Hero Phase",
+          "declare": "",
+          "effect": "If this unit was not set up this turn, it can use the 'Normal Move' ability as if it were your movement phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ],
+      "points": 10,
+      "pack": "Brutal Beasts"
+    },
+    {
+      "id": "3412-05b4-5ea4-251b",
+      "name": "Fast 'Un",
+      "abilities": [
+        {
+          "name": "Fast 'Un",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Hero Phase",
+          "declare": "",
+          "effect": "If this unit was not set up this turn, it can use the 'Normal Move' ability as if it were your movement phase",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "5001-cf12-81c8-e839",
+      "name": "Mad 'Un",
+      "abilities": [
+        {
+          "name": "Mad 'Un",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "If this unit charged this turn, pick an enemy unit in combat with it to be the target.",
+          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll. If any models are slain by this ability, after those models are removed from the battlefield, if this unit is still in combat, this unit can immediately use this ability again.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    },
+    {
+      "id": "08f0-9cff-c0d5-67ef",
+      "name": "Big 'Un",
+      "abilities": [
+        {
+          "name": "Big 'Un",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Rend characteristic of this unit's Companion weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": ""
+        }
+      ]
+    }
+  ],
+  "visionsOfFate": [],
   "terrain": [
     {
       "id": "092c-1ddc-6678-db32",

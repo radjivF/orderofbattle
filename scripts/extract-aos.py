@@ -8,7 +8,9 @@ Names, costs, and categories only — no ability text.
 from __future__ import annotations
 
 import json
+import os
 import re
+import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -23,8 +25,12 @@ SKIP = (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "data" / "aos4"
+DATA = Path(os.environ.get("AOS4_DATA") or (ROOT / "data" / "aos4"))
 OUT_DIR = ROOT / "src" / "engine" / "data"
+AOR_SKIP_STEMS = {
+    "Ironjawz - Big Waaagh!",
+    "Kruleboyz - Big Waaagh!",
+}
 
 
 def local(tag: str) -> str:
@@ -503,7 +509,15 @@ def group_matches(name: str, *labels: str) -> bool:
     return False
 
 
-def leaf_upgrades(group: ET.Element, by_id: dict[str, ET.Element], seen: set[str] | None = None) -> list[dict[str, str]]:
+def leaf_upgrades(
+    group: ET.Element,
+    by_id: dict[str, ET.Element],
+    seen: set[str] | None = None,
+    *,
+    include_hidden: bool = False,
+    pack: str = "",
+    wrappers: tuple[str, ...] = (),
+) -> list[dict[str, str]]:
     """Collect named upgrade/unit picks under a group, following entryLinks."""
     if seen is None:
         seen = set()
@@ -522,7 +536,27 @@ def leaf_upgrades(group: ET.Element, by_id: dict[str, ET.Element], seen: set[str
         if oname.startswith("Summon "):
             return
         found.add(oid)
-        options.append({"id": oid, "name": oname})
+        item = {"id": oid, "name": oname}
+        if pack:
+            item["pack"] = pack
+        options.append(item)
+
+    def child_pack(child_name: str) -> str:
+        if child_name and wrappers and not group_matches(child_name, *wrappers):
+            return child_name
+        return pack
+
+    def walk_group(target: ET.Element, next_pack: str) -> None:
+        options.extend(
+            leaf_upgrades(
+                target,
+                by_id,
+                seen,
+                include_hidden=include_hidden,
+                pack=next_pack,
+                wrappers=wrappers,
+            )
+        )
 
     ses = child(group, "selectionEntries")
     if ses is not None:
@@ -534,7 +568,7 @@ def leaf_upgrades(group: ET.Element, by_id: dict[str, ET.Element], seen: set[str
     links = child(group, "entryLinks")
     if links is not None:
         for link in children(links, "entryLink"):
-            if is_hidden(link):
+            if is_hidden(link) and not include_hidden:
                 continue
             target_id = link.attrib.get("targetId") or ""
             target = by_id.get(target_id)
@@ -542,16 +576,16 @@ def leaf_upgrades(group: ET.Element, by_id: dict[str, ET.Element], seen: set[str
                 continue
             tag = local(target.tag)
             if tag == "selectionEntryGroup":
-                options.extend(leaf_upgrades(target, by_id, seen))
+                walk_group(target, child_pack(named(link) or named(target)))
             elif tag == "selectionEntry":
                 add(target_id, named(link) or named(target))
 
     nested_groups = child(group, "selectionEntryGroups")
     if nested_groups is not None:
         for nested_group in children(nested_groups, "selectionEntryGroup"):
-            if is_hidden(nested_group):
+            if is_hidden(nested_group) and not include_hidden:
                 continue
-            options.extend(leaf_upgrades(nested_group, by_id, seen))
+            walk_group(nested_group, child_pack(named(nested_group)))
 
     return options
 
@@ -642,39 +676,77 @@ def extract_lores(
     return lores
 
 
+def entry_points(entry: ET.Element | None) -> int:
+    if entry is None:
+        return 0
+    costs = child(entry, "costs")
+    if costs is None:
+        return 0
+    for cost in children(costs, "cost"):
+        if cost.attrib.get("name") != "pts":
+            continue
+        try:
+            return int(float(cost.attrib.get("value") or "0"))
+        except ValueError:
+            return 0
+    return 0
+
+
 def extract_enhancements(
-    cat: ET.Element, by_id: dict[str, ET.Element], *labels: str
+    cat: ET.Element,
+    by_id: dict[str, ET.Element],
+    *labels: str,
+    include_hidden: bool = False,
 ) -> list[dict]:
     options: list[dict] = []
     seen: set[str] = set()
     for group in find_groups(cat, *labels):
-        for item in leaf_upgrades(group, by_id):
+        for item in leaf_upgrades(
+            group,
+            by_id,
+            include_hidden=include_hidden,
+            wrappers=labels,
+        ):
             if item["id"] in seen:
+                continue
+            if group_matches(item["name"], *labels):
                 continue
             seen.add(item["id"])
             entry = by_id.get(item["id"])
-            options.append(
-                {
-                    "id": item["id"],
-                    "name": item["name"],
-                    "abilities": unit_abilities(entry) if entry is not None else [],
-                }
-            )
+            option: dict = {
+                "id": item["id"],
+                "name": item["name"],
+                "abilities": unit_abilities(entry) if entry is not None else [],
+            }
+            points = entry_points(entry)
+            if points:
+                option["points"] = points
+            pack = item.get("pack") or ""
+            if pack:
+                option["pack"] = pack
+            options.append(option)
     return options
 
 
 def extract_faction(
     gst: ET.Element,
     cat_path: Path,
-    lib_path: Path | None,
+    lib_path: Path | list[Path] | None,
     extra_roots: list[ET.Element],
+    parent_faction_ids: list[str] | None = None,
 ) -> dict | None:
     cat = parse(cat_path)
-    lib = parse(lib_path) if lib_path and lib_path.exists() else None
-    roots = [gst, cat, *extra_roots] + ([lib] if lib is not None else [])
+    if lib_path is None:
+        lib_files: list[Path] = []
+    elif isinstance(lib_path, Path):
+        lib_files = [lib_path]
+    else:
+        lib_files = lib_path
+    lib_roots = [parse(path) for path in lib_files if path.exists()]
+    roots = [gst, cat, *extra_roots, *lib_roots]
     names = index_names(*roots)
     link_targets = index_entry_targets(cat)
-    library_units = collect_library_units(*([lib] if lib is not None else [cat]))
+    library_units = collect_library_units(*(lib_roots if lib_roots else [cat]))
     by_id = index_elements(*roots)
 
     formations: list[dict] = []
@@ -841,7 +913,19 @@ def extract_faction(
         "Artefacts of",
     )
     heroic_traits = extract_enhancements(cat, by_id, "Heroic Traits")
-    return {
+    monstrous_traits = extract_enhancements(
+        cat,
+        by_id,
+        "Monstrous Traits",
+        include_hidden=True,
+    )
+    visions_of_fate = extract_enhancements(
+        cat,
+        by_id,
+        "Visions of Fate",
+        include_hidden=True,
+    )
+    payload = {
         "id": slug(display),
         "name": display,
         "game": "Age of Sigmar 4th",
@@ -854,9 +938,113 @@ def extract_faction(
         "manifestationLores": manifestation_lores,
         "artefacts": artefacts,
         "heroicTraits": heroic_traits,
+        "monstrousTraits": monstrous_traits,
+        "visionsOfFate": visions_of_fate,
         "terrain": terrain,
         "units": units,
     }
+    if parent_faction_ids:
+        payload["parentFactionIds"] = parent_faction_ids
+    return payload
+
+
+def write_loader_from_out_dir() -> None:
+    slugs: list[tuple[str, str]] = []
+    for path in sorted(OUT_DIR.glob("*.json")):
+        if path.stem == "regiments-of-renown":
+            continue
+        slugs.append((ident(path.stem), path.stem))
+    write_loader(slugs)
+
+
+def write_aor_payload(payload: dict) -> None:
+    out = OUT_DIR / f"{payload['id']}.json"
+    out.write_text(json.dumps(payload, indent=2) + "\n")
+    print(
+        f"{payload['name']}: {len(payload['units'])} units, "
+        f"{len(payload['formations'])} formations, "
+        f"{len(payload['battleTraits'])} battle traits, "
+        f"{len(payload['artefacts'])} artefacts, "
+        f"{len(payload['heroicTraits'])} traits"
+        + (
+            f" (AoR → {', '.join(payload.get('parentFactionIds', []))})"
+            if payload.get("parentFactionIds")
+            else ""
+        )
+    )
+
+
+def is_army_of_renown_cat(name: str) -> bool:
+    if " - " not in name:
+        return False
+    if "Library" in name or "[LEGENDS" in name:
+        return False
+    if name.lower().startswith("path to glory"):
+        return False
+    if name in AOR_SKIP_STEMS:
+        return False
+    return True
+
+
+def extract_armies_of_renown() -> None:
+    """Write Armies of Renown JSON without wiping existing faction files."""
+    gst = parse(DATA / "Age of Sigmar 4.0.gst")
+    lores_path = DATA / "Lores.cat"
+    extra_roots = [parse(lores_path)] if lores_path.exists() else []
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    core_ids = {
+        path.stem
+        for path in OUT_DIR.glob("*.json")
+        if path.stem != "regiments-of-renown"
+    }
+    written = 0
+
+    big_waaagh = DATA / "Big Waaagh!.cat"
+    if big_waaagh.exists():
+        payload = extract_faction(
+            gst,
+            big_waaagh,
+            [
+                DATA / "Ironjawz - Library.cat",
+                DATA / "Kruleboyz - Library.cat",
+            ],
+            extra_roots,
+            parent_faction_ids=["ironjawz", "kruleboyz"],
+        )
+        if payload:
+            write_aor_payload(payload)
+            written += 1
+        else:
+            print("skip Big Waaagh! (no units)")
+
+    for cat_path in sorted(DATA.glob("*.cat")):
+        name = cat_path.stem
+        if not is_army_of_renown_cat(name):
+            continue
+        parent = name.split(" - ")[0]
+        parent_id = slug(parent)
+        if parent_id not in core_ids:
+            print(f"skip {name} (unknown parent {parent_id})")
+            continue
+        lib_path = DATA / f"{parent} - Library.cat"
+        payload = extract_faction(
+            gst,
+            cat_path,
+            lib_path if lib_path.exists() else None,
+            extra_roots,
+            parent_faction_ids=[parent_id],
+        )
+        if payload is None:
+            print(f"skip {name} (no units)")
+            continue
+        if "[LEGENDS" in payload["name"]:
+            print(f"skip {payload['name']}")
+            continue
+        write_aor_payload(payload)
+        written += 1
+
+    write_loader_from_out_dir()
+    print(f"wrote {written} armies of renown")
 
 
 def write_loader(slugs: list[tuple[str, str]]) -> None:
@@ -1122,7 +1310,9 @@ def main() -> None:
             f"{len(payload['prayerLores'])} prayers, "
             f"{len(payload['manifestationLores'])} marbles, "
             f"{len(payload['artefacts'])} artefacts, "
-            f"{len(payload['heroicTraits'])} traits"
+            f"{len(payload['heroicTraits'])} traits, "
+            f"{len(payload['monstrousTraits'])} monstrous, "
+            f"{len(payload['visionsOfFate'])} visions"
         )
 
     rors = extract_regiments_of_renown(gst, cat_id_to_slug)
@@ -1136,4 +1326,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1 and sys.argv[1] in ("--aor-only", "--armies-of-renown"):
+        extract_armies_of_renown()
+    else:
+        main()

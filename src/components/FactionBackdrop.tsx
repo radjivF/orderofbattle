@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState, type ReactNode } from "react";
-import { factionArtSrc } from "@/lib/factionArt";
+import { factionArtSrc, factionBackdropArtClass } from "@/lib/factionArt";
 import { BrandMark } from "./BrandMark";
 
 /** Short enough to stay snappy; long enough to read the art. */
@@ -21,6 +21,7 @@ type Props = {
  */
 export function FactionBackdrop({ factionId, factionName, children }: Props) {
   const src = factionArtSrc(factionId);
+  const artClass = factionBackdropArtClass(factionId);
   const [splash, setSplash] = useState(Boolean(src));
   const [contentIn, setContentIn] = useState(!src);
 
@@ -81,7 +82,8 @@ export function FactionBackdrop({ factionId, factionName, children }: Props) {
           sizes="100vw"
           quality={70}
           priority
-          className="object-cover object-center"
+          unoptimized
+          className={artClass}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-ink/78 via-ink/88 to-ink/94" />
       </div>
@@ -101,7 +103,8 @@ export function FactionBackdrop({ factionId, factionName, children }: Props) {
             sizes="100vw"
             quality={75}
             priority
-            className="object-cover object-center"
+            unoptimized
+            className={artClass}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/25 to-transparent" />
           <div className="relative z-10 flex flex-col items-center gap-3 px-6 text-center">

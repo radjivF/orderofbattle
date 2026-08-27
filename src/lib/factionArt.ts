@@ -1,9 +1,33 @@
 /** Faction art under /public/factions/{id}.webp */
 
+const LANDSCAPE_SIZE = { width: 1280, height: 853 };
+const PORTRAIT_SIZE = { width: 1280, height: 1600 };
+
+/** Bump when replacing a public/factions/{id}.webp so Next/browser cache cannot keep the old file. */
+const ART_REV: Record<string, number> = {
+  "disciples-of-tzeentch": 1,
+  "ironjawz": 2,
+  "slaves-to-darkness": 1,
+  "soulblight-gravelords": 2,
+  "stormcast-eternals": 2,
+};
+
+/** Left-weighted subjects (vampire/dragon) when list cards crop tall. */
+const LEFT_FOCUS_ART = new Set(["soulblight-gravelords"]);
+
+const LANDSCAPE_ART = new Set([
+  "disciples-of-tzeentch",
+  "ironjawz",
+  "slaves-to-darkness",
+  "soulblight-gravelords",
+  "stormcast-eternals",
+]);
+
 const FACTION_ART = new Set([
   "blades-of-khorne",
   "cities-of-sigmar",
   "daughters-of-khaine",
+  "disciples-of-tzeentch",
   "flesh-eater-courts",
   "fyreslayers",
   "gloomspite-gitz",
@@ -20,6 +44,7 @@ const FACTION_ART = new Set([
   "ossiarch-bonereapers",
   "seraphon",
   "skaven",
+  "slaves-to-darkness",
   "sons-of-behemat",
   "soulblight-gravelords",
   "stormcast-eternals",
@@ -28,7 +53,62 @@ const FACTION_ART = new Set([
 
 export function factionArtSrc(factionId: string | null | undefined): string | null {
   if (!factionId || !FACTION_ART.has(factionId)) return null;
-  return `/factions/${factionId}.webp`;
+  const rev = ART_REV[factionId];
+  const path = `/factions/${factionId}.webp`;
+  return rev ? `${path}?v=${rev}` : path;
+}
+
+export function factionArtSize(factionId: string): {
+  width: number;
+  height: number;
+} {
+  return LANDSCAPE_ART.has(factionId) ? LANDSCAPE_SIZE : PORTRAIT_SIZE;
+}
+
+function catalogueArtId(
+  faction:
+    | { id: string; parentFactionIds?: string[] }
+    | null
+    | undefined,
+): string | null {
+  if (!faction) return null;
+  for (const id of [faction.id, ...(faction.parentFactionIds ?? [])]) {
+    if (factionArtSrc(id)) return id;
+  }
+  return null;
+}
+
+export function catalogueArtSrc(
+  faction:
+    | { id: string; parentFactionIds?: string[] }
+    | null
+    | undefined,
+): string | null {
+  return factionArtSrc(catalogueArtId(faction));
+}
+
+/** List-card crop: portrait art sits high, landscape stays centered. */
+export function catalogueArtClass(
+  faction:
+    | { id: string; parentFactionIds?: string[] }
+    | null
+    | undefined,
+): string {
+  const id = catalogueArtId(faction);
+  if (id && LEFT_FOCUS_ART.has(id)) {
+    return "object-cover object-left";
+  }
+  return id && LANDSCAPE_ART.has(id)
+    ? "object-cover object-center"
+    : "object-cover object-[center_28%]";
+}
+
+/** Full-bleed splash/backdrop crop. */
+export function factionBackdropArtClass(factionId: string | null | undefined): string {
+  if (factionId && LEFT_FOCUS_ART.has(factionId)) {
+    return "object-cover object-left";
+  }
+  return "object-cover object-center";
 }
 
 export function hasFactionArt(factionId: string | null | undefined): boolean {

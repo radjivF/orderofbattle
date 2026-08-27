@@ -1,11 +1,10 @@
 "use client";
 
 import type { CatalogueUnit, UnitAbility } from "@/engine/types";
+import { ModalFrame } from "./ModalFrame";
 
-const modalShell =
-  "fixed inset-0 z-50 flex items-center justify-center p-4";
-const modalPanel =
-  "relative z-10 flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-parchment text-parchment-ink shadow-2xl";
+const pickerPanel =
+  "flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-parchment text-parchment-ink shadow-2xl";
 
 type Props = {
   title: string;
@@ -26,14 +25,7 @@ export function PickerSheet({
   const heroes = units.filter((unit) => unit.hero);
 
   return (
-    <div className={modalShell}>
-      <button
-        type="button"
-        aria-label="Close"
-        className="absolute inset-0 bg-ink/70"
-        onClick={onClose}
-      />
-      <div role="dialog" aria-label={title} className={modalPanel}>
+    <ModalFrame label={title} onClose={onClose} panelClassName={pickerPanel}>
         <div className="flex shrink-0 items-center justify-between px-5 pt-5 pb-3">
           <h2 className="font-serif text-2xl">{title}</h2>
           <button
@@ -83,8 +75,7 @@ export function PickerSheet({
             </>
           )}
         </div>
-      </div>
-    </div>
+    </ModalFrame>
   );
 }
 
@@ -147,14 +138,7 @@ export function ChoiceSheet({
   onClose: () => void;
 }) {
   return (
-    <div className={modalShell}>
-      <button
-        type="button"
-        aria-label="Close"
-        className="absolute inset-0 bg-ink/70"
-        onClick={onClose}
-      />
-      <div role="dialog" aria-label={title} className={modalPanel}>
+    <ModalFrame label={title} onClose={onClose} panelClassName={pickerPanel}>
         <div className="flex shrink-0 items-center justify-between px-5 pt-5 pb-3">
           <h2 className="font-serif text-2xl">{title}</h2>
           <button
@@ -219,8 +203,7 @@ export function ChoiceSheet({
             })}
           </ul>
         </div>
-      </div>
-    </div>
+    </ModalFrame>
   );
 }
 

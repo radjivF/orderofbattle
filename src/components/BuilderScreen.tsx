@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
-import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, factionHasScourge, resolveUnitIdForRealm, unitBaseName, unitsForRealm, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, type ScourgeRealm } from "@/engine/queries";
+import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, factionHasScourge, resolveUnitIdForRealm, unitBaseName, unitsForRealm, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel, type ScourgeRealm } from "@/engine/queries";
+import { combatModifierNotes } from "@/engine/magic";
 import { summarize } from "@/engine/validate";
-import type { ArmyList, CatalogueUnit, DatasheetSubject, FactionCatalogue, NamedOption } from "@/engine/types";
+import { formatPoints } from "@/engine/pointsCap";
+import type { ArmyList, CatalogueUnit, DatasheetSubject, EnhancementOption, FactionCatalogue, NamedOption } from "@/engine/types";
 import { createId } from "@/lib/id";
 import {
   getArmiesServerSnapshot,
@@ -15,10 +17,11 @@ import {
 import { DatasheetSheet } from "./DatasheetSheet";
 import { FactionBackdrop } from "./FactionBackdrop";
 import { ChoiceSheet, PickerSheet } from "./PickerSheet";
+import { PointsCapField } from "./PointsCapField";
 import { ManifestationCard } from "./ManifestationCard";
 import { PlayMagicBoard } from "./PlayMagicBoard";
 import { PlayPhaseBoard } from "./PlayPhaseBoard";
-import { PlayHealthTrack, RegimentCard, SlotMoreMenu } from "./RegimentCard";
+import { PlayBindNotes, PlayHealthTrack, RegimentCard, SlotEnhancements, SlotMoreMenu } from "./RegimentCard";
 import {
   buildRoRSelections,
   clearRoREnhancements,
@@ -33,6 +36,8 @@ type Picker =
   | { kind: "ror" }
   | { kind: "artefact"; heroSelectionId: string }
   | { kind: "trait"; heroSelectionId: string }
+  | { kind: "monstrous"; heroSelectionId: string }
+  | { kind: "vision"; heroSelectionId: string }
   | null;
 
 type Props = {
@@ -68,7 +73,10 @@ export function BuilderScreen({ listId }: Props) {
   }
 
   return (
-    <FactionBackdrop factionId={faction.id} factionName={faction.name}>
+    <FactionBackdrop
+      factionId={faction.parentFactionIds?.[0] ?? faction.id}
+      factionName={faction.name}
+    >
       <BuilderReady list={list} faction={faction} />
     </FactionBackdrop>
   );
@@ -89,6 +97,10 @@ function BuilderReady({
   const [playMode, setPlayMode] = useState(false);
   const [playTab, setPlayTab] = useState<"units" | "magic" | "phases">("units");
   const totals = useMemo(() => summarize(list, faction), [list, faction]);
+  const bindNotes = useMemo(
+    () => (playMode ? combatModifierNotes(list, faction) : []),
+    [playMode, list, faction],
+  );
   const issue = totals.issues[0] ?? {
     tone: "warn" as const,
     text: "Add a regiment to begin.",
@@ -219,10 +231,23 @@ function BuilderReady({
   }
 
   async function onChooseEnhancement(option: NamedOption | null) {
-    if (!picker || (picker.kind !== "artefact" && picker.kind !== "trait")) {
+    if (
+      !picker ||
+      (picker.kind !== "artefact" &&
+        picker.kind !== "trait" &&
+        picker.kind !== "monstrous" &&
+        picker.kind !== "vision")
+    ) {
       return;
     }
-    const field = picker.kind === "artefact" ? "artefact" : "heroicTrait";
+    const field =
+      picker.kind === "artefact"
+        ? "artefact"
+        : picker.kind === "trait"
+          ? "heroicTrait"
+          : picker.kind === "monstrous"
+            ? "monstrousTrait"
+            : "visionOfFate";
     const current = list[field];
     await commit({
       ...list,
@@ -250,16 +275,28 @@ function BuilderReady({
     picker?.kind === "artefact"
       ? {
           title: "Artefact",
-          options: faction.artefacts,
+          options: enhancementChoices(faction.artefacts),
           selectedId: list.artefact?.optionId,
         }
       : picker?.kind === "trait"
         ? {
             title: "Heroic trait",
-            options: faction.heroicTraits,
+            options: enhancementChoices(faction.heroicTraits),
             selectedId: list.heroicTrait?.optionId,
           }
-        : null;
+        : picker?.kind === "monstrous"
+          ? {
+              title: "Monstrous trait",
+              options: enhancementChoices(faction.monstrousTraits ?? []),
+              selectedId: list.monstrousTrait?.optionId,
+            }
+          : picker?.kind === "vision"
+            ? {
+                title: "Vision of Fate",
+                options: enhancementChoices(faction.visionsOfFate ?? []),
+                selectedId: list.visionOfFate?.optionId,
+              }
+            : null;
 
   const rorOptions = listRegimentsOfRenown(list.factionId);
   const rorPicker =
@@ -317,8 +354,11 @@ function BuilderReady({
             {!playMode ? (
               <div className="text-left sm:text-right">
                 <p className="text-lg text-sigmarite">
-                  {totals.points}
-                  <span className="text-ink-muted"> / {list.pointsCap}</span>
+                  {formatPoints(totals.points)}
+                  <span className="text-ink-muted">
+                    {" "}
+                    / {formatPoints(list.pointsCap)}
+                  </span>
                 </p>
                 <p className="text-xs text-ink-muted">{totals.drops} drops</p>
               </div>
@@ -415,6 +455,12 @@ function BuilderReady({
       <main className="mx-auto flex w-full max-w-3xl min-w-0 flex-col gap-5 px-4 py-6 pb-28">
         {!playMode ? (
         <div className="flex min-w-0 flex-col gap-4">
+          <PointsCapField
+            value={list.pointsCap}
+            onChange={(pointsCap) => void commit({ ...list, pointsCap })}
+            variant="ink"
+          />
+          {faction.formations.length > 0 ? (
           <div className="flex min-w-0 flex-col gap-2">
             <label className="flex min-w-0 flex-col gap-2 text-sm text-parchment/80">
               Battle formation
@@ -464,6 +510,7 @@ function BuilderReady({
               </ul>
             ) : null}
           </div>
+          ) : null}
 
           {factionHasScourge(faction) ? (
             <label className="flex flex-col gap-2 text-sm text-parchment/80">
@@ -638,11 +685,10 @@ function BuilderReady({
               setPicker({ kind: "unit", regimentId: regiment.id })
             }
             artefactBearerId={list.artefact?.heroSelectionId}
-            artefactLabel={
-              list.artefact
-                ? namedOption(faction.artefacts, list.artefact.optionId)?.name
-                : undefined
-            }
+            artefactLabel={enhancementLabel(
+              faction.artefacts,
+              list.artefact?.optionId,
+            )}
             artefactAbilities={
               list.artefact
                 ? faction.artefacts.find(
@@ -651,16 +697,38 @@ function BuilderReady({
                 : undefined
             }
             heroicTraitBearerId={list.heroicTrait?.heroSelectionId}
-            heroicTraitLabel={
-              list.heroicTrait
-                ? namedOption(faction.heroicTraits, list.heroicTrait.optionId)
-                    ?.name
-                : undefined
-            }
+            heroicTraitLabel={enhancementLabel(
+              faction.heroicTraits,
+              list.heroicTrait?.optionId,
+            )}
             heroicTraitAbilities={
               list.heroicTrait
                 ? faction.heroicTraits.find(
                     (item) => item.id === list.heroicTrait?.optionId,
+                  )?.abilities
+                : undefined
+            }
+            monstrousTraitBearerId={list.monstrousTrait?.heroSelectionId}
+            monstrousTraitLabel={enhancementLabel(
+              faction.monstrousTraits ?? [],
+              list.monstrousTrait?.optionId,
+            )}
+            monstrousTraitAbilities={
+              list.monstrousTrait
+                ? faction.monstrousTraits?.find(
+                    (item) => item.id === list.monstrousTrait?.optionId,
+                  )?.abilities
+                : undefined
+            }
+            visionBearerId={list.visionOfFate?.heroSelectionId}
+            visionLabel={enhancementLabel(
+              faction.visionsOfFate ?? [],
+              list.visionOfFate?.optionId,
+            )}
+            visionAbilities={
+              list.visionOfFate
+                ? faction.visionsOfFate?.find(
+                    (item) => item.id === list.visionOfFate?.optionId,
                   )?.abilities
                 : undefined
             }
@@ -678,6 +746,24 @@ function BuilderReady({
                 ? (heroSelectionId) =>
                     setPicker({
                       kind: "trait",
+                      heroSelectionId,
+                    })
+                : undefined
+            }
+            onPickMonstrousTrait={
+              (faction.monstrousTraits?.length ?? 0) > 0
+                ? (heroSelectionId) =>
+                    setPicker({
+                      kind: "monstrous",
+                      heroSelectionId,
+                    })
+                : undefined
+            }
+            onPickVision={
+              (faction.visionsOfFate?.length ?? 0) > 0
+                ? (heroSelectionId) =>
+                    setPicker({
+                      kind: "vision",
                       heroSelectionId,
                     })
                 : undefined
@@ -741,6 +827,7 @@ function BuilderReady({
               }
               void commit(next);
             }}
+            bindNotes={bindNotes}
             onPlayHealth={(selectionId, damage) =>
               void setPlayDamage(selectionId, damage)
             }
@@ -752,11 +839,10 @@ function BuilderReady({
             list={list}
             playMode={playMode}
             artefactBearerId={list.artefact?.heroSelectionId}
-            artefactLabel={
-              list.artefact
-                ? namedOption(faction.artefacts, list.artefact.optionId)?.name
-                : undefined
-            }
+            artefactLabel={enhancementLabel(
+              faction.artefacts,
+              list.artefact?.optionId,
+            )}
             artefactAbilities={
               list.artefact
                 ? faction.artefacts.find(
@@ -765,16 +851,38 @@ function BuilderReady({
                 : undefined
             }
             heroicTraitBearerId={list.heroicTrait?.heroSelectionId}
-            heroicTraitLabel={
-              list.heroicTrait
-                ? namedOption(faction.heroicTraits, list.heroicTrait.optionId)
-                    ?.name
-                : undefined
-            }
+            heroicTraitLabel={enhancementLabel(
+              faction.heroicTraits,
+              list.heroicTrait?.optionId,
+            )}
             heroicTraitAbilities={
               list.heroicTrait
                 ? faction.heroicTraits.find(
                     (item) => item.id === list.heroicTrait?.optionId,
+                  )?.abilities
+                : undefined
+            }
+            monstrousTraitBearerId={list.monstrousTrait?.heroSelectionId}
+            monstrousTraitLabel={enhancementLabel(
+              faction.monstrousTraits ?? [],
+              list.monstrousTrait?.optionId,
+            )}
+            monstrousTraitAbilities={
+              list.monstrousTrait
+                ? faction.monstrousTraits?.find(
+                    (item) => item.id === list.monstrousTrait?.optionId,
+                  )?.abilities
+                : undefined
+            }
+            visionBearerId={list.visionOfFate?.heroSelectionId}
+            visionLabel={enhancementLabel(
+              faction.visionsOfFate ?? [],
+              list.visionOfFate?.optionId,
+            )}
+            visionAbilities={
+              list.visionOfFate
+                ? faction.visionsOfFate?.find(
+                    (item) => item.id === list.visionOfFate?.optionId,
                   )?.abilities
                 : undefined
             }
@@ -796,8 +904,27 @@ function BuilderReady({
                     })
                 : undefined
             }
+            onPickMonstrousTrait={
+              (faction.monstrousTraits?.length ?? 0) > 0
+                ? (heroSelectionId) =>
+                    setPicker({
+                      kind: "monstrous",
+                      heroSelectionId,
+                    })
+                : undefined
+            }
+            onPickVision={
+              (faction.visionsOfFate?.length ?? 0) > 0
+                ? (heroSelectionId) =>
+                    setPicker({
+                      kind: "vision",
+                      heroSelectionId,
+                    })
+                : undefined
+            }
             onOpenDatasheet={setDatasheet}
             onRemove={() => void commit(clearRoREnhancements(list))}
+            bindNotes={bindNotes}
             onPlayHealth={(selectionId, damage) =>
               void setPlayDamage(selectionId, damage)
             }
@@ -848,6 +975,71 @@ function BuilderReady({
                             {warning.summary}
                           </p>
                         ) : null}
+                        <PlayBindNotes
+                          selectionId={slot.id}
+                          notes={bindNotes}
+                        />
+                        <SlotEnhancements
+                          selectionId={slot.id}
+                          unit={unit}
+                          playMode
+                          artefactBearerId={list.artefact?.heroSelectionId}
+                          artefactLabel={enhancementLabel(
+                            faction.artefacts,
+                            list.artefact?.optionId,
+                          )}
+                          artefactAbilities={
+                            list.artefact
+                              ? faction.artefacts.find(
+                                  (item) =>
+                                    item.id === list.artefact?.optionId,
+                                )?.abilities
+                              : undefined
+                          }
+                          heroicTraitBearerId={
+                            list.heroicTrait?.heroSelectionId
+                          }
+                          heroicTraitLabel={enhancementLabel(
+                            faction.heroicTraits,
+                            list.heroicTrait?.optionId,
+                          )}
+                          heroicTraitAbilities={
+                            list.heroicTrait
+                              ? faction.heroicTraits.find(
+                                  (item) =>
+                                    item.id === list.heroicTrait?.optionId,
+                                )?.abilities
+                              : undefined
+                          }
+                          monstrousTraitBearerId={
+                            list.monstrousTrait?.heroSelectionId
+                          }
+                          monstrousTraitLabel={enhancementLabel(
+                            faction.monstrousTraits ?? [],
+                            list.monstrousTrait?.optionId,
+                          )}
+                          monstrousTraitAbilities={
+                            list.monstrousTrait
+                              ? faction.monstrousTraits?.find(
+                                  (item) =>
+                                    item.id === list.monstrousTrait?.optionId,
+                                )?.abilities
+                              : undefined
+                          }
+                          visionBearerId={list.visionOfFate?.heroSelectionId}
+                          visionLabel={enhancementLabel(
+                            faction.visionsOfFate ?? [],
+                            list.visionOfFate?.optionId,
+                          )}
+                          visionAbilities={
+                            list.visionOfFate
+                              ? faction.visionsOfFate?.find(
+                                  (item) =>
+                                    item.id === list.visionOfFate?.optionId,
+                                )?.abilities
+                              : undefined
+                          }
+                        />
                       </div>
                     </li>
                   );
@@ -855,8 +1047,9 @@ function BuilderReady({
                 return (
                   <li
                     key={slot.id}
-                    className="flex min-h-11 items-center gap-1 rounded-xl bg-parchment-ink/5 pl-3"
+                    className="rounded-xl bg-parchment-ink/5 pl-3"
                   >
+                    <div className="flex min-h-11 items-center gap-1">
                     <div className="min-w-0 flex-1 py-2 pr-2">
                       <p className="truncate font-serif text-lg text-parchment-ink">
                         {unit.name}
@@ -898,15 +1091,115 @@ function BuilderReady({
                             : undefined
                         }
                         onRemove={() =>
-                          void commit({
-                            ...list,
-                            auxiliaries: list.auxiliaries.filter(
-                              (item) => item.id !== slot.id,
+                          void commit(
+                            dropEnhancements(
+                              {
+                                ...list,
+                                auxiliaries: list.auxiliaries.filter(
+                                  (item) => item.id !== slot.id,
+                                ),
+                              },
+                              slot.id,
                             ),
-                          })
+                          )
                         }
                       />
                     </div>
+                    </div>
+                    <SlotEnhancements
+                      selectionId={slot.id}
+                      unit={unit}
+                      playMode={false}
+                      artefactBearerId={list.artefact?.heroSelectionId}
+                      artefactLabel={enhancementLabel(
+                        faction.artefacts,
+                        list.artefact?.optionId,
+                      )}
+                      artefactAbilities={
+                        list.artefact
+                          ? faction.artefacts.find(
+                              (item) => item.id === list.artefact?.optionId,
+                            )?.abilities
+                          : undefined
+                      }
+                      heroicTraitBearerId={list.heroicTrait?.heroSelectionId}
+                      heroicTraitLabel={enhancementLabel(
+                        faction.heroicTraits,
+                        list.heroicTrait?.optionId,
+                      )}
+                      heroicTraitAbilities={
+                        list.heroicTrait
+                          ? faction.heroicTraits.find(
+                              (item) =>
+                                item.id === list.heroicTrait?.optionId,
+                            )?.abilities
+                          : undefined
+                      }
+                      monstrousTraitBearerId={
+                        list.monstrousTrait?.heroSelectionId
+                      }
+                      monstrousTraitLabel={enhancementLabel(
+                        faction.monstrousTraits ?? [],
+                        list.monstrousTrait?.optionId,
+                      )}
+                      monstrousTraitAbilities={
+                        list.monstrousTrait
+                          ? faction.monstrousTraits?.find(
+                              (item) =>
+                                item.id === list.monstrousTrait?.optionId,
+                            )?.abilities
+                          : undefined
+                      }
+                      visionBearerId={list.visionOfFate?.heroSelectionId}
+                      visionLabel={enhancementLabel(
+                        faction.visionsOfFate ?? [],
+                        list.visionOfFate?.optionId,
+                      )}
+                      visionAbilities={
+                        list.visionOfFate
+                          ? faction.visionsOfFate?.find(
+                              (item) =>
+                                item.id === list.visionOfFate?.optionId,
+                            )?.abilities
+                          : undefined
+                      }
+                      onPickArtefact={
+                        faction.artefacts.length > 0
+                          ? (heroSelectionId) =>
+                              setPicker({
+                                kind: "artefact",
+                                heroSelectionId,
+                              })
+                          : undefined
+                      }
+                      onPickTrait={
+                        faction.heroicTraits.length > 0
+                          ? (heroSelectionId) =>
+                              setPicker({
+                                kind: "trait",
+                                heroSelectionId,
+                              })
+                          : undefined
+                      }
+                      onPickMonstrousTrait={
+                        (faction.monstrousTraits?.length ?? 0) > 0
+                          ? (heroSelectionId) =>
+                              setPicker({
+                                kind: "monstrous",
+                                heroSelectionId,
+                              })
+                          : undefined
+                      }
+                      onPickVision={
+                        (faction.visionsOfFate?.length ?? 0) > 0
+                          ? (heroSelectionId) =>
+                              setPicker({
+                                kind: "vision",
+                                heroSelectionId,
+                              })
+                          : undefined
+                      }
+                    />
                   </li>
                 );
               })}
@@ -1170,7 +1463,22 @@ function dropEnhancements(list: ArmyList, heroSelectionId?: string): ArmyList {
       list.heroicTrait?.heroSelectionId === heroSelectionId
         ? null
         : list.heroicTrait,
+    monstrousTrait:
+      list.monstrousTrait?.heroSelectionId === heroSelectionId
+        ? null
+        : list.monstrousTrait,
+    visionOfFate:
+      list.visionOfFate?.heroSelectionId === heroSelectionId
+        ? null
+        : list.visionOfFate,
   };
+}
+
+function enhancementChoices(options: EnhancementOption[]) {
+  return options.map((item) => ({
+    ...item,
+    detail: enhancementChoiceDetail(item),
+  }));
 }
 
 function PlaySummary({

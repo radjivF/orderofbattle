@@ -1,5 +1,6 @@
 "use client";
 
+import type { CombatModifierNote } from "@/engine/magic";
 import {
   battleDamagedWarning,
   battleStatLine,
@@ -13,7 +14,7 @@ import type {
   Selection,
   UnitAbility,
 } from "@/engine/types";
-import { PlayHealthTrack, SlotMoreMenu } from "./RegimentCard";
+import { PlayBindNotes, PlayHealthTrack, SlotEnhancements, SlotMoreMenu } from "./RegimentCard";
 
 type Props = {
   list: ArmyList;
@@ -24,11 +25,20 @@ type Props = {
   heroicTraitBearerId?: string | null;
   heroicTraitLabel?: string;
   heroicTraitAbilities?: UnitAbility[];
+  monstrousTraitBearerId?: string | null;
+  monstrousTraitLabel?: string;
+  monstrousTraitAbilities?: UnitAbility[];
+  visionBearerId?: string | null;
+  visionLabel?: string;
+  visionAbilities?: UnitAbility[];
   onPickArtefact?: (heroSelectionId: string) => void;
   onPickTrait?: (heroSelectionId: string) => void;
+  onPickMonstrousTrait?: (selectionId: string) => void;
+  onPickVision?: (selectionId: string) => void;
   onOpenDatasheet: (unit: CatalogueUnit) => void;
   onRemove: () => void;
   onPlayHealth?: (selectionId: string, damage: number) => void;
+  bindNotes?: CombatModifierNote[];
 };
 
 export function RegimentOfRenownCard({
@@ -40,11 +50,20 @@ export function RegimentOfRenownCard({
   heroicTraitBearerId,
   heroicTraitLabel,
   heroicTraitAbilities,
+  monstrousTraitBearerId,
+  monstrousTraitLabel,
+  monstrousTraitAbilities,
+  visionBearerId,
+  visionLabel,
+  visionAbilities,
   onPickArtefact,
   onPickTrait,
+  onPickMonstrousTrait,
+  onPickVision,
   onOpenDatasheet,
   onRemove,
   onPlayHealth,
+  bindNotes,
 }: Props) {
   const pick = list.regimentOfRenown;
   const ror = pick ? getRegimentOfRenown(pick.renownId) : undefined;
@@ -103,10 +122,19 @@ export function RegimentOfRenownCard({
               heroicTraitBearerId={heroicTraitBearerId}
               heroicTraitLabel={heroicTraitLabel}
               heroicTraitAbilities={heroicTraitAbilities}
+              monstrousTraitBearerId={monstrousTraitBearerId}
+              monstrousTraitLabel={monstrousTraitLabel}
+              monstrousTraitAbilities={monstrousTraitAbilities}
+              visionBearerId={visionBearerId}
+              visionLabel={visionLabel}
+              visionAbilities={visionAbilities}
               onPickArtefact={onPickArtefact}
               onPickTrait={onPickTrait}
+              onPickMonstrousTrait={onPickMonstrousTrait}
+              onPickVision={onPickVision}
               onOpenDatasheet={onOpenDatasheet}
               onPlayHealth={onPlayHealth}
+              bindNotes={bindNotes}
             />
           );
         })}
@@ -126,10 +154,19 @@ function RoRSlotRow({
   heroicTraitBearerId,
   heroicTraitLabel,
   heroicTraitAbilities,
+  monstrousTraitBearerId,
+  monstrousTraitLabel,
+  monstrousTraitAbilities,
+  visionBearerId,
+  visionLabel,
+  visionAbilities,
   onPickArtefact,
   onPickTrait,
+  onPickMonstrousTrait,
+  onPickVision,
   onOpenDatasheet,
   onPlayHealth,
+  bindNotes,
 }: {
   selection: Selection;
   unit: CatalogueUnit;
@@ -141,15 +178,45 @@ function RoRSlotRow({
   heroicTraitBearerId?: string | null;
   heroicTraitLabel?: string;
   heroicTraitAbilities?: UnitAbility[];
+  monstrousTraitBearerId?: string | null;
+  monstrousTraitLabel?: string;
+  monstrousTraitAbilities?: UnitAbility[];
+  visionBearerId?: string | null;
+  visionLabel?: string;
+  visionAbilities?: UnitAbility[];
   onPickArtefact?: (heroSelectionId: string) => void;
   onPickTrait?: (heroSelectionId: string) => void;
+  onPickMonstrousTrait?: (selectionId: string) => void;
+  onPickVision?: (selectionId: string) => void;
   onOpenDatasheet: (unit: CatalogueUnit) => void;
   onPlayHealth?: (selectionId: string, damage: number) => void;
+  bindNotes?: CombatModifierNote[];
 }) {
   const play = selectionPlayState(selection, unit);
   const warning = battleDamagedWarning(unit, play.damage);
-  const hasArtefact = artefactBearerId === selection.id;
-  const hasTrait = heroicTraitBearerId === selection.id;
+  const enhancements = (
+    <SlotEnhancements
+      selectionId={selection.id}
+      unit={unit}
+      playMode={playMode}
+      artefactBearerId={artefactBearerId}
+      artefactLabel={artefactLabel}
+      artefactAbilities={artefactAbilities}
+      heroicTraitBearerId={heroicTraitBearerId}
+      heroicTraitLabel={heroicTraitLabel}
+      heroicTraitAbilities={heroicTraitAbilities}
+      monstrousTraitBearerId={monstrousTraitBearerId}
+      monstrousTraitLabel={monstrousTraitLabel}
+      monstrousTraitAbilities={monstrousTraitAbilities}
+      visionBearerId={visionBearerId}
+      visionLabel={visionLabel}
+      visionAbilities={visionAbilities}
+      onPickArtefact={canEnhance ? onPickArtefact : undefined}
+      onPickTrait={canEnhance ? onPickTrait : undefined}
+      onPickMonstrousTrait={onPickMonstrousTrait}
+      onPickVision={onPickVision}
+    />
+  );
 
   return (
     <li className="rounded-xl bg-parchment-ink/5 px-3 py-2.5">
@@ -179,24 +246,8 @@ function RoRSlotRow({
               Battle damaged ({warning.threshold}+) · {warning.summary}
             </p>
           ) : null}
-          {hasArtefact || hasTrait ? (
-            <div className="mt-1.5 flex flex-col gap-1.5">
-              {hasArtefact && artefactLabel ? (
-                <RoREnhancement
-                  kind="Artefact"
-                  label={artefactLabel}
-                  abilities={artefactAbilities}
-                />
-              ) : null}
-              {hasTrait && heroicTraitLabel ? (
-                <RoREnhancement
-                  kind="Heroic trait"
-                  label={heroicTraitLabel}
-                  abilities={heroicTraitAbilities}
-                />
-              ) : null}
-            </div>
-          ) : null}
+          <PlayBindNotes selectionId={selection.id} notes={bindNotes} />
+          {enhancements}
         </>
       ) : (
         <>
@@ -215,109 +266,10 @@ function RoRSlotRow({
               Sheet
             </button>
           </div>
-
-          {canEnhance ? (
-            <div className="mt-2 flex flex-col gap-1.5">
-              {onPickArtefact ? (
-                hasArtefact && artefactLabel ? (
-                  <div className="flex items-start gap-2">
-                    <div className="min-w-0 flex-1">
-                      <RoREnhancement
-                        kind="Artefact"
-                        label={artefactLabel}
-                        abilities={artefactAbilities}
-                      />
-                    </div>
-                    <button
-                      type="button"
-                      className="min-h-9 shrink-0 px-1 text-sm text-sheet-muted"
-                      onClick={() => onPickArtefact(selection.id)}
-                    >
-                      Change
-                    </button>
-                  </div>
-                ) : (
-                  <button
-                    type="button"
-                    className="min-h-10 text-left text-sm text-parchment-ink/70"
-                    onClick={() => onPickArtefact(selection.id)}
-                  >
-                    Add artefact
-                  </button>
-                )
-              ) : null}
-              {onPickTrait ? (
-                hasTrait && heroicTraitLabel ? (
-                  <div className="flex items-start gap-2">
-                    <div className="min-w-0 flex-1">
-                      <RoREnhancement
-                        kind="Heroic trait"
-                        label={heroicTraitLabel}
-                        abilities={heroicTraitAbilities}
-                      />
-                    </div>
-                    <button
-                      type="button"
-                      className="min-h-9 shrink-0 px-1 text-sm text-sheet-muted"
-                      onClick={() => onPickTrait(selection.id)}
-                    >
-                      Change
-                    </button>
-                  </div>
-                ) : (
-                  <button
-                    type="button"
-                    className="min-h-10 text-left text-sm text-parchment-ink/70"
-                    onClick={() => onPickTrait(selection.id)}
-                  >
-                    Add heroic trait
-                  </button>
-                )
-              ) : null}
-            </div>
-          ) : null}
+          {enhancements}
         </>
       )}
     </li>
-  );
-}
-
-function RoREnhancement({
-  kind,
-  label,
-  abilities,
-}: {
-  kind: string;
-  label: string;
-  abilities?: UnitAbility[];
-}) {
-  const hasRules = (abilities?.length ?? 0) > 0;
-  if (!hasRules) {
-    return (
-      <p className="text-sm text-sheet-muted">
-        {kind} · {label}
-      </p>
-    );
-  }
-  return (
-    <details className="rounded-lg bg-parchment-ink/[0.06]">
-      <summary className="flex min-h-9 cursor-pointer list-none items-center justify-between gap-2 px-2.5 py-1.5 text-sm text-sheet-muted [&::-webkit-details-marker]:hidden">
-        <span className="min-w-0 truncate">
-          {kind} · {label}
-        </span>
-        <span className="shrink-0 text-xs text-parchment-ink/35" aria-hidden>
-          ▾
-        </span>
-      </summary>
-      <ul className="space-y-1 border-t border-parchment-ink/10 px-2.5 py-2 text-xs text-sheet-muted">
-        {abilities?.map((ability) => (
-          <li key={ability.name}>
-            <span className="text-parchment-ink/80">{ability.name}</span>
-            {ability.effect ? ` — ${ability.effect}` : null}
-          </li>
-        ))}
-      </ul>
-    </details>
   );
 }
 
@@ -340,6 +292,14 @@ export function clearRoREnhancements(list: ArmyList): ArmyList {
       list.heroicTrait && ids.has(list.heroicTrait.heroSelectionId)
         ? null
         : list.heroicTrait,
+    monstrousTrait:
+      list.monstrousTrait && ids.has(list.monstrousTrait.heroSelectionId)
+        ? null
+        : list.monstrousTrait,
+    visionOfFate:
+      list.visionOfFate && ids.has(list.visionOfFate.heroSelectionId)
+        ? null
+        : list.visionOfFate,
   };
 }
 
