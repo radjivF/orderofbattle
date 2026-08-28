@@ -17,7 +17,7 @@ import { battleTactics, battleTacticsForRealm } from "@/engine/data/load";
 import { summarize } from "@/engine/validate";
 import type { ArmyList, CatalogueUnit, DatasheetSubject, EnhancementOption, FactionCatalogue, NamedOption } from "@/engine/types";
 import { createId } from "@/lib/id";
-import { LIST_ISSUE_BANNER_CLASS } from "@/lib/builderUi";
+import { IOS_LIQUID_CTA_CLASS, LIST_ISSUE_BANNER_CLASS, SHEET_PANEL_CLASS, SHEET_PANEL_COMPACT_CLASS } from "@/lib/builderUi";
 import {
   getArmiesServerSnapshot,
   getArmiesSnapshot,
@@ -1629,27 +1629,29 @@ function BuilderReady({
         <ModalFrame
           label="Remove regiment"
           onClose={() => setRegimentRemoveId(null)}
-          panelClassName="parchment-card w-full max-w-sm rounded-2xl p-5 text-parchment-ink"
+          panelClassName={`${SHEET_PANEL_COMPACT_CLASS} px-5 pt-2 pb-0`}
         >
-          <h2 className="font-serif text-2xl">Remove this regiment?</h2>
-          <p className="mt-2 text-base text-sheet-muted">
+          <p className="px-2 pb-4 text-center text-sm text-sheet-muted">
             {regimentRemoveMessage}
           </p>
-          <div className="ios-sheet-actions mt-5">
-            <button
-              type="button"
-              onClick={() => void removeRegiment(regimentRemoveId)}
-              className="min-h-11 w-full rounded-xl bg-illegal text-base font-semibold text-parchment"
-            >
-              Remove
-            </button>
-            <button
-              type="button"
-              onClick={() => setRegimentRemoveId(null)}
-              className="min-h-11 w-full text-base text-sheet-muted"
-            >
-              Cancel
-            </button>
+          <div className="ios-sheet-actions !gap-3 !pb-5">
+            <div className="ios-action-sheet">
+              <button
+                type="button"
+                onClick={() => void removeRegiment(regimentRemoveId)}
+                className="ios-action-sheet-row ios-action-sheet-row--destructive"
+              >
+                Remove
+              </button>
+              <div className="ios-action-sheet-separator" />
+              <button
+                type="button"
+                onClick={() => setRegimentRemoveId(null)}
+                className="ios-action-sheet-row ios-action-sheet-row--cancel"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </ModalFrame>
       ) : null}
@@ -1658,7 +1660,7 @@ function BuilderReady({
         <ModalFrame
           label="Export list as text"
           onClose={() => setExportOpen(false)}
-          panelClassName="parchment-card flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl text-parchment-ink"
+          panelClassName={SHEET_PANEL_CLASS}
         >
           <div className="flex shrink-0 items-center justify-between gap-3 px-5 pt-5 pb-3">
             <h2 className="font-serif text-2xl">Export as text</h2>
@@ -1680,7 +1682,7 @@ function BuilderReady({
             <button
               type="button"
               onClick={() => void copyExportText()}
-              className="gold-plate min-h-11 w-full rounded-xl text-base font-semibold text-ink"
+              className={IOS_LIQUID_CTA_CLASS}
             >
               {exportCopied ? "Copied" : "Copy"}
             </button>

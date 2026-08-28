@@ -21,8 +21,20 @@ import {
   rememberListNavigation,
   rememberListOpen,
 } from "@/lib/listTransition";
+import {
+  EMPTY_LIBRARY_CTA_CLASS,
+  EMPTY_LIBRARY_PANEL_CLASS,
+  IOS_LIQUID_CTA_CLASS,
+  LIBRARY_CARD_ACTION_BUTTON_CLASS,
+  LIBRARY_CARD_ACTIONS_CLASS,
+  LIBRARY_CARD_CLASS,
+  LIBRARY_CARD_DELETE_BUTTON_CLASS,
+  SHEET_PANEL_CLASS,
+  SHEET_PANEL_COMPACT_CLASS,
+} from "@/lib/builderUi";
 import { useListFlowChrome } from "./ListFlowShell";
 import { FactionArtLayers } from "./FactionArtBackground";
+import { BrandMark } from "./BrandMark";
 import { ListLoadingSplash } from "./ListLoadingSplash";
 import { ModalFrame } from "./ModalFrame";
 import { PointsCapField } from "./PointsCapField";
@@ -126,9 +138,22 @@ export function LibraryScreen() {
             Loading…
           </p>
         ) : lists.length === 0 ? (
-          <p className="max-w-sm rounded-2xl bg-ink-raised/90 px-5 py-6 font-serif text-3xl leading-snug text-parchment ring-1 ring-parchment/10">
-            No armies yet. Make your first list.
-          </p>
+          <div className={EMPTY_LIBRARY_PANEL_CLASS}>
+            <BrandMark
+              size={40}
+              className="mx-auto mb-4 h-10 w-auto opacity-40"
+            />
+            <p className="font-serif text-3xl leading-snug text-parchment">
+              No armies yet
+            </p>
+            <button
+              type="button"
+              onClick={() => setPicking(true)}
+              className={EMPTY_LIBRARY_CTA_CLASS}
+            >
+              Make your first list
+            </button>
+          </div>
         ) : (
           <ul className="grid grid-cols-1 gap-4 pt-2 lg:grid-cols-2 lg:gap-5">
             {lists.map((list, index) => {
@@ -140,7 +165,7 @@ export function LibraryScreen() {
               const artSrc = catalogueArtSrc(faction);
               return (
                 <li key={list.id}>
-                  <article className="parchment-card grid min-h-[8.5rem] grid-cols-[minmax(0,1fr)_7.5rem] overflow-hidden rounded-2xl text-parchment-ink sm:grid-cols-[minmax(0,1fr)_9.5rem]">
+                  <article className={LIBRARY_CARD_CLASS}>
                     <div className="flex min-w-0 flex-col p-4 sm:p-5">
                       <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
                         {faction?.name ?? "Unknown faction"}
@@ -188,17 +213,23 @@ export function LibraryScreen() {
                         </svg>
                         <span className="sr-only">Open list</span>
                       </button>
-                      <div className="mt-3 flex gap-1">
+                      <div className={LIBRARY_CARD_ACTIONS_CLASS}>
                         <button
                           type="button"
-                          className="min-h-10 px-2.5 text-sm text-sheet-muted sm:min-h-11 sm:px-3 sm:text-base"
+                          className={LIBRARY_CARD_ACTION_BUTTON_CLASS}
                           onClick={() => void onDuplicate(list)}
                         >
                           Duplicate
                         </button>
+                        <span
+                          aria-hidden="true"
+                          className="text-parchment-ink/25"
+                        >
+                          ·
+                        </span>
                         <button
                           type="button"
-                          className="min-h-10 px-2.5 text-sm text-illegal sm:min-h-11 sm:px-3 sm:text-base"
+                          className={LIBRARY_CARD_DELETE_BUTTON_CLASS}
                           onClick={() => setDeleteTarget(list)}
                         >
                           Delete
@@ -246,30 +277,32 @@ export function LibraryScreen() {
         <ModalFrame
           label="Delete list"
           onClose={() => setDeleteTarget(null)}
-          panelClassName="parchment-card w-full max-w-sm rounded-2xl p-5 text-parchment-ink"
+          panelClassName={`${SHEET_PANEL_COMPACT_CLASS} px-5 pt-2 pb-0`}
         >
-          <h2 className="font-serif text-2xl">Delete this list?</h2>
-          <p className="mt-2 text-base text-sheet-muted">
-            <span className="font-serif text-parchment-ink">
+          <p className="px-2 pb-4 text-center text-sm text-sheet-muted">
+            <span className="font-serif text-base text-parchment-ink">
               {deleteTarget.name}
             </span>{" "}
             will be removed from this device. This cannot be undone.
           </p>
-          <div className="ios-sheet-actions mt-5">
-            <button
-              type="button"
-              onClick={() => void confirmDelete()}
-              className="min-h-11 w-full rounded-xl bg-illegal text-base font-semibold text-parchment"
-            >
-              Delete
-            </button>
-            <button
-              type="button"
-              onClick={() => setDeleteTarget(null)}
-              className="min-h-11 w-full text-base text-sheet-muted"
-            >
-              Cancel
-            </button>
+          <div className="ios-sheet-actions !gap-3 !pb-5">
+            <div className="ios-action-sheet">
+              <button
+                type="button"
+                onClick={() => void confirmDelete()}
+                className="ios-action-sheet-row ios-action-sheet-row--destructive"
+              >
+                Delete
+              </button>
+              <div className="ios-action-sheet-separator" />
+              <button
+                type="button"
+                onClick={() => setDeleteTarget(null)}
+                className="ios-action-sheet-row ios-action-sheet-row--cancel"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </ModalFrame>
       ) : null}
@@ -278,7 +311,7 @@ export function LibraryScreen() {
         <ModalFrame
           label="New list"
           onClose={closePicker}
-          panelClassName="parchment-card flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl text-parchment-ink"
+          panelClassName={`${SHEET_PANEL_CLASS} text-parchment-ink`}
         >
             <div className="flex shrink-0 items-center justify-between px-5 pt-5 pb-3">
               <h2 className="font-serif text-2xl">
@@ -356,7 +389,7 @@ export function LibraryScreen() {
                     type="button"
                     disabled={creating}
                     onClick={() => void onCreate()}
-                    className="gold-plate min-h-11 w-full rounded-xl text-base font-semibold text-ink disabled:opacity-60"
+                    className={`${IOS_LIQUID_CTA_CLASS} disabled:opacity-60`}
                   >
                     {creating ? "Creating…" : "Create"}
                   </button>

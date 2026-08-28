@@ -14,6 +14,7 @@ import {
   selectionDamage,
   weaponAttacksForDamage,
 } from "@/engine/queries";
+import { IOS_LIQUID_CTA_CLASS, SHEET_PANEL_COMPACT_CLASS } from "@/lib/builderUi";
 import {
   buildPhaseBoards,
   type PhaseAbilityRow,
@@ -339,7 +340,7 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
         <ModalFrame
           label="How universal commands work"
           onClose={() => setCommandRulesOpen(false)}
-          panelClassName="parchment-card w-full max-w-sm rounded-2xl p-5 text-parchment-ink"
+          panelClassName={`${SHEET_PANEL_COMPACT_CLASS} p-5`}
           zClass="z-[60]"
         >
           <h2 className="font-serif text-2xl">Universal commands</h2>
@@ -349,7 +350,7 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
           <button
             type="button"
             onClick={() => setCommandRulesOpen(false)}
-            className="gold-plate mt-5 min-h-11 w-full rounded-xl text-base font-semibold text-ink"
+            className={`mt-5 ${IOS_LIQUID_CTA_CLASS}`}
           >
             Got it
           </button>

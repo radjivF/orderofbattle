@@ -2,10 +2,10 @@
 
 import { unitSizeLabel } from "@/engine/queries";
 import type { CatalogueUnit, UnitAbility } from "@/engine/types";
+import { SHEET_PANEL_CLASS } from "@/lib/builderUi";
 import { ModalFrame } from "./ModalFrame";
 
-const pickerPanel =
-  "flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-parchment text-parchment-ink shadow-2xl";
+const pickerPanel = `${SHEET_PANEL_CLASS} bg-parchment shadow-2xl`;
 
 type Props = {
   title: string;
