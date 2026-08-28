@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalDoc title="Privacy policy" updated="27 August 2026">
+    <LegalDoc title="Privacy policy" updated="28 August 2026">
       <p>
-        This Privacy Policy explains how Order of Battle (“the app,” “we,” “us”)
+        This Privacy Policy explains how Order of Battle (&quot;the app,&quot; &quot;we,&quot; &quot;us&quot;)
         handles information when you use the website. Order of Battle is a{" "}
         <strong className="font-semibold text-parchment">
           free, unofficial fan project
@@ -36,48 +36,36 @@ export default function PrivacyPage() {
         <h2>2. What we collect</h2>
         <p className="mt-3">
           Army lists and play state are stored in your browser (IndexedDB /
-          local storage on your device). They are not uploaded to our servers.
-          We do not require an account, email, or login.
+          local storage on your device). We do not upload list files to Order of
+          Battle servers. There is no account.
         </p>
-        <p className="mt-3">Depending on how you use the site, limited technical
-          data may be processed automatically by the host, for example:</p>
+        <p className="mt-3">
+          That is not the same as &quot;nothing about your list ever leaves the
+          device.&quot;
+        </p>
+        <p className="mt-3">
+          Microsoft Clarity records how the site is used: pages, clicks, and
+          session recordings. That includes marketing pages and the app screens
+          (/dashboard, /lists, Play). If a list is visible on screen, the
+          recording can show it. Clarity is there so we can see where the UI
+          sticks. It is not a backup of your lists and we do not pull list files
+          out of IndexedDB into Clarity.
+        </p>
+        <p className="mt-3">We also use:</p>
         <ul className="mt-3">
-          <li>IP address and basic request metadata in server or CDN logs</li>
-          <li>Browser type, device signals, and error reports needed to keep
-            the site online</li>
-          <li>Standard security and abuse-prevention logs</li>
+          <li>
+            Ahrefs Web Analytics for traffic stats (pages, referrers, device). No
+            cookies. It does not read IndexedDB.
+          </li>
+          <li>Cloudflare for hosting, security, and browser insights.</li>
         </ul>
         <p className="mt-3">
-          That hosting telemetry is separate from your army lists, which stay on
-          your device unless you export or share them yourself.
+          Host and CDN logs can include IP address, browser, and request
+          metadata. That is separate from IndexedDB.
         </p>
         <p className="mt-3">
-          We also use Microsoft Clarity to see how people use the website
-          (pages, clicks, and session recordings). Clarity does not receive your
-          army lists. Microsoft processes that usage data under{" "}
-          <a
-            href="https://www.microsoft.com/privacy/privacystatement"
-            rel="noopener noreferrer"
-            target="_blank"
-            className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
-          >
-            Microsoft’s privacy statement
-          </a>
-          .
-        </p>
-        <p className="mt-3">
-          We use Ahrefs Web Analytics for traffic stats (pages, referrers,
-          device type). It does not use cookies and does not receive your army
-          lists. Ahrefs processes that data under{" "}
-          <a
-            href="https://ahrefs.com/privacy"
-            rel="noopener noreferrer"
-            target="_blank"
-            className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
-          >
-            Ahrefs’ privacy policy
-          </a>
-          .
+          Microsoft and Ahrefs process their data under their own privacy
+          policies.
         </p>
       </section>
 
@@ -91,14 +79,13 @@ export default function PrivacyPage() {
       <section>
         <h2>4. Third parties</h2>
         <p className="mt-3">
-          The site may be hosted by a standard web host or CDN. Those providers
-          process request data under their own terms in order to deliver the
-          pages. We use Microsoft Clarity and Ahrefs Web Analytics for site
-          usage; those are governed by Microsoft’s and Ahrefs’ privacy
-          policies. Catalogue content is
-          derived from the community BSData project on GitHub; visiting
-          external links (for example GitHub) is governed by those sites’
-          policies.
+          The site may be hosted by a standard web host or CDN (Cloudflare).
+          Those providers process request data under their own terms in order to
+          deliver the pages. We use Microsoft Clarity and Ahrefs Web Analytics
+          for site usage; those are governed by Microsoft&apos;s and Ahrefs&apos; privacy
+          policies. Catalogue content is derived from the community BSData
+          project on GitHub; visiting external links (for example GitHub) is
+          governed by those sites&apos; policies.
         </p>
       </section>
 
@@ -141,7 +128,7 @@ export default function PrivacyPage() {
       <section>
         <h2>8. Changes</h2>
         <p className="mt-3">
-          We may update this policy. The “Last updated” date will change when we
+          We may update this policy. The &quot;Last updated&quot; date will change when we
           do. Continued use after an update means you accept the revised policy.
         </p>
       </section>
