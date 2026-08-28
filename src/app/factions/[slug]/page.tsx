@@ -69,6 +69,12 @@ export default async function FactionPage({ params }: Props) {
   const headline = `${faction.name} army builder`;
   const description = `Build a free ${faction.name} army list for Warhammer Age of Sigmar 4th edition in Order of Battle.`;
 
+  const heroes = faction.units.filter((unit) => unit.hero);
+  const sampleHeroNames = heroes
+    .slice(0, 6)
+    .map((h) => h.name)
+    .sort((a, b) => a.localeCompare(b));
+
   return (
     <>
       <JsonLd
@@ -142,22 +148,50 @@ export default async function FactionPage({ params }: Props) {
           and restrictions with official publications before you play.
         </p>
 
-        <h2>How to start a {faction.name} list</h2>
+        <h2>Regiments in {faction.name}</h2>
+        <p className="mt-3">
+          Age of Sigmar 4th edition uses regiments led by heroes. Each hero
+          takes eligible units into their regiment. The {faction.name}
+          catalogue has {stats.heroCount} heroes
+          {sampleHeroNames.length > 0
+            ? `, including ${joinNames(sampleHeroNames)}`
+            : null}
+          {sampleHeroNames.length < heroes.length
+            ? `, and ${heroes.length - sampleHeroNames.length} more`
+            : null}
+          .
+        </p>
+        <p>
+          Pick a hero. Add units that match the hero&apos;s regiment options.
+          The app filters based on categories and keywords from BSData. Some
+          units can reinforce (second copy for extra points). Some heroes are
+          unique (once per list).
+        </p>
+        <p>
+          Battle formations affect which regiments work. Pick the formation,
+          then build regiments that fit. Formations for {faction.name}:{" "}
+          {joinNames(stats.formationNames)}.
+        </p>
+
+        <h2>Start a {faction.name} list</h2>
         <ol>
           <li>
-            Open <Link href="/dashboard">My lists</Link> and create a list.
+            Open <Link href="/dashboard">My lists</Link>.
           </li>
-          <li>Choose {faction.name} as the faction.</li>
-          <li>Set points, pick a battle formation, and add a general.</li>
-          <li>Fill regiments, then optionally add a Regiment of Renown.</li>
-          <li>Use Play mode at the table for wounds and phase abilities.</li>
+          <li>Choose {faction.name}.</li>
+          <li>Set points, pick a battle formation, add a general.</li>
+          <li>Fill regiments. Add a Regiment of Renown if the list allows it.</li>
+          <li>
+            Use <Link href="/play">Play mode</Link> at the table.
+          </li>
         </ol>
         <p>
-          Full walkthrough:{" "}
+          Walkthrough:{" "}
           <Link href="/guides/how-to-build-an-age-of-sigmar-army-list">
-            how to build an Age of Sigmar army list
+            how to build a list
           </Link>
-          . Other armies: <Link href="/factions">all factions</Link>.
+          . Other armies: <Link href="/factions">all factions</Link>. Compare:{" "}
+          <Link href="/compare">other builders</Link>.
         </p>
       </ContentDoc>
     </>

@@ -70,6 +70,12 @@ export function ContentDoc({
           <Link href="/guides" className={linkClass}>
             Guides
           </Link>
+          <Link href="/compare" className={linkClass}>
+            Compare
+          </Link>
+          <Link href="/play" className={linkClass}>
+            Play
+          </Link>
           <Link href="/faq" className={linkClass}>
             FAQ
           </Link>

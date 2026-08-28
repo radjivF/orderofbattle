@@ -259,6 +259,20 @@ export function TryLanding() {
               </Link>
               {" · "}
               <Link
+                href="/compare"
+                className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
+              >
+                Compare builders
+              </Link>
+              {" · "}
+              <Link
+                href="/play"
+                className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
+              >
+                Play mode
+              </Link>
+              {" · "}
+              <Link
                 href="/about"
                 className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
               >

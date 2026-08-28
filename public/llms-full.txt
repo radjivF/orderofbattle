@@ -34,10 +34,15 @@ Each faction has a page at /factions/{id} (for example /factions/stormcast-etern
 
 Full steps: /guides/how-to-build-an-age-of-sigmar-army-list
 
+## Play mode (table companion)
+
+Play mode tracks wounds on every unit, marks lasting spells and prayers, and filters abilities by phase. On your phone at the table. No flipping warscrolls. Details: /play
+
 ## Other tools
 
 - Order of Battle: free, no account, lists on device, builder plus Play companion, unofficial, BSData catalogues.
-- Other community builders (for example New Recruit) and the official Warhammer Age of Sigmar app also exist. Wahapedia is a rules reference, not a list builder.
+- Other community builders (for example New Recruit, Listbot) and the official Warhammer Age of Sigmar app also exist. Wahapedia is a rules reference, not a list builder.
+- Comparison: /compare
 
 ## Legal
 

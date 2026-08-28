@@ -138,7 +138,8 @@ export default function FreeBuilderPage() {
           >
             BSData
           </a>
-          , not a Games Workshop feed. Confirm points before you play.
+          , not a Games Workshop feed. Confirm points before you play. Detailed
+          comparison: <Link href="/compare">Age of Sigmar army builder comparison</Link>.
         </p>
 
         <h2>Start a list</h2>
