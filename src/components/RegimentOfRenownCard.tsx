@@ -12,6 +12,8 @@ import type {
   ArmyList,
   CatalogueUnit,
   Selection,
+  SpecialEnhancementPick,
+  SpecialEnhancementTable,
   UnitAbility,
 } from "@/engine/types";
 import { PlayBindNotes, PlayHealthTrack, SlotEnhancements, SlotMoreMenu } from "./RegimentCard";
@@ -35,6 +37,9 @@ type Props = {
   onPickTrait?: (heroSelectionId: string) => void;
   onPickMonstrousTrait?: (selectionId: string) => void;
   onPickVision?: (selectionId: string) => void;
+  specialTables?: SpecialEnhancementTable[];
+  specialEnhancementPicks?: SpecialEnhancementPick[];
+  onPickSpecial?: (tableId: string, selectionId: string) => void;
   onOpenDatasheet: (unit: CatalogueUnit) => void;
   onRemove: () => void;
   onPlayHealth?: (selectionId: string, damage: number) => void;
@@ -60,6 +65,9 @@ export function RegimentOfRenownCard({
   onPickTrait,
   onPickMonstrousTrait,
   onPickVision,
+  specialTables,
+  specialEnhancementPicks,
+  onPickSpecial,
   onOpenDatasheet,
   onRemove,
   onPlayHealth,
@@ -132,6 +140,13 @@ export function RegimentOfRenownCard({
               onPickTrait={onPickTrait}
               onPickMonstrousTrait={onPickMonstrousTrait}
               onPickVision={onPickVision}
+              specialTables={specialTables}
+              specialEnhancementPicks={specialEnhancementPicks}
+              onPickSpecial={
+                onPickSpecial
+                  ? (tableId) => onPickSpecial(tableId, slot.id)
+                  : undefined
+              }
               onOpenDatasheet={onOpenDatasheet}
               onPlayHealth={onPlayHealth}
               bindNotes={bindNotes}
@@ -164,6 +179,9 @@ function RoRSlotRow({
   onPickTrait,
   onPickMonstrousTrait,
   onPickVision,
+  specialTables,
+  specialEnhancementPicks,
+  onPickSpecial,
   onOpenDatasheet,
   onPlayHealth,
   bindNotes,
@@ -188,6 +206,9 @@ function RoRSlotRow({
   onPickTrait?: (heroSelectionId: string) => void;
   onPickMonstrousTrait?: (selectionId: string) => void;
   onPickVision?: (selectionId: string) => void;
+  specialTables?: SpecialEnhancementTable[];
+  specialEnhancementPicks?: SpecialEnhancementPick[];
+  onPickSpecial?: (tableId: string, selectionId: string) => void;
   onOpenDatasheet: (unit: CatalogueUnit) => void;
   onPlayHealth?: (selectionId: string, damage: number) => void;
   bindNotes?: CombatModifierNote[];
@@ -215,6 +236,13 @@ function RoRSlotRow({
       onPickTrait={canEnhance ? onPickTrait : undefined}
       onPickMonstrousTrait={onPickMonstrousTrait}
       onPickVision={onPickVision}
+      specialTables={specialTables}
+      specialEnhancementPicks={specialEnhancementPicks}
+      onPickSpecial={
+        onPickSpecial
+          ? (tableId) => onPickSpecial(tableId, selection.id)
+          : undefined
+      }
     />
   );
 
@@ -300,6 +328,9 @@ export function clearRoREnhancements(list: ArmyList): ArmyList {
       list.visionOfFate && ids.has(list.visionOfFate.heroSelectionId)
         ? null
         : list.visionOfFate,
+    specialEnhancements: (list.specialEnhancements ?? []).filter(
+      (pick) => !ids.has(pick.heroSelectionId),
+    ),
   };
 }
 

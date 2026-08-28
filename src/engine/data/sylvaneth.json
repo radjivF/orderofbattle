@@ -1528,7 +1528,7 @@
           "cost": ""
         }
       ],
-      "pack": "Relics of Nature"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "e4e4-838a-a42b-98d7",
@@ -1546,7 +1546,7 @@
           "cost": ""
         }
       ],
-      "pack": "Relics of Nature"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "7121-e09e-d407-9785",
@@ -1564,7 +1564,7 @@
           "cost": ""
         }
       ],
-      "pack": "Relics of Nature"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1584,7 +1584,7 @@
           "cost": ""
         }
       ],
-      "pack": "Aspects of Renewal"
+      "pack": "Heroic Traits"
     },
     {
       "id": "c0bc-2a8-8f0b-b2f4",
@@ -1602,7 +1602,7 @@
           "cost": ""
         }
       ],
-      "pack": "Aspects of Renewal"
+      "pack": "Heroic Traits"
     },
     {
       "id": "3619-e710-c6e5-490",
@@ -1620,11 +1620,12 @@
           "cost": ""
         }
       ],
-      "pack": "Aspects of Renewal"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [],
   "terrain": [
     {
       "id": "cda9-53e5-99de-f836",

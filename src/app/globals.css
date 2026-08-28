@@ -90,6 +90,22 @@ a {
   color: transparent;
 }
 
+/* Brighter gold on dark or translucent headers — skips deep brown stops */
+.gold-text-lit {
+  background: linear-gradient(
+    175deg,
+    var(--gold-bright) 0%,
+    var(--sigmarite-hover) 38%,
+    var(--sigmarite) 72%,
+    var(--gold-bright) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.9))
+    drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+}
+
 .gold-plate {
   background: linear-gradient(
     180deg,
@@ -105,6 +121,81 @@ a {
 
 .gold-plate:active {
   filter: brightness(0.96);
+}
+
+/* iOS-style tinted bar CTA — Play in list builder header */
+.play-bar-cta {
+  background: color-mix(in srgb, var(--sigmarite) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--sigmarite) 42%, transparent);
+  color: var(--sigmarite-hover);
+}
+
+.play-bar-cta:active {
+  background: color-mix(in srgb, var(--sigmarite) 28%, transparent);
+}
+
+/* iOS-style library ↔ list navigation */
+.ios-push-root {
+  min-height: 100%;
+  background: transparent;
+}
+
+/* Build ↔ play carousel inside list detail */
+.builder-view-track {
+  display: flex;
+  width: 200%;
+  transition: transform 320ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.builder-view-track--play {
+  transform: translateX(-50%);
+}
+
+.builder-view-pane {
+  width: 50%;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .builder-view-track {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ios-push-start,
+  .ios-push-in,
+  .ios-push-out {
+    will-change: transform;
+  }
+
+  .ios-push-start {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  .ios-push-in {
+    transform: translate3d(0, 0, 0);
+    transition: transform 320ms cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .ios-push-out {
+    transform: translate3d(100%, 0, 0);
+    transition: transform 320ms cubic-bezier(0.32, 0.72, 0, 1);
+  }
+}
+
+.ios-nav-bar {
+  border-bottom: 0.5px solid color-mix(in srgb, var(--parchment) 12%, transparent);
+  background: color-mix(in srgb, var(--ink) 82%, transparent);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+}
+
+/* List open splash — upper third, not dead center */
+.list-splash-content {
+  justify-content: flex-start;
+  padding-top: max(7rem, calc(env(safe-area-inset-top) + 18vh));
+  padding-bottom: 2.5rem;
 }
 
 @media (min-width: 1024px) {

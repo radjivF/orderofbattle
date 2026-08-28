@@ -1533,7 +1533,7 @@
           "cost": ""
         }
       ],
-      "pack": "Relics of Ruin"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "63e2-3c50-7ec7-4371",
@@ -1551,7 +1551,7 @@
           "cost": ""
         }
       ],
-      "pack": "Relics of Ruin"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "4bd9-bbdb-f47f-7e6",
@@ -1569,7 +1569,7 @@
           "cost": ""
         }
       ],
-      "pack": "Relics of Ruin"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1589,7 +1589,7 @@
           "cost": ""
         }
       ],
-      "pack": "Devious Machinators"
+      "pack": "Heroic Traits"
     },
     {
       "id": "95cd-5940-b2d7-dd24",
@@ -1607,7 +1607,7 @@
           "cost": ""
         }
       ],
-      "pack": "Devious Machinators"
+      "pack": "Heroic Traits"
     },
     {
       "id": "928-9300-c265-3c7a",
@@ -1625,11 +1625,12 @@
           "cost": ""
         }
       ],
-      "pack": "Devious Machinators"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [],
   "terrain": [
     {
       "id": "a177-dc85-8fd5-3509",

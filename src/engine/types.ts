@@ -109,6 +109,29 @@ export type EnhancementPick = {
   optionId: string;
 };
 
+export type SpecialEnhancementPick = EnhancementPick & {
+  tableId: string;
+};
+
+export type SpecialEnhancementTable = {
+  id: string;
+  name: string;
+  options: EnhancementOption[];
+};
+
+export type BattleTacticCard = {
+  id: string;
+  name: string;
+  setup: string;
+  affray: string;
+  strike: string;
+  domination: string;
+  realm: "aqshy" | "ghyran";
+};
+
+/** 0 = none, 1 = Affray done, 2 = Strike, 3 = Domination. */
+export type BattleTacticStage = 0 | 1 | 2 | 3;
+
 /** Fixed warscroll inside a Regiment of Renown package. */
 export type RegimentOfRenownUnit = {
   id: string;
@@ -157,6 +180,8 @@ export type FactionCatalogue = {
   heroicTraits: EnhancementOption[];
   monstrousTraits?: EnhancementOption[];
   visionsOfFate?: EnhancementOption[];
+  /** SoA-style tables with a separate one-pick slot (e.g. Scars of War). */
+  specialEnhancementTables?: SpecialEnhancementTable[];
   terrain: FactionTerrain[];
   units: CatalogueUnit[];
   /** Parent matched-play factions. Present on Armies of Renown. */
@@ -194,7 +219,12 @@ export type ArmyList = {
   heroicTrait: EnhancementPick | null;
   monstrousTrait: EnhancementPick | null;
   visionOfFate: EnhancementPick | null;
-  /** null = core datasheets; aqshy/ghyran replaces matching warscrolls. */
+  specialEnhancements: SpecialEnhancementPick[];
+  /** Up to 2 GHB battle tactic cards. */
+  battleTacticCardIds: string[];
+  /** Play mode: completed steps per card id. */
+  battleTacticStage: Record<string, BattleTacticStage>;
+  /** Scourge of Aqshy or Ghyran — sets battle tactic card pool and scourge warscroll season. */
   scourgeRealm: "aqshy" | "ghyran" | null;
   generalRegimentId: string | null;
   regiments: Regiment[];
@@ -205,4 +235,6 @@ export type ArmyList = {
   powerBinds: Record<string, string>;
   createdAt: number;
   updatedAt: number;
+  /** Last time the list was opened in the builder; drives library recency order. */
+  lastOpenedAt?: number;
 };

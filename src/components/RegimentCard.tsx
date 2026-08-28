@@ -17,8 +17,11 @@ import type {
   FactionCatalogue,
   Regiment,
   Selection,
+  SpecialEnhancementPick,
+  SpecialEnhancementTable,
   UnitAbility,
 } from "@/engine/types";
+import { enhancementLabel } from "@/engine/queries";
 import { damageStepperActions } from "@/lib/damageStepper";
 
 type Props = {
@@ -41,6 +44,8 @@ type Props = {
   visionBearerId?: string | null;
   visionLabel?: string;
   visionAbilities?: UnitAbility[];
+  specialTables?: SpecialEnhancementTable[];
+  specialEnhancementPicks?: SpecialEnhancementPick[];
   onSelect: () => void;
   onMakeGeneral: () => void;
   onPickHero: () => void;
@@ -49,8 +54,10 @@ type Props = {
   onPickTrait?: (heroSelectionId: string) => void;
   onPickMonstrousTrait?: (selectionId: string) => void;
   onPickVision?: (selectionId: string) => void;
+  onPickSpecial?: (tableId: string, selectionId: string) => void;
   onOpenDatasheet: (unit: CatalogueUnit) => void;
   onToggleReinforce: (selectionId: string) => void;
+  onDuplicateUnit: (selectionId: string) => void;
   onRemoveUnit: (selectionId: string) => void;
   onRemoveRegiment: () => void;
   onPlayHealth?: (selectionId: string, damage: number) => void;
@@ -77,6 +84,8 @@ export function RegimentCard({
   visionBearerId,
   visionLabel,
   visionAbilities,
+  specialTables,
+  specialEnhancementPicks,
   onSelect,
   onMakeGeneral,
   onPickHero,
@@ -85,8 +94,10 @@ export function RegimentCard({
   onPickTrait,
   onPickMonstrousTrait,
   onPickVision,
+  onPickSpecial,
   onOpenDatasheet,
   onToggleReinforce,
+  onDuplicateUnit,
   onRemoveUnit,
   onRemoveRegiment,
   onPlayHealth,
@@ -180,6 +191,13 @@ export function RegimentCard({
             onPickTrait={onPickTrait}
             onPickMonstrousTrait={onPickMonstrousTrait}
             onPickVision={onPickVision}
+            specialTables={specialTables}
+            specialEnhancementPicks={specialEnhancementPicks}
+            onPickSpecial={
+              onPickSpecial
+                ? (tableId) => onPickSpecial(tableId, regiment.hero!.id)
+                : undefined
+            }
           />
         </>
       ) : playMode ? (
@@ -214,6 +232,11 @@ export function RegimentCard({
                 playMode={playMode}
                 bindNotes={bindNotes}
                 onToggleReinforce={() => onToggleReinforce(slot.id)}
+                onDuplicate={
+                  !unit.unique && openSlots > 0
+                    ? () => onDuplicateUnit(slot.id)
+                    : undefined
+                }
                 onRemove={() => onRemoveUnit(slot.id)}
                 onOpenDatasheet={() => onOpenDatasheet(unit)}
                 onPlayHealth={onPlayHealth}
@@ -238,6 +261,13 @@ export function RegimentCard({
                 onPickTrait={onPickTrait}
                 onPickMonstrousTrait={onPickMonstrousTrait}
                 onPickVision={onPickVision}
+                specialTables={specialTables}
+                specialEnhancementPicks={specialEnhancementPicks}
+                onPickSpecial={
+                  onPickSpecial
+                    ? (tableId) => onPickSpecial(tableId, slot.id)
+                    : undefined
+                }
               />
             </li>
           );
@@ -280,6 +310,9 @@ export function SlotEnhancements({
   onPickTrait,
   onPickMonstrousTrait,
   onPickVision,
+  specialTables,
+  specialEnhancementPicks,
+  onPickSpecial,
 }: {
   selectionId: string;
   unit: CatalogueUnit;
@@ -300,17 +333,27 @@ export function SlotEnhancements({
   onPickTrait?: (heroSelectionId: string) => void;
   onPickMonstrousTrait?: (selectionId: string) => void;
   onPickVision?: (selectionId: string) => void;
+  specialTables?: SpecialEnhancementTable[];
+  specialEnhancementPicks?: SpecialEnhancementPick[];
+  onPickSpecial?: (tableId: string) => void;
 }) {
   const showHero = Boolean(unit.hero && !unit.unique);
   const showMonstrous = canTakeMonstrousTrait(unit);
   const showVision = canTakeVisionOfFate(unit);
+  const canTakeSpecial = !unit.unique;
   const hasArtefact = artefactBearerId === selectionId;
   const hasTrait = heroicTraitBearerId === selectionId;
   const hasMonstrous = monstrousTraitBearerId === selectionId;
   const hasVision = visionBearerId === selectionId;
 
   if (playMode) {
-    if (!hasArtefact && !hasTrait && !hasMonstrous && !hasVision) {
+    const hasSpecial = (specialTables ?? []).some((table) => {
+      const pick = specialEnhancementPicks?.find(
+        (item) => item.tableId === table.id,
+      );
+      return pick?.heroSelectionId === selectionId;
+    });
+    if (!hasArtefact && !hasTrait && !hasMonstrous && !hasVision && !hasSpecial) {
       return null;
     }
     return (
@@ -343,6 +386,29 @@ export function SlotEnhancements({
             abilities={visionAbilities}
           />
         ) : null}
+        {(specialTables ?? []).map((table) => {
+          const pick = specialEnhancementPicks?.find(
+            (item) => item.tableId === table.id,
+          );
+          if (!pick || pick.heroSelectionId !== selectionId) {
+            return null;
+          }
+          const label = enhancementLabel(table.options, pick.optionId);
+          const abilities = table.options.find(
+            (item) => item.id === pick.optionId,
+          )?.abilities;
+          if (!label) {
+            return null;
+          }
+          return (
+            <CollapsibleEnhancement
+              key={table.id}
+              kind={table.name}
+              label={label}
+              abilities={abilities}
+            />
+          );
+        })}
       </div>
     );
   }
@@ -351,7 +417,15 @@ export function SlotEnhancements({
   const traitPick = showHero ? onPickTrait : undefined;
   const monstrousPick = showMonstrous ? onPickMonstrousTrait : undefined;
   const visionPick = showVision ? onPickVision : undefined;
-  if (!artefactPick && !traitPick && !monstrousPick && !visionPick) {
+  const specialPick = canTakeSpecial ? onPickSpecial : undefined;
+  const hasSpecialSlots = (specialTables?.length ?? 0) > 0 && specialPick;
+  if (
+    !artefactPick &&
+    !traitPick &&
+    !monstrousPick &&
+    !visionPick &&
+    !hasSpecialSlots
+  ) {
     return null;
   }
 
@@ -393,6 +467,31 @@ export function SlotEnhancements({
         emptyLabel="Vision of Fate"
         onPick={visionPick ? () => visionPick(selectionId) : undefined}
       />
+      {(specialTables ?? []).map((table) => {
+        const pick = specialEnhancementPicks?.find(
+          (item) => item.tableId === table.id,
+        );
+        const has = pick?.heroSelectionId === selectionId;
+        const label = has
+          ? enhancementLabel(table.options, pick?.optionId)
+          : undefined;
+        const abilities = has
+          ? table.options.find((item) => item.id === pick?.optionId)?.abilities
+          : undefined;
+        return (
+          <EnhancementRow
+            key={table.id}
+            has={has}
+            kind={table.name}
+            label={label}
+            abilities={abilities}
+            emptyLabel={table.name}
+            onPick={
+              specialPick ? () => specialPick(table.id) : undefined
+            }
+          />
+        );
+      })}
     </div>
   );
 }
@@ -498,6 +597,7 @@ function SlotLine({
   bindNotes,
   onReplace,
   onToggleReinforce,
+  onDuplicate,
   onRemove,
   onOpenDatasheet,
   onPlayHealth,
@@ -511,6 +611,7 @@ function SlotLine({
   bindNotes?: CombatModifierNote[];
   onReplace?: () => void;
   onToggleReinforce?: () => void;
+  onDuplicate?: () => void;
   onRemove?: () => void;
   onOpenDatasheet: () => void;
   onPlayHealth?: (selectionId: string, damage: number) => void;
@@ -608,11 +709,12 @@ function SlotLine({
             Change
           </button>
         ) : null}
-        {canReinforce || onRemove ? (
+        {canReinforce || onDuplicate || onRemove ? (
           <SlotMoreMenu
             reinforced={reinforced}
             canReinforce={canReinforce}
             onToggleReinforce={onToggleReinforce}
+            onDuplicate={onDuplicate}
             onRemove={onRemove}
           />
         ) : null}
@@ -651,11 +753,13 @@ export function SlotMoreMenu({
   reinforced,
   canReinforce,
   onToggleReinforce,
+  onDuplicate,
   onRemove,
 }: {
   reinforced?: boolean;
   canReinforce?: boolean;
   onToggleReinforce?: () => void;
+  onDuplicate?: () => void;
   onRemove?: () => void;
 }) {
   const [open, setOpen] = useState(false);
@@ -716,6 +820,19 @@ export function SlotMoreMenu({
               }}
             >
               {reinforced ? "Unreinforce" : "Reinforce"}
+            </button>
+          ) : null}
+          {onDuplicate ? (
+            <button
+              type="button"
+              role="menuitem"
+              className="flex min-h-11 w-full items-center px-3 text-left text-sm"
+              onClick={() => {
+                onDuplicate();
+                setOpen(false);
+              }}
+            >
+              Duplicate
             </button>
           ) : null}
           {onRemove ? (

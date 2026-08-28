@@ -1,6 +1,7 @@
 import { formatPoints } from "./pointsCap";
+import { battleTactics } from "./data/load";
+import { SITE_NAME, getSiteUrl } from "@/lib/site";
 import {
-  enhancementLabel,
   getListUnit,
   getRegimentOfRenown,
   getSelection,
@@ -50,6 +51,23 @@ function bearerName(
   return getListUnit(list, faction, selection.unitId)?.name ?? null;
 }
 
+function enhancementOptionName(
+  options: EnhancementOption[],
+  optionId: string | null | undefined,
+): string | undefined {
+  if (!optionId) {
+    return undefined;
+  }
+  const option = options.find((item) => item.id === optionId);
+  if (!option) {
+    return undefined;
+  }
+  if (option.points) {
+    return `${option.name} · ${formatPoints(option.points)} pts`;
+  }
+  return option.name;
+}
+
 function enhancementLine(
   label: string,
   options: EnhancementOption[],
@@ -57,7 +75,7 @@ function enhancementLine(
   list: ArmyList,
   faction: FactionCatalogue,
 ): string | null {
-  const name = enhancementLabel(options, pick?.optionId);
+  const name = enhancementOptionName(options, pick?.optionId);
   if (!name || !pick) {
     return null;
   }
@@ -70,14 +88,12 @@ export function exportArmyListText(
   list: ArmyList,
   faction: FactionCatalogue,
 ): string {
-  const totals = summarize(list, faction);
   const lines: string[] = [];
 
+  lines.push(`=== ${SITE_NAME} ===`);
+  lines.push("");
   lines.push(list.name.trim() || "Untitled list");
-  lines.push(
-    `${faction.name} · ${formatPoints(totals.points)} / ${formatPoints(list.pointsCap)} pts · ${totals.drops} drops`,
-  );
-
+  lines.push(faction.name);
   if (list.scourgeRealm) {
     lines.push(
       list.scourgeRealm === "aqshy"
@@ -85,6 +101,11 @@ export function exportArmyListText(
         : "Scourge of Ghyran",
     );
   }
+  lines.push(
+    `${formatPoints(list.pointsCap)} pts · ${formatPoints(
+      summarize(list, faction).points,
+    )} used`,
+  );
 
   const formation = faction.formations.find(
     (item) => item.id === list.formationId,
@@ -112,6 +133,13 @@ export function exportArmyListText(
   );
   if (manifestationLore) {
     lines.push(`Manifestation lore: ${manifestationLore.name}`);
+  }
+
+  const tacticNames = (list.battleTacticCardIds ?? [])
+    .map((id) => battleTactics.find((card) => card.id === id)?.name)
+    .filter((name): name is string => Boolean(name));
+  if (tacticNames.length > 0) {
+    lines.push(`Battle tactic cards: ${tacticNames.join(", ")}`);
   }
 
   const enhancementLines = [
@@ -144,6 +172,25 @@ export function exportArmyListText(
       faction,
     ),
   ].filter((line): line is string => Boolean(line));
+
+  for (const pick of list.specialEnhancements ?? []) {
+    const table = faction.specialEnhancementTables?.find(
+      (item) => item.id === pick.tableId,
+    );
+    if (!table) {
+      continue;
+    }
+    const line = enhancementLine(
+      table.name,
+      table.options,
+      pick,
+      list,
+      faction,
+    );
+    if (line) {
+      enhancementLines.push(line);
+    }
+  }
 
   if (enhancementLines.length > 0) {
     lines.push("");
@@ -191,16 +238,9 @@ export function exportArmyListText(
     }
   }
 
-  if (totals.issues.length > 0) {
-    lines.push("");
-    lines.push("Validation");
-    for (const issue of totals.issues) {
-      lines.push(`- [${issue.tone}] ${issue.text}`);
-    }
-  }
-
   lines.push("");
-  lines.push("— Order of Battle");
+  lines.push(`Built with ${SITE_NAME}`);
+  lines.push(getSiteUrl());
   return lines.join("\n");
 }
 

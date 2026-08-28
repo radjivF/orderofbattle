@@ -48,9 +48,23 @@ export function TryLanding() {
           </Link>
           <Link
             href="/dashboard"
-            className="min-h-11 rounded-xl border border-sigmarite/40 bg-ink/50 px-4 text-sm leading-[2.75rem] text-parchment/90 backdrop-blur-sm active:bg-ink/70 lg:hover:border-sigmarite/70 lg:hover:text-gold-bright"
+            className="gold-plate shine inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl px-5 text-sm font-semibold tracking-wide text-ink shadow-[0_4px_22px_rgba(0,0,0,0.65),0_0_0_1px_rgba(0,0,0,0.45)] ring-1 ring-sigmarite/55 active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sigmarite lg:hover:-translate-y-0.5"
           >
-            My lists
+            Open lists
+            <svg
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+              className="h-4 w-4 shrink-0"
+            >
+              <path
+                d="M7.5 4.5 13 10l-5.5 5.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.25"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </Link>
         </header>
 

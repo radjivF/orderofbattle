@@ -200,15 +200,22 @@ export function resolveUnitIdForRealm(
   return preferred?.id ?? unitId;
 }
 
+/** Every catalogue unit variant (core + SoA sheets) for pickers. */
+export function unitsForPicker(faction: FactionCatalogue): CatalogueUnit[] {
+  return [...faction.units].sort((a, b) => {
+    if (a.hero !== b.hero) {
+      return a.hero ? 1 : -1;
+    }
+    return a.name.localeCompare(b.name);
+  });
+}
+
 /** Units available for the auxiliary picker — includes heroes. */
-export function auxiliaryPickerUnits(
-  faction: FactionCatalogue,
-  realm: ScourgeRealm | null,
-): CatalogueUnit[] {
+export function auxiliaryPickerUnits(faction: FactionCatalogue): CatalogueUnit[] {
   // GHB: heroes may be auxiliaries unless they have compulsory regiment
   // options. Catalogues only model optional slots, so include heroes
   // (e.g. Harbinger of Decay as a priest aux).
-  return unitsForRealm(faction, realm);
+  return unitsForPicker(faction);
 }
 
 /** One datasheet per warscroll, matching the army scourge realm. */
@@ -239,11 +246,8 @@ export function getUnit(
   return faction.units.find((unit) => unit.id === unitId);
 }
 
-export function heroesOf(
-  faction: FactionCatalogue,
-  realm: ScourgeRealm | null = null,
-): CatalogueUnit[] {
-  return unitsForRealm(faction, realm).filter((unit) => unit.hero);
+export function heroesOf(faction: FactionCatalogue): CatalogueUnit[] {
+  return unitsForPicker(faction).filter((unit) => unit.hero);
 }
 
 export function optionMatches(
@@ -284,9 +288,8 @@ export function canJoinRegiment(
 export function legalCompanions(
   faction: FactionCatalogue,
   hero: CatalogueUnit,
-  realm: ScourgeRealm | null = null,
 ): CatalogueUnit[] {
-  return unitsForRealm(faction, realm)
+  return unitsForPicker(faction)
     .filter((unit) => canJoinRegiment(hero, unit, faction))
     .sort((a, b) => {
       if (a.hero !== b.hero) {

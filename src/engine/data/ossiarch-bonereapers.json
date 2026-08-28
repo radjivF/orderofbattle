@@ -1479,7 +1479,7 @@
           "cost": ""
         }
       ],
-      "pack": "Relics of the Empire"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "1698-888e-9153-407",
@@ -1497,7 +1497,7 @@
           "cost": ""
         }
       ],
-      "pack": "Relics of the Empire"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "6f1-2042-1baa-9d85",
@@ -1515,7 +1515,7 @@
           "cost": ""
         }
       ],
-      "pack": "Relics of the Empire"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1535,7 +1535,7 @@
           "cost": ""
         }
       ],
-      "pack": "Imbuements of the Tithe-reapers"
+      "pack": "Heroic Traits"
     },
     {
       "id": "64ae-5389-561-9414",
@@ -1553,7 +1553,7 @@
           "cost": ""
         }
       ],
-      "pack": "Imbuements of the Tithe-reapers"
+      "pack": "Heroic Traits"
     },
     {
       "id": "f36c-2546-c3cb-b23a",
@@ -1571,12 +1571,13 @@
           "cost": ""
         }
       ],
-      "points": 20,
-      "pack": "Imbuements of the Tithe-reapers"
+      "pack": "Heroic Traits",
+      "points": 20
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [],
   "terrain": [
     {
       "id": "d520-813-31df-e5a1",

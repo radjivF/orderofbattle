@@ -1151,7 +1151,7 @@
           "cost": ""
         }
       ],
-      "pack": "Alfrostun Artefacts of Power"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1171,11 +1171,12 @@
           "cost": ""
         }
       ],
-      "pack": "Alfrostun Heroic Traits"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [],
   "terrain": [],
   "units": [
     {

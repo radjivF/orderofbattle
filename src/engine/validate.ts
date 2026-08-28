@@ -1,3 +1,5 @@
+import { battleTactics } from "./data/load";
+import { listUsesScourgeContent } from "./scourgeRealm";
 import {
   getUnit,
   getListUnit,
@@ -11,6 +13,7 @@ import {
   namedOption,
   unitBaseName,
   unitIsWarmaster,
+  unitScourgeRealm,
   warmasterRegiments,
   rorTemplateForSelection,
   rorUnitAsCatalogue,
@@ -144,6 +147,9 @@ export function summarize(
     }
   }
 
+  warnMixedScourgeSheets(list, faction, issues);
+  warnScourgeSeason(list, faction, issues);
+
   points += pickedEnhancementPoints(list.artefact, faction.artefacts);
   points += pickedEnhancementPoints(list.heroicTrait, faction.heroicTraits);
   points += pickedEnhancementPoints(
@@ -151,6 +157,13 @@ export function summarize(
     faction.monstrousTraits,
   );
   points += pickedEnhancementPoints(list.visionOfFate, faction.visionsOfFate);
+
+  for (const pick of list.specialEnhancements ?? []) {
+    const table = faction.specialEnhancementTables?.find(
+      (item) => item.id === pick.tableId,
+    );
+    points += pickedEnhancementPoints(pick, table?.options);
+  }
 
   if (list.regiments.length === 0) {
     issues.push({ tone: "warn", text: "Add a regiment to begin." });
@@ -215,6 +228,13 @@ export function summarize(
   warnUniqueEnhancement(list, faction, list.heroicTrait, "heroic trait", issues);
   warnMonstrousTrait(list, faction, issues);
   warnVisionOfFate(list, faction, issues);
+  warnSpecialEnhancements(list, faction, issues);
+
+  if ((list.battleTacticCardIds ?? []).length === 0) {
+    issues.push({ tone: "warn", text: "Pick up to 2 battle tactic cards." });
+  } else if ((list.battleTacticCardIds ?? []).length > 2) {
+    issues.push({ tone: "bad", text: "Maximum two battle tactic cards." });
+  }
 
   const remaining = list.pointsCap - points;
   if (issues.length === 0) {
@@ -272,16 +292,27 @@ export function pruneOrphanEnhancements(list: ArmyList): ArmyList {
     list.visionOfFate && ids.has(list.visionOfFate.heroSelectionId)
       ? list.visionOfFate
       : null;
+  const specialEnhancements = (list.specialEnhancements ?? []).filter((pick) =>
+    ids.has(pick.heroSelectionId),
+  );
 
   if (
     artefact === list.artefact &&
     heroicTrait === list.heroicTrait &&
     monstrousTrait === (list.monstrousTrait ?? null) &&
-    visionOfFate === (list.visionOfFate ?? null)
+    visionOfFate === (list.visionOfFate ?? null) &&
+    specialEnhancements.length === (list.specialEnhancements ?? []).length
   ) {
     return list;
   }
-  return { ...list, artefact, heroicTrait, monstrousTrait, visionOfFate };
+  return {
+    ...list,
+    artefact,
+    heroicTrait,
+    monstrousTrait,
+    visionOfFate,
+    specialEnhancements,
+  };
 }
 
 function rosterSelection(list: ArmyList, selectionId: string) {
@@ -306,6 +337,139 @@ function rosterSelection(list: ArmyList, selectionId: string) {
     }
   }
   return null;
+}
+
+function scourgeRealmLabel(realm: "core" | "aqshy" | "ghyran"): string {
+  if (realm === "core") {
+    return "standard";
+  }
+  if (realm === "aqshy") {
+    return "Scourge of Aqshy";
+  }
+  return "Scourge of Ghyran";
+}
+
+function scourgeSeasonLabel(realm: "aqshy" | "ghyran"): string {
+  return realm === "aqshy" ? "Scourge of Aqshy" : "Scourge of Ghyran";
+}
+
+function warnScourgeSeason(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  issues: ListIssue[],
+) {
+  if (!listUsesScourgeContent(list, faction)) {
+    return;
+  }
+
+  const realm = list.scourgeRealm;
+  if (!realm) {
+    issues.push({
+      tone: "warn",
+      text: "Choose Scourge of Aqshy or Scourge of Ghyran.",
+    });
+    return;
+  }
+
+  const checkUnit = (unit: { name: string } | undefined) => {
+    if (!unit) {
+      return;
+    }
+    const unitRealm = unitScourgeRealm(unit.name);
+    if (unitRealm && unitRealm !== realm) {
+      issues.push({
+        tone: "bad",
+        text: `${unit.name} does not match ${scourgeSeasonLabel(realm)}.`,
+      });
+    }
+  };
+
+  for (const regiment of list.regiments) {
+    if (regiment.hero) {
+      checkUnit(getUnit(faction, regiment.hero.unitId));
+    }
+    for (const slot of regiment.units) {
+      checkUnit(getUnit(faction, slot.unitId));
+    }
+  }
+  for (const aux of list.auxiliaries) {
+    checkUnit(getUnit(faction, aux.unitId));
+  }
+  const rorPick = list.regimentOfRenown;
+  if (rorPick) {
+    const ror = getRegimentOfRenown(rorPick.renownId);
+    if (ror) {
+      for (const slot of rorPick.units) {
+        const template = ror.units.find((unit) => unit.id === slot.unitId);
+        checkUnit(template);
+      }
+    }
+  }
+
+  for (const id of list.battleTacticCardIds ?? []) {
+    const card = battleTactics.find((item) => item.id === id);
+    if (card && card.realm !== realm) {
+      issues.push({
+        tone: "bad",
+        text: `${card.name} is not a ${scourgeSeasonLabel(realm)} battle tactic card.`,
+      });
+    }
+  }
+}
+
+function warnMixedScourgeSheets(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  issues: ListIssue[],
+) {
+  const realmsByBase = new Map<string, Set<"core" | "aqshy" | "ghyran">>();
+
+  const trackUnit = (unit: { name: string } | undefined) => {
+    if (!unit) {
+      return;
+    }
+    const base = unitBaseName(unit.name);
+    const scourgeRealm = unitScourgeRealm(unit.name);
+    const sheetRealm = scourgeRealm ?? "core";
+    const realms = realmsByBase.get(base) ?? new Set();
+    realms.add(sheetRealm);
+    realmsByBase.set(base, realms);
+  };
+
+  for (const regiment of list.regiments) {
+    if (regiment.hero) {
+      trackUnit(getUnit(faction, regiment.hero.unitId));
+    }
+    for (const slot of regiment.units) {
+      trackUnit(getUnit(faction, slot.unitId));
+    }
+  }
+  for (const aux of list.auxiliaries) {
+    trackUnit(getUnit(faction, aux.unitId));
+  }
+  const rorPick = list.regimentOfRenown;
+  if (rorPick) {
+    const ror = getRegimentOfRenown(rorPick.renownId);
+    if (ror) {
+      for (const slot of rorPick.units) {
+        const template = ror.units.find((unit) => unit.id === slot.unitId);
+        if (template) {
+          trackUnit(template);
+        }
+      }
+    }
+  }
+
+  for (const [base, realms] of realmsByBase) {
+    if (realms.size <= 1) {
+      continue;
+    }
+    const labels = [...realms].map(scourgeRealmLabel);
+    issues.push({
+      tone: "bad",
+      text: `${base}: cannot mix ${labels.join(" and ")} warscrolls in the same army.`,
+    });
+  }
 }
 
 function warnUniqueEnhancement(
@@ -399,6 +563,42 @@ function warnVisionOfFate(
   }
   if (!namedOption(faction.visionsOfFate ?? [], pick.optionId)) {
     issues.push({ tone: "warn", text: "Unknown Vision of Fate." });
+  }
+}
+
+function warnSpecialEnhancements(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  issues: ListIssue[],
+) {
+  const seenTables = new Set<string>();
+  for (const pick of list.specialEnhancements ?? []) {
+    if (seenTables.has(pick.tableId)) {
+      issues.push({ tone: "bad", text: "Duplicate special enhancement table." });
+    }
+    seenTables.add(pick.tableId);
+    const table = faction.specialEnhancementTables?.find(
+      (item) => item.id === pick.tableId,
+    );
+    const selection = rosterSelection(list, pick.heroSelectionId);
+    if (!selection) {
+      continue;
+    }
+    const unit = unitForSelection(
+      list,
+      faction,
+      selection.unitId,
+      pick.heroSelectionId,
+    );
+    if (unit?.unique) {
+      issues.push({
+        tone: "warn",
+        text: `${unit.name} cannot take ${table?.name ?? "a special enhancement"}.`,
+      });
+    }
+    if (!table || !namedOption(table.options, pick.optionId)) {
+      issues.push({ tone: "warn", text: "Unknown special enhancement." });
+    }
   }
 }
 

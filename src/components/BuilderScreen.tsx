@@ -1,27 +1,42 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
-import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, factionHasScourge, resolveUnitIdForRealm, unitBaseName, auxiliaryPickerUnits, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel, type ScourgeRealm } from "@/engine/queries";
+import {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  useCallback,
+  useSyncExternalStore,
+} from "react";
+import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, unitBaseName, auxiliaryPickerUnits, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel } from "@/engine/queries";
 import { combatModifierNotes } from "@/engine/magic";
 import { exportArmyListText, exportFileName } from "@/engine/exportText";
+import { battleTactics, battleTacticsForRealm } from "@/engine/data/load";
 import { summarize } from "@/engine/validate";
-import { formatPoints } from "@/engine/pointsCap";
 import type { ArmyList, CatalogueUnit, DatasheetSubject, EnhancementOption, FactionCatalogue, NamedOption } from "@/engine/types";
 import { createId } from "@/lib/id";
 import {
   getArmiesServerSnapshot,
   getArmiesSnapshot,
+  recordArmyOpened,
   saveArmy,
   subscribeArmies,
 } from "@/lib/storage";
 import {
   getListOpenFactionServerSnapshot,
   getListOpenFactionSnapshot,
+  clearListOpenSplash,
+  getListOpenDisplayNameServerSnapshot,
+  getListOpenDisplayNameSnapshot,
+  peekListOpenSplash,
   subscribeListOpenFaction,
 } from "@/lib/listTransition";
 import { DatasheetSheet } from "./DatasheetSheet";
+import { FactionArtLayers } from "./FactionArtBackground";
 import { FactionBackdrop } from "./FactionBackdrop";
+import { useListFlowChrome, useListFlowDecor } from "./ListFlowShell";
 import { ListLoadingSplash } from "./ListLoadingSplash";
 import { ModalFrame } from "./ModalFrame";
 import { ChoiceSheet, PickerSheet } from "./PickerSheet";
@@ -29,6 +44,7 @@ import { PointsCapField } from "./PointsCapField";
 import { ManifestationCard } from "./ManifestationCard";
 import { PlayMagicBoard } from "./PlayMagicBoard";
 import { PlayPhaseBoard } from "./PlayPhaseBoard";
+import { BattleTacticTracker } from "./BattleTacticTracker";
 import { PlayBindNotes, PlayHealthTrack, RegimentCard, SlotEnhancements, SlotMoreMenu } from "./RegimentCard";
 import {
   buildRoRSelections,
@@ -46,11 +62,14 @@ type Picker =
   | { kind: "trait"; heroSelectionId: string }
   | { kind: "monstrous"; heroSelectionId: string }
   | { kind: "vision"; heroSelectionId: string }
+  | { kind: "special"; tableId: string; heroSelectionId: string }
   | null;
 
 type Props = {
   listId: string;
 };
+
+const MIN_OPEN_SPLASH_MS = 650;
 
 export function BuilderScreen({ listId }: Props) {
   const lists = useSyncExternalStore(
@@ -65,20 +84,95 @@ export function BuilderScreen({ listId }: Props) {
   );
   const list = lists?.find((item) => item.id === listId);
   const faction = list ? getFaction(list.factionId) : undefined;
+  const artFactionId =
+    (faction ? faction.parentFactionIds?.[0] ?? faction.id : null) ??
+    rememberedId;
+  const rememberedDisplayName = useSyncExternalStore(
+    subscribeListOpenFaction,
+    getListOpenDisplayNameSnapshot,
+    getListOpenDisplayNameServerSnapshot,
+  );
+  const [openingSplash, setOpeningSplash] = useState(false);
+  const openedRecorded = useRef<string | null>(null);
+  const splashStarted = useRef(0);
 
-  if (lists === undefined) {
-    const remembered = rememberedId ? getFaction(rememberedId) : undefined;
-    return (
-      <ListLoadingSplash
-        factionId={rememberedId}
-        factionName={remembered?.name}
-      />
+  useLayoutEffect(() => {
+    if (!peekListOpenSplash()) {
+      return;
+    }
+    setOpeningSplash(true);
+    if (splashStarted.current === 0) {
+      splashStarted.current = Date.now();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!openingSplash) {
+      return;
+    }
+    if (lists === undefined) {
+      return;
+    }
+    const wait = Math.max(
+      0,
+      MIN_OPEN_SPLASH_MS - (Date.now() - splashStarted.current),
     );
-  }
+    const timer = window.setTimeout(() => {
+      setOpeningSplash(false);
+      clearListOpenSplash();
+    }, wait);
+    return () => window.clearTimeout(timer);
+  }, [openingSplash, lists]);
 
-  if (!list || !faction) {
+  useEffect(() => {
+    if (lists === undefined || openedRecorded.current === listId) {
+      return;
+    }
+    if (!lists.some((item) => item.id === listId)) {
+      return;
+    }
+    openedRecorded.current = listId;
+    const timer = window.setTimeout(() => {
+      void recordArmyOpened(listId);
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, [listId, lists]);
+
+  const splashName =
+    rememberedDisplayName ??
+    faction?.name ??
+    (rememberedId ? getFaction(rememberedId)?.name : undefined);
+  const showSplash = lists === undefined || openingSplash;
+  const scourgeRealm = list?.scourgeRealm ?? null;
+
+  const { setDecor } = useListFlowDecor();
+
+  useEffect(() => {
+    setDecor({
+      backdrop: artFactionId ? (
+        <div
+          className="pointer-events-none fixed inset-0 z-[1] overflow-hidden"
+          aria-hidden="true"
+        >
+          <FactionArtLayers
+            factionId={artFactionId}
+            scourgeRealm={scourgeRealm}
+            splash={showSplash}
+          />
+        </div>
+      ) : undefined,
+      overlay: showSplash ? (
+        <div className="pointer-events-none fixed inset-0 z-30">
+          <ListLoadingSplash factionName={splashName} />
+        </div>
+      ) : undefined,
+    });
+    return () => setDecor({});
+  }, [artFactionId, scourgeRealm, showSplash, splashName, setDecor]);
+
+  if (!showSplash && (!list || !faction)) {
     return (
-      <div className="flex min-h-full flex-col items-start bg-ink px-6 py-10 text-parchment">
+      <div className="relative z-10 flex min-h-full flex-col items-start bg-ink px-6 py-10 text-parchment">
         <p className="font-serif text-3xl">This list is gone.</p>
         <Link href="/dashboard" className="mt-6 min-h-11 text-sigmarite">
           Back to library
@@ -87,11 +181,16 @@ export function BuilderScreen({ listId }: Props) {
     );
   }
 
+  if (!list || !faction) {
+    return null;
+  }
+
+  if (showSplash) {
+    return null;
+  }
+
   return (
-    <FactionBackdrop
-      factionId={faction.parentFactionIds?.[0] ?? faction.id}
-      factionName={faction.name}
-    >
+    <FactionBackdrop>
       <BuilderReady list={list} faction={faction} />
     </FactionBackdrop>
   );
@@ -109,23 +208,28 @@ function BuilderReady({
   );
   const [picker, setPicker] = useState<Picker>(null);
   const [datasheet, setDatasheet] = useState<DatasheetSubject | null>(null);
-  const [playMode, setPlayMode] = useState(false);
+  const [pane, setPane] = useState<"build" | "play">("build");
   const [playTab, setPlayTab] = useState<"units" | "magic" | "phases">("units");
   const [exportOpen, setExportOpen] = useState(false);
   const [exportCopied, setExportCopied] = useState(false);
+  const [regimentRemoveId, setRegimentRemoveId] = useState<string | null>(null);
   const totals = useMemo(() => summarize(list, faction), [list, faction]);
   const exportText = useMemo(
     () => exportArmyListText(list, faction),
     [list, faction],
   );
+  const playMode = pane === "play";
   const bindNotes = useMemo(
     () => (playMode ? combatModifierNotes(list, faction) : []),
     [playMode, list, faction],
   );
-  const issue = totals.issues[0] ?? {
-    tone: "warn" as const,
-    text: "Add a regiment to begin.",
-  };
+  const issue =
+    totals.issues.find((item) => item.tone === "bad") ??
+    totals.issues.find((item) => item.tone === "warn") ??
+    totals.issues[0] ?? {
+      tone: "warn" as const,
+      text: "Add a regiment to begin.",
+    };
   const pickerUnits = pickerUnitsFor(list, faction, picker);
   const selectedId = selectedRegimentId ?? list.regiments[0]?.id ?? null;
 
@@ -164,10 +268,12 @@ function BuilderReady({
         ? faction.spellLores[0].id
         : list.spellLoreId;
     const nextGeneral = resolveGeneralRegimentId(list, faction);
+    const nextScourgeRealm = list.scourgeRealm ?? "aqshy";
     if (
       nextPrayer === list.prayerLoreId &&
       nextSpell === list.spellLoreId &&
-      nextGeneral === list.generalRegimentId
+      nextGeneral === list.generalRegimentId &&
+      nextScourgeRealm === list.scourgeRealm
     ) {
       return;
     }
@@ -176,6 +282,7 @@ function BuilderReady({
       prayerLoreId: nextPrayer,
       spellLoreId: nextSpell,
       generalRegimentId: nextGeneral,
+      scourgeRealm: nextScourgeRealm,
     });
   }, [list, faction]);
 
@@ -218,6 +325,35 @@ function BuilderReady({
           }
         : null,
     });
+  }
+
+  async function removeRegiment(regimentId: string) {
+    const regiment = list.regiments.find((item) => item.id === regimentId);
+    if (!regiment) {
+      return;
+    }
+    const selectionIds = [
+      regiment.hero?.id,
+      ...regiment.units.map((slot) => slot.id),
+    ];
+    let next: ArmyList = {
+      ...list,
+      regiments: list.regiments.filter((item) => item.id !== regimentId),
+      generalRegimentId:
+        list.generalRegimentId === regimentId
+          ? (list.regiments.find((item) => item.id !== regimentId)?.id ?? null)
+          : list.generalRegimentId,
+    };
+    for (const selectionId of selectionIds) {
+      if (selectionId) {
+        next = dropEnhancements(next, selectionId);
+      }
+    }
+    await commit(next);
+    if (selectedRegimentId === regimentId) {
+      setSelectedRegimentId(next.regiments[0]?.id ?? null);
+    }
+    setRegimentRemoveId(null);
   }
 
   async function onPick(unit: CatalogueUnit) {
@@ -278,8 +414,24 @@ function BuilderReady({
       (picker.kind !== "artefact" &&
         picker.kind !== "trait" &&
         picker.kind !== "monstrous" &&
-        picker.kind !== "vision")
+        picker.kind !== "vision" &&
+        picker.kind !== "special")
     ) {
+      return;
+    }
+    if (picker.kind === "special") {
+      const next = (list.specialEnhancements ?? []).filter(
+        (pick) => pick.tableId !== picker.tableId,
+      );
+      if (option) {
+        next.push({
+          tableId: picker.tableId,
+          heroSelectionId: picker.heroSelectionId,
+          optionId: option.id,
+        });
+      }
+      await commit({ ...list, specialEnhancements: next });
+      setPicker(null);
       return;
     }
     const field =
@@ -338,7 +490,30 @@ function BuilderReady({
                 options: enhancementChoices(faction.visionsOfFate ?? []),
                 selectedId: list.visionOfFate?.optionId,
               }
-            : null;
+            : picker?.kind === "special"
+              ? {
+                  title:
+                    faction.specialEnhancementTables?.find(
+                      (table) => table.id === picker.tableId,
+                    )?.name ?? "Enhancement",
+                  options: enhancementChoices(
+                    faction.specialEnhancementTables?.find(
+                      (table) => table.id === picker.tableId,
+                    )?.options ?? [],
+                  ),
+                  selectedId: list.specialEnhancements?.find(
+                    (pick) => pick.tableId === picker.tableId,
+                  )?.optionId,
+                }
+              : null;
+
+  const specialTables = faction.specialEnhancementTables ?? [];
+  const specialEnhancementPicks = list.specialEnhancements ?? [];
+  const onPickSpecial =
+    specialTables.length > 0
+      ? (tableId: string, heroSelectionId: string) =>
+          setPicker({ kind: "special", tableId, heroSelectionId })
+      : undefined;
 
   const rorOptions = listRegimentsOfRenown(list.factionId);
   const rorPicker =
@@ -355,108 +530,60 @@ function BuilderReady({
         }
       : null;
 
-  return (
-    <div className="min-h-full w-full max-w-[100vw] overflow-x-hidden text-parchment">
-      <header className="sticky top-0 z-20 border-b border-sigmarite/15 bg-ink/92 pt-[env(safe-area-inset-top)] backdrop-blur-md">
-        <div className="mx-auto flex w-full max-w-3xl min-w-0 flex-wrap items-center gap-x-3 gap-y-2 px-4 py-3 sm:flex-nowrap">
-          <Link
-            href="/dashboard"
-            className="gold-plate inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-xl px-3 text-ink active:translate-y-px sm:px-4"
-          >
-            <svg
-              viewBox="0 0 20 20"
-              aria-hidden="true"
-              className="h-4 w-4 shrink-0"
-            >
-              <path
-                d="M12.5 4.5 7 10l5.5 5.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.25"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className="text-sm font-semibold tracking-wide">Lists</span>
-          </Link>
-          {playMode ? (
-            <p className="min-h-11 min-w-0 flex-1 content-center truncate font-serif text-xl">
-              {list.name}
-            </p>
-          ) : (
-            <input
-              value={list.name}
-              onChange={(event) => void commit({ ...list, name: event.target.value })}
-              aria-label="List name"
-              placeholder="Name your list"
-              className="min-h-11 min-w-0 flex-1 border-b border-parchment/20 bg-transparent font-serif text-xl outline-none placeholder:text-parchment/35"
-            />
-          )}
-          <div className="flex w-full min-w-0 shrink-0 items-center justify-between gap-3 sm:ml-auto sm:w-auto">
-            {!playMode ? (
-              <div className="text-left sm:text-right">
-                <p className="text-lg text-sigmarite">
-                  {formatPoints(totals.points)}
-                  <span className="text-ink-muted">
-                    {" "}
-                    / {formatPoints(list.pointsCap)}
-                  </span>
-                </p>
-                <p className="text-xs text-ink-muted">{totals.drops} drops</p>
-              </div>
-            ) : (
-              <span className="sm:hidden" />
-            )}
-            <div
-              role="group"
-              aria-label="Mode"
-              className="flex rounded-xl bg-ink-raised p-1 text-xs ring-1 ring-sigmarite/25"
-            >
-              <button
-                type="button"
-                onClick={() => setPlayMode(false)}
-                className={`min-h-9 rounded-lg px-3 ${
-                  playMode ? "text-ink-muted" : "gold-plate text-ink"
-                }`}
-              >
-                Build
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setPlayMode(true);
-                  setPlayTab("units");
-                  setPicker(null);
-                }}
-                className={`min-h-9 rounded-lg px-3 ${
-                  playMode ? "gold-plate text-ink" : "text-ink-muted"
-                }`}
-              >
-                Play
-              </button>
-            </div>
-          </div>
-        </div>
-        {!playMode ? (
-          <p
-            className={`mx-auto flex max-w-3xl items-center gap-2 px-4 pb-3 text-sm ${
-              issue.tone === "ok"
-                ? "text-parchment/80"
-                : "font-medium text-illegal"
-            }`}
-          >
-            <span
-              aria-hidden="true"
-              className={`h-2 w-2 shrink-0 rounded-full ${
-                issue.tone === "bad" || issue.tone === "warn"
-                  ? "bg-illegal"
-                  : "bg-legal"
-              }`}
-            />
-            <span>{issue.text}</span>
-          </p>
-        ) : (
-          <div className="mx-auto flex max-w-3xl gap-2 px-4 pb-3">
+  const regimentPendingRemoval = list.regiments.find(
+    (item) => item.id === regimentRemoveId,
+  );
+  const regimentRemoveMessage = regimentPendingRemoval?.hero
+    ? `${getUnit(faction, regimentPendingRemoval.hero.unitId)?.name ?? "This regiment"} and ${regimentPendingRemoval.units.length} companion${
+        regimentPendingRemoval.units.length === 1 ? "" : "s"
+      } will be removed from the list.`
+    : "This regiment and its units will be removed from the list.";
+
+  const enterPlay = useCallback(() => {
+    setPane("play");
+    setPlayTab("units");
+    setPicker(null);
+  }, []);
+
+  const exitPlay = useCallback(() => {
+    setPane("build");
+    setPlayTab("units");
+    setPicker(null);
+  }, []);
+
+  const { setBuilderChrome } = useListFlowChrome();
+
+  useLayoutEffect(() => {
+    setBuilderChrome({
+      list,
+      faction,
+      playMode,
+      enterPlay,
+      exitPlay,
+      onListNameChange: (name) => void commit({ ...list, name }),
+      points: totals.points,
+      pointsCap: list.pointsCap,
+      drops: totals.drops,
+      issue,
+    });
+    return () => setBuilderChrome(null);
+  }, [
+    list,
+    faction,
+    playMode,
+    totals.points,
+    totals.drops,
+    issue,
+    setBuilderChrome,
+    enterPlay,
+    exitPlay,
+  ]);
+
+  function renderListMain(forPlayMode: boolean) {
+    return (
+      <main className="mx-auto flex w-full max-w-3xl min-w-0 flex-col gap-5 px-4 py-4 pb-28 sm:py-6">
+        {forPlayMode ? (
+          <div className="flex gap-2">
             <button
               type="button"
               onClick={() => setPlayTab("units")}
@@ -491,18 +618,24 @@ function BuilderReady({
               Phases
             </button>
           </div>
-        )}
-      </header>
-
-      <main className="mx-auto flex w-full max-w-3xl min-w-0 flex-col gap-5 px-4 py-6 pb-28">
-        {!playMode ? (
+        ) : null}
+        {!forPlayMode && issue.tone !== "ok" ? (
+          <p
+            className="flex items-center gap-2 rounded-xl bg-illegal/10 px-4 py-2.5 text-sm font-medium text-illegal ring-1 ring-illegal/25"
+            role="status"
+          >
+            <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-illegal" />
+            <span>{issue.text}</span>
+          </p>
+        ) : null}
+        {!forPlayMode ? (
         <div className="flex min-w-0 flex-col gap-4">
           <details className="group min-w-0 rounded-2xl bg-ink-raised ring-1 ring-parchment/12 open:pb-4">
             <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm text-parchment/85 marker:content-none [&::-webkit-details-marker]:hidden">
               <span className="font-medium tracking-wide">Options</span>
               <span className="flex items-center gap-2 text-xs text-ink-muted">
                 <span className="group-open:hidden">
-                  Points · Lores · Export
+                  Points · Lores · Tactics · Export
                 </span>
                 <span aria-hidden="true" className="transition group-open:rotate-180">
                   ▾
@@ -515,29 +648,6 @@ function BuilderReady({
                 onChange={(pointsCap) => void commit({ ...list, pointsCap })}
                 variant="ink"
               />
-
-              {factionHasScourge(faction) ? (
-                <label className="flex flex-col gap-2 text-sm text-parchment/80">
-                  Datasheet season
-                  <select
-                    value={list.scourgeRealm ?? ""}
-                    onChange={(event) => {
-                      const realm = (event.target.value ||
-                        null) as ScourgeRealm | null;
-                      void commit(applyScourgeRealm(list, faction, realm));
-                    }}
-                    className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
-                  >
-                    <option value="">Core datasheets</option>
-                    <option value="aqshy">Scourge of Aqshy</option>
-                    <option value="ghyran">Scourge of Ghyran</option>
-                  </select>
-                  <span className="text-xs text-ink-muted">
-                    Replaces matching warscrolls; other units keep their core
-                    sheet.
-                  </span>
-                </label>
-              ) : null}
 
               {faction.spellLores.length > 0 ? (
                 <div className="flex flex-col gap-2">
@@ -644,6 +754,40 @@ function BuilderReady({
                 </label>
               ) : null}
 
+              <label className="flex flex-col gap-2 text-sm text-parchment/80">
+                Scourge season
+                <select
+                  value={list.scourgeRealm ?? ""}
+                  onChange={(event) => {
+                    const value = event.target.value;
+                    const scourgeRealm =
+                      value === "aqshy" || value === "ghyran" ? value : null;
+                    void commit({
+                      ...list,
+                      scourgeRealm,
+                      battleTacticCardIds: [],
+                      battleTacticStage: {},
+                    });
+                  }}
+                  className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
+                >
+                  <option value="">Choose season…</option>
+                  <option value="aqshy">Scourge of Aqshy</option>
+                  <option value="ghyran">Scourge of Ghyran</option>
+                </select>
+              </label>
+
+              <div className="flex flex-col gap-2">
+                <p className="text-sm text-parchment/80">
+                  Battle tactic cards (pick up to 2)
+                </p>
+                <BattleTacticCardPicker
+                  list={list}
+                  cards={battleTacticsForRealm(list.scourgeRealm)}
+                  onCommit={(next) => void commit(next)}
+                />
+              </div>
+
               <button
                 type="button"
                 onClick={() => {
@@ -712,13 +856,28 @@ function BuilderReady({
           <PlaySummary list={list} faction={faction} />
         ) : null}
 
-        {playMode && playTab === "phases" ? (
+        {forPlayMode && playTab === "phases" ? (
+          <BattleTacticTracker
+            list={list}
+            onStageChange={(cardId, stage) =>
+              void commit({
+                ...list,
+                battleTacticStage: {
+                  ...(list.battleTacticStage ?? {}),
+                  [cardId]: stage,
+                },
+              })
+            }
+          />
+        ) : null}
+
+        {forPlayMode && playTab === "phases" ? (
           <PlayPhaseBoard
             list={list}
             faction={faction}
             onOpenSheet={setDatasheet}
           />
-        ) : playMode && playTab === "magic" ? (
+        ) : forPlayMode && playTab === "magic" ? (
           <PlayMagicBoard
             list={list}
             faction={faction}
@@ -744,7 +903,7 @@ function BuilderReady({
             canBeGeneral={canBeGeneral(list, faction, regiment.id)}
             slotCap={totals.slotCap(regiment.id)}
             selected={selectedId === regiment.id}
-            playMode={playMode}
+            playMode={forPlayMode}
             onSelect={() => setSelectedRegimentId(regiment.id)}
             onMakeGeneral={() => {
               if (!canBeGeneral(list, faction, regiment.id)) {
@@ -842,6 +1001,9 @@ function BuilderReady({
                     })
                 : undefined
             }
+            specialTables={specialTables}
+            specialEnhancementPicks={specialEnhancementPicks}
+            onPickSpecial={onPickSpecial}
             onOpenDatasheet={setDatasheet}
             onToggleReinforce={(selectionId) =>
               void commit({
@@ -860,6 +1022,38 @@ function BuilderReady({
                 ),
               })
             }
+            onDuplicateUnit={(selectionId) => {
+              const slot = regiment.units.find((item) => item.id === selectionId);
+              if (!slot) {
+                return;
+              }
+              const unit = getUnit(faction, slot.unitId);
+              if (!unit || unit.unique) {
+                return;
+              }
+              const cap = totals.slotCap(regiment.id);
+              if (regiment.units.length >= cap) {
+                return;
+              }
+              void commit({
+                ...list,
+                regiments: list.regiments.map((item) =>
+                  item.id === regiment.id
+                    ? {
+                        ...item,
+                        units: [
+                          ...item.units,
+                          {
+                            id: createId(),
+                            unitId: slot.unitId,
+                            reinforced: slot.reinforced,
+                          },
+                        ],
+                      }
+                    : item,
+                ),
+              });
+            }}
             onRemoveUnit={(selectionId) =>
               void commit(
                 dropEnhancements(
@@ -880,27 +1074,7 @@ function BuilderReady({
                 ),
               )
             }
-            onRemoveRegiment={() => {
-              const selectionIds = [
-                regiment.hero?.id,
-                ...regiment.units.map((slot) => slot.id),
-              ];
-              let next: ArmyList = {
-                ...list,
-                regiments: list.regiments.filter(
-                  (item) => item.id !== regiment.id,
-                ),
-                generalRegimentId:
-                  list.generalRegimentId === regiment.id
-                    ? (list.regiments.find((item) => item.id !== regiment.id)
-                        ?.id ?? null)
-                    : list.generalRegimentId,
-              };
-              for (const selectionId of selectionIds) {
-                next = dropEnhancements(next, selectionId);
-              }
-              void commit(next);
-            }}
+            onRemoveRegiment={() => setRegimentRemoveId(regiment.id)}
             bindNotes={bindNotes}
             onPlayHealth={(selectionId, damage) =>
               void setPlayDamage(selectionId, damage)
@@ -911,7 +1085,7 @@ function BuilderReady({
         {list.regimentOfRenown ? (
           <RegimentOfRenownCard
             list={list}
-            playMode={playMode}
+            playMode={forPlayMode}
             artefactBearerId={list.artefact?.heroSelectionId}
             artefactLabel={enhancementLabel(
               faction.artefacts,
@@ -996,6 +1170,9 @@ function BuilderReady({
                     })
                 : undefined
             }
+            specialTables={specialTables}
+            specialEnhancementPicks={specialEnhancementPicks}
+            onPickSpecial={onPickSpecial}
             onOpenDatasheet={setDatasheet}
             onRemove={() => void commit(clearRoREnhancements(list))}
             bindNotes={bindNotes}
@@ -1016,7 +1193,7 @@ function BuilderReady({
                 if (!unit) {
                   return null;
                 }
-                if (playMode) {
+                if (forPlayMode) {
                   const track = selectionPlayState(slot, unit);
                   const warning = battleDamagedWarning(unit, track.damage);
                   return (
@@ -1056,7 +1233,7 @@ function BuilderReady({
                         <SlotEnhancements
                           selectionId={slot.id}
                           unit={unit}
-                          playMode
+                          playMode={forPlayMode}
                           artefactBearerId={list.artefact?.heroSelectionId}
                           artefactLabel={enhancementLabel(
                             faction.artefacts,
@@ -1113,6 +1290,14 @@ function BuilderReady({
                                 )?.abilities
                               : undefined
                           }
+                          specialTables={specialTables}
+                          specialEnhancementPicks={specialEnhancementPicks}
+                          onPickSpecial={
+                            onPickSpecial
+                              ? (tableId) =>
+                                  onPickSpecial(tableId, slot.id)
+                              : undefined
+                          }
                         />
                       </div>
                     </li>
@@ -1165,6 +1350,22 @@ function BuilderReady({
                                         }
                                       : item,
                                   ),
+                                })
+                            : undefined
+                        }
+                        onDuplicate={
+                          !unit.unique
+                            ? () =>
+                                void commit({
+                                  ...list,
+                                  auxiliaries: [
+                                    ...list.auxiliaries,
+                                    {
+                                      id: createId(),
+                                      unitId: slot.unitId,
+                                      reinforced: slot.reinforced,
+                                    },
+                                  ],
                                 })
                             : undefined
                         }
@@ -1277,6 +1478,13 @@ function BuilderReady({
                               })
                           : undefined
                       }
+                      specialTables={specialTables}
+                      specialEnhancementPicks={specialEnhancementPicks}
+                      onPickSpecial={
+                        onPickSpecial
+                          ? (tableId) => onPickSpecial(tableId, slot.id)
+                          : undefined
+                      }
                     />
                   </li>
                 );
@@ -1285,7 +1493,7 @@ function BuilderReady({
           </section>
         ) : null}
 
-        {!playMode ? (
+        {!forPlayMode ? (
           <div className="flex flex-wrap items-center gap-x-1 px-1">
             {list.regiments.length < 5 ? (
               <button
@@ -1335,7 +1543,7 @@ function BuilderReady({
           <ManifestationCard
             lore={manifestation ?? null}
             lores={faction.manifestationLores}
-            playMode={playMode}
+            playMode={forPlayMode}
             onChangeLore={(loreId) =>
               void commit({ ...list, manifestationLoreId: loreId })
             }
@@ -1346,13 +1554,30 @@ function BuilderReady({
         {faction.terrain.length > 0 ? (
           <TerrainCard
             terrain={faction.terrain}
-            playMode={playMode}
+            playMode={forPlayMode}
             onOpenSheet={setDatasheet}
           />
         ) : null}
           </>
         )}
       </main>
+    );
+  }
+
+  return (
+    <div className="min-h-full w-full max-w-[100vw] overflow-x-hidden text-parchment">
+      <div className="overflow-x-hidden">
+        <div
+          className={`builder-view-track ${pane === "play" ? "builder-view-track--play" : ""}`}
+        >
+          <div className="builder-view-pane" aria-hidden={pane === "play"}>
+            {renderListMain(false)}
+          </div>
+          <div className="builder-view-pane" aria-hidden={pane === "build"}>
+            {renderListMain(true)}
+          </div>
+        </div>
+      </div>
 
       {picker && pickerUnits && !playMode ? (
         <PickerSheet
@@ -1411,6 +1636,35 @@ function BuilderReady({
           }}
           onClose={() => setPicker(null)}
         />
+      ) : null}
+
+      {regimentRemoveId ? (
+        <ModalFrame
+          label="Remove regiment"
+          onClose={() => setRegimentRemoveId(null)}
+          panelClassName="parchment-card w-full max-w-sm rounded-2xl p-5 text-parchment-ink"
+        >
+          <h2 className="font-serif text-2xl">Remove this regiment?</h2>
+          <p className="mt-2 text-base text-sheet-muted">
+            {regimentRemoveMessage}
+          </p>
+          <div className="mt-5 flex gap-2">
+            <button
+              type="button"
+              onClick={() => setRegimentRemoveId(null)}
+              className="min-h-11 flex-1 rounded-xl bg-parchment-ink/5 text-base"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={() => void removeRegiment(regimentRemoveId)}
+              className="min-h-11 flex-1 rounded-xl bg-illegal text-base font-semibold text-parchment"
+            >
+              Remove
+            </button>
+          </div>
+        </ModalFrame>
       ) : null}
 
       {exportOpen ? (
@@ -1517,14 +1771,13 @@ function pickerUnitsFor(
   if (!picker) {
     return null;
   }
-  const realm = list.scourgeRealm ?? null;
   if (picker.kind === "hero") {
     const current = list.regiments.find((item) => item.id === picker.regimentId)
       ?.hero?.unitId;
-    return available(list, faction, heroesOf(faction, realm), current);
+    return available(list, faction, heroesOf(faction), current);
   }
   if (picker.kind === "aux") {
-    return available(list, faction, auxiliaryPickerUnits(faction, realm));
+    return available(list, faction, auxiliaryPickerUnits(faction));
   }
   if (picker.kind !== "unit") {
     return null;
@@ -1536,34 +1789,7 @@ function pickerUnitsFor(
   if (!hero) {
     return [];
   }
-  return available(list, faction, legalCompanions(faction, hero, realm));
-}
-
-function applyScourgeRealm(
-  list: ArmyList,
-  faction: FactionCatalogue,
-  realm: ScourgeRealm | null,
-): ArmyList {
-  const remap = (unitId: string) =>
-    resolveUnitIdForRealm(faction, unitId, realm);
-  return {
-    ...list,
-    scourgeRealm: realm,
-    regiments: list.regiments.map((regiment) => ({
-      ...regiment,
-      hero: regiment.hero
-        ? { ...regiment.hero, unitId: remap(regiment.hero.unitId) }
-        : null,
-      units: regiment.units.map((slot) => ({
-        ...slot,
-        unitId: remap(slot.unitId),
-      })),
-    })),
-    auxiliaries: list.auxiliaries.map((slot) => ({
-      ...slot,
-      unitId: remap(slot.unitId),
-    })),
-  };
+  return available(list, faction, legalCompanions(faction, hero));
 }
 
 function dropEnhancements(list: ArmyList, heroSelectionId?: string): ArmyList {
@@ -1586,6 +1812,9 @@ function dropEnhancements(list: ArmyList, heroSelectionId?: string): ArmyList {
       list.visionOfFate?.heroSelectionId === heroSelectionId
         ? null
         : list.visionOfFate,
+    specialEnhancements: (list.specialEnhancements ?? []).filter(
+      (pick) => pick.heroSelectionId !== heroSelectionId,
+    ),
   };
 }
 
@@ -1594,6 +1823,127 @@ function enhancementChoices(options: EnhancementOption[]) {
     ...item,
     detail: enhancementChoiceDetail(item),
   }));
+}
+
+function BattleTacticCardPicker({
+  list,
+  cards,
+  onCommit,
+}: {
+  list: ArmyList;
+  cards: typeof battleTactics;
+  onCommit: (next: ArmyList) => void;
+}) {
+  if (!list.scourgeRealm) {
+    return (
+      <p className="text-xs text-ink-muted">
+        Choose Scourge of Aqshy or Scourge of Ghyran above first.
+      </p>
+    );
+  }
+
+  if (cards.length === 0) {
+    return null;
+  }
+
+  const selectedIds = list.battleTacticCardIds ?? [];
+
+  function commitIds(ids: string[]) {
+    const stage = { ...(list.battleTacticStage ?? {}) };
+    for (const key of Object.keys(stage)) {
+      if (!ids.includes(key)) {
+        delete stage[key];
+      }
+    }
+    onCommit({
+      ...list,
+      battleTacticCardIds: ids,
+      battleTacticStage: stage,
+    });
+  }
+
+  function toggleCard(cardId: string) {
+    if (selectedIds.includes(cardId)) {
+      commitIds(selectedIds.filter((id) => id !== cardId));
+      return;
+    }
+    if (selectedIds.length >= 2) {
+      return;
+    }
+    commitIds([...selectedIds, cardId]);
+  }
+
+  const atCap = selectedIds.length >= 2;
+
+  return (
+    <div className="flex min-w-0 flex-col gap-3">
+      <p className="text-xs text-ink-muted">
+        {selectedIds.length === 0
+          ? "Tap a card to select it."
+          : `${selectedIds.length} of 2 selected — tap again to deselect.`}
+      </p>
+      <ul className="flex flex-col gap-3">
+        {cards.map((card) => {
+          const pickIndex = selectedIds.indexOf(card.id);
+          const picked = pickIndex >= 0;
+          const disabled = !picked && atCap;
+          return (
+            <li key={card.id}>
+              <button
+                type="button"
+                onClick={() => toggleCard(card.id)}
+                disabled={disabled}
+                aria-pressed={picked}
+                className={`w-full rounded-xl px-3 py-3 text-left text-xs leading-relaxed ring-1 transition ${
+                  picked
+                    ? "bg-aether/15 ring-aether/40"
+                    : disabled
+                      ? "bg-parchment/5 text-parchment/45 ring-parchment/10"
+                      : "bg-parchment/5 text-parchment/80 ring-parchment/10 hover:bg-parchment/10"
+                }`}
+              >
+                <p className="font-medium text-sm text-parchment">
+                  {card.name}
+                  {picked ? (
+                    <span className="ml-2 text-aether">
+                      Card {pickIndex + 1}
+                    </span>
+                  ) : null}
+                </p>
+                {card.setup ? (
+                  <p className="mt-2 text-parchment/70">{card.setup}</p>
+                ) : null}
+                {card.affray ? (
+                  <p className="mt-2">
+                    <span className="font-semibold uppercase text-parchment/55">
+                      Affray ·{" "}
+                    </span>
+                    {card.affray}
+                  </p>
+                ) : null}
+                {card.strike ? (
+                  <p className="mt-2">
+                    <span className="font-semibold uppercase text-parchment/55">
+                      Strike ·{" "}
+                    </span>
+                    {card.strike}
+                  </p>
+                ) : null}
+                {card.domination ? (
+                  <p className="mt-2">
+                    <span className="font-semibold uppercase text-parchment/55">
+                      Domination ·{" "}
+                    </span>
+                    {card.domination}
+                  </p>
+                ) : null}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 }
 
 function PlaySummary({
@@ -1610,11 +1960,6 @@ function PlaySummary({
   const prayer = namedOption(faction.prayerLores, list.prayerLoreId);
   const lines = [
     formation?.name,
-    list.scourgeRealm === "aqshy"
-      ? "Scourge of Aqshy"
-      : list.scourgeRealm === "ghyran"
-        ? "Scourge of Ghyran"
-        : null,
     spell?.name,
     prayer?.name,
   ].filter(Boolean);

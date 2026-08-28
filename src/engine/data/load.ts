@@ -1,4 +1,4 @@
-import type { FactionCatalogue, RegimentOfRenown } from "../types";
+import type { BattleTacticCard, FactionCatalogue, RegimentOfRenown } from "../types";
 import bigWaaagh from "./big-waaagh.json";
 import bladesOfKhorneGorechosenChampions from "./blades-of-khorne-gorechosen-champions.json";
 import bladesOfKhorneTheBalefulLords from "./blades-of-khorne-the-baleful-lords.json";
@@ -80,6 +80,7 @@ import sylvanethSoulpodGuardians from "./sylvaneth-soulpod-guardians.json";
 import sylvanethTheEvergreenHunt from "./sylvaneth-the-evergreen-hunt.json";
 import sylvaneth from "./sylvaneth.json";
 import regimentsOfRenownJson from "./regiments-of-renown.json";
+import battleTacticsJson from "./battle-tactics.json";
 
 export const factions = [
   bigWaaagh,
@@ -166,3 +167,14 @@ export const factions = [
 
 export const regimentsOfRenown =
   regimentsOfRenownJson as RegimentOfRenown[];
+
+export const battleTactics = battleTacticsJson as BattleTacticCard[];
+
+export function battleTacticsForRealm(
+  realm: "aqshy" | "ghyran" | null,
+): BattleTacticCard[] {
+  if (!realm) {
+    return [];
+  }
+  return battleTactics.filter((card) => card.realm === realm);
+}

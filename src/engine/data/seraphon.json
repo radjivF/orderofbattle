@@ -1310,7 +1310,7 @@
           "cost": ""
         }
       ],
-      "pack": "Treasures of the Old Ones"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "58bf-a607-bb0e-2d8f",
@@ -1328,8 +1328,8 @@
           "cost": ""
         }
       ],
-      "points": 20,
-      "pack": "Treasures of the Old Ones"
+      "pack": "Artefacts of Power",
+      "points": 20
     },
     {
       "id": "2d46-8a01-5cfe-e548",
@@ -1347,7 +1347,7 @@
           "cost": ""
         }
       ],
-      "pack": "Treasures of the Old Ones"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1367,7 +1367,7 @@
           "cost": ""
         }
       ],
-      "pack": "Celestial Disciplines"
+      "pack": "Heroic Traits"
     },
     {
       "id": "6b3b-52d3-4b70-71a8",
@@ -1385,7 +1385,7 @@
           "cost": ""
         }
       ],
-      "pack": "Celestial Disciplines"
+      "pack": "Heroic Traits"
     },
     {
       "id": "57-2ab5-758-806b",
@@ -1403,7 +1403,7 @@
           "cost": ""
         }
       ],
-      "pack": "Celestial Disciplines"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [
@@ -1517,6 +1517,7 @@
     }
   ],
   "visionsOfFate": [],
+  "specialEnhancementTables": [],
   "terrain": [
     {
       "id": "dbb9-da98-e92e-b31e",

@@ -261,6 +261,29 @@ export function buildPhaseBoards(
   pushEnhancementAbilities(list, faction, boards, "monstrousTrait");
   pushEnhancementAbilities(list, faction, boards, "visionOfFate");
 
+  for (const pick of list.specialEnhancements ?? []) {
+    const table = faction.specialEnhancementTables?.find(
+      (item) => item.id === pick.tableId,
+    );
+    const option = table?.options.find((item) => item.id === pick.optionId);
+    if (!table || !option) {
+      continue;
+    }
+    const bearer = rosterUnitName(list, faction, pick.heroSelectionId);
+    const unitName = bearer
+      ? `${bearer} · ${table.name}`
+      : `${table.name} · ${option.name}`;
+    for (const ability of option.abilities) {
+      for (const phaseId of phasesForAbility(ability)) {
+        boards.get(phaseId)?.abilities.push({
+          selectionId: pick.heroSelectionId,
+          unitName,
+          ability,
+        });
+      }
+    }
+  }
+
   const lore = faction.manifestationLores.find(
     (item) => item.id === list.manifestationLoreId,
   );

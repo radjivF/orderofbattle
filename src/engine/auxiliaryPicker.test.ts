@@ -10,7 +10,7 @@ describe("auxiliaryPickerUnits", () => {
     expect(faction).toBeTruthy();
     if (!faction) return;
 
-    const units = auxiliaryPickerUnits(faction, null);
+    const units = auxiliaryPickerUnits(faction);
     const heroes = units.filter((unit) => unit.hero);
     expect(heroes.length).toBeGreaterThan(0);
     expect(
