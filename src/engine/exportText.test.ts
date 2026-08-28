@@ -97,4 +97,54 @@ describe("exportArmyListText", () => {
     expect(text).toContain("reinforced");
     expect(text).toContain(companion.name);
   });
+
+  it("lists battle tactic cards and special enhancements without pack duplication", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const table = faction.specialEnhancementTables?.[0];
+    const option = table?.options.find((item) => item.name === "Uncaged Lightning");
+    expect(table && option).toBeTruthy();
+    if (!table || !option) return;
+
+    const regimentId = createId();
+    const unitId = createId();
+    const hero = heroesOf(faction)[0];
+    const companion = unitsForRealm(faction, null).find(
+      (unit) => !unit.hero && unit.points > 0,
+    );
+    expect(hero && companion).toBeTruthy();
+    if (!hero || !companion) return;
+
+    const tacticIds = ["7d3c-b9b7-6412-d44e", "f94b-bda7-237e-74be"];
+    const list = {
+      ...blankArmy(faction.id, "Export extras", 2000),
+      generalRegimentId: regimentId,
+      regiments: [
+        {
+          id: regimentId,
+          hero: { id: createId(), unitId: hero.id, reinforced: false },
+          units: [{ id: unitId, unitId: companion.id, reinforced: false }],
+        },
+      ],
+      specialEnhancements: [
+        {
+          tableId: table.id,
+          heroSelectionId: unitId,
+          optionId: option.id,
+        },
+      ],
+      battleTacticCardIds: tacticIds,
+    };
+
+    const text = exportArmyListText(list, faction);
+    expect(text).toContain("Battle tactic cards: Blazing Onslaught, Siege of Ashes");
+    expect(text).toContain(
+      `- ${table.name}: Uncaged Lightning · 20 pts (${companion.name})`,
+    );
+    expect(text).not.toMatch(
+      new RegExp(`${table.name}:.*${table.name}`),
+    );
+  });
 });

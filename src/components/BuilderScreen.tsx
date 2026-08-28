@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
-import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, unitBaseName, auxiliaryPickerUnits, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel, getListUnit, getSelection, rorTemplateForSelection } from "@/engine/queries";
+import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, unitBaseName, auxiliaryPickerUnits, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel } from "@/engine/queries";
 import { combatModifierNotes } from "@/engine/magic";
 import { exportArmyListText, exportFileName } from "@/engine/exportText";
 import { battleTactics } from "@/engine/data/load";
 import { summarize } from "@/engine/validate";
 import { formatPoints } from "@/engine/pointsCap";
-import type { ArmyList, CatalogueUnit, DatasheetSubject, EnhancementOption, FactionCatalogue, NamedOption, SpecialEnhancementTable } from "@/engine/types";
+import type { ArmyList, CatalogueUnit, DatasheetSubject, EnhancementOption, FactionCatalogue, NamedOption } from "@/engine/types";
 import { createId } from "@/lib/id";
 import {
   getArmiesServerSnapshot,
@@ -586,9 +586,7 @@ function BuilderReady({
               <span className="font-medium tracking-wide">Options</span>
               <span className="flex items-center gap-2 text-xs text-ink-muted">
                 <span className="group-open:hidden">
-                  Points · Lores
-                  {specialTables.length > 0 ? " · Enhancements" : ""}
-                  {" · Tactics · Export"}
+                  Points · Lores · Tactics · Export
                 </span>
                 <span aria-hidden="true" className="transition group-open:rotate-180">
                   ▾
@@ -705,15 +703,6 @@ function BuilderReady({
                     </span>
                   ) : null}
                 </label>
-              ) : null}
-
-              {specialTables.length > 0 ? (
-                <SpecialEnhancementsPicker
-                  list={list}
-                  faction={faction}
-                  tables={specialTables}
-                  onCommit={(next) => void commit(next)}
-                />
               ) : null}
 
               <div className="flex flex-col gap-2">
@@ -1744,188 +1733,6 @@ function enhancementChoices(options: EnhancementOption[]) {
     ...item,
     detail: enhancementChoiceDetail(item),
   }));
-}
-
-function specialEnhancementBearers(
-  list: ArmyList,
-  faction: FactionCatalogue,
-): { id: string; name: string }[] {
-  const rows: { id: string; name: string }[] = [];
-  const add = (selectionId: string, unitId: string) => {
-    const rorTemplate = rorTemplateForSelection(list, selectionId);
-    if (rorTemplate) {
-      if (!rorTemplate.canTakeEnhancements || rorTemplate.unique) {
-        return;
-      }
-      rows.push({ id: selectionId, name: rorTemplate.name });
-      return;
-    }
-    const unit = getListUnit(list, faction, unitId);
-    if (!unit || unit.unique) {
-      return;
-    }
-    rows.push({ id: selectionId, name: unit.name });
-  };
-
-  for (const regiment of list.regiments) {
-    if (regiment.hero) {
-      add(regiment.hero.id, regiment.hero.unitId);
-    }
-    for (const slot of regiment.units) {
-      add(slot.id, slot.unitId);
-    }
-  }
-  for (const slot of list.auxiliaries) {
-    add(slot.id, slot.unitId);
-  }
-  for (const slot of list.regimentOfRenown?.units ?? []) {
-    add(slot.id, slot.unitId);
-  }
-  return rows;
-}
-
-function SpecialEnhancementsPicker({
-  list,
-  faction,
-  tables,
-  onCommit,
-}: {
-  list: ArmyList;
-  faction: FactionCatalogue;
-  tables: SpecialEnhancementTable[];
-  onCommit: (next: ArmyList) => void;
-}) {
-  const bearers = specialEnhancementBearers(list, faction);
-
-  function setPick(tableId: string, bearerId: string, optionId: string) {
-    const next = (list.specialEnhancements ?? []).filter(
-      (pick) => pick.tableId !== tableId,
-    );
-    next.push({ tableId, heroSelectionId: bearerId, optionId });
-    onCommit({ ...list, specialEnhancements: next });
-  }
-
-  function clearPick(tableId: string) {
-    onCommit({
-      ...list,
-      specialEnhancements: (list.specialEnhancements ?? []).filter(
-        (pick) => pick.tableId !== tableId,
-      ),
-    });
-  }
-
-  return (
-    <div className="flex flex-col gap-4">
-      <p className="text-sm text-parchment/80">
-        Special enhancements (Scourge of Aqshy)
-      </p>
-      {bearers.length === 0 ? (
-        <p className="text-xs text-ink-muted">
-          Add a non-unique unit to assign these enhancements.
-        </p>
-      ) : null}
-      {tables.map((table) => {
-        const pick = list.specialEnhancements?.find(
-          (item) => item.tableId === table.id,
-        );
-        const bearerName = pick
-          ? (bearers.find((item) => item.id === pick.heroSelectionId)?.name ??
-            (() => {
-              const selection = getSelection(list, pick.heroSelectionId);
-              return selection
-                ? getListUnit(list, faction, selection.unitId)?.name
-                : undefined;
-            })())
-          : null;
-        return (
-          <div
-            key={table.id}
-            className="flex flex-col gap-3 rounded-xl bg-parchment/5 px-3 py-3 ring-1 ring-parchment/10"
-          >
-            <p className="font-medium text-parchment">{table.name}</p>
-            <ul className="flex flex-col gap-2 text-xs leading-relaxed text-parchment/75">
-              {table.options.map((option) => (
-                <li key={option.id}>
-                  <p className="font-medium text-parchment/90">
-                    {option.name}
-                    {option.points ? (
-                      <span className="text-parchment/55">
-                        {" "}
-                        · {formatPoints(option.points)} pts
-                      </span>
-                    ) : null}
-                  </p>
-                  {option.abilities[0]?.effect ? (
-                    <p className="mt-1">{option.abilities[0].effect}</p>
-                  ) : null}
-                </li>
-              ))}
-            </ul>
-            <label className="flex flex-col gap-2 text-sm text-parchment/80">
-              Bearer unit
-              <select
-                value={pick?.heroSelectionId ?? ""}
-                disabled={bearers.length === 0}
-                onChange={(event) => {
-                  const bearerId = event.target.value;
-                  if (!bearerId) {
-                    clearPick(table.id);
-                    return;
-                  }
-                  const optionId =
-                    pick?.optionId ?? table.options[0]?.id ?? "";
-                  if (optionId) {
-                    setPick(table.id, bearerId, optionId);
-                  }
-                }}
-                className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink disabled:opacity-60"
-              >
-                <option value="">None</option>
-                {bearers.map((bearer) => (
-                  <option key={bearer.id} value={bearer.id}>
-                    {bearer.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            {pick?.heroSelectionId ? (
-              <label className="flex flex-col gap-2 text-sm text-parchment/80">
-                Enhancement
-                <select
-                  value={pick.optionId}
-                  onChange={(event) => {
-                    const optionId = event.target.value;
-                    if (!optionId) {
-                      clearPick(table.id);
-                      return;
-                    }
-                    setPick(table.id, pick.heroSelectionId, optionId);
-                  }}
-                  className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
-                >
-                  <option value="">None</option>
-                  {table.options.map((option) => (
-                    <option key={option.id} value={option.id}>
-                      {option.name}
-                      {option.points
-                        ? ` · ${formatPoints(option.points)} pts`
-                        : ""}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            ) : null}
-            {pick && bearerName ? (
-              <p className="text-xs text-aether">
-                Assigned:{" "}
-                {enhancementLabel(table.options, pick.optionId)} on {bearerName}
-              </p>
-            ) : null}
-          </div>
-        );
-      })}
-    </div>
-  );
 }
 
 function BattleTacticCardPicker({
