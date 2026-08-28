@@ -272,6 +272,13 @@ a {
   border-bottom-right-radius: 0;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+}
+
+.modal-sheet-scroll {
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 @media (min-width: 640px) {

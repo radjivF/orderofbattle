@@ -371,7 +371,7 @@ export function LibraryScreen() {
             </div>
 
             {draftFaction ? (
-              <div className="flex flex-col gap-4 overflow-y-auto px-5 pb-6">
+              <div className="modal-sheet-scroll flex flex-col gap-4 overflow-y-auto px-5 pb-6">
                 <p className="text-base text-sheet-muted">
                   {(draftParent ?? draftFaction).name}
                 </p>
@@ -452,7 +452,7 @@ export function LibraryScreen() {
                 </div>
               </div>
             ) : (
-              <ul className="overflow-y-auto px-3 pb-6">
+              <ul className="modal-sheet-scroll overflow-y-auto px-3 pb-6">
                 {listFactions().map((faction) => (
                   <li key={faction.id}>
                     <button

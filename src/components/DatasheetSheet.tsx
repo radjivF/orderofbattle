@@ -58,7 +58,7 @@ export function DatasheetSheet({ sheet, onClose }: Props) {
           <SheetCloseButton onClick={onClose} />
         </div>
 
-        <div className="overflow-y-auto px-5 pb-8">
+        <div className="modal-sheet-scroll overflow-y-auto px-5 pb-8">
           <dl
             className={`grid gap-2 rounded-xl bg-parchment-ink/5 px-3 py-3 text-center ${
               statCount >= 5 ? "grid-cols-5" : "grid-cols-4"

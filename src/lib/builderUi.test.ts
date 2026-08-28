@@ -227,7 +227,8 @@ describe("iOS polish contracts", () => {
       "utf8",
     );
     expect(css).toContain(".modal-sheet");
-    expect(css).toContain(".modal-grabber");
+    expect(css).toContain(".modal-sheet-scroll");
+    expect(css).toContain("overscroll-behavior-y: contain");
     expect(css).toContain("@keyframes modal-sheet-in");
 
     const modal = readFileSync(
@@ -238,8 +239,9 @@ describe("iOS polish contracts", () => {
       "utf8",
     );
     expect(modal).toContain('variant?: "sheet" | "center"');
-    expect(modal).toContain("onSheetPointerDown");
+    expect(modal).toContain("primeSheetDrag");
     expect(modal).toContain("modal-grabber");
+    expect(modal).toContain("modal-sheet-scroll");
     expect(modal).toContain("acquireModalLayer");
     expect(modal).toContain("isTopModal");
     expect(modal).toContain("modal-scrim");

@@ -32,7 +32,7 @@ export function PickerSheet({
           <h2 className="font-serif text-2xl">{title}</h2>
           <SheetCloseButton onClick={onClose} />
         </div>
-        <div className="overflow-y-auto px-3 pb-6">
+        <div className="modal-sheet-scroll overflow-y-auto px-3 pb-6">
           {units.length === 0 ? (
             <p className="px-2 py-6 text-parchment-ink/70">
               Nothing legal for this slot.
@@ -137,7 +137,7 @@ export function ChoiceSheet({
           <h2 className="font-serif text-2xl">{title}</h2>
           <SheetCloseButton onClick={onClose} />
         </div>
-        <div className="overflow-y-auto px-3 pb-6">
+        <div className="modal-sheet-scroll overflow-y-auto px-3 pb-6">
           <button
             type="button"
             onClick={() => onPick(null)}
