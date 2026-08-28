@@ -162,9 +162,20 @@ export function LibraryScreen() {
       </h1>
       <main className="mx-auto w-full max-w-3xl px-5 pb-20 sm:px-6 lg:max-w-5xl">
         {lists === undefined ? (
-          <p className="rounded-2xl bg-ink-raised/90 px-4 py-3 text-parchment/80 ring-1 ring-parchment/10">
-            Loading…
-          </p>
+          <div
+            className="flex flex-col items-center py-16"
+            role="status"
+            aria-live="polite"
+            aria-busy="true"
+          >
+            <span
+              className="size-7 animate-spin rounded-full border-2 border-parchment/25 border-t-sigmarite"
+              aria-hidden="true"
+            />
+            <p className="mt-3 text-sm font-medium tracking-wide text-parchment">
+              Loading your lists
+            </p>
+          </div>
         ) : lists.length === 0 ? (
           <div className={EMPTY_LIBRARY_PANEL_CLASS}>
             <BrandMark
