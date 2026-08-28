@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { listFactions } from "@/engine/queries";
 import { GEO_FAQS } from "@/lib/geoContent";
-import { SITE_DESCRIPTION } from "@/lib/site";
+import { SITE_DESCRIPTION, SITE_GITHUB_URL } from "@/lib/site";
 import { HOME_CTA_CLASS, HOME_CTA_QUIET_CLASS } from "@/lib/builderUi";
 import { BrandMark } from "./BrandMark";
 import { IndexBackdrop } from "./IndexBackdrop";
@@ -47,26 +47,36 @@ export function TryLanding() {
               priority
             />
           </Link>
-          <Link
-            href="/dashboard"
-            className={`${HOME_CTA_CLASS} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sigmarite`}
-          >
-            Open lists
-            <svg
-              viewBox="0 0 20 20"
-              aria-hidden="true"
-              className="h-4 w-4 shrink-0"
+          <div className="flex items-center gap-3 sm:gap-4">
+            <a
+              href={SITE_GITHUB_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="min-h-11 inline-flex items-center text-sm font-medium text-parchment/85 underline decoration-parchment/40 underline-offset-2 transition-colors hover:text-sigmarite hover:decoration-sigmarite/50"
             >
-              <path
-                d="M7.5 4.5 13 10l-5.5 5.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.25"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </Link>
+              GitHub
+            </a>
+            <Link
+              href="/dashboard"
+              className={`${HOME_CTA_CLASS} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sigmarite`}
+            >
+              Open lists
+              <svg
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+                className="h-4 w-4 shrink-0"
+              >
+                <path
+                  d="M7.5 4.5 13 10l-5.5 5.5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.25"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Link>
+          </div>
         </header>
 
         <main className="relative z-10 mx-auto w-full max-w-3xl px-5 pb-16 sm:px-6 lg:max-w-5xl">
@@ -131,6 +141,16 @@ export function TryLanding() {
                   </Link>
                   <p className="mt-4 text-xs font-medium text-parchment [text-shadow:0_2px_10px_rgba(0,0,0,0.95)]">
                     Free · No account · Lists stay on your device
+                  </p>
+                  <p className="mt-2 text-xs font-medium text-parchment/85 [text-shadow:0_2px_10px_rgba(0,0,0,0.95)]">
+                    <a
+                      href={SITE_GITHUB_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
+                    >
+                      View source on GitHub
+                    </a>
                   </p>
                 </div>
               </div>
@@ -244,6 +264,15 @@ export function TryLanding() {
               >
                 About
               </Link>
+              {" · "}
+              <a
+                href={SITE_GITHUB_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
+              >
+                GitHub
+              </a>
               .
             </p>
           </section>

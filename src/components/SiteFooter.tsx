@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { HOME_CTA_CLASS } from "@/lib/builderUi";
-import { SITE_CONTACT_EMAIL, SITE_MAKER_URL } from "@/lib/site";
+import { SITE_CONTACT_EMAIL, SITE_GITHUB_URL, SITE_MAKER_URL } from "@/lib/site";
 
 const linkClass =
   "text-parchment/85 underline decoration-parchment/40 underline-offset-2 transition-colors hover:text-sigmarite hover:decoration-sigmarite/50";
@@ -83,6 +83,14 @@ export function SiteFooter() {
         <Link href="/about" className={linkClass}>
           About
         </Link>
+        <a
+          href={SITE_GITHUB_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={linkClass}
+        >
+          GitHub
+        </a>
         <Link href="/privacy" className={linkClass}>
           Privacy
         </Link>

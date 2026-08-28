@@ -23,6 +23,8 @@ export const SITE_CONTACT_EMAIL = "contact@zheat.xyz";
 
 export const SITE_MAKER_URL = "https://zheat.xyz";
 
+export const SITE_GITHUB_URL = "https://github.com/radjivF/orderofbattle";
+
 export const SITE_PUBLISHED = "2026-08-27";
 
 export function getSiteUrl(): string {

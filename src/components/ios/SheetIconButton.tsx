@@ -3,7 +3,7 @@
 import type { MouseEvent, ReactNode } from "react";
 
 export const SHEET_CLOSE_BUTTON_CLASS =
-  "pressable inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-parchment-ink/70";
+  "pressable -mr-1 inline-flex h-10 w-10 shrink-0 items-start justify-center self-start rounded-full pt-0.5 text-parchment-ink/70";
 
 export const SHEET_LINK_BUTTON_CLASS =
   "pressable inline-flex h-11 w-11 shrink-0 items-center justify-center text-aether";
