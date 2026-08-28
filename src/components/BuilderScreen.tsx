@@ -9,6 +9,7 @@ import {
   useState,
   useCallback,
   useSyncExternalStore,
+  startTransition,
 } from "react";
 import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, unitBaseName, auxiliaryPickerUnits, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel, formationLabel } from "@/engine/queries";
 import { combatModifierNotes } from "@/engine/magic";
@@ -87,6 +88,7 @@ export function BuilderScreen({ listId }: Props) {
   );
   const list = lists?.find((item) => item.id === listId);
   const faction = list ? getFaction(list.factionId) : undefined;
+  const listName = list?.name ?? "Army list";
   const artFactionId =
     (faction ? faction.parentFactionIds?.[0] ?? faction.id : null) ??
     rememberedId;
@@ -165,13 +167,18 @@ export function BuilderScreen({ listId }: Props) {
         </div>
       ) : undefined,
       overlay: showSplash ? (
-        <div className="pointer-events-none fixed inset-0 z-30">
-          <ListLoadingSplash factionName={splashName} />
-        </div>
+        <>
+          <h1 className="pointer-events-none fixed top-4 left-0 right-0 z-20 mx-auto w-full max-w-3xl px-5 font-serif text-3xl text-parchment sm:px-6 lg:max-w-5xl">
+            {listName}
+          </h1>
+          <div className="pointer-events-none fixed inset-0 z-30">
+            <ListLoadingSplash factionName={splashName} />
+          </div>
+        </>
       ) : undefined,
     });
     return () => setDecor({});
-  }, [artFactionId, scourgeRealm, showSplash, splashName, setDecor]);
+  }, [artFactionId, scourgeRealm, showSplash, splashName, listName, setDecor]);
 
   if (!showSplash && (!list || !faction)) {
     return (
@@ -300,7 +307,9 @@ function BuilderReady({
       generalRegimentId: list.generalRegimentId ?? id,
     });
     setSelectedRegimentId(id);
-    setPicker({ kind: "hero", regimentId: id });
+    startTransition(() => {
+      setPicker({ kind: "hero", regimentId: id });
+    });
   }
 
   async function setPlayDamage(selectionId: string, damage: number) {
@@ -515,7 +524,9 @@ function BuilderReady({
   const onPickSpecial =
     specialTables.length > 0
       ? (tableId: string, heroSelectionId: string) =>
-          setPicker({ kind: "special", tableId, heroSelectionId })
+          startTransition(() => {
+            setPicker({ kind: "special", tableId, heroSelectionId });
+          })
       : undefined;
 
   const rorOptions = listRegimentsOfRenown(list.factionId);
@@ -905,10 +916,14 @@ function BuilderReady({
               void commit({ ...list, generalRegimentId: regiment.id });
             }}
             onPickHero={() =>
-              setPicker({ kind: "hero", regimentId: regiment.id })
+              startTransition(() => {
+                setPicker({ kind: "hero", regimentId: regiment.id });
+              })
             }
             onPickUnit={() =>
-              setPicker({ kind: "unit", regimentId: regiment.id })
+              startTransition(() => {
+                setPicker({ kind: "unit", regimentId: regiment.id });
+              })
             }
             artefactBearerId={list.artefact?.heroSelectionId}
             artefactLabel={enhancementLabel(
@@ -1505,7 +1520,11 @@ function BuilderReady({
             ) : null}
             <button
               type="button"
-              onClick={() => setPicker({ kind: "aux" })}
+              onClick={() =>
+                startTransition(() => {
+                  setPicker({ kind: "aux" });
+                })
+              }
               className="min-h-11 px-2 text-sm text-ink-muted"
             >
               + Auxiliary
@@ -1517,7 +1536,11 @@ function BuilderReady({
                 </span>
                 <button
                   type="button"
-                  onClick={() => setPicker({ kind: "ror" })}
+                  onClick={() =>
+                    startTransition(() => {
+                      setPicker({ kind: "ror" });
+                    })
+                  }
                   className="min-h-11 px-2 text-sm text-ink-muted"
                 >
                   {list.regimentOfRenown
