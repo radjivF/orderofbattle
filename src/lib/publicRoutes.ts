@@ -19,6 +19,11 @@ export const STATIC_PUBLIC_ROUTES: PublicRoute[] = [
     title: "Free Age of Sigmar army builder",
   },
   { path: "/factions", title: "Factions" },
+  { path: "/compare", title: "Age of Sigmar army builder comparison" },
+  {
+    path: "/play",
+    title: "Age of Sigmar wound tracker and table companion",
+  },
   { path: "/privacy", title: "Privacy policy" },
   { path: "/terms", title: "Terms of use" },
 ];

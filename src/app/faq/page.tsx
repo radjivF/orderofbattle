@@ -65,7 +65,10 @@ export default function FaqPage() {
           <Link href="/guides/free-age-of-sigmar-army-builder">
             free army builder
           </Link>
-          . Armies: <Link href="/factions">factions</Link>.
+          . Comparison:{" "}
+          <Link href="/compare">army builder comparison</Link>. Play:{" "}
+          <Link href="/play">wound tracker and table companion</Link>. Armies:{" "}
+          <Link href="/factions">factions</Link>.
         </p>
       </ContentDoc>
     </>

@@ -74,6 +74,12 @@ export function SiteFooter() {
         <Link href="/guides/how-to-build-an-age-of-sigmar-army-list" className={linkClass}>
           How to build a list
         </Link>
+        <Link href="/compare" className={linkClass}>
+          Compare builders
+        </Link>
+        <Link href="/play" className={linkClass}>
+          Play mode
+        </Link>
         <Link href="/factions" className={linkClass}>
           Factions
         </Link>

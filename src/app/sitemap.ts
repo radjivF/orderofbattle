@@ -14,7 +14,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ? 1
         : path.startsWith("/guides") || path === "/faq"
           ? 0.9
-          : path.startsWith("/factions/")
+          : path.startsWith("/factions/") ||
+              path === "/compare" ||
+              path === "/play"
             ? 0.8
             : 0.7,
   }));
