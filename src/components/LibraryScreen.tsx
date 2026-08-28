@@ -21,6 +21,7 @@ import {
   rememberListNavigation,
   rememberListOpen,
 } from "@/lib/listTransition";
+import { newListDraftFromSearch } from "@/lib/newListLink";
 import {
   EMPTY_LIBRARY_CTA_CLASS,
   EMPTY_LIBRARY_PANEL_CLASS,
@@ -138,6 +139,21 @@ export function LibraryScreen() {
     setLibraryChrome({ openNewList: () => setPicking(true) });
     return () => setLibraryChrome(null);
   }, [setLibraryChrome]);
+
+  useLayoutEffect(() => {
+    const draft = newListDraftFromSearch(
+      new URLSearchParams(window.location.search),
+    );
+    if (!draft) {
+      return;
+    }
+    setPicking(true);
+    setDraftFaction(draft.faction);
+    setDraftParent(draft.parent);
+    setDraftName(draft.name);
+    setDraftPoints(draft.points);
+    router.replace("/dashboard", { scroll: false });
+  }, [router]);
 
   return (
     <div className="relative z-10 min-h-full text-parchment">

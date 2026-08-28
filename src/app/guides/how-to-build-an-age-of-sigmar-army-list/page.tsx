@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentDoc } from "@/components/ContentDoc";
 import { JsonLd } from "@/components/JsonLd";
+import { StartListCta } from "@/components/StartListCta";
 import { HOW_TO_STEPS } from "@/lib/geoContent";
 import {
   articleNode,
@@ -63,6 +64,12 @@ export default function HowToBuildPage() {
           led by heroes. Order of Battle is a free unofficial builder for that
           job. Lists stay on your device.
         </p>
+        <p>
+          <StartListCta
+            factionId="cities-of-sigmar"
+            factionName="Cities of Sigmar"
+          />
+        </p>
 
         <h2>Before you start</h2>
         <ul>
@@ -105,8 +112,12 @@ export default function HowToBuildPage() {
           list with official points and your opponent or TO before an event.
         </p>
         <p>
-          <Link href="/dashboard">Open the builder</Link>
-          {" · "}
+          <StartListCta
+            factionId="cities-of-sigmar"
+            factionName="Cities of Sigmar"
+          />
+        </p>
+        <p>
           <Link href="/guides/free-age-of-sigmar-army-builder">
             Free army builder overview
           </Link>
