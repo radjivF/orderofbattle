@@ -51,6 +51,10 @@ export default function PrivacyPage() {
           sticks. It is not a backup of your lists and we do not pull list files
           out of IndexedDB into Clarity.
         </p>
+        <p className="mt-3">
+          A banner asks you to accept or reject Microsoft Clarity. Analytics and
+          session replay only run if you accept.
+        </p>
         <p className="mt-3">We also use:</p>
         <ul className="mt-3">
           <li>

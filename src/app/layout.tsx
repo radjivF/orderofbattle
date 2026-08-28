@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cinzel, Instrument_Sans } from "next/font/google";
 import { AnalyticsScripts } from "@/components/AnalyticsScripts";
+import { CookieConsent } from "@/components/CookieConsent";
 import { JsonLd } from "@/components/JsonLd";
 import { graph, softwareApplicationNode } from "@/lib/jsonLd";
 import {
@@ -97,6 +98,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-full font-sans" suppressHydrationWarning>
         <AnalyticsScripts />
+        <CookieConsent />
         <JsonLd data={graph([softwareApplicationNode()])} />
         {children}
       </body>
