@@ -4,14 +4,18 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { setConsentStatus, hasUserResponded } from "@/lib/cookieConsent";
 
-export function CookieConsent() {
+type Props = {
+  consentRequired: boolean;
+};
+
+export function CookieConsent({ consentRequired }: Props) {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    if (!hasUserResponded()) {
+    if (consentRequired && !hasUserResponded()) {
       setShow(true);
     }
-  }, []);
+  }, [consentRequired]);
 
   const handleAccept = () => {
     setConsentStatus("accepted");

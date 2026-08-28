@@ -30,11 +30,11 @@ function loadClarity() {
  * Inject third-party analytics via DOM (not React <script> / next/script).
  * React 19 warns and skips execution for script tags rendered by components.
  * Skipped on localhost — Ahrefs logs "Ignoring Event: localhost" otherwise.
- * 
+ *
  * Ahrefs is cookie-less and always loads.
- * Clarity requires cookie consent and only loads if accepted.
+ * Clarity loads immediately outside consent regions; elsewhere only after accept.
  */
-export function AnalyticsScripts() {
+export function AnalyticsScripts({ consentRequired }: { consentRequired: boolean }) {
   useEffect(() => {
     if (!shouldLoadAnalytics(window.location.hostname)) {
       return;
@@ -49,7 +49,10 @@ export function AnalyticsScripts() {
       document.head.appendChild(ahrefs);
     }
 
-    if (getConsentStatus() === "accepted") {
+    const clarityAllowed =
+      !consentRequired || getConsentStatus() === "accepted";
+
+    if (clarityAllowed) {
       loadClarity();
     }
 
@@ -57,12 +60,14 @@ export function AnalyticsScripts() {
       loadClarity();
     };
 
-    window.addEventListener("cookie-consent-accepted", handleConsent);
+    if (consentRequired) {
+      window.addEventListener("cookie-consent-accepted", handleConsent);
 
-    return () => {
-      window.removeEventListener("cookie-consent-accepted", handleConsent);
-    };
-  }, []);
+      return () => {
+        window.removeEventListener("cookie-consent-accepted", handleConsent);
+      };
+    }
+  }, [consentRequired]);
 
   return null;
 }

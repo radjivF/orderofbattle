@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import { Cinzel, Instrument_Sans } from "next/font/google";
 import { AnalyticsScripts } from "@/components/AnalyticsScripts";
 import { CookieConsent } from "@/components/CookieConsent";
 import { JsonLd } from "@/components/JsonLd";
+import { countryFromRequestHeaders, requiresCookieConsent } from "@/lib/consentRegion";
 import { graph, softwareApplicationNode } from "@/lib/jsonLd";
 import {
   SITE_DESCRIPTION,
@@ -85,7 +87,12 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const headerList = await headers();
+  const consentRequired = requiresCookieConsent(
+    countryFromRequestHeaders(headerList),
+  );
+
   return (
     <html
       lang="en"
@@ -97,8 +104,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
       </head>
       <body className="min-h-full font-sans" suppressHydrationWarning>
-        <AnalyticsScripts />
-        <CookieConsent />
+        <AnalyticsScripts consentRequired={consentRequired} />
+        <CookieConsent consentRequired={consentRequired} />
         <JsonLd data={graph([softwareApplicationNode()])} />
         {children}
       </body>
