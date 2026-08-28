@@ -26,19 +26,19 @@ export function CookieConsent() {
   if (!show) return null;
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 rounded border border-parchment/10 bg-obsidian/80 px-3 py-2 backdrop-blur-sm">
-      <div className="flex items-center gap-3">
-        <p className="text-xs text-parchment/60">We use cookies.</p>
-        <div className="flex gap-2">
+    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-parchment/20 bg-obsidian/95 py-3 backdrop-blur-sm">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4">
+        <p className="text-sm text-parchment/80">We use cookies.</p>
+        <div className="flex gap-3">
           <button
             onClick={handleReject}
-            className="rounded border border-parchment/10 px-2 py-1 text-xs text-parchment/50 transition-colors hover:border-parchment/20 hover:text-parchment/70"
+            className="px-3 py-1.5 text-sm text-parchment/60 transition-colors hover:text-parchment"
           >
             Reject
           </button>
           <button
             onClick={handleAccept}
-            className="rounded border border-parchment/20 px-2 py-1 text-xs text-parchment/70 transition-colors hover:border-parchment/30 hover:text-parchment"
+            className="rounded bg-parchment/90 px-4 py-1.5 text-sm font-medium text-obsidian transition-colors hover:bg-parchment"
           >
             Accept
           </button>
