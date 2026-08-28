@@ -162,6 +162,22 @@ export function ListNavProvider({
     }, wait);
   }, [covering, isBuilder, lists]);
 
+  useEffect(() => {
+    if (!covering) {
+      return;
+    }
+    const failSafe = window.setTimeout(() => {
+      if (!coveringRef.current) {
+        return;
+      }
+      clearTimers();
+      coveringRef.current = false;
+      hideScheduled.current = false;
+      setCovering(false);
+    }, 1200);
+    return () => window.clearTimeout(failSafe);
+  }, [covering]);
+
   function goBack() {
     if (coveringRef.current) {
       return;
@@ -202,12 +218,15 @@ export function ListNavProvider({
         </div>
         {covering ? (
           <div
-            className="fixed inset-0 z-50 overflow-hidden bg-ink text-parchment"
+            className="fixed inset-0 z-50 overflow-hidden text-parchment"
             role="status"
             aria-live="polite"
             aria-busy="true"
           >
-            <ListLoadingSplash label="Loading your lists" />
+            <IndexBackdropLayer />
+            <div className="relative z-10">
+              <ListLoadingSplash label="Loading your lists" />
+            </div>
           </div>
         ) : null}
       </div>

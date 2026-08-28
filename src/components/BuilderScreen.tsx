@@ -151,7 +151,7 @@ export function BuilderScreen({ listId }: Props) {
 
   const { setDecor } = useListFlowDecor();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setDecor({
       backdrop: artFactionId ? (
         <div
