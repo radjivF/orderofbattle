@@ -21,7 +21,6 @@ import {
   rememberListNavigation,
   rememberListOpen,
 } from "@/lib/listTransition";
-import { IndexBackdrop } from "./IndexBackdrop";
 import { useListFlowChrome } from "./ListFlowShell";
 import { FactionArtLayers } from "./FactionArtBackground";
 import { ListLoadingSplash } from "./ListLoadingSplash";
@@ -120,7 +119,7 @@ export function LibraryScreen() {
   }, [setLibraryChrome]);
 
   return (
-    <IndexBackdrop veil="page">
+    <div className="relative z-10 min-h-full text-parchment">
       <main className="mx-auto w-full max-w-3xl px-5 pb-20 sm:px-6 sm:pt-3 lg:max-w-5xl">
         {lists === undefined ? (
           <p className="rounded-2xl bg-ink-raised/90 px-4 py-3 text-parchment/80 ring-1 ring-parchment/10">
@@ -421,6 +420,6 @@ export function LibraryScreen() {
           />
         </div>
       ) : null}
-    </IndexBackdrop>
+    </div>
   );
 }
