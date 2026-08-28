@@ -24,12 +24,12 @@ import type {
 import { enhancementLabel } from "@/engine/queries";
 import { damageStepperActions } from "@/lib/damageStepper";
 import {
+  BuildSlotRow,
   EDIT_LINK_BUTTON_COMPACT_CLASS,
   EditLinkButton,
   IosPlusIcon,
   IosTrashIcon,
   PlaySlotRow,
-  SheetLinkButton,
 } from "./ios/SheetIconButton";
 
 type Props = {
@@ -664,49 +664,35 @@ function SlotLine({
   }
 
   return (
-    <div className="flex min-h-11 items-center gap-1 rounded-xl bg-parchment-ink/5 pl-3">
-      <div className="min-w-0 flex-1 py-2 pr-2">
-        <p className="font-serif text-lg leading-tight">
-          {unit.name}
-          {reinforced ? (
-            <span className="ml-2 font-sans text-xs text-sheet-muted">
-              reinforced
-            </span>
+    <BuildSlotRow
+      name={unit.name}
+      subtitle={`${unitSizeLabel(unit, Boolean(reinforced))} · ${points} pts`}
+      reinforced={reinforced}
+      sheetLabel={`${unit.name} datasheet`}
+      onOpenSheet={onOpenDatasheet}
+      trailing={
+        <>
+          {onReplace ? (
+            <EditLinkButton
+              label={`Change ${unit.name}`}
+              onClick={(event) => {
+                event.stopPropagation();
+                onReplace();
+              }}
+            />
           ) : null}
-        </p>
-        <p className="mt-0.5 text-sm text-sheet-muted">
-          {unitSizeLabel(unit, Boolean(reinforced))}
-          <span className="text-sigmarite"> · {points} pts</span>
-        </p>
-      </div>
-      <div className="flex shrink-0 items-stretch">
-        <SheetLinkButton
-          label={`${unit.name} datasheet`}
-          onClick={(event) => {
-            event.stopPropagation();
-            onOpenDatasheet();
-          }}
-        />
-        {onReplace ? (
-          <EditLinkButton
-            label={`Change ${unit.name}`}
-            onClick={(event) => {
-              event.stopPropagation();
-              onReplace();
-            }}
-          />
-        ) : null}
-        {canReinforce || onDuplicate || onRemove ? (
-          <SlotMoreMenu
-            reinforced={reinforced}
-            canReinforce={canReinforce}
-            onToggleReinforce={onToggleReinforce}
-            onDuplicate={onDuplicate}
-            onRemove={onRemove}
-          />
-        ) : null}
-      </div>
-    </div>
+          {canReinforce || onDuplicate || onRemove ? (
+            <SlotMoreMenu
+              reinforced={reinforced}
+              canReinforce={canReinforce}
+              onToggleReinforce={onToggleReinforce}
+              onDuplicate={onDuplicate}
+              onRemove={onRemove}
+            />
+          ) : null}
+        </>
+      }
+    />
   );
 }
 
