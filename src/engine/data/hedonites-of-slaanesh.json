@@ -1488,7 +1488,7 @@
           "cost": ""
         }
       ],
-      "pack": "Coveted Treasures"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "8b0b-791a-7873-1a61",
@@ -1506,8 +1506,8 @@
           "cost": ""
         }
       ],
-      "points": 10,
-      "pack": "Coveted Treasures"
+      "pack": "Artefacts of Power",
+      "points": 10
     },
     {
       "id": "a0a8-9c52-81cd-2b80",
@@ -1525,8 +1525,8 @@
           "cost": "1"
         }
       ],
-      "points": 20,
-      "pack": "Coveted Treasures"
+      "pack": "Artefacts of Power",
+      "points": 20
     }
   ],
   "heroicTraits": [
@@ -1546,7 +1546,7 @@
           "cost": ""
         }
       ],
-      "pack": "The Dark Prince's Beloved"
+      "pack": "Heroic Traits"
     },
     {
       "id": "1cc1-51fe-a5bb-24a3",
@@ -1564,7 +1564,7 @@
           "cost": ""
         }
       ],
-      "pack": "The Dark Prince's Beloved"
+      "pack": "Heroic Traits"
     },
     {
       "id": "b64a-4c09-cfc8-fac5",
@@ -1582,11 +1582,12 @@
           "cost": ""
         }
       ],
-      "pack": "The Dark Prince's Beloved"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [],
   "terrain": [
     {
       "id": "bad2-41cf-b054-d9b3",

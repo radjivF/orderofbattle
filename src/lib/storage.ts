@@ -32,6 +32,9 @@ function normalizeList(list: ArmyList): ArmyList {
     powerBinds: list.powerBinds ?? {},
     monstrousTrait: list.monstrousTrait ?? null,
     visionOfFate: list.visionOfFate ?? null,
+    specialEnhancements: list.specialEnhancements ?? [],
+    battleTacticCardIds: list.battleTacticCardIds ?? [],
+    battleTacticStage: list.battleTacticStage ?? {},
   });
 }
 
@@ -215,6 +218,9 @@ export function blankArmy(
     heroicTrait: null,
     monstrousTrait: null,
     visionOfFate: null,
+    specialEnhancements: [],
+    battleTacticCardIds: [],
+    battleTacticStage: {},
     scourgeRealm: null,
     generalRegimentId: null,
     regiments: [],

@@ -49,8 +49,10 @@ describe("exportArmyListText", () => {
     expect(text).toContain("Regiment 1 — General");
     expect(text).toContain(hero.name);
     expect(text).toContain(companion.name);
-    expect(text).toMatch(/\d+ \/ 2[,.]?000 pts/);
-    expect(text).toContain("— Order of Battle");
+    expect(text).toMatch(/2[,.]?000 pts · \d+ used/);
+    expect(text).toContain("=== Order of Battle ===");
+    expect(text).toContain("Built with Order of Battle");
+    expect(text).not.toContain("Validation");
   });
 
   it("sanitizes download filenames", () => {

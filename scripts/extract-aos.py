@@ -729,6 +729,215 @@ def extract_enhancements(
     return options
 
 
+SPECIAL_ENHANCEMENT_GROUP_NAMES = (
+    "Scars of War",
+    "Brands of the Dark Gods",
+    "Boons of Shadow",
+    "Decorations for Valour",
+    "Special Knick-knacks",
+    "Artycle References",
+    "Dark Gifts of Hashut",
+)
+
+HEROIC_TRAIT_GROUP_NAMES = (
+    "Royal Traits",
+    "Traits of Endless Hunger",
+    "Gifts of Morathi",
+)
+
+AQSHY_BATTLE_TACTIC_NAMES = (
+    "Blazing Onslaught",
+    "Siege of Ashes",
+    "Flanking Firestorm",
+    "Smokescreen",
+    "Burning for Vengeance",
+    "Legend of the Parch",
+)
+
+
+def is_artefact_group_name(name: str) -> bool:
+    if name in SPECIAL_ENHANCEMENT_GROUP_NAMES:
+        return False
+    lower = name.lower()
+    if any(
+        token in lower
+        for token in (
+            "brand",
+            "scar",
+            "boon",
+            "decoration",
+            "knick",
+            "artycle",
+        )
+    ):
+        return False
+    return any(
+        token in lower
+        for token in (
+            "artefact",
+            "relic",
+            "treasure",
+            "hoard",
+        )
+    )
+
+
+def enhancement_options_from_group(
+    group: ET.Element,
+    by_id: dict[str, ET.Element],
+    pack_name: str,
+    *,
+    include_hidden: bool = False,
+) -> list[dict]:
+    options: list[dict] = []
+    seen: set[str] = set()
+    for item in leaf_upgrades(
+        group,
+        by_id,
+        include_hidden=include_hidden,
+        pack=pack_name,
+    ):
+        oid = item["id"]
+        if not oid or oid in seen:
+            continue
+        seen.add(oid)
+        entry = by_id.get(oid)
+        option: dict = {
+            "id": oid,
+            "name": item["name"],
+            "abilities": unit_abilities(entry) if entry is not None else [],
+            "pack": pack_name,
+        }
+        points = entry_points(entry)
+        if points:
+            option["points"] = points
+        options.append(option)
+    return options
+
+
+def extract_artefact_enhancements(
+    cat: ET.Element,
+    by_id: dict[str, ET.Element],
+) -> list[dict]:
+    options: list[dict] = []
+    seen: set[str] = set()
+    for el in cat.iter():
+        if local(el.tag) != "selectionEntryGroup":
+            continue
+        if is_hidden(el):
+            continue
+        name = named(el)
+        if not is_artefact_group_name(name):
+            continue
+        for option in enhancement_options_from_group(el, by_id, name):
+            if option["id"] in seen:
+                continue
+            seen.add(option["id"])
+            options.append(option)
+    return options
+
+
+def extract_heroic_trait_enhancements(
+    cat: ET.Element,
+    by_id: dict[str, ET.Element],
+) -> list[dict]:
+    options: list[dict] = []
+    seen: set[str] = set()
+    labels = ("Heroic Traits", *HEROIC_TRAIT_GROUP_NAMES)
+    for label in labels:
+        for group in find_groups(cat, label):
+            pack = named(group)
+            for option in enhancement_options_from_group(group, by_id, pack):
+                if option["id"] in seen:
+                    continue
+                seen.add(option["id"])
+                options.append(option)
+    return options
+
+
+def extract_special_enhancement_tables(
+    cat: ET.Element,
+    by_id: dict[str, ET.Element],
+) -> list[dict]:
+    tables: list[dict] = []
+    for table_name in SPECIAL_ENHANCEMENT_GROUP_NAMES:
+        for group in find_groups(cat, table_name):
+            options = enhancement_options_from_group(
+                group,
+                by_id,
+                table_name,
+                include_hidden=True,
+            )
+            if not options:
+                continue
+            tables.append(
+                {
+                    "id": slug(table_name),
+                    "name": table_name,
+                    "options": options,
+                }
+            )
+            break
+    return tables
+
+
+def parse_battle_tactic_card(entry: ET.Element) -> dict | None:
+    name = named(entry)
+    if not name:
+        return None
+    card_id = entry.attrib.get("id") or slug(name)
+    setup = ""
+    affray = ""
+    strike = ""
+    domination = ""
+    for profile in entry.iter():
+        if local(profile.tag) != "profile":
+            continue
+        if profile.attrib.get("typeName") != "Battle Tactic Card":
+            continue
+        chars = profile_chars(profile)
+        setup = chars.get("Card", "") or setup
+        affray = chars.get("Affray", "") or affray
+        strike = chars.get("Strike", "") or strike
+        domination = chars.get("Domination", "") or domination
+    if not affray and not strike and not domination:
+        return None
+    return {
+        "id": card_id,
+        "name": name,
+        "setup": setup.strip(),
+        "affray": affray.strip(),
+        "strike": strike.strip(),
+        "domination": domination.strip(),
+    }
+
+
+def extract_battle_tactics(gst: ET.Element) -> list[dict]:
+    cards: list[dict] = []
+    seen: set[str] = set()
+    for el in gst.iter():
+        if local(el.tag) != "selectionEntryGroup":
+            continue
+        if not group_matches(named(el), "Battle Tactic Cards"):
+            continue
+        for entry in el.iter():
+            if local(entry.tag) != "selectionEntry":
+                continue
+            name = named(entry)
+            if name not in AQSHY_BATTLE_TACTIC_NAMES:
+                continue
+            cid = entry.attrib.get("id") or ""
+            if cid in seen:
+                continue
+            card = parse_battle_tactic_card(entry)
+            if card is None:
+                continue
+            seen.add(cid)
+            cards.append(card)
+    cards.sort(key=lambda item: AQSHY_BATTLE_TACTIC_NAMES.index(item["name"]))
+    return cards
+
+
 def extract_faction(
     gst: ET.Element,
     cat_path: Path,
@@ -907,13 +1116,8 @@ def extract_faction(
         "Manifestation Lore",
         with_manifestations=True,
     )
-    artefacts = extract_enhancements(
-        cat,
-        by_id,
-        "Artefacts of Power",
-        "Artefacts of",
-    )
-    heroic_traits = extract_enhancements(cat, by_id, "Heroic Traits")
+    artefacts = extract_artefact_enhancements(cat, by_id)
+    heroic_traits = extract_heroic_trait_enhancements(cat, by_id)
     monstrous_traits = extract_enhancements(
         cat,
         by_id,
@@ -926,6 +1130,7 @@ def extract_faction(
         "Visions of Fate",
         include_hidden=True,
     )
+    special_enhancement_tables = extract_special_enhancement_tables(cat, by_id)
     payload = {
         "id": slug(display),
         "name": display,
@@ -941,6 +1146,7 @@ def extract_faction(
         "heroicTraits": heroic_traits,
         "monstrousTraits": monstrous_traits,
         "visionsOfFate": visions_of_fate,
+        "specialEnhancementTables": special_enhancement_tables,
         "terrain": terrain,
         "units": units,
     }
@@ -952,7 +1158,7 @@ def extract_faction(
 def write_loader_from_out_dir() -> None:
     slugs: list[tuple[str, str]] = []
     for path in sorted(OUT_DIR.glob("*.json")):
-        if path.stem == "regiments-of-renown":
+        if path.stem in ("regiments-of-renown", "battle-tactics"):
             continue
         slugs.append((ident(path.stem), path.stem))
     write_loader(slugs)
@@ -1055,14 +1261,16 @@ def write_loader(slugs: list[tuple[str, str]]) -> None:
     )
     array = ",\n  ".join(ident for ident, _ in slugs)
     (OUT_DIR / "load.ts").write_text(
-        "import type { FactionCatalogue, RegimentOfRenown } from \"../types\";\n"
+        "import type { BattleTacticCard, FactionCatalogue, RegimentOfRenown } from \"../types\";\n"
         f"{imports}\n"
-        'import regimentsOfRenownJson from "./regiments-of-renown.json";\n\n'
+        'import regimentsOfRenownJson from "./regiments-of-renown.json";\n'
+        'import battleTacticsJson from "./battle-tactics.json";\n\n'
         "export const factions = [\n"
         f"  {array},\n"
         "] as FactionCatalogue[];\n\n"
         "export const regimentsOfRenown =\n"
-        "  regimentsOfRenownJson as RegimentOfRenown[];\n"
+        "  regimentsOfRenownJson as RegimentOfRenown[];\n\n"
+        "export const battleTactics = battleTacticsJson as BattleTacticCard[];\n"
     )
 
 
@@ -1313,7 +1521,8 @@ def main() -> None:
             f"{len(payload['artefacts'])} artefacts, "
             f"{len(payload['heroicTraits'])} traits, "
             f"{len(payload['monstrousTraits'])} monstrous, "
-            f"{len(payload['visionsOfFate'])} visions"
+            f"{len(payload['visionsOfFate'])} visions, "
+            f"{len(payload['specialEnhancementTables'])} special tables"
         )
 
     rors = extract_regiments_of_renown(gst, cat_id_to_slug)
@@ -1321,6 +1530,12 @@ def main() -> None:
         json.dumps(rors, indent=2) + "\n"
     )
     print(f"Regiments of Renown: {len(rors)}")
+
+    tactics = extract_battle_tactics(gst)
+    (OUT_DIR / "battle-tactics.json").write_text(
+        json.dumps(tactics, indent=2) + "\n"
+    )
+    print(f"Battle tactics: {len(tactics)} cards")
 
     write_loader(written)
     print(f"wrote {len(written)} factions")

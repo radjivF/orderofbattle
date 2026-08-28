@@ -1413,7 +1413,7 @@
           "cost": ""
         }
       ],
-      "pack": "Heirlooms of Hysh"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "78f2-d016-a23b-a09c",
@@ -1431,7 +1431,7 @@
           "cost": ""
         }
       ],
-      "pack": "Heirlooms of Hysh"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "4613-9bbd-2a04-ba17",
@@ -1449,7 +1449,7 @@
           "cost": ""
         }
       ],
-      "pack": "Heirlooms of Hysh"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1469,7 +1469,7 @@
           "cost": ""
         }
       ],
-      "pack": "Facets of Brilliance"
+      "pack": "Heroic Traits"
     },
     {
       "id": "b529-e265-113b-6bbe",
@@ -1487,7 +1487,7 @@
           "cost": ""
         }
       ],
-      "pack": "Facets of Brilliance"
+      "pack": "Heroic Traits"
     },
     {
       "id": "5378-7875-43c4-4eb1",
@@ -1505,11 +1505,12 @@
           "cost": ""
         }
       ],
-      "pack": "Facets of Brilliance"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [],
   "terrain": [
     {
       "id": "dda1-f11e-f025-a2b7",

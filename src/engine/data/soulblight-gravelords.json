@@ -1506,7 +1506,7 @@
           "cost": ""
         }
       ],
-      "pack": "Deathly Heirlooms"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "3b86-b6df-742c-b938",
@@ -1524,7 +1524,7 @@
           "cost": ""
         }
       ],
-      "pack": "Deathly Heirlooms"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "e458-a2b9-9888-6bbe",
@@ -1542,7 +1542,7 @@
           "cost": ""
         }
       ],
-      "pack": "Deathly Heirlooms"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1562,8 +1562,8 @@
           "cost": ""
         }
       ],
-      "points": 20,
-      "pack": "The Cursed Bloodlines"
+      "pack": "Heroic Traits",
+      "points": 20
     },
     {
       "id": "6f74-3ca7-deb9-89e3",
@@ -1581,7 +1581,7 @@
           "cost": ""
         }
       ],
-      "pack": "The Cursed Bloodlines"
+      "pack": "Heroic Traits"
     },
     {
       "id": "a22a-43bf-51f2-b940",
@@ -1599,11 +1599,12 @@
           "cost": ""
         }
       ],
-      "pack": "The Cursed Bloodlines"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [],
   "terrain": [
     {
       "id": "4ab6-d0f5-d7b0-1b38",

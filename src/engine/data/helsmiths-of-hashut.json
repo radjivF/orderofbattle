@@ -1312,7 +1312,7 @@
           "cost": ""
         }
       ],
-      "pack": "Dark Gifts of Hashut"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "f937-17f3-e55a-cd86",
@@ -1330,7 +1330,7 @@
           "cost": ""
         }
       ],
-      "pack": "Dark Gifts of Hashut"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "6a68-70cd-6ed7-66b6",
@@ -1348,7 +1348,7 @@
           "cost": ""
         }
       ],
-      "pack": "Dark Gifts of Hashut"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1368,7 +1368,7 @@
           "cost": ""
         }
       ],
-      "pack": "Tyrants and Overseers"
+      "pack": "Heroic Traits"
     },
     {
       "id": "d390-1046-9ce8-e5d6",
@@ -1386,7 +1386,7 @@
           "cost": ""
         }
       ],
-      "pack": "Tyrants and Overseers"
+      "pack": "Heroic Traits"
     },
     {
       "id": "3dda-ab2a-5e2e-cf4e",
@@ -1404,11 +1404,73 @@
           "cost": ""
         }
       ],
-      "pack": "Tyrants and Overseers"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [
+    {
+      "id": "dark-gifts-of-hashut",
+      "name": "Dark Gifts of Hashut",
+      "options": [
+        {
+          "id": "0cd5-aab1-1121-8032",
+          "name": "Scroll of Petrification",
+          "abilities": [
+            {
+              "name": "Scroll of Petrification",
+              "kind": "Activated",
+              "timing": "Once Per Battle, Any Hero Phase",
+              "declare": "Pick a friendly Helsmiths of Hashut unit wholly within 12\" of this unit to be the target.",
+              "effect": "For the rest of the turn: \u2022 The target has Ward (2+). \u2022 The target cannot use non-passive abilities or be picked to be the target of friendly abilities. \u2022 Enemy units can ignore the target's combat range for the purposes of movement and charging. \u2022 Enemy units can ignore the target for the purposes of setting up on the battlefield but cannot be set up on the target.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Dark Gifts of Hashut"
+        },
+        {
+          "id": "f937-17f3-e55a-cd86",
+          "name": "Crucible of Spite",
+          "abilities": [
+            {
+              "name": "Crucible of Spite",
+              "kind": "Activated",
+              "timing": "Once Per Battle, Your Hero Phase",
+              "declare": "",
+              "effect": "Give up to 3 daemonic power points to this unit. However, you cannot allocate or give any more daemonic power points to this unit for the rest of the battle.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Dark Gifts of Hashut"
+        },
+        {
+          "id": "6a68-70cd-6ed7-66b6",
+          "name": "Gauntlets of Punishment",
+          "abilities": [
+            {
+              "name": "Gauntlets of Punishment",
+              "kind": "Activated",
+              "timing": "Your Shooting Phase",
+              "declare": "Pick a visible enemy unit within 12\" of this unit to be the target.",
+              "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Dark Gifts of Hashut"
+        }
+      ]
+    }
+  ],
   "terrain": [],
   "units": [
     {

@@ -1458,7 +1458,7 @@
           "cost": ""
         }
       ],
-      "pack": "Relics of the Abyss"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "28b7-bd66-911d-348e",
@@ -1476,7 +1476,7 @@
           "cost": ""
         }
       ],
-      "pack": "Relics of the Abyss"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "17b0-dde1-dbca-8235",
@@ -1494,7 +1494,7 @@
           "cost": ""
         }
       ],
-      "pack": "Relics of the Abyss"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1514,8 +1514,8 @@
           "cost": ""
         }
       ],
-      "points": 20,
-      "pack": "Champions of the Tides"
+      "pack": "Heroic Traits",
+      "points": 20
     },
     {
       "id": "3a96-a2f7-b9f2-1dde",
@@ -1533,7 +1533,7 @@
           "cost": ""
         }
       ],
-      "pack": "Champions of the Tides"
+      "pack": "Heroic Traits"
     },
     {
       "id": "d33f-284c-ef6d-f527",
@@ -1551,11 +1551,12 @@
           "cost": ""
         }
       ],
-      "pack": "Champions of the Tides"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [],
   "terrain": [
     {
       "id": "cdd1-4012-45ab-ed95",

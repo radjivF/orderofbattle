@@ -11,6 +11,7 @@ import {
   namedOption,
   unitBaseName,
   unitIsWarmaster,
+  unitScourgeRealm,
   warmasterRegiments,
   rorTemplateForSelection,
   rorUnitAsCatalogue,
@@ -144,6 +145,8 @@ export function summarize(
     }
   }
 
+  warnMixedScourgeSheets(list, faction, issues);
+
   points += pickedEnhancementPoints(list.artefact, faction.artefacts);
   points += pickedEnhancementPoints(list.heroicTrait, faction.heroicTraits);
   points += pickedEnhancementPoints(
@@ -151,6 +154,13 @@ export function summarize(
     faction.monstrousTraits,
   );
   points += pickedEnhancementPoints(list.visionOfFate, faction.visionsOfFate);
+
+  for (const pick of list.specialEnhancements ?? []) {
+    const table = faction.specialEnhancementTables?.find(
+      (item) => item.id === pick.tableId,
+    );
+    points += pickedEnhancementPoints(pick, table?.options);
+  }
 
   if (list.regiments.length === 0) {
     issues.push({ tone: "warn", text: "Add a regiment to begin." });
@@ -215,6 +225,13 @@ export function summarize(
   warnUniqueEnhancement(list, faction, list.heroicTrait, "heroic trait", issues);
   warnMonstrousTrait(list, faction, issues);
   warnVisionOfFate(list, faction, issues);
+  warnSpecialEnhancements(list, faction, issues);
+
+  if ((list.battleTacticCardIds ?? []).length === 0) {
+    issues.push({ tone: "warn", text: "Pick up to 2 battle tactic cards." });
+  } else if ((list.battleTacticCardIds ?? []).length > 2) {
+    issues.push({ tone: "bad", text: "Maximum two battle tactic cards." });
+  }
 
   const remaining = list.pointsCap - points;
   if (issues.length === 0) {
@@ -272,16 +289,27 @@ export function pruneOrphanEnhancements(list: ArmyList): ArmyList {
     list.visionOfFate && ids.has(list.visionOfFate.heroSelectionId)
       ? list.visionOfFate
       : null;
+  const specialEnhancements = (list.specialEnhancements ?? []).filter((pick) =>
+    ids.has(pick.heroSelectionId),
+  );
 
   if (
     artefact === list.artefact &&
     heroicTrait === list.heroicTrait &&
     monstrousTrait === (list.monstrousTrait ?? null) &&
-    visionOfFate === (list.visionOfFate ?? null)
+    visionOfFate === (list.visionOfFate ?? null) &&
+    specialEnhancements.length === (list.specialEnhancements ?? []).length
   ) {
     return list;
   }
-  return { ...list, artefact, heroicTrait, monstrousTrait, visionOfFate };
+  return {
+    ...list,
+    artefact,
+    heroicTrait,
+    monstrousTrait,
+    visionOfFate,
+    specialEnhancements,
+  };
 }
 
 function rosterSelection(list: ArmyList, selectionId: string) {
@@ -306,6 +334,71 @@ function rosterSelection(list: ArmyList, selectionId: string) {
     }
   }
   return null;
+}
+
+function warnMixedScourgeSheets(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  issues: ListIssue[],
+) {
+  const seasons = new Set<"core" | "aqshy" | "ghyran">();
+  const addName = (name: string) => {
+    const realm = unitScourgeRealm(name);
+    seasons.add(realm ?? "core");
+  };
+
+  for (const regiment of list.regiments) {
+    if (regiment.hero) {
+      const unit = getUnit(faction, regiment.hero.unitId);
+      if (unit) {
+        addName(unit.name);
+      }
+    }
+    for (const slot of regiment.units) {
+      const unit = getUnit(faction, slot.unitId);
+      if (unit) {
+        addName(unit.name);
+      }
+    }
+  }
+  for (const aux of list.auxiliaries) {
+    const unit = getUnit(faction, aux.unitId);
+    if (unit) {
+      addName(unit.name);
+    }
+  }
+  const rorPick = list.regimentOfRenown;
+  if (rorPick) {
+    const ror = getRegimentOfRenown(rorPick.renownId);
+    if (ror) {
+      for (const slot of rorPick.units) {
+        const template = ror.units.find((unit) => unit.id === slot.unitId);
+        if (template) {
+          addName(template.name);
+        }
+      }
+    }
+  }
+
+  if (seasons.size <= 1) {
+    return;
+  }
+
+  const labels: string[] = [];
+  if (seasons.has("core")) {
+    labels.push("core");
+  }
+  if (seasons.has("aqshy")) {
+    labels.push("Scourge of Aqshy");
+  }
+  if (seasons.has("ghyran")) {
+    labels.push("Scourge of Ghyran");
+  }
+
+  issues.push({
+    tone: "bad",
+    text: `Cannot mix ${labels.join(", ")} warscrolls in the same army.`,
+  });
 }
 
 function warnUniqueEnhancement(
@@ -399,6 +492,42 @@ function warnVisionOfFate(
   }
   if (!namedOption(faction.visionsOfFate ?? [], pick.optionId)) {
     issues.push({ tone: "warn", text: "Unknown Vision of Fate." });
+  }
+}
+
+function warnSpecialEnhancements(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  issues: ListIssue[],
+) {
+  const seenTables = new Set<string>();
+  for (const pick of list.specialEnhancements ?? []) {
+    if (seenTables.has(pick.tableId)) {
+      issues.push({ tone: "bad", text: "Duplicate special enhancement table." });
+    }
+    seenTables.add(pick.tableId);
+    const table = faction.specialEnhancementTables?.find(
+      (item) => item.id === pick.tableId,
+    );
+    const selection = rosterSelection(list, pick.heroSelectionId);
+    if (!selection) {
+      continue;
+    }
+    const unit = unitForSelection(
+      list,
+      faction,
+      selection.unitId,
+      pick.heroSelectionId,
+    );
+    if (unit?.unique) {
+      issues.push({
+        tone: "warn",
+        text: `${unit.name} cannot take ${table?.name ?? "a special enhancement"}.`,
+      });
+    }
+    if (!table || !namedOption(table.options, pick.optionId)) {
+      issues.push({ tone: "warn", text: "Unknown special enhancement." });
+    }
   }
 }
 

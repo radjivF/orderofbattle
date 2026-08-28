@@ -1173,7 +1173,7 @@
           "cost": ""
         }
       ],
-      "pack": "Meatfist Artefacts of Power"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "33f2-08fc-0bc5-16c7",
@@ -1191,7 +1191,7 @@
           "cost": ""
         }
       ],
-      "pack": "Meatfist Artefacts of Power"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "4768-022f-b04c-c5b2",
@@ -1209,7 +1209,7 @@
           "cost": ""
         }
       ],
-      "pack": "Meatfist Artefacts of Power"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1229,7 +1229,7 @@
           "cost": ""
         }
       ],
-      "pack": "Meatfist Heroic Traits"
+      "pack": "Heroic Traits"
     },
     {
       "id": "5024-466a-183d-fac4",
@@ -1247,7 +1247,7 @@
           "cost": ""
         }
       ],
-      "pack": "Meatfist Heroic Traits"
+      "pack": "Heroic Traits"
     },
     {
       "id": "8d8d-3927-42a2-a7eb",
@@ -1265,11 +1265,12 @@
           "cost": ""
         }
       ],
-      "pack": "Meatfist Heroic Traits"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [],
   "terrain": [],
   "units": [
     {

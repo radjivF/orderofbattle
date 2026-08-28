@@ -1254,7 +1254,7 @@
           "cost": ""
         }
       ],
-      "pack": "Titanic Trophies"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "d487-2419-8794-52aa",
@@ -1272,7 +1272,7 @@
           "cost": ""
         }
       ],
-      "pack": "Titanic Trophies"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "191b-510c-1a4c-606f",
@@ -1290,7 +1290,7 @@
           "cost": ""
         }
       ],
-      "pack": "Titanic Trophies"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "6a47-69fe-5956-5aa5",
@@ -1308,8 +1308,8 @@
           "cost": ""
         }
       ],
-      "points": 10,
-      "pack": "Titanic Trophies"
+      "pack": "Artefacts of Power",
+      "points": 10
     },
     {
       "id": "b848-e898-1112-5358",
@@ -1327,8 +1327,8 @@
           "cost": ""
         }
       ],
-      "points": 10,
-      "pack": "Titanic Trophies"
+      "pack": "Artefacts of Power",
+      "points": 10
     },
     {
       "id": "af21-2013-aa28-2bb4",
@@ -1346,7 +1346,7 @@
           "cost": ""
         }
       ],
-      "pack": "Titanic Trophies"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1366,7 +1366,7 @@
           "cost": ""
         }
       ],
-      "pack": "Big Personalities"
+      "pack": "Heroic Traits"
     },
     {
       "id": "af81-d78-3e5b-5f9c",
@@ -1384,7 +1384,7 @@
           "cost": ""
         }
       ],
-      "pack": "Big Personalities"
+      "pack": "Heroic Traits"
     },
     {
       "id": "8ca2-88cb-a124-f1cb",
@@ -1402,11 +1402,12 @@
           "cost": ""
         }
       ],
-      "pack": "Big Personalities"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [],
   "terrain": [],
   "units": [
     {

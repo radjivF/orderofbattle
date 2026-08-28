@@ -1465,7 +1465,8 @@
           "chantingValue": "",
           "cost": ""
         }
-      ]
+      ],
+      "pack": "Artefacts of Power"
     },
     {
       "id": "d30e-9af0-3eec-36df",
@@ -1482,7 +1483,8 @@
           "chantingValue": "",
           "cost": ""
         }
-      ]
+      ],
+      "pack": "Artefacts of Power"
     },
     {
       "id": "74fd-bd4e-1851-4384",
@@ -1499,7 +1501,8 @@
           "chantingValue": "",
           "cost": ""
         }
-      ]
+      ],
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1519,7 +1522,7 @@
           "cost": ""
         }
       ],
-      "pack": "Aspects of Azyr"
+      "pack": "Heroic Traits"
     },
     {
       "id": "72ab-e597-4c70-9d8a",
@@ -1537,8 +1540,8 @@
           "cost": ""
         }
       ],
-      "points": 20,
-      "pack": "Aspects of Azyr"
+      "pack": "Heroic Traits",
+      "points": 20
     },
     {
       "id": "2030-c365-9838-f215",
@@ -1556,11 +1559,76 @@
           "cost": ""
         }
       ],
-      "pack": "Aspects of Azyr"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [
+    {
+      "id": "scars-of-war",
+      "name": "Scars of War",
+      "options": [
+        {
+          "id": "0143-c3d9-611f-395c",
+          "name": "Uncaged Lightning",
+          "abilities": [
+            {
+              "name": "Uncaged Lightning",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Each time an enemy unit in combat with this unit moves or is removed from the battlefield, after that ability has been resolved, if that enemy unit is on the battlefield and not in combat with this unit, inflict D3 mortal damage on that enemy unit.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Scars of War",
+          "points": 20
+        },
+        {
+          "id": "469d-f536-fe15-f27b",
+          "name": "Veterans of Amberstone Watch",
+          "abilities": [
+            {
+              "name": "Veterans of Amberstone Watch",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Enemy units do not have the Strike-first keyword while they are in combat with this unit. Designer's Note: *Enemy units that have* Strike-last *would still have* Strike-last; *they would not be treated as having neither* Strike-first *nor* Strike-last*.*",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Scars of War",
+          "points": 10
+        },
+        {
+          "id": "4dbc-14fb-4415-9b3d",
+          "name": "Pyrotechnic Souls",
+          "abilities": [
+            {
+              "name": "Pyrotechnic Souls",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When this unit is destroyed, gain 3 rage dice.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Scars of War",
+          "points": 10
+        }
+      ]
+    }
+  ],
   "terrain": [
     {
       "id": "8c5f-f4d2-f160-89ec",

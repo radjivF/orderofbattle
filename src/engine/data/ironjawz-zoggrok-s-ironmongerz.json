@@ -1180,7 +1180,8 @@
           "chantingValue": "",
           "cost": ""
         }
-      ]
+      ],
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1199,11 +1200,13 @@
           "chantingValue": "",
           "cost": ""
         }
-      ]
+      ],
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [],
   "terrain": [
     {
       "id": "092c-1ddc-6678-db32",

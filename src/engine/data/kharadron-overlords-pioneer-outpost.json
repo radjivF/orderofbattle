@@ -1161,7 +1161,8 @@
           "chantingValue": "",
           "cost": ""
         }
-      ]
+      ],
+      "pack": "Artefacts of Power"
     },
     {
       "id": "fbbd-c1da-d33d-a841",
@@ -1178,7 +1179,8 @@
           "chantingValue": "",
           "cost": ""
         }
-      ]
+      ],
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1197,7 +1199,8 @@
           "chantingValue": "",
           "cost": ""
         }
-      ]
+      ],
+      "pack": "Heroic Traits"
     },
     {
       "id": "4461-f332-e9e7-4f38",
@@ -1214,11 +1217,13 @@
           "chantingValue": "",
           "cost": ""
         }
-      ]
+      ],
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [],
   "terrain": [
     {
       "id": "2c4d-116f-02a1-88ce",

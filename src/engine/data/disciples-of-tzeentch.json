@@ -1515,8 +1515,8 @@
           "cost": ""
         }
       ],
-      "points": 20,
-      "pack": "Fated Artefacts"
+      "pack": "Artefacts of Power",
+      "points": 20
     },
     {
       "id": "a859-336a-edc8-3e5f",
@@ -1534,8 +1534,8 @@
           "cost": ""
         }
       ],
-      "points": 10,
-      "pack": "Fated Artefacts"
+      "pack": "Artefacts of Power",
+      "points": 10
     },
     {
       "id": "1cad-e215-a646-a9ea",
@@ -1553,7 +1553,7 @@
           "cost": ""
         }
       ],
-      "pack": "Fated Artefacts"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1573,7 +1573,7 @@
           "cost": "1"
         }
       ],
-      "pack": "Champions of Destiny"
+      "pack": "Heroic Traits"
     },
     {
       "id": "cc3a-4581-ff63-e6ec",
@@ -1591,7 +1591,7 @@
           "cost": ""
         }
       ],
-      "pack": "Champions of Destiny"
+      "pack": "Heroic Traits"
     },
     {
       "id": "cefb-b95c-3038-5c22",
@@ -1609,7 +1609,7 @@
           "cost": ""
         }
       ],
-      "pack": "Champions of Destiny"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [],
@@ -1669,6 +1669,7 @@
       "points": 20
     }
   ],
+  "specialEnhancementTables": [],
   "terrain": [
     {
       "id": "6ca7-16cb-53a8-71c0",

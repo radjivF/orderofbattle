@@ -1431,7 +1431,7 @@
           "cost": ""
         }
       ],
-      "pack": "Heirlooms of the Lodge"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "3467-5875-55a2-8c32",
@@ -1449,7 +1449,7 @@
           "cost": ""
         }
       ],
-      "pack": "Heirlooms of the Lodge"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "e5e-10bb-4236-e18d",
@@ -1467,7 +1467,7 @@
           "cost": ""
         }
       ],
-      "pack": "Heirlooms of the Lodge"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1487,7 +1487,7 @@
           "cost": ""
         }
       ],
-      "pack": "Inheritance of Grimnir"
+      "pack": "Heroic Traits"
     },
     {
       "id": "fa21-f6e9-3a56-77",
@@ -1505,7 +1505,7 @@
           "cost": ""
         }
       ],
-      "pack": "Inheritance of Grimnir"
+      "pack": "Heroic Traits"
     },
     {
       "id": "9001-7d5c-6216-8ce6",
@@ -1523,11 +1523,12 @@
           "cost": ""
         }
       ],
-      "pack": "Inheritance of Grimnir"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [],
   "terrain": [
     {
       "id": "d4be-ace4-55bc-ea7c",

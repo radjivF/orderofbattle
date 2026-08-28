@@ -1533,7 +1533,7 @@
           "cost": ""
         }
       ],
-      "pack": "Murderous Artefacts"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "7ec3-3828-3c35-bccf",
@@ -1551,7 +1551,7 @@
           "cost": ""
         }
       ],
-      "pack": "Murderous Artefacts"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "4e60-c59e-a6eb-2766",
@@ -1569,7 +1569,7 @@
           "cost": ""
         }
       ],
-      "pack": "Murderous Artefacts"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1589,7 +1589,7 @@
           "cost": ""
         }
       ],
-      "pack": "Commanders of the Blood Legions"
+      "pack": "Heroic Traits"
     },
     {
       "id": "e92f-179d-6fac-e594",
@@ -1607,7 +1607,7 @@
           "cost": ""
         }
       ],
-      "pack": "Commanders of the Blood Legions"
+      "pack": "Heroic Traits"
     },
     {
       "id": "4c69-c9fd-b060-aff8",
@@ -1625,11 +1625,12 @@
           "cost": ""
         }
       ],
-      "pack": "Commanders of the Blood Legions"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [],
   "terrain": [
     {
       "id": "f038-6876-40e8-5093",

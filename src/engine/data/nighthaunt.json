@@ -1444,8 +1444,8 @@
           "cost": ""
         }
       ],
-      "points": 20,
-      "pack": "Relics of the Underworlds"
+      "pack": "Artefacts of Power",
+      "points": 20
     },
     {
       "id": "2fbe-f99e-c102-ecb7",
@@ -1463,7 +1463,7 @@
           "cost": ""
         }
       ],
-      "pack": "Relics of the Underworlds"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "8e03-ae4e-54e7-ec49",
@@ -1481,7 +1481,7 @@
           "cost": ""
         }
       ],
-      "pack": "Relics of the Underworlds"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1501,7 +1501,7 @@
           "cost": ""
         }
       ],
-      "pack": "Shades of Death"
+      "pack": "Heroic Traits"
     },
     {
       "id": "eabf-168d-e0bf-bd61",
@@ -1519,8 +1519,8 @@
           "cost": ""
         }
       ],
-      "points": 20,
-      "pack": "Shades of Death"
+      "pack": "Heroic Traits",
+      "points": 20
     },
     {
       "id": "e525-1726-65ce-607f",
@@ -1538,11 +1538,12 @@
           "cost": ""
         }
       ],
-      "pack": "Shades of Death"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [],
   "terrain": [
     {
       "id": "ca5e-5353-81bc-4e13",

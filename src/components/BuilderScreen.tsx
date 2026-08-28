@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
-import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, factionHasScourge, resolveUnitIdForRealm, unitBaseName, auxiliaryPickerUnits, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel, type ScourgeRealm } from "@/engine/queries";
+import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, unitBaseName, auxiliaryPickerUnits, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel, getListUnit, getSelection, rorTemplateForSelection } from "@/engine/queries";
 import { combatModifierNotes } from "@/engine/magic";
 import { exportArmyListText, exportFileName } from "@/engine/exportText";
+import { battleTactics } from "@/engine/data/load";
 import { summarize } from "@/engine/validate";
 import { formatPoints } from "@/engine/pointsCap";
-import type { ArmyList, CatalogueUnit, DatasheetSubject, EnhancementOption, FactionCatalogue, NamedOption } from "@/engine/types";
+import type { ArmyList, CatalogueUnit, DatasheetSubject, EnhancementOption, FactionCatalogue, NamedOption, SpecialEnhancementTable } from "@/engine/types";
 import { createId } from "@/lib/id";
 import {
   getArmiesServerSnapshot,
@@ -29,6 +30,7 @@ import { PointsCapField } from "./PointsCapField";
 import { ManifestationCard } from "./ManifestationCard";
 import { PlayMagicBoard } from "./PlayMagicBoard";
 import { PlayPhaseBoard } from "./PlayPhaseBoard";
+import { BattleTacticTracker } from "./BattleTacticTracker";
 import { PlayBindNotes, PlayHealthTrack, RegimentCard, SlotEnhancements, SlotMoreMenu } from "./RegimentCard";
 import {
   buildRoRSelections,
@@ -46,6 +48,7 @@ type Picker =
   | { kind: "trait"; heroSelectionId: string }
   | { kind: "monstrous"; heroSelectionId: string }
   | { kind: "vision"; heroSelectionId: string }
+  | { kind: "special"; tableId: string; heroSelectionId: string }
   | null;
 
 type Props = {
@@ -113,6 +116,7 @@ function BuilderReady({
   const [playTab, setPlayTab] = useState<"units" | "magic" | "phases">("units");
   const [exportOpen, setExportOpen] = useState(false);
   const [exportCopied, setExportCopied] = useState(false);
+  const [regimentRemoveId, setRegimentRemoveId] = useState<string | null>(null);
   const totals = useMemo(() => summarize(list, faction), [list, faction]);
   const exportText = useMemo(
     () => exportArmyListText(list, faction),
@@ -122,10 +126,13 @@ function BuilderReady({
     () => (playMode ? combatModifierNotes(list, faction) : []),
     [playMode, list, faction],
   );
-  const issue = totals.issues[0] ?? {
-    tone: "warn" as const,
-    text: "Add a regiment to begin.",
-  };
+  const issue =
+    totals.issues.find((item) => item.tone === "bad") ??
+    totals.issues.find((item) => item.tone === "warn") ??
+    totals.issues[0] ?? {
+      tone: "warn" as const,
+      text: "Add a regiment to begin.",
+    };
   const pickerUnits = pickerUnitsFor(list, faction, picker);
   const selectedId = selectedRegimentId ?? list.regiments[0]?.id ?? null;
 
@@ -220,6 +227,35 @@ function BuilderReady({
     });
   }
 
+  async function removeRegiment(regimentId: string) {
+    const regiment = list.regiments.find((item) => item.id === regimentId);
+    if (!regiment) {
+      return;
+    }
+    const selectionIds = [
+      regiment.hero?.id,
+      ...regiment.units.map((slot) => slot.id),
+    ];
+    let next: ArmyList = {
+      ...list,
+      regiments: list.regiments.filter((item) => item.id !== regimentId),
+      generalRegimentId:
+        list.generalRegimentId === regimentId
+          ? (list.regiments.find((item) => item.id !== regimentId)?.id ?? null)
+          : list.generalRegimentId,
+    };
+    for (const selectionId of selectionIds) {
+      if (selectionId) {
+        next = dropEnhancements(next, selectionId);
+      }
+    }
+    await commit(next);
+    if (selectedRegimentId === regimentId) {
+      setSelectedRegimentId(next.regiments[0]?.id ?? null);
+    }
+    setRegimentRemoveId(null);
+  }
+
   async function onPick(unit: CatalogueUnit) {
     if (!picker) {
       return;
@@ -278,8 +314,24 @@ function BuilderReady({
       (picker.kind !== "artefact" &&
         picker.kind !== "trait" &&
         picker.kind !== "monstrous" &&
-        picker.kind !== "vision")
+        picker.kind !== "vision" &&
+        picker.kind !== "special")
     ) {
+      return;
+    }
+    if (picker.kind === "special") {
+      const next = (list.specialEnhancements ?? []).filter(
+        (pick) => pick.tableId !== picker.tableId,
+      );
+      if (option) {
+        next.push({
+          tableId: picker.tableId,
+          heroSelectionId: picker.heroSelectionId,
+          optionId: option.id,
+        });
+      }
+      await commit({ ...list, specialEnhancements: next });
+      setPicker(null);
       return;
     }
     const field =
@@ -338,7 +390,30 @@ function BuilderReady({
                 options: enhancementChoices(faction.visionsOfFate ?? []),
                 selectedId: list.visionOfFate?.optionId,
               }
-            : null;
+            : picker?.kind === "special"
+              ? {
+                  title:
+                    faction.specialEnhancementTables?.find(
+                      (table) => table.id === picker.tableId,
+                    )?.name ?? "Enhancement",
+                  options: enhancementChoices(
+                    faction.specialEnhancementTables?.find(
+                      (table) => table.id === picker.tableId,
+                    )?.options ?? [],
+                  ),
+                  selectedId: list.specialEnhancements?.find(
+                    (pick) => pick.tableId === picker.tableId,
+                  )?.optionId,
+                }
+              : null;
+
+  const specialTables = faction.specialEnhancementTables ?? [];
+  const specialEnhancementPicks = list.specialEnhancements ?? [];
+  const onPickSpecial =
+    specialTables.length > 0
+      ? (tableId: string, heroSelectionId: string) =>
+          setPicker({ kind: "special", tableId, heroSelectionId })
+      : undefined;
 
   const rorOptions = listRegimentsOfRenown(list.factionId);
   const rorPicker =
@@ -354,6 +429,15 @@ function BuilderReady({
           selectedId: list.regimentOfRenown?.renownId,
         }
       : null;
+
+  const regimentPendingRemoval = list.regiments.find(
+    (item) => item.id === regimentRemoveId,
+  );
+  const regimentRemoveMessage = regimentPendingRemoval?.hero
+    ? `${getUnit(faction, regimentPendingRemoval.hero.unitId)?.name ?? "This regiment"} and ${regimentPendingRemoval.units.length} companion${
+        regimentPendingRemoval.units.length === 1 ? "" : "s"
+      } will be removed from the list.`
+    : "This regiment and its units will be removed from the list.";
 
   return (
     <div className="min-h-full w-full max-w-[100vw] overflow-x-hidden text-parchment">
@@ -502,7 +586,9 @@ function BuilderReady({
               <span className="font-medium tracking-wide">Options</span>
               <span className="flex items-center gap-2 text-xs text-ink-muted">
                 <span className="group-open:hidden">
-                  Points · Lores · Export
+                  Points · Lores
+                  {specialTables.length > 0 ? " · Enhancements" : ""}
+                  {" · Tactics · Export"}
                 </span>
                 <span aria-hidden="true" className="transition group-open:rotate-180">
                   ▾
@@ -515,29 +601,6 @@ function BuilderReady({
                 onChange={(pointsCap) => void commit({ ...list, pointsCap })}
                 variant="ink"
               />
-
-              {factionHasScourge(faction) ? (
-                <label className="flex flex-col gap-2 text-sm text-parchment/80">
-                  Datasheet season
-                  <select
-                    value={list.scourgeRealm ?? ""}
-                    onChange={(event) => {
-                      const realm = (event.target.value ||
-                        null) as ScourgeRealm | null;
-                      void commit(applyScourgeRealm(list, faction, realm));
-                    }}
-                    className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
-                  >
-                    <option value="">Core datasheets</option>
-                    <option value="aqshy">Scourge of Aqshy</option>
-                    <option value="ghyran">Scourge of Ghyran</option>
-                  </select>
-                  <span className="text-xs text-ink-muted">
-                    Replaces matching warscrolls; other units keep their core
-                    sheet.
-                  </span>
-                </label>
-              ) : null}
 
               {faction.spellLores.length > 0 ? (
                 <div className="flex flex-col gap-2">
@@ -644,6 +707,25 @@ function BuilderReady({
                 </label>
               ) : null}
 
+              {specialTables.length > 0 ? (
+                <SpecialEnhancementsPicker
+                  list={list}
+                  faction={faction}
+                  tables={specialTables}
+                  onCommit={(next) => void commit(next)}
+                />
+              ) : null}
+
+              <div className="flex flex-col gap-2">
+                <p className="text-sm text-parchment/80">
+                  Battle tactic cards (pick up to 2)
+                </p>
+                <BattleTacticCardPicker
+                  list={list}
+                  onCommit={(next) => void commit(next)}
+                />
+              </div>
+
               <button
                 type="button"
                 onClick={() => {
@@ -710,6 +792,21 @@ function BuilderReady({
         </div>
         ) : playTab === "units" ? (
           <PlaySummary list={list} faction={faction} />
+        ) : null}
+
+        {playMode && playTab === "phases" ? (
+          <BattleTacticTracker
+            list={list}
+            onStageChange={(cardId, stage) =>
+              void commit({
+                ...list,
+                battleTacticStage: {
+                  ...(list.battleTacticStage ?? {}),
+                  [cardId]: stage,
+                },
+              })
+            }
+          />
         ) : null}
 
         {playMode && playTab === "phases" ? (
@@ -842,6 +939,9 @@ function BuilderReady({
                     })
                 : undefined
             }
+            specialTables={specialTables}
+            specialEnhancementPicks={specialEnhancementPicks}
+            onPickSpecial={onPickSpecial}
             onOpenDatasheet={setDatasheet}
             onToggleReinforce={(selectionId) =>
               void commit({
@@ -860,6 +960,38 @@ function BuilderReady({
                 ),
               })
             }
+            onDuplicateUnit={(selectionId) => {
+              const slot = regiment.units.find((item) => item.id === selectionId);
+              if (!slot) {
+                return;
+              }
+              const unit = getUnit(faction, slot.unitId);
+              if (!unit || unit.unique) {
+                return;
+              }
+              const cap = totals.slotCap(regiment.id);
+              if (regiment.units.length >= cap) {
+                return;
+              }
+              void commit({
+                ...list,
+                regiments: list.regiments.map((item) =>
+                  item.id === regiment.id
+                    ? {
+                        ...item,
+                        units: [
+                          ...item.units,
+                          {
+                            id: createId(),
+                            unitId: slot.unitId,
+                            reinforced: slot.reinforced,
+                          },
+                        ],
+                      }
+                    : item,
+                ),
+              });
+            }}
             onRemoveUnit={(selectionId) =>
               void commit(
                 dropEnhancements(
@@ -880,27 +1012,7 @@ function BuilderReady({
                 ),
               )
             }
-            onRemoveRegiment={() => {
-              const selectionIds = [
-                regiment.hero?.id,
-                ...regiment.units.map((slot) => slot.id),
-              ];
-              let next: ArmyList = {
-                ...list,
-                regiments: list.regiments.filter(
-                  (item) => item.id !== regiment.id,
-                ),
-                generalRegimentId:
-                  list.generalRegimentId === regiment.id
-                    ? (list.regiments.find((item) => item.id !== regiment.id)
-                        ?.id ?? null)
-                    : list.generalRegimentId,
-              };
-              for (const selectionId of selectionIds) {
-                next = dropEnhancements(next, selectionId);
-              }
-              void commit(next);
-            }}
+            onRemoveRegiment={() => setRegimentRemoveId(regiment.id)}
             bindNotes={bindNotes}
             onPlayHealth={(selectionId, damage) =>
               void setPlayDamage(selectionId, damage)
@@ -996,6 +1108,9 @@ function BuilderReady({
                     })
                 : undefined
             }
+            specialTables={specialTables}
+            specialEnhancementPicks={specialEnhancementPicks}
+            onPickSpecial={onPickSpecial}
             onOpenDatasheet={setDatasheet}
             onRemove={() => void commit(clearRoREnhancements(list))}
             bindNotes={bindNotes}
@@ -1113,6 +1228,14 @@ function BuilderReady({
                                 )?.abilities
                               : undefined
                           }
+                          specialTables={specialTables}
+                          specialEnhancementPicks={specialEnhancementPicks}
+                          onPickSpecial={
+                            onPickSpecial
+                              ? (tableId) =>
+                                  onPickSpecial(tableId, slot.id)
+                              : undefined
+                          }
                         />
                       </div>
                     </li>
@@ -1165,6 +1288,22 @@ function BuilderReady({
                                         }
                                       : item,
                                   ),
+                                })
+                            : undefined
+                        }
+                        onDuplicate={
+                          !unit.unique
+                            ? () =>
+                                void commit({
+                                  ...list,
+                                  auxiliaries: [
+                                    ...list.auxiliaries,
+                                    {
+                                      id: createId(),
+                                      unitId: slot.unitId,
+                                      reinforced: slot.reinforced,
+                                    },
+                                  ],
                                 })
                             : undefined
                         }
@@ -1275,6 +1414,13 @@ function BuilderReady({
                                 kind: "vision",
                                 heroSelectionId,
                               })
+                          : undefined
+                      }
+                      specialTables={specialTables}
+                      specialEnhancementPicks={specialEnhancementPicks}
+                      onPickSpecial={
+                        onPickSpecial
+                          ? (tableId) => onPickSpecial(tableId, slot.id)
                           : undefined
                       }
                     />
@@ -1413,6 +1559,35 @@ function BuilderReady({
         />
       ) : null}
 
+      {regimentRemoveId ? (
+        <ModalFrame
+          label="Remove regiment"
+          onClose={() => setRegimentRemoveId(null)}
+          panelClassName="parchment-card w-full max-w-sm rounded-2xl p-5 text-parchment-ink"
+        >
+          <h2 className="font-serif text-2xl">Remove this regiment?</h2>
+          <p className="mt-2 text-base text-sheet-muted">
+            {regimentRemoveMessage}
+          </p>
+          <div className="mt-5 flex gap-2">
+            <button
+              type="button"
+              onClick={() => setRegimentRemoveId(null)}
+              className="min-h-11 flex-1 rounded-xl bg-parchment-ink/5 text-base"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={() => void removeRegiment(regimentRemoveId)}
+              className="min-h-11 flex-1 rounded-xl bg-illegal text-base font-semibold text-parchment"
+            >
+              Remove
+            </button>
+          </div>
+        </ModalFrame>
+      ) : null}
+
       {exportOpen ? (
         <ModalFrame
           label="Export list as text"
@@ -1517,14 +1692,13 @@ function pickerUnitsFor(
   if (!picker) {
     return null;
   }
-  const realm = list.scourgeRealm ?? null;
   if (picker.kind === "hero") {
     const current = list.regiments.find((item) => item.id === picker.regimentId)
       ?.hero?.unitId;
-    return available(list, faction, heroesOf(faction, realm), current);
+    return available(list, faction, heroesOf(faction), current);
   }
   if (picker.kind === "aux") {
-    return available(list, faction, auxiliaryPickerUnits(faction, realm));
+    return available(list, faction, auxiliaryPickerUnits(faction));
   }
   if (picker.kind !== "unit") {
     return null;
@@ -1536,34 +1710,7 @@ function pickerUnitsFor(
   if (!hero) {
     return [];
   }
-  return available(list, faction, legalCompanions(faction, hero, realm));
-}
-
-function applyScourgeRealm(
-  list: ArmyList,
-  faction: FactionCatalogue,
-  realm: ScourgeRealm | null,
-): ArmyList {
-  const remap = (unitId: string) =>
-    resolveUnitIdForRealm(faction, unitId, realm);
-  return {
-    ...list,
-    scourgeRealm: realm,
-    regiments: list.regiments.map((regiment) => ({
-      ...regiment,
-      hero: regiment.hero
-        ? { ...regiment.hero, unitId: remap(regiment.hero.unitId) }
-        : null,
-      units: regiment.units.map((slot) => ({
-        ...slot,
-        unitId: remap(slot.unitId),
-      })),
-    })),
-    auxiliaries: list.auxiliaries.map((slot) => ({
-      ...slot,
-      unitId: remap(slot.unitId),
-    })),
-  };
+  return available(list, faction, legalCompanions(faction, hero));
 }
 
 function dropEnhancements(list: ArmyList, heroSelectionId?: string): ArmyList {
@@ -1586,6 +1733,9 @@ function dropEnhancements(list: ArmyList, heroSelectionId?: string): ArmyList {
       list.visionOfFate?.heroSelectionId === heroSelectionId
         ? null
         : list.visionOfFate,
+    specialEnhancements: (list.specialEnhancements ?? []).filter(
+      (pick) => pick.heroSelectionId !== heroSelectionId,
+    ),
   };
 }
 
@@ -1594,6 +1744,299 @@ function enhancementChoices(options: EnhancementOption[]) {
     ...item,
     detail: enhancementChoiceDetail(item),
   }));
+}
+
+function specialEnhancementBearers(
+  list: ArmyList,
+  faction: FactionCatalogue,
+): { id: string; name: string }[] {
+  const rows: { id: string; name: string }[] = [];
+  const add = (selectionId: string, unitId: string) => {
+    const rorTemplate = rorTemplateForSelection(list, selectionId);
+    if (rorTemplate) {
+      if (!rorTemplate.canTakeEnhancements || rorTemplate.unique) {
+        return;
+      }
+      rows.push({ id: selectionId, name: rorTemplate.name });
+      return;
+    }
+    const unit = getListUnit(list, faction, unitId);
+    if (!unit || unit.unique) {
+      return;
+    }
+    rows.push({ id: selectionId, name: unit.name });
+  };
+
+  for (const regiment of list.regiments) {
+    if (regiment.hero) {
+      add(regiment.hero.id, regiment.hero.unitId);
+    }
+    for (const slot of regiment.units) {
+      add(slot.id, slot.unitId);
+    }
+  }
+  for (const slot of list.auxiliaries) {
+    add(slot.id, slot.unitId);
+  }
+  for (const slot of list.regimentOfRenown?.units ?? []) {
+    add(slot.id, slot.unitId);
+  }
+  return rows;
+}
+
+function SpecialEnhancementsPicker({
+  list,
+  faction,
+  tables,
+  onCommit,
+}: {
+  list: ArmyList;
+  faction: FactionCatalogue;
+  tables: SpecialEnhancementTable[];
+  onCommit: (next: ArmyList) => void;
+}) {
+  const bearers = specialEnhancementBearers(list, faction);
+
+  function setPick(tableId: string, bearerId: string, optionId: string) {
+    const next = (list.specialEnhancements ?? []).filter(
+      (pick) => pick.tableId !== tableId,
+    );
+    next.push({ tableId, heroSelectionId: bearerId, optionId });
+    onCommit({ ...list, specialEnhancements: next });
+  }
+
+  function clearPick(tableId: string) {
+    onCommit({
+      ...list,
+      specialEnhancements: (list.specialEnhancements ?? []).filter(
+        (pick) => pick.tableId !== tableId,
+      ),
+    });
+  }
+
+  return (
+    <div className="flex flex-col gap-4">
+      <p className="text-sm text-parchment/80">
+        Special enhancements (Scourge of Aqshy)
+      </p>
+      {bearers.length === 0 ? (
+        <p className="text-xs text-ink-muted">
+          Add a non-unique unit to assign these enhancements.
+        </p>
+      ) : null}
+      {tables.map((table) => {
+        const pick = list.specialEnhancements?.find(
+          (item) => item.tableId === table.id,
+        );
+        const bearerName = pick
+          ? (bearers.find((item) => item.id === pick.heroSelectionId)?.name ??
+            (() => {
+              const selection = getSelection(list, pick.heroSelectionId);
+              return selection
+                ? getListUnit(list, faction, selection.unitId)?.name
+                : undefined;
+            })())
+          : null;
+        return (
+          <div
+            key={table.id}
+            className="flex flex-col gap-3 rounded-xl bg-parchment/5 px-3 py-3 ring-1 ring-parchment/10"
+          >
+            <p className="font-medium text-parchment">{table.name}</p>
+            <ul className="flex flex-col gap-2 text-xs leading-relaxed text-parchment/75">
+              {table.options.map((option) => (
+                <li key={option.id}>
+                  <p className="font-medium text-parchment/90">
+                    {option.name}
+                    {option.points ? (
+                      <span className="text-parchment/55">
+                        {" "}
+                        · {formatPoints(option.points)} pts
+                      </span>
+                    ) : null}
+                  </p>
+                  {option.abilities[0]?.effect ? (
+                    <p className="mt-1">{option.abilities[0].effect}</p>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
+            <label className="flex flex-col gap-2 text-sm text-parchment/80">
+              Bearer unit
+              <select
+                value={pick?.heroSelectionId ?? ""}
+                disabled={bearers.length === 0}
+                onChange={(event) => {
+                  const bearerId = event.target.value;
+                  if (!bearerId) {
+                    clearPick(table.id);
+                    return;
+                  }
+                  const optionId =
+                    pick?.optionId ?? table.options[0]?.id ?? "";
+                  if (optionId) {
+                    setPick(table.id, bearerId, optionId);
+                  }
+                }}
+                className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink disabled:opacity-60"
+              >
+                <option value="">None</option>
+                {bearers.map((bearer) => (
+                  <option key={bearer.id} value={bearer.id}>
+                    {bearer.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            {pick?.heroSelectionId ? (
+              <label className="flex flex-col gap-2 text-sm text-parchment/80">
+                Enhancement
+                <select
+                  value={pick.optionId}
+                  onChange={(event) => {
+                    const optionId = event.target.value;
+                    if (!optionId) {
+                      clearPick(table.id);
+                      return;
+                    }
+                    setPick(table.id, pick.heroSelectionId, optionId);
+                  }}
+                  className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
+                >
+                  <option value="">None</option>
+                  {table.options.map((option) => (
+                    <option key={option.id} value={option.id}>
+                      {option.name}
+                      {option.points
+                        ? ` · ${formatPoints(option.points)} pts`
+                        : ""}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            ) : null}
+            {pick && bearerName ? (
+              <p className="text-xs text-aether">
+                Assigned:{" "}
+                {enhancementLabel(table.options, pick.optionId)} on {bearerName}
+              </p>
+            ) : null}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function BattleTacticCardPicker({
+  list,
+  onCommit,
+}: {
+  list: ArmyList;
+  onCommit: (next: ArmyList) => void;
+}) {
+  if (battleTactics.length === 0) {
+    return null;
+  }
+
+  const selectedIds = list.battleTacticCardIds ?? [];
+
+  function commitIds(ids: string[]) {
+    const stage = { ...(list.battleTacticStage ?? {}) };
+    for (const key of Object.keys(stage)) {
+      if (!ids.includes(key)) {
+        delete stage[key];
+      }
+    }
+    onCommit({
+      ...list,
+      battleTacticCardIds: ids,
+      battleTacticStage: stage,
+    });
+  }
+
+  function toggleCard(cardId: string) {
+    if (selectedIds.includes(cardId)) {
+      commitIds(selectedIds.filter((id) => id !== cardId));
+      return;
+    }
+    if (selectedIds.length >= 2) {
+      return;
+    }
+    commitIds([...selectedIds, cardId]);
+  }
+
+  const atCap = selectedIds.length >= 2;
+
+  return (
+    <div className="flex min-w-0 flex-col gap-3">
+      <p className="text-xs text-ink-muted">
+        {selectedIds.length === 0
+          ? "Tap a card to select it."
+          : `${selectedIds.length} of 2 selected — tap again to deselect.`}
+      </p>
+      <ul className="flex flex-col gap-3">
+        {battleTactics.map((card) => {
+          const pickIndex = selectedIds.indexOf(card.id);
+          const picked = pickIndex >= 0;
+          const disabled = !picked && atCap;
+          return (
+            <li key={card.id}>
+              <button
+                type="button"
+                onClick={() => toggleCard(card.id)}
+                disabled={disabled}
+                aria-pressed={picked}
+                className={`w-full rounded-xl px-3 py-3 text-left text-xs leading-relaxed ring-1 transition ${
+                  picked
+                    ? "bg-aether/15 ring-aether/40"
+                    : disabled
+                      ? "bg-parchment/5 text-parchment/45 ring-parchment/10"
+                      : "bg-parchment/5 text-parchment/80 ring-parchment/10 hover:bg-parchment/10"
+                }`}
+              >
+                <p className="font-medium text-sm text-parchment">
+                  {card.name}
+                  {picked ? (
+                    <span className="ml-2 text-aether">
+                      Card {pickIndex + 1}
+                    </span>
+                  ) : null}
+                </p>
+                {card.setup ? (
+                  <p className="mt-2 text-parchment/70">{card.setup}</p>
+                ) : null}
+                {card.affray ? (
+                  <p className="mt-2">
+                    <span className="font-semibold uppercase text-parchment/55">
+                      Affray ·{" "}
+                    </span>
+                    {card.affray}
+                  </p>
+                ) : null}
+                {card.strike ? (
+                  <p className="mt-2">
+                    <span className="font-semibold uppercase text-parchment/55">
+                      Strike ·{" "}
+                    </span>
+                    {card.strike}
+                  </p>
+                ) : null}
+                {card.domination ? (
+                  <p className="mt-2">
+                    <span className="font-semibold uppercase text-parchment/55">
+                      Domination ·{" "}
+                    </span>
+                    {card.domination}
+                  </p>
+                ) : null}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 }
 
 function PlaySummary({
@@ -1610,11 +2053,6 @@ function PlaySummary({
   const prayer = namedOption(faction.prayerLores, list.prayerLoreId);
   const lines = [
     formation?.name,
-    list.scourgeRealm === "aqshy"
-      ? "Scourge of Aqshy"
-      : list.scourgeRealm === "ghyran"
-        ? "Scourge of Ghyran"
-        : null,
     spell?.name,
     prayer?.name,
   ].filter(Boolean);

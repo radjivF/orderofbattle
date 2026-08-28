@@ -1299,7 +1299,7 @@
           "cost": ""
         }
       ],
-      "pack": "Krule Artefacts"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "cb2d-475-47e8-83ba",
@@ -1317,7 +1317,7 @@
           "cost": ""
         }
       ],
-      "pack": "Krule Artefacts"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "ca1c-f1f1-ed88-1c2b",
@@ -1335,7 +1335,7 @@
           "cost": ""
         }
       ],
-      "pack": "Krule Artefacts"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1355,7 +1355,7 @@
           "cost": ""
         }
       ],
-      "pack": "Kunnin' Warlords"
+      "pack": "Heroic Traits"
     },
     {
       "id": "862c-abb9-b793-9c2d",
@@ -1373,8 +1373,8 @@
           "cost": ""
         }
       ],
-      "points": 10,
-      "pack": "Kunnin' Warlords"
+      "pack": "Heroic Traits",
+      "points": 10
     },
     {
       "id": "e5c6-347e-bdd4-8e46",
@@ -1392,7 +1392,7 @@
           "cost": ""
         }
       ],
-      "pack": "Kunnin' Warlords"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [
@@ -1506,6 +1506,7 @@
     }
   ],
   "visionsOfFate": [],
+  "specialEnhancementTables": [],
   "terrain": [
     {
       "id": "8346-0ba5-9740-dc49",

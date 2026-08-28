@@ -1220,8 +1220,8 @@
           "cost": ""
         }
       ],
-      "points": 10,
-      "pack": "Inventions of the Sky-ports"
+      "pack": "Artefacts of Power",
+      "points": 10
     },
     {
       "id": "f9b7-eac8-5758-2baa",
@@ -1239,7 +1239,7 @@
           "cost": ""
         }
       ],
-      "pack": "Inventions of the Sky-ports"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "1fa-68fd-b016-234d",
@@ -1257,8 +1257,8 @@
           "cost": ""
         }
       ],
-      "points": 10,
-      "pack": "Inventions of the Sky-ports"
+      "pack": "Artefacts of Power",
+      "points": 10
     }
   ],
   "heroicTraits": [
@@ -1278,7 +1278,7 @@
           "cost": ""
         }
       ],
-      "pack": "Lords of the Sky-fleets"
+      "pack": "Heroic Traits"
     },
     {
       "id": "74aa-37c5-6917-da31",
@@ -1296,7 +1296,7 @@
           "cost": ""
         }
       ],
-      "pack": "Lords of the Sky-fleets"
+      "pack": "Heroic Traits"
     },
     {
       "id": "f3b6-5434-f041-9b82",
@@ -1314,12 +1314,77 @@
           "cost": ""
         }
       ],
-      "points": 10,
-      "pack": "Lords of the Sky-fleets"
+      "pack": "Heroic Traits",
+      "points": 10
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [
+    {
+      "id": "artycle-references",
+      "name": "Artycle References",
+      "options": [
+        {
+          "id": "8a98-50e3-5069-c717",
+          "name": "Artycle 15, Point 4",
+          "abilities": [
+            {
+              "name": "Artycle 15, Point 4",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "\u2022 Add 1 to hit rolls for this unit's combat attacks that target an enemy unit that has Fly. \u2022 Add 1 to wound rolls for this unit's combat attacks that target an enemy unit that does not have Fly.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Artycle References",
+          "points": 10
+        },
+        {
+          "id": "e444-ecc5-c325-dd21",
+          "name": "Artycle 20, Amendment 2",
+          "abilities": [
+            {
+              "name": "Artycle 20, Amendment 2",
+              "kind": "Activated",
+              "timing": "Once Per Battle, Enemy Charge Phase",
+              "declare": "If this unit has not charged this turn, pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
+              "effect": "The target's attacks cannot score critical hits for the rest of the turn (treat them as regular hits instead).",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Artycle References",
+          "points": 10
+        },
+        {
+          "id": "ac30-5fad-3f30-7915",
+          "name": "Artycle 25, Point 6",
+          "abilities": [
+            {
+              "name": "Artycle 25, Point 6",
+              "kind": "Activated",
+              "timing": "Once Per Battle, Any Combat Phase",
+              "declare": "",
+              "effect": "Friendly Kharadron Overlords Heroes have Ward (5+) while they are within this unit's combat range.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Artycle References",
+          "points": 10
+        }
+      ]
+    }
+  ],
   "terrain": [
     {
       "id": "2c4d-116f-02a1-88ce",

@@ -1479,7 +1479,7 @@
           "cost": ""
         }
       ],
-      "pack": "Infernal Treasures"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "4cdc-7124-9db7-72f3",
@@ -1497,7 +1497,7 @@
           "cost": ""
         }
       ],
-      "pack": "Infernal Treasures"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "e71c-c9f0-5cd-f497",
@@ -1515,7 +1515,7 @@
           "cost": ""
         }
       ],
-      "pack": "Infernal Treasures"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1535,7 +1535,7 @@
           "cost": ""
         }
       ],
-      "pack": "Ruinous Overlords"
+      "pack": "Heroic Traits"
     },
     {
       "id": "d3c6-1b7c-3e62-3136",
@@ -1553,7 +1553,7 @@
           "cost": ""
         }
       ],
-      "pack": "Ruinous Overlords"
+      "pack": "Heroic Traits"
     },
     {
       "id": "619b-6451-c3d5-42d1",
@@ -1571,12 +1571,77 @@
           "cost": ""
         }
       ],
-      "points": 20,
-      "pack": "Ruinous Overlords"
+      "pack": "Heroic Traits",
+      "points": 20
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [
+    {
+      "id": "brands-of-the-dark-gods",
+      "name": "Brands of the Dark Gods",
+      "options": [
+        {
+          "id": "4212-8768-6eb5-1b09",
+          "name": "Brand of Unbreakable Bonds",
+          "abilities": [
+            {
+              "name": "Brand of Unbreakable Bonds",
+              "kind": "Activated",
+              "timing": "Once Per Battle, Your Movement Phase",
+              "declare": "",
+              "effect": "Remove this unit from the battlefield and set it up again wholly within 3\" of an objective you control and not in combat. This unit cannot use Charge abilities for the rest of the turn.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Brands of the Dark Gods",
+          "points": 10
+        },
+        {
+          "id": "ed22-5f5e-88b5-e7fd",
+          "name": "Brand of the Unaligned",
+          "abilities": [
+            {
+              "name": "Brand of the Unaligned",
+              "kind": "Activated",
+              "timing": "Your Hero Phase",
+              "declare": "",
+              "effect": "Remove all of this unit's Pledge to Chaos keywords. Then, pick 1 of the following Pledge to Chaos keywords. You cannot pick a keyword you picked for this unit earlier in the battle. \u2022 Pledged to Khorne \u2022 Pledged to Tzeentch \u2022 Pledged to Nurgle \u2022 Pledged to Slaanesh This unit has that keyword for the rest of the battle.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Brands of the Dark Gods",
+          "points": 20
+        },
+        {
+          "id": "f62c-f28b-9d34-8e65",
+          "name": "Brand of Apoplexy",
+          "abilities": [
+            {
+              "name": "Brand of Apoplexy",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "While your fury level is 7, add 1 to the Damage characteristic of this unit's weapons.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Brands of the Dark Gods",
+          "points": 10
+        }
+      ]
+    }
+  ],
   "terrain": [
     {
       "id": "22a9-a618-90cf-5bc7",

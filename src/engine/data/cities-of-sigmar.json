@@ -1368,7 +1368,7 @@
           "cost": ""
         }
       ],
-      "pack": "Treasures of the Cities"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "98dc-9f8e-95e1-fc8e",
@@ -1386,7 +1386,7 @@
           "cost": ""
         }
       ],
-      "pack": "Treasures of the Cities"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "c244-fb99-a193-4a8d",
@@ -1404,7 +1404,7 @@
           "cost": ""
         }
       ],
-      "pack": "Treasures of the Cities"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1424,7 +1424,7 @@
           "cost": ""
         }
       ],
-      "pack": "Sentinels of Order"
+      "pack": "Heroic Traits"
     },
     {
       "id": "75b5-4219-e6f3-e89b",
@@ -1442,7 +1442,7 @@
           "cost": ""
         }
       ],
-      "pack": "Sentinels of Order"
+      "pack": "Heroic Traits"
     },
     {
       "id": "b922-2043-5ced-e0b1",
@@ -1460,11 +1460,76 @@
           "cost": ""
         }
       ],
-      "pack": "Sentinels of Order"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
+  "specialEnhancementTables": [
+    {
+      "id": "decorations-for-valour",
+      "name": "Decorations for Valour",
+      "options": [
+        {
+          "id": "40ea-6840-899c-f688",
+          "name": "Twin-tailed Comet of Honour",
+          "abilities": [
+            {
+              "name": "Twin-tailed Comet of Honour",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "While this unit has any champions, add 5 to this unit's control score.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Decorations for Valour",
+          "points": 10
+        },
+        {
+          "id": "b4fc-7ddb-de71-de0e",
+          "name": "The Living City Cross",
+          "abilities": [
+            {
+              "name": "The Living City Cross",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "While this unit has any champions, subtract 1 from hit rolls for shooting attacks that target this unit.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Decorations for Valour",
+          "points": 10
+        },
+        {
+          "id": "5c50-a317-fabd-9493",
+          "name": "Aqshian Order of Merit",
+          "abilities": [
+            {
+              "name": "Aqshian Order of Merit",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "While this unit has any champions, if an enemy unit in combat with this unit uses the 'Eruption of Fury' ability, when resolving attacks as part of that ability, on an unmodified hit roll of 6, do not inflict an additional D3 mortal damage on each unit in combat with that unit.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Decorations for Valour",
+          "points": 10
+        }
+      ]
+    }
+  ],
   "terrain": [
     {
       "id": "2be6-daba-0245-2e2a",

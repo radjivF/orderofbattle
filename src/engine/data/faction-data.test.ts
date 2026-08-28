@@ -111,6 +111,13 @@ function assertCatalogueShape(faction: FactionCatalogue) {
   for (const item of [...faction.artefacts, ...faction.heroicTraits]) {
     expect(Array.isArray(item.abilities)).toBe(true);
   }
+  expect(Array.isArray(faction.specialEnhancementTables)).toBe(true);
+  for (const table of faction.specialEnhancementTables ?? []) {
+    expect(table.id).toBeTruthy();
+    expect(table.name).toBeTruthy();
+    assertNamedList(table.options, `${faction.id} ${table.name}`);
+    uniqueIds(table.options, `${faction.id} ${table.id} options`);
+  }
 }
 
 describe("faction catalogues", () => {

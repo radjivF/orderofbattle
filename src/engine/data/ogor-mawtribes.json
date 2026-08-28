@@ -1323,7 +1323,7 @@
           "cost": ""
         }
       ],
-      "pack": "Plunder of the Mawtribes"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "2193-1dd2-2471-649b",
@@ -1341,7 +1341,7 @@
           "cost": ""
         }
       ],
-      "pack": "Plunder of the Mawtribes"
+      "pack": "Artefacts of Power"
     },
     {
       "id": "8310-9dcb-6401-6d7a",
@@ -1359,7 +1359,7 @@
           "cost": ""
         }
       ],
-      "pack": "Plunder of the Mawtribes"
+      "pack": "Artefacts of Power"
     }
   ],
   "heroicTraits": [
@@ -1379,7 +1379,7 @@
           "cost": ""
         }
       ],
-      "pack": "Traits of Endless Hunger"
+      "pack": "Heroic Traits"
     },
     {
       "id": "b63a-a9f5-1f8b-5cbc",
@@ -1397,7 +1397,7 @@
           "cost": ""
         }
       ],
-      "pack": "Traits of Endless Hunger"
+      "pack": "Heroic Traits"
     },
     {
       "id": "b6f3-c71d-0335-9c2b",
@@ -1415,7 +1415,7 @@
           "cost": ""
         }
       ],
-      "pack": "Traits of Endless Hunger"
+      "pack": "Heroic Traits"
     }
   ],
   "monstrousTraits": [
@@ -1478,6 +1478,7 @@
     }
   ],
   "visionsOfFate": [],
+  "specialEnhancementTables": [],
   "terrain": [
     {
       "id": "2586-d28e-7404-b64e",
