@@ -31,6 +31,7 @@ import {
   IosTrashIcon,
   PlaySlotRow,
 } from "./ios/SheetIconButton";
+import { ExpandableRuleCard } from "./ExpandableRuleCard";
 
 type Props = {
   regiment: Regiment;
@@ -568,8 +569,8 @@ function CollapsibleEnhancement({
   label: string;
   abilities?: UnitAbility[];
 }) {
-  const hasRules = (abilities?.length ?? 0) > 0;
-  if (!hasRules) {
+  const rules = abilities ?? [];
+  if (rules.length === 0) {
     return (
       <p className="text-sm text-sheet-muted">
         {kind} · {label}
@@ -577,21 +578,27 @@ function CollapsibleEnhancement({
     );
   }
 
+  const primary = rules[0];
   return (
-    <details
-      className="rounded-lg bg-parchment-ink/5 open:bg-parchment-ink/[0.07]"
-      onClick={(event) => event.stopPropagation()}
-    >
-      <summary className="flex min-h-9 cursor-pointer list-none items-center justify-between gap-2 px-2.5 py-1.5 text-sm text-sheet-muted [&::-webkit-details-marker]:hidden">
-        <span className="min-w-0 truncate">
-          {kind} · {label}
-        </span>
-        <span className="shrink-0 text-xs text-parchment-ink/35" aria-hidden>
-          ▾
-        </span>
-      </summary>
-      <EnhancementPreview abilities={abilities ?? []} />
-    </details>
+    <div onClick={(event) => event.stopPropagation()}>
+      <ExpandableRuleCard
+        nested
+        title={`${kind} · ${label}`}
+        timing={primary.timing}
+        declare={primary.declare}
+        effect={primary.effect}
+      />
+      {rules.slice(1).map((ability) => (
+        <ExpandableRuleCard
+          key={ability.name}
+          nested
+          title={ability.name}
+          timing={ability.timing}
+          declare={ability.declare}
+          effect={ability.effect}
+        />
+      ))}
+    </div>
   );
 }
 
@@ -954,38 +961,5 @@ function StepperButton({
     >
       {label}
     </button>
-  );
-}
-
-function EnhancementPreview({ abilities }: { abilities: UnitAbility[] }) {
-  return (
-    <ul className="flex flex-col gap-2 border-t border-parchment-ink/10 px-2.5 py-2">
-      {abilities.map((ability) => (
-        <li key={ability.name} className="text-sm text-parchment-ink/85">
-          {ability.name ? (
-            <p className="font-serif text-base leading-snug text-parchment-ink">
-              {ability.name}
-            </p>
-          ) : null}
-          {ability.timing ? (
-            <p className="mt-0.5 text-xs text-sheet-muted">
-              {ability.timing}
-            </p>
-          ) : null}
-          {ability.declare ? (
-            <p className="mt-1 leading-relaxed">
-              <span className="text-sheet-muted">Declare · </span>
-              {ability.declare}
-            </p>
-          ) : null}
-          {ability.effect ? (
-            <p className="mt-1 leading-relaxed">
-              <span className="text-sheet-muted">Effect · </span>
-              {ability.effect}
-            </p>
-          ) : null}
-        </li>
-      ))}
-    </ul>
   );
 }

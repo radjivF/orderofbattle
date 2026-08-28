@@ -23,6 +23,7 @@ import type {
   FactionCatalogue,
   UnitAbility,
 } from "@/engine/types";
+import { ExpandableRuleCard } from "./ExpandableRuleCard";
 
 type Props = {
   list: ArmyList;
@@ -281,15 +282,15 @@ function PowerCard({
         </label>
       ) : null}
 
-      {power.declare ? (
-        <p className="mt-2 text-sm leading-relaxed text-parchment-ink/80">
-          <span className="text-sheet-muted">Declare · </span>
-          {power.declare}
-        </p>
-      ) : null}
       {effectChoices ? (
         <div className="mt-2">
-          <p className="text-sm leading-relaxed text-parchment-ink/80">
+          {power.declare ? (
+            <p className="text-sm leading-relaxed text-parchment-ink/80">
+              <span className="text-sheet-muted">Declare · </span>
+              {power.declare}
+            </p>
+          ) : null}
+          <p className="mt-2 text-sm leading-relaxed text-parchment-ink/80">
             <span className="text-sheet-muted">Effect · </span>
             {effectChoices.preface}
           </p>
@@ -316,11 +317,14 @@ function PowerCard({
             })}
           </ul>
         </div>
-      ) : power.effect ? (
-        <p className="mt-1 text-sm leading-relaxed text-parchment-ink/80">
-          <span className="text-sheet-muted">Effect · </span>
-          {power.effect}
-        </p>
+      ) : power.declare || power.effect ? (
+        <div className="mt-2">
+          <ExpandableRuleCard
+            nested
+            declare={power.declare}
+            effect={power.effect}
+          />
+        </div>
       ) : null}
     </article>
   );

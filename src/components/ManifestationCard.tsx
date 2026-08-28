@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { manifestationStatLine } from "@/engine/queries";
+import { openNativeSelect } from "@/lib/nativeSelect";
 import type { ManifestationLore, ManifestationModel } from "@/engine/types";
 import { BuildSlotRow, PlaySlotRow } from "./ios/SheetIconButton";
 
@@ -39,13 +40,30 @@ export function ManifestationCard({
         {!playMode ? (
           <button
             type="button"
-            onClick={() => selectRef.current?.focus()}
-            className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5 text-left"
+            onClick={() => openNativeSelect(selectRef.current)}
+            aria-label={`Choose ${lore?.name ?? "manifestation lore"}`}
+            className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5 text-left active:opacity-60"
           >
             <h2 className="font-serif text-2xl leading-tight">
               {lore?.name ?? "No lore chosen"}
             </h2>
             {lore?.points ? (
+              <p className="text-sm font-medium text-sigmarite">
+                {lore.points} pts
+              </p>
+            ) : null}
+          </button>
+        ) : lore && lore.manifestations.length > 0 ? (
+          <button
+            type="button"
+            onClick={() => onOpenSheet(lore.manifestations[0])}
+            aria-label={`${lore.manifestations[0].name} datasheet`}
+            className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5 text-left active:opacity-60"
+          >
+            <h2 className="font-serif text-2xl leading-tight">
+              {lore.name}
+            </h2>
+            {lore.points ? (
               <p className="text-sm font-medium text-sigmarite">
                 {lore.points} pts
               </p>

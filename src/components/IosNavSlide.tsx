@@ -3,18 +3,33 @@
 import {
   createContext,
   useContext,
+  useEffect,
   useLayoutEffect,
   useRef,
   useState,
+  useSyncExternalStore,
+  useTransition,
   type ReactNode,
 } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import {
   clearListNavigationDirection,
   peekListNavigationDirection,
+  rememberListNavigation,
 } from "@/lib/listTransition";
-import { iosPushSlideClass, type SlidePhase } from "@/lib/iosNavSlide";
+import {
+  iosPushSlideClass,
+  libraryReturnCoverCanDismiss,
+  libraryReturnCoverRemainingMs,
+  type SlidePhase,
+} from "@/lib/iosNavSlide";
+import {
+  getArmiesServerSnapshot,
+  getArmiesSnapshot,
+  subscribeArmies,
+} from "@/lib/storage";
 import { IndexBackdropLayer } from "./IndexBackdrop";
+import { ListLoadingSplash } from "./ListLoadingSplash";
 
 const SLIDE_MS = 320;
 
@@ -63,7 +78,17 @@ export function ListNavProvider({
   const pathname = usePathname();
   const isBuilder = pathname.startsWith("/lists/");
   const [phase, setPhase] = useState<SlidePhase>("settled");
+  const [covering, setCovering] = useState(false);
+  const [, startTransition] = useTransition();
+  const lists = useSyncExternalStore(
+    subscribeArmies,
+    getArmiesSnapshot,
+    getArmiesServerSnapshot,
+  );
   const timers = useRef<number[]>([]);
+  const coveringRef = useRef(false);
+  const coverStartedAt = useRef(0);
+  const hideScheduled = useRef(false);
 
   function clearTimers() {
     for (const id of timers.current) {
@@ -78,7 +103,18 @@ export function ListNavProvider({
     return id;
   }
 
+  useEffect(() => {
+    if (!isBuilder) {
+      return;
+    }
+    router.prefetch("/dashboard");
+  }, [isBuilder, router]);
+
   useLayoutEffect(() => {
+    if (coveringRef.current) {
+      setPhase("settled");
+      return;
+    }
     clearTimers();
 
     if (!isBuilder) {
@@ -103,14 +139,65 @@ export function ListNavProvider({
     });
   }, [isBuilder, pathname]);
 
-  function goBack() {
-    clearTimers();
-    if (prefersReducedMotion()) {
-      router.push("/dashboard");
+  useLayoutEffect(() => {
+    if (
+      !coveringRef.current ||
+      hideScheduled.current ||
+      !libraryReturnCoverCanDismiss({
+        isBuilder,
+        listsReady: lists !== undefined,
+      })
+    ) {
       return;
     }
-    setPhase("out");
-    schedule(() => router.push("/dashboard"), SLIDE_MS);
+    hideScheduled.current = true;
+    const wait = libraryReturnCoverRemainingMs(
+      coverStartedAt.current,
+      Date.now(),
+    );
+    schedule(() => {
+      coveringRef.current = false;
+      hideScheduled.current = false;
+      setCovering(false);
+    }, wait);
+  }, [covering, isBuilder, lists]);
+
+  useEffect(() => {
+    if (!covering) {
+      return;
+    }
+    const failSafe = window.setTimeout(() => {
+      if (!coveringRef.current) {
+        return;
+      }
+      clearTimers();
+      coveringRef.current = false;
+      hideScheduled.current = false;
+      setCovering(false);
+    }, 1200);
+    return () => window.clearTimeout(failSafe);
+  }, [covering]);
+
+  function goBack() {
+    if (coveringRef.current) {
+      return;
+    }
+    rememberListNavigation("back");
+    clearTimers();
+    if (prefersReducedMotion()) {
+      startTransition(() => {
+        router.push("/dashboard", { scroll: false });
+      });
+      return;
+    }
+    coveringRef.current = true;
+    hideScheduled.current = false;
+    coverStartedAt.current = Date.now();
+    setPhase("settled");
+    setCovering(true);
+    startTransition(() => {
+      router.push("/dashboard", { scroll: false });
+    });
   }
 
   return (
@@ -129,12 +216,25 @@ export function ListNavProvider({
         >
           {children}
         </div>
+        {covering ? (
+          <div
+            className="fixed inset-0 z-50 overflow-hidden text-parchment"
+            role="status"
+            aria-live="polite"
+            aria-busy="true"
+          >
+            <IndexBackdropLayer />
+            <div className="relative z-10">
+              <ListLoadingSplash label="Loading your lists" />
+            </div>
+          </div>
+        ) : null}
       </div>
     </ListNavContext.Provider>
   );
 }
 
-/** Library shell — list slide-back reveals the shared index backdrop. */
+/** Library shell — same stacking root as the builder so the index art stays put. */
 export function LibraryNavSlide({ children }: { children: ReactNode }) {
   return <div className="ios-push-root">{children}</div>;
 }

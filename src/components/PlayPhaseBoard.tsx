@@ -32,6 +32,7 @@ import type {
   UnitWeapon,
 } from "@/engine/types";
 import { ModalFrame } from "./ModalFrame";
+import { ExpandableRuleCard } from "./ExpandableRuleCard";
 import { IosUnderlineTabs } from "./ios/IosUnderlineTabs";
 
 type PhaseSubTab = "abilities" | "weapons" | "command" | "units";
@@ -494,80 +495,20 @@ function subTabLabel(tab: PhaseSubTab) {
   return "Command";
 }
 
-function CollapseChevron() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      aria-hidden="true"
-      className="h-4 w-4 shrink-0 text-sheet-muted transition-transform duration-200 group-open:rotate-180"
-    >
-      <path
-        d="M5 8l5 5 5-5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 function CoreCommandCard({ command }: { command: CoreCommand }) {
-  const expandable = Boolean(
-    command.declare || command.effect || command.keywords,
-  );
-  const header = (
-    <div className="flex items-start justify-between gap-2">
-      <div className="min-w-0 flex-1">
-        <p className="font-serif text-lg leading-tight">{command.name}</p>
-        <p className="mt-1 text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-          {command.timing}
-        </p>
-      </div>
-      <div className="flex shrink-0 items-center gap-2">
+  return (
+    <ExpandableRuleCard
+      title={command.name}
+      timing={command.timing}
+      declare={command.declare}
+      effect={command.effect}
+      meta={command.keywords ? `Keywords · ${command.keywords}` : undefined}
+      trailing={
         <span className="rounded-md bg-parchment-ink/10 px-2 py-0.5 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
           {command.cost} CP
         </span>
-        {expandable ? <CollapseChevron /> : null}
-      </div>
-    </div>
-  );
-
-  if (!expandable) {
-    return (
-      <article className="w-full rounded-xl bg-parchment-ink/5 px-3 py-3 text-left">
-        {header}
-      </article>
-    );
-  }
-
-  return (
-    <details
-      open
-      className="group w-full rounded-xl bg-parchment-ink/5 open:bg-parchment-ink/[0.07]"
-    >
-      <summary className="cursor-pointer list-none px-3 py-3 [&::-webkit-details-marker]:hidden">
-        {header}
-      </summary>
-      <div className="border-t border-parchment-ink/10 px-3 pb-3 pt-2">
-        {command.declare ? (
-          <p className="text-sm leading-relaxed text-parchment-ink/75">
-            <span className="text-sheet-muted">Declare · </span>
-            {command.declare}
-          </p>
-        ) : null}
-        <p className="mt-1 text-sm leading-relaxed text-parchment-ink/75">
-          <span className="text-sheet-muted">Effect · </span>
-          {command.effect}
-        </p>
-        {command.keywords ? (
-          <p className="mt-2 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
-            Keywords · {command.keywords}
-          </p>
-        ) : null}
-      </div>
-    </details>
+      }
+    />
   );
 }
 
@@ -630,90 +571,30 @@ function AbilityCard({
 }) {
   const { ability } = row;
   const cpCost = commandAbilityCost(ability);
-  const expandable = Boolean(
-    ability.declare ||
-      ability.effect ||
-      ability.castingValue ||
-      ability.chantingValue,
-  );
-  const pad = nested ? "px-2.5 py-2.5" : "px-3 py-3";
-  const shell = nested ? "rounded-lg" : "rounded-xl";
+  const meta = [
+    ability.castingValue ? `Cast ${ability.castingValue}` : "",
+    ability.chantingValue ? `Chant ${ability.chantingValue}` : "",
+  ]
+    .filter(Boolean)
+    .join(" · ");
 
-  const header = (
-    <div className="flex items-start justify-between gap-2">
-      <div className="min-w-0 flex-1">
-        {!nested ? (
-          <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-            {row.unitName}
-          </p>
-        ) : null}
-        <p
-          className={`font-serif text-lg leading-tight ${nested ? "" : "mt-1"}`}
-        >
-          {ability.name}
-        </p>
-        {ability.timing ? (
-          <p className="mt-1 font-serif text-base leading-snug text-parchment-ink">
-            {ability.timing}
-          </p>
-        ) : null}
-      </div>
-      <div className="flex shrink-0 items-center gap-2">
-        {cpCost != null ? (
+  return (
+    <ExpandableRuleCard
+      title={ability.name}
+      kicker={nested ? undefined : row.unitName}
+      timing={ability.timing}
+      declare={ability.declare}
+      effect={ability.effect}
+      meta={meta || undefined}
+      nested={nested}
+      trailing={
+        cpCost != null ? (
           <span className="rounded-md bg-parchment-ink/10 px-2 py-0.5 text-xs font-semibold tracking-wide text-sheet-muted">
             {cpCost} CP
           </span>
-        ) : null}
-        {expandable ? <CollapseChevron /> : null}
-      </div>
-    </div>
-  );
-
-  if (!expandable) {
-    return (
-      <div className={`w-full ${shell} bg-parchment-ink/5 ${pad} text-left`}>
-        {header}
-      </div>
-    );
-  }
-
-  return (
-    <details
-      open
-      className={`group w-full ${shell} bg-parchment-ink/5 open:bg-parchment-ink/[0.07]`}
-    >
-      <summary
-        className={`cursor-pointer list-none ${pad} [&::-webkit-details-marker]:hidden`}
-      >
-        {header}
-      </summary>
-      <div
-        className={`border-t border-parchment-ink/10 ${nested ? "px-2.5" : "px-3"} pb-3 pt-2`}
-      >
-        {ability.castingValue || ability.chantingValue ? (
-          <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-            {[
-              ability.castingValue ? `Cast ${ability.castingValue}` : "",
-              ability.chantingValue ? `Chant ${ability.chantingValue}` : "",
-            ]
-              .filter(Boolean)
-              .join(" · ")}
-          </p>
-        ) : null}
-        {ability.declare ? (
-          <p className="mt-2 text-sm leading-relaxed text-parchment-ink/75">
-            <span className="text-sheet-muted">Declare · </span>
-            {ability.declare}
-          </p>
-        ) : null}
-        {ability.effect ? (
-          <p className="mt-1 text-sm leading-relaxed text-parchment-ink/75">
-            <span className="text-sheet-muted">Effect · </span>
-            {ability.effect}
-          </p>
-        ) : null}
-      </div>
-    </details>
+        ) : null
+      }
+    />
   );
 }
 
