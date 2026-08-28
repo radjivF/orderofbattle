@@ -4,6 +4,7 @@ import { unitSizeLabel } from "@/engine/queries";
 import type { CatalogueUnit, UnitAbility } from "@/engine/types";
 import { SHEET_PANEL_CLASS, SHEET_HEADER_CLASS } from "@/lib/builderUi";
 import { ModalFrame } from "./ModalFrame";
+import { RuleText } from "./RuleText";
 import { SheetCloseButton, SheetLinkButton } from "./ios/SheetIconButton";
 
 const pickerPanel = `${SHEET_PANEL_CLASS} bg-parchment shadow-2xl`;
@@ -234,16 +235,18 @@ function AbilityBlurb({ ability }: { ability: UnitAbility }) {
         </p>
       ) : null}
       {ability.declare ? (
-        <p className="mt-1 text-sm leading-relaxed">
-          <span className="text-sheet-muted">Declare · </span>
-          {ability.declare}
-        </p>
+        <RuleText
+          text={ability.declare}
+          label="Declare · "
+          className="mt-1 text-sm"
+        />
       ) : null}
       {ability.effect ? (
-        <p className="mt-1 text-sm leading-relaxed">
-          <span className="text-sheet-muted">Effect · </span>
-          {ability.effect}
-        </p>
+        <RuleText
+          text={ability.effect}
+          label="Effect · "
+          className="mt-1 text-sm"
+        />
       ) : null}
     </div>
   );

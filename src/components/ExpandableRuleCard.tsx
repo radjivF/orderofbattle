@@ -1,6 +1,7 @@
 "use client";
 
 import type { MouseEvent, ReactNode } from "react";
+import { RuleText } from "./RuleText";
 
 type Props = {
   title?: string;
@@ -90,16 +91,18 @@ export function ExpandableRuleCard({
           </p>
         ) : null}
         {declareText ? (
-          <p className="mt-2 text-sm leading-relaxed text-parchment-ink/75">
-            <span className="text-sheet-muted">Declare · </span>
-            {declareText}
-          </p>
+          <RuleText
+            text={declareText}
+            label="Declare · "
+            className="mt-2 text-sm"
+          />
         ) : null}
         {effect ? (
-          <p className="mt-1 text-sm leading-relaxed text-parchment-ink/75">
-            <span className="text-sheet-muted">Effect · </span>
-            {effect}
-          </p>
+          <RuleText
+            text={effect}
+            label="Effect · "
+            className={declareText ? "mt-1 text-sm" : "mt-2 text-sm"}
+          />
         ) : null}
       </div>
     </details>

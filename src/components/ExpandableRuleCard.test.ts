@@ -12,7 +12,7 @@ describe("expandable rule cards", () => {
       "utf8",
     );
     expect(card).toContain("line-clamp-2");
-    expect(card).toContain("Effect · ");
+    expect(card).toContain("RuleText");
     expect(card).toContain("group-open:hidden");
     expect(card).toContain("collapseDetails");
     expect(card).not.toContain("\n      open\n");

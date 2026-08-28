@@ -24,6 +24,7 @@ import type {
   UnitAbility,
 } from "@/engine/types";
 import { ExpandableRuleCard } from "./ExpandableRuleCard";
+import { RuleText } from "./RuleText";
 
 type Props = {
   list: ArmyList;
@@ -151,20 +152,20 @@ export function PlayMagicBoard({
                           </p>
                         ) : null}
                         {model.summon.declare ? (
-                          <p className="mt-2 text-sm leading-relaxed text-parchment-ink/80">
-                            <span className="text-sheet-muted">
-                              Declare ·{" "}
-                            </span>
-                            {model.summon.declare}
-                          </p>
+                          <RuleText
+                            text={model.summon.declare}
+                            label="Declare · "
+                            className="mt-2 text-sm"
+                            itemClassName="text-parchment-ink/80"
+                          />
                         ) : null}
                         {model.summon.effect ? (
-                          <p className="mt-1 text-sm leading-relaxed text-parchment-ink/80">
-                            <span className="text-sheet-muted">
-                              Effect ·{" "}
-                            </span>
-                            {model.summon.effect}
-                          </p>
+                          <RuleText
+                            text={model.summon.effect}
+                            label="Effect · "
+                            className="mt-1 text-sm"
+                            itemClassName="text-parchment-ink/80"
+                          />
                         ) : null}
                       </div>
                     ) : (
@@ -285,15 +286,19 @@ function PowerCard({
       {effectChoices ? (
         <div className="mt-2">
           {power.declare ? (
-            <p className="text-sm leading-relaxed text-parchment-ink/80">
-              <span className="text-sheet-muted">Declare · </span>
-              {power.declare}
-            </p>
+            <RuleText
+              text={power.declare}
+              label="Declare · "
+              className="text-sm"
+              itemClassName="text-parchment-ink/80"
+            />
           ) : null}
-          <p className="mt-2 text-sm leading-relaxed text-parchment-ink/80">
-            <span className="text-sheet-muted">Effect · </span>
-            {effectChoices.preface}
-          </p>
+          <RuleText
+            text={effectChoices.preface}
+            label={power.declare ? undefined : "Effect · "}
+            className={`text-sm ${power.declare ? "mt-2" : ""}`}
+            itemClassName="text-parchment-ink/80"
+          />
           <ul className="mt-2 flex flex-col gap-1.5">
             {effectChoices.options.map((option) => {
               const checked = chosenEffectId === option.id;

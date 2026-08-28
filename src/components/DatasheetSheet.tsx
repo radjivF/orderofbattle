@@ -11,6 +11,7 @@ import type {
 } from "@/engine/types";
 import { SHEET_PANEL_CLASS, SHEET_HEADER_START_CLASS } from "@/lib/builderUi";
 import { ModalFrame } from "./ModalFrame";
+import { RuleText } from "./RuleText";
 import { SheetCloseButton } from "./ios/SheetIconButton";
 
 type Props = {
@@ -131,16 +132,18 @@ function AbilityBlock({ abilities }: { abilities: UnitAbility[] }) {
               </p>
             ) : null}
             {ability.declare ? (
-              <p className="mt-1 text-sm leading-relaxed text-parchment-ink/80">
-                <span className="text-sheet-muted">Declare · </span>
-                {ability.declare}
-              </p>
+              <RuleText
+                text={ability.declare}
+                label="Declare · "
+                className="mt-1 text-sm"
+              />
             ) : null}
             {ability.effect ? (
-              <p className="mt-1 text-sm leading-relaxed text-parchment-ink/80">
-                <span className="text-sheet-muted">Effect · </span>
-                {ability.effect}
-              </p>
+              <RuleText
+                text={ability.effect}
+                label="Effect · "
+                className="mt-1 text-sm"
+              />
             ) : null}
           </li>
         ))}

@@ -41,6 +41,7 @@ import { FactionBackdrop } from "./FactionBackdrop";
 import { useListFlowChrome, useListFlowDecor } from "./ListFlowShell";
 import { ListLoadingSplash } from "./ListLoadingSplash";
 import { ModalFrame } from "./ModalFrame";
+import { RuleText } from "./RuleText";
 import { ChoiceSheet, PickerSheet } from "./PickerSheet";
 import { BuildSlotRow, SheetCloseButton } from "./ios/SheetIconButton";
 import { PointsCapField } from "./PointsCapField";
@@ -694,20 +695,18 @@ function BuilderReady({
                             </p>
                           ) : null}
                           {power.declare ? (
-                            <p className="mt-2 text-sm leading-relaxed text-parchment-ink/75">
-                              <span className="text-sheet-muted">
-                                Declare ·{" "}
-                              </span>
-                              {power.declare}
-                            </p>
+                            <RuleText
+                              text={power.declare}
+                              label="Declare · "
+                              className="mt-2 text-sm"
+                            />
                           ) : null}
                           {power.effect ? (
-                            <p className="mt-1 text-sm leading-relaxed text-parchment-ink/75">
-                              <span className="text-sheet-muted">
-                                Effect ·{" "}
-                              </span>
-                              {power.effect}
-                            </p>
+                            <RuleText
+                              text={power.effect}
+                              label="Effect · "
+                              className="mt-1 text-sm"
+                            />
                           ) : null}
                         </li>
                       ))}
@@ -829,16 +828,18 @@ function BuilderReady({
                       </p>
                     ) : null}
                     {ability.declare ? (
-                      <p className="mt-2 text-sm leading-relaxed text-parchment-ink/75">
-                        <span className="text-sheet-muted">Declare · </span>
-                        {ability.declare}
-                      </p>
+                      <RuleText
+                        text={ability.declare}
+                        label="Declare · "
+                        className="mt-2 text-sm"
+                      />
                     ) : null}
                     {ability.effect ? (
-                      <p className="mt-1 text-sm leading-relaxed text-parchment-ink/75">
-                        <span className="text-sheet-muted">Effect · </span>
-                        {ability.effect}
-                      </p>
+                      <RuleText
+                        text={ability.effect}
+                        label="Effect · "
+                        className="mt-1 text-sm"
+                      />
                     ) : null}
                   </li>
                 ))}
