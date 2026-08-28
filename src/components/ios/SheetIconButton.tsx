@@ -116,6 +116,54 @@ export function PlaySlotRow({
   );
 }
 
+/** Build-mode unit row: sheet icon · tappable name/stats · trailing actions. */
+export function BuildSlotRow({
+  name,
+  subtitle,
+  sheetLabel,
+  onOpenSheet,
+  trailing,
+  reinforced,
+}: {
+  name: string;
+  subtitle?: string;
+  sheetLabel: string;
+  onOpenSheet: () => void;
+  trailing?: ReactNode;
+  reinforced?: boolean;
+}) {
+  function openSheet(event: MouseEvent<HTMLButtonElement>) {
+    event.stopPropagation();
+    onOpenSheet();
+  }
+
+  return (
+    <div className="flex min-h-11 items-center gap-1 rounded-xl bg-parchment-ink/5 pl-3">
+      <SheetLinkButton label={sheetLabel} onClick={openSheet} />
+      <button
+        type="button"
+        onClick={openSheet}
+        className="min-w-0 flex-1 py-2 pr-2 text-left active:opacity-60"
+      >
+        <p className="font-serif text-lg leading-tight">
+          {name}
+          {reinforced ? (
+            <span className="ml-2 font-sans text-xs text-sheet-muted">
+              reinforced
+            </span>
+          ) : null}
+        </p>
+        {subtitle ? (
+          <p className="mt-0.5 text-sm text-sheet-muted">{subtitle}</p>
+        ) : null}
+      </button>
+      {trailing ? (
+        <div className="flex shrink-0 items-stretch">{trailing}</div>
+      ) : null}
+    </div>
+  );
+}
+
 export const EDIT_LINK_BUTTON_CLASS =
   "pressable inline-flex h-11 w-11 shrink-0 items-center justify-center text-sheet-muted";
 

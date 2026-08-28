@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { manifestationStatLine } from "@/engine/queries";
 import type { ManifestationLore, ManifestationModel } from "@/engine/types";
-import { PlaySlotRow, SheetLinkButton } from "./ios/SheetIconButton";
+import { BuildSlotRow, PlaySlotRow } from "./ios/SheetIconButton";
 
 function loreLabel(lore: ManifestationLore): string {
   return lore.points ? `${lore.name} · ${lore.points} pts` : lore.name;
@@ -136,19 +136,11 @@ function ManifestationSlot({
   }
 
   return (
-    <div className="flex min-h-11 flex-1 items-center gap-1 rounded-xl bg-parchment-ink/5 pl-3">
-      <div className="flex min-h-11 flex-1 flex-col justify-center py-2 pr-2 text-left">
-        <span className="font-serif text-lg leading-tight">{model.name}</span>
-        {stats || cast ? (
-          <span className="mt-0.5 font-sans text-sm text-sheet-muted">
-            {[stats, cast].filter(Boolean).join(" · ")}
-          </span>
-        ) : null}
-      </div>
-      <SheetLinkButton
-        label={`${model.name} datasheet`}
-        onClick={onOpenSheet}
-      />
-    </div>
+    <BuildSlotRow
+      name={model.name}
+      subtitle={[stats, cast].filter(Boolean).join(" · ") || undefined}
+      sheetLabel={`${model.name} datasheet`}
+      onOpenSheet={onOpenSheet}
+    />
   );
 }

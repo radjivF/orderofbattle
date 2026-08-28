@@ -42,7 +42,7 @@ import { useListFlowChrome, useListFlowDecor } from "./ListFlowShell";
 import { ListLoadingSplash } from "./ListLoadingSplash";
 import { ModalFrame } from "./ModalFrame";
 import { ChoiceSheet, PickerSheet } from "./PickerSheet";
-import { SheetCloseButton, SheetLinkButton } from "./ios/SheetIconButton";
+import { BuildSlotRow, SheetCloseButton } from "./ios/SheetIconButton";
 import { PointsCapField } from "./PointsCapField";
 import { ManifestationCard } from "./ManifestationCard";
 import { PlayMagicBoard } from "./PlayMagicBoard";
@@ -88,7 +88,6 @@ export function BuilderScreen({ listId }: Props) {
   );
   const list = lists?.find((item) => item.id === listId);
   const faction = list ? getFaction(list.factionId) : undefined;
-  const listName = list?.name ?? "Army list";
   const artFactionId =
     (faction ? faction.parentFactionIds?.[0] ?? faction.id : null) ??
     rememberedId;
@@ -167,18 +166,13 @@ export function BuilderScreen({ listId }: Props) {
         </div>
       ) : undefined,
       overlay: showSplash ? (
-        <>
-          <h1 className="pointer-events-none fixed top-4 left-0 right-0 z-20 mx-auto w-full max-w-3xl px-5 font-serif text-3xl text-parchment sm:px-6 lg:max-w-5xl">
-            {listName}
-          </h1>
-          <div className="pointer-events-none fixed inset-0 z-30">
-            <ListLoadingSplash factionName={splashName} />
-          </div>
-        </>
+        <div className="pointer-events-none fixed inset-0 z-30">
+          <ListLoadingSplash factionName={splashName} />
+        </div>
       ) : undefined,
     });
     return () => setDecor({});
-  }, [artFactionId, scourgeRealm, showSplash, splashName, listName, setDecor]);
+  }, [artFactionId, scourgeRealm, showSplash, splashName, setDecor]);
 
   if (!showSplash && (!list || !faction)) {
     return (
@@ -1305,58 +1299,39 @@ function BuilderReady({
                   );
                 }
                 return (
-                  <li
-                    key={slot.id}
-                    className="rounded-xl bg-parchment-ink/5 pl-3"
-                  >
-                    <div className="flex min-h-11 items-center gap-1">
-                    <div className="min-w-0 flex-1 py-2 pr-2">
-                      <p className="truncate font-serif text-lg text-parchment-ink">
-                        {unit.name}
-                        {slot.reinforced ? (
-                          <span className="ml-2 font-sans text-xs text-sheet-muted">
-                            reinforced
-                          </span>
-                        ) : null}
-                      </p>
-                      <p className="mt-0.5 text-sm text-sheet-muted">
-                        {unitSizeLabel(unit, slot.reinforced)}
-                        <span className="text-gold-deep">
-                          {" "}
-                          · {selectionPoints(unit, slot.reinforced)} pts
-                        </span>
-                      </p>
-                    </div>
-                    <div className="flex shrink-0 items-stretch">
-                      <SheetLinkButton
-                        label={`${unit.name} datasheet`}
-                        onClick={() => setDatasheet(unit)}
-                      />
-                      <SlotMoreMenu
-                        reinforced={slot.reinforced}
-                        canReinforce={unit.reinforce}
-                        onToggleReinforce={
-                          unit.reinforce
-                            ? () =>
-                                void commit({
-                                  ...list,
-                                  auxiliaries: list.auxiliaries.map((item) =>
-                                    item.id === slot.id
-                                      ? {
-                                          ...item,
-                                          reinforced: !item.reinforced,
-                                        }
-                                      : item,
-                                  ),
-                                })
-                            : undefined
-                        }
-                        onDuplicate={
-                          !unit.unique
-                            ? () =>
-                                void commit({
-                                  ...list,
-                                  auxiliaries: [
+                  <li key={slot.id}>
+                    <BuildSlotRow
+                      name={unit.name}
+                      subtitle={`${unitSizeLabel(unit, slot.reinforced)} · ${selectionPoints(unit, slot.reinforced)} pts`}
+                      reinforced={slot.reinforced}
+                      sheetLabel={`${unit.name} datasheet`}
+                      onOpenSheet={() => setDatasheet(unit)}
+                      trailing={
+                        <SlotMoreMenu
+                          reinforced={slot.reinforced}
+                          canReinforce={unit.reinforce}
+                          onToggleReinforce={
+                            unit.reinforce
+                              ? () =>
+                                  void commit({
+                                    ...list,
+                                    auxiliaries: list.auxiliaries.map((item) =>
+                                      item.id === slot.id
+                                        ? {
+                                            ...item,
+                                            reinforced: !item.reinforced,
+                                          }
+                                        : item,
+                                    ),
+                                  })
+                              : undefined
+                          }
+                          onDuplicate={
+                            !unit.unique
+                              ? () =>
+                                  void commit({
+                                    ...list,
+                                    auxiliaries: [
                                     ...list.auxiliaries,
                                     {
                                       id: createId(),
@@ -1381,8 +1356,8 @@ function BuilderReady({
                           )
                         }
                       />
-                    </div>
-                    </div>
+                      }
+                    />
                     <SlotEnhancements
                       selectionId={slot.id}
                       unit={unit}
@@ -1890,8 +1865,8 @@ function BattleTacticCardPicker({
     <div className="flex min-w-0 flex-col gap-3">
       <p className="text-xs text-ink-muted">
         {selectedIds.length === 0
-          ? "Tap the name to select. Use the arrow to expand."
-          : `${selectedIds.length} of 2 selected — tap the name again to deselect.`}
+          ? "Check up to 2 cards. Use the arrow to read details."
+          : `${selectedIds.length} of 2 selected.`}
       </p>
       <ul className="flex flex-col gap-3">
         {cards.map((card) => {
@@ -1902,36 +1877,46 @@ function BattleTacticCardPicker({
           const shellClass = picked
             ? "bg-aether/15 ring-aether/40"
             : disabled
-              ? "bg-parchment/5 ring-parchment/10"
-              : "bg-parchment/5 ring-parchment/10 hover:bg-parchment/10";
+              ? "bg-parchment/5 ring-parchment/10 opacity-70"
+              : "bg-parchment/5 ring-parchment/10";
           return (
             <li key={card.id}>
               <article
                 className={`w-full rounded-xl ring-1 transition ${shellClass}`}
               >
                 <div className="flex items-start gap-2 px-3 py-3">
-                  <button
-                    type="button"
-                    onClick={() => toggleCard(card.id)}
-                    disabled={disabled}
-                    aria-pressed={picked}
-                    className={`min-w-0 flex-1 text-left text-xs leading-relaxed disabled:cursor-not-allowed ${
-                      picked
-                        ? "text-parchment"
-                        : disabled
-                          ? "text-parchment/45"
-                          : "text-parchment/80"
+                  <label
+                    className={`flex min-w-0 flex-1 items-start gap-3 ${
+                      disabled ? "cursor-not-allowed" : "cursor-pointer"
                     }`}
                   >
-                    <p className="font-medium text-sm text-parchment">
-                      {card.name}
+                    <input
+                      type="checkbox"
+                      checked={picked}
+                      disabled={disabled}
+                      onChange={() => toggleCard(card.id)}
+                      aria-label={`Select ${card.name}`}
+                      className="mt-0.5 size-5 shrink-0 accent-aether disabled:cursor-not-allowed"
+                    />
+                    <span
+                      className={`min-w-0 flex-1 text-left text-xs leading-relaxed ${
+                        picked
+                          ? "text-parchment"
+                          : disabled
+                            ? "text-parchment/45"
+                            : "text-parchment/80"
+                      }`}
+                    >
+                      <span className="font-medium text-sm text-parchment">
+                        {card.name}
+                      </span>
                       {picked ? (
                         <span className="ml-2 text-aether">
                           Card {pickIndex + 1}
                         </span>
                       ) : null}
-                    </p>
-                  </button>
+                    </span>
+                  </label>
                   <button
                     type="button"
                     aria-expanded={expanded}

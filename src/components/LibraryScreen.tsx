@@ -42,6 +42,13 @@ import { ModalFrame } from "./ModalFrame";
 import { PointsCapField } from "./PointsCapField";
 import { SiteFooter } from "./SiteFooter";
 
+function isInteractiveEventTarget(target: EventTarget | null): boolean {
+  return (
+    target instanceof HTMLElement &&
+    Boolean(target.closest("button, input, textarea, select, a"))
+  );
+}
+
 export function LibraryScreen() {
   const router = useRouter();
   const lists = useSyncExternalStore(
@@ -170,7 +177,15 @@ export function LibraryScreen() {
               const artSrc = catalogueArtSrc(faction);
               return (
                 <li key={list.id}>
-                  <article className={LIBRARY_CARD_CLASS}>
+                  <article
+                    className={LIBRARY_CARD_CLASS}
+                    onClick={(event) => {
+                      if (isInteractiveEventTarget(event.target)) {
+                        return;
+                      }
+                      openList(list.id, list.factionId);
+                    }}
+                  >
                     <div className="flex min-w-0 flex-col p-4 sm:p-5">
                       <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
                         {faction?.name ?? "Unknown faction"}
@@ -264,9 +279,11 @@ export function LibraryScreen() {
                         <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#efe6d2]/35" />
                       </button>
                     ) : (
-                      <div
+                      <button
+                        type="button"
+                        aria-label={`Open ${list.name}`}
+                        onClick={() => openList(list.id, list.factionId)}
                         className="min-h-[8.5rem] border-l border-parchment-ink/10 bg-parchment-ink/5"
-                        aria-hidden="true"
                       />
                     )}
                   </article>

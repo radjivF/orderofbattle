@@ -69,7 +69,7 @@ export const SHEET_HEADER_CLASS =
 export const SHEET_HEADER_START_CLASS = SHEET_HEADER_CLASS;
 
 export const LIBRARY_CARD_CLASS =
-  "parchment-card pressable grid min-h-[8.5rem] grid-cols-[minmax(0,1fr)_7.5rem] overflow-hidden rounded-2xl text-parchment-ink sm:grid-cols-[minmax(0,1fr)_9.5rem]";
+  "parchment-card grid min-h-[8.5rem] cursor-pointer grid-cols-[minmax(0,1fr)_7.5rem] overflow-hidden rounded-2xl text-parchment-ink sm:grid-cols-[minmax(0,1fr)_9.5rem]";
 
 export const LIBRARY_CARD_ACTIONS_CLASS =
   "mt-3 flex items-center justify-end gap-1 text-sm";

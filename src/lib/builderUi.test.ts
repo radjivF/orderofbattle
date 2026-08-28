@@ -268,8 +268,9 @@ describe("iOS polish contracts", () => {
   });
 
   it("uses pressable library cards and rounded-xl points cap", () => {
-    expect(LIBRARY_CARD_CLASS).toContain("pressable");
+    expect(LIBRARY_CARD_CLASS).toContain("cursor-pointer");
     expect(LIBRARY_CARD_CLASS).toContain("rounded-2xl");
+    expect(LIBRARY_CARD_CLASS).not.toContain("pressable");
     expect(pointsCapInputClass("ink")).toContain("rounded-xl");
     expect(pointsCapInputClass("ink")).not.toContain("rounded-[10px]");
   });

@@ -78,52 +78,53 @@ export function BattleTacticTracker({ list, onStageChange }: Props) {
                     const disabled = !done && !next;
                     const text = stageText(card, key);
                     return (
-                      <li
-                        key={key}
-                        className={`rounded-lg px-3 py-2.5 ring-1 ${
-                          done
-                            ? "bg-aether/10 ring-aether/30"
-                            : next
-                              ? "bg-parchment/10 ring-parchment/20"
-                              : "bg-parchment/5 ring-parchment/10"
-                        }`}
-                      >
-                        <div className="flex items-start justify-between gap-3">
-                          <p className="text-xs font-semibold tracking-wide uppercase text-parchment/75">
-                            {label}
-                            {done ? (
-                              <span className="ml-1.5 text-aether">✓</span>
-                            ) : null}
-                          </p>
-                          <button
-                            type="button"
-                            disabled={disabled}
-                            onClick={() => {
-                              if (done) {
-                                onStageChange(
-                                  card.id,
-                                  (key - 1) as BattleTacticStage,
-                                );
-                              } else if (next) {
-                                onStageChange(card.id, key);
-                              }
-                            }}
-                            className={`min-h-8 shrink-0 rounded-lg px-2.5 text-xs ${
-                              done
-                                ? "bg-aether/20 text-aether"
-                                : next
-                                  ? "bg-parchment/15 text-parchment"
-                                  : "bg-parchment/5 text-parchment/35"
-                            }`}
-                          >
-                            {done ? "Undo" : next ? "Done" : "—"}
-                          </button>
-                        </div>
-                        {text ? (
-                          <p className="mt-2 text-xs leading-relaxed text-parchment/80">
-                            {text}
-                          </p>
-                        ) : null}
+                      <li key={key}>
+                        <button
+                          type="button"
+                          disabled={disabled}
+                          onClick={() => {
+                            if (done) {
+                              onStageChange(
+                                card.id,
+                                (key - 1) as BattleTacticStage,
+                              );
+                            } else if (next) {
+                              onStageChange(card.id, key);
+                            }
+                          }}
+                          className={`w-full rounded-lg px-3 py-2.5 text-left ring-1 transition-colors disabled:cursor-default ${
+                            done
+                              ? "bg-aether/10 ring-aether/30"
+                              : next
+                                ? "bg-parchment/10 ring-parchment/20 active:bg-parchment/15"
+                                : "bg-parchment/5 ring-parchment/10"
+                          }`}
+                        >
+                          <div className="flex items-start justify-between gap-3">
+                            <p className="text-xs font-semibold tracking-wide uppercase text-parchment/75">
+                              {label}
+                              {done ? (
+                                <span className="ml-1.5 text-aether">✓</span>
+                              ) : null}
+                            </p>
+                            <span
+                              className={`min-h-8 shrink-0 rounded-lg px-2.5 py-1 text-xs ${
+                                done
+                                  ? "bg-aether/20 text-aether"
+                                  : next
+                                    ? "bg-parchment/15 text-parchment"
+                                    : "bg-parchment/5 text-parchment/35"
+                              }`}
+                            >
+                              {done ? "Undo" : next ? "Done" : "—"}
+                            </span>
+                          </div>
+                          {text ? (
+                            <p className="mt-2 text-xs leading-relaxed text-parchment/80">
+                              {text}
+                            </p>
+                          ) : null}
+                        </button>
                       </li>
                     );
                   })}

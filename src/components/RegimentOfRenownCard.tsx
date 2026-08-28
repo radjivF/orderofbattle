@@ -17,7 +17,7 @@ import type {
   UnitAbility,
 } from "@/engine/types";
 import { PlayBindNotes, PlayHealthTrack, SlotEnhancements, SlotMoreMenu } from "./RegimentCard";
-import { PlaySlotRow, SheetLinkButton } from "./ios/SheetIconButton";
+import { BuildSlotRow, PlaySlotRow } from "./ios/SheetIconButton";
 
 type Props = {
   list: ArmyList;
@@ -276,18 +276,12 @@ function RoRSlotRow({
         </>
       ) : (
         <>
-          <div className="flex items-start justify-between gap-2">
-            <div className="min-w-0">
-              <p className="font-serif text-lg leading-tight">{unit.name}</p>
-              <p className="mt-0.5 text-xs text-sheet-muted">
-                {battleStatLine(unit)}
-              </p>
-            </div>
-            <SheetLinkButton
-              label={`${unit.name} datasheet`}
-              onClick={() => onOpenDatasheet(unit)}
-            />
-          </div>
+          <BuildSlotRow
+            name={unit.name}
+            subtitle={battleStatLine(unit)}
+            sheetLabel={`${unit.name} datasheet`}
+            onOpenSheet={() => onOpenDatasheet(unit)}
+          />
           {enhancements}
         </>
       )}
