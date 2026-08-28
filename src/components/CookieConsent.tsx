@@ -2,41 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { HOME_CTA_CLASS } from "@/lib/builderUi";
 import { setConsentStatus, hasUserResponded } from "@/lib/cookieConsent";
-
-const acceptClass = `${HOME_CTA_CLASS} pressable min-h-11 w-full rounded-xl px-4 text-sm font-semibold sm:min-w-[8.5rem]`;
-
-const rejectClass =
-  "pressable min-h-10 w-full rounded-xl px-3 text-sm font-medium text-sheet-muted transition-colors hover:text-parchment-ink/80 sm:min-w-[8.5rem]";
-
-function AnalyticsGlyph() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-      className="h-5 w-5 text-parchment-ink/80"
-    >
-      <path
-        d="M6 18V9M12 18V6M18 18v-5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      <rect
-        x="4"
-        y="4"
-        width="16"
-        height="16"
-        rx="3.5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-      />
-    </svg>
-  );
-}
 
 export function CookieConsent() {
   const [show, setShow] = useState(false);
@@ -64,44 +30,33 @@ export function CookieConsent() {
     <div
       role="region"
       aria-label="Cookie consent"
-      className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-6"
+      className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-[max(0.75rem,env(safe-area-inset-top))]"
     >
-      <div className="cookie-consent-panel pointer-events-auto mx-auto w-full max-w-lg">
-        <div className="parchment-card overflow-hidden rounded-2xl text-parchment-ink shadow-2xl ring-1 ring-parchment-ink/10">
-          <div className="flex flex-col gap-4 p-4 sm:flex-row sm:items-start sm:gap-5 sm:p-5">
-            <div className="flex min-w-0 flex-1 gap-3 sm:gap-3.5">
-              <div
-                aria-hidden="true"
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-parchment-ink/8 ring-1 ring-parchment-ink/10"
-              >
-                <AnalyticsGlyph />
-              </div>
-              <div className="min-w-0 space-y-1.5">
-                <p className="font-serif text-lg leading-snug text-parchment-ink">
-                  Analytics cookies
-                </p>
-                <p className="text-sm leading-relaxed text-sheet-muted">
-                  Optional Microsoft Clarity cookies for usage stats and session
-                  replay. Ahrefs runs without cookies.{" "}
-                  <Link
-                    href="/privacy"
-                    className="text-aether underline decoration-aether/35 underline-offset-2"
-                  >
-                    Privacy policy
-                  </Link>
-                </p>
-              </div>
-            </div>
-
-            <div className="flex shrink-0 flex-col gap-1.5 sm:w-[8.75rem]">
-              <button type="button" onClick={handleAccept} className={acceptClass}>
-                Allow
-              </button>
-              <button type="button" onClick={handleReject} className={rejectClass}>
-                Decline
-              </button>
-            </div>
-          </div>
+      <div className="ios-glass pointer-events-auto flex max-w-sm flex-col gap-2 rounded-lg px-3 py-2.5 shadow-lg">
+        <p className="text-center text-xs leading-snug text-parchment/80">
+          We use cookies.{" "}
+          <Link
+            href="/privacy"
+            className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
+          >
+            Privacy
+          </Link>
+        </p>
+        <div className="flex items-center justify-center gap-1.5">
+          <button
+            type="button"
+            onClick={handleReject}
+            className="pressable rounded-md px-2.5 py-1 text-xs text-parchment/60 transition-colors hover:text-parchment"
+          >
+            Reject
+          </button>
+          <button
+            type="button"
+            onClick={handleAccept}
+            className="pressable rounded-md bg-parchment px-3 py-1 text-xs font-medium text-parchment-ink"
+          >
+            Accept
+          </button>
         </div>
       </div>
     </div>
