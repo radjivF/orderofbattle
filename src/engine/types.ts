@@ -126,6 +126,7 @@ export type BattleTacticCard = {
   affray: string;
   strike: string;
   domination: string;
+  realm: "aqshy" | "ghyran";
 };
 
 /** 0 = none, 1 = Affray done, 2 = Strike, 3 = Domination. */
@@ -223,7 +224,7 @@ export type ArmyList = {
   battleTacticCardIds: string[];
   /** Play mode: completed steps per card id. */
   battleTacticStage: Record<string, BattleTacticStage>;
-  /** @deprecated Per-unit warscrolls; kept for migrated lists. */
+  /** Scourge of Aqshy or Ghyran — sets battle tactic card pool and scourge warscroll season. */
   scourgeRealm: "aqshy" | "ghyran" | null;
   generalRegimentId: string | null;
   regiments: Regiment[];
@@ -234,4 +235,6 @@ export type ArmyList = {
   powerBinds: Record<string, string>;
   createdAt: number;
   updatedAt: number;
+  /** Last time the list was opened in the builder; drives library recency order. */
+  lastOpenedAt?: number;
 };

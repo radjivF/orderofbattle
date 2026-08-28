@@ -120,6 +120,7 @@ describe("exportArmyListText", () => {
     const tacticIds = ["7d3c-b9b7-6412-d44e", "f94b-bda7-237e-74be"];
     const list = {
       ...blankArmy(faction.id, "Export extras", 2000),
+      scourgeRealm: "aqshy" as const,
       generalRegimentId: regimentId,
       regiments: [
         {
@@ -139,6 +140,7 @@ describe("exportArmyListText", () => {
     };
 
     const text = exportArmyListText(list, faction);
+    expect(text).toContain("Scourge of Aqshy");
     expect(text).toContain("Battle tactic cards: Blazing Onslaught, Siege of Ashes");
     expect(text).toContain(
       `- ${table.name}: Uncaged Lightning · 20 pts (${companion.name})`,

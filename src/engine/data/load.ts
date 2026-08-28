@@ -169,3 +169,12 @@ export const regimentsOfRenown =
   regimentsOfRenownJson as RegimentOfRenown[];
 
 export const battleTactics = battleTacticsJson as BattleTacticCard[];
+
+export function battleTacticsForRealm(
+  realm: "aqshy" | "ghyran" | null,
+): BattleTacticCard[] {
+  if (!realm) {
+    return [];
+  }
+  return battleTactics.filter((card) => card.realm === realm);
+}

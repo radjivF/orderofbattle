@@ -15,6 +15,12 @@ const ART_REV: Record<string, number> = {
 /** Left-weighted subjects (vampire/dragon) when list cards crop tall. */
 const LEFT_FOCUS_ART = new Set(["soulblight-gravelords"]);
 
+/** Per-faction list-card crop when default portrait framing misses the subject. */
+const CARD_ART_FOCUS: Record<string, string> = {
+  "blades-of-khorne": "object-cover object-[center_38%]",
+  "skaven": "object-cover object-[62%_32%]",
+};
+
 const LANDSCAPE_ART = new Set([
   "disciples-of-tzeentch",
   "ironjawz",
@@ -51,11 +57,44 @@ const FACTION_ART = new Set([
   "sylvaneth",
 ]);
 
+const SCOURGE_REALM_ART = new Set(["scourge-aqshy", "scourge-ghyran"]);
+
+export type ScourgeRealmBackdrop = "aqshy" | "ghyran" | null | undefined;
+
 export function factionArtSrc(factionId: string | null | undefined): string | null {
   if (!factionId || !FACTION_ART.has(factionId)) return null;
   const rev = ART_REV[factionId];
   const path = `/factions/${factionId}.webp`;
   return rev ? `${path}?v=${rev}` : path;
+}
+
+function scourgeRealmArtSrc(realm: "aqshy" | "ghyran"): string | null {
+  const id = realm === "aqshy" ? "scourge-aqshy" : "scourge-ghyran";
+  if (!SCOURGE_REALM_ART.has(id) || !FACTION_ART.has(id)) {
+    return null;
+  }
+  return factionArtSrc(id);
+}
+
+/** Backdrop art — optional per-faction scourge file, then global scourge art, then faction default. */
+export function listBackdropArtSrc(
+  factionId: string | null | undefined,
+  scourgeRealm?: ScourgeRealmBackdrop,
+): string | null {
+  if (!factionId) {
+    return null;
+  }
+  if (scourgeRealm === "aqshy" || scourgeRealm === "ghyran") {
+    const perFaction = factionArtSrc(`${factionId}-scourge-${scourgeRealm}`);
+    if (perFaction) {
+      return perFaction;
+    }
+    const realmArt = scourgeRealmArtSrc(scourgeRealm);
+    if (realmArt) {
+      return realmArt;
+    }
+  }
+  return factionArtSrc(factionId);
 }
 
 export function factionArtSize(factionId: string): {
@@ -95,6 +134,9 @@ export function catalogueArtClass(
     | undefined,
 ): string {
   const id = catalogueArtId(faction);
+  if (id && CARD_ART_FOCUS[id]) {
+    return CARD_ART_FOCUS[id];
+  }
   if (id && LEFT_FOCUS_ART.has(id)) {
     return "object-cover object-left";
   }
@@ -113,4 +155,22 @@ export function factionBackdropArtClass(factionId: string | null | undefined): s
 
 export function hasFactionArt(factionId: string | null | undefined): boolean {
   return factionArtSrc(factionId) !== null;
+}
+
+/** Dark gradient over faction backdrop art. Lighter while the open splash is visible. */
+export function factionArtScrimClass(splash = false): string {
+  return splash
+    ? "bg-gradient-to-b from-ink/38 via-ink/48 to-ink/58"
+    : "bg-gradient-to-b from-ink/78 via-ink/88 to-ink/94";
+}
+
+/** Tint veil for scourge season backdrop art. */
+export function scourgeRealmVeilClass(realm: ScourgeRealmBackdrop): string {
+  if (realm === "aqshy") {
+    return "bg-[rgba(120,45,12,0.14)]";
+  }
+  if (realm === "ghyran") {
+    return "bg-[rgba(28,90,48,0.14)]";
+  }
+  return "bg-transparent";
 }

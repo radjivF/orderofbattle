@@ -754,6 +754,15 @@ AQSHY_BATTLE_TACTIC_NAMES = (
     "Legend of the Parch",
 )
 
+GHYRAN_BATTLE_TACTIC_NAMES = (
+    "Master the Paths",
+    "Restless Energy",
+    "Intercept and Recover",
+    "Wrathful Cycles",
+    "Scouting Force",
+    "Attuned to Ghyran",
+)
+
 
 def is_artefact_group_name(name: str) -> bool:
     if name in SPECIAL_ENHANCEMENT_GROUP_NAMES:
@@ -924,7 +933,12 @@ def extract_battle_tactics(gst: ET.Element) -> list[dict]:
             if local(entry.tag) != "selectionEntry":
                 continue
             name = named(entry)
-            if name not in AQSHY_BATTLE_TACTIC_NAMES:
+            realm = None
+            if name in AQSHY_BATTLE_TACTIC_NAMES:
+                realm = "aqshy"
+            elif name in GHYRAN_BATTLE_TACTIC_NAMES:
+                realm = "ghyran"
+            else:
                 continue
             cid = entry.attrib.get("id") or ""
             if cid in seen:
@@ -932,9 +946,17 @@ def extract_battle_tactics(gst: ET.Element) -> list[dict]:
             card = parse_battle_tactic_card(entry)
             if card is None:
                 continue
+            card["realm"] = realm
             seen.add(cid)
             cards.append(card)
-    cards.sort(key=lambda item: AQSHY_BATTLE_TACTIC_NAMES.index(item["name"]))
+    cards.sort(
+        key=lambda item: (
+            0 if item["realm"] == "aqshy" else 1,
+            AQSHY_BATTLE_TACTIC_NAMES.index(item["name"])
+            if item["realm"] == "aqshy"
+            else GHYRAN_BATTLE_TACTIC_NAMES.index(item["name"]),
+        )
+    )
     return cards
 
 

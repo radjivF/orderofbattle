@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { battleTactics } from "./data/load";
+import { battleTacticsForRealm } from "./data/load";
 import { buildPhaseBoards } from "./phases";
 import {
   getFaction,
@@ -10,6 +10,7 @@ import {
 } from "./queries";
 import { blankArmy, duplicateArmy } from "@/lib/storage";
 import { createId } from "@/lib/id";
+import type { ArmyList, BattleTacticStage } from "./types";
 import { pruneOrphanEnhancements, summarize } from "./validate";
 
 describe("unitsForPicker", () => {
@@ -55,21 +56,47 @@ describe("optionMatches", () => {
 });
 
 describe("battle tactic cards", () => {
+  it("lists six cards per scourge season", () => {
+    expect(battleTacticsForRealm("aqshy").length).toBe(6);
+    expect(battleTacticsForRealm("ghyran").length).toBe(6);
+    expect(battleTacticsForRealm(null).length).toBe(0);
+  });
+
+  it("does not require scourge season without scourge units or tactic cards", () => {
+    const faction = getFaction("blades-of-khorne");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const totals = summarize(blankArmy(faction.id), faction);
+    expect(
+      totals.issues.some((issue) => issue.text.includes("Scourge of")),
+    ).toBe(false);
+  });
+
   it("warns when none picked and flags more than two", () => {
     const faction = getFaction("stormcast-eternals");
     expect(faction).toBeTruthy();
     if (!faction) return;
 
-    const empty = summarize(blankArmy(faction.id), faction);
+    const empty = summarize(
+      { ...blankArmy(faction.id), scourgeRealm: "aqshy" },
+      faction,
+    );
     expect(
       empty.issues.some((issue) =>
         issue.text.includes("battle tactic cards"),
       ),
     ).toBe(true);
 
-    const ids = battleTactics.slice(0, 3).map((card) => card.id);
+    const ids = battleTacticsForRealm("aqshy")
+      .slice(0, 3)
+      .map((card) => card.id);
     const tooMany = summarize(
-      { ...blankArmy(faction.id), battleTacticCardIds: ids },
+      {
+        ...blankArmy(faction.id),
+        scourgeRealm: "aqshy",
+        battleTacticCardIds: ids,
+      },
       faction,
     );
     expect(
@@ -84,14 +111,46 @@ describe("battle tactic cards", () => {
     expect(faction).toBeTruthy();
     if (!faction) return;
 
-    const ids = battleTactics.slice(0, 2).map((card) => card.id);
+    const ids = battleTacticsForRealm("aqshy")
+      .slice(0, 2)
+      .map((card) => card.id);
     const totals = summarize(
-      { ...blankArmy(faction.id), battleTacticCardIds: ids },
+      {
+        ...blankArmy(faction.id),
+        scourgeRealm: "aqshy",
+        battleTacticCardIds: ids,
+      },
       faction,
     );
     expect(
       totals.issues.some((issue) => issue.text.includes("battle tactic")),
     ).toBe(false);
+  });
+
+  it("flags tactic cards from the wrong scourge season", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const ghyranId = battleTacticsForRealm("ghyran")[0]?.id;
+    expect(ghyranId).toBeTruthy();
+    if (!ghyranId) return;
+
+    const totals = summarize(
+      {
+        ...blankArmy(faction.id),
+        scourgeRealm: "aqshy",
+        battleTacticCardIds: [ghyranId],
+      },
+      faction,
+    );
+    expect(
+      totals.issues.some(
+        (issue) =>
+          issue.tone === "bad" &&
+          issue.text.includes("Scourge of Aqshy battle tactic"),
+      ),
+    ).toBe(true);
   });
 });
 
@@ -403,7 +462,7 @@ describe("scourge warscroll rules", () => {
     ).toBe(false);
   });
 
-  it("flags Scourge of Aqshy and Scourge of Ghyran warscrolls together", () => {
+  it("flags Scourge of Aqshy and Scourge of Ghyran warscrolls when season is set", () => {
     const faction = getFaction("skaven");
     expect(faction).toBeTruthy();
     if (!faction) return;
@@ -425,6 +484,7 @@ describe("scourge warscroll rules", () => {
     const totals = summarize(
       {
         ...blankArmy(faction.id),
+        scourgeRealm: "aqshy",
         generalRegimentId: regimentId,
         regiments: [
           {
@@ -444,9 +504,8 @@ describe("scourge warscroll rules", () => {
       totals.issues.some(
         (issue) =>
           issue.tone === "bad" &&
-          issue.text.includes(
-            "Cannot mix Scourge of Aqshy and Scourge of Ghyran",
-          ),
+          issue.text.includes("Brood Terror") &&
+          issue.text.includes("Scourge of Aqshy"),
       ),
     ).toBe(true);
   });
@@ -512,6 +571,7 @@ describe("army list persistence fields", () => {
     expect(list.specialEnhancements).toEqual([]);
     expect(list.battleTacticCardIds).toEqual([]);
     expect(list.battleTacticStage).toEqual({});
+    expect(list.scourgeRealm).toBeNull();
   });
 
   it("duplicateArmy clones enhancement and tactic picks with a new id", () => {
@@ -532,9 +592,12 @@ describe("army list persistence fields", () => {
     expect(hero && companion).toBeTruthy();
     if (!hero || !companion) return;
 
-    const tacticIds = battleTactics.slice(0, 2).map((card) => card.id);
-    const original = {
+    const tacticIds = battleTacticsForRealm("aqshy")
+      .slice(0, 2)
+      .map((card) => card.id);
+    const original: ArmyList = {
       ...blankArmy(faction.id, "Clone test"),
+      scourgeRealm: "aqshy",
       generalRegimentId: regimentId,
       regiments: [
         {
@@ -551,7 +614,7 @@ describe("army list persistence fields", () => {
         },
       ],
       battleTacticCardIds: tacticIds,
-      battleTacticStage: { [tacticIds[0]]: 1 },
+      battleTacticStage: { [tacticIds[0]]: 1 as BattleTacticStage },
     };
 
     const copy = duplicateArmy(original);
@@ -560,5 +623,6 @@ describe("army list persistence fields", () => {
     expect(copy.specialEnhancements).toEqual(original.specialEnhancements);
     expect(copy.battleTacticCardIds).toEqual(tacticIds);
     expect(copy.battleTacticStage).toEqual({ [tacticIds[0]]: 1 });
+    expect(copy.scourgeRealm).toBe("aqshy");
   });
 });

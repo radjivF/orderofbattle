@@ -1,28 +1,41 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, unitBaseName, auxiliaryPickerUnits, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel } from "@/engine/queries";
 import { combatModifierNotes } from "@/engine/magic";
 import { exportArmyListText, exportFileName } from "@/engine/exportText";
-import { battleTactics } from "@/engine/data/load";
+import { battleTactics, battleTacticsForRealm } from "@/engine/data/load";
 import { summarize } from "@/engine/validate";
-import { formatPoints } from "@/engine/pointsCap";
 import type { ArmyList, CatalogueUnit, DatasheetSubject, EnhancementOption, FactionCatalogue, NamedOption } from "@/engine/types";
 import { createId } from "@/lib/id";
 import {
   getArmiesServerSnapshot,
   getArmiesSnapshot,
+  recordArmyOpened,
   saveArmy,
   subscribeArmies,
 } from "@/lib/storage";
 import {
   getListOpenFactionServerSnapshot,
   getListOpenFactionSnapshot,
+  clearListOpenSplash,
+  getListOpenDisplayNameServerSnapshot,
+  getListOpenDisplayNameSnapshot,
+  peekListOpenSplash,
   subscribeListOpenFaction,
 } from "@/lib/listTransition";
 import { DatasheetSheet } from "./DatasheetSheet";
+import { FactionArtLayers } from "./FactionArtBackground";
 import { FactionBackdrop } from "./FactionBackdrop";
+import { useListFlowChrome, useListFlowDecor } from "./ListFlowShell";
 import { ListLoadingSplash } from "./ListLoadingSplash";
 import { ModalFrame } from "./ModalFrame";
 import { ChoiceSheet, PickerSheet } from "./PickerSheet";
@@ -55,6 +68,8 @@ type Props = {
   listId: string;
 };
 
+const MIN_OPEN_SPLASH_MS = 650;
+
 export function BuilderScreen({ listId }: Props) {
   const lists = useSyncExternalStore(
     subscribeArmies,
@@ -68,20 +83,95 @@ export function BuilderScreen({ listId }: Props) {
   );
   const list = lists?.find((item) => item.id === listId);
   const faction = list ? getFaction(list.factionId) : undefined;
+  const artFactionId =
+    (faction ? faction.parentFactionIds?.[0] ?? faction.id : null) ??
+    rememberedId;
+  const rememberedDisplayName = useSyncExternalStore(
+    subscribeListOpenFaction,
+    getListOpenDisplayNameSnapshot,
+    getListOpenDisplayNameServerSnapshot,
+  );
+  const [openingSplash, setOpeningSplash] = useState(false);
+  const openedRecorded = useRef<string | null>(null);
+  const splashStarted = useRef(0);
 
-  if (lists === undefined) {
-    const remembered = rememberedId ? getFaction(rememberedId) : undefined;
-    return (
-      <ListLoadingSplash
-        factionId={rememberedId}
-        factionName={remembered?.name}
-      />
+  useLayoutEffect(() => {
+    if (!peekListOpenSplash()) {
+      return;
+    }
+    setOpeningSplash(true);
+    if (splashStarted.current === 0) {
+      splashStarted.current = Date.now();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!openingSplash) {
+      return;
+    }
+    if (lists === undefined) {
+      return;
+    }
+    const wait = Math.max(
+      0,
+      MIN_OPEN_SPLASH_MS - (Date.now() - splashStarted.current),
     );
-  }
+    const timer = window.setTimeout(() => {
+      setOpeningSplash(false);
+      clearListOpenSplash();
+    }, wait);
+    return () => window.clearTimeout(timer);
+  }, [openingSplash, lists]);
 
-  if (!list || !faction) {
+  useEffect(() => {
+    if (lists === undefined || openedRecorded.current === listId) {
+      return;
+    }
+    if (!lists.some((item) => item.id === listId)) {
+      return;
+    }
+    openedRecorded.current = listId;
+    const timer = window.setTimeout(() => {
+      void recordArmyOpened(listId);
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, [listId, lists]);
+
+  const splashName =
+    rememberedDisplayName ??
+    faction?.name ??
+    (rememberedId ? getFaction(rememberedId)?.name : undefined);
+  const showSplash = lists === undefined || openingSplash;
+  const scourgeRealm = list?.scourgeRealm ?? null;
+
+  const { setDecor } = useListFlowDecor();
+
+  useEffect(() => {
+    setDecor({
+      backdrop: artFactionId ? (
+        <div
+          className="pointer-events-none fixed inset-0 z-[1] overflow-hidden"
+          aria-hidden="true"
+        >
+          <FactionArtLayers
+            factionId={artFactionId}
+            scourgeRealm={scourgeRealm}
+            splash={showSplash}
+          />
+        </div>
+      ) : undefined,
+      overlay: showSplash ? (
+        <div className="pointer-events-none fixed inset-0 z-30">
+          <ListLoadingSplash factionName={splashName} />
+        </div>
+      ) : undefined,
+    });
+    return () => setDecor({});
+  }, [artFactionId, scourgeRealm, showSplash, splashName, setDecor]);
+
+  if (!showSplash && (!list || !faction)) {
     return (
-      <div className="flex min-h-full flex-col items-start bg-ink px-6 py-10 text-parchment">
+      <div className="relative z-10 flex min-h-full flex-col items-start bg-ink px-6 py-10 text-parchment">
         <p className="font-serif text-3xl">This list is gone.</p>
         <Link href="/dashboard" className="mt-6 min-h-11 text-sigmarite">
           Back to library
@@ -90,11 +180,16 @@ export function BuilderScreen({ listId }: Props) {
     );
   }
 
+  if (!list || !faction) {
+    return null;
+  }
+
+  if (showSplash) {
+    return null;
+  }
+
   return (
-    <FactionBackdrop
-      factionId={faction.parentFactionIds?.[0] ?? faction.id}
-      factionName={faction.name}
-    >
+    <FactionBackdrop>
       <BuilderReady list={list} faction={faction} />
     </FactionBackdrop>
   );
@@ -439,108 +534,44 @@ function BuilderReady({
       } will be removed from the list.`
     : "This regiment and its units will be removed from the list.";
 
+  function setBuilderPlayMode(next: boolean) {
+    setPlayMode(next);
+    if (next) {
+      setPlayTab("units");
+      setPicker(null);
+    }
+  }
+
+  const { setBuilderChrome } = useListFlowChrome();
+
+  useLayoutEffect(() => {
+    setBuilderChrome({
+      list,
+      faction,
+      playMode,
+      setPlayMode: setBuilderPlayMode,
+      onListNameChange: (name) => void commit({ ...list, name }),
+      points: totals.points,
+      pointsCap: list.pointsCap,
+      drops: totals.drops,
+      issue,
+    });
+    return () => setBuilderChrome(null);
+  }, [
+    list,
+    faction,
+    playMode,
+    totals.points,
+    totals.drops,
+    issue,
+    setBuilderChrome,
+  ]);
+
   return (
     <div className="min-h-full w-full max-w-[100vw] overflow-x-hidden text-parchment">
-      <header className="sticky top-0 z-20 border-b border-sigmarite/15 bg-ink/92 pt-[env(safe-area-inset-top)] backdrop-blur-md">
-        <div className="mx-auto flex w-full max-w-3xl min-w-0 flex-wrap items-center gap-x-3 gap-y-2 px-4 py-3 sm:flex-nowrap">
-          <Link
-            href="/dashboard"
-            className="gold-plate inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-xl px-3 text-ink active:translate-y-px sm:px-4"
-          >
-            <svg
-              viewBox="0 0 20 20"
-              aria-hidden="true"
-              className="h-4 w-4 shrink-0"
-            >
-              <path
-                d="M12.5 4.5 7 10l5.5 5.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.25"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className="text-sm font-semibold tracking-wide">Lists</span>
-          </Link>
-          {playMode ? (
-            <p className="min-h-11 min-w-0 flex-1 content-center truncate font-serif text-xl">
-              {list.name}
-            </p>
-          ) : (
-            <input
-              value={list.name}
-              onChange={(event) => void commit({ ...list, name: event.target.value })}
-              aria-label="List name"
-              placeholder="Name your list"
-              className="min-h-11 min-w-0 flex-1 border-b border-parchment/20 bg-transparent font-serif text-xl outline-none placeholder:text-parchment/35"
-            />
-          )}
-          <div className="flex w-full min-w-0 shrink-0 items-center justify-between gap-3 sm:ml-auto sm:w-auto">
-            {!playMode ? (
-              <div className="text-left sm:text-right">
-                <p className="text-lg text-sigmarite">
-                  {formatPoints(totals.points)}
-                  <span className="text-ink-muted">
-                    {" "}
-                    / {formatPoints(list.pointsCap)}
-                  </span>
-                </p>
-                <p className="text-xs text-ink-muted">{totals.drops} drops</p>
-              </div>
-            ) : (
-              <span className="sm:hidden" />
-            )}
-            <div
-              role="group"
-              aria-label="Mode"
-              className="flex rounded-xl bg-ink-raised p-1 text-xs ring-1 ring-sigmarite/25"
-            >
-              <button
-                type="button"
-                onClick={() => setPlayMode(false)}
-                className={`min-h-9 rounded-lg px-3 ${
-                  playMode ? "text-ink-muted" : "gold-plate text-ink"
-                }`}
-              >
-                Build
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setPlayMode(true);
-                  setPlayTab("units");
-                  setPicker(null);
-                }}
-                className={`min-h-9 rounded-lg px-3 ${
-                  playMode ? "gold-plate text-ink" : "text-ink-muted"
-                }`}
-              >
-                Play
-              </button>
-            </div>
-          </div>
-        </div>
-        {!playMode ? (
-          <p
-            className={`mx-auto flex max-w-3xl items-center gap-2 px-4 pb-3 text-sm ${
-              issue.tone === "ok"
-                ? "text-parchment/80"
-                : "font-medium text-illegal"
-            }`}
-          >
-            <span
-              aria-hidden="true"
-              className={`h-2 w-2 shrink-0 rounded-full ${
-                issue.tone === "bad" || issue.tone === "warn"
-                  ? "bg-illegal"
-                  : "bg-legal"
-              }`}
-            />
-            <span>{issue.text}</span>
-          </p>
-        ) : (
-          <div className="mx-auto flex max-w-3xl gap-2 px-4 pb-3">
+      <main className="mx-auto flex w-full max-w-3xl min-w-0 flex-col gap-5 px-4 py-6 pb-28">
+        {playMode ? (
+          <div className="flex gap-2">
             <button
               type="button"
               onClick={() => setPlayTab("units")}
@@ -575,10 +606,16 @@ function BuilderReady({
               Phases
             </button>
           </div>
-        )}
-      </header>
-
-      <main className="mx-auto flex w-full max-w-3xl min-w-0 flex-col gap-5 px-4 py-6 pb-28">
+        ) : null}
+        {!playMode && issue.tone !== "ok" ? (
+          <p
+            className="flex items-center gap-2 rounded-xl bg-illegal/10 px-4 py-2.5 text-sm font-medium text-illegal ring-1 ring-illegal/25"
+            role="status"
+          >
+            <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-illegal" />
+            <span>{issue.text}</span>
+          </p>
+        ) : null}
         {!playMode ? (
         <div className="flex min-w-0 flex-col gap-4">
           <details className="group min-w-0 rounded-2xl bg-ink-raised ring-1 ring-parchment/12 open:pb-4">
@@ -705,12 +742,36 @@ function BuilderReady({
                 </label>
               ) : null}
 
+              <label className="flex flex-col gap-2 text-sm text-parchment/80">
+                Scourge season
+                <select
+                  value={list.scourgeRealm ?? ""}
+                  onChange={(event) => {
+                    const value = event.target.value;
+                    const scourgeRealm =
+                      value === "aqshy" || value === "ghyran" ? value : null;
+                    void commit({
+                      ...list,
+                      scourgeRealm,
+                      battleTacticCardIds: [],
+                      battleTacticStage: {},
+                    });
+                  }}
+                  className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
+                >
+                  <option value="">Choose season…</option>
+                  <option value="aqshy">Scourge of Aqshy</option>
+                  <option value="ghyran">Scourge of Ghyran</option>
+                </select>
+              </label>
+
               <div className="flex flex-col gap-2">
                 <p className="text-sm text-parchment/80">
                   Battle tactic cards (pick up to 2)
                 </p>
                 <BattleTacticCardPicker
                   list={list}
+                  cards={battleTacticsForRealm(list.scourgeRealm)}
                   onCommit={(next) => void commit(next)}
                 />
               </div>
@@ -1737,12 +1798,22 @@ function enhancementChoices(options: EnhancementOption[]) {
 
 function BattleTacticCardPicker({
   list,
+  cards,
   onCommit,
 }: {
   list: ArmyList;
+  cards: typeof battleTactics;
   onCommit: (next: ArmyList) => void;
 }) {
-  if (battleTactics.length === 0) {
+  if (!list.scourgeRealm) {
+    return (
+      <p className="text-xs text-ink-muted">
+        Choose Scourge of Aqshy or Scourge of Ghyran above first.
+      </p>
+    );
+  }
+
+  if (cards.length === 0) {
     return null;
   }
 
@@ -1783,7 +1854,7 @@ function BattleTacticCardPicker({
           : `${selectedIds.length} of 2 selected — tap again to deselect.`}
       </p>
       <ul className="flex flex-col gap-3">
-        {battleTactics.map((card) => {
+        {cards.map((card) => {
           const pickIndex = selectedIds.indexOf(card.id);
           const picked = pickIndex >= 0;
           const disabled = !picked && atCap;

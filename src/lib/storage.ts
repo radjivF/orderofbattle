@@ -1,5 +1,6 @@
 import type { ArmyList } from "@/engine/types";
 import { getFaction } from "@/engine/queries";
+import { inferScourgeRealm } from "@/engine/scourgeRealm";
 import { pruneOrphanEnhancements } from "@/engine/validate";
 import { createId } from "./id";
 
@@ -26,6 +27,7 @@ function isBrowser() {
 }
 
 function normalizeList(list: ArmyList): ArmyList {
+  const scourgeRealm = inferScourgeRealm(list);
   return pruneOrphanEnhancements({
     ...list,
     regimentOfRenown: list.regimentOfRenown ?? null,
@@ -35,11 +37,17 @@ function normalizeList(list: ArmyList): ArmyList {
     specialEnhancements: list.specialEnhancements ?? [],
     battleTacticCardIds: list.battleTacticCardIds ?? [],
     battleTacticStage: list.battleTacticStage ?? {},
+    scourgeRealm,
+    lastOpenedAt: list.lastOpenedAt ?? list.updatedAt,
   });
 }
 
+function listRecency(list: ArmyList) {
+  return list.lastOpenedAt ?? list.updatedAt;
+}
+
 function sortLists(lists: ArmyList[]) {
-  return [...lists].sort((a, b) => b.updatedAt - a.updatedAt);
+  return [...lists].sort((a, b) => listRecency(b) - listRecency(a));
 }
 
 function openDb(name: string, version: number): Promise<IDBDatabase> {
@@ -187,6 +195,26 @@ export async function saveArmy(list: ArmyList): Promise<ArmyList> {
   return stored;
 }
 
+/** Bump recency for library ordering without treating open as an edit. */
+export async function recordArmyOpened(id: string): Promise<void> {
+  const current = cache ?? (await readAll());
+  const list = current.find((item) => item.id === id);
+  if (!list) {
+    return;
+  }
+  const withTimestamps = {
+    ...list,
+    lastOpenedAt: Date.now(),
+  };
+  cache = sortLists([
+    withTimestamps,
+    ...current.filter((item) => item.id !== id),
+  ]);
+  await writeAllToIndexedDB(cache);
+  markReady();
+  emit();
+}
+
 export async function deleteArmy(id: string): Promise<void> {
   cache = sortLists(
     (cache ?? (await readAll())).filter((item) => item.id !== id),
@@ -229,6 +257,7 @@ export function blankArmy(
     powerBinds: {},
     createdAt: now,
     updatedAt: now,
+    lastOpenedAt: now,
   };
 }
 
@@ -240,5 +269,6 @@ export function duplicateArmy(list: ArmyList): ArmyList {
     name: `${list.name} copy`,
     createdAt: now,
     updatedAt: now,
+    lastOpenedAt: now,
   };
 }

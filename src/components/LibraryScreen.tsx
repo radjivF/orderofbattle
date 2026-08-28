@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useSyncExternalStore } from "react";
 import { getFaction, listArmiesOfRenown, listFactions, armyOfRenownName } from "@/engine/queries";
@@ -18,9 +17,13 @@ import {
   saveArmy,
   subscribeArmies,
 } from "@/lib/storage";
-import { rememberListOpen } from "@/lib/listTransition";
-import { BrandMark } from "./BrandMark";
+import {
+  rememberListNavigation,
+  rememberListOpen,
+} from "@/lib/listTransition";
 import { IndexBackdrop } from "./IndexBackdrop";
+import { LibraryChromeProvider } from "./LibraryChrome";
+import { FactionArtLayers } from "./FactionArtBackground";
 import { ListLoadingSplash } from "./ListLoadingSplash";
 import { ModalFrame } from "./ModalFrame";
 import { PointsCapField } from "./PointsCapField";
@@ -51,7 +54,8 @@ export function LibraryScreen() {
       faction?.parentFactionIds?.[0] ??
       (factionArtSrc(factionId) ? factionId : null) ??
       factionId;
-    rememberListOpen(artId);
+    rememberListOpen(artId, faction?.name);
+    rememberListNavigation("forward");
     router.push(`/lists/${listId}`);
   }
 
@@ -64,7 +68,8 @@ export function LibraryScreen() {
       draftParent?.id ??
       draftFaction.parentFactionIds?.[0] ??
       draftFaction.id;
-    rememberListOpen(artFactionId);
+    rememberListOpen(artFactionId, (draftParent ?? draftFaction).name);
+    rememberListNavigation("forward");
     try {
       const list = blankArmy(draftFaction.id, draftName, draftPoints);
       await saveArmy(list);
@@ -108,34 +113,8 @@ export function LibraryScreen() {
   }
 
   return (
+    <LibraryChromeProvider value={{ openNewList: () => setPicking(true) }}>
     <IndexBackdrop veil="page">
-      <header className="sticky top-0 z-20 border-b border-sigmarite/15 bg-ink/45 backdrop-blur-md">
-        <div className="mx-auto flex w-full max-w-3xl items-center justify-between gap-3 px-5 pt-[max(1.25rem,env(safe-area-inset-top))] pb-4 sm:px-6 sm:py-5 lg:max-w-5xl">
-          <Link href="/" className="flex min-w-0 items-center gap-3">
-            <BrandMark
-              size={44}
-              className="h-10 w-auto shrink-0"
-              priority
-            />
-            <div className="min-w-0">
-              <p className="gold-text font-serif text-xl leading-none font-semibold sm:text-3xl">
-                Order of Battle
-              </p>
-              <p className="mt-1 truncate text-xs font-medium text-parchment/90 sm:text-sm">
-                Army lists for Age of Sigmar
-              </p>
-            </div>
-          </Link>
-          <button
-            type="button"
-            onClick={() => setPicking(true)}
-            className="gold-plate min-h-11 shrink-0 rounded-xl px-4 text-sm font-semibold text-ink sm:px-5"
-          >
-            New list
-          </button>
-        </div>
-      </header>
-
       <main className="mx-auto w-full max-w-3xl px-5 pb-20 sm:px-6 sm:pt-3 lg:max-w-5xl">
         {lists === undefined ? (
           <p className="rounded-2xl bg-ink-raised/90 px-4 py-3 text-parchment/80 ring-1 ring-parchment/10">
@@ -417,16 +396,24 @@ export function LibraryScreen() {
       ) : null}
 
       {creating && draftFaction ? (
-        <ListLoadingSplash
-          factionId={
-            draftParent?.id ??
-            draftFaction.parentFactionIds?.[0] ??
-            draftFaction.id
-          }
-          factionName={(draftParent ?? draftFaction).name}
-          label="Creating your list"
-        />
+        <div className="fixed inset-0 z-[60] bg-ink text-parchment">
+          <div className="absolute inset-0" aria-hidden="true">
+            <FactionArtLayers
+              factionId={
+                draftParent?.id ??
+                draftFaction.parentFactionIds?.[0] ??
+                draftFaction.id
+              }
+              splash
+            />
+          </div>
+          <ListLoadingSplash
+            factionName={(draftParent ?? draftFaction).name}
+            label="Creating your list"
+          />
+        </div>
       ) : null}
     </IndexBackdrop>
+    </LibraryChromeProvider>
   );
 }

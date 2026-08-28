@@ -94,6 +94,13 @@ export function exportArmyListText(
   lines.push("");
   lines.push(list.name.trim() || "Untitled list");
   lines.push(faction.name);
+  if (list.scourgeRealm) {
+    lines.push(
+      list.scourgeRealm === "aqshy"
+        ? "Scourge of Aqshy"
+        : "Scourge of Ghyran",
+    );
+  }
   lines.push(
     `${formatPoints(list.pointsCap)} pts · ${formatPoints(
       summarize(list, faction).points,

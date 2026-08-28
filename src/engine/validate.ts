@@ -1,3 +1,5 @@
+import { battleTactics } from "./data/load";
+import { listUsesScourgeContent } from "./scourgeRealm";
 import {
   getUnit,
   getListUnit,
@@ -146,6 +148,7 @@ export function summarize(
   }
 
   warnMixedScourgeSheets(list, faction, issues);
+  warnScourgeSeason(list, faction, issues);
 
   points += pickedEnhancementPoints(list.artefact, faction.artefacts);
   points += pickedEnhancementPoints(list.heroicTrait, faction.heroicTraits);
@@ -346,12 +349,79 @@ function scourgeRealmLabel(realm: "core" | "aqshy" | "ghyran"): string {
   return "Scourge of Ghyran";
 }
 
+function scourgeSeasonLabel(realm: "aqshy" | "ghyran"): string {
+  return realm === "aqshy" ? "Scourge of Aqshy" : "Scourge of Ghyran";
+}
+
+function warnScourgeSeason(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  issues: ListIssue[],
+) {
+  if (!listUsesScourgeContent(list, faction)) {
+    return;
+  }
+
+  const realm = list.scourgeRealm;
+  if (!realm) {
+    issues.push({
+      tone: "warn",
+      text: "Choose Scourge of Aqshy or Scourge of Ghyran.",
+    });
+    return;
+  }
+
+  const checkUnit = (unit: { name: string } | undefined) => {
+    if (!unit) {
+      return;
+    }
+    const unitRealm = unitScourgeRealm(unit.name);
+    if (unitRealm && unitRealm !== realm) {
+      issues.push({
+        tone: "bad",
+        text: `${unit.name} does not match ${scourgeSeasonLabel(realm)}.`,
+      });
+    }
+  };
+
+  for (const regiment of list.regiments) {
+    if (regiment.hero) {
+      checkUnit(getUnit(faction, regiment.hero.unitId));
+    }
+    for (const slot of regiment.units) {
+      checkUnit(getUnit(faction, slot.unitId));
+    }
+  }
+  for (const aux of list.auxiliaries) {
+    checkUnit(getUnit(faction, aux.unitId));
+  }
+  const rorPick = list.regimentOfRenown;
+  if (rorPick) {
+    const ror = getRegimentOfRenown(rorPick.renownId);
+    if (ror) {
+      for (const slot of rorPick.units) {
+        const template = ror.units.find((unit) => unit.id === slot.unitId);
+        checkUnit(template);
+      }
+    }
+  }
+
+  for (const id of list.battleTacticCardIds ?? []) {
+    const card = battleTactics.find((item) => item.id === id);
+    if (card && card.realm !== realm) {
+      issues.push({
+        tone: "bad",
+        text: `${card.name} is not a ${scourgeSeasonLabel(realm)} battle tactic card.`,
+      });
+    }
+  }
+}
+
 function warnMixedScourgeSheets(
   list: ArmyList,
   faction: FactionCatalogue,
   issues: ListIssue[],
 ) {
-  const scourgeSeasons = new Set<"aqshy" | "ghyran">();
   const realmsByBase = new Map<string, Set<"core" | "aqshy" | "ghyran">>();
 
   const trackUnit = (unit: { name: string } | undefined) => {
@@ -361,9 +431,6 @@ function warnMixedScourgeSheets(
     const base = unitBaseName(unit.name);
     const scourgeRealm = unitScourgeRealm(unit.name);
     const sheetRealm = scourgeRealm ?? "core";
-    if (scourgeRealm) {
-      scourgeSeasons.add(scourgeRealm);
-    }
     const realms = realmsByBase.get(base) ?? new Set();
     realms.add(sheetRealm);
     realmsByBase.set(base, realms);
@@ -391,13 +458,6 @@ function warnMixedScourgeSheets(
         }
       }
     }
-  }
-
-  if (scourgeSeasons.size > 1) {
-    issues.push({
-      tone: "bad",
-      text: "Cannot mix Scourge of Aqshy and Scourge of Ghyran warscrolls in the same army.",
-    });
   }
 
   for (const [base, realms] of realmsByBase) {
