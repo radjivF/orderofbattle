@@ -9,7 +9,7 @@ import {
   useState,
   useCallback,
   useSyncExternalStore,
-  startTransition,
+  useDeferredValue,
 } from "react";
 import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, unitBaseName, auxiliaryPickerUnits, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel, formationLabel } from "@/engine/queries";
 import { combatModifierNotes } from "@/engine/magic";
@@ -240,7 +240,8 @@ function BuilderReady({
       tone: "warn" as const,
       text: "Add a regiment to begin.",
     };
-  const pickerUnits = pickerUnitsFor(list, faction, picker);
+  const deferredPicker = useDeferredValue(picker);
+  const pickerUnits = pickerUnitsFor(list, faction, deferredPicker);
   const selectedId = selectedRegimentId ?? list.regiments[0]?.id ?? null;
 
   async function commit(next: ArmyList) {
@@ -307,9 +308,7 @@ function BuilderReady({
       generalRegimentId: list.generalRegimentId ?? id,
     });
     setSelectedRegimentId(id);
-    startTransition(() => {
-      setPicker({ kind: "hero", regimentId: id });
-    });
+    setPicker({ kind: "hero", regimentId: id });
   }
 
   async function setPlayDamage(selectionId: string, damage: number) {
@@ -524,9 +523,7 @@ function BuilderReady({
   const onPickSpecial =
     specialTables.length > 0
       ? (tableId: string, heroSelectionId: string) =>
-          startTransition(() => {
-            setPicker({ kind: "special", tableId, heroSelectionId });
-          })
+          setPicker({ kind: "special", tableId, heroSelectionId })
       : undefined;
 
   const rorOptions = listRegimentsOfRenown(list.factionId);
@@ -916,14 +913,10 @@ function BuilderReady({
               void commit({ ...list, generalRegimentId: regiment.id });
             }}
             onPickHero={() =>
-              startTransition(() => {
-                setPicker({ kind: "hero", regimentId: regiment.id });
-              })
+              setPicker({ kind: "hero", regimentId: regiment.id })
             }
             onPickUnit={() =>
-              startTransition(() => {
-                setPicker({ kind: "unit", regimentId: regiment.id });
-              })
+              setPicker({ kind: "unit", regimentId: regiment.id })
             }
             artefactBearerId={list.artefact?.heroSelectionId}
             artefactLabel={enhancementLabel(
@@ -1520,11 +1513,7 @@ function BuilderReady({
             ) : null}
             <button
               type="button"
-              onClick={() =>
-                startTransition(() => {
-                  setPicker({ kind: "aux" });
-                })
-              }
+              onClick={() => setPicker({ kind: "aux" })}
               className="min-h-11 px-2 text-sm text-ink-muted"
             >
               + Auxiliary
@@ -1536,11 +1525,7 @@ function BuilderReady({
                 </span>
                 <button
                   type="button"
-                  onClick={() =>
-                    startTransition(() => {
-                      setPicker({ kind: "ror" });
-                    })
-                  }
+                  onClick={() => setPicker({ kind: "ror" })}
                   className="min-h-11 px-2 text-sm text-ink-muted"
                 >
                   {list.regimentOfRenown
