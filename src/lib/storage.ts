@@ -249,7 +249,7 @@ export function blankArmy(
     specialEnhancements: [],
     battleTacticCardIds: [],
     battleTacticStage: {},
-    scourgeRealm: null,
+    scourgeRealm: "aqshy",
     generalRegimentId: null,
     regiments: [],
     auxiliaries: [],

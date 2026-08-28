@@ -11,6 +11,7 @@ import {
 } from "react";
 import { usePathname } from "next/navigation";
 import type { BuilderChromeValue } from "./BuilderChrome";
+import type { LibraryChromeValue } from "./LibraryChrome";
 import { ListNavProvider } from "./IosNavSlide";
 import { ListFlowHeader } from "./ListFlowHeader";
 
@@ -25,6 +26,7 @@ const ListFlowDecorContext = createContext<{
 
 const ListFlowChromeContext = createContext<{
   setBuilderChrome: (next: BuilderChromeValue | null) => void;
+  setLibraryChrome: (next: LibraryChromeValue | null) => void;
 } | null>(null);
 
 export function ListFlowShell({ children }: { children: ReactNode }) {
@@ -35,21 +37,28 @@ export function ListFlowShell({ children }: { children: ReactNode }) {
   const [builderChrome, setBuilderChrome] = useState<BuilderChromeValue | null>(
     null,
   );
+  const [libraryChrome, setLibraryChrome] = useState<LibraryChromeValue | null>(
+    null,
+  );
   const setDecor = useCallback((next: ListFlowDecor) => {
     setDecorState(next);
   }, []);
   const decorContext = useMemo(() => ({ setDecor }), [setDecor]);
 
   useEffect(() => {
-    if (!isBuilder) {
-      setBuilderChrome(null);
-      setDecorState({});
+    if (isBuilder) {
+      setLibraryChrome(null);
+      return;
     }
+    setBuilderChrome(null);
+    setDecorState({});
   }, [isBuilder]);
 
   return (
     <ListFlowDecorContext.Provider value={decorContext}>
-      <ListFlowChromeContext.Provider value={{ setBuilderChrome }}>
+      <ListFlowChromeContext.Provider
+        value={{ setBuilderChrome, setLibraryChrome }}
+      >
         <ListNavProvider
           headerMode={isBuilder ? "builder" : "library"}
           header={
@@ -57,6 +66,7 @@ export function ListFlowShell({ children }: { children: ReactNode }) {
               mode={isBuilder ? "builder" : "library"}
               listId={listId}
               builderChrome={builderChrome}
+              libraryChrome={libraryChrome}
             />
           }
           backdrop={decor.backdrop}

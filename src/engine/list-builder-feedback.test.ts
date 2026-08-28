@@ -571,7 +571,7 @@ describe("army list persistence fields", () => {
     expect(list.specialEnhancements).toEqual([]);
     expect(list.battleTacticCardIds).toEqual([]);
     expect(list.battleTacticStage).toEqual({});
-    expect(list.scourgeRealm).toBeNull();
+    expect(list.scourgeRealm).toBe("aqshy");
   });
 
   it("duplicateArmy clones enhancement and tactic picks with a new id", () => {

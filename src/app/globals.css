@@ -123,10 +123,43 @@ a {
   filter: brightness(0.96);
 }
 
+/* iOS-style tinted bar CTA — Play in list builder header */
+.play-bar-cta {
+  background: color-mix(in srgb, var(--sigmarite) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--sigmarite) 42%, transparent);
+  color: var(--sigmarite-hover);
+}
+
+.play-bar-cta:active {
+  background: color-mix(in srgb, var(--sigmarite) 28%, transparent);
+}
+
 /* iOS-style library ↔ list navigation */
 .ios-push-root {
   min-height: 100%;
   background: transparent;
+}
+
+/* Build ↔ play carousel inside list detail */
+.builder-view-track {
+  display: flex;
+  width: 200%;
+  transition: transform 320ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.builder-view-track--play {
+  transform: translateX(-50%);
+}
+
+.builder-view-pane {
+  width: 50%;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .builder-view-track {
+    transition: none;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {

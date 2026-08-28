@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState, useSyncExternalStore } from "react";
+import { useLayoutEffect, useState, useSyncExternalStore } from "react";
 import { getFaction, listArmiesOfRenown, listFactions, armyOfRenownName } from "@/engine/queries";
 import { formatPoints } from "@/engine/pointsCap";
 import { summarize } from "@/engine/validate";
@@ -22,7 +22,7 @@ import {
   rememberListOpen,
 } from "@/lib/listTransition";
 import { IndexBackdrop } from "./IndexBackdrop";
-import { LibraryChromeProvider } from "./LibraryChrome";
+import { useListFlowChrome } from "./ListFlowShell";
 import { FactionArtLayers } from "./FactionArtBackground";
 import { ListLoadingSplash } from "./ListLoadingSplash";
 import { ModalFrame } from "./ModalFrame";
@@ -112,8 +112,14 @@ export function LibraryScreen() {
     setDraftPoints(2000);
   }
 
+  const { setLibraryChrome } = useListFlowChrome();
+
+  useLayoutEffect(() => {
+    setLibraryChrome({ openNewList: () => setPicking(true) });
+    return () => setLibraryChrome(null);
+  }, [setLibraryChrome]);
+
   return (
-    <LibraryChromeProvider value={{ openNewList: () => setPicking(true) }}>
     <IndexBackdrop veil="page">
       <main className="mx-auto w-full max-w-3xl px-5 pb-20 sm:px-6 sm:pt-3 lg:max-w-5xl">
         {lists === undefined ? (
@@ -414,6 +420,5 @@ export function LibraryScreen() {
         </div>
       ) : null}
     </IndexBackdrop>
-    </LibraryChromeProvider>
   );
 }

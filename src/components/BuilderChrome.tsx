@@ -4,7 +4,8 @@ export type BuilderChromeValue = {
   list: ArmyList;
   faction: FactionCatalogue;
   playMode: boolean;
-  setPlayMode: (value: boolean) => void;
+  enterPlay: () => void;
+  exitPlay: () => void;
   onListNameChange: (name: string) => void;
   points: number;
   pointsCap: number;

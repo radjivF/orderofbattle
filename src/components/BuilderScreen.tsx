@@ -7,6 +7,7 @@ import {
   useMemo,
   useRef,
   useState,
+  useCallback,
   useSyncExternalStore,
 } from "react";
 import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, unitBaseName, auxiliaryPickerUnits, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel } from "@/engine/queries";
@@ -207,7 +208,7 @@ function BuilderReady({
   );
   const [picker, setPicker] = useState<Picker>(null);
   const [datasheet, setDatasheet] = useState<DatasheetSubject | null>(null);
-  const [playMode, setPlayMode] = useState(false);
+  const [pane, setPane] = useState<"build" | "play">("build");
   const [playTab, setPlayTab] = useState<"units" | "magic" | "phases">("units");
   const [exportOpen, setExportOpen] = useState(false);
   const [exportCopied, setExportCopied] = useState(false);
@@ -217,6 +218,7 @@ function BuilderReady({
     () => exportArmyListText(list, faction),
     [list, faction],
   );
+  const playMode = pane === "play";
   const bindNotes = useMemo(
     () => (playMode ? combatModifierNotes(list, faction) : []),
     [playMode, list, faction],
@@ -266,10 +268,12 @@ function BuilderReady({
         ? faction.spellLores[0].id
         : list.spellLoreId;
     const nextGeneral = resolveGeneralRegimentId(list, faction);
+    const nextScourgeRealm = list.scourgeRealm ?? "aqshy";
     if (
       nextPrayer === list.prayerLoreId &&
       nextSpell === list.spellLoreId &&
-      nextGeneral === list.generalRegimentId
+      nextGeneral === list.generalRegimentId &&
+      nextScourgeRealm === list.scourgeRealm
     ) {
       return;
     }
@@ -278,6 +282,7 @@ function BuilderReady({
       prayerLoreId: nextPrayer,
       spellLoreId: nextSpell,
       generalRegimentId: nextGeneral,
+      scourgeRealm: nextScourgeRealm,
     });
   }, [list, faction]);
 
@@ -534,13 +539,17 @@ function BuilderReady({
       } will be removed from the list.`
     : "This regiment and its units will be removed from the list.";
 
-  function setBuilderPlayMode(next: boolean) {
-    setPlayMode(next);
-    if (next) {
-      setPlayTab("units");
-      setPicker(null);
-    }
-  }
+  const enterPlay = useCallback(() => {
+    setPane("play");
+    setPlayTab("units");
+    setPicker(null);
+  }, []);
+
+  const exitPlay = useCallback(() => {
+    setPane("build");
+    setPlayTab("units");
+    setPicker(null);
+  }, []);
 
   const { setBuilderChrome } = useListFlowChrome();
 
@@ -549,7 +558,8 @@ function BuilderReady({
       list,
       faction,
       playMode,
-      setPlayMode: setBuilderPlayMode,
+      enterPlay,
+      exitPlay,
       onListNameChange: (name) => void commit({ ...list, name }),
       points: totals.points,
       pointsCap: list.pointsCap,
@@ -565,12 +575,14 @@ function BuilderReady({
     totals.drops,
     issue,
     setBuilderChrome,
+    enterPlay,
+    exitPlay,
   ]);
 
-  return (
-    <div className="min-h-full w-full max-w-[100vw] overflow-x-hidden text-parchment">
-      <main className="mx-auto flex w-full max-w-3xl min-w-0 flex-col gap-5 px-4 py-6 pb-28">
-        {playMode ? (
+  function renderListMain(forPlayMode: boolean) {
+    return (
+      <main className="mx-auto flex w-full max-w-3xl min-w-0 flex-col gap-5 px-4 py-4 pb-28 sm:py-6">
+        {forPlayMode ? (
           <div className="flex gap-2">
             <button
               type="button"
@@ -607,7 +619,7 @@ function BuilderReady({
             </button>
           </div>
         ) : null}
-        {!playMode && issue.tone !== "ok" ? (
+        {!forPlayMode && issue.tone !== "ok" ? (
           <p
             className="flex items-center gap-2 rounded-xl bg-illegal/10 px-4 py-2.5 text-sm font-medium text-illegal ring-1 ring-illegal/25"
             role="status"
@@ -616,7 +628,7 @@ function BuilderReady({
             <span>{issue.text}</span>
           </p>
         ) : null}
-        {!playMode ? (
+        {!forPlayMode ? (
         <div className="flex min-w-0 flex-col gap-4">
           <details className="group min-w-0 rounded-2xl bg-ink-raised ring-1 ring-parchment/12 open:pb-4">
             <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm text-parchment/85 marker:content-none [&::-webkit-details-marker]:hidden">
@@ -844,7 +856,7 @@ function BuilderReady({
           <PlaySummary list={list} faction={faction} />
         ) : null}
 
-        {playMode && playTab === "phases" ? (
+        {forPlayMode && playTab === "phases" ? (
           <BattleTacticTracker
             list={list}
             onStageChange={(cardId, stage) =>
@@ -859,13 +871,13 @@ function BuilderReady({
           />
         ) : null}
 
-        {playMode && playTab === "phases" ? (
+        {forPlayMode && playTab === "phases" ? (
           <PlayPhaseBoard
             list={list}
             faction={faction}
             onOpenSheet={setDatasheet}
           />
-        ) : playMode && playTab === "magic" ? (
+        ) : forPlayMode && playTab === "magic" ? (
           <PlayMagicBoard
             list={list}
             faction={faction}
@@ -891,7 +903,7 @@ function BuilderReady({
             canBeGeneral={canBeGeneral(list, faction, regiment.id)}
             slotCap={totals.slotCap(regiment.id)}
             selected={selectedId === regiment.id}
-            playMode={playMode}
+            playMode={forPlayMode}
             onSelect={() => setSelectedRegimentId(regiment.id)}
             onMakeGeneral={() => {
               if (!canBeGeneral(list, faction, regiment.id)) {
@@ -1073,7 +1085,7 @@ function BuilderReady({
         {list.regimentOfRenown ? (
           <RegimentOfRenownCard
             list={list}
-            playMode={playMode}
+            playMode={forPlayMode}
             artefactBearerId={list.artefact?.heroSelectionId}
             artefactLabel={enhancementLabel(
               faction.artefacts,
@@ -1181,7 +1193,7 @@ function BuilderReady({
                 if (!unit) {
                   return null;
                 }
-                if (playMode) {
+                if (forPlayMode) {
                   const track = selectionPlayState(slot, unit);
                   const warning = battleDamagedWarning(unit, track.damage);
                   return (
@@ -1221,7 +1233,7 @@ function BuilderReady({
                         <SlotEnhancements
                           selectionId={slot.id}
                           unit={unit}
-                          playMode
+                          playMode={forPlayMode}
                           artefactBearerId={list.artefact?.heroSelectionId}
                           artefactLabel={enhancementLabel(
                             faction.artefacts,
@@ -1481,7 +1493,7 @@ function BuilderReady({
           </section>
         ) : null}
 
-        {!playMode ? (
+        {!forPlayMode ? (
           <div className="flex flex-wrap items-center gap-x-1 px-1">
             {list.regiments.length < 5 ? (
               <button
@@ -1531,7 +1543,7 @@ function BuilderReady({
           <ManifestationCard
             lore={manifestation ?? null}
             lores={faction.manifestationLores}
-            playMode={playMode}
+            playMode={forPlayMode}
             onChangeLore={(loreId) =>
               void commit({ ...list, manifestationLoreId: loreId })
             }
@@ -1542,13 +1554,30 @@ function BuilderReady({
         {faction.terrain.length > 0 ? (
           <TerrainCard
             terrain={faction.terrain}
-            playMode={playMode}
+            playMode={forPlayMode}
             onOpenSheet={setDatasheet}
           />
         ) : null}
           </>
         )}
       </main>
+    );
+  }
+
+  return (
+    <div className="min-h-full w-full max-w-[100vw] overflow-x-hidden text-parchment">
+      <div className="overflow-x-hidden">
+        <div
+          className={`builder-view-track ${pane === "play" ? "builder-view-track--play" : ""}`}
+        >
+          <div className="builder-view-pane" aria-hidden={pane === "play"}>
+            {renderListMain(false)}
+          </div>
+          <div className="builder-view-pane" aria-hidden={pane === "build"}>
+            {renderListMain(true)}
+          </div>
+        </div>
+      </div>
 
       {picker && pickerUnits && !playMode ? (
         <PickerSheet
