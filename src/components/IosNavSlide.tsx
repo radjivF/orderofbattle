@@ -47,7 +47,7 @@ function listFlowHeaderOffsetClass(
     return "pt-[calc(env(safe-area-inset-top)+3.75rem)]";
   }
   if (headerMode === "builder") {
-    return "pt-[calc(env(safe-area-inset-top)+2.75rem)]";
+    return "pt-[calc(env(safe-area-inset-top)+3.75rem)]";
   }
   return "";
 }

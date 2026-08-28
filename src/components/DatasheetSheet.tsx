@@ -9,6 +9,7 @@ import type {
   UnitAbility,
   UnitWeapon,
 } from "@/engine/types";
+import { SHEET_PANEL_CLASS } from "@/lib/builderUi";
 import { ModalFrame } from "./ModalFrame";
 
 type Props = {
@@ -47,7 +48,7 @@ export function DatasheetSheet({ sheet, onClose }: Props) {
       label={`${sheet.name} datasheet`}
       onClose={onClose}
       zClass="z-[60]"
-      panelClassName="flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-parchment text-parchment-ink shadow-2xl"
+      panelClassName={`${SHEET_PANEL_CLASS} bg-parchment shadow-2xl`}
     >
         <div className="flex shrink-0 items-start justify-between gap-3 px-5 pt-5 pb-3">
           <div>

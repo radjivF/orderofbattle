@@ -4,8 +4,10 @@ import Link from "next/link";
 import { useSyncExternalStore } from "react";
 import { formatPoints } from "@/engine/pointsCap";
 import {
+  BUILDER_LIST_NAME_INPUT_CLASS,
   HEADER_DROPS_LINE_CLASS,
   HEADER_STATS_STACK_CLASS,
+  IOS_NAV_PLAY_BUTTON_CLASS,
   builderHeaderShowsListStats,
   builderHeaderShowsPlayButton,
   dropCountLabel,
@@ -18,10 +20,11 @@ import {
 import type { BuilderChromeValue } from "./BuilderChrome";
 import type { LibraryChromeValue } from "./LibraryChrome";
 import { useListNav } from "./IosNavSlide";
+import { IosNavAddButton, IosNavBackButton } from "./ios/IosNavIconButton";
 import { BrandMark } from "./BrandMark";
 
 export const LIST_FLOW_HEADER_ROW =
-  "mx-auto flex w-full max-w-3xl items-center gap-2 px-3 py-1.5 sm:px-4";
+  "mx-auto flex min-h-[3.5rem] w-full max-w-3xl items-center gap-2 px-3 py-1.5 sm:min-h-[3.75rem] sm:px-4";
 
 export const LIST_FLOW_HEADER_ROW_LIBRARY =
   "mx-auto flex min-h-[3.5rem] w-full max-w-3xl items-center gap-1.5 px-3 py-1.5 sm:gap-2 sm:min-h-[3.75rem] sm:px-4";
@@ -38,29 +41,7 @@ function FlowBackButton({
   label: string;
   onClick: () => void;
 }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="inline-flex h-8 shrink-0 items-center gap-0.5 -ml-0.5 pl-0.5 pr-1.5 text-sigmarite active:opacity-60"
-    >
-      <svg
-        viewBox="0 0 20 20"
-        aria-hidden="true"
-        className="h-4 w-4 shrink-0 -translate-x-px"
-      >
-        <path
-          d="M12.5 4.5 7 10l5.5 5.5"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.25"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-      <span className="text-[15px] font-semibold leading-none">{label}</span>
-    </button>
-  );
+  return <IosNavBackButton label={label} onClick={onClick} />;
 }
 
 function LibraryHeaderRow({
@@ -81,26 +62,10 @@ function LibraryHeaderRow({
           </p>
         </div>
       </Link>
-      <button
-        type="button"
+      <IosNavAddButton
+        label="New list"
         onClick={() => libraryChrome?.openNewList()}
-        className="inline-flex h-9 shrink-0 items-center gap-0.5 pl-1.5 pr-0.5 font-semibold text-sigmarite active:opacity-60"
-      >
-        <svg
-          viewBox="0 0 20 20"
-          aria-hidden="true"
-          className="h-4 w-4 shrink-0"
-        >
-          <path
-            d="M10 4v12M4 10h12"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.25"
-            strokeLinecap="round"
-          />
-        </svg>
-        <span className="text-[15px] font-semibold leading-none">New list</span>
-      </button>
+      />
     </div>
   );
 }
@@ -110,7 +75,7 @@ function PlayCtaButton({ onClick }: { onClick: () => void }) {
     <button
       type="button"
       onClick={onClick}
-      className="play-bar-cta inline-flex h-8 min-w-[3.75rem] shrink-0 items-center justify-center rounded-[8px] px-3.5 text-[15px] font-semibold leading-none active:opacity-80"
+      className={IOS_NAV_PLAY_BUTTON_CLASS}
     >
       Play
     </button>
@@ -149,7 +114,7 @@ function BuilderHeaderRow({
           onChange={(event) => chrome.onListNameChange(event.target.value)}
           aria-label="List name"
           placeholder="Name your list"
-          className="h-8 min-w-0 flex-1 border-b border-parchment/25 bg-transparent font-serif text-[15px] font-semibold leading-none outline-none placeholder:text-parchment/35 sm:text-lg"
+          className={BUILDER_LIST_NAME_INPUT_CLASS}
         />
       )}
       {builderHeaderShowsListStats(Boolean(chrome)) && chrome ? (

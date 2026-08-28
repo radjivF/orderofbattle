@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HOME_CTA_CLASS } from "@/lib/builderUi";
 import { SITE_CONTACT_EMAIL, SITE_MAKER_URL } from "@/lib/site";
 
 const linkClass =
@@ -43,7 +44,7 @@ export function SiteFooter() {
             href={SITE_MAKER_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="gold-plate shine inline-flex min-h-11 items-center justify-center rounded-xl px-6 text-sm font-semibold text-ink"
+            className={HOME_CTA_CLASS}
           >
             Commission list builder
           </a>

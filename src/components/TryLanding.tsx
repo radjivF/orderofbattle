@@ -3,6 +3,7 @@ import Link from "next/link";
 import { listFactions } from "@/engine/queries";
 import { GEO_FAQS } from "@/lib/geoContent";
 import { SITE_DESCRIPTION } from "@/lib/site";
+import { HOME_CTA_CLASS, HOME_CTA_QUIET_CLASS } from "@/lib/builderUi";
 import { BrandMark } from "./BrandMark";
 import { IndexBackdrop } from "./IndexBackdrop";
 import { LandingMotion } from "./LandingMotion";
@@ -48,7 +49,7 @@ export function TryLanding() {
           </Link>
           <Link
             href="/dashboard"
-            className="gold-plate shine inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl px-5 text-sm font-semibold tracking-wide text-ink shadow-[0_4px_22px_rgba(0,0,0,0.65),0_0_0_1px_rgba(0,0,0,0.45)] ring-1 ring-sigmarite/55 active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sigmarite lg:hover:-translate-y-0.5"
+            className={`${HOME_CTA_CLASS} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sigmarite`}
           >
             Open lists
             <svg
@@ -123,7 +124,7 @@ export function TryLanding() {
                 <div className="mt-8 sm:mt-10">
                   <Link
                     href="/dashboard"
-                    className="gold-plate shine inline-flex min-h-12 items-center justify-center rounded-xl px-9 text-base font-semibold tracking-wide text-ink active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sigmarite lg:hover:-translate-y-0.5"
+                    className={`${HOME_CTA_CLASS} min-h-12 px-9 text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sigmarite`}
                   >
                     Try Order of Battle
                   </Link>
@@ -202,7 +203,7 @@ export function TryLanding() {
             <div data-rise="card" className="mt-6 text-center sm:mt-8">
               <Link
                 href="/dashboard"
-                className="inline-flex min-h-11 items-center justify-center rounded-xl border border-sigmarite/45 bg-ink/80 px-6 text-sm text-sigmarite backdrop-blur-sm active:bg-ink lg:hover:border-sigmarite lg:hover:text-gold-bright"
+                className={HOME_CTA_QUIET_CLASS}
               >
                 Open My lists and try Play
               </Link>

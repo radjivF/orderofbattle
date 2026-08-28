@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 import { createPortal } from "react-dom";
+import { lockAppPointerEvents, unlockAppPointerEvents } from "@/lib/modalLock";
 
 type Props = {
   label: string;
@@ -9,6 +10,8 @@ type Props = {
   children: ReactNode;
   panelClassName: string;
   zClass?: string;
+  /** "sheet" pins to the bottom edge on phones (iOS style); "center" always floats. */
+  variant?: "sheet" | "center";
 };
 
 export function ModalFrame({
@@ -16,7 +19,8 @@ export function ModalFrame({
   onClose,
   children,
   panelClassName,
-  zClass = "z-50",
+  zClass = "z-[100]",
+  variant = "sheet",
 }: Props) {
   const panelRef = useRef<HTMLDivElement>(null);
   const onCloseRef = useRef(onClose);
@@ -67,10 +71,12 @@ export function ModalFrame({
     document.addEventListener("keydown", onKeyDown);
     const overflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    lockAppPointerEvents();
     return () => {
       window.clearTimeout(arm);
       document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = overflow;
+      unlockAppPointerEvents();
       if (previous instanceof HTMLElement) {
         previous.focus();
       }
@@ -81,14 +87,23 @@ export function ModalFrame({
     return null;
   }
 
+  const sheet = variant === "sheet";
+  const frameClass = sheet
+    ? "flex items-end justify-center pt-10 sm:items-center sm:p-4"
+    : "flex items-center justify-center p-4";
+
   return createPortal(
     <div
-      className={`fixed inset-0 ${zClass} flex items-center justify-center p-4`}
+      className={`pointer-events-auto fixed inset-0 ${zClass} ${frameClass}`}
+      data-modal-overlay=""
     >
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-ink/70"
-        onPointerDown={() => {
+        className="modal-scrim absolute inset-0 bg-ink/70"
+        onPointerDown={(event) => {
+          event.preventDefault();
+        }}
+        onClick={() => {
           if (backdropArmed.current) {
             onClose();
           }
@@ -100,9 +115,11 @@ export function ModalFrame({
         aria-modal="true"
         aria-label={label}
         tabIndex={-1}
-        className={`relative z-10 outline-none ${panelClassName}`}
+        className={`relative z-10 outline-none ${sheet ? "modal-sheet" : ""} ${panelClassName}`}
         onPointerDown={(event) => event.stopPropagation()}
+        onClick={(event) => event.stopPropagation()}
       >
+        {sheet ? <div aria-hidden="true" className="modal-grabber sm:hidden" /> : null}
         {children}
       </div>
     </div>,
