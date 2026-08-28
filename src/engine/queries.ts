@@ -8,6 +8,7 @@ import type {
   RegimentOfRenownUnit,
   RegimentOption,
   Selection,
+  UnitStats,
 } from "./types";
 import { factions, regimentsOfRenown } from "./data/load";
 
@@ -420,8 +421,13 @@ export function resolveGeneralRegimentId(
   return list.regiments[0]?.id ?? null;
 }
 
-export function unitWard(unit: CatalogueUnit): string {
-  for (const category of unit.categories) {
+type StatProfile = {
+  stats: UnitStats;
+  categories: string[];
+};
+
+export function unitWard(subject: StatProfile): string {
+  for (const category of subject.categories) {
     const match = /^WARD\s*\((.+)\)$/i.exec(category);
     if (match) {
       return match[1];
@@ -451,6 +457,27 @@ export function battleStatLine(unit: CatalogueUnit): string {
     parts.push(`Control ${control}`);
   }
   const ward = unitWard(unit);
+  if (ward) {
+    parts.push(`Ward ${ward}`);
+  }
+  return parts.join(" · ");
+}
+
+export function moveStatLine(unit: CatalogueUnit): string {
+  const move = unit.stats?.move?.trim();
+  if (!move || move === "-") {
+    return "";
+  }
+  return `Move ${move}`;
+}
+
+export function defenceStatLine(subject: StatProfile): string {
+  const parts: string[] = [];
+  const save = subject.stats?.save?.trim();
+  if (save && save !== "-") {
+    parts.push(`Save ${save}`);
+  }
+  const ward = unitWard(subject);
   if (ward) {
     parts.push(`Ward ${ward}`);
   }

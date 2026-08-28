@@ -62,6 +62,13 @@ export const SHEET_PANEL_CLASS =
 export const SHEET_PANEL_COMPACT_CLASS =
   "parchment-card w-full max-w-sm text-parchment-ink sm:rounded-2xl";
 
+/** Shared sheet header row — tight vertical rhythm below the grabber. */
+export const SHEET_HEADER_CLASS =
+  "flex shrink-0 items-center justify-between gap-3 px-5 pt-2 pb-2";
+
+export const SHEET_HEADER_START_CLASS =
+  "flex shrink-0 items-start justify-between gap-3 px-5 pt-2 pb-2";
+
 export const LIBRARY_CARD_CLASS =
   "parchment-card pressable grid min-h-[8.5rem] grid-cols-[minmax(0,1fr)_7.5rem] overflow-hidden rounded-2xl text-parchment-ink sm:grid-cols-[minmax(0,1fr)_9.5rem]";
 

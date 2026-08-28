@@ -29,12 +29,14 @@ import {
   LIBRARY_CARD_ACTIONS_CLASS,
   LIBRARY_CARD_CLASS,
   LIBRARY_CARD_DELETE_BUTTON_CLASS,
+  SHEET_HEADER_CLASS,
   SHEET_PANEL_CLASS,
   SHEET_PANEL_COMPACT_CLASS,
 } from "@/lib/builderUi";
 import { useListFlowChrome } from "./ListFlowShell";
 import { FactionArtLayers } from "./FactionArtBackground";
 import { BrandMark } from "./BrandMark";
+import { SheetCloseButton, IosTrashIcon } from "./ios/SheetIconButton";
 import { ListLoadingSplash } from "./ListLoadingSplash";
 import { ModalFrame } from "./ModalFrame";
 import { PointsCapField } from "./PointsCapField";
@@ -290,9 +292,10 @@ export function LibraryScreen() {
               <button
                 type="button"
                 onClick={() => void confirmDelete()}
+                aria-label="Delete"
                 className="ios-action-sheet-row ios-action-sheet-row--destructive"
               >
-                Delete
+                <IosTrashIcon />
               </button>
               <div className="ios-action-sheet-separator" />
               <button
@@ -313,17 +316,11 @@ export function LibraryScreen() {
           onClose={closePicker}
           panelClassName={`${SHEET_PANEL_CLASS} text-parchment-ink`}
         >
-            <div className="flex shrink-0 items-center justify-between px-5 pt-5 pb-3">
+            <div className={SHEET_HEADER_CLASS}>
               <h2 className="font-serif text-2xl">
                 {draftFaction ? "Name your list" : "Choose a faction"}
               </h2>
-              <button
-                type="button"
-                onClick={closePicker}
-                className="min-h-11 px-3 text-sm text-parchment-ink/70"
-              >
-                Close
-              </button>
+              <SheetCloseButton label="Close picker" onClick={closePicker} />
             </div>
 
             {draftFaction ? (

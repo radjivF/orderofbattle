@@ -1,11 +1,12 @@
 "use client";
 
 import { manifestationStatLine } from "@/engine/queries";
-import {
-  PLAY_SHEET_LINK_CLASS,
-  PLAY_UNIT_NAME_ROW_CLASS,
-} from "@/lib/builderUi";
 import type { ManifestationLore, ManifestationModel } from "@/engine/types";
+import { PlaySlotRow, SheetLinkButton } from "./ios/SheetIconButton";
+
+function loreLabel(lore: ManifestationLore): string {
+  return lore.points ? `${lore.name} · ${lore.points} pts` : lore.name;
+}
 
 type Props = {
   lore: ManifestationLore | null;
@@ -28,24 +29,20 @@ export function ManifestationCard({
 
   return (
     <article className="rounded-2xl bg-parchment p-5 text-parchment-ink shadow-sm">
-      <header className="mb-4 flex items-start justify-between gap-3">
-        <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-            Manifestation
-          </p>
+      <header className="mb-4">
+        <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
+          Manifestation
+        </p>
+        <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
           <h2 className="font-serif text-2xl leading-tight">
             {lore?.name ?? "No lore chosen"}
           </h2>
+          {lore?.points ? (
+            <p className="text-sm font-medium text-sigmarite">
+              {lore.points} pts
+            </p>
+          ) : null}
         </div>
-        {!playMode && lore ? (
-          <button
-            type="button"
-            className="min-h-11 shrink-0 text-sm text-sheet-muted"
-            onClick={() => onChangeLore(null)}
-          >
-            Remove
-          </button>
-        ) : null}
       </header>
 
       {!playMode ? (
@@ -61,7 +58,7 @@ export function ManifestationCard({
             <option value="">Choose…</option>
             {lores.map((option) => (
               <option key={option.id} value={option.id}>
-                {option.name}
+                {loreLabel(option)}
               </option>
             ))}
           </select>
@@ -106,23 +103,14 @@ function ManifestationSlot({
     : "";
 
   if (playMode) {
+    const subtitle = [stats, cast].filter(Boolean).join(" · ");
     return (
-      <button
-        type="button"
-        onClick={onOpenSheet}
-        aria-label={`${model.name} datasheet`}
-        className="flex min-h-11 w-full flex-col items-start rounded-xl bg-parchment-ink/5 px-3 py-3 text-left active:opacity-60"
-      >
-        <span className={PLAY_UNIT_NAME_ROW_CLASS}>
-          <span className="font-serif text-lg leading-tight">{model.name}</span>
-          <span className={PLAY_SHEET_LINK_CLASS}>Sheet</span>
-        </span>
-        {stats || cast ? (
-          <span className="mt-1 font-sans text-sm text-sheet-muted">
-            {[stats, cast].filter(Boolean).join(" · ")}
-          </span>
-        ) : null}
-      </button>
+      <PlaySlotRow
+        name={model.name}
+        subtitle={subtitle || undefined}
+        sheetLabel={`${model.name} datasheet`}
+        onOpenSheet={onOpenSheet}
+      />
     );
   }
 
@@ -136,14 +124,10 @@ function ManifestationSlot({
           </span>
         ) : null}
       </div>
-      <button
-        type="button"
-        aria-label={`${model.name} datasheet`}
-        className="min-h-11 shrink-0 px-3 text-sm text-aether"
+      <SheetLinkButton
+        label={`${model.name} datasheet`}
         onClick={onOpenSheet}
-      >
-        Sheet
-      </button>
+      />
     </div>
   );
 }

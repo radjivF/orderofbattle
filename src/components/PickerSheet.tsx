@@ -2,8 +2,9 @@
 
 import { unitSizeLabel } from "@/engine/queries";
 import type { CatalogueUnit, UnitAbility } from "@/engine/types";
-import { SHEET_PANEL_CLASS } from "@/lib/builderUi";
+import { SHEET_PANEL_CLASS, SHEET_HEADER_CLASS } from "@/lib/builderUi";
 import { ModalFrame } from "./ModalFrame";
+import { SheetCloseButton, SheetLinkButton } from "./ios/SheetIconButton";
 
 const pickerPanel = `${SHEET_PANEL_CLASS} bg-parchment shadow-2xl`;
 
@@ -27,15 +28,9 @@ export function PickerSheet({
 
   return (
     <ModalFrame label={title} onClose={onClose} panelClassName={pickerPanel}>
-        <div className="flex shrink-0 items-center justify-between px-5 pt-5 pb-3">
+        <div className={SHEET_HEADER_CLASS}>
           <h2 className="font-serif text-2xl">{title}</h2>
-          <button
-            type="button"
-            onClick={onClose}
-            className="min-h-11 px-3 text-sm text-parchment-ink/70"
-          >
-            Close
-          </button>
+          <SheetCloseButton onClick={onClose} />
         </div>
         <div className="overflow-y-auto px-3 pb-6">
           {units.length === 0 ? (
@@ -108,14 +103,10 @@ function PickerRow({
         </span>
         <span className="font-medium text-sigmarite">{unit.points}</span>
       </button>
-      <button
-        type="button"
-        aria-label={`${unit.name} datasheet`}
-        className="min-h-11 shrink-0 px-3 text-sm text-aether"
+      <SheetLinkButton
+        label={`${unit.name} datasheet`}
         onClick={() => onOpenDatasheet(unit)}
-      >
-        Sheet
-      </button>
+      />
     </li>
   );
 }
@@ -142,15 +133,9 @@ export function ChoiceSheet({
 }) {
   return (
     <ModalFrame label={title} onClose={onClose} panelClassName={pickerPanel}>
-        <div className="flex shrink-0 items-center justify-between px-5 pt-5 pb-3">
+        <div className={SHEET_HEADER_CLASS}>
           <h2 className="font-serif text-2xl">{title}</h2>
-          <button
-            type="button"
-            onClick={onClose}
-            className="min-h-11 px-3 text-sm text-parchment-ink/70"
-          >
-            Close
-          </button>
+          <SheetCloseButton onClick={onClose} />
         </div>
         <div className="overflow-y-auto px-3 pb-6">
           <button

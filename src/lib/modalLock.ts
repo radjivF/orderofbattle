@@ -1,26 +1,40 @@
-/** Blocks pointer events on the page while one or more modals are open. */
+/** Modal stack: pointer lock, z-index layering, and top-only dismiss. */
+
+const BASE_Z = 100;
+const Z_STEP = 10;
+
 let lockCount = 0;
+const closeHandlers: Array<() => void> = [];
 
 function appBody() {
   return typeof document !== "undefined" ? document.body : null;
 }
 
-export function lockAppPointerEvents() {
-  lockCount += 1;
-  if (lockCount === 1) {
-    const body = appBody();
-    if (body) {
-      body.style.pointerEvents = "none";
-    }
+function syncBodyPointerLock() {
+  const body = appBody();
+  if (!body) {
+    return;
   }
+  body.style.pointerEvents = lockCount > 0 ? "none" : "";
 }
 
-export function unlockAppPointerEvents() {
-  lockCount = Math.max(0, lockCount - 1);
-  if (lockCount === 0) {
-    const body = appBody();
-    if (body) {
-      body.style.pointerEvents = "";
-    }
+/** Reserve the next modal layer; returns its z-index. */
+export function acquireModalLayer(onClose: () => void): number {
+  lockCount += 1;
+  closeHandlers.push(onClose);
+  syncBodyPointerLock();
+  return BASE_Z + (lockCount - 1) * Z_STEP;
+}
+
+export function releaseModalLayer(onClose: () => void) {
+  const idx = closeHandlers.lastIndexOf(onClose);
+  if (idx >= 0) {
+    closeHandlers.splice(idx, 1);
   }
+  lockCount = Math.max(0, lockCount - 1);
+  syncBodyPointerLock();
+}
+
+export function isTopModal(onClose: () => void): boolean {
+  return closeHandlers[closeHandlers.length - 1] === onClose;
 }

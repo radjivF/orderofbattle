@@ -99,6 +99,7 @@ export function TryLanding() {
                   height={253}
                   sizes="(max-width: 640px) 320px, 448px"
                   quality={82}
+                  priority
                   className="mx-auto h-auto w-[min(100%,20rem)] drop-shadow-[0_6px_20px_rgba(0,0,0,0.8)] sm:w-[min(100%,28rem)]"
                 />
                 <p className="mt-5 text-xs font-semibold tracking-[0.28em] text-parchment uppercase [text-shadow:0_2px_10px_rgba(0,0,0,0.95),0_0_2px_rgba(0,0,0,1)] sm:text-sm sm:tracking-[0.32em]">

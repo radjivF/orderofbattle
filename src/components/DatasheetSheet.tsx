@@ -9,8 +9,9 @@ import type {
   UnitAbility,
   UnitWeapon,
 } from "@/engine/types";
-import { SHEET_PANEL_CLASS } from "@/lib/builderUi";
+import { SHEET_PANEL_CLASS, SHEET_HEADER_START_CLASS } from "@/lib/builderUi";
 import { ModalFrame } from "./ModalFrame";
+import { SheetCloseButton } from "./ios/SheetIconButton";
 
 type Props = {
   sheet: DatasheetSubject;
@@ -47,21 +48,14 @@ export function DatasheetSheet({ sheet, onClose }: Props) {
     <ModalFrame
       label={`${sheet.name} datasheet`}
       onClose={onClose}
-      zClass="z-[60]"
       panelClassName={`${SHEET_PANEL_CLASS} bg-parchment shadow-2xl`}
     >
-        <div className="flex shrink-0 items-start justify-between gap-3 px-5 pt-5 pb-3">
+        <div className={SHEET_HEADER_START_CLASS}>
           <div>
             <h2 className="font-serif text-2xl leading-tight">{sheet.name}</h2>
             <p className="mt-1 text-sm text-sigmarite">{subtitle}</p>
           </div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="min-h-11 shrink-0 px-3 text-sm text-parchment-ink/70"
-          >
-            Close
-          </button>
+          <SheetCloseButton onClick={onClose} />
         </div>
 
         <div className="overflow-y-auto px-5 pb-8">

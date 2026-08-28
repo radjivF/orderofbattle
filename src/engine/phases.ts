@@ -100,6 +100,122 @@ export function armyRoster(
   return rows;
 }
 
+export type RegimentPlayGroup = {
+  id: string;
+  label: string;
+  subtitle?: string;
+  entries: RosterEntry[];
+};
+
+/** Regiment-shaped roster for Play phase unit grouping (movement, etc.). */
+export function regimentPlayGroups(
+  list: ArmyList,
+  faction: FactionCatalogue,
+): RegimentPlayGroup[] {
+  const groups: RegimentPlayGroup[] = [];
+
+  for (const regiment of list.regiments) {
+    const entries: RosterEntry[] = [];
+    const push = (selection: Selection) => {
+      const unit = getListUnit(list, faction, selection.unitId);
+      if (!unit) {
+        return;
+      }
+      entries.push({
+        selectionId: selection.id,
+        unit,
+        reinforced: selection.reinforced,
+      });
+    };
+    if (regiment.hero) {
+      push(regiment.hero);
+    }
+    for (const slot of regiment.units) {
+      push(slot);
+    }
+    if (entries.length === 0) {
+      continue;
+    }
+    const heroUnit = regiment.hero
+      ? getListUnit(list, faction, regiment.hero.unitId)
+      : undefined;
+    groups.push({
+      id: regiment.id,
+      label: heroUnit?.name ?? "Regiment",
+      subtitle:
+        list.generalRegimentId === regiment.id
+          ? "General's regiment"
+          : "Regiment",
+      entries,
+    });
+  }
+
+  const auxEntries: RosterEntry[] = [];
+  for (const slot of list.auxiliaries) {
+    const unit = getListUnit(list, faction, slot.unitId);
+    if (!unit) {
+      continue;
+    }
+    auxEntries.push({
+      selectionId: slot.id,
+      unit,
+      reinforced: slot.reinforced,
+    });
+  }
+  if (auxEntries.length > 0) {
+    groups.push({
+      id: "__aux__",
+      label: "Auxiliaries",
+      entries: auxEntries,
+    });
+  }
+
+  const rorEntries: RosterEntry[] = [];
+  for (const slot of list.regimentOfRenown?.units ?? []) {
+    const unit = getListUnit(list, faction, slot.unitId);
+    if (!unit) {
+      continue;
+    }
+    rorEntries.push({
+      selectionId: slot.id,
+      unit,
+      reinforced: slot.reinforced,
+    });
+  }
+  if (rorEntries.length > 0) {
+    const ror = list.regimentOfRenown
+      ? getRegimentOfRenown(list.regimentOfRenown.renownId)
+      : undefined;
+    groups.push({
+      id: "__ror__",
+      label: ror?.name ?? "Regiment of Renown",
+      subtitle: "Regiment of Renown",
+      entries: rorEntries,
+    });
+  }
+
+  return groups;
+}
+
+export function rosterSelectionIds(list: ArmyList): Set<string> {
+  const ids = new Set<string>();
+  for (const regiment of list.regiments) {
+    if (regiment.hero) {
+      ids.add(regiment.hero.id);
+    }
+    for (const slot of regiment.units) {
+      ids.add(slot.id);
+    }
+  }
+  for (const slot of list.auxiliaries) {
+    ids.add(slot.id);
+  }
+  for (const slot of list.regimentOfRenown?.units ?? []) {
+    ids.add(slot.id);
+  }
+  return ids;
+}
+
 export function phasesForAbility(ability: UnitAbility): PlayPhaseId[] {
   const kind = ability.kind.toLowerCase();
   if (kind === "passive") {

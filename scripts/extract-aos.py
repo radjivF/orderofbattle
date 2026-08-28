@@ -296,7 +296,7 @@ def manifestation_sheet(
             "abilities": [],
             "summon": summon,
         }
-    return {
+    sheet = {
         "id": oid,
         "name": oname or named(entry),
         "stats": unit_stats(entry),
@@ -306,6 +306,10 @@ def manifestation_sheet(
         "abilities": unit_abilities(entry),
         "summon": summon,
     }
+    pts = entry_points(entry)
+    if pts > 0:
+        sheet["points"] = pts
+    return sheet
 
 
 def manifestation_models(lore_el: ET.Element, by_id: dict[str, ET.Element]) -> list[dict]:
@@ -603,11 +607,44 @@ def find_groups(cat: ET.Element, *labels: str) -> list[ET.Element]:
     return groups
 
 
+def manifestation_lore_points(
+    *roots: ET.Element,
+) -> tuple[dict[str, int], dict[str, int]]:
+    """Map manifestation lore name / group id -> pts from GHB upgrade picks."""
+    by_name: dict[str, int] = {}
+    by_id: dict[str, int] = {}
+    for root in roots:
+        for el in root.iter():
+            if local(el.tag) != "selectionEntry":
+                continue
+            if el.attrib.get("type") != "upgrade":
+                continue
+            pts = entry_points(el)
+            if pts <= 0:
+                continue
+            oname = named(el)
+            if oname:
+                by_name[oname] = pts
+            links = child(el, "entryLinks")
+            if links is None:
+                continue
+            for link in children(links, "entryLink"):
+                tid = link.attrib.get("targetId") or ""
+                lname = named(link)
+                if tid:
+                    by_id[tid] = pts
+                if lname:
+                    by_name[lname] = pts
+    return by_name, by_id
+
+
 def extract_lores(
     cat: ET.Element,
     by_id: dict[str, ET.Element],
     *labels: str,
     with_manifestations: bool = False,
+    lore_points_by_name: dict[str, int] | None = None,
+    lore_points_by_id: dict[str, int] | None = None,
 ) -> list[dict]:
     lores: list[dict] = []
     seen: set[str] = set()
@@ -628,6 +665,13 @@ def extract_lores(
                     if not m["name"].startswith("Summon ")
                 ]
             item["manifestations"] = models
+            pts = entry_points(source)
+            if pts <= 0 and lore_points_by_name is not None:
+                pts = lore_points_by_name.get(oname, 0)
+            if pts <= 0 and lore_points_by_id is not None:
+                pts = lore_points_by_id.get(oid, 0)
+            if pts > 0:
+                item["points"] = pts
         else:
             kinds = (
                 ("Spell",)
@@ -1129,6 +1173,11 @@ def extract_faction(
         return None
 
     display = cat.attrib.get("name") or cat_path.stem
+    lore_pts_name, lore_pts_id = manifestation_lore_points(
+        cat,
+        *extra_roots,
+        *lib_roots,
+    )
     spell_lores = extract_lores(cat, by_id, "Spell Lores", "Spell Lore")
     prayer_lores = extract_lores(cat, by_id, "Prayer Lores", "Prayer Lore")
     manifestation_lores = extract_lores(
@@ -1137,6 +1186,8 @@ def extract_faction(
         "Manifestation Lores",
         "Manifestation Lore",
         with_manifestations=True,
+        lore_points_by_name=lore_pts_name,
+        lore_points_by_id=lore_pts_id,
     )
     artefacts = extract_artefact_enhancements(cat, by_id)
     heroic_traits = extract_heroic_trait_enhancements(cat, by_id)

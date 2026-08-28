@@ -238,8 +238,10 @@ describe("iOS polish contracts", () => {
       "utf8",
     );
     expect(modal).toContain('variant?: "sheet" | "center"');
+    expect(modal).toContain("onSheetPointerDown");
     expect(modal).toContain("modal-grabber");
-    expect(modal).toContain("lockAppPointerEvents");
+    expect(modal).toContain("acquireModalLayer");
+    expect(modal).toContain("isTopModal");
     expect(modal).toContain("modal-scrim");
     expect(modal).toContain("pointer-events-auto");
   });

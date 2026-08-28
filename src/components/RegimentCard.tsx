@@ -24,9 +24,13 @@ import type {
 import { enhancementLabel } from "@/engine/queries";
 import { damageStepperActions } from "@/lib/damageStepper";
 import {
-  PLAY_SHEET_LINK_CLASS,
-  PLAY_UNIT_NAME_ROW_CLASS,
-} from "@/lib/builderUi";
+  EDIT_LINK_BUTTON_COMPACT_CLASS,
+  EditLinkButton,
+  IosPlusIcon,
+  IosTrashIcon,
+  PlaySlotRow,
+  SheetLinkButton,
+} from "./ios/SheetIconButton";
 
 type Props = {
   regiment: Regiment;
@@ -152,13 +156,14 @@ export function RegimentCard({
         {!playMode ? (
           <button
             type="button"
-            className="min-h-11 text-sm text-sheet-muted"
+            aria-label="Remove regiment"
+            className="pressable inline-flex h-11 w-11 items-center justify-center text-illegal"
             onClick={(event) => {
               event.stopPropagation();
               onRemoveRegiment();
             }}
           >
-            Remove
+            <IosTrashIcon />
           </button>
         ) : null}
       </header>
@@ -528,29 +533,28 @@ function EnhancementRow({
             abilities={abilities}
           />
         </div>
-        <button
-          type="button"
-          className="min-h-9 shrink-0 px-1 text-sm text-sheet-muted"
+        <EditLinkButton
+          label={`Change ${kind}`}
+          className={EDIT_LINK_BUTTON_COMPACT_CLASS}
           onClick={(event) => {
             event.stopPropagation();
             onPick();
           }}
-        >
-          Change
-        </button>
+        />
       </div>
     );
   }
   return (
     <button
       type="button"
-      className="min-h-9 text-left text-sm text-sheet-muted"
+      className="flex min-h-9 w-full items-center gap-2.5 text-left text-sm text-sheet-muted"
       onClick={(event) => {
         event.stopPropagation();
         onPick();
       }}
     >
-      {emptyLabel}
+      <IosPlusIcon className="h-4 w-4 shrink-0 opacity-70" />
+      <span>{emptyLabel}</span>
     </button>
   );
 }
@@ -631,41 +635,22 @@ function SlotLine({
       track != null ? battleDamagedWarning(unit, track.damage) : null;
     return (
       <div className="w-full rounded-xl bg-parchment-ink/5 px-3 py-2.5">
-        <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={(event) => {
-              event.stopPropagation();
-              onOpenDatasheet();
-            }}
-            aria-label={`${unit.name} datasheet`}
-            className="min-w-0 flex-1 text-left active:opacity-60"
-          >
-            <span className={PLAY_UNIT_NAME_ROW_CLASS}>
-              <span className="font-serif text-lg leading-tight">
-                {unit.name}
-                {reinforced ? (
-                  <span className="ml-2 font-sans text-xs text-sheet-muted">
-                    reinforced
-                  </span>
-                ) : null}
-              </span>
-              <span className={PLAY_SHEET_LINK_CLASS}>Sheet</span>
-            </span>
-            {stats ? (
-              <span className="mt-0.5 block font-sans text-sm text-sheet-muted">
-                {stats}
-              </span>
-            ) : null}
-          </button>
-          {track && selection && onPlayHealth ? (
-            <PlayHealthTrack
-              aside
-              track={track}
-              onChange={(damage) => onPlayHealth(selection.id, damage)}
-            />
-          ) : null}
-        </div>
+        <PlaySlotRow
+          name={unit.name}
+          subtitle={stats || undefined}
+          reinforced={reinforced}
+          sheetLabel={`${unit.name} datasheet`}
+          onOpenSheet={onOpenDatasheet}
+          trailing={
+            track && selection && onPlayHealth ? (
+              <PlayHealthTrack
+                aside
+                track={track}
+                onChange={(damage) => onPlayHealth(selection.id, damage)}
+              />
+            ) : null
+          }
+        />
         {warning ? (
           <p className="mt-2 rounded-lg bg-illegal/10 px-2.5 py-2 text-sm leading-snug text-illegal">
             Battle damaged ({warning.threshold}+) · {warning.summary}
@@ -695,27 +680,21 @@ function SlotLine({
         </p>
       </div>
       <div className="flex shrink-0 items-stretch">
-        <button
-          type="button"
-          className="min-h-11 px-2.5 text-sm text-aether"
+        <SheetLinkButton
+          label={`${unit.name} datasheet`}
           onClick={(event) => {
             event.stopPropagation();
             onOpenDatasheet();
           }}
-        >
-          Sheet
-        </button>
+        />
         {onReplace ? (
-          <button
-            type="button"
-            className="min-h-11 px-2.5 text-sm text-sheet-muted"
+          <EditLinkButton
+            label={`Change ${unit.name}`}
             onClick={(event) => {
               event.stopPropagation();
               onReplace();
             }}
-          >
-            Change
-          </button>
+          />
         ) : null}
         {canReinforce || onDuplicate || onRemove ? (
           <SlotMoreMenu
@@ -879,7 +858,7 @@ export function PlayHealthTrack({
   if (aside) {
     return (
       <div
-        className="flex shrink-0 flex-col items-end justify-center gap-1 border-l border-parchment-ink/10 pl-3"
+        className="flex w-full flex-row flex-wrap items-center justify-between gap-x-3 gap-y-1 border-t border-parchment-ink/10 pt-2 sm:w-auto sm:flex-col sm:items-end sm:justify-center sm:gap-1 sm:border-t-0 sm:border-l sm:pt-0 sm:pl-3"
         onClick={(event) => event.stopPropagation()}
       >
         {dead && singleModel ? (

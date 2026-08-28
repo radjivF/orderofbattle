@@ -17,7 +17,7 @@ import { battleTactics, battleTacticsForRealm } from "@/engine/data/load";
 import { summarize } from "@/engine/validate";
 import type { ArmyList, CatalogueUnit, DatasheetSubject, EnhancementOption, FactionCatalogue, NamedOption } from "@/engine/types";
 import { createId } from "@/lib/id";
-import { IOS_LIQUID_CTA_CLASS, LIST_ISSUE_BANNER_CLASS, SHEET_PANEL_CLASS, SHEET_PANEL_COMPACT_CLASS } from "@/lib/builderUi";
+import { IOS_LIQUID_CTA_CLASS, LIST_ISSUE_BANNER_CLASS, SHEET_HEADER_CLASS, SHEET_PANEL_CLASS, SHEET_PANEL_COMPACT_CLASS } from "@/lib/builderUi";
 import {
   getArmiesServerSnapshot,
   getArmiesSnapshot,
@@ -41,6 +41,7 @@ import { useListFlowChrome, useListFlowDecor } from "./ListFlowShell";
 import { ListLoadingSplash } from "./ListLoadingSplash";
 import { ModalFrame } from "./ModalFrame";
 import { ChoiceSheet, PickerSheet } from "./PickerSheet";
+import { SheetCloseButton, SheetLinkButton } from "./ios/SheetIconButton";
 import { PointsCapField } from "./PointsCapField";
 import { ManifestationCard } from "./ManifestationCard";
 import { PlayMagicBoard } from "./PlayMagicBoard";
@@ -1314,13 +1315,10 @@ function BuilderReady({
                       </p>
                     </div>
                     <div className="flex shrink-0 items-stretch">
-                      <button
-                        type="button"
-                        className="min-h-11 px-2.5 text-sm text-aether"
+                      <SheetLinkButton
+                        label={`${unit.name} datasheet`}
                         onClick={() => setDatasheet(unit)}
-                      >
-                        Sheet
-                      </button>
+                      />
                       <SlotMoreMenu
                         reinforced={slot.reinforced}
                         canReinforce={unit.reinforce}
@@ -1539,11 +1537,7 @@ function BuilderReady({
         ) : null}
 
         {faction.terrain.length > 0 ? (
-          <TerrainCard
-            terrain={faction.terrain}
-            playMode={forPlayMode}
-            onOpenSheet={setDatasheet}
-          />
+          <TerrainCard terrain={faction.terrain} onOpenSheet={setDatasheet} />
         ) : null}
           </>
         )}
@@ -1641,7 +1635,7 @@ function BuilderReady({
                 onClick={() => void removeRegiment(regimentRemoveId)}
                 className="ios-action-sheet-row ios-action-sheet-row--destructive"
               >
-                Remove
+                Delete
               </button>
               <div className="ios-action-sheet-separator" />
               <button
@@ -1662,15 +1656,9 @@ function BuilderReady({
           onClose={() => setExportOpen(false)}
           panelClassName={SHEET_PANEL_CLASS}
         >
-          <div className="flex shrink-0 items-center justify-between gap-3 px-5 pt-5 pb-3">
+          <div className={SHEET_HEADER_CLASS}>
             <h2 className="font-serif text-2xl">Export as text</h2>
-            <button
-              type="button"
-              onClick={() => setExportOpen(false)}
-              className="min-h-11 px-3 text-sm text-parchment-ink/70"
-            >
-              Close
-            </button>
+            <SheetCloseButton label="Close export" onClick={() => setExportOpen(false)} />
           </div>
           <textarea
             readOnly

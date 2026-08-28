@@ -283,9 +283,29 @@ a {
 .modal-grabber {
   width: 2.25rem;
   height: 0.3125rem;
-  margin: 0.625rem auto 0;
+  margin: 0.375rem auto 0;
+  padding: 0.5rem 2rem;
   border-radius: 9999px;
-  background: color-mix(in srgb, var(--parchment-ink) 20%, transparent);
+  background:
+    linear-gradient(
+        to bottom,
+        transparent 0.625rem,
+        color-mix(in srgb, var(--parchment-ink) 20%, transparent) 0.625rem,
+        color-mix(in srgb, var(--parchment-ink) 20%, transparent) 0.9375rem,
+        transparent 0.9375rem
+      )
+      center / 2.25rem 100% no-repeat;
+  cursor: grab;
+}
+
+.modal-sheet--animating {
+  transition: transform 280ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-sheet--animating {
+    transition: none;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {

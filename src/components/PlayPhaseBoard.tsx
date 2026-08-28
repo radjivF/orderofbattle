@@ -10,13 +10,17 @@ import {
 } from "@/engine/commands";
 import { combatModifierNotes } from "@/engine/magic";
 import {
+  defenceStatLine,
   getListUnit,
+  moveStatLine,
   selectionDamage,
   weaponAttacksForDamage,
 } from "@/engine/queries";
 import { IOS_LIQUID_CTA_CLASS, SHEET_PANEL_COMPACT_CLASS } from "@/lib/builderUi";
 import {
   buildPhaseBoards,
+  regimentPlayGroups,
+  rosterSelectionIds,
   type PhaseAbilityRow,
   type PhaseWeaponRow,
   type PlayPhaseId,
@@ -30,7 +34,7 @@ import type {
 import { ModalFrame } from "./ModalFrame";
 import { IosUnderlineTabs } from "./ios/IosUnderlineTabs";
 
-type PhaseSubTab = "abilities" | "weapons" | "command";
+type PhaseSubTab = "abilities" | "weapons" | "command" | "units";
 
 type Props = {
   list: ArmyList;
@@ -54,11 +58,21 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
   const showCombatMods =
     active?.phase.id === "combat" || active?.phase.id === "shooting";
 
+  const rosterIds = useMemo(() => rosterSelectionIds(list), [list]);
+  const regimentGroups = useMemo(
+    () => regimentPlayGroups(list, faction),
+    [list, faction],
+  );
+  const isMovementPhase = active?.phase.id === "movement";
+  const rosterAbilityRows =
+    active?.abilities.filter((row) => rosterIds.has(row.selectionId)) ?? [];
+  const armyAbilityRows =
+    active?.abilities.filter((row) => !rosterIds.has(row.selectionId)) ?? [];
+
   const phaseAbilities =
-    active?.abilities.filter((row) => !isCommandAbility(row.ability.kind)) ??
-    [];
+    armyAbilityRows.filter((row) => !isCommandAbility(row.ability.kind)) ?? [];
   const armyCommands =
-    active?.abilities.filter((row) => isCommandAbility(row.ability.kind)) ?? [];
+    armyAbilityRows.filter((row) => isCommandAbility(row.ability.kind)) ?? [];
   const coreCommands = active
     ? coreCommandsForPhase(active.phase.id)
     : [];
@@ -66,16 +80,21 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
   const hasWeapons = (active?.weapons.length ?? 0) > 0;
   const hasCommands = coreCommands.length > 0 || armyCommands.length > 0;
   const hasArmyCommands = armyCommands.length > 0;
+  const hasUnits = isMovementPhase && regimentGroups.length > 0;
   const defaultSubTab = defaultPhaseSubTab(
+    active?.phase.id ?? "passive",
     hasAbilities,
     hasWeapons,
     hasCommands,
     hasArmyCommands,
+    hasUnits,
   );
   const availableSubTabs = phaseSubTabs(
+    active?.phase.id ?? "passive",
     hasAbilities,
     hasWeapons,
     hasCommands,
+    hasUnits,
   );
   const remembered = active ? subTabByPhase[active.phase.id] : undefined;
   const subTab =
@@ -149,22 +168,88 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
               />
 
               <div role="tabpanel" className="mt-4">
+                {subTab === "units" ? (
+                  <ul className="flex flex-col gap-4">
+                    {regimentGroups.map((group) => (
+                      <li key={group.id}>
+                        <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                          {group.subtitle ? (
+                            <p className="shrink-0 text-sm font-semibold tracking-wide uppercase text-sheet-muted">
+                              {group.subtitle}
+                            </p>
+                          ) : null}
+                          <p className="min-w-0 font-serif text-xl leading-tight">
+                            {group.label}
+                          </p>
+                        </div>
+                        <ul className="mt-3 flex flex-col gap-3">
+                          {group.entries.map((entry) => {
+                            const unitRows = rosterAbilityRows.filter(
+                              (row) => row.selectionId === entry.selectionId,
+                            );
+                            const move = moveStatLine(entry.unit);
+                            return (
+                              <li
+                                key={entry.selectionId}
+                                className="rounded-xl bg-parchment-ink/5 px-3 py-3"
+                              >
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const sheet = findSheet(
+                                      list,
+                                      faction,
+                                      entry.selectionId,
+                                    );
+                                    if (sheet) {
+                                      onOpenSheet(sheet);
+                                    }
+                                  }}
+                                  className="w-full text-left"
+                                >
+                                  <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                                    <p className="font-serif text-lg leading-tight">
+                                      {entry.unit.name}
+                                      {entry.reinforced ? (
+                                        <span className="ml-2 font-sans text-xs text-sheet-muted">
+                                          reinforced
+                                        </span>
+                                      ) : null}
+                                    </p>
+                                    {move ? (
+                                      <p className="text-sm font-medium text-parchment-ink">
+                                        {move}
+                                      </p>
+                                    ) : null}
+                                  </div>
+                                </button>
+                                {unitRows.length > 0 ? (
+                                  <ul className="mt-3 flex flex-col gap-2 border-t border-parchment-ink/10 pt-3">
+                                    {unitRows.map((row) => (
+                                      <li key={`${row.selectionId}-${row.ability.name}`}>
+                                        <AbilityCard
+                                          row={row}
+                                          nested
+                                        />
+                                      </li>
+                                    ))}
+                                  </ul>
+                                ) : null}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+
                 {subTab === "abilities" ? (
                   <ul className="flex flex-col gap-3">
                     {phaseAbilities.map((row) => (
                       <AbilityCard
                         key={`${row.selectionId}-${row.ability.name}`}
                         row={row}
-                        onOpen={() => {
-                          const sheet = findSheet(
-                            list,
-                            faction,
-                            row.selectionId,
-                          );
-                          if (sheet) {
-                            onOpenSheet(sheet);
-                          }
-                        }}
                       />
                     ))}
                   </ul>
@@ -178,6 +263,11 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
                         faction,
                         findUnitId(list, group.selectionId) ?? "",
                       );
+                      const sheet = findSheet(
+                        list,
+                        faction,
+                        group.selectionId,
+                      );
                       const damage = selectionDamage(
                         list,
                         group.selectionId,
@@ -188,6 +278,12 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
                             (note) => note.selectionId === group.selectionId,
                           )
                         : [];
+                      const defence =
+                        sheet && "stats" in sheet
+                          ? defenceStatLine(sheet)
+                          : unit
+                            ? defenceStatLine(unit)
+                            : "";
                       return (
                         <li key={group.selectionId}>
                           <button
@@ -204,9 +300,16 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
                             }}
                             className="w-full rounded-xl bg-parchment-ink/5 px-3 py-3 text-left"
                           >
-                            <p className="font-serif text-lg">
-                              {group.unitName}
-                            </p>
+                            <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                              <p className="font-serif text-lg leading-tight">
+                                {group.unitName}
+                              </p>
+                              {defence ? (
+                                <p className="text-sm font-medium text-parchment-ink">
+                                  {defence}
+                                </p>
+                              ) : null}
+                            </div>
                             {unitMods.length > 0 ? (
                               <ul className="mt-2 flex flex-col gap-1">
                                 {unitMods.map((note) => (
@@ -258,16 +361,6 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
                             <AbilityCard
                               key={`${row.selectionId}-${row.ability.name}`}
                               row={row}
-                              onOpen={() => {
-                                const sheet = findSheet(
-                                  list,
-                                  faction,
-                                  row.selectionId,
-                                );
-                                if (sheet) {
-                                  onOpenSheet(sheet);
-                                }
-                              }}
                             />
                           ))}
                         </ul>
@@ -341,7 +434,6 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
           label="How universal commands work"
           onClose={() => setCommandRulesOpen(false)}
           panelClassName={`${SHEET_PANEL_COMPACT_CLASS} p-5`}
-          zClass="z-[60]"
         >
           <h2 className="font-serif text-2xl">Universal commands</h2>
           <p className="mt-3 text-base leading-relaxed text-sheet-muted">
@@ -361,11 +453,14 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
 }
 
 function phaseSubTabs(
+  _phaseId: PlayPhaseId,
   hasAbilities: boolean,
   hasWeapons: boolean,
   hasCommands: boolean,
+  hasUnits: boolean,
 ): PhaseSubTab[] {
   const tabs: PhaseSubTab[] = [];
+  if (hasUnits) tabs.push("units");
   if (hasAbilities) tabs.push("abilities");
   if (hasWeapons) tabs.push("weapons");
   if (hasCommands) tabs.push("command");
@@ -373,11 +468,16 @@ function phaseSubTabs(
 }
 
 function defaultPhaseSubTab(
+  phaseId: PlayPhaseId,
   hasAbilities: boolean,
   hasWeapons: boolean,
   hasCommands: boolean,
   hasArmyCommands: boolean,
+  hasUnits: boolean,
 ): PhaseSubTab {
+  if (phaseId === "movement" && hasUnits) {
+    return "units";
+  }
   // Prefer Command when the list has faction/unit commands for this phase
   // (e.g. Sylvaneth Fury of the Forest in Combat).
   if (hasArmyCommands) return "command";
@@ -388,39 +488,86 @@ function defaultPhaseSubTab(
 }
 
 function subTabLabel(tab: PhaseSubTab) {
+  if (tab === "units") return "Units";
   if (tab === "abilities") return "Abilities";
   if (tab === "weapons") return "Weapons";
   return "Command";
 }
 
-function CoreCommandCard({ command }: { command: CoreCommand }) {
+function CollapseChevron() {
   return (
-    <article className="w-full rounded-xl bg-parchment-ink/5 px-3 py-3 text-left">
-      <div className="flex items-start justify-between gap-3">
+    <svg
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+      className="h-4 w-4 shrink-0 text-sheet-muted transition-transform duration-200 group-open:rotate-180"
+    >
+      <path
+        d="M5 8l5 5 5-5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function CoreCommandCard({ command }: { command: CoreCommand }) {
+  const expandable = Boolean(
+    command.declare || command.effect || command.keywords,
+  );
+  const header = (
+    <div className="flex items-start justify-between gap-2">
+      <div className="min-w-0 flex-1">
         <p className="font-serif text-lg leading-tight">{command.name}</p>
-        <span className="shrink-0 rounded-md bg-parchment-ink/10 px-2 py-0.5 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
+        <p className="mt-1 text-sm font-semibold tracking-wide uppercase text-sheet-muted">
+          {command.timing}
+        </p>
+      </div>
+      <div className="flex shrink-0 items-center gap-2">
+        <span className="rounded-md bg-parchment-ink/10 px-2 py-0.5 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
           {command.cost} CP
         </span>
+        {expandable ? <CollapseChevron /> : null}
       </div>
-      <p className="mt-1 text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-        {command.timing}
-      </p>
-      {command.declare ? (
-        <p className="mt-2 text-sm leading-relaxed text-parchment-ink/75">
-          <span className="text-sheet-muted">Declare · </span>
-          {command.declare}
+    </div>
+  );
+
+  if (!expandable) {
+    return (
+      <article className="w-full rounded-xl bg-parchment-ink/5 px-3 py-3 text-left">
+        {header}
+      </article>
+    );
+  }
+
+  return (
+    <details
+      open
+      className="group w-full rounded-xl bg-parchment-ink/5 open:bg-parchment-ink/[0.07]"
+    >
+      <summary className="cursor-pointer list-none px-3 py-3 [&::-webkit-details-marker]:hidden">
+        {header}
+      </summary>
+      <div className="border-t border-parchment-ink/10 px-3 pb-3 pt-2">
+        {command.declare ? (
+          <p className="text-sm leading-relaxed text-parchment-ink/75">
+            <span className="text-sheet-muted">Declare · </span>
+            {command.declare}
+          </p>
+        ) : null}
+        <p className="mt-1 text-sm leading-relaxed text-parchment-ink/75">
+          <span className="text-sheet-muted">Effect · </span>
+          {command.effect}
         </p>
-      ) : null}
-      <p className="mt-1 text-sm leading-relaxed text-parchment-ink/75">
-        <span className="text-sheet-muted">Effect · </span>
-        {command.effect}
-      </p>
-      {command.keywords ? (
-        <p className="mt-2 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
-          Keywords · {command.keywords}
-        </p>
-      ) : null}
-    </article>
+        {command.keywords ? (
+          <p className="mt-2 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
+            Keywords · {command.keywords}
+          </p>
+        ) : null}
+      </div>
+    </details>
   );
 }
 
@@ -476,60 +623,97 @@ function WeaponStatLine({
 
 function AbilityCard({
   row,
-  onOpen,
+  nested = false,
 }: {
   row: PhaseAbilityRow;
-  onOpen: () => void;
+  nested?: boolean;
 }) {
   const { ability } = row;
   const cpCost = commandAbilityCost(ability);
-  return (
-    <button
-      type="button"
-      onClick={onOpen}
-      className="w-full rounded-xl bg-parchment-ink/5 px-3 py-3 text-left"
-    >
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0 flex-1">
+  const expandable = Boolean(
+    ability.declare ||
+      ability.effect ||
+      ability.castingValue ||
+      ability.chantingValue,
+  );
+  const pad = nested ? "px-2.5 py-2.5" : "px-3 py-3";
+  const shell = nested ? "rounded-lg" : "rounded-xl";
+
+  const header = (
+    <div className="flex items-start justify-between gap-2">
+      <div className="min-w-0 flex-1">
+        {!nested ? (
           <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
             {row.unitName}
           </p>
-          <p className="mt-1 font-serif text-lg leading-tight">{ability.name}</p>
-        </div>
+        ) : null}
+        <p
+          className={`font-serif text-lg leading-tight ${nested ? "" : "mt-1"}`}
+        >
+          {ability.name}
+        </p>
+        {ability.timing ? (
+          <p className="mt-1 font-serif text-base leading-snug text-parchment-ink">
+            {ability.timing}
+          </p>
+        ) : null}
+      </div>
+      <div className="flex shrink-0 items-center gap-2">
         {cpCost != null ? (
-          <span className="shrink-0 rounded-md bg-parchment-ink/10 px-2 py-0.5 text-xs font-semibold tracking-wide text-sheet-muted">
+          <span className="rounded-md bg-parchment-ink/10 px-2 py-0.5 text-xs font-semibold tracking-wide text-sheet-muted">
             {cpCost} CP
           </span>
         ) : null}
+        {expandable ? <CollapseChevron /> : null}
       </div>
-      {ability.castingValue || ability.chantingValue ? (
-        <p className="mt-1 text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-          {[
-            ability.castingValue ? `Cast ${ability.castingValue}` : "",
-            ability.chantingValue ? `Chant ${ability.chantingValue}` : "",
-          ]
-            .filter(Boolean)
-            .join(" · ")}
-        </p>
-      ) : null}
-      {ability.timing ? (
-        <p className="mt-2 font-serif text-base leading-snug text-parchment-ink">
-          {ability.timing}
-        </p>
-      ) : null}
-      {ability.declare ? (
-        <p className="mt-2 text-sm leading-relaxed text-parchment-ink/75">
-          <span className="text-sheet-muted">Declare · </span>
-          {ability.declare}
-        </p>
-      ) : null}
-      {ability.effect ? (
-        <p className="mt-1 text-sm leading-relaxed text-parchment-ink/75">
-          <span className="text-sheet-muted">Effect · </span>
-          {ability.effect}
-        </p>
-      ) : null}
-    </button>
+    </div>
+  );
+
+  if (!expandable) {
+    return (
+      <div className={`w-full ${shell} bg-parchment-ink/5 ${pad} text-left`}>
+        {header}
+      </div>
+    );
+  }
+
+  return (
+    <details
+      open
+      className={`group w-full ${shell} bg-parchment-ink/5 open:bg-parchment-ink/[0.07]`}
+    >
+      <summary
+        className={`cursor-pointer list-none ${pad} [&::-webkit-details-marker]:hidden`}
+      >
+        {header}
+      </summary>
+      <div
+        className={`border-t border-parchment-ink/10 ${nested ? "px-2.5" : "px-3"} pb-3 pt-2`}
+      >
+        {ability.castingValue || ability.chantingValue ? (
+          <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
+            {[
+              ability.castingValue ? `Cast ${ability.castingValue}` : "",
+              ability.chantingValue ? `Chant ${ability.chantingValue}` : "",
+            ]
+              .filter(Boolean)
+              .join(" · ")}
+          </p>
+        ) : null}
+        {ability.declare ? (
+          <p className="mt-2 text-sm leading-relaxed text-parchment-ink/75">
+            <span className="text-sheet-muted">Declare · </span>
+            {ability.declare}
+          </p>
+        ) : null}
+        {ability.effect ? (
+          <p className="mt-1 text-sm leading-relaxed text-parchment-ink/75">
+            <span className="text-sheet-muted">Effect · </span>
+            {ability.effect}
+          </p>
+        ) : null}
+      </div>
+    </details>
   );
 }
 

@@ -81,10 +81,14 @@ export type ManifestationModel = {
   weapons: UnitWeapon[];
   abilities: UnitAbility[];
   summon: UnitAbility | null;
+  /** Extra points when this manifestation is paid separately from the lore. */
+  points?: number;
 };
 
 export type ManifestationLore = NamedOption & {
   manifestations: ManifestationModel[];
+  /** GHB/universal lore pack cost from BSData, when present. */
+  points?: number;
 };
 
 export type FactionTerrain = {

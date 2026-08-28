@@ -17,10 +17,7 @@ import type {
   UnitAbility,
 } from "@/engine/types";
 import { PlayBindNotes, PlayHealthTrack, SlotEnhancements, SlotMoreMenu } from "./RegimentCard";
-import {
-  PLAY_SHEET_LINK_CLASS,
-  PLAY_UNIT_NAME_ROW_CLASS,
-} from "@/lib/builderUi";
+import { PlaySlotRow, SheetLinkButton } from "./ios/SheetIconButton";
 
 type Props = {
   list: ArmyList;
@@ -254,31 +251,21 @@ function RoRSlotRow({
     <li className="rounded-xl bg-parchment-ink/5 px-3 py-2.5">
       {playMode ? (
         <>
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              className="min-w-0 flex-1 text-left active:opacity-60"
-              aria-label={`${unit.name} datasheet`}
-              onClick={() => onOpenDatasheet(unit)}
-            >
-              <p className={PLAY_UNIT_NAME_ROW_CLASS}>
-                <span className="font-serif text-lg leading-tight">
-                  {unit.name}
-                </span>
-                <span className={PLAY_SHEET_LINK_CLASS}>Sheet</span>
-              </p>
-              <p className="mt-0.5 text-sm text-sheet-muted">
-                {battleStatLine(unit)}
-              </p>
-            </button>
-            {onPlayHealth ? (
-              <PlayHealthTrack
-                aside
-                track={play}
-                onChange={(damage) => onPlayHealth(selection.id, damage)}
-              />
-            ) : null}
-          </div>
+          <PlaySlotRow
+            name={unit.name}
+            subtitle={battleStatLine(unit)}
+            sheetLabel={`${unit.name} datasheet`}
+            onOpenSheet={() => onOpenDatasheet(unit)}
+            trailing={
+              onPlayHealth ? (
+                <PlayHealthTrack
+                  aside
+                  track={play}
+                  onChange={(damage) => onPlayHealth(selection.id, damage)}
+                />
+              ) : null
+            }
+          />
           {warning ? (
             <p className="mt-2 rounded-lg bg-illegal/10 px-2.5 py-2 text-sm leading-snug text-illegal">
               Battle damaged ({warning.threshold}+) · {warning.summary}
@@ -296,13 +283,10 @@ function RoRSlotRow({
                 {battleStatLine(unit)}
               </p>
             </div>
-            <button
-              type="button"
-              className="min-h-11 shrink-0 px-2.5 text-sm text-aether"
+            <SheetLinkButton
+              label={`${unit.name} datasheet`}
               onClick={() => onOpenDatasheet(unit)}
-            >
-              Sheet
-            </button>
+            />
           </div>
           {enhancements}
         </>

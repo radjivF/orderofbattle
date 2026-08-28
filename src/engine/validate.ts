@@ -165,6 +165,13 @@ export function summarize(
     points += pickedEnhancementPoints(pick, table?.options);
   }
 
+  const manifestationLore = faction.manifestationLores.find(
+    (item) => item.id === list.manifestationLoreId,
+  );
+  if (manifestationLore?.points) {
+    points += manifestationLore.points;
+  }
+
   if (list.regiments.length === 0) {
     issues.push({ tone: "warn", text: "Add a regiment to begin." });
   } else if (list.regiments.length > 5) {
