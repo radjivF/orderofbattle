@@ -5,18 +5,18 @@ import { JsonLd } from "@/components/JsonLd";
 import { articleNode, breadcrumbNode, pageGraph } from "@/lib/jsonLd";
 import { sitePath } from "@/lib/site";
 
-const title = "Age of Sigmar army builder comparison";
+const title = "Compare Age of Sigmar army builders";
 const description =
-  "Compare Order of Battle with New Recruit, Listbot, and the official Warhammer app. Which free Age of Sigmar list builder fits your workflow?";
+  "Order of Battle, New Recruit, Listbot, and the official Warhammer app. What each one does. Which one has Play mode.";
 
 export const metadata: Metadata = {
   title,
   description,
   keywords: [
-    "Age of Sigmar army builder comparison",
+    "Age of Sigmar army builder",
     "Order of Battle vs New Recruit",
-    "best AoS list builder",
-    "free Age of Sigmar app comparison",
+    "AoS list builder",
+    "free Age of Sigmar app",
   ],
   alternates: { canonical: "/compare" },
   openGraph: { title, description, type: "article" },
@@ -37,7 +37,7 @@ export default function ComparePage() {
       />
       <ContentDoc
         kicker="Comparison"
-        title="Age of Sigmar army builder comparison"
+        title="Compare Age of Sigmar army builders"
         updated="27 August 2026"
         crumbs={[
           { href: "/", label: "Home" },
@@ -45,39 +45,37 @@ export default function ComparePage() {
         ]}
       >
         <p>
-          A realistic comparison of Order of Battle with other free Age of Sigmar
-          army builders. Which one fits your workflow?
+          Order of Battle, New Recruit, Listbot, and the official Warhammer app.
+          What each one does.
         </p>
 
-        <h2>The builders</h2>
+        <h2>The apps</h2>
         <ul>
           <li>
-            <strong>Order of Battle</strong>: This app. Free unofficial browser
-            builder with Play mode for wound tracking and phase abilities at the
-            table. No account. Lists stay on your device.
+            <strong>Order of Battle</strong>: This one. Free browser builder with
+            Play mode (wound tracking, lasting spells, phase abilities). No
+            account. Lists stay on your device.
           </li>
           <li>
-            <strong>New Recruit</strong> (newrecruit.eu): Community favorite.
-            Browser-based, clean interface, supports cloud sync with optional
-            account. Wide game system coverage.
+            <strong>New Recruit</strong> (newrecruit.eu): Browser builder, optional
+            cloud sync. Covers many game systems. Optional account.
           </li>
           <li>
-            <strong>Listbot</strong> (aoslistbot.herokuapp.com): Simple
-            text-focused builder. No account. Lists in browser local storage.
+            <strong>Listbot</strong> (aoslistbot.herokuapp.com): Text-focused
+            builder. No account. Lists in browser storage.
           </li>
           <li>
-            <strong>Official Warhammer app</strong>: Games Workshop&apos;s mobile
-            app. Requires GW account. Official data, integrated with other GW
-            services.
+            <strong>Official Warhammer app</strong>: Games Workshop&apos;s app.
+            Needs a GW account. Official data.
           </li>
         </ul>
         <p>
-          All four are legitimate options. Order of Battle is not &quot;better&quot;
-          than the rest. The wedge is Play mode: wound tracking, lasting spells,
-          and abilities by phase at the table.
+          All four work. Order of Battle adds Play mode. New Recruit and the
+          official app have cloud sync. Listbot is the simplest. Pick what you
+          need.
         </p>
 
-        <h2>Feature comparison</h2>
+        <h2>What they do</h2>
         <table>
           <thead>
             <tr>
@@ -176,67 +174,61 @@ export default function ComparePage() {
           </tbody>
         </table>
 
-        <h2>Why Order of Battle?</h2>
+        <h2>Order of Battle</h2>
         <p className="mt-3">
-          Choose Order of Battle if you want a free Age of Sigmar army builder
-          with a dedicated table companion. Play mode runs the game from your
-          phone: track wounds, mark lasting buffs, and see only the abilities that
-          matter for the current phase.
+          This app. Free browser builder plus Play mode. Track wounds, mark
+          lasting spells and prayers, filter abilities by phase. No account. Lists
+          stay on your device. Export if you want a backup.
         </p>
         <p>
-          No account. Lists stay on your device. Export if you need a backup. The
-          catalogue is community BSData, not an official Games Workshop feed, so
-          confirm points with your opponent or TO before you play.
+          Catalogue is community BSData, not Games Workshop. Confirm points with
+          your opponent or TO before you play.
         </p>
 
-        <h2>Why New Recruit?</h2>
+        <h2>New Recruit</h2>
         <p className="mt-3">
-          New Recruit is the established community favorite. Mature interface,
-          optional cloud sync, and support for many game systems beyond Age of
-          Sigmar. If you play multiple games or need cloud lists across devices,
-          New Recruit is a solid choice.
+          Browser builder with optional cloud sync. Covers many game systems, not
+          just Age of Sigmar. If you play multiple games or need lists across
+          devices, New Recruit does that.
         </p>
 
-        <h2>Why Listbot?</h2>
+        <h2>Listbot</h2>
         <p className="mt-3">
-          Listbot is simple and text-focused. No frills, no account, just a quick
-          list builder in the browser. If you prefer a minimal interface and
-          don&apos;t need Play features, Listbot works.
+          Text-focused builder in the browser. No account, no frills. If you want
+          minimal interface and no Play features, Listbot works.
         </p>
 
-        <h2>Why the official app?</h2>
+        <h2>Official Warhammer app</h2>
         <p className="mt-3">
-          The official Warhammer app uses official Games Workshop data. If you
-          want the most accurate points and rules, and you already have a GW
-          account, the official app is the correct choice. It integrates with
-          other GW services and covers all Warhammer systems.
+          Official Games Workshop data. If you have a GW account and want the most
+          accurate points and rules, use the official app. Integrates with other
+          GW services, covers all Warhammer systems.
         </p>
 
-        <h2>Wahapedia is not a builder</h2>
+        <h2>Wahapedia</h2>
         <p className="mt-3">
-          Wahapedia is a rules reference, not an army list builder. It is
-          excellent for looking up warscrolls and abilities, but you cannot build
-          or export lists. Use Wahapedia alongside any of the builders above.
+          Rules reference, not a builder. Good for looking up warscrolls and
+          abilities. You cannot build or export lists. Use it alongside any of the
+          builders.
         </p>
 
-        <h2>Start with Order of Battle</h2>
+        <h2>Start here</h2>
         <ol>
           <li>
-            Open <Link href="/dashboard">My lists</Link> and create a list.
+            Open <Link href="/dashboard">My lists</Link>.
           </li>
           <li>
-            Pick a faction from the{" "}
-            <Link href="/factions">factions list</Link>.
+            Pick a faction from <Link href="/factions">factions</Link>.
           </li>
-          <li>Build regiments, add a general, and set a battle formation.</li>
-          <li>Hit Play when you&apos;re at the table.</li>
+          <li>Build regiments, add a general, set a battle formation.</li>
+          <li>Hit Play at the table.</li>
         </ol>
         <p>
           Walkthrough:{" "}
           <Link href="/guides/how-to-build-an-age-of-sigmar-army-list">
-            how to build an Age of Sigmar army list
+            how to build a list
           </Link>
-          . More details:{" "}
+          . Overview:{" "}
           <Link href="/guides/free-age-of-sigmar-army-builder">
             free army builder
           </Link>

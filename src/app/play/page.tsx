@@ -5,19 +5,18 @@ import { JsonLd } from "@/components/JsonLd";
 import { articleNode, breadcrumbNode, pageGraph } from "@/lib/jsonLd";
 import { sitePath } from "@/lib/site";
 
-const title = "Age of Sigmar wound tracker and table companion";
+const title = "Play mode: track wounds and abilities";
 const description =
-  "Play mode in Order of Battle: track wounds, lasting spells and prayers, and abilities by phase during your Age of Sigmar game. Free wound tracker on your phone.";
+  "Play mode in Order of Battle. Track wounds, mark lasting spells and prayers, filter abilities by phase. Free on your phone.";
 
 export const metadata: Metadata = {
   title,
   description,
   keywords: [
     "Age of Sigmar wound tracker",
-    "AoS table companion",
-    "free Age of Sigmar wound tracker",
-    "Age of Sigmar Play mode",
     "track wounds AoS",
+    "Age of Sigmar Play mode",
+    "AoS table companion",
   ],
   alternates: { canonical: "/play" },
   openGraph: { title, description, type: "article" },
@@ -38,7 +37,7 @@ export default function PlayPage() {
       />
       <ContentDoc
         kicker="Feature"
-        title="Age of Sigmar wound tracker and table companion"
+        title="Play mode: track wounds and abilities"
         updated="27 August 2026"
         crumbs={[
           { href: "/", label: "Home" },
@@ -46,104 +45,91 @@ export default function PlayPage() {
         ]}
       >
         <p>
-          Play mode is the part players love. Build the list in Order of Battle,
-          then open Play to track wounds, lasting spells and prayers, and
-          abilities by phase. Free wound tracker and table companion on your
-          phone.
+          Build the list in Order of Battle, then open Play. Track wounds, mark
+          lasting spells and prayers, filter abilities by phase. On your phone.
         </p>
 
-        <h2>What Play mode does</h2>
+        <h2>What it does</h2>
         <p className="mt-3">
-          Play mode turns your list into a live scoreboard. Track the fight
-          without flipping warscrolls all night.
+          Your list becomes a live scoreboard. No flipping warscrolls.
         </p>
         <ul>
           <li>
-            <strong>Wound tracking</strong>: Adjust health on every unit
-            mid-game. Models, damage, and battle damage at a glance.
+            <strong>Wound tracking</strong>: Adjust health on every unit mid-game.
+            Models, damage, battle damage.
           </li>
           <li>
             <strong>Lasting spells and prayers</strong>: Mark which unit has the
-            lasting buff. See it again in combat when it matters.
+            buff. See it in combat.
           </li>
           <li>
             <strong>Abilities by phase</strong>: Hero, movement, shooting, charge,
-            combat, end of turn. Only what that phase needs. No scrolling through
-            every ability.
+            combat, end of turn. Only what that phase needs.
           </li>
         </ul>
 
-        <h2>How to use Play mode</h2>
+        <h2>How to use it</h2>
         <ol>
           <li>
             Build a list in <Link href="/dashboard">My lists</Link>.
           </li>
           <li>
-            Open that list and tap <strong>Play</strong>.
+            Open it and tap <strong>Play</strong>.
           </li>
-          <li>Track wounds on units as damage happens.</li>
-          <li>Mark lasting spells or prayers on the affected units.</li>
+          <li>Track wounds as damage happens.</li>
+          <li>Mark lasting spells or prayers on units.</li>
           <li>Tap the phase button to filter abilities.</li>
-          <li>Reset wound totals or the full battle state when the game ends.</li>
+          <li>Reset when the game ends.</li>
         </ol>
-        <p>
-          Play mode is optimized for phones. Hold the device at the table and
-          update the list in real time.
-        </p>
+        <p>Play mode is for phones. Update at the table in real time.</p>
 
-        <h2>Why wound tracking matters</h2>
+        <h2>Wound tracking</h2>
         <p className="mt-3">
-          Age of Sigmar units can take many wounds. Tracking that on paper or in
-          your head gets messy. Play mode shows health for every unit, all in one
-          place. You and your opponent see the damage instantly.
+          Age of Sigmar units take many wounds. Tracking on paper or in your head
+          gets messy. Play mode shows health for every unit in one place.
         </p>
         <p>
-          Mid-game, you remember which hero took 3 wounds and which regiment is
-          down to 6 models. No guessing.
+          Mid-game, you know which hero took 3 wounds and which regiment is down
+          to 6 models. No guessing.
         </p>
 
         <h2>Lasting spells and prayers</h2>
         <p className="mt-3">
-          Some spells and prayers last until your next hero phase or the end of
-          the turn. In the heat of combat, it&apos;s easy to forget which unit has
-          the buff. Play mode lets you mark the unit. When the combat phase comes
-          around, you see the buff clearly.
+          Some buffs last until your next hero phase or end of turn. Easy to
+          forget which unit has the buff. Play mode marks it. When combat starts,
+          you see the buff.
         </p>
 
-        <h2>Abilities filtered by phase</h2>
+        <h2>Abilities by phase</h2>
         <p className="mt-3">
-          A typical Age of Sigmar army has abilities that trigger in different
-          phases. Play mode filters the list: tap Hero to see hero phase
-          abilities, tap Charge to see charge phase abilities, and so on. You
-          don&apos;t scroll past irrelevant text. You see only what applies right
-          now.
+          Age of Sigmar armies have abilities for different phases. Play mode
+          filters them. Tap Hero to see hero phase abilities. Tap Charge to see
+          charge abilities. Only what applies now.
         </p>
 
-        <h2>No account. Lists stay on your device.</h2>
+        <h2>No account</h2>
         <p className="mt-3">
-          Order of Battle does not upload lists to a server. Everything stays in
-          your browser (IndexedDB). Play mode reads the list from your device and
-          updates damage locally. No login required. If you clear the browser,
-          lists can vanish, so export anything you care about.
+          Order of Battle does not upload lists. Everything stays in your browser
+          (IndexedDB). Play mode reads from your device and updates locally. No
+          login. If you clear the browser, lists vanish. Export anything you care
+          about.
         </p>
 
         <h2>Start with a list</h2>
-        <p className="mt-3">
-          Play mode requires a saved list. Build one first:
-        </p>
+        <p className="mt-3">Play mode needs a saved list. Build one first:</p>
         <ol>
           <li>
             Open <Link href="/dashboard">My lists</Link>.
           </li>
-          <li>Create a new list and pick a faction.</li>
+          <li>Create a list and pick a faction.</li>
           <li>Add regiments and a battle formation.</li>
-          <li>Save the list.</li>
-          <li>Open that list and hit Play.</li>
+          <li>Save it.</li>
+          <li>Open it and hit Play.</li>
         </ol>
         <p>
           Walkthrough:{" "}
           <Link href="/guides/how-to-build-an-age-of-sigmar-army-list">
-            how to build an Age of Sigmar army list
+            how to build a list
           </Link>
           . Overview:{" "}
           <Link href="/guides/free-age-of-sigmar-army-builder">
@@ -152,16 +138,15 @@ export default function PlayPage() {
           .
         </p>
 
-        <h2>Why Order of Battle for Play mode?</h2>
+        <h2>Why Order of Battle</h2>
         <p className="mt-3">
-          Most Age of Sigmar list builders stop at the list. Order of Battle
-          continues into the game. Wound tracking, lasting buffs, and phase
-          filtering are purpose-built for the table. Build the list. Play the
-          battle.
+          Most Age of Sigmar builders stop at the list. Order of Battle continues
+          into the game. Wound tracking, lasting buffs, phase filtering. Build the
+          list. Play the battle.
         </p>
         <p>
-          Compare with other builders:{" "}
-          <Link href="/compare">army builder comparison</Link>.
+          Compare:{" "}
+          <Link href="/compare">other builders</Link>.
         </p>
       </ContentDoc>
     </>
