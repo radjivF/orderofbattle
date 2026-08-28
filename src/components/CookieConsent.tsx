@@ -2,13 +2,41 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { HOME_CTA_CLASS } from "@/lib/builderUi";
 import { setConsentStatus, hasUserResponded } from "@/lib/cookieConsent";
 
-const acceptClass =
-  "ios-liquid-glass pressable inline-flex min-h-11 min-w-[7.5rem] items-center justify-center rounded-xl px-6 text-[15px] font-semibold text-black";
+const acceptClass = `${HOME_CTA_CLASS} pressable min-h-11 w-full rounded-xl px-4 text-sm font-semibold sm:min-w-[8.5rem]`;
 
 const rejectClass =
-  "pressable inline-flex min-h-11 min-w-[7.5rem] items-center justify-center rounded-xl px-5 text-sm font-medium text-parchment/75 ring-1 ring-parchment/20 transition-colors hover:bg-parchment/5 hover:text-parchment";
+  "pressable min-h-10 w-full rounded-xl px-3 text-sm font-medium text-sheet-muted transition-colors hover:text-parchment-ink/80 sm:min-w-[8.5rem]";
+
+function AnalyticsGlyph() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className="h-5 w-5 text-parchment-ink/80"
+    >
+      <path
+        d="M6 18V9M12 18V6M18 18v-5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <rect
+        x="4"
+        y="4"
+        width="16"
+        height="16"
+        rx="3.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+    </svg>
+  );
+}
 
 export function CookieConsent() {
   const [show, setShow] = useState(false);
@@ -36,32 +64,44 @@ export function CookieConsent() {
     <div
       role="region"
       aria-label="Cookie consent"
-      className="fixed inset-x-0 bottom-0 z-50 border-t border-parchment/15 bg-ink/95 backdrop-blur-md"
+      className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-6"
     >
-      <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 px-5 py-5 text-center sm:px-6">
-        <div className="space-y-2">
-          <p className="font-serif text-lg leading-snug text-parchment sm:text-xl">
-            Cookies for analytics
-          </p>
-          <p className="text-sm leading-relaxed text-parchment/80">
-            We use cookies so Microsoft Clarity can measure usage and session
-            replay to improve the app. Ahrefs analytics runs without cookies.
-            {" "}
-            <Link
-              href="/privacy"
-              className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2 transition-colors hover:text-sigmarite-hover"
-            >
-              Privacy policy
-            </Link>
-          </p>
-        </div>
-        <div className="flex w-full max-w-sm flex-col gap-2.5 sm:flex-row sm:justify-center">
-          <button type="button" onClick={handleReject} className={rejectClass}>
-            Reject
-          </button>
-          <button type="button" onClick={handleAccept} className={acceptClass}>
-            Accept
-          </button>
+      <div className="cookie-consent-panel pointer-events-auto mx-auto w-full max-w-lg">
+        <div className="parchment-card overflow-hidden rounded-2xl text-parchment-ink shadow-2xl ring-1 ring-parchment-ink/10">
+          <div className="flex flex-col gap-4 p-4 sm:flex-row sm:items-start sm:gap-5 sm:p-5">
+            <div className="flex min-w-0 flex-1 gap-3 sm:gap-3.5">
+              <div
+                aria-hidden="true"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-parchment-ink/8 ring-1 ring-parchment-ink/10"
+              >
+                <AnalyticsGlyph />
+              </div>
+              <div className="min-w-0 space-y-1.5">
+                <p className="font-serif text-lg leading-snug text-parchment-ink">
+                  Analytics cookies
+                </p>
+                <p className="text-sm leading-relaxed text-sheet-muted">
+                  Optional Microsoft Clarity cookies for usage stats and session
+                  replay. Ahrefs runs without cookies.{" "}
+                  <Link
+                    href="/privacy"
+                    className="text-aether underline decoration-aether/35 underline-offset-2"
+                  >
+                    Privacy policy
+                  </Link>
+                </p>
+              </div>
+            </div>
+
+            <div className="flex shrink-0 flex-col gap-1.5 sm:w-[8.75rem]">
+              <button type="button" onClick={handleAccept} className={acceptClass}>
+                Allow
+              </button>
+              <button type="button" onClick={handleReject} className={rejectClass}>
+                Decline
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

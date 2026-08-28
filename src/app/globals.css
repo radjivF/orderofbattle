@@ -329,6 +329,28 @@ a {
   }
 }
 
+/* Floating cookie consent card */
+.cookie-consent-panel {
+  animation: cookie-consent-in 320ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes cookie-consent-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(100% + 0.75rem));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie-consent-panel {
+    animation: none;
+  }
+}
+
 .ios-sheet-actions {
   display: flex;
   flex-direction: column;
