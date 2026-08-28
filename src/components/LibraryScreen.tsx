@@ -132,7 +132,7 @@ export function LibraryScreen() {
           </p>
         ) : (
           <ul className="grid grid-cols-1 gap-4 pt-2 lg:grid-cols-2 lg:gap-5">
-            {lists.map((list) => {
+            {lists.map((list, index) => {
               const faction = getFaction(list.factionId);
               const totals = faction ? summarize(list, faction) : null;
               const formation = faction?.formations.find(
@@ -222,6 +222,8 @@ export function LibraryScreen() {
                           sizes="152px"
                           quality={68}
                           unoptimized
+                          priority={index === 0}
+                          loading={index === 0 ? "eager" : "lazy"}
                           className={catalogueArtClass(faction)}
                         />
                         <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#efe6d2]/35" />
@@ -254,20 +256,20 @@ export function LibraryScreen() {
             </span>{" "}
             will be removed from this device. This cannot be undone.
           </p>
-          <div className="mt-5 flex gap-2">
-            <button
-              type="button"
-              onClick={() => setDeleteTarget(null)}
-              className="min-h-11 flex-1 rounded-xl bg-parchment-ink/5 text-base"
-            >
-              Cancel
-            </button>
+          <div className="ios-sheet-actions mt-5">
             <button
               type="button"
               onClick={() => void confirmDelete()}
-              className="min-h-11 flex-1 rounded-xl bg-illegal text-base font-semibold text-parchment"
+              className="min-h-11 w-full rounded-xl bg-illegal text-base font-semibold text-parchment"
             >
               Delete
+            </button>
+            <button
+              type="button"
+              onClick={() => setDeleteTarget(null)}
+              className="min-h-11 w-full text-base text-sheet-muted"
+            >
+              Cancel
             </button>
           </div>
         </ModalFrame>
@@ -350,7 +352,15 @@ export function LibraryScreen() {
                   onChange={setDraftPoints}
                   variant="parchment"
                 />
-                <div className="flex gap-2">
+                <div className="ios-sheet-actions">
+                  <button
+                    type="button"
+                    disabled={creating}
+                    onClick={() => void onCreate()}
+                    className="gold-plate min-h-11 w-full rounded-xl text-base font-semibold text-ink disabled:opacity-60"
+                  >
+                    {creating ? "Creating…" : "Create"}
+                  </button>
                   <button
                     type="button"
                     disabled={creating}
@@ -359,17 +369,9 @@ export function LibraryScreen() {
                       setDraftParent(null);
                       setDraftName("");
                     }}
-                    className="min-h-11 flex-1 rounded-xl bg-parchment-ink/5 text-base disabled:opacity-60"
+                    className="min-h-11 w-full text-base text-sheet-muted disabled:opacity-60"
                   >
                     Back
-                  </button>
-                  <button
-                    type="button"
-                    disabled={creating}
-                    onClick={() => void onCreate()}
-                    className="gold-plate min-h-11 flex-1 rounded-xl text-base font-semibold text-ink disabled:opacity-60"
-                  >
-                    {creating ? "Creating…" : "Create"}
                   </button>
                 </div>
               </div>

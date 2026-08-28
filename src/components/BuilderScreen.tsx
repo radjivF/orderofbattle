@@ -17,6 +17,7 @@ import { battleTactics, battleTacticsForRealm } from "@/engine/data/load";
 import { summarize } from "@/engine/validate";
 import type { ArmyList, CatalogueUnit, DatasheetSubject, EnhancementOption, FactionCatalogue, NamedOption } from "@/engine/types";
 import { createId } from "@/lib/id";
+import { LIST_ISSUE_BANNER_CLASS } from "@/lib/builderUi";
 import {
   getArmiesServerSnapshot,
   getArmiesSnapshot,
@@ -45,6 +46,7 @@ import { ManifestationCard } from "./ManifestationCard";
 import { PlayMagicBoard } from "./PlayMagicBoard";
 import { PlayPhaseBoard } from "./PlayPhaseBoard";
 import { BattleTacticTracker } from "./BattleTacticTracker";
+import { IosSegmentedControl } from "./ios/IosSegmentedControl";
 import { PlayBindNotes, PlayHealthTrack, RegimentCard, SlotEnhancements, SlotMoreMenu } from "./RegimentCard";
 import {
   buildRoRSelections,
@@ -583,45 +585,30 @@ function BuilderReady({
     return (
       <main className="mx-auto flex w-full max-w-3xl min-w-0 flex-col gap-5 px-4 py-4 pb-28 sm:py-6">
         {forPlayMode ? (
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={() => setPlayTab("units")}
-              className={`min-h-11 flex-1 rounded-xl text-sm ${
-                playTab === "units"
-                  ? "bg-parchment text-parchment-ink"
-                  : "bg-ink-raised text-parchment/80 ring-1 ring-parchment/15"
-              }`}
-            >
-              Units
-            </button>
-            <button
-              type="button"
-              onClick={() => setPlayTab("magic")}
-              className={`min-h-11 flex-1 rounded-xl text-sm ${
-                playTab === "magic"
-                  ? "bg-parchment text-parchment-ink"
-                  : "bg-ink-raised text-parchment/80 ring-1 ring-parchment/15"
-              }`}
-            >
-              Magic / Prayer
-            </button>
-            <button
-              type="button"
-              onClick={() => setPlayTab("phases")}
-              className={`min-h-11 flex-1 rounded-xl text-sm ${
-                playTab === "phases"
-                  ? "bg-parchment text-parchment-ink"
-                  : "bg-ink-raised text-parchment/80 ring-1 ring-parchment/15"
-              }`}
-            >
-              Phases
-            </button>
-          </div>
+          <IosSegmentedControl
+            ariaLabel="Play sections"
+            value={playTab}
+            onChange={(next) =>
+              setPlayTab(next as "units" | "magic" | "phases")
+            }
+            options={[
+              { value: "units", label: "Units" },
+              {
+                value: "magic",
+                label: "Magic",
+                ariaLabel: "Magic and prayer lores",
+              },
+              {
+                value: "phases",
+                label: "Tactics & Phases",
+                ariaLabel: "Battle tactics and phases",
+              },
+            ]}
+          />
         ) : null}
         {!forPlayMode && issue.tone !== "ok" ? (
           <p
-            className="flex items-center gap-2 rounded-xl bg-illegal/10 px-4 py-2.5 text-sm font-medium text-illegal ring-1 ring-illegal/25"
+            className={LIST_ISSUE_BANNER_CLASS}
             role="status"
           >
             <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-illegal" />
@@ -1648,20 +1635,20 @@ function BuilderReady({
           <p className="mt-2 text-base text-sheet-muted">
             {regimentRemoveMessage}
           </p>
-          <div className="mt-5 flex gap-2">
-            <button
-              type="button"
-              onClick={() => setRegimentRemoveId(null)}
-              className="min-h-11 flex-1 rounded-xl bg-parchment-ink/5 text-base"
-            >
-              Cancel
-            </button>
+          <div className="ios-sheet-actions mt-5">
             <button
               type="button"
               onClick={() => void removeRegiment(regimentRemoveId)}
-              className="min-h-11 flex-1 rounded-xl bg-illegal text-base font-semibold text-parchment"
+              className="min-h-11 w-full rounded-xl bg-illegal text-base font-semibold text-parchment"
             >
               Remove
+            </button>
+            <button
+              type="button"
+              onClick={() => setRegimentRemoveId(null)}
+              className="min-h-11 w-full text-base text-sheet-muted"
+            >
+              Cancel
             </button>
           </div>
         </ModalFrame>
@@ -1689,18 +1676,18 @@ function BuilderReady({
             aria-label="Exported list text"
             className="mx-5 mb-4 min-h-[16rem] flex-1 resize-none rounded-xl bg-parchment-ink/5 px-3 py-3 font-mono text-xs leading-relaxed text-parchment-ink outline-none ring-1 ring-parchment-ink/10"
           />
-          <div className="flex shrink-0 gap-2 px-5 pb-5">
+          <div className="ios-sheet-actions shrink-0 px-5 pb-5">
             <button
               type="button"
               onClick={() => void copyExportText()}
-              className="gold-plate min-h-11 flex-1 rounded-xl text-base font-semibold text-ink"
+              className="gold-plate min-h-11 w-full rounded-xl text-base font-semibold text-ink"
             >
               {exportCopied ? "Copied" : "Copy"}
             </button>
             <button
               type="button"
               onClick={downloadExportText}
-              className="min-h-11 flex-1 rounded-xl bg-parchment-ink/5 text-base"
+              className="min-h-11 w-full text-base text-sheet-muted"
             >
               Download .txt
             </button>

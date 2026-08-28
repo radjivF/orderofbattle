@@ -80,7 +80,7 @@ export function BattleTacticTracker({ list, onStageChange }: Props) {
                     return (
                       <li
                         key={key}
-                        className={`rounded-xl px-3 py-2.5 ring-1 ${
+                        className={`rounded-lg px-3 py-2.5 ring-1 ${
                           done
                             ? "bg-aether/10 ring-aether/30"
                             : next

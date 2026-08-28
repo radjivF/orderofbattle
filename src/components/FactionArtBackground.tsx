@@ -40,6 +40,7 @@ export function FactionArtLayers({ factionId, scourgeRealm, splash }: Props) {
         sizes="100vw"
         quality={75}
         priority
+        loading="eager"
         unoptimized
         className={artClass}
       />
