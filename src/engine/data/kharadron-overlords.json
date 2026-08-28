@@ -54,7 +54,8 @@
           "chantingValue": "",
           "cost": ""
         }
-      ]
+      ],
+      "points": 20
     },
     {
       "id": "322f-67a2-b775-77de",
@@ -71,7 +72,8 @@
           "chantingValue": "",
           "cost": ""
         }
-      ]
+      ],
+      "points": 10
     }
   ],
   "battleTraits": [

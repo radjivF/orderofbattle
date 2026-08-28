@@ -1039,13 +1039,15 @@ def extract_faction(
             if not fid or not fname or fid in seen_form:
                 continue
             seen_form.add(fid)
-            formations.append(
-                {
-                    "id": fid,
-                    "name": fname,
-                    "abilities": unit_abilities(entry),
-                }
-            )
+            item: dict = {
+                "id": fid,
+                "name": fname,
+                "abilities": unit_abilities(entry),
+            }
+            pts = entry_points(entry)
+            if pts > 0:
+                item["points"] = pts
+            formations.append(item)
 
     battle_traits: list[dict] = []
     seen_traits: set[str] = set()

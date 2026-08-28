@@ -158,3 +158,31 @@ describe("manifestation lore points", () => {
     expect(withPaid - base).toBe(paidLore.points);
   });
 });
+
+describe("battle formation points", () => {
+  it("counts paid GHB battle formations in army totals", () => {
+    const faction = getFaction("daughters-of-khaine");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const free = faction.formations.find((item) => item.name === "Coven Zealots");
+    const paid = faction.formations.find(
+      (item) => item.name === "Arena Veterans",
+    );
+    expect(free && paid?.points).toBeTruthy();
+    if (!free || !paid?.points) return;
+
+    const base = summarize(blankArmy(faction.id), faction).points;
+    const withFree = summarize(
+      { ...blankArmy(faction.id), formationId: free.id },
+      faction,
+    ).points;
+    const withPaid = summarize(
+      { ...blankArmy(faction.id), formationId: paid.id },
+      faction,
+    ).points;
+
+    expect(withFree).toBe(base);
+    expect(withPaid - base).toBe(paid.points);
+  });
+});

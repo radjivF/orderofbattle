@@ -172,6 +172,13 @@ export function summarize(
     points += manifestationLore.points;
   }
 
+  const formation = faction.formations.find(
+    (item) => item.id === list.formationId,
+  );
+  if (formation?.points) {
+    points += formation.points;
+  }
+
   if (list.regiments.length === 0) {
     issues.push({ tone: "warn", text: "Add a regiment to begin." });
   } else if (list.regiments.length > 5) {

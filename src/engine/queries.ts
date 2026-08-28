@@ -3,6 +3,7 @@ import type {
   CatalogueUnit,
   EnhancementOption,
   FactionCatalogue,
+  Formation,
   NamedOption,
   RegimentOfRenown,
   RegimentOfRenownUnit,
@@ -335,6 +336,12 @@ export function enhancementChoiceDetail(
     parts.push(`${option.points} pts`);
   }
   return parts.length > 0 ? parts.join(" · ") : undefined;
+}
+
+export function formationLabel(formation: Formation): string {
+  return formation.points
+    ? `${formation.name} · ${formation.points} pts`
+    : formation.name;
 }
 
 export function enhancementLabel(

@@ -106,6 +106,8 @@ export type Formation = {
   id: string;
   name: string;
   abilities: UnitAbility[];
+  /** GHB/universal formation cost from BSData, when present. */
+  points?: number;
 };
 
 export type EnhancementPick = {

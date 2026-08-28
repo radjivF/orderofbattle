@@ -10,7 +10,7 @@ import {
   useCallback,
   useSyncExternalStore,
 } from "react";
-import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, unitBaseName, auxiliaryPickerUnits, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel } from "@/engine/queries";
+import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, unitBaseName, auxiliaryPickerUnits, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel, formationLabel } from "@/engine/queries";
 import { combatModifierNotes } from "@/engine/magic";
 import { exportArmyListText, exportFileName } from "@/engine/exportText";
 import { battleTactics, battleTacticsForRealm } from "@/engine/data/load";
@@ -804,11 +804,16 @@ function BuilderReady({
               >
                 {faction.formations.map((item) => (
                   <option key={item.id} value={item.id}>
-                    {item.name}
+                    {formationLabel(item)}
                   </option>
                 ))}
               </select>
             </label>
+            {formation?.points ? (
+              <p className="text-sm font-medium text-sigmarite">
+                {formation.points} pts
+              </p>
+            ) : null}
             {formation && formation.abilities.length > 0 ? (
               <ul className="min-w-0 break-words rounded-2xl bg-parchment px-4 py-3 text-parchment-ink shadow-sm">
                 {formation.abilities.map((ability) => (

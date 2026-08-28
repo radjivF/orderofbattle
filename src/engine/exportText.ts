@@ -111,7 +111,11 @@ export function exportArmyListText(
     (item) => item.id === list.formationId,
   );
   if (formation) {
-    lines.push(`Battle formation: ${formation.name}`);
+    lines.push(
+      formation.points
+        ? `Battle formation: ${formation.name} (${formation.points} pts)`
+        : `Battle formation: ${formation.name}`,
+    );
   }
 
   const spellLore = faction.spellLores.find(
