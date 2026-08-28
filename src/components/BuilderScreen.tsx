@@ -9,6 +9,7 @@ import {
   useState,
   useCallback,
   useSyncExternalStore,
+  useDeferredValue,
 } from "react";
 import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, unitBaseName, auxiliaryPickerUnits, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel, formationLabel } from "@/engine/queries";
 import { combatModifierNotes } from "@/engine/magic";
@@ -87,6 +88,7 @@ export function BuilderScreen({ listId }: Props) {
   );
   const list = lists?.find((item) => item.id === listId);
   const faction = list ? getFaction(list.factionId) : undefined;
+  const listName = list?.name ?? "Army list";
   const artFactionId =
     (faction ? faction.parentFactionIds?.[0] ?? faction.id : null) ??
     rememberedId;
@@ -165,13 +167,18 @@ export function BuilderScreen({ listId }: Props) {
         </div>
       ) : undefined,
       overlay: showSplash ? (
-        <div className="pointer-events-none fixed inset-0 z-30">
-          <ListLoadingSplash factionName={splashName} />
-        </div>
+        <>
+          <h1 className="pointer-events-none fixed top-4 left-0 right-0 z-20 mx-auto w-full max-w-3xl px-5 font-serif text-3xl text-parchment sm:px-6 lg:max-w-5xl">
+            {listName}
+          </h1>
+          <div className="pointer-events-none fixed inset-0 z-30">
+            <ListLoadingSplash factionName={splashName} />
+          </div>
+        </>
       ) : undefined,
     });
     return () => setDecor({});
-  }, [artFactionId, scourgeRealm, showSplash, splashName, setDecor]);
+  }, [artFactionId, scourgeRealm, showSplash, splashName, listName, setDecor]);
 
   if (!showSplash && (!list || !faction)) {
     return (
@@ -233,7 +240,8 @@ function BuilderReady({
       tone: "warn" as const,
       text: "Add a regiment to begin.",
     };
-  const pickerUnits = pickerUnitsFor(list, faction, picker);
+  const deferredPicker = useDeferredValue(picker);
+  const pickerUnits = pickerUnitsFor(list, faction, deferredPicker);
   const selectedId = selectedRegimentId ?? list.regiments[0]?.id ?? null;
 
   async function commit(next: ArmyList) {

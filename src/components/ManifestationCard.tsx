@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { manifestationStatLine } from "@/engine/queries";
 import type { ManifestationLore, ManifestationModel } from "@/engine/types";
 import { PlaySlotRow, SheetLinkButton } from "./ios/SheetIconButton";
@@ -23,6 +24,8 @@ export function ManifestationCard({
   onChangeLore,
   onOpenSheet,
 }: Props) {
+  const selectRef = useRef<HTMLSelectElement>(null);
+
   if (playMode && !lore) {
     return null;
   }
@@ -33,22 +36,40 @@ export function ManifestationCard({
         <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
           Manifestation
         </p>
-        <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
-          <h2 className="font-serif text-2xl leading-tight">
-            {lore?.name ?? "No lore chosen"}
-          </h2>
-          {lore?.points ? (
-            <p className="text-sm font-medium text-sigmarite">
-              {lore.points} pts
-            </p>
-          ) : null}
-        </div>
+        {!playMode ? (
+          <button
+            type="button"
+            onClick={() => selectRef.current?.focus()}
+            className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5 text-left"
+          >
+            <h2 className="font-serif text-2xl leading-tight">
+              {lore?.name ?? "No lore chosen"}
+            </h2>
+            {lore?.points ? (
+              <p className="text-sm font-medium text-sigmarite">
+                {lore.points} pts
+              </p>
+            ) : null}
+          </button>
+        ) : (
+          <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
+            <h2 className="font-serif text-2xl leading-tight">
+              {lore?.name ?? "No lore chosen"}
+            </h2>
+            {lore?.points ? (
+              <p className="text-sm font-medium text-sigmarite">
+                {lore.points} pts
+              </p>
+            ) : null}
+          </div>
+        )}
       </header>
 
       {!playMode ? (
         <label className="mb-3 flex flex-col gap-2 text-sm text-sheet-muted">
           Lore
           <select
+            ref={selectRef}
             value={lore?.id ?? ""}
             onChange={(event) =>
               onChangeLore(event.target.value || null)
