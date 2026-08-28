@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import type { ReactNode } from "react";
-import { INDEX_BACKDROP_SRC } from "@/lib/siteArt";
+import { INDEX_BACKDROP_ART_CLASS, INDEX_BACKDROP_SRC } from "@/lib/siteArt";
 
 type Props = {
   children: ReactNode;
@@ -10,7 +11,8 @@ type Props = {
 };
 
 /**
- * Full-bleed battle art (CSS background — fills every viewport, no letterbox).
+ * Full-bleed battle art on a fixed layer (img + object-cover).
+ * iOS mishandles background-attachment:fixed — zoom, blur, and scroll jitter.
  */
 export function IndexBackdropLayer({
   veil = "page",
@@ -21,19 +23,24 @@ export function IndexBackdropLayer({
     veil === "hero"
       ? "bg-gradient-to-b from-ink/10 via-ink/20 to-ink/65"
       : "bg-gradient-to-b from-ink/20 via-ink/28 to-ink/68";
+  const eager = veil === "hero";
 
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-0 bg-ink"
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-ink"
       aria-hidden="true"
-      style={{
-        backgroundImage: `url(${INDEX_BACKDROP_SRC})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center 58%",
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-      }}
     >
+      <Image
+        src={INDEX_BACKDROP_SRC}
+        alt=""
+        fill
+        sizes="100vw"
+        quality={75}
+        priority={eager}
+        loading="eager"
+        unoptimized
+        className={INDEX_BACKDROP_ART_CLASS}
+      />
       <div className={`absolute inset-0 ${scrub}`} />
     </div>
   );
