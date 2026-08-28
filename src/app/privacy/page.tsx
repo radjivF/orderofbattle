@@ -52,8 +52,10 @@ export default function PrivacyPage() {
           out of IndexedDB into Clarity.
         </p>
         <p className="mt-3">
-          A banner asks you to accept or reject Microsoft Clarity. Analytics and
-          session replay only run if you accept.
+          In the EU, EEA, and UK, a banner asks you to accept or reject Microsoft
+          Clarity before it runs. Elsewhere Clarity may load without that prompt.
+          Session replay only runs where local rules allow it and you have not
+          rejected cookies.
         </p>
         <p className="mt-3">We also use:</p>
         <ul className="mt-3">
