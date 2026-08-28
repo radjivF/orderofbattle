@@ -4,6 +4,13 @@ import Link from "next/link";
 import { useSyncExternalStore } from "react";
 import { formatPoints } from "@/engine/pointsCap";
 import {
+  HEADER_DROPS_LINE_CLASS,
+  HEADER_STATS_STACK_CLASS,
+  builderHeaderShowsListStats,
+  builderHeaderShowsPlayButton,
+  dropCountLabel,
+} from "@/lib/builderUi";
+import {
   getListOpenDisplayNameServerSnapshot,
   getListOpenDisplayNameSnapshot,
   subscribeListOpenFaction,
@@ -145,22 +152,29 @@ function BuilderHeaderRow({
           className="h-8 min-w-0 flex-1 border-b border-parchment/25 bg-transparent font-serif text-[15px] font-semibold leading-none outline-none placeholder:text-parchment/35 sm:text-lg"
         />
       )}
-      {!playMode && chrome ? (
+      {builderHeaderShowsListStats(Boolean(chrome)) && chrome ? (
         <div className="flex shrink-0 items-center gap-2.5">
-          <p className="flex items-center gap-1.5 tabular-nums text-[13px] leading-none text-sigmarite sm:text-sm">
-            {chrome.issue.tone !== "ok" ? (
-              <span
-                aria-hidden="true"
-                className="h-1.5 w-1.5 shrink-0 rounded-full bg-illegal"
-              />
-            ) : null}
-            <span>{formatPoints(chrome.points)}</span>
-            <span className="text-ink-muted">/</span>
-            <span className="text-ink-muted">
-              {formatPoints(chrome.pointsCap)}
-            </span>
-          </p>
-          <PlayCtaButton onClick={() => chrome.enterPlay()} />
+          <div className={HEADER_STATS_STACK_CLASS}>
+            <p className="flex items-center justify-end gap-1.5 text-[13px] text-sigmarite sm:text-sm">
+              {chrome.issue.tone !== "ok" ? (
+                <span
+                  aria-hidden="true"
+                  className="h-1.5 w-1.5 shrink-0 rounded-full bg-illegal"
+                />
+              ) : null}
+              <span>{formatPoints(chrome.points)}</span>
+              <span className="text-ink-muted">/</span>
+              <span className="text-ink-muted">
+                {formatPoints(chrome.pointsCap)}
+              </span>
+            </p>
+            <p className={HEADER_DROPS_LINE_CLASS}>
+              {dropCountLabel(chrome.drops)}
+            </p>
+          </div>
+          {builderHeaderShowsPlayButton(playMode) ? (
+            <PlayCtaButton onClick={() => chrome.enterPlay()} />
+          ) : null}
         </div>
       ) : null}
     </div>

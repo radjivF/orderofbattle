@@ -17,6 +17,10 @@ import type {
   UnitAbility,
 } from "@/engine/types";
 import { PlayBindNotes, PlayHealthTrack, SlotEnhancements, SlotMoreMenu } from "./RegimentCard";
+import {
+  PLAY_SHEET_LINK_CLASS,
+  PLAY_UNIT_NAME_ROW_CLASS,
+} from "@/lib/builderUi";
 
 type Props = {
   list: ArmyList;
@@ -253,10 +257,16 @@ function RoRSlotRow({
           <div className="flex items-center gap-3">
             <button
               type="button"
-              className="min-w-0 flex-1 text-left"
+              className="min-w-0 flex-1 text-left active:opacity-60"
+              aria-label={`${unit.name} datasheet`}
               onClick={() => onOpenDatasheet(unit)}
             >
-              <p className="font-serif text-lg leading-tight">{unit.name}</p>
+              <p className={PLAY_UNIT_NAME_ROW_CLASS}>
+                <span className="font-serif text-lg leading-tight">
+                  {unit.name}
+                </span>
+                <span className={PLAY_SHEET_LINK_CLASS}>Sheet</span>
+              </p>
               <p className="mt-0.5 text-sm text-sheet-muted">
                 {battleStatLine(unit)}
               </p>

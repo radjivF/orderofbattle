@@ -119,7 +119,7 @@ export function ListNavProvider({
         <IndexBackdropLayer />
         {backdrop}
         {header ? (
-          <header className="fixed inset-x-0 top-0 z-40 border-b border-sigmarite/30 bg-ink pt-[env(safe-area-inset-top)] shadow-[0_4px_24px_rgba(0,0,0,0.45)] backdrop-blur-xl backdrop-saturate-150">
+          <header className="ios-nav-bar fixed inset-x-0 top-0 z-40 pt-[env(safe-area-inset-top)]">
             {header}
           </header>
         ) : null}

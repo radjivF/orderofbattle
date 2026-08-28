@@ -23,6 +23,10 @@ import type {
 } from "@/engine/types";
 import { enhancementLabel } from "@/engine/queries";
 import { damageStepperActions } from "@/lib/damageStepper";
+import {
+  PLAY_SHEET_LINK_CLASS,
+  PLAY_UNIT_NAME_ROW_CLASS,
+} from "@/lib/builderUi";
 
 type Props = {
   regiment: Regiment;
@@ -634,15 +638,19 @@ function SlotLine({
               event.stopPropagation();
               onOpenDatasheet();
             }}
-            className="min-w-0 flex-1 text-left"
+            aria-label={`${unit.name} datasheet`}
+            className="min-w-0 flex-1 text-left active:opacity-60"
           >
-            <span className="font-serif text-lg leading-tight">
-              {unit.name}
-              {reinforced ? (
-                <span className="ml-2 font-sans text-xs text-sheet-muted">
-                  reinforced
-                </span>
-              ) : null}
+            <span className={PLAY_UNIT_NAME_ROW_CLASS}>
+              <span className="font-serif text-lg leading-tight">
+                {unit.name}
+                {reinforced ? (
+                  <span className="ml-2 font-sans text-xs text-sheet-muted">
+                    reinforced
+                  </span>
+                ) : null}
+              </span>
+              <span className={PLAY_SHEET_LINK_CLASS}>Sheet</span>
             </span>
             {stats ? (
               <span className="mt-0.5 block font-sans text-sm text-sheet-muted">

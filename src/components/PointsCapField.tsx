@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 import {
   formatPoints,
   isStandardPointsCap,
   parsePointsCap,
   STANDARD_POINTS_CAPS,
 } from "@/engine/pointsCap";
+import { pointsCapInputClass } from "@/lib/builderUi";
+import { IosSegmentedControl } from "./ios/IosSegmentedControl";
 
 type Props = {
   value: number;
@@ -23,6 +25,13 @@ export function PointsCapField({
   const [draft, setDraft] = useState(String(value));
   const unusual = !isStandardPointsCap(value);
 
+  const segmentedValue = useMemo(() => {
+    if (isStandardPointsCap(value)) {
+      return String(value);
+    }
+    return "";
+  }, [value]);
+
   useEffect(() => {
     setDraft(String(value));
   }, [value]);
@@ -38,35 +47,29 @@ export function PointsCapField({
   }
 
   const ink = variant === "ink";
-  const chipIdle = ink
-    ? "bg-ink-raised text-parchment/85 ring-1 ring-parchment/15"
-    : "bg-parchment-ink/5 text-parchment-ink";
   const warnClass = ink ? "text-sigmarite" : "text-sheet-muted";
+  const inputClass = pointsCapInputClass(variant);
 
   return (
     <div className="flex min-w-0 flex-col gap-2">
+      <p
+        className={`text-sm ${ink ? "text-parchment/80" : "text-sheet-muted"}`}
+      >
+        Points limit
+      </p>
       <div className="flex min-w-0 flex-wrap items-center gap-2">
-        <p
-          className={`shrink-0 text-sm ${ink ? "text-parchment/80" : "text-sheet-muted"}`}
-        >
-          Points limit
-        </p>
-        {STANDARD_POINTS_CAPS.map((cap) => {
-          const selected = value === cap;
-          return (
-            <button
-              key={cap}
-              type="button"
-              aria-pressed={selected}
-              onClick={() => onChange(cap)}
-              className={`min-h-11 shrink-0 rounded-xl px-2.5 text-sm sm:px-3 ${
-                selected ? "gold-plate font-semibold text-ink" : chipIdle
-              }`}
-            >
-              {formatPoints(cap)}
-            </button>
-          );
-        })}
+        <IosSegmentedControl
+          ariaLabel="Standard points limits"
+          scrollable
+          size="sm"
+          value={segmentedValue}
+          onChange={(next) => onChange(Number(next))}
+          options={STANDARD_POINTS_CAPS.map((cap) => ({
+            value: String(cap),
+            label: formatPoints(cap),
+          }))}
+          className="min-w-0 flex-1"
+        />
         <label htmlFor={inputId} className="sr-only">
           Custom points limit
         </label>
@@ -81,11 +84,7 @@ export function PointsCapField({
               commit(event.currentTarget.value);
             }
           }}
-          className={`min-h-11 w-[4.75rem] shrink-0 rounded-xl px-2 text-center outline-none sm:w-24 sm:px-3 ${
-            ink
-              ? "bg-parchment text-parchment-ink"
-              : "bg-parchment-ink/5 text-parchment-ink"
-          }`}
+          className={inputClass}
         />
       </div>
       {unusual ? (

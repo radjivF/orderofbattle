@@ -17,6 +17,7 @@
   --aether: #1f7a74;
   --legal: #4a7c59;
   --illegal: #8b2e2e;
+  --illegal-lit: #e8b4b4;
 }
 
 @theme inline {
@@ -34,6 +35,7 @@
   --color-aether: var(--aether);
   --color-legal: var(--legal);
   --color-illegal: var(--illegal);
+  --color-illegal-lit: var(--illegal-lit);
   --font-sans: var(--font-instrument);
   --font-serif: var(--font-cinzel);
 }
@@ -69,6 +71,19 @@ button,
 select,
 input {
   font: inherit;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1.5 1.5 6 6 10.5 1.5' fill='none' stroke='%2316120c' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 0.7rem 0.45rem;
+}
+
+select[class] {
+  padding-inline-end: 2.15rem;
 }
 
 button,
@@ -186,9 +201,161 @@ a {
 
 .ios-nav-bar {
   border-bottom: 0.5px solid color-mix(in srgb, var(--parchment) 12%, transparent);
-  background: color-mix(in srgb, var(--ink) 82%, transparent);
+  background: color-mix(in srgb, var(--ink) 78%, transparent);
   backdrop-filter: blur(20px) saturate(1.2);
   -webkit-backdrop-filter: blur(20px) saturate(1.2);
+}
+
+/* iOS 26–style navigation layer (dark AoS adaptation) */
+.ios-glass {
+  background: color-mix(in srgb, var(--ink-raised) 72%, transparent);
+  border: 0.5px solid color-mix(in srgb, var(--parchment) 12%, transparent);
+  backdrop-filter: blur(20px) saturate(1.15);
+  -webkit-backdrop-filter: blur(20px) saturate(1.15);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--parchment) 8%, transparent),
+    0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.ios-segmented {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 10px;
+}
+
+.ios-segmented--sm {
+  min-height: 32px;
+}
+
+.ios-segmented--md {
+  min-height: 36px;
+}
+
+.ios-segmented--scroll {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ios-segmented--scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.ios-segmented--scroll .ios-segmented-option {
+  flex: 0 0 auto;
+  min-width: 3.25rem;
+  padding: 0 12px;
+}
+
+.ios-segmented-option {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1;
+  color: color-mix(in srgb, var(--parchment) 72%, transparent);
+  transition:
+    color 160ms ease,
+    background 160ms ease;
+}
+
+.ios-segmented-option:active {
+  opacity: 0.85;
+}
+
+.ios-segmented-option--selected {
+  background: color-mix(in srgb, var(--sigmarite) 16%, transparent);
+  color: var(--sigmarite-hover);
+  font-weight: 600;
+  box-shadow:
+    inset 0 0.5px 0 color-mix(in srgb, var(--parchment) 12%, transparent),
+    0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.ios-tab-underline {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid color-mix(in srgb, var(--parchment) 12%, transparent);
+}
+
+.ios-tab-underline--scroll {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+}
+
+.ios-tab-underline--scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.ios-tab-underline-option {
+  flex-shrink: 0;
+  min-height: 36px;
+  padding: 0 12px;
+  font-size: 13px;
+  line-height: 1;
+  color: color-mix(in srgb, var(--parchment) 55%, transparent);
+  scroll-snap-align: start;
+  transition: color 160ms ease;
+}
+
+.ios-tab-underline-option:active {
+  opacity: 0.85;
+}
+
+.ios-tab-underline-option--selected {
+  margin-bottom: -1px;
+  border-bottom: 2px solid var(--sigmarite);
+  color: var(--parchment);
+  font-weight: 600;
+}
+
+/* Parchment context (inside parchment-card) */
+.ios-tab-underline--parchment {
+  border-bottom-color: color-mix(in srgb, var(--parchment-ink) 15%, transparent);
+}
+
+.ios-tab-underline--parchment .ios-tab-underline-option {
+  color: var(--sheet-muted);
+}
+
+.ios-tab-underline--parchment .ios-tab-underline-option--selected {
+  border-bottom-color: var(--parchment-ink);
+  color: var(--parchment-ink);
+}
+
+.ios-glass-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--sigmarite-hover);
+}
+
+.ios-glass-button:active {
+  opacity: 0.85;
+}
+
+.ios-sheet-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ios-sheet-actions-row {
+  display: flex;
+  gap: 8px;
 }
 
 /* List open splash — upper third, not dead center */

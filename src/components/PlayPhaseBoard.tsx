@@ -27,6 +27,7 @@ import type {
   UnitWeapon,
 } from "@/engine/types";
 import { ModalFrame } from "./ModalFrame";
+import { IosUnderlineTabs } from "./ios/IosUnderlineTabs";
 
 type PhaseSubTab = "abilities" | "weapons" | "command";
 
@@ -88,25 +89,16 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex gap-2 overflow-x-auto pb-1">
-        {boards.map((board) => {
-          const selected = active?.phase.id === board.phase.id;
-          return (
-            <button
-              key={board.phase.id}
-              type="button"
-              onClick={() => setPhaseId(board.phase.id)}
-              className={`min-h-11 shrink-0 rounded-xl px-4 text-sm ${
-                selected
-                  ? "gold-plate text-ink"
-                  : "bg-ink-raised text-parchment/80 ring-1 ring-parchment/15"
-              }`}
-            >
-              {board.phase.name}
-            </button>
-          );
-        })}
-      </div>
+      <IosUnderlineTabs
+        ariaLabel="Battle phases"
+        scrollable
+        value={phaseId}
+        onChange={(next) => setPhaseId(next as PlayPhaseId)}
+        tabs={boards.map((board) => ({
+          value: board.phase.id,
+          label: board.phase.name,
+        }))}
+      />
 
       {active ? (
         <section className="parchment-card rounded-2xl p-5 text-parchment-ink">
@@ -142,31 +134,18 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
 
           {availableSubTabs.length > 0 ? (
             <>
-              <div
-                role="tablist"
-                aria-label={`${active.phase.name} sections`}
-                className="mt-5 flex gap-1 border-b border-parchment-ink/15"
-              >
-                {availableSubTabs.map((tab) => {
-                  const selected = subTab === tab;
-                  return (
-                    <button
-                      key={tab}
-                      type="button"
-                      role="tab"
-                      aria-selected={selected}
-                      onClick={() => selectSubTab(tab)}
-                      className={`min-h-10 shrink-0 px-3 text-sm tracking-wide uppercase transition-colors ${
-                        selected
-                          ? "-mb-px border-b-2 border-parchment-ink font-semibold text-parchment-ink"
-                          : "text-sheet-muted hover:text-parchment-ink/80"
-                      }`}
-                    >
-                      {subTabLabel(tab)}
-                    </button>
-                  );
-                })}
-              </div>
+              <IosUnderlineTabs
+                ariaLabel={`${active.phase.name} sections`}
+                variant="parchment"
+                uppercase
+                className="mt-5"
+                value={subTab}
+                onChange={(next) => selectSubTab(next as PhaseSubTab)}
+                tabs={availableSubTabs.map((tab) => ({
+                  value: tab,
+                  label: subTabLabel(tab),
+                }))}
+              />
 
               <div role="tabpanel" className="mt-4">
                 {subTab === "abilities" ? (

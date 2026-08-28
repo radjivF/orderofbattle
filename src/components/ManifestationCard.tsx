@@ -1,6 +1,10 @@
 "use client";
 
 import { manifestationStatLine } from "@/engine/queries";
+import {
+  PLAY_SHEET_LINK_CLASS,
+  PLAY_UNIT_NAME_ROW_CLASS,
+} from "@/lib/builderUi";
 import type { ManifestationLore, ManifestationModel } from "@/engine/types";
 
 type Props = {
@@ -106,9 +110,13 @@ function ManifestationSlot({
       <button
         type="button"
         onClick={onOpenSheet}
-        className="flex min-h-11 w-full flex-col items-start rounded-xl bg-parchment-ink/5 px-3 py-3 text-left"
+        aria-label={`${model.name} datasheet`}
+        className="flex min-h-11 w-full flex-col items-start rounded-xl bg-parchment-ink/5 px-3 py-3 text-left active:opacity-60"
       >
-        <span className="font-serif text-lg leading-tight">{model.name}</span>
+        <span className={PLAY_UNIT_NAME_ROW_CLASS}>
+          <span className="font-serif text-lg leading-tight">{model.name}</span>
+          <span className={PLAY_SHEET_LINK_CLASS}>Sheet</span>
+        </span>
         {stats || cast ? (
           <span className="mt-1 font-sans text-sm text-sheet-muted">
             {[stats, cast].filter(Boolean).join(" · ")}
