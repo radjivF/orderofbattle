@@ -1,7 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { setConsentStatus, hasUserResponded } from "@/lib/cookieConsent";
+
+const acceptClass =
+  "ios-liquid-glass pressable inline-flex min-h-11 min-w-[7.5rem] items-center justify-center rounded-xl px-6 text-[15px] font-semibold text-black";
+
+const rejectClass =
+  "pressable inline-flex min-h-11 min-w-[7.5rem] items-center justify-center rounded-xl px-5 text-sm font-medium text-parchment/75 ring-1 ring-parchment/20 transition-colors hover:bg-parchment/5 hover:text-parchment";
 
 export function CookieConsent() {
   const [show, setShow] = useState(false);
@@ -26,20 +33,33 @@ export function CookieConsent() {
   if (!show) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-parchment/20 bg-obsidian/95 py-3 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4">
-        <p className="text-sm text-parchment/80">We use cookies.</p>
-        <div className="flex gap-3">
-          <button
-            onClick={handleReject}
-            className="px-3 py-1.5 text-sm text-parchment/60 transition-colors hover:text-parchment"
-          >
+    <div
+      role="region"
+      aria-label="Cookie consent"
+      className="fixed inset-x-0 bottom-0 z-50 border-t border-parchment/15 bg-ink/95 backdrop-blur-md"
+    >
+      <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 px-5 py-5 text-center sm:px-6">
+        <div className="space-y-2">
+          <p className="font-serif text-lg leading-snug text-parchment sm:text-xl">
+            Cookies for analytics
+          </p>
+          <p className="text-sm leading-relaxed text-parchment/80">
+            We use cookies so Microsoft Clarity can measure usage and session
+            replay to improve the app. Ahrefs analytics runs without cookies.
+            {" "}
+            <Link
+              href="/privacy"
+              className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2 transition-colors hover:text-sigmarite-hover"
+            >
+              Privacy policy
+            </Link>
+          </p>
+        </div>
+        <div className="flex w-full max-w-sm flex-col gap-2.5 sm:flex-row sm:justify-center">
+          <button type="button" onClick={handleReject} className={rejectClass}>
             Reject
           </button>
-          <button
-            onClick={handleAccept}
-            className="rounded bg-parchment/90 px-4 py-1.5 text-sm font-medium text-obsidian transition-colors hover:bg-parchment"
-          >
+          <button type="button" onClick={handleAccept} className={acceptClass}>
             Accept
           </button>
         </div>
