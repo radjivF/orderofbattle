@@ -4,7 +4,6 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
   listFlowHeaderMode,
-  listFlowShowsListDecor,
   listFlowTrackClass,
   listFlowWindowScrollY,
   listOpenShowsSplash,
@@ -150,13 +149,6 @@ describe("listOpenShowsSplash", () => {
   });
 });
 
-describe("listFlowShowsListDecor", () => {
-  it("hides the list art while sliding back so the library is not covered", () => {
-    expect(listFlowShowsListDecor(false)).toBe(true);
-    expect(listFlowShowsListDecor(true)).toBe(false);
-  });
-});
-
 describe("listFlowWindowScrollY", () => {
   it("resets to the top of the list and restores the library on the way back", () => {
     expect(
@@ -187,8 +179,13 @@ describe("list flow navigation wiring", () => {
     expect(dashboard).toContain("return null");
     expect(nav).toContain("listFlowTrackClass");
     expect(nav).toContain("listFlowTrackClass(showDetail, settled)");
+    expect(nav).toContain("LIST_FLOW_HEADER_OFFSET_CLASS");
+    expect(nav).not.toContain(
+      "overflow-x-hidden ${listFlowHeaderOffsetClass",
+    );
+    expect(nav).not.toContain("headerMode");
     expect(nav).not.toContain("setShowDetail(false);");
-    expect(nav).toContain("listFlowShowsListDecor");
+    expect(nav).toContain("{backdrop}");
     expect(nav).toContain("clearListOpenSplash");
     expect(nav).toContain("SITE_HEADER_BAR_CLASS");
     expect(nav).toContain("libraryLayer");
@@ -203,7 +200,9 @@ describe("list flow navigation wiring", () => {
     expect(builder).toContain(
       'className="pointer-events-none absolute inset-0 z-30"',
     );
-    expect(builder).not.toContain("listOpenBlocksOnSplash");
+    expect(builder).toContain("LIST_PANE_ART_CLASS");
+    expect(builder).toContain('className="relative h-full w-full"');
+    expect(builder).not.toContain("fixed inset-0 z-[1]");
   });
 
   it("resolves header fallback from storage before chrome loads", () => {

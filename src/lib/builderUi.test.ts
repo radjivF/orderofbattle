@@ -17,7 +17,9 @@ import {
   IOS_NAV_BACK_BUTTON_CLASS,
   IOS_NAV_PLAY_BUTTON_CLASS,
   LIBRARY_CARD_CLASS,
+  LIST_FLOW_HEADER_OFFSET_CLASS,
   LIST_ISSUE_BANNER_CLASS,
+  LIST_PANE_ART_CLASS,
   SITE_HEADER_BAR_CLASS,
   SITE_HEADER_ROW_CLASS,
   COOKIE_CONSENT_BANNER_CLASS,
@@ -251,6 +253,12 @@ describe("iOS nav controls", () => {
     expect(SITE_HEADER_ROW_CLASS).toContain("max-w-3xl");
     expect(SITE_HEADER_ROW_CLASS).toContain("gap-2");
     expect(SITE_HEADER_BAR_CLASS).toBe("ios-nav-bar");
+    expect(LIST_FLOW_HEADER_OFFSET_CLASS).toContain(
+      "pt-[calc(env(safe-area-inset-top)+3.75rem)]",
+    );
+    expect(LIST_PANE_ART_CLASS).toContain("sticky");
+    expect(LIST_PANE_ART_CLASS).toContain("-mb-[100dvh]");
+    expect(LIST_PANE_ART_CLASS).not.toContain("fixed");
     expect(COOKIE_CONSENT_BANNER_CLASS).toContain(
       "top-[calc(env(safe-area-inset-top)+3.75rem)]",
     );

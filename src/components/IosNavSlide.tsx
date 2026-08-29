@@ -12,13 +12,16 @@ import {
 } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import {
+  LIST_FLOW_HEADER_OFFSET_CLASS,
+  SITE_HEADER_BAR_CLASS,
+} from "@/lib/builderUi";
+import { listFlowTrackClass, listFlowWindowScrollY } from "@/lib/listFlowNav";
+import {
   clearListNavigationDirection,
   clearListOpenSplash,
   peekListNavigationDirection,
   rememberListNavigation,
 } from "@/lib/listTransition";
-import { listFlowTrackClass, listFlowWindowScrollY, listFlowShowsListDecor } from "@/lib/listFlowNav";
-import { SITE_HEADER_BAR_CLASS } from "@/lib/builderUi";
 import { IndexBackdropLayer } from "./IndexBackdrop";
 
 const SLIDE_MS = 320;
@@ -41,7 +44,6 @@ type ListNavProviderProps = {
   children: ReactNode;
   libraryLayer: ReactNode;
   header?: ReactNode;
-  headerMode?: "builder" | "library" | null;
   backdrop?: ReactNode;
   overlay?: ReactNode;
   onShowDetailChange?: (state: {
@@ -50,20 +52,10 @@ type ListNavProviderProps = {
   }) => void;
 };
 
-function listFlowHeaderOffsetClass(
-  headerMode: ListNavProviderProps["headerMode"],
-) {
-  if (headerMode === "library" || headerMode === "builder") {
-    return "pt-[calc(env(safe-area-inset-top)+3.75rem)]";
-  }
-  return "";
-}
-
 export function ListNavProvider({
   children,
   libraryLayer,
   header,
-  headerMode = null,
   backdrop,
   overlay,
   onShowDetailChange,
@@ -73,7 +65,6 @@ export function ListNavProvider({
   const isBuilder = pathname.startsWith("/lists/");
   const [showDetail, setShowDetailState] = useState(false);
   const [settled, setSettled] = useState(true);
-  const [animatingBack, setAnimatingBack] = useState(false);
   const timers = useRef<number[]>([]);
   const animatingBackRef = useRef(false);
   const libraryScrollYRef = useRef<number | null>(null);
@@ -94,7 +85,6 @@ export function ListNavProvider({
   const publishNavState = useCallback(
     (next: { showDetail: boolean; animatingBack: boolean }) => {
       setShowDetailState(next.showDetail);
-      setAnimatingBack(next.animatingBack);
       onShowDetailChange?.(next);
     },
     [onShowDetailChange],
@@ -179,7 +169,6 @@ export function ListNavProvider({
     animatingBackRef.current = true;
     setSettled(false);
     publishNavState({ showDetail: false, animatingBack: true });
-    scrollToPane(false);
     schedule(() => {
       router.push("/dashboard", { scroll: false });
       animatingBackRef.current = false;
@@ -192,23 +181,27 @@ export function ListNavProvider({
     <ListNavContext.Provider value={{ goBack }}>
       <div className="relative min-h-dvh w-full overflow-x-hidden">
         <IndexBackdropLayer />
-        {listFlowShowsListDecor(animatingBack) ? backdrop : null}
         {header ? (
           <header className={`${SITE_HEADER_BAR_CLASS} pointer-events-auto fixed inset-x-0 top-0 z-[60] pt-[env(safe-area-inset-top)]`}>
             {header}
           </header>
         ) : null}
-        <div
-          className={`relative z-10 overflow-x-hidden ${listFlowHeaderOffsetClass(headerMode)}`}
-        >
+        <div className="relative z-10 overflow-x-hidden">
           <div className={listFlowTrackClass(showDetail, settled)}>
-            <div className="list-flow-pane">{libraryLayer}</div>
+            <div className="list-flow-pane">
+              <div className={LIST_FLOW_HEADER_OFFSET_CLASS}>
+                {libraryLayer}
+              </div>
+            </div>
             <div
-              className="list-flow-pane relative"
+              className="list-flow-pane relative min-h-dvh"
               aria-hidden={!showDetail && !isBuilder}
             >
-              {listFlowShowsListDecor(animatingBack) ? overlay : null}
-              {isBuilder ? children : null}
+              {backdrop}
+              {overlay}
+              <div className={`relative z-10 ${LIST_FLOW_HEADER_OFFSET_CLASS}`}>
+                {isBuilder ? children : null}
+              </div>
             </div>
           </div>
         </div>

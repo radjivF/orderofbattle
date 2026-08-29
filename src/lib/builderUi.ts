@@ -135,6 +135,14 @@ export const SITE_HEADER_ROW_CLASS =
 /** Full-width bar behind every site header — solid ink, no art showing through. */
 export const SITE_HEADER_BAR_CLASS = "ios-nav-bar";
 
+/** Clears the fixed header; apply to pane copy, not the list art layer. */
+export const LIST_FLOW_HEADER_OFFSET_CLASS =
+  "pt-[calc(env(safe-area-inset-top)+3.75rem)]";
+
+/** Sticky in the list pane so art stays while scrolling and slides out on back. */
+export const LIST_PANE_ART_CLASS =
+  "pointer-events-none sticky top-0 z-0 h-dvh overflow-hidden -mb-[100dvh]";
+
 /** Sit the cookie banner under the solid header so it is not painted over the bar. */
 export const COOKIE_CONSENT_BANNER_CLASS =
   "pointer-events-none fixed inset-x-0 top-[calc(env(safe-area-inset-top)+3.75rem)] z-40 flex justify-center px-4 pt-2";

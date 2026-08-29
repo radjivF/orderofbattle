@@ -33,11 +33,6 @@ export function listOpenShowsSplash(input: {
   return input.splashRequested && !input.animatingBack;
 }
 
-/** List faction art is viewport-fixed — hide it on back or it covers the library slide. */
-export function listFlowShowsListDecor(animatingBack: boolean): boolean {
-  return !animatingBack;
-}
-
 /** Window scroll when the library ↔ list carousel changes which pane is on screen. */
 export function listFlowWindowScrollY(input: {
   showingDetail: boolean;

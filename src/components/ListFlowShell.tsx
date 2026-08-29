@@ -72,7 +72,6 @@ export function ListFlowShell({ children }: { children: ReactNode }) {
         <ListNavProvider
           libraryLayer={<LibraryScreen />}
           onShowDetailChange={setNavState}
-          headerMode={showBuilderHeader ? "builder" : "library"}
           header={
             <ListFlowHeader
               mode={showBuilderHeader ? "builder" : "library"}

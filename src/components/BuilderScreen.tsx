@@ -19,7 +19,7 @@ import { battleTactics, battleTacticsForRealm } from "@/engine/data/load";
 import { summarize } from "@/engine/validate";
 import type { ArmyList, CatalogueUnit, DatasheetSubject, EnhancementOption, FactionCatalogue, NamedOption } from "@/engine/types";
 import { createId } from "@/lib/id";
-import { BUILDER_ADD_ACTION_CLASS, BUILDER_ADD_ACTION_EMPHASIS_CLASS, IOS_LIQUID_CTA_CLASS, LIST_ISSUE_BANNER_CLASS, SHEET_HEADER_CLASS, SHEET_PANEL_CLASS, CONFIRM_SHEET_PANEL_CLASS, builderPlayTabs } from "@/lib/builderUi";
+import { BUILDER_ADD_ACTION_CLASS, BUILDER_ADD_ACTION_EMPHASIS_CLASS, IOS_LIQUID_CTA_CLASS, LIST_ISSUE_BANNER_CLASS, LIST_PANE_ART_CLASS, SHEET_HEADER_CLASS, SHEET_PANEL_CLASS, CONFIRM_SHEET_PANEL_CLASS, builderPlayTabs } from "@/lib/builderUi";
 import { castValueLabel } from "@/lib/abilityUi";
 import {
   getArmiesServerSnapshot,
@@ -167,15 +167,14 @@ export function BuilderScreen({ listId }: Props) {
   useLayoutEffect(() => {
     setDecor({
       backdrop: artFactionId ? (
-        <div
-          className="pointer-events-none fixed inset-0 z-[1] overflow-hidden"
-          aria-hidden="true"
-        >
-          <FactionArtLayers
-            factionId={artFactionId}
-            scourgeRealm={scourgeRealm}
-            splash={showSplash}
-          />
+        <div className={LIST_PANE_ART_CLASS} aria-hidden="true">
+          <div className="relative h-full w-full">
+            <FactionArtLayers
+              factionId={artFactionId}
+              scourgeRealm={scourgeRealm}
+              splash={showSplash}
+            />
+          </div>
         </div>
       ) : undefined,
       overlay: showSplash ? (
