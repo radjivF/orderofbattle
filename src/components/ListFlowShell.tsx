@@ -12,7 +12,7 @@ import {
 import { usePathname } from "next/navigation";
 import type { BuilderChromeValue } from "./BuilderChrome";
 import type { LibraryChromeValue } from "./LibraryChrome";
-import { listFlowHeaderMode } from "@/lib/listFlowNav";
+import { listFlowHeaderMode, listFlowIsHome } from "@/lib/listFlowNav";
 import { ListNavProvider } from "./IosNavSlide";
 import { ListFlowHeader } from "./ListFlowHeader";
 import { LibraryScreen } from "./LibraryScreen";
@@ -33,6 +33,7 @@ const ListFlowChromeContext = createContext<{
 
 export function ListFlowShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const isHome = listFlowIsHome(pathname);
   const isBuilder = pathname.startsWith("/lists/");
   const listId = isBuilder ? (pathname.split("/")[2] ?? null) : null;
   const [navState, setNavState] = useState({
@@ -69,22 +70,25 @@ export function ListFlowShell({ children }: { children: ReactNode }) {
       <ListFlowChromeContext.Provider
         value={{ setBuilderChrome, setLibraryChrome }}
       >
-        <ListNavProvider
-          libraryLayer={<LibraryScreen />}
-          onShowDetailChange={setNavState}
-          header={
-            <ListFlowHeader
-              mode={showBuilderHeader ? "builder" : "library"}
-              listId={listId}
-              builderChrome={builderChrome}
-              libraryChrome={libraryChrome}
-            />
-          }
-          backdrop={decor.backdrop}
-          overlay={decor.overlay}
-        >
-          {children}
-        </ListNavProvider>
+        {isHome ? children : null}
+        <div hidden={isHome}>
+          <ListNavProvider
+            libraryLayer={<LibraryScreen />}
+            onShowDetailChange={setNavState}
+            header={
+              <ListFlowHeader
+                mode={showBuilderHeader ? "builder" : "library"}
+                listId={listId}
+                builderChrome={builderChrome}
+                libraryChrome={libraryChrome}
+              />
+            }
+            backdrop={decor.backdrop}
+            overlay={decor.overlay}
+          >
+            {isHome ? null : children}
+          </ListNavProvider>
+        </div>
       </ListFlowChromeContext.Provider>
     </ListFlowDecorContext.Provider>
   );

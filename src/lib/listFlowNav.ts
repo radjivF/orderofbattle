@@ -10,6 +10,11 @@ export function listFlowHeaderMode(input: {
   return "library";
 }
 
+/** Home lives in the flow layout so `/dashboard` does not remount the list shell. */
+export function listFlowIsHome(pathname: string): boolean {
+  return pathname === "/";
+}
+
 /** Carousel track class when the list detail pane is visible. */
 export function listFlowTrackClass(
   showDetail: boolean,

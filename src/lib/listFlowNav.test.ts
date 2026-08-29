@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
   listFlowHeaderMode,
+  listFlowIsHome,
   listFlowTrackClass,
   listFlowWindowScrollY,
   listOpenShowsSplash,
@@ -120,6 +121,14 @@ describe("listFlowHeaderMode", () => {
   });
 });
 
+describe("listFlowIsHome", () => {
+  it("treats only the marketing root as home", () => {
+    expect(listFlowIsHome("/")).toBe(true);
+    expect(listFlowIsHome("/dashboard")).toBe(false);
+    expect(listFlowIsHome("/lists/abc")).toBe(false);
+  });
+});
+
 describe("listFlowTrackClass", () => {
   it("slides the library pane off-screen when detail is visible", () => {
     expect(listFlowTrackClass(false)).toBe(
@@ -176,7 +185,12 @@ describe("list flow navigation wiring", () => {
 
     expect(shell).toContain('libraryLayer={<LibraryScreen />}');
     expect(shell).toContain("listFlowHeaderMode");
+    expect(shell).toContain("listFlowIsHome");
+    expect(shell).toContain("hidden={isHome}");
+    const home = readSource("app/(flow)/page.tsx");
+    expect(home).toContain("TryLanding");
     expect(dashboard).toContain("return null");
+    expect(nav).toContain("listFlowIsHome");
     expect(nav).toContain("listFlowTrackClass");
     expect(nav).toContain("listFlowTrackClass(showDetail, settled)");
     expect(nav).toContain("LIST_FLOW_HEADER_OFFSET_CLASS");

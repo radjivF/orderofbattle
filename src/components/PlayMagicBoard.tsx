@@ -23,7 +23,6 @@ import type {
   FactionCatalogue,
   UnitAbility,
 } from "@/engine/types";
-import { ExpandableRuleCard } from "./ExpandableRuleCard";
 import { RuleText } from "./RuleText";
 import { LaunchMeta } from "./AbilityMeta";
 
@@ -323,11 +322,22 @@ function PowerCard({
         </div>
       ) : power.declare || power.effect ? (
         <div className="mt-2">
-          <ExpandableRuleCard
-            nested
-            declare={power.declare}
-            effect={power.effect}
-          />
+          {power.declare ? (
+            <RuleText
+              text={power.declare}
+              label="Declare · "
+              className="text-sm"
+              itemClassName="text-parchment-ink/80"
+            />
+          ) : null}
+          {power.effect ? (
+            <RuleText
+              text={power.effect}
+              label="Effect · "
+              className={power.declare ? "mt-1 text-sm" : "text-sm"}
+              itemClassName="text-parchment-ink/80"
+            />
+          ) : null}
         </div>
       ) : null}
     </article>

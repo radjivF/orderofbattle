@@ -34,11 +34,11 @@ export function TerrainCard({ terrain, onOpenSheet }: Props) {
           Faction terrain
         </p>
         {single ? (
-          <div className="flex items-start gap-2">
+          <div className="flex w-full items-start justify-between gap-2">
             <button
               type="button"
               onClick={() => onOpenSheet(single)}
-              className="min-w-0 w-fit max-w-full text-left active:opacity-60"
+              className="min-w-0 flex-1 text-left active:opacity-60"
             >
               <h2 className="font-serif text-2xl leading-tight">{single.name}</h2>
               {terrainStats(single) ? (
