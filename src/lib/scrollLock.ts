@@ -55,7 +55,11 @@ export function unlockPageScroll(restoreY?: number) {
   body.style.overflow = "";
   html.style.overflow = "";
   html.style.overscrollBehavior = "";
-  window.scrollTo(0, restoreY ?? savedScrollY);
+  try {
+    window.scrollTo(0, restoreY ?? savedScrollY);
+  } catch {
+    // jsdom exposes scrollTo but does not implement it.
+  }
 }
 
 /** @visibleForTesting */

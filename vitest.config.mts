@@ -13,6 +13,10 @@ export default defineConfig({
           name: "node",
           environment: "node",
           include: ["src/**/*.test.ts"],
+          exclude: [
+            "src/lib/cookieConsent.test.ts",
+            "src/lib/modalLock.test.ts",
+          ],
         },
       },
       {
