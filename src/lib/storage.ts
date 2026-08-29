@@ -3,6 +3,7 @@ import { getFaction } from "@/engine/queries";
 import { getSpearhead } from "@/engine/spearhead";
 import { inferScourgeRealm } from "@/engine/scourgeRealm";
 import { pruneOrphanEnhancements } from "@/engine/validate";
+import { partitionPortableLists } from "@/engine/listPortable";
 import { createId } from "./id";
 
 const DB_NAME = "orderofbattle";
@@ -357,4 +358,43 @@ export function duplicateArmy(list: ArmyList): ArmyList {
     updatedAt: now,
     lastOpenedAt: now,
   };
+}
+
+/** Clone a list from an import file with a new id so it never overwrites a local list. */
+export function prepareImportedArmy(list: ArmyList): ArmyList {
+  const now = Date.now();
+  const cloned = structuredClone(list);
+  return normalizeList({
+    ...cloned,
+    id: createId(),
+    name: cloned.name.trim() || "Imported list",
+    pointsCap:
+      typeof cloned.pointsCap === "number" ? cloned.pointsCap : 2000,
+    formationId: cloned.formationId ?? null,
+    spellLoreId: cloned.spellLoreId ?? null,
+    prayerLoreId: cloned.prayerLoreId ?? null,
+    manifestationLoreId: cloned.manifestationLoreId ?? null,
+    artefact: cloned.artefact ?? null,
+    heroicTrait: cloned.heroicTrait ?? null,
+    generalRegimentId: cloned.generalRegimentId ?? null,
+    regiments: Array.isArray(cloned.regiments) ? cloned.regiments : [],
+    auxiliaries: Array.isArray(cloned.auxiliaries) ? cloned.auxiliaries : [],
+    createdAt: now,
+    updatedAt: now,
+    lastOpenedAt: now,
+  });
+}
+
+export async function importArmies(lists: ArmyList[]): Promise<ArmyList[]> {
+  const current = cache ?? (await readAll());
+  const { novel } = partitionPortableLists(lists, current);
+  const imported = novel.map((list) => prepareImportedArmy(list));
+  if (imported.length === 0) {
+    return [];
+  }
+  cache = sortLists([...imported, ...current]);
+  await writeAllToIndexedDB(cache);
+  markReady();
+  emit();
+  return imported;
 }

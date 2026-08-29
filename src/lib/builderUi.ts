@@ -183,3 +183,9 @@ export const EMPTY_LIBRARY_PANEL_CLASS =
   "mx-auto max-w-sm rounded-2xl bg-ink-raised/90 px-5 py-6 text-center ring-1 ring-parchment/10";
 
 export const EMPTY_LIBRARY_CTA_CLASS = `mt-5 ${IOS_LIQUID_CTA_CLASS}`;
+
+export const EMPTY_LIBRARY_SECONDARY_CLASS =
+  "pressable mt-3 min-h-11 w-full cursor-pointer text-base text-parchment/70";
+
+export const LIBRARY_BACKUP_BUTTON_CLASS =
+  "pressable min-h-11 cursor-pointer px-2 text-sm text-parchment/80";

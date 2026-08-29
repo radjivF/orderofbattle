@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useLayoutEffect, useEffect, useState, useSyncExternalStore } from "react";
+import { useLayoutEffect, useEffect, useRef, useState, useSyncExternalStore, type ChangeEvent } from "react";
 import { getFaction, armyOfRenownName } from "@/engine/queries";
 import {
   catalogueForList,
@@ -13,9 +13,18 @@ import {
 import { listFactionsByGrandAlliance } from "@/lib/factionAlliance";
 import { formatPoints } from "@/engine/pointsCap";
 import { summarize } from "@/engine/validate";
+import {
+  LIST_IMPORT_HELP,
+  parsePortableLists,
+  partitionPortableLists,
+  portableAllListsFileName,
+  portableListFileName,
+  serializeListsFile,
+} from "@/engine/listPortable";
 import type { ArmyList, FactionCatalogue } from "@/engine/types";
 import { catalogueArtClass, catalogueArtSrc, factionArtSrc } from "@/lib/factionArt";
 import { factionPickerCounts } from "@/lib/factionSeo";
+import { downloadTextFile } from "@/lib/downloadFile";
 import {
   blankArmy,
   blankSpearhead,
@@ -23,6 +32,7 @@ import {
   duplicateArmy,
   getArmiesServerSnapshot,
   getArmiesSnapshot,
+  importArmies,
   saveArmy,
   subscribeArmies,
 } from "@/lib/storage";
@@ -45,9 +55,14 @@ import {
   parseNewListArmyValue,
 } from "@/lib/newListArmyOptions";
 import {
+  CONFIRM_CANCEL_BUTTON_CLASS,
+  CONFIRM_SHEET_ACTIONS_CLASS,
   CONFIRM_SHEET_PANEL_CLASS,
   EMPTY_LIBRARY_CTA_CLASS,
   EMPTY_LIBRARY_PANEL_CLASS,
+  EMPTY_LIBRARY_SECONDARY_CLASS,
+  IOS_LIQUID_CTA_CLASS,
+  LIBRARY_BACKUP_BUTTON_CLASS,
   LIBRARY_CARD_ACTION_BUTTON_CLASS,
   LIBRARY_CARD_ACTIONS_CLASS,
   LIBRARY_CARD_CLASS,
@@ -96,6 +111,13 @@ export function LibraryScreen() {
   const [draftMode, setDraftMode] = useState<"points" | "spearhead">("points");
   const [draftSpearheadId, setDraftSpearheadId] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
+  const [importError, setImportError] = useState<string | null>(null);
+  const [importHelpOpen, setImportHelpOpen] = useState(false);
+  const [importConfirm, setImportConfirm] = useState<{
+    novel: ArmyList[];
+    skipped: number;
+  } | null>(null);
+  const importInputRef = useRef<HTMLInputElement>(null);
   const createSplash = useSyncExternalStore(
     subscribeListOpenFaction,
     peekListCreateSplash,
@@ -152,6 +174,59 @@ export function LibraryScreen() {
     await saveArmy({ ...list, name: next });
   }
 
+  function exportAllLists() {
+    if (!lists || lists.length === 0) {
+      return;
+    }
+    downloadTextFile(
+      portableAllListsFileName(),
+      serializeListsFile(lists),
+      "text/plain;charset=utf-8",
+    );
+  }
+
+  function exportOneList(list: ArmyList) {
+    downloadTextFile(
+      portableListFileName(list.name),
+      serializeListsFile([list]),
+      "text/plain;charset=utf-8",
+    );
+  }
+
+  function openImportPicker() {
+    setImportHelpOpen(true);
+  }
+
+  function chooseImportFile() {
+    importInputRef.current?.click();
+  }
+
+  async function onImportFile(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    setImportHelpOpen(false);
+    if (!file) {
+      return;
+    }
+    const parsed = parsePortableLists(await file.text());
+    if (!parsed.ok) {
+      setImportError(parsed.error);
+      return;
+    }
+    setImportConfirm(
+      partitionPortableLists(parsed.lists, lists ?? []),
+    );
+  }
+
+  async function confirmImport() {
+    if (!importConfirm || importConfirm.novel.length === 0) {
+      setImportConfirm(null);
+      return;
+    }
+    await importArmies(importConfirm.novel);
+    setImportConfirm(null);
+  }
+
   function closePicker() {
     if (creating) {
       return;
@@ -195,9 +270,41 @@ export function LibraryScreen() {
 
   return (
     <div className="relative z-10 min-h-full text-parchment">
-      <h1 className="mx-auto w-full max-w-3xl px-5 pt-2 pb-3 font-serif text-3xl text-parchment sm:px-6 lg:max-w-5xl">
-        My lists
-      </h1>
+      <div className="mx-auto flex w-full max-w-3xl items-end justify-between gap-3 px-5 pt-2 pb-3 sm:px-6 lg:max-w-5xl">
+        <h1 className="font-serif text-3xl text-parchment">My lists</h1>
+        <div className="flex shrink-0 items-center gap-1">
+          <button
+            type="button"
+            className={LIBRARY_BACKUP_BUTTON_CLASS}
+            onClick={openImportPicker}
+          >
+            Import list
+          </button>
+          {lists && lists.length > 0 ? (
+            <>
+              <span aria-hidden="true" className="text-parchment/25">
+                ·
+              </span>
+              <button
+                type="button"
+                className={LIBRARY_BACKUP_BUTTON_CLASS}
+                onClick={exportAllLists}
+              >
+                Export all
+              </button>
+            </>
+          ) : null}
+        </div>
+      </div>
+      <input
+        ref={importInputRef}
+        type="file"
+        accept=".txt,text/plain"
+        className="hidden"
+        aria-hidden="true"
+        tabIndex={-1}
+        onChange={(event) => void onImportFile(event)}
+      />
       <main className="mx-auto w-full max-w-3xl px-5 pb-20 sm:px-6 lg:max-w-5xl">
         {lists === undefined ? (
           <div
@@ -229,6 +336,13 @@ export function LibraryScreen() {
               className={EMPTY_LIBRARY_CTA_CLASS}
             >
               Make your first list
+            </button>
+            <button
+              type="button"
+              onClick={openImportPicker}
+              className={EMPTY_LIBRARY_SECONDARY_CLASS}
+            >
+              Import a list
             </button>
           </div>
         ) : (
@@ -317,6 +431,19 @@ export function LibraryScreen() {
                         </span>
                         <button
                           type="button"
+                          className={LIBRARY_CARD_ACTION_BUTTON_CLASS}
+                          onClick={() => exportOneList(list)}
+                        >
+                          Export
+                        </button>
+                        <span
+                          aria-hidden="true"
+                          className="text-parchment-ink/25"
+                        >
+                          ·
+                        </span>
+                        <button
+                          type="button"
                           className={LIBRARY_CARD_DELETE_BUTTON_CLASS}
                           onClick={() => setDeleteTarget(list)}
                         >
@@ -353,6 +480,112 @@ export function LibraryScreen() {
         )}
       </main>
       <SiteFooter />
+
+      {importHelpOpen ? (
+        <ModalFrame
+          label="Import a list"
+          onClose={() => setImportHelpOpen(false)}
+          panelClassName={CONFIRM_SHEET_PANEL_CLASS}
+        >
+          <div className={SHEET_HEADER_CLASS}>
+            <h2 className="font-serif text-2xl">Import a list</h2>
+            <SheetCloseButton
+              label="Close import"
+              onClick={() => setImportHelpOpen(false)}
+            />
+          </div>
+          <p className="px-5 pb-4 text-sm leading-relaxed text-sheet-muted">
+            {LIST_IMPORT_HELP}
+          </p>
+          <div className={CONFIRM_SHEET_ACTIONS_CLASS}>
+            <button
+              type="button"
+              onClick={chooseImportFile}
+              className={IOS_LIQUID_CTA_CLASS}
+            >
+              Choose file
+            </button>
+          </div>
+        </ModalFrame>
+      ) : null}
+
+      {importConfirm ? (
+        <ModalFrame
+          label={
+            importConfirm.novel.length === 0
+              ? "Already in My lists"
+              : "Add lists?"
+          }
+          onClose={() => setImportConfirm(null)}
+          panelClassName={CONFIRM_SHEET_PANEL_CLASS}
+        >
+          <p className="px-2 pb-2 text-center text-sm leading-relaxed text-sheet-muted">
+            {importConfirm.novel.length === 0 ? (
+              "Those lists are already in My lists. Nothing will be added."
+            ) : (
+              <>
+                {importConfirm.novel.length === 1
+                  ? `Add ${importConfirm.novel[0]?.name ?? "this list"} to My lists?`
+                  : `Add ${importConfirm.novel.length} lists to My lists?`}
+                {importConfirm.skipped === 1
+                  ? " 1 list is already here and will be skipped."
+                  : importConfirm.skipped > 1
+                    ? ` ${importConfirm.skipped} lists are already here and will be skipped.`
+                    : null}
+              </>
+            )}
+          </p>
+          <div className={CONFIRM_SHEET_ACTIONS_CLASS}>
+            {importConfirm.novel.length === 0 ? (
+              <button
+                type="button"
+                onClick={() => setImportConfirm(null)}
+                className={IOS_LIQUID_CTA_CLASS}
+              >
+                OK
+              </button>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  onClick={() => void confirmImport()}
+                  className={IOS_LIQUID_CTA_CLASS}
+                >
+                  Add
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setImportConfirm(null)}
+                  className={CONFIRM_CANCEL_BUTTON_CLASS}
+                >
+                  Cancel
+                </button>
+              </>
+            )}
+          </div>
+        </ModalFrame>
+      ) : null}
+
+      {importError ? (
+        <ModalFrame
+          label="Import failed"
+          onClose={() => setImportError(null)}
+          panelClassName={CONFIRM_SHEET_PANEL_CLASS}
+        >
+          <p className="px-2 pb-2 text-center text-sm leading-relaxed text-sheet-muted">
+            {importError}
+          </p>
+          <div className={CONFIRM_SHEET_ACTIONS_CLASS}>
+            <button
+              type="button"
+              onClick={() => setImportError(null)}
+              className={IOS_LIQUID_CTA_CLASS}
+            >
+              OK
+            </button>
+          </div>
+        </ModalFrame>
+      ) : null}
 
       {deleteTarget ? (
         <ModalFrame

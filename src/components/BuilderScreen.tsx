@@ -14,12 +14,11 @@ import {
 import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, unitBaseName, auxiliaryPickerUnits, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel, formationLabel } from "@/engine/queries";
 import { catalogueForList, isSpearheadList } from "@/engine/spearhead";
 import { combatModifierNotes } from "@/engine/magic";
-import { exportArmyListText, exportFileName } from "@/engine/exportText";
 import { battleTactics, battleTacticsForRealm } from "@/engine/data/load";
 import { summarize } from "@/engine/validate";
 import type { ArmyList, CatalogueUnit, DatasheetSubject, EnhancementOption, FactionCatalogue, NamedOption } from "@/engine/types";
 import { createId } from "@/lib/id";
-import { BUILDER_ADD_ACTION_CLASS, BUILDER_ADD_ACTION_EMPHASIS_CLASS, IOS_LIQUID_CTA_CLASS, LIST_ISSUE_BANNER_CLASS, LIST_PANE_ART_CLASS, SHEET_HEADER_CLASS, SHEET_PANEL_CLASS, CONFIRM_SHEET_PANEL_CLASS, builderPlayTabs } from "@/lib/builderUi";
+import { BUILDER_ADD_ACTION_CLASS, BUILDER_ADD_ACTION_EMPHASIS_CLASS, LIST_ISSUE_BANNER_CLASS, LIST_PANE_ART_CLASS, CONFIRM_SHEET_PANEL_CLASS, builderPlayTabs } from "@/lib/builderUi";
 import { castValueLabel } from "@/lib/abilityUi";
 import {
   getArmiesServerSnapshot,
@@ -51,7 +50,7 @@ import { ModalFrame } from "./ModalFrame";
 import { ConfirmSheetActions } from "./ConfirmSheetActions";
 import { RuleText } from "./RuleText";
 import { ChoiceSheet, PickerSheet } from "./PickerSheet";
-import { BuildSlotRow, SheetCloseButton } from "./ios/SheetIconButton";
+import { BuildSlotRow } from "./ios/SheetIconButton";
 import { PointsCapField } from "./PointsCapField";
 import { ManifestationCard } from "./ManifestationCard";
 import { PlayMagicBoard } from "./PlayMagicBoard";
@@ -109,7 +108,6 @@ export function BuilderScreen({ listId }: Props) {
   const [openingSplash, setOpeningSplash] = useState(false);
   const openedRecorded = useRef<string | null>(null);
   const splashStarted = useRef(0);
-
   const skipOpenSplash = useRef(consumeSkipListSplash());
 
   useLayoutEffect(() => {
@@ -240,14 +238,8 @@ function BuilderReady({
   const [datasheet, setDatasheet] = useState<DatasheetSubject | null>(null);
   const [pane, setPane] = useState<"build" | "play">("build");
   const [playTab, setPlayTab] = useState<"units" | "magic" | "phases">("units");
-  const [exportOpen, setExportOpen] = useState(false);
-  const [exportCopied, setExportCopied] = useState(false);
   const [regimentRemoveId, setRegimentRemoveId] = useState<string | null>(null);
   const totals = useMemo(() => summarize(list, faction), [list, faction]);
-  const exportText = useMemo(
-    () => exportArmyListText(list, faction),
-    [list, faction],
-  );
   const playMode = pane === "play";
   const spearhead = isSpearheadList(list);
   const bindNotes = useMemo(
@@ -270,27 +262,6 @@ function BuilderReady({
 
   async function commit(next: ArmyList) {
     await saveArmy(next);
-  }
-
-  async function copyExportText() {
-    try {
-      await navigator.clipboard.writeText(exportText);
-      setExportCopied(true);
-    } catch {
-      setExportCopied(false);
-    }
-  }
-
-  function downloadExportText() {
-    const blob = new Blob([exportText], {
-      type: "text/plain;charset=utf-8",
-    });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = exportFileName(list.name);
-    link.click();
-    URL.revokeObjectURL(url);
   }
 
   useEffect(() => {
@@ -664,7 +635,7 @@ function BuilderReady({
               <span className="font-medium tracking-wide">Options</span>
               <span className="flex items-center gap-2 text-xs text-ink-muted">
                 <span className="group-open:hidden">
-                  Points · Lores · Tactics · Export
+                  Points · Lores · Tactics
                 </span>
                 <span aria-hidden="true" className="transition group-open:rotate-180">
                   ▾
@@ -814,17 +785,6 @@ function BuilderReady({
                   onCommit={(next) => void commit(next)}
                 />
               </div>
-
-              <button
-                type="button"
-                onClick={() => {
-                  setExportCopied(false);
-                  setExportOpen(true);
-                }}
-                className="min-h-11 w-full rounded-xl text-sm text-sigmarite ring-1 ring-sigmarite/30"
-              >
-                Export list as text
-              </button>
             </div>
           </details>
           {faction.formations.length > 0 ? (
@@ -1669,41 +1629,6 @@ function BuilderReady({
             onConfirm={() => void removeRegiment(regimentRemoveId)}
             onCancel={() => setRegimentRemoveId(null)}
           />
-        </ModalFrame>
-      ) : null}
-
-      {exportOpen ? (
-        <ModalFrame
-          label="Export list as text"
-          onClose={() => setExportOpen(false)}
-          panelClassName={SHEET_PANEL_CLASS}
-        >
-          <div className={SHEET_HEADER_CLASS}>
-            <h2 className="font-serif text-2xl">Export as text</h2>
-            <SheetCloseButton label="Close export" onClick={() => setExportOpen(false)} />
-          </div>
-          <textarea
-            readOnly
-            value={exportText}
-            aria-label="Exported list text"
-            className="mx-5 mb-4 min-h-[16rem] flex-1 resize-none rounded-xl bg-parchment-ink/5 px-3 py-3 font-mono text-xs leading-relaxed text-parchment-ink outline-none ring-1 ring-parchment-ink/10"
-          />
-          <div className="ios-sheet-actions shrink-0 px-5 pb-5">
-            <button
-              type="button"
-              onClick={() => void copyExportText()}
-              className={IOS_LIQUID_CTA_CLASS}
-            >
-              {exportCopied ? "Copied" : "Copy"}
-            </button>
-            <button
-              type="button"
-              onClick={downloadExportText}
-              className="min-h-11 w-full text-base text-sheet-muted"
-            >
-              Download .txt
-            </button>
-          </div>
         </ModalFrame>
       ) : null}
     </div>

@@ -8,6 +8,7 @@ import {
   BUILDER_LIST_NAME_INPUT_CLASS,
   EMPTY_LIBRARY_CTA_CLASS,
   EMPTY_LIBRARY_PANEL_CLASS,
+  EMPTY_LIBRARY_SECONDARY_CLASS,
   HEADER_DROPS_LINE_CLASS,
   HEADER_STATS_STACK_CLASS,
   IOS_LIQUID_CTA_CLASS,
@@ -338,6 +339,8 @@ describe("empty library CTA", () => {
     expect(EMPTY_LIBRARY_CTA_CLASS).toContain("text-black");
     expect(EMPTY_LIBRARY_CTA_CLASS).toContain("min-h-11");
     expect(EMPTY_LIBRARY_CTA_CLASS).not.toContain("gold-plate");
+    expect(EMPTY_LIBRARY_SECONDARY_CLASS).toContain("pressable");
+    expect(EMPTY_LIBRARY_SECONDARY_CLASS).toContain("text-parchment/70");
     expect(IOS_LIQUID_CTA_CLASS).toContain("ios-liquid-glass");
     expect(EMPTY_LIBRARY_PANEL_CLASS).toContain("rounded-2xl");
     expect(EMPTY_LIBRARY_PANEL_CLASS).toContain("mx-auto");
@@ -351,7 +354,12 @@ describe("empty library CTA", () => {
       "utf8",
     );
     expect(screen).toContain("Make your first list");
+    expect(screen).toContain("Import a list");
+    expect(screen).toContain("Import list");
+    expect(screen).toContain("LIST_IMPORT_HELP");
+    expect(screen).toContain("Export all");
     expect(screen).toContain("EMPTY_LIBRARY_CTA_CLASS");
+    expect(screen).toContain("EMPTY_LIBRARY_SECONDARY_CLASS");
     expect(screen).toContain("setPicking(true)");
     expect(screen).not.toContain("No armies yet. Make your first list.");
     expect(screen).toContain("createCounts.heroes");
