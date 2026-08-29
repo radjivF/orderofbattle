@@ -19,6 +19,7 @@ import { listFlowIsHome, listFlowTrackClass, listFlowWindowScrollY } from "@/lib
 import {
   clearListNavigationDirection,
   clearListOpenSplash,
+  clearListCreateSplash,
   peekListNavigationDirection,
   rememberListNavigation,
 } from "@/lib/listTransition";
@@ -134,6 +135,13 @@ export function ListNavProvider({
     }
 
     const direction = peekListNavigationDirection();
+    if (direction === "instant") {
+      clearListNavigationDirection();
+      setSettled(true);
+      scrollToPane(true);
+      setShowDetail(true);
+      return;
+    }
     if (direction === "forward") {
       libraryScrollYRef.current = window.scrollY;
       if (prefersReducedMotion()) {
@@ -166,6 +174,7 @@ export function ListNavProvider({
     }
     rememberListNavigation("back");
     clearListOpenSplash();
+    clearListCreateSplash();
     clearTimers();
     if (prefersReducedMotion()) {
       setSettled(true);

@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useLayoutEffect, useState, useSyncExternalStore } from "react";
+import { useRouter } from "next/navigation";
+import { useLayoutEffect, useEffect, useState, useSyncExternalStore } from "react";
 import { getFaction, armyOfRenownName } from "@/engine/queries";
 import {
   catalogueForList,
@@ -27,8 +27,11 @@ import {
   subscribeArmies,
 } from "@/lib/storage";
 import {
+  rememberListCreate,
   rememberListNavigation,
   rememberListOpen,
+  peekListCreateSplash,
+  subscribeListOpenFaction,
 } from "@/lib/listTransition";
 import {
   libraryCreatingSplashVisible,
@@ -75,7 +78,6 @@ function rememberOpenList(list: ArmyList) {
 
 export function LibraryScreen() {
   const router = useRouter();
-  const pathname = usePathname();
   const lists = useSyncExternalStore(
     subscribeArmies,
     getArmiesSnapshot,
@@ -94,6 +96,11 @@ export function LibraryScreen() {
   const [draftMode, setDraftMode] = useState<"points" | "spearhead">("points");
   const [draftSpearheadId, setDraftSpearheadId] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
+  const createSplash = useSyncExternalStore(
+    subscribeListOpenFaction,
+    peekListCreateSplash,
+    () => false,
+  );
   const createCounts = draftFaction
     ? factionPickerCounts(draftFaction)
     : null;
@@ -110,8 +117,7 @@ export function LibraryScreen() {
       draftParent?.id ??
       draftFaction.parentFactionIds?.[0] ??
       draftFaction.id;
-    rememberListOpen(artFactionId, (draftParent ?? draftFaction).name);
-    rememberListNavigation("forward");
+    rememberListCreate(artFactionId, (draftParent ?? draftFaction).name);
     try {
       const list =
         draftMode === "spearhead" && draftSpearheadId
@@ -166,11 +172,11 @@ export function LibraryScreen() {
     return () => setLibraryChrome(null);
   }, [setLibraryChrome]);
 
-  useLayoutEffect(() => {
-    if (pathname.startsWith("/lists/")) {
+  useEffect(() => {
+    if (!createSplash && creating) {
       setCreating(false);
     }
-  }, [pathname]);
+  }, [createSplash, creating]);
 
   useLayoutEffect(() => {
     const draft = newListDraftFromSearch(
@@ -523,7 +529,7 @@ export function LibraryScreen() {
         </ModalFrame>
       ) : null}
 
-      {libraryCreatingSplashVisible(creating, pathname) && draftFaction ? (
+      {libraryCreatingSplashVisible(creating, createSplash) && draftFaction ? (
         <div className="fixed inset-0 z-[60] bg-ink text-parchment">
           <div className="absolute inset-0" aria-hidden="true">
             <FactionArtLayers

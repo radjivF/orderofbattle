@@ -33,6 +33,8 @@ import {
   getListOpenFactionServerSnapshot,
   getListOpenFactionSnapshot,
   clearListOpenSplash,
+  clearListCreateSplash,
+  consumeSkipListSplash,
   getListOpenDisplayNameServerSnapshot,
   getListOpenDisplayNameSnapshot,
   peekListOpenSplash,
@@ -108,7 +110,12 @@ export function BuilderScreen({ listId }: Props) {
   const openedRecorded = useRef<string | null>(null);
   const splashStarted = useRef(0);
 
+  const skipOpenSplash = useRef(consumeSkipListSplash());
+
   useLayoutEffect(() => {
+    if (skipOpenSplash.current) {
+      return;
+    }
     if (
       !listOpenShowsSplash({
         splashRequested: peekListOpenSplash(),
@@ -141,6 +148,20 @@ export function BuilderScreen({ listId }: Props) {
     return () => window.clearTimeout(timer);
   }, [openingSplash, lists]);
 
+  const splashName =
+    rememberedDisplayName ??
+    faction?.name ??
+    (rememberedId ? getFaction(rememberedId)?.name : undefined);
+  const showSplash = lists === undefined || openingSplash;
+  const scourgeRealm = list?.scourgeRealm ?? null;
+
+  useEffect(() => {
+    if (showSplash) {
+      return;
+    }
+    clearListCreateSplash();
+  }, [showSplash]);
+
   useEffect(() => {
     if (lists === undefined || openedRecorded.current === listId) {
       return;
@@ -154,13 +175,6 @@ export function BuilderScreen({ listId }: Props) {
     }, 0);
     return () => window.clearTimeout(timer);
   }, [listId, lists]);
-
-  const splashName =
-    rememberedDisplayName ??
-    faction?.name ??
-    (rememberedId ? getFaction(rememberedId)?.name : undefined);
-  const showSplash = lists === undefined || openingSplash;
-  const scourgeRealm = list?.scourgeRealm ?? null;
 
   const { setDecor } = useListFlowDecor();
 

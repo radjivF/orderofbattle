@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
+  clearListCreateSplash,
   clearListNavigationDirection,
   clearListOpenMemory,
   clearListOpenSplash,
@@ -10,9 +11,11 @@ import {
   getListOpenFactionServerSnapshot,
   getListOpenFactionSnapshot,
   markListSplashShown,
+  peekListCreateSplash,
   peekListNavigationDirection,
   peekListOpenFactionId,
   peekListOpenSplash,
+  rememberListCreate,
   rememberListNavigation,
   rememberListOpen,
 } from "@/lib/listTransition";
@@ -68,6 +71,17 @@ describe("listTransition hydration safety", () => {
     clearListOpenMemory();
     expect(peekListOpenFactionId()).toBeNull();
     expect(consumeSkipListSplash()).toBe(false);
+  });
+
+  it("instant navigation skips the opening splash and carousel slide", () => {
+    rememberListCreate("stormcast-eternals", "My Host");
+    expect(peekListNavigationDirection()).toBe("instant");
+    expect(peekListOpenSplash()).toBe(false);
+    expect(peekListCreateSplash()).toBe(true);
+    expect(consumeSkipListSplash()).toBe(true);
+    expect(peekListOpenFactionId()).toBe("stormcast-eternals");
+    clearListCreateSplash();
+    expect(peekListCreateSplash()).toBe(false);
   });
 
   it("forward navigation requests an opening splash until cleared", () => {

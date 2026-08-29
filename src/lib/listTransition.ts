@@ -3,8 +3,9 @@ const DISPLAY_NAME_KEY = "oob:list-open-display-name";
 const SKIP_SPLASH_KEY = "oob:skip-list-splash";
 const NAV_DIRECTION_KEY = "oob:list-nav-direction";
 const OPEN_SPLASH_KEY = "oob:list-open-splash";
+const CREATE_SPLASH_KEY = "oob:list-create-splash";
 
-export type ListNavDirection = "forward" | "back";
+export type ListNavDirection = "forward" | "back" | "instant";
 
 const factionListeners = new Set<() => void>();
 
@@ -16,6 +17,35 @@ function emitFactionListeners() {
   for (const listener of factionListeners) {
     listener();
   }
+}
+
+/** New list — one loading screen, no carousel slide, no opening splash. */
+export function rememberListCreate(
+  factionId: string | null | undefined,
+  displayName?: string | null,
+) {
+  rememberListOpen(factionId, displayName);
+  markListSplashShown();
+  if (!canUseStorage()) {
+    return;
+  }
+  sessionStorage.setItem(CREATE_SPLASH_KEY, "1");
+  sessionStorage.setItem(NAV_DIRECTION_KEY, "instant");
+}
+
+export function peekListCreateSplash(): boolean {
+  if (!canUseStorage()) {
+    return false;
+  }
+  return sessionStorage.getItem(CREATE_SPLASH_KEY) === "1";
+}
+
+export function clearListCreateSplash() {
+  if (!canUseStorage()) {
+    return;
+  }
+  sessionStorage.removeItem(CREATE_SPLASH_KEY);
+  emitFactionListeners();
 }
 
 /** Remember which faction art to show while the list page hydrates. */
@@ -104,6 +134,7 @@ export function clearListOpenMemory() {
   sessionStorage.removeItem(SKIP_SPLASH_KEY);
   sessionStorage.removeItem(NAV_DIRECTION_KEY);
   sessionStorage.removeItem(OPEN_SPLASH_KEY);
+  sessionStorage.removeItem(CREATE_SPLASH_KEY);
   emitFactionListeners();
 }
 
@@ -138,7 +169,7 @@ export function peekListNavigationDirection(): ListNavDirection | null {
     return null;
   }
   const value = sessionStorage.getItem(NAV_DIRECTION_KEY);
-  if (value === "forward" || value === "back") {
+  if (value === "forward" || value === "back" || value === "instant") {
     return value;
   }
   return null;

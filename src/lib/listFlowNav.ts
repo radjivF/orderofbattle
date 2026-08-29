@@ -38,12 +38,12 @@ export function listOpenShowsSplash(input: {
   return input.splashRequested && !input.animatingBack;
 }
 
-/** Library stays mounted in the carousel — never keep the create splash on a list route. */
+/** Create splash stays up until the builder clears it — not until the route changes. */
 export function libraryCreatingSplashVisible(
   creating: boolean,
-  pathname: string,
+  createSplashRequested: boolean,
 ): boolean {
-  return creating && !pathname.startsWith("/lists/");
+  return creating || createSplashRequested;
 }
 
 /** Window scroll when the library ↔ list carousel changes which pane is on screen. */

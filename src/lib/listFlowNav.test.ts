@@ -160,10 +160,10 @@ describe("listOpenShowsSplash", () => {
 });
 
 describe("libraryCreatingSplashVisible", () => {
-  it("drops the create splash once the new list route is showing", () => {
-    expect(libraryCreatingSplashVisible(true, "/dashboard")).toBe(true);
-    expect(libraryCreatingSplashVisible(true, "/lists/abc")).toBe(false);
-    expect(libraryCreatingSplashVisible(false, "/dashboard")).toBe(false);
+  it("keeps the create splash until the builder clears it", () => {
+    expect(libraryCreatingSplashVisible(true, false)).toBe(true);
+    expect(libraryCreatingSplashVisible(false, true)).toBe(true);
+    expect(libraryCreatingSplashVisible(false, false)).toBe(false);
   });
 });
 
@@ -183,6 +183,7 @@ describe("list flow navigation wiring", () => {
     const library = readSource("components/LibraryScreen.tsx");
     expect(library).toContain("listOpenDisplayNameForHeader(list)");
     expect(library).toContain("rememberOpenList(list)");
+    expect(library).toContain("rememberListCreate");
     expect(library).not.toContain("rememberOpenList(list.factionId)");
     expect(library).not.toContain("rememberListOpen(artId, faction?.name)");
     expect(library).toContain("libraryCreatingSplashVisible");
@@ -211,6 +212,7 @@ describe("list flow navigation wiring", () => {
     expect(nav).not.toContain("setShowDetail(false);");
     expect(nav).toContain("{backdrop}");
     expect(nav).toContain("clearListOpenSplash");
+    expect(nav).toContain('direction === "instant"');
     expect(nav).toContain("SITE_HEADER_BAR_CLASS");
     expect(nav).toContain("libraryLayer");
     expect(nav).not.toContain("libraryReturnCover");
@@ -220,6 +222,8 @@ describe("list flow navigation wiring", () => {
   it("lets the list slide in with its opening splash on the incoming pane", () => {
     const builder = readSource("components/BuilderScreen.tsx");
     expect(builder).toContain("listOpenShowsSplash");
+    expect(builder).toContain("consumeSkipListSplash");
+    expect(builder).toContain("clearListCreateSplash");
     expect(builder).toContain("setOpeningSplash(true)");
     expect(builder).toContain(
       'className="pointer-events-none absolute inset-0 z-30"',
