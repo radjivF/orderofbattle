@@ -34,7 +34,7 @@ export function lockPageScroll() {
   lockDepth += 1;
 }
 
-export function unlockPageScroll() {
+export function unlockPageScroll(restoreY?: number) {
   const root = appRoot();
   if (!root) {
     return;
@@ -55,7 +55,7 @@ export function unlockPageScroll() {
   body.style.overflow = "";
   html.style.overflow = "";
   html.style.overscrollBehavior = "";
-  window.scrollTo(0, savedScrollY);
+  window.scrollTo(0, restoreY ?? savedScrollY);
 }
 
 /** @visibleForTesting */

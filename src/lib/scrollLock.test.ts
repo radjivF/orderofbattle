@@ -44,6 +44,13 @@ describe("scrollLock", () => {
     expect(html.style.overscrollBehavior).toBe("none");
   });
 
+  it("restores a custom scroll position when provided", () => {
+    const { scrollTo } = installDom(120);
+    lockPageScroll();
+    unlockPageScroll(0);
+    expect(scrollTo).toHaveBeenCalledWith(0, 0);
+  });
+
   it("restores scroll after nested locks unwind", () => {
     const { scrollTo } = installDom(120);
     lockPageScroll();

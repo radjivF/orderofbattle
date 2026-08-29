@@ -39,6 +39,7 @@ export function ListFlowShell({ children }: { children: ReactNode }) {
   const [navState, setNavState] = useState({
     showDetail: false,
     animatingBack: false,
+    settled: true,
   });
   const [decor, setDecorState] = useState<ListFlowDecor>({});
   const [builderChrome, setBuilderChrome] = useState<BuilderChromeValue | null>(
@@ -56,6 +57,7 @@ export function ListFlowShell({ children }: { children: ReactNode }) {
       isBuilder,
       showDetail: navState.showDetail,
       animatingBack: navState.animatingBack,
+      settled: navState.settled,
     }) === "builder";
 
   useEffect(() => {

@@ -248,7 +248,7 @@ export function exportArmyListText(
   return lines.join("\n");
 }
 
-export function exportFileName(listName: string): string {
+export function exportFileName(listName: string, extension = "txt"): string {
   const base = listName
     .trim()
     .replace(/[^\w\s-]+/g, "")
@@ -256,5 +256,5 @@ export function exportFileName(listName: string): string {
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "")
     .slice(0, 80);
-  return `${base || "army-list"}.txt`;
+  return `${base || "army-list"}.${extension}`;
 }

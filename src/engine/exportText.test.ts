@@ -58,6 +58,7 @@ describe("exportArmyListText", () => {
   it("sanitizes download filenames", () => {
     expect(exportFileName("My Cool List!")).toBe("My-Cool-List.txt");
     expect(exportFileName("   ")).toBe("army-list.txt");
+    expect(exportFileName("My Cool List!", "json")).toBe("My-Cool-List.json");
   });
 
   it("marks reinforced units and lists auxiliaries", () => {

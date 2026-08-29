@@ -8,7 +8,12 @@ import {
   unitsForPicker,
   unitsForRealm,
 } from "./queries";
-import { blankArmy, duplicateArmy, appendRegimentWithHero } from "@/lib/storage";
+import {
+  blankArmy,
+  duplicateArmy,
+  appendRegimentWithHero,
+  prepareImportedArmy,
+} from "@/lib/storage";
 import { createId } from "@/lib/id";
 import type { ArmyList, BattleTacticStage } from "./types";
 import { pruneOrphanEnhancements, summarize } from "./validate";
@@ -624,6 +629,15 @@ describe("army list persistence fields", () => {
     expect(copy.battleTacticCardIds).toEqual(tacticIds);
     expect(copy.battleTacticStage).toEqual({ [tacticIds[0]]: 1 });
     expect(copy.scourgeRealm).toBe("aqshy");
+  });
+
+  it("prepareImportedArmy assigns a new id and keeps the original name", () => {
+    const original = blankArmy("stormcast-eternals", "Imported host");
+    const imported = prepareImportedArmy(original);
+    expect(imported.id).not.toBe(original.id);
+    expect(imported.name).toBe("Imported host");
+    expect(imported.factionId).toBe(original.factionId);
+    expect(imported.kind).toBe("matched");
   });
 });
 

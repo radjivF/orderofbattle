@@ -13,18 +13,28 @@ import {
 import { usePathname, useRouter } from "next/navigation";
 import {
   LIST_FLOW_HEADER_OFFSET_CLASS,
+  LIST_FLOW_SLIDE_MS,
+  LIST_BACKDROP_RETURN_MS,
+  LIST_BACKDROP_TRANSITION_CLASS,
+  LIST_DETAIL_BACKDROP_TRANSITION_CLASS,
+  LIST_LANDING_CONTENT_HIDDEN_CLASS,
+  LIST_LANDING_CONTENT_VISIBLE_CLASS,
   SITE_HEADER_BAR_CLASS,
 } from "@/lib/builderUi";
-import { listFlowIsHome, listFlowTrackClass, listFlowWindowScrollY } from "@/lib/listFlowNav";
+import { listFlowIsHome, listFlowTrackClass } from "@/lib/listFlowNav";
+import {
+  lockPageScroll,
+  pageScrollLockDepth,
+  unlockPageScroll,
+} from "@/lib/scrollLock";
 import {
   clearListNavigationDirection,
   clearListOpenSplash,
+  clearListCreateSplash,
   peekListNavigationDirection,
   rememberListNavigation,
 } from "@/lib/listTransition";
 import { IndexBackdropLayer } from "./IndexBackdrop";
-
-const SLIDE_MS = 320;
 
 const ListNavContext = createContext<{ goBack: () => void } | null>(null);
 
@@ -40,6 +50,20 @@ function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
+function restoreScrollY(restoreY: number) {
+  if (pageScrollLockDepth() > 0) {
+    unlockPageScroll(restoreY);
+    return;
+  }
+  window.scrollTo(0, restoreY);
+}
+
+function freezeScroll() {
+  if (pageScrollLockDepth() === 0) {
+    lockPageScroll();
+  }
+}
+
 type ListNavProviderProps = {
   children: ReactNode;
   libraryLayer: ReactNode;
@@ -49,6 +73,7 @@ type ListNavProviderProps = {
   onShowDetailChange?: (state: {
     showDetail: boolean;
     animatingBack: boolean;
+    settled: boolean;
   }) => void;
 };
 
@@ -66,36 +91,31 @@ export function ListNavProvider({
   const isBuilder = pathname.startsWith("/lists/");
   const [showDetail, setShowDetailState] = useState(false);
   const [settled, setSettled] = useState(true);
+  const [animatingBack, setAnimatingBack] = useState(false);
+  const [backdropExiting, setBackdropExiting] = useState(false);
+  const [factionBackdropRevealed, setFactionBackdropRevealed] = useState(false);
+  const [cachedBackdrop, setCachedBackdrop] = useState<ReactNode>(null);
   const timers = useRef<number[]>([]);
-  const animatingBackRef = useRef(false);
   const libraryScrollYRef = useRef<number | null>(null);
 
-  function scrollToPane(showingDetail: boolean) {
-    if (!showingDetail && libraryScrollYRef.current == null) {
-      return;
+  useEffect(() => {
+    if (backdrop) {
+      setCachedBackdrop(backdrop);
     }
-    window.scrollTo(
-      0,
-      listFlowWindowScrollY({
-        showingDetail,
-        libraryScrollY: libraryScrollYRef.current ?? 0,
-      }),
-    );
-  }
+  }, [backdrop]);
 
   const publishNavState = useCallback(
-    (next: { showDetail: boolean; animatingBack: boolean }) => {
+    (next: {
+      showDetail: boolean;
+      animatingBack: boolean;
+      settled: boolean;
+    }) => {
       setShowDetailState(next.showDetail);
+      setAnimatingBack(next.animatingBack);
+      setSettled(next.settled);
       onShowDetailChange?.(next);
     },
     [onShowDetailChange],
-  );
-
-  const setShowDetail = useCallback(
-    (next: boolean) => {
-      publishNavState({ showDetail: next, animatingBack: animatingBackRef.current });
-    },
-    [publishNavState],
   );
 
   function clearTimers() {
@@ -120,78 +140,125 @@ export function ListNavProvider({
 
   useLayoutEffect(() => {
     if (isHome) {
-      animatingBackRef.current = false;
-      publishNavState({ showDetail: false, animatingBack: false });
-      setSettled(true);
+      publishNavState({ showDetail: false, animatingBack: false, settled: true });
       return;
     }
     if (!isBuilder) {
-      animatingBackRef.current = false;
-      publishNavState({ showDetail: false, animatingBack: false });
-      setSettled(true);
-      scrollToPane(false);
+      publishNavState({ showDetail: false, animatingBack: false, settled: true });
+      restoreScrollY(libraryScrollYRef.current ?? 0);
       return;
     }
 
     const direction = peekListNavigationDirection();
+    if (direction === "instant") {
+      clearListNavigationDirection();
+      publishNavState({ showDetail: true, animatingBack: false, settled: true });
+      restoreScrollY(0);
+      return;
+    }
     if (direction === "forward") {
       libraryScrollYRef.current = window.scrollY;
       if (prefersReducedMotion()) {
         clearListNavigationDirection();
-        setSettled(true);
-        scrollToPane(true);
-        setShowDetail(true);
+        publishNavState({ showDetail: true, animatingBack: false, settled: true });
+        restoreScrollY(0);
         return;
       }
-      setSettled(false);
-      scrollToPane(true);
-      setShowDetail(true);
+      freezeScroll();
+      publishNavState({ showDetail: true, animatingBack: false, settled: false });
       const settleTimer = window.setTimeout(() => {
         clearListNavigationDirection();
-        setSettled(true);
-      }, SLIDE_MS);
+        publishNavState({ showDetail: true, animatingBack: false, settled: true });
+        restoreScrollY(0);
+      }, LIST_FLOW_SLIDE_MS);
       return () => {
         window.clearTimeout(settleTimer);
       };
     }
 
-    setSettled(true);
-    scrollToPane(true);
-    setShowDetail(true);
-  }, [isBuilder, isHome, pathname, publishNavState, setShowDetail]);
+    publishNavState({ showDetail: true, animatingBack: false, settled: true });
+    restoreScrollY(0);
+  }, [isBuilder, isHome, pathname, publishNavState]);
 
   function goBack() {
-    if (animatingBackRef.current || !isBuilder) {
+    if (animatingBack || !isBuilder) {
       return;
     }
     rememberListNavigation("back");
     clearListOpenSplash();
+    clearListCreateSplash();
     clearTimers();
     if (prefersReducedMotion()) {
-      setSettled(true);
-      scrollToPane(false);
+      publishNavState({ showDetail: false, animatingBack: false, settled: true });
+      restoreScrollY(libraryScrollYRef.current ?? 0);
       router.push("/dashboard", { scroll: false });
       return;
     }
-    animatingBackRef.current = true;
-    setSettled(false);
-    publishNavState({ showDetail: false, animatingBack: true });
+    freezeScroll();
+    setBackdropExiting(true);
+    publishNavState({ showDetail: false, animatingBack: true, settled: false });
     schedule(() => {
       router.push("/dashboard", { scroll: false });
-      animatingBackRef.current = false;
-      setSettled(true);
-      publishNavState({ showDetail: false, animatingBack: false });
-    }, SLIDE_MS);
+      publishNavState({ showDetail: false, animatingBack: false, settled: true });
+      restoreScrollY(libraryScrollYRef.current ?? 0);
+      schedule(() => setBackdropExiting(false), LIST_BACKDROP_RETURN_MS);
+    }, LIST_FLOW_SLIDE_MS);
   }
+
+  const showFactionBackdrop = isBuilder && Boolean(backdrop);
+  const indexBackdropRevealed =
+    !showFactionBackdrop || animatingBack || backdropExiting;
+  const factionBackdropLayer = showFactionBackdrop
+    ? backdrop
+    : backdropExiting
+      ? cachedBackdrop
+      : null;
+  const factionBackdropFadingOut = animatingBack || backdropExiting;
+  const indexBackdropTransitionClass =
+    showFactionBackdrop && !factionBackdropFadingOut
+      ? LIST_DETAIL_BACKDROP_TRANSITION_CLASS
+      : LIST_BACKDROP_TRANSITION_CLASS;
+  const factionBackdropTransitionClass = factionBackdropFadingOut
+    ? LIST_BACKDROP_TRANSITION_CLASS
+    : LIST_DETAIL_BACKDROP_TRANSITION_CLASS;
+
+  useLayoutEffect(() => {
+    if (!factionBackdropLayer || factionBackdropFadingOut) {
+      setFactionBackdropRevealed(false);
+      return;
+    }
+    setFactionBackdropRevealed(false);
+    const raf = window.requestAnimationFrame(() => {
+      setFactionBackdropRevealed(true);
+    });
+    return () => window.cancelAnimationFrame(raf);
+  }, [factionBackdropFadingOut, factionBackdropLayer]);
 
   return (
     <ListNavContext.Provider value={{ goBack }}>
       <div className="relative min-h-dvh w-full overflow-x-hidden">
-        <IndexBackdropLayer />
+        <IndexBackdropLayer
+          revealed={indexBackdropRevealed}
+          transitionClass={indexBackdropTransitionClass}
+        />
         {header ? (
           <header className={`${SITE_HEADER_BAR_CLASS} pointer-events-auto fixed inset-x-0 top-0 z-[60] pt-[env(safe-area-inset-top)]`}>
             {header}
           </header>
+        ) : null}
+        {factionBackdropLayer ? (
+          <div
+            className={`pointer-events-none fixed inset-0 z-[1] ${factionBackdropTransitionClass} ${
+              factionBackdropFadingOut || !factionBackdropRevealed
+                ? LIST_LANDING_CONTENT_HIDDEN_CLASS
+                : LIST_LANDING_CONTENT_VISIBLE_CLASS
+            }`}
+          >
+            {factionBackdropLayer}
+          </div>
+        ) : null}
+        {isBuilder && overlay ? (
+          <div className="pointer-events-none fixed inset-0 z-[30]">{overlay}</div>
         ) : null}
         <div className="relative z-10 overflow-x-hidden">
           <div className={listFlowTrackClass(showDetail, settled)}>
@@ -204,8 +271,6 @@ export function ListNavProvider({
               className="list-flow-pane relative min-h-dvh"
               aria-hidden={!showDetail && !isBuilder}
             >
-              {backdrop}
-              {overlay}
               <div className={`relative z-10 ${LIST_FLOW_HEADER_OFFSET_CLASS}`}>
                 {isBuilder ? children : null}
               </div>

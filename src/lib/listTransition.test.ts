@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
+  clearListCreateSplash,
   clearListNavigationDirection,
   clearListOpenMemory,
   clearListOpenSplash,
@@ -9,10 +10,13 @@ import {
   getListOpenDisplayNameSnapshot,
   getListOpenFactionServerSnapshot,
   getListOpenFactionSnapshot,
+  getListOpenScourgeSnapshot,
   markListSplashShown,
+  peekListCreateSplash,
   peekListNavigationDirection,
   peekListOpenFactionId,
   peekListOpenSplash,
+  rememberListCreate,
   rememberListNavigation,
   rememberListOpen,
 } from "@/lib/listTransition";
@@ -57,6 +61,13 @@ describe("listTransition hydration safety", () => {
     expect(consumeSkipListSplash()).toBe(false);
   });
 
+  it("remembers scourge realm for backdrop art on open", () => {
+    rememberListOpen("stormcast-eternals", "My Host", "aqshy");
+    expect(getListOpenScourgeSnapshot()).toBe("aqshy");
+    rememberListOpen("daughters-of-khaine", "Khaine", null);
+    expect(getListOpenScourgeSnapshot()).toBeNull();
+  });
+
   it("markListSplashShown skips the faction backdrop splash once", () => {
     markListSplashShown();
     expect(consumeSkipListSplash()).toBe(true);
@@ -68,6 +79,17 @@ describe("listTransition hydration safety", () => {
     clearListOpenMemory();
     expect(peekListOpenFactionId()).toBeNull();
     expect(consumeSkipListSplash()).toBe(false);
+  });
+
+  it("instant navigation skips the opening splash and carousel slide", () => {
+    rememberListCreate("stormcast-eternals", "My Host");
+    expect(peekListNavigationDirection()).toBe("instant");
+    expect(peekListOpenSplash()).toBe(false);
+    expect(peekListCreateSplash()).toBe(true);
+    expect(consumeSkipListSplash()).toBe(true);
+    expect(peekListOpenFactionId()).toBe("stormcast-eternals");
+    clearListCreateSplash();
+    expect(peekListCreateSplash()).toBe(false);
   });
 
   it("forward navigation requests an opening splash until cleared", () => {

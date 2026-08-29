@@ -29,4 +29,5 @@ export async function createList(page: Page) {
   await page.getByRole("button", { name: "Create" }).click();
   await page.waitForURL(/\/lists\/.+/);
   await expect(page.getByText("Creating your list")).toHaveCount(0);
+  await expect(page.getByText("Opening your list")).toHaveCount(0);
 }

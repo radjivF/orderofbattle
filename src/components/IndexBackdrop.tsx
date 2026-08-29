@@ -2,6 +2,11 @@
 
 import Image from "next/image";
 import type { ReactNode } from "react";
+import {
+  LIST_LANDING_CONTENT_CLASS,
+  LIST_LANDING_CONTENT_HIDDEN_CLASS,
+  LIST_LANDING_CONTENT_VISIBLE_CLASS,
+} from "@/lib/builderUi";
 import { INDEX_BACKDROP_ART_CLASS, INDEX_BACKDROP_SRC } from "@/lib/siteArt";
 
 type Props = {
@@ -16,8 +21,13 @@ type Props = {
  */
 export function IndexBackdropLayer({
   veil = "page",
+  revealed = true,
+  transitionClass = LIST_LANDING_CONTENT_CLASS,
 }: {
   veil?: "hero" | "page";
+  /** Fade in when returning from a list — layer stays mounted for a smooth crossfade. */
+  revealed?: boolean;
+  transitionClass?: string;
 }) {
   const scrub =
     veil === "hero"
@@ -27,7 +37,11 @@ export function IndexBackdropLayer({
 
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-ink"
+      className={`pointer-events-none fixed inset-0 z-0 overflow-hidden bg-ink ${transitionClass} ${
+        revealed
+          ? LIST_LANDING_CONTENT_VISIBLE_CLASS
+          : LIST_LANDING_CONTENT_HIDDEN_CLASS
+      }`}
       aria-hidden="true"
     >
       <Image

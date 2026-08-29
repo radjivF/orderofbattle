@@ -76,7 +76,7 @@ export function TryLanding() {
         </header>
 
         <main className="relative z-10 mx-auto w-full max-w-3xl px-5 pb-16 sm:px-6 lg:max-w-5xl">
-          <section className="relative -mx-5 overflow-hidden px-5 pt-2 pb-12 text-center sm:-mx-6 sm:px-6 sm:pt-6 sm:pb-16">
+          <section className="relative -mx-5 overflow-hidden px-5 pt-0 pb-12 text-center sm:-mx-6 sm:px-6 sm:pt-6 sm:pb-16">
             {/* Local dark pool so crest/gold copy don't blend into the battle art */}
             <div
               className="pointer-events-none absolute inset-x-0 top-0 bottom-8 -z-0 mx-auto max-w-2xl rounded-[2rem] bg-[radial-gradient(ellipse_at_center,rgba(5,5,5,0.82)_0%,rgba(5,5,5,0.55)_48%,transparent_72%)] sm:bottom-4"
@@ -93,11 +93,11 @@ export function TryLanding() {
                   sizes="(max-width: 640px) 152px, 224px"
                   quality={82}
                   priority
-                  className="mx-auto h-[9.5rem] w-auto drop-shadow-[0_8px_28px_rgba(0,0,0,0.75)] sm:h-56"
+                  className="mx-auto h-[7.25rem] w-auto drop-shadow-[0_8px_28px_rgba(0,0,0,0.75)] sm:h-56"
                 />
               </div>
 
-              <div data-rise="copy" className="mt-5 sm:mt-7">
+              <div data-rise="copy" className="mt-3 sm:mt-7">
                 <Image
                   src="/brand/wordmark.webp"
                   alt="Order of Battle"
@@ -106,50 +106,43 @@ export function TryLanding() {
                   sizes="(max-width: 640px) 320px, 448px"
                   quality={82}
                   priority
-                  className="mx-auto h-auto w-[min(100%,20rem)] drop-shadow-[0_6px_20px_rgba(0,0,0,0.8)] sm:w-[min(100%,28rem)]"
+                  className="mx-auto h-auto w-[min(100%,18rem)] drop-shadow-[0_6px_20px_rgba(0,0,0,0.8)] sm:w-[min(100%,28rem)]"
                 />
-                <p className="mt-5 text-xs font-semibold tracking-[0.28em] text-parchment uppercase [text-shadow:0_2px_10px_rgba(0,0,0,0.95),0_0_2px_rgba(0,0,0,1)] sm:text-sm sm:tracking-[0.32em]">
-                  Age of Sigmar · 4th edition
-                </p>
-                <h1 className="mx-auto mt-3 max-w-xl font-serif text-[1.65rem] leading-snug font-semibold text-parchment [text-shadow:0_2px_16px_rgba(0,0,0,0.95),0_1px_3px_rgba(0,0,0,1)] sm:mt-4 sm:text-4xl">
-                  Free Age of Sigmar army builder
+                <h1 className="mx-auto mt-3 max-w-xl font-serif text-[1.5rem] leading-snug font-semibold text-parchment [text-shadow:0_2px_16px_rgba(0,0,0,0.95),0_1px_3px_rgba(0,0,0,1)] sm:mt-5 sm:text-4xl">
+                  Free Age of Sigmar 4ed army builder
                 </h1>
-                <p className="mx-auto mt-2 max-w-lg font-serif text-lg text-parchment/90 [text-shadow:0_2px_12px_rgba(0,0,0,0.95)] sm:text-xl">
-                  Build the list. Play the battle.
+              </div>
+
+              <div data-rise="cta" className="mt-5 sm:mt-8">
+                <Link
+                  href="/dashboard"
+                  className={`${HOME_CTA_CLASS} min-h-12 px-9 text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sigmarite`}
+                >
+                  Try Order of Battle
+                </Link>
+                <p className="mt-3 text-xs font-medium text-parchment [text-shadow:0_2px_10px_rgba(0,0,0,0.95)] sm:mt-4">
+                  Free · No account · Lists stay on your device
+                </p>
+                <p className="mt-2 text-xs font-medium text-parchment/85 [text-shadow:0_2px_10px_rgba(0,0,0,0.95)]">
+                  <a
+                    href={SITE_GITHUB_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
+                  >
+                    View source on GitHub
+                  </a>
                 </p>
               </div>
 
               <div
-                className="gold-rule mx-auto mt-7 w-40 sm:mt-8 sm:w-56"
+                className="gold-rule mx-auto mt-6 w-40 sm:mt-8 sm:w-56"
                 aria-hidden="true"
               />
 
-              <div data-rise="cta">
-                <p className="mx-auto mt-7 max-w-lg text-[0.95rem] leading-relaxed font-medium text-parchment [text-shadow:0_2px_12px_rgba(0,0,0,0.95)] sm:mt-8 sm:text-lg">
-                  {SITE_DESCRIPTION}
-                </p>
-                <div className="mt-8 sm:mt-10">
-                  <Link
-                    href="/dashboard"
-                    className={`${HOME_CTA_CLASS} min-h-12 px-9 text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sigmarite`}
-                  >
-                    Try Order of Battle
-                  </Link>
-                  <p className="mt-4 text-xs font-medium text-parchment [text-shadow:0_2px_10px_rgba(0,0,0,0.95)]">
-                    Free · No account · Lists stay on your device
-                  </p>
-                  <p className="mt-2 text-xs font-medium text-parchment/85 [text-shadow:0_2px_10px_rgba(0,0,0,0.95)]">
-                    <a
-                      href={SITE_GITHUB_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
-                    >
-                      View source on GitHub
-                    </a>
-                  </p>
-                </div>
-              </div>
+              <p className="mx-auto mt-5 max-w-lg text-[0.95rem] leading-relaxed font-medium text-parchment [text-shadow:0_2px_12px_rgba(0,0,0,0.95)] sm:mt-7 sm:text-lg">
+                {SITE_DESCRIPTION}
+              </p>
             </div>
           </section>
 

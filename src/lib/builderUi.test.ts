@@ -8,6 +8,7 @@ import {
   BUILDER_LIST_NAME_INPUT_CLASS,
   EMPTY_LIBRARY_CTA_CLASS,
   EMPTY_LIBRARY_PANEL_CLASS,
+  EMPTY_LIBRARY_SECONDARY_CLASS,
   HEADER_DROPS_LINE_CLASS,
   HEADER_STATS_STACK_CLASS,
   IOS_LIQUID_CTA_CLASS,
@@ -16,17 +17,30 @@ import {
   IOS_NAV_ADD_BUTTON_CLASS,
   IOS_NAV_BACK_BUTTON_CLASS,
   IOS_NAV_PLAY_BUTTON_CLASS,
+  LIBRARY_NAV_ACTIONS_CLASS,
+  LIBRARY_NAV_BACKUP_ICON_BUTTON_CLASS,
+  LIBRARY_TITLE_CLASS,
+  SHEET_CHECKLIST_ITEM_CLASS,
   LIBRARY_CARD_CLASS,
+  LIBRARY_CARD_LIST_NAME_INPUT_CLASS,
   LIST_FLOW_HEADER_OFFSET_CLASS,
+  LIST_FLOW_SLIDE_MS,
   LIST_ISSUE_BANNER_CLASS,
+  LIST_OPEN_LANDING_MS,
+  LIST_BACKDROP_RETURN_MS,
+  LIST_DETAIL_BACKDROP_MS,
+  LIST_OPEN_SPLASH_MS,
   LIST_PANE_ART_CLASS,
   SITE_HEADER_BAR_CLASS,
   SITE_HEADER_ROW_CLASS,
   COOKIE_CONSENT_BANNER_CLASS,
   PLAY_SHEET_LINK_CLASS,
   PLAY_UNIT_NAME_ROW_CLASS,
+  CONFIRM_CANCEL_BUTTON_CLASS,
   CONFIRM_SHEET_PANEL_CLASS,
+  SHEET_FOOTER_ACTIONS_CLASS,
   SHEET_PANEL_CLASS,
+  SHEET_SECONDARY_BUTTON_CLASS,
   builderHeaderShowsListStats,
   builderHeaderShowsPlayButton,
   builderHeaderShowsIssueDot,
@@ -35,6 +49,8 @@ import {
   playPhaseShowsCoreRulesTab,
   datasheetUnitPointsLabel,
   dropCountLabel,
+  libraryListExportSubtitle,
+  libraryListGameLabel,
   pointsCapInputClass,
 } from "./builderUi";
 
@@ -43,6 +59,53 @@ describe("dropCountLabel", () => {
     expect(dropCountLabel(0)).toBe("0 drops");
     expect(dropCountLabel(1)).toBe("1 drop");
     expect(dropCountLabel(3)).toBe("3 drops");
+  });
+});
+
+describe("libraryListGameLabel", () => {
+  it("shows the points cap for matched lists", () => {
+    expect(
+      libraryListGameLabel({ spearhead: false, pointsCap: 2000 }),
+    ).toBe("2,000 pts");
+    expect(
+      libraryListGameLabel({ spearhead: false, pointsCap: 1400 }),
+    ).toBe("1,400 pts");
+  });
+
+  it("shows spearhead and the box name when set", () => {
+    expect(
+      libraryListGameLabel({
+        spearhead: true,
+        pointsCap: 0,
+        spearheadBoxName: "Vigilant Brotherhood",
+      }),
+    ).toBe("Spearhead · Vigilant Brotherhood");
+  });
+});
+
+describe("libraryListExportSubtitle", () => {
+  it("includes faction, game size, and drops for matched lists", () => {
+    expect(
+      libraryListExportSubtitle({
+        factionName: "Stormcast Eternals",
+        spearhead: false,
+        pointsCap: 2000,
+        drops: 3,
+      }),
+    ).toBe("Stormcast Eternals · 2,000 pts · 3 drops");
+  });
+
+  it("includes spearhead box name without drops", () => {
+    expect(
+      libraryListExportSubtitle({
+        factionName: "Stormcast Eternals",
+        spearhead: true,
+        pointsCap: 0,
+        spearheadBoxName: "Vigilant Brotherhood",
+      }),
+    ).toBe(
+      "Stormcast Eternals · Spearhead · Vigilant Brotherhood",
+    );
   });
 });
 
@@ -239,6 +302,8 @@ describe("iOS nav controls", () => {
     );
     expect(header).toContain("builderHeaderShowsIssueDot");
     expect(header).toContain('label="New list"');
+    expect(header).not.toContain("IosNavImportButton");
+    expect(header).not.toContain("IosNavExportButton");
     expect(header).toContain('label={playMode ? "Build" : "Lists"}');
     expect(header).toContain("onClick={playMode ? () => chrome?.exitPlay() : goBack}");
     expect(header).not.toContain('href={playMode ? undefined : "/dashboard"}');
@@ -256,9 +321,14 @@ describe("iOS nav controls", () => {
     expect(LIST_FLOW_HEADER_OFFSET_CLASS).toContain(
       "pt-[calc(env(safe-area-inset-top)+3.75rem)]",
     );
-    expect(LIST_PANE_ART_CLASS).toContain("sticky");
-    expect(LIST_PANE_ART_CLASS).toContain("-mb-[100dvh]");
-    expect(LIST_PANE_ART_CLASS).not.toContain("fixed");
+    expect(LIST_PANE_ART_CLASS).toContain("fixed");
+    expect(LIST_PANE_ART_CLASS).toContain("inset-0");
+    expect(LIST_PANE_ART_CLASS).not.toContain("sticky");
+    expect(LIST_OPEN_LANDING_MS).toBe(280);
+    expect(LIST_BACKDROP_RETURN_MS).toBe(420);
+    expect(LIST_DETAIL_BACKDROP_MS).toBe(620);
+    expect(LIST_OPEN_SPLASH_MS).toBe(320);
+    expect(LIST_FLOW_SLIDE_MS).toBe(320);
     expect(COOKIE_CONSENT_BANNER_CLASS).toContain(
       "top-[calc(env(safe-area-inset-top)+3.75rem)]",
     );
@@ -338,6 +408,18 @@ describe("empty library CTA", () => {
     expect(EMPTY_LIBRARY_CTA_CLASS).toContain("text-black");
     expect(EMPTY_LIBRARY_CTA_CLASS).toContain("min-h-11");
     expect(EMPTY_LIBRARY_CTA_CLASS).not.toContain("gold-plate");
+    expect(EMPTY_LIBRARY_SECONDARY_CLASS).toContain("rounded-full");
+    expect(EMPTY_LIBRARY_SECONDARY_CLASS).toContain("ring-1");
+    expect(LIBRARY_NAV_BACKUP_ICON_BUTTON_CLASS).toContain("bg-black");
+    expect(LIBRARY_NAV_BACKUP_ICON_BUTTON_CLASS).toContain("text-white");
+    expect(LIBRARY_NAV_BACKUP_ICON_BUTTON_CLASS).toContain("border-white");
+    expect(LIBRARY_NAV_ACTIONS_CLASS).toContain("gap-3");
+    expect(SHEET_CHECKLIST_ITEM_CLASS).toContain("ring-parchment-ink/10");
+    expect(SHEET_FOOTER_ACTIONS_CLASS).toContain("px-5");
+    expect(SHEET_SECONDARY_BUTTON_CLASS).toContain("ring-1");
+    expect(SHEET_SECONDARY_BUTTON_CLASS).toContain("rounded-xl");
+    expect(CONFIRM_CANCEL_BUTTON_CLASS).toContain("ring-1");
+    expect(CONFIRM_CANCEL_BUTTON_CLASS).toContain("rounded-xl");
     expect(IOS_LIQUID_CTA_CLASS).toContain("ios-liquid-glass");
     expect(EMPTY_LIBRARY_PANEL_CLASS).toContain("rounded-2xl");
     expect(EMPTY_LIBRARY_PANEL_CLASS).toContain("mx-auto");
@@ -351,7 +433,24 @@ describe("empty library CTA", () => {
       "utf8",
     );
     expect(screen).toContain("Make your first list");
+    expect(screen).toContain("List options");
+    expect(screen).toContain("LIBRARY_TITLE_CLASS");
+    expect(LIBRARY_TITLE_CLASS).toContain("text-shadow");
+    expect(screen).toContain("sortLibraryLists");
+    expect(screen).toContain("Sort lists by");
+    expect(screen).toContain("Import a list");
+    expect(screen).toContain("Paste a Warhammer App, New Recruit, or Order of Battle list");
+    expect(screen).toContain("Export");
+    expect(screen).not.toContain("Export all");
+    expect(screen).toContain("Export format");
+    expect(screen).toContain("SHEET_CHECKLIST_ITEM_CLASS");
+    expect(screen).toContain("SHEET_FOOTER_ACTIONS_CLASS");
+    expect(screen).toContain("SHEET_SECONDARY_BUTTON_CLASS");
+    expect(screen).toContain("libraryListExportSubtitle");
+    expect(screen).toContain("text-parchment-ink");
+    expect(screen).toContain("Choose one or more lists to export.");
     expect(screen).toContain("EMPTY_LIBRARY_CTA_CLASS");
+    expect(screen).toContain("EMPTY_LIBRARY_SECONDARY_CLASS");
     expect(screen).toContain("setPicking(true)");
     expect(screen).not.toContain("No armies yet. Make your first list.");
     expect(screen).toContain("createCounts.heroes");
@@ -470,16 +569,18 @@ describe("iOS polish contracts", () => {
     expect(library).toContain("ConfirmSheetActions");
   });
 
-  it("removes persistent underline from builder list name", () => {
-    expect(BUILDER_LIST_NAME_INPUT_CLASS).toContain("border-transparent");
-    expect(BUILDER_LIST_NAME_INPUT_CLASS).toContain("focus:border-parchment/25");
-    expect(BUILDER_LIST_NAME_INPUT_CLASS).not.toMatch(/(?<!focus:)border-parchment\/25/);
+  it("shows a subtle underline on builder list name so it reads editable", () => {
+    expect(BUILDER_LIST_NAME_INPUT_CLASS).toContain("border-parchment/25");
+    expect(BUILDER_LIST_NAME_INPUT_CLASS).toContain("focus:border-parchment/40");
+    expect(BUILDER_LIST_NAME_INPUT_CLASS).not.toContain("border-transparent");
   });
 
   it("uses pressable library cards and rounded-xl points cap", () => {
     expect(LIBRARY_CARD_CLASS).toContain("cursor-pointer");
     expect(LIBRARY_CARD_CLASS).toContain("rounded-2xl");
     expect(LIBRARY_CARD_CLASS).not.toContain("pressable");
+    expect(LIBRARY_CARD_LIST_NAME_INPUT_CLASS).toContain("w-1/2");
+    expect(LIBRARY_CARD_LIST_NAME_INPUT_CLASS).toContain("self-start");
     expect(pointsCapInputClass("ink")).toContain("rounded-xl");
     expect(pointsCapInputClass("ink")).not.toContain("rounded-[10px]");
 
@@ -491,7 +592,7 @@ describe("iOS polish contracts", () => {
       "utf8",
     );
     expect(library).toContain("absolute inset-0 z-[1]");
-    expect(library).toContain("cursor-text");
+    expect(library).toContain("LIBRARY_CARD_LIST_NAME_INPUT_CLASS");
     expect(library).not.toContain('sr-only">Open list');
   });
 
