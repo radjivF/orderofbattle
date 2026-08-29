@@ -8,6 +8,7 @@ type Props = {
 };
 
 const BODY_CLASS = "text-sm leading-relaxed";
+const LABEL_CLASS = "font-semibold text-sheet-muted";
 
 /** Warscroll declare/effect copy — one layout for prose and multi-part lists. */
 export function RuleText({
@@ -24,7 +25,7 @@ export function RuleText({
     return (
       <div className={className}>
         <p className={`${BODY_CLASS} ${itemClassName}`}>
-          {label ? <span className="text-sheet-muted">{label}</span> : null}
+          {label ? <span className={LABEL_CLASS}>{label}</span> : null}
           {parsed.text}
         </p>
       </div>
@@ -39,7 +40,7 @@ export function RuleText({
     <div className={className}>
       {label || parsed.preface ? (
         <p className={`${BODY_CLASS} ${itemClassName}`}>
-          {label ? <span className="text-sheet-muted">{label}</span> : null}
+          {label ? <span className={LABEL_CLASS}>{label}</span> : null}
           {parsed.preface}
         </p>
       ) : null}

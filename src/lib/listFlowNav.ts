@@ -10,6 +10,11 @@ export function listFlowHeaderMode(input: {
   return "library";
 }
 
+/** Home lives in the flow layout so `/dashboard` does not remount the list shell. */
+export function listFlowIsHome(pathname: string): boolean {
+  return pathname === "/";
+}
+
 /** Carousel track class when the list detail pane is visible. */
 export function listFlowTrackClass(
   showDetail: boolean,
@@ -31,6 +36,14 @@ export function listOpenShowsSplash(input: {
   animatingBack: boolean;
 }): boolean {
   return input.splashRequested && !input.animatingBack;
+}
+
+/** Library stays mounted in the carousel — never keep the create splash on a list route. */
+export function libraryCreatingSplashVisible(
+  creating: boolean,
+  pathname: string,
+): boolean {
+  return creating && !pathname.startsWith("/lists/");
 }
 
 /** Window scroll when the library ↔ list carousel changes which pane is on screen. */

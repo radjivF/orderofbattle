@@ -320,7 +320,6 @@ export function buildPhaseBoards(
         ? `Regiment ability · ${formation.name}`
         : `Battle formation · ${formation.name}`,
       formation.abilities,
-      true,
     );
   }
 
@@ -330,7 +329,6 @@ export function buildPhaseBoards(
       trait.id,
       `Battle trait · ${trait.name}`,
       trait.abilities,
-      true,
     );
   }
 
@@ -456,17 +454,12 @@ function pushLabeledAbilities(
   selectionId: string,
   unitName: string,
   abilities: UnitAbility[],
-  alsoArmy = false,
 ) {
   for (const ability of abilities) {
     if (omitFromPhaseBoard(ability, false)) {
       continue;
     }
-    const phaseIds = phasesForAbility(ability);
-    if (alsoArmy && !phaseIds.includes("passive")) {
-      phaseIds.push("passive");
-    }
-    for (const phaseId of phaseIds) {
+    for (const phaseId of phasesForAbility(ability)) {
       boards.get(phaseId)?.abilities.push({
         selectionId,
         unitName,

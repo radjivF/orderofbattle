@@ -3,6 +3,7 @@ import { createId } from "@/lib/id";
 import { blankArmy, blankSpearhead } from "@/lib/storage";
 import {
   buildPhaseBoards,
+  phasesForAbility,
   regimentPlayGroups,
   rosterSelectionIds,
 } from "./phases";
@@ -88,7 +89,7 @@ describe("regimentPlayGroups", () => {
 });
 
 describe("spearhead army phase", () => {
-  it("puts battle traits, regiment ability, and passives on the Army board", () => {
+  it("routes phased battle traits and regiment abilities to their phase, not Army", () => {
     const box = getSpearhead("stormcast-eternals-vigilant-brotherhood");
     expect(box).toBeTruthy();
     if (!box) return;
@@ -113,23 +114,30 @@ describe("spearhead army phase", () => {
       },
       faction,
     );
-    const army = boards.find((board) => board.phase.id === "passive");
-    expect(army).toBeTruthy();
-    if (!army) return;
+    const namesOn = (phaseId: string) =>
+      boards
+        .find((board) => board.phase.id === phaseId)
+        ?.abilities.map((row) => row.ability.name) ?? [];
 
-    const names = army.abilities.map((row) => row.ability.name);
-    expect(names).toContain("SHIELD OF AZYR");
-    expect(names).toContain("STORM CHARGE");
-    expect(names).toContain(ability.name);
-    expect(names).toContain(enhancement.abilities[0]?.name);
+    expect(namesOn("hero")).toContain("SHIELD OF AZYR");
+    expect(namesOn("charge")).toContain("STORM CHARGE");
+    expect(namesOn("movement")).toContain(ability.name);
+    expect(namesOn("passive")).toContain(enhancement.abilities[0]?.name);
+    expect(namesOn("passive")).not.toContain("SHIELD OF AZYR");
+    expect(namesOn("passive")).not.toContain("STORM CHARGE");
+    expect(namesOn("passive")).not.toContain(ability.name);
 
     expect(
-      army.abilities.some((row) =>
-        row.unitName.startsWith("Regiment ability ·"),
-      ),
+      boards
+        .find((board) => board.phase.id === "movement")
+        ?.abilities.some((row) =>
+          row.unitName.startsWith("Regiment ability ·"),
+        ),
     ).toBe(true);
     expect(
-      army.abilities.some((row) => row.unitName.includes("Enhancement")),
+      boards
+        .find((board) => board.phase.id === "passive")
+        ?.abilities.some((row) => row.unitName.includes("Enhancement")),
     ).toBe(true);
   });
 
@@ -222,6 +230,48 @@ describe("manifestation lore points", () => {
 
     expect(withFree).toBe(base);
     expect(withPaid - base).toBe(paidLore.points);
+  });
+});
+
+describe("formation phase routing", () => {
+  it("maps Once Per Turn (Army), End of Any Turn to end of turn only", () => {
+    expect(
+      phasesForAbility({
+        name: "Higher Purpose",
+        kind: "Activated",
+        timing: "Once Per Turn (Army), End of Any Turn",
+        declare: "",
+        effect: "",
+        keywords: "",
+        castingValue: "",
+        chantingValue: "",
+        cost: "",
+      }),
+    ).toEqual(["end"]);
+  });
+
+  it("puts Coven Zealots Higher Purpose on End of turn, not Army", () => {
+    const faction = getFaction("daughters-of-khaine");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const formation = faction.formations.find(
+      (item) => item.name === "Coven Zealots",
+    );
+    expect(formation).toBeTruthy();
+    if (!formation) return;
+
+    const boards = buildPhaseBoards(
+      { ...blankArmy(faction.id), formationId: formation.id },
+      faction,
+    );
+    const namesOn = (phaseId: string) =>
+      boards
+        .find((board) => board.phase.id === phaseId)
+        ?.abilities.map((row) => row.ability.name) ?? [];
+
+    expect(namesOn("end")).toContain("Higher Purpose");
+    expect(namesOn("passive")).not.toContain("Higher Purpose");
   });
 });
 

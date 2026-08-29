@@ -20,6 +20,13 @@ describe("expandable rule cards", () => {
     expect(card).not.toContain("collapseDetails");
     expect(card).not.toContain("\n      open\n");
   });
+
+  it("prints lore rules inline on the magic board instead of a nested collapse", () => {
+    const magic = readFileSync(path.join(here, "PlayMagicBoard.tsx"), "utf8");
+    expect(magic).not.toContain("ExpandableRuleCard");
+    expect(magic).toContain('label="Declare · "');
+    expect(magic).toContain('label="Effect · "');
+  });
 });
 
 describe("manifestation lore title", () => {

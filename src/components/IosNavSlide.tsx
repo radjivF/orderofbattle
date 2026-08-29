@@ -15,7 +15,7 @@ import {
   LIST_FLOW_HEADER_OFFSET_CLASS,
   SITE_HEADER_BAR_CLASS,
 } from "@/lib/builderUi";
-import { listFlowTrackClass, listFlowWindowScrollY } from "@/lib/listFlowNav";
+import { listFlowIsHome, listFlowTrackClass, listFlowWindowScrollY } from "@/lib/listFlowNav";
 import {
   clearListNavigationDirection,
   clearListOpenSplash,
@@ -62,6 +62,7 @@ export function ListNavProvider({
 }: ListNavProviderProps) {
   const router = useRouter();
   const pathname = usePathname();
+  const isHome = listFlowIsHome(pathname);
   const isBuilder = pathname.startsWith("/lists/");
   const [showDetail, setShowDetailState] = useState(false);
   const [settled, setSettled] = useState(true);
@@ -118,6 +119,12 @@ export function ListNavProvider({
   }, [isBuilder, router]);
 
   useLayoutEffect(() => {
+    if (isHome) {
+      animatingBackRef.current = false;
+      publishNavState({ showDetail: false, animatingBack: false });
+      setSettled(true);
+      return;
+    }
     if (!isBuilder) {
       animatingBackRef.current = false;
       publishNavState({ showDetail: false, animatingBack: false });
@@ -151,7 +158,7 @@ export function ListNavProvider({
     setSettled(true);
     scrollToPane(true);
     setShowDetail(true);
-  }, [isBuilder, pathname, publishNavState, setShowDetail]);
+  }, [isBuilder, isHome, pathname, publishNavState, setShowDetail]);
 
   function goBack() {
     if (animatingBackRef.current || !isBuilder) {

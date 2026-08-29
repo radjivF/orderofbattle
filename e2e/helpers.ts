@@ -28,4 +28,5 @@ export async function pickFaction(page: Page, name: string) {
 export async function createList(page: Page) {
   await page.getByRole("button", { name: "Create" }).click();
   await page.waitForURL(/\/lists\/.+/);
+  await expect(page.getByText("Creating your list")).toHaveCount(0);
 }
