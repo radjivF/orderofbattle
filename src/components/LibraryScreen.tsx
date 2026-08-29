@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useLayoutEffect, useState, useSyncExternalStore } from "react";
-import { getFaction, listArmiesOfRenown, listFactions, armyOfRenownName } from "@/engine/queries";
+import { getFaction, listArmiesOfRenown, armyOfRenownName } from "@/engine/queries";
+import { listFactionsByGrandAlliance } from "@/lib/factionAlliance";
 import { formatPoints } from "@/engine/pointsCap";
 import { summarize } from "@/engine/validate";
 import type { ArmyList, FactionCatalogue } from "@/engine/types";
@@ -429,32 +430,49 @@ export function LibraryScreen() {
               </div>
             ) : (
               <ul className="modal-sheet-scroll overflow-y-auto px-3 pb-6">
-                {listFactions().map((faction) => {
-                  const counts = factionPickerCounts(faction);
-                  return (
-                  <li key={faction.id}>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setDraftParent(faction);
-                        setDraftFaction(faction);
-                        setDraftName(`My ${faction.name}`);
-                        setDraftPoints(faction.pointsCapDefault);
-                      }}
-                      className="flex min-h-12 w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-left hover:bg-parchment-ink/5"
+                {listFactionsByGrandAlliance().map((group, groupIndex) => (
+                  <li key={group.alliance} className="list-none">
+                    <p
+                      className={`px-3 pb-1 text-xs font-semibold tracking-wide uppercase text-sheet-muted ${
+                        groupIndex === 0 ? "pt-1" : "pt-4"
+                      }`}
                     >
-                      <span className="min-w-0 font-serif text-xl text-parchment-ink">
-                        {faction.name}
-                      </span>
-                      <span className="shrink-0 text-right text-xs leading-snug text-sheet-muted sm:text-sm">
-                        <span className="block sm:inline">{counts.heroes} heroes</span>
-                        <span className="hidden sm:inline"> · </span>
-                        <span className="block sm:inline">{counts.units} units</span>
-                      </span>
-                    </button>
+                      {group.label}
+                    </p>
+                    <ul className="flex flex-col">
+                      {group.factions.map((faction) => {
+                        const counts = factionPickerCounts(faction);
+                        return (
+                          <li key={faction.id}>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setDraftParent(faction);
+                                setDraftFaction(faction);
+                                setDraftName(`My ${faction.name}`);
+                                setDraftPoints(faction.pointsCapDefault);
+                              }}
+                              className="flex min-h-12 w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-left hover:bg-parchment-ink/5"
+                            >
+                              <span className="min-w-0 font-serif text-xl text-parchment-ink">
+                                {faction.name}
+                              </span>
+                              <span className="shrink-0 text-right text-xs leading-snug text-sheet-muted sm:text-sm">
+                                <span className="block sm:inline">
+                                  {counts.heroes} heroes
+                                </span>
+                                <span className="hidden sm:inline"> · </span>
+                                <span className="block sm:inline">
+                                  {counts.units} units
+                                </span>
+                              </span>
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
                   </li>
-                  );
-                })}
+                ))}
               </ul>
             )}
         </ModalFrame>
