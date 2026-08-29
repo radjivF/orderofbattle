@@ -2,30 +2,61 @@ export type RuleTextBlock =
   | { kind: "prose"; text: string }
   | { kind: "bullets"; items: string[] };
 
-const BULLET_SPLIT = /\s*[•\u2022]\s*/;
+/** Catalogue bullets and the common "In addition," follow-up clause. */
+const SEGMENT_SPLIT =
+  /\s*[•\u2022]\s*|(?<=\.)\s+(?=(?:In addition|Additionally|Also),)/i;
+
+function splitSegments(text: string): string[] {
+  return text
+    .trim()
+    .split(SEGMENT_SPLIT)
+    .map((part) => part.trim())
+    .filter(Boolean);
+}
+
+function stripConnectorPrefix(text: string): string {
+  return text.replace(/^(?:In addition|Additionally|Also),\s+/i, "").trim();
+}
+
+function flattenBulletItems(segments: string[]): string[] {
+  const items: string[] = [];
+  for (const segment of segments) {
+    const nested = splitSegments(segment);
+    if (nested.length > 1) {
+      if (nested[0]) {
+        items.push(stripConnectorPrefix(nested[0]));
+      }
+      items.push(...flattenBulletItems(nested.slice(1)));
+      continue;
+    }
+    items.push(stripConnectorPrefix(segment));
+  }
+  return items.filter(Boolean);
+}
 
 /** Split warscroll rule copy into lead prose and bullet items. */
 export function parseRuleText(text: string): RuleTextBlock[] {
   const trimmed = text.trim();
-  if (!trimmed) {
+  const segments = splitSegments(trimmed);
+  if (segments.length === 0) {
     return [];
   }
-
-  if (!BULLET_SPLIT.test(trimmed)) {
-    return [{ kind: "prose", text: trimmed }];
+  if (segments.length === 1) {
+    return [{ kind: "prose", text: segments[0] }];
   }
 
-  const parts = trimmed.split(BULLET_SPLIT);
-  const lead = parts[0]?.trim() ?? "";
-  const items = parts
-    .slice(1)
-    .map((part) => part.trim())
-    .filter(Boolean);
+  if (/^[•\u2022]/.test(trimmed)) {
+    const items = flattenBulletItems(segments);
+    return items.length > 0 ? [{ kind: "bullets", items }] : [];
+  }
 
+  const [lead, ...rest] = segments;
   const blocks: RuleTextBlock[] = [];
   if (lead) {
     blocks.push({ kind: "prose", text: lead });
   }
+
+  const items = flattenBulletItems(rest);
   if (items.length > 0) {
     blocks.push({ kind: "bullets", items });
   }

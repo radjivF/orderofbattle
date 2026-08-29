@@ -25,6 +25,23 @@ describe("parseRuleText", () => {
     ]);
   });
 
+  it("splits In addition follow-up clauses from prose", () => {
+    expect(
+      parseRuleText(
+        'Add 1 to casting rolls for friendly Wizards while they are wholly within 12" of this unit. In addition, this unit can use Spell abilities from the Lore of Hysh.',
+      ),
+    ).toEqual([
+      {
+        kind: "prose",
+        text: 'Add 1 to casting rolls for friendly Wizards while they are wholly within 12" of this unit.',
+      },
+      {
+        kind: "bullets",
+        items: ["this unit can use Spell abilities from the Lore of Hysh."],
+      },
+    ]);
+  });
+
   it("handles bullet-only rules", () => {
     expect(parseRuleText("• First clause. • Second clause.")).toEqual([
       {
