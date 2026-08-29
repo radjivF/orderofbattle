@@ -47,7 +47,7 @@ export function TryLanding() {
               href={SITE_GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="min-h-11 inline-flex items-center text-sm font-medium text-parchment/85 underline decoration-parchment/40 underline-offset-2 transition-colors hover:text-sigmarite hover:decoration-sigmarite/50"
+              className="hidden min-h-11 items-center text-sm font-medium text-parchment/85 underline decoration-parchment/40 underline-offset-2 transition-colors hover:text-sigmarite hover:decoration-sigmarite/50 sm:inline-flex"
             >
               GitHub
             </a>
