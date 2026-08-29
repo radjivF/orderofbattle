@@ -37,11 +37,13 @@ type Props = {
 function FlowBackButton({
   label,
   onClick,
+  href,
 }: {
   label: string;
   onClick: () => void;
+  href?: string;
 }) {
-  return <IosNavBackButton label={label} onClick={onClick} />;
+  return <IosNavBackButton label={label} onClick={onClick} href={href} />;
 }
 
 function LibraryHeaderRow({
@@ -102,6 +104,7 @@ function BuilderHeaderRow({
     <div className={LIST_FLOW_HEADER_ROW}>
       <FlowBackButton
         label={playMode ? "Build" : "Lists"}
+        href={playMode ? undefined : "/dashboard"}
         onClick={playMode ? () => chrome?.exitPlay() : goBack}
       />
       {playMode || !chrome ? (

@@ -125,6 +125,7 @@ describe("iOS nav controls", () => {
     );
     expect(header).toContain('label="New list"');
     expect(header).toContain('label={playMode ? "Build" : "Lists"}');
+    expect(header).toContain('href={playMode ? undefined : "/dashboard"}');
     expect(header).not.toContain("<span>{label}</span>");
     expect(IOS_NAV_PLAY_BUTTON_CLASS).toContain("ios-liquid-glass");
     expect(IOS_NAV_PLAY_BUTTON_CLASS).toContain("text-black");

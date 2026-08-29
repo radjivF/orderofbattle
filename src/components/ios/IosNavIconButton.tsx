@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { IOS_NAV_ICON_BUTTON_CLASS } from "@/lib/builderUi";
 
 type Props = {
   label: string;
-  onClick: () => void;
+  onClick?: () => void;
+  href?: string;
 };
 
 export function IosNavAddButton({ label, onClick }: Props) {
@@ -20,7 +22,20 @@ export function IosNavAddButton({ label, onClick }: Props) {
   );
 }
 
-export function IosNavBackButton({ label, onClick }: Props) {
+export function IosNavBackButton({ label, onClick, href }: Props) {
+  if (href) {
+    return (
+      <Link
+        href={href}
+        scroll={false}
+        aria-label={label}
+        onClick={onClick}
+        className={IOS_NAV_ICON_BUTTON_CLASS}
+      >
+        <IosChevronLeftIcon />
+      </Link>
+    );
+  }
   return (
     <button
       type="button"

@@ -3,11 +3,11 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useLayoutEffect, useState, useSyncExternalStore } from "react";
-import { getFaction, listArmiesOfRenown, armyOfRenownName } from "@/engine/queries";
+import { getFaction, armyOfRenownName } from "@/engine/queries";
 import {
   catalogueForList,
+  getSpearhead,
   isSpearheadList,
-  listSpearheadsForFaction,
 } from "@/engine/spearhead";
 import { listFactionsByGrandAlliance } from "@/lib/factionAlliance";
 import { formatPoints } from "@/engine/pointsCap";
@@ -31,6 +31,12 @@ import {
 } from "@/lib/listTransition";
 import { newListDraftFromSearch } from "@/lib/newListLink";
 import {
+  encodeNewListArmyValue,
+  newListArmySelectGroups,
+  newListArmySelectHasExtras,
+  parseNewListArmyValue,
+} from "@/lib/newListArmyOptions";
+import {
   EMPTY_LIBRARY_CTA_CLASS,
   EMPTY_LIBRARY_PANEL_CLASS,
   LIBRARY_CARD_ACTION_BUTTON_CLASS,
@@ -50,7 +56,6 @@ import { ModalFrame } from "./ModalFrame";
 import { ConfirmSheetActions } from "./ConfirmSheetActions";
 import { SheetFormActions } from "./SheetFormActions";
 import { PointsCapField } from "./PointsCapField";
-import { IosSegmentedControl } from "./ios/IosSegmentedControl";
 import { SiteFooter } from "./SiteFooter";
 
 function isInteractiveEventTarget(target: EventTarget | null): boolean {
@@ -386,35 +391,58 @@ export function LibraryScreen() {
                 <p className="text-base text-sheet-muted">
                   {(draftParent ?? draftFaction).name}
                 </p>
-                {draftParent && listArmiesOfRenown(draftParent.id).length > 0 ? (
+                {draftParent && newListArmySelectHasExtras(draftParent.id) ? (
                   <label className="flex flex-col gap-2 text-base text-sheet-muted">
                     Army
                     <select
-                      value={draftFaction.id}
+                      value={
+                        draftMode === "spearhead" && draftSpearheadId
+                          ? encodeNewListArmyValue({
+                              kind: "spearhead",
+                              spearheadId: draftSpearheadId,
+                            })
+                          : draftFaction.id
+                      }
                       onChange={(event) => {
+                        const parsed = parseNewListArmyValue(event.target.value);
+                        const previousLabel =
+                          draftMode === "spearhead" && draftSpearheadId
+                            ? (getSpearhead(draftSpearheadId)?.name ??
+                              draftParent.name)
+                            : armyOfRenownName(draftFaction);
+                        if (parsed.kind === "spearhead") {
+                          const box = getSpearhead(parsed.spearheadId);
+                          setDraftMode("spearhead");
+                          setDraftSpearheadId(parsed.spearheadId);
+                          setDraftFaction(draftParent);
+                          setDraftName((current) =>
+                            current === `My ${previousLabel}`
+                              ? `My ${box?.name ?? draftParent.name}`
+                              : current,
+                          );
+                          return;
+                        }
                         const next =
-                          getFaction(event.target.value) ?? draftParent;
-                        setDraftName((current) => {
-                          const previous = armyOfRenownName(draftFaction);
-                          if (
-                            current === `My ${previous}` ||
-                            current === `My ${draftFaction.name}`
-                          ) {
-                            return `My ${armyOfRenownName(next)}`;
-                          }
-                          return current;
-                        });
+                          getFaction(parsed.factionId) ?? draftParent;
+                        setDraftMode("points");
+                        setDraftSpearheadId(null);
                         setDraftFaction(next);
+                        setDraftName((current) =>
+                          current === `My ${previousLabel}`
+                            ? `My ${armyOfRenownName(next)}`
+                            : current,
+                        );
                       }}
                       className="min-h-11 w-full rounded-xl bg-parchment-ink/5 px-3 font-serif text-xl text-parchment-ink"
                     >
-                      <option value={draftParent.id}>
-                        Standard {draftParent.name}
-                      </option>
-                      {listArmiesOfRenown(draftParent.id).map((army) => (
-                        <option key={army.id} value={army.id}>
-                          {armyOfRenownName(army)}
-                        </option>
+                      {newListArmySelectGroups(draftParent.id).map((group) => (
+                        <optgroup key={group.label} label={group.label}>
+                          {group.options.map((option) => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
+                        </optgroup>
                       ))}
                     </select>
                   </label>
@@ -434,11 +462,13 @@ export function LibraryScreen() {
                     className="min-h-11 w-full rounded-xl bg-parchment-ink/5 px-3 font-serif text-xl text-parchment-ink outline-none"
                   />
                 </label>
-                <PointsCapField
-                  value={draftPoints}
-                  onChange={setDraftPoints}
-                  variant="parchment"
-                />
+                {draftMode === "spearhead" ? null : (
+                  <PointsCapField
+                    value={draftPoints}
+                    onChange={setDraftPoints}
+                    variant="parchment"
+                  />
+                )}
                 <SheetFormActions
                   primaryLabel={creating ? "Creating…" : "Create"}
                   onPrimary={() => void onCreate()}
@@ -447,6 +477,8 @@ export function LibraryScreen() {
                     setDraftFaction(null);
                     setDraftParent(null);
                     setDraftName("");
+                    setDraftMode("points");
+                    setDraftSpearheadId(null);
                   }}
                   primaryDisabled={creating}
                   secondaryDisabled={creating}

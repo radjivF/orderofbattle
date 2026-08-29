@@ -7,8 +7,6 @@ import {
   useLayoutEffect,
   useRef,
   useState,
-  useSyncExternalStore,
-  useTransition,
   type ReactNode,
 } from "react";
 import { usePathname, useRouter } from "next/navigation";
@@ -17,19 +15,8 @@ import {
   peekListNavigationDirection,
   rememberListNavigation,
 } from "@/lib/listTransition";
-import {
-  iosPushSlideClass,
-  libraryReturnCoverCanDismiss,
-  libraryReturnCoverRemainingMs,
-  type SlidePhase,
-} from "@/lib/iosNavSlide";
-import {
-  getArmiesServerSnapshot,
-  getArmiesSnapshot,
-  subscribeArmies,
-} from "@/lib/storage";
+import { iosPushSlideClass, type SlidePhase } from "@/lib/iosNavSlide";
 import { IndexBackdropLayer } from "./IndexBackdrop";
-import { ListLoadingSplash } from "./ListLoadingSplash";
 
 const SLIDE_MS = 320;
 
@@ -58,10 +45,7 @@ type ListNavProviderProps = {
 function listFlowHeaderOffsetClass(
   headerMode: ListNavProviderProps["headerMode"],
 ) {
-  if (headerMode === "library") {
-    return "pt-[calc(env(safe-area-inset-top)+3.75rem)]";
-  }
-  if (headerMode === "builder") {
+  if (headerMode === "library" || headerMode === "builder") {
     return "pt-[calc(env(safe-area-inset-top)+3.75rem)]";
   }
   return "";
@@ -78,17 +62,7 @@ export function ListNavProvider({
   const pathname = usePathname();
   const isBuilder = pathname.startsWith("/lists/");
   const [phase, setPhase] = useState<SlidePhase>("settled");
-  const [covering, setCovering] = useState(false);
-  const [, startTransition] = useTransition();
-  const lists = useSyncExternalStore(
-    subscribeArmies,
-    getArmiesSnapshot,
-    getArmiesServerSnapshot,
-  );
   const timers = useRef<number[]>([]);
-  const coveringRef = useRef(false);
-  const coverStartedAt = useRef(0);
-  const hideScheduled = useRef(false);
 
   function clearTimers() {
     for (const id of timers.current) {
@@ -97,11 +71,9 @@ export function ListNavProvider({
     timers.current = [];
   }
 
-  function schedule(fn: () => void, ms: number) {
-    const id = window.setTimeout(fn, ms);
-    timers.current.push(id);
-    return id;
-  }
+  useEffect(() => {
+    return () => clearTimers();
+  }, []);
 
   useEffect(() => {
     if (!isBuilder) {
@@ -111,10 +83,6 @@ export function ListNavProvider({
   }, [isBuilder, router]);
 
   useLayoutEffect(() => {
-    if (coveringRef.current) {
-      setPhase("settled");
-      return;
-    }
     clearTimers();
 
     if (!isBuilder) {
@@ -135,69 +103,13 @@ export function ListNavProvider({
     setPhase("start");
     requestAnimationFrame(() => {
       setPhase("in");
-      schedule(() => setPhase("settled"), SLIDE_MS);
+      const id = window.setTimeout(() => setPhase("settled"), SLIDE_MS);
+      timers.current.push(id);
     });
   }, [isBuilder, pathname]);
 
-  useLayoutEffect(() => {
-    if (
-      !coveringRef.current ||
-      hideScheduled.current ||
-      !libraryReturnCoverCanDismiss({
-        isBuilder,
-        listsReady: lists !== undefined,
-      })
-    ) {
-      return;
-    }
-    hideScheduled.current = true;
-    const wait = libraryReturnCoverRemainingMs(
-      coverStartedAt.current,
-      Date.now(),
-    );
-    schedule(() => {
-      coveringRef.current = false;
-      hideScheduled.current = false;
-      setCovering(false);
-    }, wait);
-  }, [covering, isBuilder, lists]);
-
-  useEffect(() => {
-    if (!covering) {
-      return;
-    }
-    const failSafe = window.setTimeout(() => {
-      if (!coveringRef.current) {
-        return;
-      }
-      clearTimers();
-      coveringRef.current = false;
-      hideScheduled.current = false;
-      setCovering(false);
-    }, 1200);
-    return () => window.clearTimeout(failSafe);
-  }, [covering]);
-
   function goBack() {
-    if (coveringRef.current) {
-      return;
-    }
     rememberListNavigation("back");
-    clearTimers();
-    if (prefersReducedMotion()) {
-      startTransition(() => {
-        router.push("/dashboard", { scroll: false });
-      });
-      return;
-    }
-    coveringRef.current = true;
-    hideScheduled.current = false;
-    coverStartedAt.current = Date.now();
-    setPhase("settled");
-    setCovering(true);
-    startTransition(() => {
-      router.push("/dashboard", { scroll: false });
-    });
   }
 
   return (
@@ -206,7 +118,7 @@ export function ListNavProvider({
         <IndexBackdropLayer />
         {backdrop}
         {header ? (
-          <header className="ios-nav-bar fixed inset-x-0 top-0 z-40 pt-[env(safe-area-inset-top)]">
+          <header className="ios-nav-bar pointer-events-auto fixed inset-x-0 top-0 z-[60] pt-[env(safe-area-inset-top)]">
             {header}
           </header>
         ) : null}
@@ -216,19 +128,6 @@ export function ListNavProvider({
         >
           {children}
         </div>
-        {covering ? (
-          <div
-            className="fixed inset-0 z-50 overflow-hidden text-parchment"
-            role="status"
-            aria-live="polite"
-            aria-busy="true"
-          >
-            <IndexBackdropLayer />
-            <div className="relative z-10">
-              <ListLoadingSplash label="Loading your lists" />
-            </div>
-          </div>
-        ) : null}
       </div>
     </ListNavContext.Provider>
   );
