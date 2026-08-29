@@ -1,0 +1,397 @@
+{
+  "id": "slaves-to-darkness-bloodwind-legion",
+  "name": "Bloodwind Legion",
+  "parentFactionId": "slaves-to-darkness",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/slaves-to-darkness/",
+  "roster": [
+    {
+      "unitId": "slaves-to-darkness-bloodwind-legion-chaos-lord",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "slaves-to-darkness-bloodwind-legion-chaos-chariot",
+      "count": 1
+    },
+    {
+      "unitId": "slaves-to-darkness-bloodwind-legion-chaos-warriors",
+      "count": 1
+    },
+    {
+      "unitId": "slaves-to-darkness-bloodwind-legion-chaos-warriors",
+      "count": 1
+    },
+    {
+      "unitId": "slaves-to-darkness-bloodwind-legion-chaos-knights",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "slaves-to-darkness-bloodwind-legion-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "DREADED ARRIVAL",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "",
+          "effect": "Set up this unit wholly within your territory, within 1\" of a battlefield edge and more than 6\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "EYE OF THE GODS",
+          "kind": "Activated",
+          "timing": "Once Per Turn, End of Any Turn",
+          "declare": "Pick one of the following friendly units to use this ability: A unit that is contesting an objective not controlled by your opponent and is not in combat. A unit that destroyed an enemy unit this turn.",
+          "effect": "Roll once on the Eye of the Gods table for that unit. That unit gains the Eye of the Gods passive ability that corresponds to the roll (the unit keeps all Eye of the Gods abilities gained in previous turns). If the same unit gains the same ability more than once in the battle, the effects are not cumulative. D6ABILITY 1Snubbed by the Gods: No effect. 2WARD OF TZEENTCH: This unit has WARD (6+). 3GRACE OF SLAANESH: Add 1 to run rolls for this unit. 4BLESSING OF NURGLE: Subtract 1 from wound rolls for attacks that target this unit. 5FURY OF KHORNE: Add 1 to the Rend characteristic of this unit’s melee weapons. 6Champion of Chaos: Pick any ability from the table.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "slaves-to-darkness-bloodwind-legion-fierce-conquerors",
+      "name": "FIERCE CONQUERORS",
+      "abilities": [
+        {
+          "name": "FIERCE CONQUERORS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 3 to the control scores of friendly Chaos Warriors units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "slaves-to-darkness-bloodwind-legion-the-dread-banner",
+      "name": "THE DREAD BANNER",
+      "abilities": [
+        {
+          "name": "THE DREAD BANNER",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Start of the First Battle Round",
+          "declare": "Pick a friendly Chaos Warriors unit.",
+          "effect": "You can immediately roll on the Eye of the Gods table for that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "slaves-to-darkness-bloodwind-legion-mark-of-khorne",
+      "name": "MARK OF KHORNE",
+      "abilities": [
+        {
+          "name": "MARK OF KHORNE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to the Rend characteristic of your general’s melee weapons if they charged in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "slaves-to-darkness-bloodwind-legion-mark-of-nurgle",
+      "name": "MARK OF NURGLE",
+      "abilities": [
+        {
+          "name": "MARK OF NURGLE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Subtract 1 from wound rolls for combat attacks that target your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "slaves-to-darkness-bloodwind-legion-mark-of-tzeentch",
+      "name": "MARK OF TZEENTCH",
+      "abilities": [
+        {
+          "name": "MARK OF TZEENTCH",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Movement Phase",
+          "declare": "Pick a friendly unit on the battlefield. You cannot pick your general.",
+          "effect": "Remove that unit from the battlefield and set it up again wholly within 6\" of your general and more than 6\" from all enemy units. It cannot use Move abilities for the rest of the phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "slaves-to-darkness-bloodwind-legion-mark-of-slaanesh",
+      "name": "MARK OF SLAANESH",
+      "abilities": [
+        {
+          "name": "MARK OF SLAANESH",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Your general has STRIKE-FIRST.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "slaves-to-darkness-bloodwind-legion-chaos-lord",
+      "name": "Chaos Lord",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "6",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Reaperblade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "FAVOURED OF THE PANTHEON",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "",
+          "effect": "Roll a dice. On a 4+, you can roll on the Eye of the Gods table for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "IRON-WILLED CHAMPION",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick a friendly unit wholly within 12\" of this unit to be the target and roll a dice. You cannot pick this unit.",
+          "effect": "On a 2+, add 1 to hit rolls for attacks made by the target unit this phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "slaves-to-darkness-bloodwind-legion-chaos-chariot",
+      "name": "Chaos Chariot",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "WAR MACHINE"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "7",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Chaos War-flail",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Driver’s Lashing Whip",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Warhorses’ Trampling Hooves",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "SWIFT DEATH",
+          "kind": "Activated",
+          "timing": "Your Charge Phase",
+          "declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target and roll a dice.",
+          "effect": "On a 2+, inflict D3 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "slaves-to-darkness-bloodwind-legion-chaos-warriors",
+      "name": "Chaos Warriors",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "2",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Rune-etched Halberd",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "BRINGERS OF DESOLATION",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to wound rolls for combat attacks made by this unit that target an enemy unit that is contesting an objective you do not control.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "slaves-to-darkness-bloodwind-legion-chaos-knights",
+      "name": "Chaos Knights",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "CAVALRY"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "4",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Cursed Lance",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge, (+1, Damage)"
+        },
+        {
+          "name": "Chaos Steed’s Trampling Hooves",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "IMPALING CHARGE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to the Rend characteristic of this unit’s Cursed Lances if it charged in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

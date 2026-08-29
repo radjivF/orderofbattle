@@ -92,5 +92,7 @@ describe("article CTAs", () => {
     );
     expect(screen).toContain("newListDraftFromSearch");
     expect(screen).toContain('router.replace("/dashboard"');
+    expect(screen).toContain("newListArmySelectGroups");
+    expect(screen).toContain("<optgroup");
   });
 });

@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { manifestationStatLine } from "@/engine/queries";
 import { openNativeSelect } from "@/lib/nativeSelect";
+import { castValueLabel } from "@/lib/abilityUi";
 import type { ManifestationLore, ManifestationModel } from "@/engine/types";
 import { BuildSlotRow, PlaySlotRow } from "./ios/SheetIconButton";
 
@@ -138,7 +139,7 @@ function ManifestationSlot({
 }) {
   const stats = manifestationStatLine(model);
   const cast = model.summon?.castingValue
-    ? `Cast ${model.summon.castingValue}`
+    ? castValueLabel(model.summon.castingValue)
     : "";
 
   if (playMode) {

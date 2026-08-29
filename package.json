@@ -9,6 +9,10 @@
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",
+    "e2e": "playwright test -c e2e.config.ts",
+    "e2e:log": "mkdir -p reports && playwright test -c e2e.config.ts 2>&1 | tee reports/e2e-last-run.txt",
+    "e2e:ui": "playwright test -c e2e.config.ts --ui",
+    "e2e:local": "PLAYWRIGHT_BROWSERS_PATH=$HOME/Library/Caches/ms-playwright playwright test -c e2e.config.ts",
     "smoke:magic": "tsx scripts/smoke-magic-binds.ts",
     "verify": "yarn lint && yarn test && yarn build"
   },
@@ -20,6 +24,7 @@
     "sharp": "^0.35.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

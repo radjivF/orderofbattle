@@ -38,7 +38,7 @@ export function TerrainCard({ terrain, onOpenSheet }: Props) {
             <button
               type="button"
               onClick={() => onOpenSheet(single)}
-              className="min-w-0 flex-1 text-left active:opacity-60"
+              className="min-w-0 w-fit max-w-full text-left active:opacity-60"
             >
               <h2 className="font-serif text-2xl leading-tight">{single.name}</h2>
               {terrainStats(single) ? (
@@ -65,7 +65,7 @@ export function TerrainCard({ terrain, onOpenSheet }: Props) {
                 <button
                   type="button"
                   onClick={() => onOpenSheet(feature)}
-                  className="min-w-0 flex-1 font-serif text-xl leading-tight text-left active:opacity-60"
+                  className="min-w-0 w-fit max-w-full font-serif text-xl leading-tight text-left active:opacity-60"
                 >
                   {feature.name}
                 </button>

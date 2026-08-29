@@ -12,19 +12,22 @@ import {
   useDeferredValue,
 } from "react";
 import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, unitBaseName, auxiliaryPickerUnits, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel, formationLabel } from "@/engine/queries";
+import { catalogueForList, isSpearheadList } from "@/engine/spearhead";
 import { combatModifierNotes } from "@/engine/magic";
 import { exportArmyListText, exportFileName } from "@/engine/exportText";
 import { battleTactics, battleTacticsForRealm } from "@/engine/data/load";
 import { summarize } from "@/engine/validate";
 import type { ArmyList, CatalogueUnit, DatasheetSubject, EnhancementOption, FactionCatalogue, NamedOption } from "@/engine/types";
 import { createId } from "@/lib/id";
-import { IOS_LIQUID_CTA_CLASS, LIST_ISSUE_BANNER_CLASS, SHEET_HEADER_CLASS, SHEET_PANEL_CLASS, SHEET_PANEL_COMPACT_CLASS } from "@/lib/builderUi";
+import { BUILDER_ADD_ACTION_CLASS, BUILDER_ADD_ACTION_EMPHASIS_CLASS, IOS_LIQUID_CTA_CLASS, LIST_ISSUE_BANNER_CLASS, LIST_PANE_ART_CLASS, SHEET_HEADER_CLASS, SHEET_PANEL_CLASS, CONFIRM_SHEET_PANEL_CLASS, builderPlayTabs } from "@/lib/builderUi";
+import { castValueLabel } from "@/lib/abilityUi";
 import {
   getArmiesServerSnapshot,
   getArmiesSnapshot,
   recordArmyOpened,
   saveArmy,
   subscribeArmies,
+  appendRegimentWithHero,
 } from "@/lib/storage";
 import {
   getListOpenFactionServerSnapshot,
@@ -33,14 +36,18 @@ import {
   getListOpenDisplayNameServerSnapshot,
   getListOpenDisplayNameSnapshot,
   peekListOpenSplash,
+  peekListNavigationDirection,
   subscribeListOpenFaction,
 } from "@/lib/listTransition";
+import { listOpenShowsSplash } from "@/lib/listFlowNav";
 import { DatasheetSheet } from "./DatasheetSheet";
 import { FactionArtLayers } from "./FactionArtBackground";
 import { FactionBackdrop } from "./FactionBackdrop";
 import { useListFlowChrome, useListFlowDecor } from "./ListFlowShell";
 import { ListLoadingSplash } from "./ListLoadingSplash";
 import { ModalFrame } from "./ModalFrame";
+import { ConfirmSheetActions } from "./ConfirmSheetActions";
+import { RuleText } from "./RuleText";
 import { ChoiceSheet, PickerSheet } from "./PickerSheet";
 import { BuildSlotRow, SheetCloseButton } from "./ios/SheetIconButton";
 import { PointsCapField } from "./PointsCapField";
@@ -49,6 +56,7 @@ import { PlayMagicBoard } from "./PlayMagicBoard";
 import { PlayPhaseBoard } from "./PlayPhaseBoard";
 import { BattleTacticTracker } from "./BattleTacticTracker";
 import { IosSegmentedControl } from "./ios/IosSegmentedControl";
+import { SpearheadPicks } from "./SpearheadPicks";
 import { PlayBindNotes, PlayHealthTrack, RegimentCard, SlotEnhancements, SlotMoreMenu } from "./RegimentCard";
 import {
   buildRoRSelections,
@@ -58,7 +66,7 @@ import {
 import { TerrainCard } from "./TerrainCard";
 
 type Picker =
-  | { kind: "hero"; regimentId: string }
+  | { kind: "hero"; regimentId?: string }
   | { kind: "unit"; regimentId: string }
   | { kind: "aux" }
   | { kind: "ror" }
@@ -87,7 +95,7 @@ export function BuilderScreen({ listId }: Props) {
     getListOpenFactionServerSnapshot,
   );
   const list = lists?.find((item) => item.id === listId);
-  const faction = list ? getFaction(list.factionId) : undefined;
+  const faction = list ? catalogueForList(list) : undefined;
   const artFactionId =
     (faction ? faction.parentFactionIds?.[0] ?? faction.id : null) ??
     rememberedId;
@@ -101,7 +109,12 @@ export function BuilderScreen({ listId }: Props) {
   const splashStarted = useRef(0);
 
   useLayoutEffect(() => {
-    if (!peekListOpenSplash()) {
+    if (
+      !listOpenShowsSplash({
+        splashRequested: peekListOpenSplash(),
+        animatingBack: peekListNavigationDirection() === "back",
+      })
+    ) {
       return;
     }
     setOpeningSplash(true);
@@ -154,19 +167,18 @@ export function BuilderScreen({ listId }: Props) {
   useLayoutEffect(() => {
     setDecor({
       backdrop: artFactionId ? (
-        <div
-          className="pointer-events-none fixed inset-0 z-[1] overflow-hidden"
-          aria-hidden="true"
-        >
-          <FactionArtLayers
-            factionId={artFactionId}
-            scourgeRealm={scourgeRealm}
-            splash={showSplash}
-          />
+        <div className={LIST_PANE_ART_CLASS} aria-hidden="true">
+          <div className="relative h-full w-full">
+            <FactionArtLayers
+              factionId={artFactionId}
+              scourgeRealm={scourgeRealm}
+              splash={showSplash}
+            />
+          </div>
         </div>
       ) : undefined,
       overlay: showSplash ? (
-        <div className="pointer-events-none fixed inset-0 z-30">
+        <div className="pointer-events-none absolute inset-0 z-30">
           <ListLoadingSplash factionName={splashName} />
         </div>
       ) : undefined,
@@ -223,17 +235,21 @@ function BuilderReady({
     [list, faction],
   );
   const playMode = pane === "play";
+  const spearhead = isSpearheadList(list);
   const bindNotes = useMemo(
     () => (playMode ? combatModifierNotes(list, faction) : []),
     [playMode, list, faction],
   );
-  const issue =
-    totals.issues.find((item) => item.tone === "bad") ??
-    totals.issues.find((item) => item.tone === "warn") ??
-    totals.issues[0] ?? {
-      tone: "warn" as const,
-      text: "Add a regiment to begin.",
-    };
+  const issue = useMemo(() => {
+    return (
+      totals.issues.find((item) => item.tone === "bad") ??
+      totals.issues.find((item) => item.tone === "warn") ??
+      totals.issues[0] ?? {
+        tone: "warn" as const,
+        text: "Add a regiment to begin.",
+      }
+    );
+  }, [totals.issues]);
   const deferredPicker = useDeferredValue(picker);
   const pickerUnits = pickerUnitsFor(list, faction, deferredPicker);
   const selectedId = selectedRegimentId ?? list.regiments[0]?.id ?? null;
@@ -273,7 +289,9 @@ function BuilderReady({
         ? faction.spellLores[0].id
         : list.spellLoreId;
     const nextGeneral = resolveGeneralRegimentId(list, faction);
-    const nextScourgeRealm = list.scourgeRealm ?? "aqshy";
+    const nextScourgeRealm = spearhead
+      ? list.scourgeRealm
+      : (list.scourgeRealm ?? "aqshy");
     if (
       nextPrayer === list.prayerLoreId &&
       nextSpell === list.spellLoreId &&
@@ -289,20 +307,19 @@ function BuilderReady({
       generalRegimentId: nextGeneral,
       scourgeRealm: nextScourgeRealm,
     });
-  }, [list, faction]);
+  }, [list, faction, spearhead]);
 
-  async function addRegiment() {
+  useEffect(() => {
+    if (spearhead && playTab === "magic") {
+      setPlayTab("units");
+    }
+  }, [spearhead, playTab]);
+
+  function openNewRegimentHeroPicker() {
     if (list.regiments.length >= 5) {
       return;
     }
-    const id = createId();
-    await commit({
-      ...list,
-      regiments: [...list.regiments, { id, hero: null, units: [] }],
-      generalRegimentId: list.generalRegimentId ?? id,
-    });
-    setSelectedRegimentId(id);
-    setPicker({ kind: "hero", regimentId: id });
+    setPicker({ kind: "hero" });
   }
 
   async function setPlayDamage(selectionId: string, damage: number) {
@@ -366,6 +383,18 @@ function BuilderReady({
       return;
     }
     if (picker.kind === "hero") {
+      if (!picker.regimentId) {
+        const next = appendRegimentWithHero(list, unit.id, {
+          regimentId: createId(),
+          heroSelectionId: createId(),
+        });
+        if (next) {
+          await commit(next);
+          setSelectedRegimentId(next.regiments.at(-1)?.id ?? null);
+        }
+        setPicker(null);
+        return;
+      }
       const previous = list.regiments.find(
         (regiment) => regiment.id === picker.regimentId,
       )?.hero;
@@ -479,7 +508,7 @@ function BuilderReady({
         }
       : picker?.kind === "trait"
         ? {
-            title: "Heroic trait",
+            title: spearhead ? "Enhancement" : "Heroic trait",
             options: enhancementChoices(faction.heroicTraits),
             selectedId: list.heroicTrait?.optionId,
           }
@@ -570,6 +599,7 @@ function BuilderReady({
       pointsCap: list.pointsCap,
       drops: totals.drops,
       issue,
+      spearhead: isSpearheadList(list),
     });
     return () => setBuilderChrome(null);
   }, [
@@ -582,6 +612,7 @@ function BuilderReady({
     setBuilderChrome,
     enterPlay,
     exitPlay,
+    spearhead,
   ]);
 
   function renderListMain(forPlayMode: boolean) {
@@ -594,19 +625,7 @@ function BuilderReady({
             onChange={(next) =>
               setPlayTab(next as "units" | "magic" | "phases")
             }
-            options={[
-              { value: "units", label: "Units" },
-              {
-                value: "magic",
-                label: "Magic",
-                ariaLabel: "Magic and prayer lores",
-              },
-              {
-                value: "phases",
-                label: "Tactics & Phases",
-                ariaLabel: "Battle tactics and phases",
-              },
-            ]}
+            options={builderPlayTabs(spearhead)}
           />
         ) : null}
         {!forPlayMode && issue.tone !== "ok" ? (
@@ -618,7 +637,13 @@ function BuilderReady({
             <span>{issue.text}</span>
           </p>
         ) : null}
-        {!forPlayMode ? (
+        {!forPlayMode && spearhead ? (
+          <SpearheadPicks
+            list={list}
+            faction={faction}
+            onChange={(next) => void commit(next)}
+          />
+        ) : !forPlayMode ? (
         <div className="flex min-w-0 flex-col gap-4">
           <details className="group min-w-0 rounded-2xl bg-ink-raised ring-1 ring-parchment/12 open:pb-4">
             <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm text-parchment/85 marker:content-none [&::-webkit-details-marker]:hidden">
@@ -681,7 +706,7 @@ function BuilderReady({
                           <p className="mt-1 text-xs tracking-wide uppercase text-aether">
                             {[
                               power.castingValue
-                                ? `Cast ${power.castingValue}`
+                                ? castValueLabel(power.castingValue)
                                 : "",
                               power.kind,
                             ]
@@ -694,20 +719,18 @@ function BuilderReady({
                             </p>
                           ) : null}
                           {power.declare ? (
-                            <p className="mt-2 text-sm leading-relaxed text-parchment-ink/75">
-                              <span className="text-sheet-muted">
-                                Declare ·{" "}
-                              </span>
-                              {power.declare}
-                            </p>
+                            <RuleText
+                              text={power.declare}
+                              label="Declare · "
+                              className="mt-2 text-sm"
+                            />
                           ) : null}
                           {power.effect ? (
-                            <p className="mt-1 text-sm leading-relaxed text-parchment-ink/75">
-                              <span className="text-sheet-muted">
-                                Effect ·{" "}
-                              </span>
-                              {power.effect}
-                            </p>
+                            <RuleText
+                              text={power.effect}
+                              label="Effect · "
+                              className="mt-1 text-sm"
+                            />
                           ) : null}
                         </li>
                       ))}
@@ -829,16 +852,18 @@ function BuilderReady({
                       </p>
                     ) : null}
                     {ability.declare ? (
-                      <p className="mt-2 text-sm leading-relaxed text-parchment-ink/75">
-                        <span className="text-sheet-muted">Declare · </span>
-                        {ability.declare}
-                      </p>
+                      <RuleText
+                        text={ability.declare}
+                        label="Declare · "
+                        className="mt-2 text-sm"
+                      />
                     ) : null}
                     {ability.effect ? (
-                      <p className="mt-1 text-sm leading-relaxed text-parchment-ink/75">
-                        <span className="text-sheet-muted">Effect · </span>
-                        {ability.effect}
-                      </p>
+                      <RuleText
+                        text={ability.effect}
+                        label="Effect · "
+                        className="mt-1 text-sm"
+                      />
                     ) : null}
                   </li>
                 ))}
@@ -851,7 +876,7 @@ function BuilderReady({
           <PlaySummary list={list} faction={faction} />
         ) : null}
 
-        {forPlayMode && playTab === "phases" ? (
+        {forPlayMode && playTab === "phases" && !spearhead ? (
           <BattleTacticTracker
             list={list}
             onStageChange={(cardId, stage) =>
@@ -872,7 +897,7 @@ function BuilderReady({
             faction={faction}
             onOpenSheet={setDatasheet}
           />
-        ) : forPlayMode && playTab === "magic" ? (
+        ) : forPlayMode && playTab === "magic" && !spearhead ? (
           <PlayMagicBoard
             list={list}
             faction={faction}
@@ -889,16 +914,21 @@ function BuilderReady({
           />
         ) : (
           <>
-        {list.regiments.map((regiment) => (
+        {list.regiments.map((regiment) => {
+          const regimentIsGeneral = list.generalRegimentId === regiment.id;
+          return (
           <RegimentCard
             key={regiment.id}
             regiment={regiment}
             faction={faction}
-            isGeneral={list.generalRegimentId === regiment.id}
+            isGeneral={regimentIsGeneral}
             canBeGeneral={canBeGeneral(list, faction, regiment.id)}
             slotCap={totals.slotCap(regiment.id)}
             selected={selectedId === regiment.id}
             playMode={forPlayMode}
+            locked={spearhead}
+            allowUniqueHeroTrait={spearhead && regimentIsGeneral}
+            traitKind={spearhead ? "Enhancement" : undefined}
             onSelect={() => setSelectedRegimentId(regiment.id)}
             onMakeGeneral={() => {
               if (!canBeGeneral(list, faction, regiment.id)) {
@@ -961,44 +991,47 @@ function BuilderReady({
                 : undefined
             }
             onPickArtefact={
-              faction.artefacts.length > 0
-                ? (heroSelectionId) =>
+              spearhead || faction.artefacts.length === 0
+                ? undefined
+                : (heroSelectionId) =>
                     setPicker({
                       kind: "artefact",
                       heroSelectionId,
                     })
-                : undefined
             }
             onPickTrait={
-              faction.heroicTraits.length > 0
-                ? (heroSelectionId) =>
+              faction.heroicTraits.length === 0 ||
+              (spearhead && !regimentIsGeneral)
+                ? undefined
+                : (heroSelectionId) =>
                     setPicker({
                       kind: "trait",
                       heroSelectionId,
                     })
-                : undefined
             }
             onPickMonstrousTrait={
-              (faction.monstrousTraits?.length ?? 0) > 0
-                ? (heroSelectionId) =>
+              spearhead || (faction.monstrousTraits?.length ?? 0) === 0
+                ? undefined
+                : (heroSelectionId) =>
                     setPicker({
                       kind: "monstrous",
                       heroSelectionId,
                     })
-                : undefined
             }
             onPickVision={
-              (faction.visionsOfFate?.length ?? 0) > 0
-                ? (heroSelectionId) =>
+              spearhead || (faction.visionsOfFate?.length ?? 0) === 0
+                ? undefined
+                : (heroSelectionId) =>
                     setPicker({
                       kind: "vision",
                       heroSelectionId,
                     })
-                : undefined
             }
-            specialTables={specialTables}
-            specialEnhancementPicks={specialEnhancementPicks}
-            onPickSpecial={onPickSpecial}
+            specialTables={spearhead ? undefined : specialTables}
+            specialEnhancementPicks={
+              spearhead ? undefined : specialEnhancementPicks
+            }
+            onPickSpecial={spearhead ? undefined : onPickSpecial}
             onOpenDatasheet={setDatasheet}
             onToggleReinforce={(selectionId) =>
               void commit({
@@ -1075,9 +1108,10 @@ function BuilderReady({
               void setPlayDamage(selectionId, damage)
             }
           />
-        ))}
+          );
+        })}
 
-        {list.regimentOfRenown ? (
+        {list.regimentOfRenown && !spearhead ? (
           <RegimentOfRenownCard
             list={list}
             playMode={forPlayMode}
@@ -1177,7 +1211,7 @@ function BuilderReady({
           />
         ) : null}
 
-        {list.auxiliaries.length > 0 ? (
+        {list.auxiliaries.length > 0 && !spearhead ? (
           <section className="rounded-2xl bg-parchment p-5 text-parchment-ink shadow-sm">
             <h2 className="mb-3 text-sm font-semibold tracking-wide uppercase text-sheet-muted">
               Auxiliaries
@@ -1198,7 +1232,7 @@ function BuilderReady({
                           <button
                             type="button"
                             onClick={() => setDatasheet(unit)}
-                            className="min-w-0 flex-1 text-left"
+                            className="min-w-0 w-fit max-w-full text-left"
                           >
                             <span className="font-serif text-lg leading-tight">
                               {unit.name}
@@ -1466,17 +1500,17 @@ function BuilderReady({
           </section>
         ) : null}
 
-        {!forPlayMode ? (
-          <div className="flex flex-wrap items-center gap-x-1 px-1">
+        {!forPlayMode && !spearhead ? (
+          <div className="flex cursor-default flex-wrap items-center gap-x-1 px-1">
             {list.regiments.length < 5 ? (
               <button
                 type="button"
-                onClick={() => void addRegiment()}
-                className={`min-h-11 px-2 text-sm ${
+                onClick={() => openNewRegimentHeroPicker()}
+                className={
                   list.regiments.length === 0
-                    ? "text-sigmarite"
-                    : "text-ink-muted"
-                }`}
+                    ? BUILDER_ADD_ACTION_EMPHASIS_CLASS
+                    : BUILDER_ADD_ACTION_CLASS
+                }
               >
                 + Regiment
               </button>
@@ -1489,7 +1523,7 @@ function BuilderReady({
             <button
               type="button"
               onClick={() => setPicker({ kind: "aux" })}
-              className="min-h-11 px-2 text-sm text-ink-muted"
+              className={BUILDER_ADD_ACTION_CLASS}
             >
               + Auxiliary
             </button>
@@ -1501,7 +1535,7 @@ function BuilderReady({
                 <button
                   type="button"
                   onClick={() => setPicker({ kind: "ror" })}
-                  className="min-h-11 px-2 text-sm text-ink-muted"
+                  className={BUILDER_ADD_ACTION_CLASS}
                 >
                   {list.regimentOfRenown
                     ? "Change Regiment of Renown"
@@ -1512,7 +1546,7 @@ function BuilderReady({
           </div>
         ) : null}
 
-        {faction.manifestationLores.length > 0 ? (
+        {faction.manifestationLores.length > 0 && !spearhead ? (
           <ManifestationCard
             lore={manifestation ?? null}
             lores={faction.manifestationLores}
@@ -1524,7 +1558,7 @@ function BuilderReady({
           />
         ) : null}
 
-        {faction.terrain.length > 0 ? (
+        {faction.terrain.length > 0 && !spearhead ? (
           <TerrainCard terrain={faction.terrain} onOpenSheet={setDatasheet} />
         ) : null}
           </>
@@ -1548,7 +1582,7 @@ function BuilderReady({
         </div>
       </div>
 
-      {picker && pickerUnits && !playMode ? (
+      {picker && pickerUnits && !playMode && !spearhead ? (
         <PickerSheet
           title={
             picker.kind === "hero"
@@ -1567,11 +1601,12 @@ function BuilderReady({
       {datasheet ? (
         <DatasheetSheet
           sheet={datasheet}
+          hidePoints={spearhead}
           onClose={() => setDatasheet(null)}
         />
       ) : null}
 
-      {enhancementPicker ? (
+      {enhancementPicker && (!spearhead || picker?.kind === "trait") ? (
         <ChoiceSheet
           title={enhancementPicker.title}
           options={enhancementPicker.options}
@@ -1581,7 +1616,7 @@ function BuilderReady({
         />
       ) : null}
 
-      {rorPicker && !playMode ? (
+      {rorPicker && !playMode && !spearhead ? (
         <ChoiceSheet
           title={rorPicker.title}
           options={rorPicker.options}
@@ -1611,30 +1646,15 @@ function BuilderReady({
         <ModalFrame
           label="Remove regiment"
           onClose={() => setRegimentRemoveId(null)}
-          panelClassName={`${SHEET_PANEL_COMPACT_CLASS} px-5 pt-2 pb-0`}
+          panelClassName={CONFIRM_SHEET_PANEL_CLASS}
         >
-          <p className="px-2 pb-4 text-center text-sm text-sheet-muted">
+          <p className="px-2 pb-2 text-center text-sm leading-relaxed text-sheet-muted">
             {regimentRemoveMessage}
           </p>
-          <div className="ios-sheet-actions !gap-3 !pb-5">
-            <div className="ios-action-sheet">
-              <button
-                type="button"
-                onClick={() => void removeRegiment(regimentRemoveId)}
-                className="ios-action-sheet-row ios-action-sheet-row--destructive"
-              >
-                Delete
-              </button>
-              <div className="ios-action-sheet-separator" />
-              <button
-                type="button"
-                onClick={() => setRegimentRemoveId(null)}
-                className="ios-action-sheet-row ios-action-sheet-row--cancel"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
+          <ConfirmSheetActions
+            onConfirm={() => void removeRegiment(regimentRemoveId)}
+            onCancel={() => setRegimentRemoveId(null)}
+          />
         </ModalFrame>
       ) : null}
 
@@ -1737,8 +1757,10 @@ function pickerUnitsFor(
     return null;
   }
   if (picker.kind === "hero") {
-    const current = list.regiments.find((item) => item.id === picker.regimentId)
-      ?.hero?.unitId;
+    const current = picker.regimentId
+      ? list.regiments.find((item) => item.id === picker.regimentId)?.hero
+          ?.unitId
+      : undefined;
     return available(list, faction, heroesOf(faction), current);
   }
   if (picker.kind === "aux") {
@@ -2000,10 +2022,14 @@ function PlaySummary({
   faction: FactionCatalogue;
 }) {
   const formation = faction.formations.find(
-    (item) => item.id === list.formationId,
+    (item) => item.id === (list.regimentAbilityId ?? list.formationId),
   );
-  const spell = namedOption(faction.spellLores, list.spellLoreId);
-  const prayer = namedOption(faction.prayerLores, list.prayerLoreId);
+  const spell = isSpearheadList(list)
+    ? undefined
+    : namedOption(faction.spellLores, list.spellLoreId);
+  const prayer = isSpearheadList(list)
+    ? undefined
+    : namedOption(faction.prayerLores, list.prayerLoreId);
   const lines = [
     formation?.name,
     spell?.name,

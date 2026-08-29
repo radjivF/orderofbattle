@@ -1,0 +1,382 @@
+{
+  "id": "gloomspite-gitz-bad-moon-madmob",
+  "name": "Bad Moon Madmob",
+  "parentFactionId": "gloomspite-gitz",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/gloomspite-gitz/",
+  "roster": [
+    {
+      "unitId": "gloomspite-gitz-bad-moon-madmob-loonboss",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "gloomspite-gitz-bad-moon-madmob-moonclan-stabbas",
+      "count": 1
+    },
+    {
+      "unitId": "gloomspite-gitz-bad-moon-madmob-moonclan-stabbas",
+      "count": 1
+    },
+    {
+      "unitId": "gloomspite-gitz-bad-moon-madmob-squig-hoppers",
+      "count": 1
+    },
+    {
+      "unitId": "gloomspite-gitz-bad-moon-madmob-squig-hoppers",
+      "count": 1
+    },
+    {
+      "unitId": "gloomspite-gitz-bad-moon-madmob-rockgut-troggoths",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "gloomspite-gitz-bad-moon-madmob-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "SQUIGALANCHE",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "",
+          "effect": "Set up this unit wholly within your territory, wholly within 3\" of a battlefield edge and more than 6\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "UNDER THE LIGHT OF THE BAD MOON",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Start of the First Battle Round",
+          "declare": "Pick a territory (either friendly territory or enemy territory) to be under the Light of the Bad Moon. If both players can use this ability, the players roll off and the winner picks a territory to be under the Light of the Bad Moon.",
+          "effect": "While a friendly unit is wholly within the territory that is under the Light of the Bad Moon, the appropriate effect below applies to it: Frothing Zealots: If the unit is a Moonclan Stabbas unit, add 3 to its control score. Lunar Squigs: If the unit is a Squig Hoppers unit, no mortal damage is inflicted on it when it uses Retreat abilities. Moonlit Hide: If the unit is a Rockgut Troggoths unit, add 1 to save rolls for it.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "gloomspite-gitz-bad-moon-madmob-the-lunatic-hordes",
+      "name": "THE LUNATIC HORDES",
+      "abilities": [
+        {
+          "name": "THE LUNATIC HORDES",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Moonclan Stabbas unit to use this ability.",
+          "effect": "You can return up to D3 slain models to that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "gloomspite-gitz-bad-moon-madmob-the-hand-of-gork",
+      "name": "THE HAND OF GORK",
+      "abilities": [
+        {
+          "name": "THE HAND OF GORK",
+          "kind": "Activated",
+          "timing": "Once Per Battle, (Army) Your Movement Phase",
+          "declare": "Pick a friendly unit that is not in combat to use this ability.",
+          "effect": "Remove that unit from the battlefield and set it up again more than 9\" from all enemy units. KEYWORDSCORE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "gloomspite-gitz-bad-moon-madmob-fight-another-day",
+      "name": "FIGHT ANOTHER DAY",
+      "abilities": [
+        {
+          "name": "FIGHT ANOTHER DAY",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "Pick your general to use this ability if they used a FIGHT ability this turn.",
+          "effect": "Your general can make a 2D6\" move but cannot end that move in combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "gloomspite-gitz-bad-moon-madmob-hallucinogenic-fungus-brew",
+      "name": "HALLUCINOGENIC FUNGUS BREW",
+      "abilities": [
+        {
+          "name": "HALLUCINOGENIC FUNGUS BREW",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Your general has WARD (4+) in the first battle round, WARD (5+) in the second battle round, and WARD (6+) in the third and fourth battle rounds.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "gloomspite-gitz-bad-moon-madmob-the-clammy-cowl",
+      "name": "THE CLAMMY COWL",
+      "abilities": [
+        {
+          "name": "THE CLAMMY COWL",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Subtract 1 from hit rolls for attacks that target your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "gloomspite-gitz-bad-moon-madmob-nightshade-mushroom",
+      "name": "NIGHTSHADE MUSHROOM",
+      "abilities": [
+        {
+          "name": "NIGHTSHADE MUSHROOM",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Enemy Movement Phase",
+          "declare": "Pick a friendly unit within your general’s combat range.",
+          "effect": "That unit cannot be targeted by shooting attacks in the next shooting phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "gloomspite-gitz-bad-moon-madmob-loonboss",
+      "name": "Loonboss",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "5",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Moon-slicer",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "I'M DA BOSS",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Moonclan Stabbas unit wholly within 12\" of this unit to be the target.",
+          "effect": "Pick 1: Beckon the Loonatic Hordes: If the target unit is not in combat, you can return D6 slain models to it. Stab ’Em Good!: Add 1 to hit rolls for attacks made by the target unit until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "gloomspite-gitz-bad-moon-madmob-moonclan-stabbas",
+      "name": "Moonclan Stabbas",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 10,
+      "categories": [
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "1",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Stabba",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "NETTERS",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy INFANTRY unit in combat with this unit to be the target.",
+          "effect": "Roll a dice. On a 2+, subtract 1 from hit rolls for attacks made by the target unit this phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "gloomspite-gitz-bad-moon-madmob-squig-hoppers",
+      "name": "Squig Hoppers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "CAVALRY",
+        "FLY"
+      ],
+      "stats": {
+        "move": "",
+        "health": "2",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Slitta",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Squig’s Fang-filled Gob",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "BOING! BOING! BOING!",
+          "kind": "Activated",
+          "timing": "Any Movement Phase",
+          "declare": "Pick an enemy unit that any models in this unit passed across this phase to be the target, then roll a dice for each model in this unit that did so.",
+          "effect": "For each 4+, inflict 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "gloomspite-gitz-bad-moon-madmob-rockgut-troggoths",
+      "name": "Rockgut Troggoths",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "INFANTRY",
+        "WARD (5+)"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Throwin’ Boulders",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "1",
+          "hit": "5+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": ""
+        },
+        {
+          "name": "Massive Stone Maul",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "REGENERATION",
+          "kind": "Activated",
+          "timing": "Start of Any Turn",
+          "declare": "",
+          "effect": "Heal (D3) this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

@@ -1,0 +1,467 @@
+{
+  "id": "kharadron-overlords-skyhammer-task-force",
+  "name": "Skyhammer Task Force",
+  "parentFactionId": "kharadron-overlords",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/kharadron-overlords/",
+  "roster": [
+    {
+      "unitId": "kharadron-overlords-skyhammer-task-force-arkanaut-admiral",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "kharadron-overlords-skyhammer-task-force-arkanaut-company",
+      "count": 1
+    },
+    {
+      "unitId": "kharadron-overlords-skyhammer-task-force-arkanaut-company",
+      "count": 1
+    },
+    {
+      "unitId": "kharadron-overlords-skyhammer-task-force-skywardens",
+      "count": 1
+    },
+    {
+      "unitId": "kharadron-overlords-skyhammer-task-force-arkanaut-frigate",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "kharadron-overlords-skyhammer-task-force-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "PLY THE SKIES",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a non-CHARGE MOVE ability for an Arkanaut Frigate",
+          "declare": "Used By: The Arkanaut Frigate that is using that MOVE ability.",
+          "effect": "Pick a friendly INFANTRY unit that is wholly within the combat range of that Arkanaut Frigate and not in combat to be transported. Remove that INFANTRY unit from the battlefield. Then, when the Arkanaut Frigate ends its move, set up the INFANTRY unit on the battlefield again, wholly within the combat range of the Arkanaut Frigate and not in combat. A unit cannot use CHARGE abilities if it was transported in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "kharadron-overlords-skyhammer-task-force-assault-boat",
+      "name": "ASSAULT BOAT",
+      "abilities": [
+        {
+          "name": "ASSAULT BOAT",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Movement Phase",
+          "declare": "Pick a friendly unit that was transported this turn to use this ability.",
+          "effect": "That unit can still use CHARGE abilities later in the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "kharadron-overlords-skyhammer-task-force-disengage",
+      "name": "DISENGAGE",
+      "abilities": [
+        {
+          "name": "DISENGAGE",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Movement Phase",
+          "declare": "Pick a friendly Arkanaut Frigate to use this ability.",
+          "effect": "If that unit uses a RETREAT ability this phase, no mortal damage is inflicted on it and it can still use SHOOT abilities later in the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "kharadron-overlords-skyhammer-task-force-masterwrought-armour",
+      "name": "MASTERWROUGHT ARMOUR",
+      "abilities": [
+        {
+          "name": "MASTERWROUGHT ARMOUR",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Your general has WARD (6+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "kharadron-overlords-skyhammer-task-force-there-s-no-reward-without-risk",
+      "name": "THERE'S NO REWARD WITHOUT RISK",
+      "abilities": [
+        {
+          "name": "THERE'S NO REWARD WITHOUT RISK",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Reaction: You declared a CHARGE ability for a unit wholly within 12\" of your general",
+          "declare": "",
+          "effect": "You can re-roll the charge roll for that CHARGE ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "kharadron-overlords-skyhammer-task-force-flask-of-vintage-gorogna",
+      "name": "FLASK OF VINTAGE GOROGNA",
+      "abilities": [
+        {
+          "name": "FLASK OF VINTAGE GOROGNA",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Hero Phase",
+          "declare": "",
+          "effect": "Heal (D6) your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "kharadron-overlords-skyhammer-task-force-leave-no-duardin-behind",
+      "name": "LEAVE NO DUARDIN BEHIND",
+      "abilities": [
+        {
+          "name": "LEAVE NO DUARDIN BEHIND",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Hero Phase",
+          "declare": "Pick a friendly Arkanaut Company unit wholly within 12\" of your general and roll a dice for each slain model from that unit.",
+          "effect": "For each 4+, you can return 1 slain model to that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "kharadron-overlords-skyhammer-task-force-arkanaut-admiral",
+      "name": "Arkanaut Admiral",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "6",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Masterwork Volley Pistol",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Skalfhammer",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "3",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "ALWAYS TAKE WHAT YOU ARE OWED",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Arkanaut Company unit wholly within 12\" of this unit to be the target.",
+          "effect": "Add D6 to the target’s control score until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "kharadron-overlords-skyhammer-task-force-arkanaut-company",
+      "name": "Arkanaut Company",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "1",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Privateer Pistol",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Aethermatic Volley Gun",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "2D6",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Light Skyhook",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": ""
+        },
+        {
+          "name": "Arkanaut Cutter",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Gun Butt",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Skypike",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "GLORY-SEEKERS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to hit rolls for attacks made by this unit that target a unit contesting an objective.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "kharadron-overlords-skyhammer-task-force-skywardens",
+      "name": "Skywardens",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "INFANTRY",
+        "FLY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "2",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Vulcaniser Pistol",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Aethermatic Volley Gun",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "2D6",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Skypike",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (Mortal)"
+        },
+        {
+          "name": "Gun Butt",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "TIMED CHARGES",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "Pick an enemy unit in combat with this unit to be the target, then roll a dice.",
+          "effect": "On a 2+, inflict 1 mortal damage on the target, and this unit can immediately use the ‘Retreat’ ability without any mortal damage being inflicted on it.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "kharadron-overlords-skyhammer-task-force-arkanaut-frigate",
+      "name": "Arkanaut Frigate",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "WAR MACHINE",
+        "FLY"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "15",
+        "save": "3+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Heavy Skyhook",
+          "kind": "ranged",
+          "range": "24\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D6",
+          "ability": ""
+        },
+        {
+          "name": "Aethershot Carbines",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Crew’s Boarding Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "8",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "BOMB RACKS",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Movement Phase",
+          "declare": "Pick an enemy unit that this unit passed across this phase to be the target.",
+          "effect": "Inflict D3+1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

@@ -1,15 +1,24 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLayoutEffect, useState, useSyncExternalStore } from "react";
-import { getFaction, listArmiesOfRenown, listFactions, armyOfRenownName } from "@/engine/queries";
+import { getFaction, armyOfRenownName } from "@/engine/queries";
+import {
+  catalogueForList,
+  getSpearhead,
+  isSpearheadList,
+} from "@/engine/spearhead";
+import { listFactionsByGrandAlliance } from "@/lib/factionAlliance";
 import { formatPoints } from "@/engine/pointsCap";
 import { summarize } from "@/engine/validate";
 import type { ArmyList, FactionCatalogue } from "@/engine/types";
 import { catalogueArtClass, catalogueArtSrc, factionArtSrc } from "@/lib/factionArt";
+import { factionPickerCounts } from "@/lib/factionSeo";
 import {
   blankArmy,
+  blankSpearhead,
   deleteArmy,
   duplicateArmy,
   getArmiesServerSnapshot,
@@ -21,33 +30,44 @@ import {
   rememberListNavigation,
   rememberListOpen,
 } from "@/lib/listTransition";
+import { listOpenDisplayNameForHeader } from "@/lib/listFlowNav";
 import { newListDraftFromSearch } from "@/lib/newListLink";
 import {
+  encodeNewListArmyValue,
+  newListArmySelectGroups,
+  newListArmySelectHasExtras,
+  parseNewListArmyValue,
+} from "@/lib/newListArmyOptions";
+import {
+  CONFIRM_SHEET_PANEL_CLASS,
   EMPTY_LIBRARY_CTA_CLASS,
   EMPTY_LIBRARY_PANEL_CLASS,
-  IOS_LIQUID_CTA_CLASS,
   LIBRARY_CARD_ACTION_BUTTON_CLASS,
   LIBRARY_CARD_ACTIONS_CLASS,
   LIBRARY_CARD_CLASS,
   LIBRARY_CARD_DELETE_BUTTON_CLASS,
   SHEET_HEADER_CLASS,
   SHEET_PANEL_CLASS,
-  SHEET_PANEL_COMPACT_CLASS,
 } from "@/lib/builderUi";
 import { useListFlowChrome } from "./ListFlowShell";
 import { FactionArtLayers } from "./FactionArtBackground";
 import { BrandMark } from "./BrandMark";
-import { SheetCloseButton, IosTrashIcon } from "./ios/SheetIconButton";
+import { SheetCloseButton } from "./ios/SheetIconButton";
 import { ListLoadingSplash } from "./ListLoadingSplash";
 import { ModalFrame } from "./ModalFrame";
+import { ConfirmSheetActions } from "./ConfirmSheetActions";
+import { SheetFormActions } from "./SheetFormActions";
 import { PointsCapField } from "./PointsCapField";
 import { SiteFooter } from "./SiteFooter";
 
-function isInteractiveEventTarget(target: EventTarget | null): boolean {
-  return (
-    target instanceof HTMLElement &&
-    Boolean(target.closest("button, input, textarea, select, a"))
-  );
+function rememberOpenList(list: ArmyList) {
+  const faction = getFaction(list.factionId);
+  const artId =
+    faction?.parentFactionIds?.[0] ??
+    (factionArtSrc(list.factionId) ? list.factionId : null) ??
+    list.factionId;
+  rememberListOpen(artId, listOpenDisplayNameForHeader(list));
+  rememberListNavigation("forward");
 }
 
 export function LibraryScreen() {
@@ -67,21 +87,18 @@ export function LibraryScreen() {
   );
   const [draftName, setDraftName] = useState("");
   const [draftPoints, setDraftPoints] = useState(2000);
+  const [draftMode, setDraftMode] = useState<"points" | "spearhead">("points");
+  const [draftSpearheadId, setDraftSpearheadId] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
-
-  function openList(listId: string, factionId: string | null | undefined) {
-    const faction = getFaction(factionId ?? "");
-    const artId =
-      faction?.parentFactionIds?.[0] ??
-      (factionArtSrc(factionId) ? factionId : null) ??
-      factionId;
-    rememberListOpen(artId, faction?.name);
-    rememberListNavigation("forward");
-    router.push(`/lists/${listId}`);
-  }
+  const createCounts = draftFaction
+    ? factionPickerCounts(draftFaction)
+    : null;
 
   async function onCreate() {
     if (!draftFaction || creating) {
+      return;
+    }
+    if (draftMode === "spearhead" && !draftSpearheadId) {
       return;
     }
     setCreating(true);
@@ -92,7 +109,10 @@ export function LibraryScreen() {
     rememberListOpen(artFactionId, (draftParent ?? draftFaction).name);
     rememberListNavigation("forward");
     try {
-      const list = blankArmy(draftFaction.id, draftName, draftPoints);
+      const list =
+        draftMode === "spearhead" && draftSpearheadId
+          ? blankSpearhead(draftSpearheadId, draftName)
+          : blankArmy(draftFaction.id, draftName, draftPoints);
       await saveArmy(list);
       setPicking(false);
       router.push(`/lists/${list.id}`);
@@ -131,6 +151,8 @@ export function LibraryScreen() {
     setDraftParent(null);
     setDraftName("");
     setDraftPoints(2000);
+    setDraftMode("points");
+    setDraftSpearheadId(null);
   }
 
   const { setLibraryChrome } = useListFlowChrome();
@@ -197,23 +219,26 @@ export function LibraryScreen() {
           <ul className="grid grid-cols-1 gap-4 pt-2 lg:grid-cols-2 lg:gap-5">
             {lists.map((list, index) => {
               const faction = getFaction(list.factionId);
-              const totals = faction ? summarize(list, faction) : null;
-              const formation = faction?.formations.find(
-                (item) => item.id === list.formationId,
+              const playCatalogue = catalogueForList(list);
+              const totals = playCatalogue
+                ? summarize(list, playCatalogue)
+                : null;
+              const formation = playCatalogue?.formations.find(
+                (item) => item.id === (list.regimentAbilityId ?? list.formationId),
               );
+              const spearhead = isSpearheadList(list);
               const artSrc = catalogueArtSrc(faction);
               return (
                 <li key={list.id}>
-                  <article
-                    className={LIBRARY_CARD_CLASS}
-                    onClick={(event) => {
-                      if (isInteractiveEventTarget(event.target)) {
-                        return;
-                      }
-                      openList(list.id, list.factionId);
-                    }}
-                  >
-                    <div className="flex min-w-0 flex-col p-4 sm:p-5">
+                  <article className={LIBRARY_CARD_CLASS}>
+                    <Link
+                      href={`/lists/${list.id}`}
+                      scroll={false}
+                      aria-label={`Open ${list.name}`}
+                      onClick={() => rememberOpenList(list)}
+                      className="absolute inset-0 z-[1]"
+                    />
+                    <div className="pointer-events-none relative z-[2] flex min-w-0 flex-col p-4 sm:p-5">
                       <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
                         {faction?.name ?? "Unknown faction"}
                       </p>
@@ -228,22 +253,21 @@ export function LibraryScreen() {
                             event.currentTarget.blur();
                           }
                         }}
-                        className="mt-1 w-full bg-transparent font-serif text-[1.45rem] leading-tight outline-none sm:text-2xl"
+                        className="pointer-events-auto relative mt-1 w-full cursor-text bg-transparent font-serif text-[1.45rem] leading-tight outline-none sm:text-2xl"
                       />
-                      <button
-                        type="button"
-                        onClick={() => openList(list.id, list.factionId)}
-                        className="mt-2 flex w-full flex-1 items-center gap-2 text-left"
-                      >
-                        <span className="min-w-0 flex-1">
-                          <span className="block text-base font-semibold text-gold-deep">
-                            {formatPoints(totals?.points ?? 0)} /{" "}
-                            {formatPoints(list.pointsCap)}
-                          </span>
-                          <span className="mt-0.5 block text-sm text-sheet-muted sm:text-base">
-                            {formation?.name ?? "No formation"}
-                          </span>
-                        </span>
+                      <div className="mt-2 flex w-full flex-1 items-center gap-2">
+                        <div className="min-w-0 flex-1">
+                          <p className="text-base font-semibold text-gold-deep">
+                            {spearhead
+                              ? "Spearhead"
+                              : `${formatPoints(totals?.points ?? 0)} / ${formatPoints(list.pointsCap)}`}
+                          </p>
+                          <p className="mt-0.5 text-sm text-sheet-muted sm:text-base">
+                            {spearhead
+                              ? playCatalogue?.name ?? "Spearhead"
+                              : (formation?.name ?? "No formation")}
+                          </p>
+                        </div>
                         <svg
                           aria-hidden="true"
                           viewBox="0 0 12 20"
@@ -258,9 +282,10 @@ export function LibraryScreen() {
                             strokeLinejoin="round"
                           />
                         </svg>
-                        <span className="sr-only">Open list</span>
-                      </button>
-                      <div className={LIBRARY_CARD_ACTIONS_CLASS}>
+                      </div>
+                      <div
+                        className={`pointer-events-auto relative ${LIBRARY_CARD_ACTIONS_CLASS}`}
+                      >
                         <button
                           type="button"
                           className={LIBRARY_CARD_ACTION_BUTTON_CLASS}
@@ -285,12 +310,7 @@ export function LibraryScreen() {
                     </div>
 
                     {artSrc ? (
-                      <button
-                        type="button"
-                        aria-label={`Open ${list.name}`}
-                        onClick={() => openList(list.id, list.factionId)}
-                        className="relative min-h-[8.5rem] overflow-hidden border-l border-parchment-ink/10"
-                      >
+                      <div className="pointer-events-none relative min-h-[8.5rem] overflow-hidden border-l border-parchment-ink/10">
                         <Image
                           src={artSrc}
                           alt=""
@@ -301,17 +321,13 @@ export function LibraryScreen() {
                           unoptimized
                           priority={index === 0}
                           loading={index === 0 ? "eager" : "lazy"}
+                          fetchPriority={index === 0 ? "high" : undefined}
                           className={catalogueArtClass(faction)}
                         />
                         <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#efe6d2]/35" />
-                      </button>
+                      </div>
                     ) : (
-                      <button
-                        type="button"
-                        aria-label={`Open ${list.name}`}
-                        onClick={() => openList(list.id, list.factionId)}
-                        className="min-h-[8.5rem] border-l border-parchment-ink/10 bg-parchment-ink/5"
-                      />
+                      <div className="pointer-events-none min-h-[8.5rem] border-l border-parchment-ink/10 bg-parchment-ink/5" />
                     )}
                   </article>
                 </li>
@@ -326,34 +342,18 @@ export function LibraryScreen() {
         <ModalFrame
           label="Delete list"
           onClose={() => setDeleteTarget(null)}
-          panelClassName={`${SHEET_PANEL_COMPACT_CLASS} px-5 pt-2 pb-0`}
+          panelClassName={CONFIRM_SHEET_PANEL_CLASS}
         >
-          <p className="px-2 pb-4 text-center text-sm text-sheet-muted">
+          <p className="px-2 pb-2 text-center text-sm leading-relaxed text-sheet-muted">
             <span className="font-serif text-base text-parchment-ink">
               {deleteTarget.name}
             </span>{" "}
             will be removed from this device. This cannot be undone.
           </p>
-          <div className="ios-sheet-actions !gap-3 !pb-5">
-            <div className="ios-action-sheet">
-              <button
-                type="button"
-                onClick={() => void confirmDelete()}
-                aria-label="Delete"
-                className="ios-action-sheet-row ios-action-sheet-row--destructive"
-              >
-                <IosTrashIcon />
-              </button>
-              <div className="ios-action-sheet-separator" />
-              <button
-                type="button"
-                onClick={() => setDeleteTarget(null)}
-                className="ios-action-sheet-row ios-action-sheet-row--cancel"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
+          <ConfirmSheetActions
+            onConfirm={() => void confirmDelete()}
+            onCancel={() => setDeleteTarget(null)}
+          />
         </ModalFrame>
       ) : null}
 
@@ -364,46 +364,76 @@ export function LibraryScreen() {
           panelClassName={`${SHEET_PANEL_CLASS} text-parchment-ink`}
         >
             <div className={SHEET_HEADER_CLASS}>
-              <h2 className="font-serif text-2xl">
-                {draftFaction ? "Name your list" : "Choose a faction"}
-              </h2>
+              <div className="flex min-w-0 flex-1 flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                <h2 className="font-serif text-2xl">
+                  {draftFaction ? "Create new list" : "Choose a faction"}
+                </h2>
+                {createCounts ? (
+                  <p className="shrink-0 text-xs leading-snug text-sheet-muted sm:text-sm">
+                    {createCounts.heroes} heroes · {createCounts.units} units
+                  </p>
+                ) : null}
+              </div>
               <SheetCloseButton label="Close picker" onClick={closePicker} />
             </div>
 
             {draftFaction ? (
-              <div className="flex flex-col gap-4 overflow-y-auto px-5 pb-6">
+              <div className="modal-sheet-scroll flex flex-col gap-4 overflow-y-auto px-5 pb-6">
                 <p className="text-base text-sheet-muted">
                   {(draftParent ?? draftFaction).name}
                 </p>
-                {draftParent && listArmiesOfRenown(draftParent.id).length > 0 ? (
+                {draftParent && newListArmySelectHasExtras(draftParent.id) ? (
                   <label className="flex flex-col gap-2 text-base text-sheet-muted">
                     Army
                     <select
-                      value={draftFaction.id}
+                      value={
+                        draftMode === "spearhead" && draftSpearheadId
+                          ? encodeNewListArmyValue({
+                              kind: "spearhead",
+                              spearheadId: draftSpearheadId,
+                            })
+                          : draftFaction.id
+                      }
                       onChange={(event) => {
+                        const parsed = parseNewListArmyValue(event.target.value);
+                        const previousLabel =
+                          draftMode === "spearhead" && draftSpearheadId
+                            ? (getSpearhead(draftSpearheadId)?.name ??
+                              draftParent.name)
+                            : armyOfRenownName(draftFaction);
+                        if (parsed.kind === "spearhead") {
+                          const box = getSpearhead(parsed.spearheadId);
+                          setDraftMode("spearhead");
+                          setDraftSpearheadId(parsed.spearheadId);
+                          setDraftFaction(draftParent);
+                          setDraftName((current) =>
+                            current === `My ${previousLabel}`
+                              ? `My ${box?.name ?? draftParent.name}`
+                              : current,
+                          );
+                          return;
+                        }
                         const next =
-                          getFaction(event.target.value) ?? draftParent;
-                        setDraftName((current) => {
-                          const previous = armyOfRenownName(draftFaction);
-                          if (
-                            current === `My ${previous}` ||
-                            current === `My ${draftFaction.name}`
-                          ) {
-                            return `My ${armyOfRenownName(next)}`;
-                          }
-                          return current;
-                        });
+                          getFaction(parsed.factionId) ?? draftParent;
+                        setDraftMode("points");
+                        setDraftSpearheadId(null);
                         setDraftFaction(next);
+                        setDraftName((current) =>
+                          current === `My ${previousLabel}`
+                            ? `My ${armyOfRenownName(next)}`
+                            : current,
+                        );
                       }}
                       className="min-h-11 w-full rounded-xl bg-parchment-ink/5 px-3 font-serif text-xl text-parchment-ink"
                     >
-                      <option value={draftParent.id}>
-                        Standard {draftParent.name}
-                      </option>
-                      {listArmiesOfRenown(draftParent.id).map((army) => (
-                        <option key={army.id} value={army.id}>
-                          {armyOfRenownName(army)}
-                        </option>
+                      {newListArmySelectGroups(draftParent.id).map((group) => (
+                        <optgroup key={group.label} label={group.label}>
+                          {group.options.map((option) => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
+                        </optgroup>
                       ))}
                     </select>
                   </label>
@@ -423,55 +453,59 @@ export function LibraryScreen() {
                     className="min-h-11 w-full rounded-xl bg-parchment-ink/5 px-3 font-serif text-xl text-parchment-ink outline-none"
                   />
                 </label>
-                <PointsCapField
-                  value={draftPoints}
-                  onChange={setDraftPoints}
-                  variant="parchment"
+                {draftMode === "spearhead" ? null : (
+                  <PointsCapField
+                    value={draftPoints}
+                    onChange={setDraftPoints}
+                    variant="parchment"
+                  />
+                )}
+                <SheetFormActions
+                  primaryLabel={creating ? "Creating…" : "Create"}
+                  onPrimary={() => void onCreate()}
+                  secondaryLabel="Back"
+                  onSecondary={() => {
+                    setDraftFaction(null);
+                    setDraftParent(null);
+                    setDraftName("");
+                    setDraftMode("points");
+                    setDraftSpearheadId(null);
+                  }}
+                  primaryDisabled={creating}
+                  secondaryDisabled={creating}
                 />
-                <div className="ios-sheet-actions">
-                  <button
-                    type="button"
-                    disabled={creating}
-                    onClick={() => void onCreate()}
-                    className={`${IOS_LIQUID_CTA_CLASS} disabled:opacity-60`}
-                  >
-                    {creating ? "Creating…" : "Create"}
-                  </button>
-                  <button
-                    type="button"
-                    disabled={creating}
-                    onClick={() => {
-                      setDraftFaction(null);
-                      setDraftParent(null);
-                      setDraftName("");
-                    }}
-                    className="min-h-11 w-full text-base text-sheet-muted disabled:opacity-60"
-                  >
-                    Back
-                  </button>
-                </div>
               </div>
             ) : (
-              <ul className="overflow-y-auto px-3 pb-6">
-                {listFactions().map((faction) => (
-                  <li key={faction.id}>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setDraftParent(faction);
-                        setDraftFaction(faction);
-                        setDraftName(`My ${faction.name}`);
-                        setDraftPoints(faction.pointsCapDefault);
-                      }}
-                      className="flex min-h-12 w-full items-center justify-between rounded-lg px-3 py-2.5 text-left hover:bg-parchment-ink/5"
+              <ul className="modal-sheet-scroll overflow-y-auto px-3 pb-6">
+                {listFactionsByGrandAlliance().map((group, groupIndex) => (
+                  <li key={group.alliance} className="list-none">
+                    <p
+                      className={`px-3 pb-1 text-xs font-semibold tracking-wide uppercase text-sheet-muted ${
+                        groupIndex === 0 ? "pt-1" : "pt-4"
+                      }`}
                     >
-                      <span className="font-serif text-xl text-parchment-ink">
-                        {faction.name}
-                      </span>
-                      <span className="text-sm font-medium text-sheet-muted">
-                        {faction.units.length}
-                      </span>
-                    </button>
+                      {group.label}
+                    </p>
+                    <ul className="flex flex-col">
+                      {group.factions.map((faction) => (
+                        <li key={faction.id}>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setDraftParent(faction);
+                              setDraftFaction(faction);
+                              setDraftName(`My ${faction.name}`);
+                              setDraftPoints(faction.pointsCapDefault);
+                            }}
+                            className="flex min-h-12 w-full items-center rounded-lg px-3 py-2.5 text-left hover:bg-parchment-ink/5"
+                          >
+                            <span className="min-w-0 font-serif text-xl text-parchment-ink">
+                              {faction.name}
+                            </span>
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
                   </li>
                 ))}
               </ul>

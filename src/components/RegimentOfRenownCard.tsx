@@ -17,6 +17,7 @@ import type {
   UnitAbility,
 } from "@/engine/types";
 import { PlayBindNotes, PlayHealthTrack, SlotEnhancements, SlotMoreMenu } from "./RegimentCard";
+import { RuleText } from "./RuleText";
 import { BuildSlotRow, PlaySlotRow } from "./ios/SheetIconButton";
 
 type Props = {
@@ -104,7 +105,7 @@ export function RegimentOfRenownCard({
                 <p className="text-xs text-sheet-muted">{ability.timing}</p>
               ) : null}
               {ability.effect ? (
-                <p className="mt-1 leading-relaxed">{ability.effect}</p>
+                <RuleText text={ability.effect} className="mt-1 text-sm" />
               ) : null}
             </li>
           ))}

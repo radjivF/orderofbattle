@@ -1,4 +1,6 @@
 import { getListUnit, getRegimentOfRenown } from "./queries";
+import { isSpearheadList } from "./spearhead";
+import { isUniversalCoreAbility, warscrollAbilities } from "./coreRules";
 import type {
   ArmyList,
   CatalogueUnit,
@@ -306,15 +308,19 @@ export function buildPhaseBoards(
     });
   }
 
+  const formationId = list.regimentAbilityId ?? list.formationId;
   const formation = faction.formations.find(
-    (item) => item.id === list.formationId,
+    (item) => item.id === formationId,
   );
   if (formation) {
     pushLabeledAbilities(
       boards,
       formation.id,
-      `Battle formation · ${formation.name}`,
+      isSpearheadList(list)
+        ? `Regiment ability · ${formation.name}`
+        : `Battle formation · ${formation.name}`,
       formation.abilities,
+      true,
     );
   }
 
@@ -324,6 +330,7 @@ export function buildPhaseBoards(
       trait.id,
       `Battle trait · ${trait.name}`,
       trait.abilities,
+      true,
     );
   }
 
@@ -349,8 +356,11 @@ export function buildPhaseBoards(
   }
 
   for (const entry of roster) {
-    for (const ability of entry.unit.abilities) {
-      if (omitFromPhaseBoard(ability)) {
+    const abilities = isSpearheadList(list)
+      ? warscrollAbilities(entry.unit)
+      : entry.unit.abilities;
+    for (const ability of abilities) {
+      if (omitFromPhaseBoard(ability, isSpearheadList(list))) {
         continue;
       }
       for (const phaseId of phasesForAbility(ability)) {
@@ -410,7 +420,7 @@ export function buildPhaseBoards(
         ...model.abilities,
       ];
       for (const ability of powers) {
-        if (omitFromPhaseBoard(ability)) {
+        if (omitFromPhaseBoard(ability, isSpearheadList(list))) {
           continue;
         }
         for (const phaseId of phasesForAbility(ability)) {
@@ -446,12 +456,17 @@ function pushLabeledAbilities(
   selectionId: string,
   unitName: string,
   abilities: UnitAbility[],
+  alsoArmy = false,
 ) {
   for (const ability of abilities) {
-    if (omitFromPhaseBoard(ability)) {
+    if (omitFromPhaseBoard(ability, false)) {
       continue;
     }
-    for (const phaseId of phasesForAbility(ability)) {
+    const phaseIds = phasesForAbility(ability);
+    if (alsoArmy && !phaseIds.includes("passive")) {
+      phaseIds.push("passive");
+    }
+    for (const phaseId of phaseIds) {
       boards.get(phaseId)?.abilities.push({
         selectionId,
         unitName,
@@ -461,9 +476,9 @@ function pushLabeledAbilities(
   }
 }
 
-/** Profile reminders belong on the unit card / datasheet, not phase boards. */
-function omitFromPhaseBoard(ability: UnitAbility): boolean {
-  return ability.name.toLowerCase() === "battle damaged";
+/** Profile reminders and universal core rules belong off Spearhead unit rows. */
+function omitFromPhaseBoard(ability: UnitAbility, spearhead: boolean): boolean {
+  return spearhead && isUniversalCoreAbility(ability.name);
 }
 
 function pushEnhancementAbilities(
@@ -493,7 +508,9 @@ function pushEnhancementAbilities(
     field === "artefact"
       ? "Artefact"
       : field === "heroicTrait"
-        ? "Heroic trait"
+        ? isSpearheadList(list)
+          ? "Enhancement"
+          : "Heroic trait"
         : field === "monstrousTrait"
           ? "Monstrous trait"
           : "Vision of Fate";

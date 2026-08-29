@@ -1,0 +1,414 @@
+{
+  "id": "daughters-of-khaine-khainite-shadow-coven",
+  "name": "Khainite Shadow Coven",
+  "parentFactionId": "daughters-of-khaine",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/daughters-of-khaine/",
+  "roster": [
+    {
+      "unitId": "daughters-of-khaine-khainite-shadow-coven-slaughter-queen-on-cauldron-of-blood",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "daughters-of-khaine-khainite-shadow-coven-hag-queen",
+      "count": 1
+    },
+    {
+      "unitId": "daughters-of-khaine-khainite-shadow-coven-bloodwrack-medusa",
+      "count": 1
+    },
+    {
+      "unitId": "daughters-of-khaine-khainite-shadow-coven-khainite-shadowstalkers",
+      "count": 1
+    },
+    {
+      "unitId": "daughters-of-khaine-khainite-shadow-coven-sisters-of-slaughter",
+      "count": 1
+    },
+    {
+      "unitId": "daughters-of-khaine-khainite-shadow-coven-sisters-of-slaughter",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "daughters-of-khaine-khainite-shadow-coven-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "SHADOWMASKED",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Any Charge Phase",
+          "declare": "Pick a friendly INFANTRY unit that is in combat and did not charge this turn to be the target.",
+          "effect": "Subtract 1 from hit rolls and wound rolls for combat attacks that target that friendly unit for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "daughters-of-khaine-khainite-shadow-coven-bleed-them-pale",
+      "name": "BLEED THEM PALE",
+      "abilities": [
+        {
+          "name": "BLEED THEM PALE",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "Pick a friendly INFANTRY unit that is in combat and did not charge this turn to be the target.",
+          "effect": "The target can move 6\" but cannot end that move in combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "daughters-of-khaine-khainite-shadow-coven-murderous-strike",
+      "name": "MURDEROUS STRIKE",
+      "abilities": [
+        {
+          "name": "MURDEROUS STRIKE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to the Rend characteristic of melee weapons used by friendly INFANTRY units that charged in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "daughters-of-khaine-khainite-shadow-coven-shadow-avatar",
+      "name": "SHADOW AVATAR",
+      "abilities": [
+        {
+          "name": "SHADOW AVATAR",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Combat Phase",
+          "declare": "",
+          "effect": "Add 1 to the Rend characteristic of your general’s melee weapons for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "daughters-of-khaine-khainite-shadow-coven-boiling-blood",
+      "name": "BOILING BLOOD",
+      "abilities": [
+        {
+          "name": "BOILING BLOOD",
+          "kind": "Activated",
+          "timing": "Your Shooting Phase",
+          "declare": "Pick a visible enemy unit within 12\" of your general to be the target.",
+          "effect": "Roll a dice. If the roll equals or exceeds the target’s Save characteristic, halve the target’s Move characteristic until the start of your next turn",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "daughters-of-khaine-khainite-shadow-coven-frenzied-exhortations",
+      "name": "FRENZIED EXHORTATIONS",
+      "abilities": [
+        {
+          "name": "FRENZIED EXHORTATIONS",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly unit wholly within 12\" of your general to be the target.",
+          "effect": "Roll a dice. On a 3+, add 1 to ward rolls for the target for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "daughters-of-khaine-khainite-shadow-coven-bladed-impact",
+      "name": "BLADED IMPACT",
+      "abilities": [
+        {
+          "name": "BLADED IMPACT",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "If your general charged this phase, pick an enemy unit within 1\" of them to be the target.",
+          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "daughters-of-khaine-khainite-shadow-coven-slaughter-queen-on-cauldron-of-blood",
+      "name": "Slaughter Queen on Cauldron of Blood",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "PRIEST",
+        "WAR MACHINE",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "12",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Shrine Guardians’ Blades",
+          "kind": "melee",
+          "range": "",
+          "attacks": "9",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "CONSECRATED REVULSION",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly INFANTRY unit wholly within 12\" of this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, add 1 to save rolls for the target until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "daughters-of-khaine-khainite-shadow-coven-hag-queen",
+      "name": "Hag Queen",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "PRIEST",
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Blade of Khaine",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "BLOODY INCITEMENT",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target.",
+          "effect": "If this unit is in combat, the target’s melee weapons have Crit (Auto-wound) for the rest of the turn. If this unit is not in combat, roll a dice. On a 3+, the target’s melee weapons have Crit (Auto-wound) for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "daughters-of-khaine-khainite-shadow-coven-bloodwrack-medusa",
+      "name": "Bloodwrack Medusa",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "WIZARD",
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "6",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Bloodwrack Spear",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "EXSANGUINATING GLARE",
+          "kind": "Activated",
+          "timing": "Your Shooting Phase",
+          "declare": "If this unit is in combat, pick an enemy unit in combat with it to be the target. Otherwise, pick a visible enemy unit within 12\" of it to be the target.",
+          "effect": "Roll a dice. On a 3+, inflict 1 mortal damage on the target. Then, if any enemy models were slain by that mortal damage, inflict an additional 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "daughters-of-khaine-khainite-shadow-coven-khainite-shadowstalkers",
+      "name": "Khainite Shadowstalkers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 9,
+      "categories": [
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "1",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Cursed Bolts and Missiles",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Blades of Murder",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "SHADOW LEAP",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Movement Phase",
+          "declare": "",
+          "effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 6\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "daughters-of-khaine-khainite-shadow-coven-sisters-of-slaughter",
+      "name": "Sisters of Slaughter",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Kruiplash",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "DANCE OF DEATH",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Enemy Combat Phase",
+          "declare": "",
+          "effect": "If this unit is in combat, it can move 2D6\". It can move through the combat ranges of enemy units but must end that move in combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

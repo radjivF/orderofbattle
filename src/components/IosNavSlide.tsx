@@ -2,34 +2,27 @@
 
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useLayoutEffect,
   useRef,
   useState,
-  useSyncExternalStore,
-  useTransition,
   type ReactNode,
 } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import {
+  LIST_FLOW_HEADER_OFFSET_CLASS,
+  SITE_HEADER_BAR_CLASS,
+} from "@/lib/builderUi";
+import { listFlowTrackClass, listFlowWindowScrollY } from "@/lib/listFlowNav";
+import {
   clearListNavigationDirection,
+  clearListOpenSplash,
   peekListNavigationDirection,
   rememberListNavigation,
 } from "@/lib/listTransition";
-import {
-  iosPushSlideClass,
-  libraryReturnCoverCanDismiss,
-  libraryReturnCoverRemainingMs,
-  type SlidePhase,
-} from "@/lib/iosNavSlide";
-import {
-  getArmiesServerSnapshot,
-  getArmiesSnapshot,
-  subscribeArmies,
-} from "@/lib/storage";
 import { IndexBackdropLayer } from "./IndexBackdrop";
-import { ListLoadingSplash } from "./ListLoadingSplash";
 
 const SLIDE_MS = 320;
 
@@ -49,46 +42,60 @@ function prefersReducedMotion() {
 
 type ListNavProviderProps = {
   children: ReactNode;
+  libraryLayer: ReactNode;
   header?: ReactNode;
-  headerMode?: "builder" | "library" | null;
   backdrop?: ReactNode;
   overlay?: ReactNode;
+  onShowDetailChange?: (state: {
+    showDetail: boolean;
+    animatingBack: boolean;
+  }) => void;
 };
-
-function listFlowHeaderOffsetClass(
-  headerMode: ListNavProviderProps["headerMode"],
-) {
-  if (headerMode === "library") {
-    return "pt-[calc(env(safe-area-inset-top)+3.75rem)]";
-  }
-  if (headerMode === "builder") {
-    return "pt-[calc(env(safe-area-inset-top)+3.75rem)]";
-  }
-  return "";
-}
 
 export function ListNavProvider({
   children,
+  libraryLayer,
   header,
-  headerMode = null,
   backdrop,
   overlay,
+  onShowDetailChange,
 }: ListNavProviderProps) {
   const router = useRouter();
   const pathname = usePathname();
   const isBuilder = pathname.startsWith("/lists/");
-  const [phase, setPhase] = useState<SlidePhase>("settled");
-  const [covering, setCovering] = useState(false);
-  const [, startTransition] = useTransition();
-  const lists = useSyncExternalStore(
-    subscribeArmies,
-    getArmiesSnapshot,
-    getArmiesServerSnapshot,
-  );
+  const [showDetail, setShowDetailState] = useState(false);
+  const [settled, setSettled] = useState(true);
   const timers = useRef<number[]>([]);
-  const coveringRef = useRef(false);
-  const coverStartedAt = useRef(0);
-  const hideScheduled = useRef(false);
+  const animatingBackRef = useRef(false);
+  const libraryScrollYRef = useRef<number | null>(null);
+
+  function scrollToPane(showingDetail: boolean) {
+    if (!showingDetail && libraryScrollYRef.current == null) {
+      return;
+    }
+    window.scrollTo(
+      0,
+      listFlowWindowScrollY({
+        showingDetail,
+        libraryScrollY: libraryScrollYRef.current ?? 0,
+      }),
+    );
+  }
+
+  const publishNavState = useCallback(
+    (next: { showDetail: boolean; animatingBack: boolean }) => {
+      setShowDetailState(next.showDetail);
+      onShowDetailChange?.(next);
+    },
+    [onShowDetailChange],
+  );
+
+  const setShowDetail = useCallback(
+    (next: boolean) => {
+      publishNavState({ showDetail: next, animatingBack: animatingBackRef.current });
+    },
+    [publishNavState],
+  );
 
   function clearTimers() {
     for (const id of timers.current) {
@@ -111,124 +118,93 @@ export function ListNavProvider({
   }, [isBuilder, router]);
 
   useLayoutEffect(() => {
-    if (coveringRef.current) {
-      setPhase("settled");
-      return;
-    }
-    clearTimers();
-
     if (!isBuilder) {
-      setPhase("settled");
+      animatingBackRef.current = false;
+      publishNavState({ showDetail: false, animatingBack: false });
+      setSettled(true);
+      scrollToPane(false);
       return;
     }
 
     const direction = peekListNavigationDirection();
-    if (direction !== "forward") {
-      setPhase("settled");
-      return;
-    }
-    clearListNavigationDirection();
-    if (prefersReducedMotion()) {
-      setPhase("settled");
-      return;
-    }
-    setPhase("start");
-    requestAnimationFrame(() => {
-      setPhase("in");
-      schedule(() => setPhase("settled"), SLIDE_MS);
-    });
-  }, [isBuilder, pathname]);
-
-  useLayoutEffect(() => {
-    if (
-      !coveringRef.current ||
-      hideScheduled.current ||
-      !libraryReturnCoverCanDismiss({
-        isBuilder,
-        listsReady: lists !== undefined,
-      })
-    ) {
-      return;
-    }
-    hideScheduled.current = true;
-    const wait = libraryReturnCoverRemainingMs(
-      coverStartedAt.current,
-      Date.now(),
-    );
-    schedule(() => {
-      coveringRef.current = false;
-      hideScheduled.current = false;
-      setCovering(false);
-    }, wait);
-  }, [covering, isBuilder, lists]);
-
-  useEffect(() => {
-    if (!covering) {
-      return;
-    }
-    const failSafe = window.setTimeout(() => {
-      if (!coveringRef.current) {
+    if (direction === "forward") {
+      libraryScrollYRef.current = window.scrollY;
+      if (prefersReducedMotion()) {
+        clearListNavigationDirection();
+        setSettled(true);
+        scrollToPane(true);
+        setShowDetail(true);
         return;
       }
-      clearTimers();
-      coveringRef.current = false;
-      hideScheduled.current = false;
-      setCovering(false);
-    }, 1200);
-    return () => window.clearTimeout(failSafe);
-  }, [covering]);
+      setSettled(false);
+      scrollToPane(true);
+      setShowDetail(true);
+      const settleTimer = window.setTimeout(() => {
+        clearListNavigationDirection();
+        setSettled(true);
+      }, SLIDE_MS);
+      return () => {
+        window.clearTimeout(settleTimer);
+      };
+    }
+
+    setSettled(true);
+    scrollToPane(true);
+    setShowDetail(true);
+  }, [isBuilder, pathname, publishNavState, setShowDetail]);
 
   function goBack() {
-    if (coveringRef.current) {
+    if (animatingBackRef.current || !isBuilder) {
       return;
     }
     rememberListNavigation("back");
+    clearListOpenSplash();
     clearTimers();
     if (prefersReducedMotion()) {
-      startTransition(() => {
-        router.push("/dashboard", { scroll: false });
-      });
+      setSettled(true);
+      scrollToPane(false);
+      router.push("/dashboard", { scroll: false });
       return;
     }
-    coveringRef.current = true;
-    hideScheduled.current = false;
-    coverStartedAt.current = Date.now();
-    setPhase("settled");
-    setCovering(true);
-    startTransition(() => {
+    animatingBackRef.current = true;
+    setSettled(false);
+    publishNavState({ showDetail: false, animatingBack: true });
+    schedule(() => {
       router.push("/dashboard", { scroll: false });
-    });
+      animatingBackRef.current = false;
+      setSettled(true);
+      publishNavState({ showDetail: false, animatingBack: false });
+    }, SLIDE_MS);
   }
 
   return (
     <ListNavContext.Provider value={{ goBack }}>
-      <div className="relative min-h-dvh w-full">
+      <div className="relative min-h-dvh w-full overflow-x-hidden">
         <IndexBackdropLayer />
-        {backdrop}
         {header ? (
-          <header className="ios-nav-bar fixed inset-x-0 top-0 z-40 pt-[env(safe-area-inset-top)]">
+          <header className={`${SITE_HEADER_BAR_CLASS} pointer-events-auto fixed inset-x-0 top-0 z-[60] pt-[env(safe-area-inset-top)]`}>
             {header}
           </header>
         ) : null}
-        {overlay}
-        <div
-          className={`ios-push-root relative z-10 ${listFlowHeaderOffsetClass(headerMode)} ${iosPushSlideClass(phase)}`}
-        >
-          {children}
-        </div>
-        {covering ? (
-          <div
-            className="fixed inset-0 z-50 overflow-hidden text-parchment"
-            role="status"
-            aria-live="polite"
-            aria-busy="true"
-          >
-            <IndexBackdropLayer />
-            <div className="relative z-10">
-              <ListLoadingSplash label="Loading your lists" />
+        <div className="relative z-10 overflow-x-hidden">
+          <div className={listFlowTrackClass(showDetail, settled)}>
+            <div className="list-flow-pane">
+              <div className={LIST_FLOW_HEADER_OFFSET_CLASS}>
+                {libraryLayer}
+              </div>
+            </div>
+            <div
+              className="list-flow-pane relative min-h-dvh"
+              aria-hidden={!showDetail && !isBuilder}
+            >
+              {backdrop}
+              {overlay}
+              <div className={`relative z-10 ${LIST_FLOW_HEADER_OFFSET_CLASS}`}>
+                {isBuilder ? children : null}
+              </div>
             </div>
           </div>
-        ) : null}
+        </div>
       </div>
     </ListNavContext.Provider>
   );

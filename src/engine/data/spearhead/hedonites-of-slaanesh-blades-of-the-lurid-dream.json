@@ -1,0 +1,361 @@
+{
+  "id": "hedonites-of-slaanesh-blades-of-the-lurid-dream",
+  "name": "Blades of the Lurid Dream",
+  "parentFactionId": "hedonites-of-slaanesh",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/hedonites-of-slaanesh/",
+  "roster": [
+    {
+      "unitId": "hedonites-of-slaanesh-blades-of-the-lurid-dream-shardspeaker-of-slaanesh",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "hedonites-of-slaanesh-blades-of-the-lurid-dream-blissbarb-archers",
+      "count": 1
+    },
+    {
+      "unitId": "hedonites-of-slaanesh-blades-of-the-lurid-dream-blissbarb-archers",
+      "count": 1
+    },
+    {
+      "unitId": "hedonites-of-slaanesh-blades-of-the-lurid-dream-slickblade-seekers",
+      "count": 1
+    },
+    {
+      "unitId": "hedonites-of-slaanesh-blades-of-the-lurid-dream-slaangor-fiendbloods",
+      "count": 1
+    }
+  ],
+  "battleTraits": [],
+  "regimentAbilities": [
+    {
+      "id": "hedonites-of-slaanesh-blades-of-the-lurid-dream-unparalleled-speed",
+      "name": "UNPARALLELED SPEED",
+      "abilities": [
+        {
+          "name": "UNPARALLELED SPEED",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "Pick a friendly unit to use this ability.",
+          "effect": "That unit has STRIKE-FIRST this phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "hedonites-of-slaanesh-blades-of-the-lurid-dream-locus-of-diversion",
+      "name": "LOCUS OF DIVERSION",
+      "abilities": [
+        {
+          "name": "LOCUS OF DIVERSION",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick a friendly unit to use this ability.",
+          "effect": "For the rest of the turn, that unit can use a RETREAT ability and still use SHOOT and/or CHARGE abilities later in the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "hedonites-of-slaanesh-blades-of-the-lurid-dream-sceptre-of-domination",
+      "name": "SCEPTRE OF DOMINATION",
+      "abilities": [
+        {
+          "name": "SCEPTRE OF DOMINATION",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Roll a dice for each enemy unit in combat with your general.",
+          "effect": "On a 5+, the unit being rolled for has STRIKE-LAST this phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "hedonites-of-slaanesh-blades-of-the-lurid-dream-cacophonic-choir",
+      "name": "CACOPHONIC CHOIR",
+      "abilities": [
+        {
+          "name": "CACOPHONIC CHOIR",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Make a casting roll of 2D6.",
+          "effect": "On a 6+, make a cacophony roll of D6. Inflict D3 mortal damage on each enemy unit (roll for each) within 6\" of your general that has a Control characteristic less than the cacophony roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "hedonites-of-slaanesh-blades-of-the-lurid-dream-twisted-mirror",
+      "name": "TWISTED MIRROR",
+      "abilities": [
+        {
+          "name": "TWISTED MIRROR",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Your Shooting Phase",
+          "declare": "Pick an enemy unit within 9\" of your general and roll a dice.",
+          "effect": "On a 4+, subtract 1 from save rolls for that unit until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "hedonites-of-slaanesh-blades-of-the-lurid-dream-pendant-of-slaanesh",
+      "name": "PENDANT OF SLAANESH",
+      "abilities": [
+        {
+          "name": "PENDANT OF SLAANESH",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "",
+          "effect": "Heal (D3) your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "hedonites-of-slaanesh-blades-of-the-lurid-dream-shardspeaker-of-slaanesh",
+      "name": "Shardspeaker of Slaanesh",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "WIZARD",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Haze Staff",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "VISION OF DAMNATION",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Make a casting roll of 2D6.",
+          "effect": "On a 6+, roll 6 dice. For each 4+, you receive 1 depravity point.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "hedonites-of-slaanesh-blades-of-the-lurid-dream-blissbarb-archers",
+      "name": "Blissbarb Archers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Blissbarb Bow",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Sybarite Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "LIGHT-FOOTED KILLERS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "This unit can use SHOOT abilities even if it used a RUN ability in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "hedonites-of-slaanesh-blades-of-the-lurid-dream-slickblade-seekers",
+      "name": "Slickblade Seekers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "CAVALRY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "4",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Slickblade Glaive",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge, (+1, Damage)"
+        },
+        {
+          "name": "Exalted Steed’s Poisoned Tongue",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "UNRIVALLED VELOCITY",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "You can re-roll charge rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "hedonites-of-slaanesh-blades-of-the-lurid-dream-slaangor-fiendbloods",
+      "name": "Slaangor Fiendbloods",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "3",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Razor-sharp Claw and Gilded Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Razor-sharp Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "SLAUGHTER AT ANY COST",
+          "kind": "Activated",
+          "timing": "Enemy Shooting Phase",
+          "declare": "This unit can use this ability if any damage points were allocated to it this turn.",
+          "effect": "This unit can use the ‘Normal Move’ ability as if it were your movement phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

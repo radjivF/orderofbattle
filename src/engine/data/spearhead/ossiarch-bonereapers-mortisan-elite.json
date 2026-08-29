@@ -1,0 +1,355 @@
+{
+  "id": "ossiarch-bonereapers-mortisan-elite",
+  "name": "Mortisan Elite",
+  "parentFactionId": "ossiarch-bonereapers",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/ossiarch-bonereapers/",
+  "roster": [
+    {
+      "unitId": "ossiarch-bonereapers-mortisan-elite-mortisan-ossifector",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "ossiarch-bonereapers-mortisan-elite-immortis-guard",
+      "count": 1
+    },
+    {
+      "unitId": "ossiarch-bonereapers-mortisan-elite-necropolis-stalkers",
+      "count": 1
+    },
+    {
+      "unitId": "ossiarch-bonereapers-mortisan-elite-morghast-archai",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "ossiarch-bonereapers-mortisan-elite-heralds-of-nagash",
+      "name": "HERALDS OF NAGASH",
+      "abilities": [
+        {
+          "name": "DREAD DESCENT",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Movement Phase",
+          "declare": "",
+          "effect": "Set up this unit anywhere on the battlefield more than 6\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "RELENTLESS DISCIPLINE",
+          "kind": "Activated",
+          "timing": "Once Per Phase (Army)",
+          "declare": "Pick a friendly unit to be the target.",
+          "effect": "Make a discipline roll of D6. Add 1 to the roll if the target is wholly within 12\" of your general. On a 4+, pick 1 of the effects below: Your Movement Phase: Add 2\" to the target’s Move characteristic for the rest of the phase. Your Charge Phase: Add 1 to charge rolls for the target for the rest of the phase. Any Combat Phase: Add 1 to wound rolls for combat attacks made by the target for the rest of the phase. Any Combat Phase: The target has WARD (5+) for the rest of the phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "ossiarch-bonereapers-mortisan-elite-peerless-cohesion",
+      "name": "PEERLESS COHESION",
+      "abilities": [
+        {
+          "name": "PEERLESS COHESION",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Reaction: You declared the ’Relentless Discipline’ ability",
+          "declare": "",
+          "effect": "You can use the ’Relentless Discipline’ ability for a second time this phase but you must pick a different target to the one you picked the first time.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "ossiarch-bonereapers-mortisan-elite-immaculate-generalship",
+      "name": "IMMACULATE GENERALSHIP",
+      "abilities": [
+        {
+          "name": "IMMACULATE GENERALSHIP",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to discipline rolls you make.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "ossiarch-bonereapers-mortisan-elite-shard-storm",
+      "name": "SHARD STORM",
+      "abilities": [
+        {
+          "name": "SHARD STORM",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible enemy unit within 12\" of your general to be the target, then make a casting roll of 2D6.",
+          "effect": "On a 7+, roll a number of dice equal to the number of models in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "ossiarch-bonereapers-mortisan-elite-lode-of-saturation",
+      "name": "LODE OF SATURATION",
+      "abilities": [
+        {
+          "name": "LODE OF SATURATION",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Subtract 1 from the Rend characteristic of melee weapons used for combat attacks that target this general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "ossiarch-bonereapers-mortisan-elite-mend-constructs",
+      "name": "MEND CONSTRUCTS",
+      "abilities": [
+        {
+          "name": "MEND CONSTRUCTS",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly unit wholly within 12\" of your general to be the target, then make a casting roll of 2D6.",
+          "effect": "On a 6+, Heal (D3) the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "ossiarch-bonereapers-mortisan-elite-helm-of-tyranny",
+      "name": "HELM OF TYRANNY",
+      "abilities": [
+        {
+          "name": "HELM OF TYRANNY",
+          "kind": "Activated",
+          "timing": "Once Per Battle, End of Your Turn",
+          "declare": "Pick an enemy unit within 12\" of your general to be the target and roll a dice.",
+          "effect": "On a 3+, subtract 3 from the control score of the target for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "ossiarch-bonereapers-mortisan-elite-mortisan-ossifector",
+      "name": "Mortisan Ossifector",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "WIZARD",
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "5",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Ossified Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "REFINED CREATIONS",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
+          "effect": "On a 5+, the target’s melee weapons have Crit (2 Hits) until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "ossiarch-bonereapers-mortisan-elite-immortis-guard",
+      "name": "Immortis Guard",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "4",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Dread Halberd",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "SOULBOUND PROTECTORS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Your general has WARD (5+) while they are within this unit’s combat range.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "ossiarch-bonereapers-mortisan-elite-necropolis-stalkers",
+      "name": "Necropolis Stalkers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "4",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Stalker Blades",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "SWITCH ASPECTS",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "",
+          "effect": "Pick 1 of the following effects to apply for the rest of the turn: Blade-parry Aspect: Subtract 1 from hit rolls for combat attacks that target this unit. Destroyer Aspect: Ward rolls cannot be made for damage points inflicted by this unit’s combat attacks.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "ossiarch-bonereapers-mortisan-elite-morghast-archai",
+      "name": "Morghast Archai",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 2,
+      "categories": [
+        "INFANTRY",
+        "FLY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "6",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Spirit Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "HERALDS OF NAGASH",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to discipline rolls for this unit while it is not wholly within 12\" of your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

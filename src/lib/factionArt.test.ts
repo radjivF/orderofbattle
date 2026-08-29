@@ -1,3 +1,6 @@
+import { readFileSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
   factionArtScrimClass,
@@ -35,5 +38,30 @@ describe("listBackdropArtSrc", () => {
     expect(listBackdropArtSrc("daughters-of-khaine", null)).toBe(
       "/factions/daughters-of-khaine.webp",
     );
+  });
+});
+
+describe("faction art LCP", () => {
+  it("loads above-the-fold Stormcast art eagerly", () => {
+    const dir = path.dirname(fileURLToPath(import.meta.url));
+    const backdrop = readFileSync(
+      path.resolve(dir, "../components/FactionArtBackground.tsx"),
+      "utf8",
+    );
+    expect(backdrop).toContain('loading="eager"');
+    expect(backdrop).toContain('fetchPriority="high"');
+    expect(backdrop).toContain("priority");
+
+    const factions = readFileSync(
+      path.resolve(dir, "../app/factions/page.tsx"),
+      "utf8",
+    );
+    expect(factions).toContain('loading={index === 0 ? "eager" : "lazy"}');
+
+    const library = readFileSync(
+      path.resolve(dir, "../components/LibraryScreen.tsx"),
+      "utf8",
+    );
+    expect(library).toContain('loading={index === 0 ? "eager" : "lazy"}');
   });
 });

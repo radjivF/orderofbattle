@@ -1,6 +1,7 @@
 "use client";
 
-import type { MouseEvent, ReactNode } from "react";
+import type { ReactNode } from "react";
+import { RuleText } from "./RuleText";
 
 type Props = {
   title?: string;
@@ -26,8 +27,6 @@ export function ExpandableRuleCard({
   const expandable = Boolean(declareText || effect || meta);
   const pad = nested ? "px-2.5 py-2.5" : "px-3 py-3";
   const shell = nested ? "rounded-lg" : "rounded-xl";
-  const preview = effect || declareText;
-  const previewLabel = effect ? "Effect · " : "Declare · ";
 
   const header = (
     <div className="flex items-start justify-between gap-2">
@@ -52,7 +51,11 @@ export function ExpandableRuleCard({
       </div>
       <div className="flex shrink-0 items-center gap-2">
         {trailing}
-        {expandable ? <CollapseChevron /> : null}
+        {expandable ? (
+          <span className="inline-flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center">
+            <CollapseChevron />
+          </span>
+        ) : null}
       </div>
     </div>
   );
@@ -70,19 +73,12 @@ export function ExpandableRuleCard({
       className={`group w-full ${shell} bg-parchment-ink/5 open:bg-parchment-ink/[0.07]`}
     >
       <summary
-        className={`cursor-pointer list-none ${pad} [&::-webkit-details-marker]:hidden`}
+        className={`cursor-default list-none ${pad} [&::-webkit-details-marker]:hidden`}
       >
         {header}
-        {preview ? (
-          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-parchment-ink/75 group-open:hidden">
-            <span className="text-sheet-muted">{previewLabel}</span>
-            {preview}
-          </p>
-        ) : null}
       </summary>
       <div
         className={`border-t border-parchment-ink/10 ${nested ? "px-2.5" : "px-3"} pb-3 pt-2`}
-        onClick={collapseDetails}
       >
         {meta ? (
           <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
@@ -90,27 +86,22 @@ export function ExpandableRuleCard({
           </p>
         ) : null}
         {declareText ? (
-          <p className="mt-2 text-sm leading-relaxed text-parchment-ink/75">
-            <span className="text-sheet-muted">Declare · </span>
-            {declareText}
-          </p>
+          <RuleText
+            text={declareText}
+            label="Declare · "
+            className="mt-2 text-sm"
+          />
         ) : null}
         {effect ? (
-          <p className="mt-1 text-sm leading-relaxed text-parchment-ink/75">
-            <span className="text-sheet-muted">Effect · </span>
-            {effect}
-          </p>
+          <RuleText
+            text={effect}
+            label="Effect · "
+            className={declareText ? "mt-1 text-sm" : "mt-2 text-sm"}
+          />
         ) : null}
       </div>
     </details>
   );
-}
-
-function collapseDetails(event: MouseEvent<HTMLDivElement>) {
-  const details = event.currentTarget.closest("details");
-  if (details) {
-    details.open = false;
-  }
 }
 
 function CollapseChevron() {

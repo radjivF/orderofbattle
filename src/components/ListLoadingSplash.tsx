@@ -14,7 +14,7 @@ export function ListLoadingSplash({
 }: Props) {
   return (
     <div
-      className="relative z-30 min-h-[100dvh] bg-transparent text-parchment"
+      className="relative z-30 h-full min-h-[100dvh] bg-transparent text-parchment"
       role="status"
       aria-live="polite"
       aria-busy="true"

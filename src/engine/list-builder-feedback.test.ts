@@ -8,7 +8,7 @@ import {
   unitsForPicker,
   unitsForRealm,
 } from "./queries";
-import { blankArmy, duplicateArmy } from "@/lib/storage";
+import { blankArmy, duplicateArmy, appendRegimentWithHero } from "@/lib/storage";
 import { createId } from "@/lib/id";
 import type { ArmyList, BattleTacticStage } from "./types";
 import { pruneOrphanEnhancements, summarize } from "./validate";
@@ -624,5 +624,42 @@ describe("army list persistence fields", () => {
     expect(copy.battleTacticCardIds).toEqual(tacticIds);
     expect(copy.battleTacticStage).toEqual({ [tacticIds[0]]: 1 });
     expect(copy.scourgeRealm).toBe("aqshy");
+  });
+});
+
+describe("appendRegimentWithHero", () => {
+  it("adds a regiment only after a hero is chosen", () => {
+    const list = blankArmy();
+    const next = appendRegimentWithHero(list, "hero-unit", {
+      regimentId: "reg-1",
+      heroSelectionId: "sel-1",
+    });
+    expect(next).not.toBeNull();
+    expect(next?.regiments).toHaveLength(1);
+    expect(next?.regiments[0]?.hero?.unitId).toBe("hero-unit");
+    expect(next?.generalRegimentId).toBe("reg-1");
+    expect(list.regiments).toHaveLength(0);
+  });
+
+  it("does not add a sixth regiment", () => {
+    const list = blankArmy();
+    const full = {
+      ...list,
+      regiments: Array.from({ length: 5 }, (_, index) => ({
+        id: `reg-${index}`,
+        hero: {
+          id: `sel-${index}`,
+          unitId: "hero-unit",
+          reinforced: false,
+        },
+        units: [],
+      })),
+    };
+    expect(
+      appendRegimentWithHero(full, "hero-unit", {
+        regimentId: "reg-6",
+        heroSelectionId: "sel-6",
+      }),
+    ).toBeNull();
   });
 });

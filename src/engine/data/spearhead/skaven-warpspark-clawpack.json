@@ -1,0 +1,399 @@
+{
+  "id": "skaven-warpspark-clawpack",
+  "name": "Warpspark Clawpack",
+  "parentFactionId": "skaven",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/skaven/",
+  "roster": [
+    {
+      "unitId": "skaven-warpspark-clawpack-grey-seer",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "skaven-warpspark-clawpack-stormfiends",
+      "count": 1
+    },
+    {
+      "unitId": "skaven-warpspark-clawpack-warp-lightning-cannon",
+      "count": 1
+    },
+    {
+      "unitId": "skaven-warpspark-clawpack-clanrats",
+      "count": 1
+    },
+    {
+      "unitId": "skaven-warpspark-clawpack-clanrats",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "skaven-warpspark-clawpack-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "ALWAYS THREE CLAWSTEPS AHEAD",
+          "kind": "Activated",
+          "timing": "Once Per Phase, Enemy Movement Phase",
+          "declare": "Pick a friendly unit that is not in combat.",
+          "effect": "That unit can use the ‘Normal Move’ ability as if it were your movement phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "skaven-warpspark-clawpack-warpstone-laced-armour",
+      "name": "WARPSTONE-LACED ARMOUR",
+      "abilities": [
+        {
+          "name": "WARPSTONE-LACED ARMOUR",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Reaction: Opponent declared an ATTACK ability and targeted your Stormfiends unit",
+          "declare": "Used By: Your Stormfiends unit",
+          "effect": "Your Stormfiends unit has WARD (5+) for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "skaven-warpspark-clawpack-endless-swarm-of-rats",
+      "name": "ENDLESS SWARM OF RATS",
+      "abilities": [
+        {
+          "name": "ENDLESS SWARM OF RATS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "When a friendly Clanrats unit uses its ‘Seething Swarm’ ability, you can return D6 slain models to that unit instead of D3.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "skaven-warpspark-clawpack-skilled-manipulator",
+      "name": "SKILLED MANIPULATOR",
+      "abilities": [
+        {
+          "name": "SKILLED MANIPULATOR",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Your general has WARD (4+) while they are within 1\" of any friendly Clanrats units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "skaven-warpspark-clawpack-cage-of-warp-lightning",
+      "name": "CAGE OF WARP LIGHTNING",
+      "abilities": [
+        {
+          "name": "CAGE OF WARP LIGHTNING",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "Pick a visible enemy unit within 6\" of your general and roll a dice.",
+          "effect": "On a 2+, the enemy unit has STRIKE-LAST this phase. On a 1, inflict 1 mortal damage on your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "skaven-warpspark-clawpack-skitterleap",
+      "name": "SKITTERLEAP",
+      "abilities": [
+        {
+          "name": "SKITTERLEAP",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Make a casting roll of 2D6.",
+          "effect": "On a 6+, remove your general from the battlefield and set them up again on the battlefield more than 6\" from all enemy units. They cannot use MOVE abilities in the following movement phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "skaven-warpspark-clawpack-scurry-away",
+      "name": "SCURRY AWAY",
+      "abilities": [
+        {
+          "name": "SCURRY AWAY",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "",
+          "effect": "Roll a dice. On a 3+, this unit can immediately use the ‘Retreat’ ability as if it were your movement phase. If it does so, no mortal damage is inflicted on it.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "skaven-warpspark-clawpack-grey-seer",
+      "name": "Grey Seer",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "WIZARD",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "6+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Warpstone Staff",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "WILL OF THE HORNED RAT",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly unit wholly within 13\" of this unit to be the target, then roll a dice.",
+          "effect": "On a 3+, add the roll to the target’s control score until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "WITHER",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible enemy unit within 13\" of this unit to be the target, then make a casting roll of 2D6.",
+          "effect": "On a 6+, inflict D3 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "skaven-warpspark-clawpack-stormfiends",
+      "name": "Stormfiends",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "6",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Ratling Cannons",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "3D6",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Windlaunchers",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": ""
+        },
+        {
+          "name": "Shock Gauntlets",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Clubbing Blows",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "-",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "SHOCK GAUNTLETS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Each time an attack made with this unit’s Shock Gauntlets scores a critical hit, that attack scores D6 hits instead of 1 (make a wound roll for each hit).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "skaven-warpspark-clawpack-warp-lightning-cannon",
+      "name": "Warp Lightning Cannon",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "WAR MACHINE"
+      ],
+      "stats": {
+        "move": "3\"",
+        "health": "8",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Warp Lightning Blast",
+          "kind": "ranged",
+          "range": "",
+          "attacks": "Warp Lightning Blast",
+          "hit": "20\"",
+          "wound": "2D6",
+          "rend": "4+",
+          "damage": "See below",
+          "ability": ""
+        },
+        {
+          "name": "Crew's Teeth and Knives",
+          "kind": "melee",
+          "range": "",
+          "attacks": "D6",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "WARP LIGHTNING BLAST",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Each attack made with this weapon in a single phase must target the same enemy unit. Each hit inflicts 1 mortal damage on the target and the attack sequence ends.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "skaven-warpspark-clawpack-clanrats",
+      "name": "Clanrats",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 10,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "1",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Rusty Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "SEETHING SWARM",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "You can return D3 slain models to this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

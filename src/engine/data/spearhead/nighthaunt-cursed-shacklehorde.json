@@ -1,0 +1,439 @@
+{
+  "id": "nighthaunt-cursed-shacklehorde",
+  "name": "Cursed Shacklehorde",
+  "parentFactionId": "nighthaunt",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/nighthaunt/",
+  "roster": [
+    {
+      "unitId": "nighthaunt-cursed-shacklehorde-spirit-torment",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "nighthaunt-cursed-shacklehorde-chainghasts",
+      "count": 1
+    },
+    {
+      "unitId": "nighthaunt-cursed-shacklehorde-bladegheist-revenants",
+      "count": 1
+    },
+    {
+      "unitId": "nighthaunt-cursed-shacklehorde-bladegheist-revenants",
+      "count": 1
+    },
+    {
+      "unitId": "nighthaunt-cursed-shacklehorde-dreadscythe-harridans",
+      "count": 1
+    },
+    {
+      "unitId": "nighthaunt-cursed-shacklehorde-dreadscythe-harridans",
+      "count": 1
+    },
+    {
+      "unitId": "nighthaunt-cursed-shacklehorde-dreadblade-harrows",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "nighthaunt-cursed-shacklehorde-spectral-procession",
+      "name": "SPECTRAL PROCESSION",
+      "abilities": [
+        {
+          "name": "CACKLING ARRIVAL",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Movement Phase",
+          "declare": "Pick 1 of your units in reserve.",
+          "effect": "Set up that unit anywhere on the battlefield more than 6\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "ETHEREAL",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Ignore negative modifiers to save rolls for friendly units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "nighthaunt-cursed-shacklehorde-discorporate",
+      "name": "DISCORPORATE",
+      "abilities": [
+        {
+          "name": "DISCORPORATE",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Hero Phase",
+          "declare": "Pick a friendly unit to be the target.",
+          "effect": "Roll a dice. On a 3+, add 1 to save rolls for the target for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "nighthaunt-cursed-shacklehorde-mounting-dread",
+      "name": "MOUNTING DREAD",
+      "abilities": [
+        {
+          "name": "MOUNTING DREAD",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Any Turn",
+          "declare": "Pick a friendly unit to be the target.",
+          "effect": "Roll a dice. On a 2+, for the rest of the turn, subtract the current battle round number from the control scores of enemy units while they are in combat with the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "nighthaunt-cursed-shacklehorde-unholy-visage",
+      "name": "UNHOLY VISAGE",
+      "abilities": [
+        {
+          "name": "UNHOLY VISAGE",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible enemy unit within 6\" of your general to be the target.",
+          "effect": "Roll a dice. On a 3+, the target must immediately use a RETREAT ability as if it were the enemy movement phase. Immediately after that ability has been resolved, if the target is in combat, inflict 2D3 mortal damage on it.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "nighthaunt-cursed-shacklehorde-deathly-possessor",
+      "name": "DEATHLY POSSESSOR",
+      "abilities": [
+        {
+          "name": "DEATHLY POSSESSOR",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy HERO within 12\" of your general to be the target, then pick another enemy unit within the target’s combat range to be the victim.",
+          "effect": "Roll a D3. On a 2+, pick one: Inflict mortal damage on the target equal to the roll. Inflict mortal damage on the victim equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "nighthaunt-cursed-shacklehorde-tales-of-horror",
+      "name": "TALES OF HORROR",
+      "abilities": [
+        {
+          "name": "TALES OF HORROR",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "Pick an enemy INFANTRY or CAVALRY unit within 6\" of your general to be the target.",
+          "effect": "For the rest of the battle, if the target is replaced using the 'Call for Reinforcements' ability, halve the number of models in the replacement unit, rounding up.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "nighthaunt-cursed-shacklehorde-spectral-howl",
+      "name": "SPECTRAL HOWL",
+      "abilities": [
+        {
+          "name": "SPECTRAL HOWL",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Hero Phase",
+          "declare": "Pick an enemy unit within 12\" of your general to be the target.",
+          "effect": "For the rest of the turn, subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "nighthaunt-cursed-shacklehorde-spirit-torment",
+      "name": "Spirit Torment",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "FLY",
+        "WARD (5+)"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Shacklegheist Chains",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (Auto-wound)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "CAPTURED SOUL ENERGY",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly unit wholly within 12\" of this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, add 1 to wound rolls for the target’s combat attacks for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "nighthaunt-cursed-shacklehorde-chainghasts",
+      "name": "Chainghasts",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 2,
+      "categories": [
+        "INFANTRY",
+        "FLY",
+        "WARD (5+)"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "3",
+        "save": "6+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Ghastflails",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "1",
+          "ability": "Crit, (Auto-wound)"
+        },
+        {
+          "name": "Ghastflails",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "1",
+          "ability": "Crit, (Auto-wound)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "ANOTHER LINK IN THE CHAIN",
+          "kind": "Activated",
+          "timing": "Your Combat Phase",
+          "declare": "",
+          "effect": "Roll a dice. Add 1 to the roll if this unit is wholly within 12\" of any friendly Spirit Torments. On a 3+, for the rest of the turn, add 1 to hit rolls for combat attacks made by friendly units while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "nighthaunt-cursed-shacklehorde-bladegheist-revenants",
+      "name": "Bladegheist Revenants",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "FLY",
+        "WARD (5+)"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "2",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Tomb Greatblade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit, (Auto-wound)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "THRASHING DESPERATION",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While this unit contests an objective you control, enemy units cannot end a charge move within ½\" of this unit unless the unmodified charge roll was 5 or more.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "nighthaunt-cursed-shacklehorde-dreadscythe-harridans",
+      "name": "Dreadscythe Harridans",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "FLY",
+        "WARD (5+)"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "2",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Scythed Limbs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit, (Auto-wound)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "HARROWING SHRIEKS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Enemy units cannot be healed or have slain models returned to them while they are in combat with this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "nighthaunt-cursed-shacklehorde-dreadblade-harrows",
+      "name": "Dreadblade Harrows",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 2,
+      "categories": [
+        "CAVALRY",
+        "FLY",
+        "WARD (5+)"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "3",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Dreadblade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (Auto-wound)"
+        },
+        {
+          "name": "Ethereal Steed’s Ghostly Hooves and Teeth",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion, Crit, (Auto-wound)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "PHANTASMAL DISCORPORATION",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Movement Phase",
+          "declare": "",
+          "effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 6\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

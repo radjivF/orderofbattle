@@ -1,0 +1,426 @@
+{
+  "id": "kruleboyz-swampskulka-gang",
+  "name": "Swampskulka Gang",
+  "parentFactionId": "kruleboyz",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/kruleboyz/",
+  "roster": [
+    {
+      "unitId": "kruleboyz-swampskulka-gang-killaboss-on-great-gnashtoof",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "kruleboyz-swampskulka-gang-murknob-with-belcha-banna",
+      "count": 1
+    },
+    {
+      "unitId": "kruleboyz-swampskulka-gang-man-skewer-boltboyz",
+      "count": 1
+    },
+    {
+      "unitId": "kruleboyz-swampskulka-gang-gutrippaz",
+      "count": 1
+    },
+    {
+      "unitId": "kruleboyz-swampskulka-gang-gutrippaz",
+      "count": 1
+    },
+    {
+      "unitId": "kruleboyz-swampskulka-gang-beast-skewer-killbow",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "kruleboyz-swampskulka-gang-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "KRULEBOYZ WAAAGH!",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "Pick your general to use this ability, then pick another friendly unit wholly within 12\" of them to be the target.",
+          "effect": "Your general and the target have STRIKE-FIRST this phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "kruleboyz-swampskulka-gang-covered-in-mud",
+      "name": "COVERED IN MUD",
+      "abilities": [
+        {
+          "name": "COVERED IN MUD",
+          "kind": "Activated",
+          "timing": "Start of the First Battle Round",
+          "declare": "Pick a friendly unit to use this ability.",
+          "effect": "In this battle, that unit is not visible to enemy models that are more than 12\" away from it.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "kruleboyz-swampskulka-gang-noisy-racket",
+      "name": "NOISY RACKET",
+      "abilities": [
+        {
+          "name": "NOISY RACKET",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Subtract 1 from wound rolls for attacks made by enemy units in the first battle round.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "kruleboyz-swampskulka-gang-egomaniak",
+      "name": "EGOMANIAK",
+      "abilities": [
+        {
+          "name": "EGOMANIAK",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "If any other friendly units are within your general’s combat range, before you allocate a damage point to your general, roll a dice. On a 4+, you must allocate that damage point to one of those units instead.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "kruleboyz-swampskulka-gang-kunnin-plan",
+      "name": "KUNNIN' PLAN",
+      "abilities": [
+        {
+          "name": "KUNNIN' PLAN",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Your Hero Phase",
+          "declare": "Pick a friendly unit wholly within 12\" of your general.",
+          "effect": "If that unit uses a RETREAT ability this turn, no mortal damage is inflicted on it and it can still use SHOOT and/or CHARGE abilities later in the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "kruleboyz-swampskulka-gang-mork-s-eye-pebble",
+      "name": "MORK'S EYE PEBBLE",
+      "abilities": [
+        {
+          "name": "MORK'S EYE PEBBLE",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Enemy Movement Phase",
+          "declare": "",
+          "effect": "In the next shooting phase, friendly units have WARD (5+) while they are wholly within 12\" of your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "kruleboyz-swampskulka-gang-eye-biter-ash",
+      "name": "EYE-BITER ASH",
+      "abilities": [
+        {
+          "name": "EYE-BITER ASH",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with your general and roll a dice.",
+          "effect": "On a 1-4, subtract 1 from hit rolls for attacks made by that unit for the rest of the phase. On a 5+, subtract 1 from hit rolls for attacks made by that unit for the rest of the battle.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "kruleboyz-swampskulka-gang-killaboss-on-great-gnashtoof",
+      "name": "Killaboss on Great Gnashtoof",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "CAVALRY"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "10",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Jagged Boss-stikka",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (Mortal)"
+        },
+        {
+          "name": "Gnashtoof’s Bone-crushing Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "ALL PART OF DA PLAN",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly unit wholly within 9\" of this unit to be the target. You cannot pick this unit.",
+          "effect": "Add 3 to the target’s control score until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "kruleboyz-swampskulka-gang-murknob-with-belcha-banna",
+      "name": "Murknob with Belcha-banna",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "6",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Murknob Cleaver",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "BREATH OF THE MIRE-DRAKES",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Roll a dice for each enemy unit in combat with this unit.",
+          "effect": "On a 1, nothing happens. On a 2-5, inflict 1 mortal damage on that enemy unit. On a 6, inflict D3 mortal damage on that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "kruleboyz-swampskulka-gang-man-skewer-boltboyz",
+      "name": "Man-skewer Boltboyz",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "2",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Man-skewer Crossbow",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (Auto-wound)"
+        },
+        {
+          "name": "Jaggedy Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit, (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "PICK 'EM OFF",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to hit rolls for this unit’s shooting attacks if has not used a MOVE ability this turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "kruleboyz-swampskulka-gang-gutrippaz",
+      "name": "Gutrippaz",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "2",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Wicked Hacka",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit, (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "SCARE TAKTIKZ",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "",
+          "effect": "Roll a dice. On a 3+, subtract 1 from hit rolls for attacks that target this unit this phase. This ability has no effect on attacks made by HEROES.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "kruleboyz-swampskulka-gang-beast-skewer-killbow",
+      "name": "Beast-skewer Killbow",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "WAR MACHINE"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Beast-skewer Bolts",
+          "kind": "ranged",
+          "range": "24\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "D6",
+          "ability": "Crit, (Auto-wound)"
+        },
+        {
+          "name": "Jaggedy Blades",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit, (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "SKEWERED",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "The Damage characteristic of this unit’s Beast-skewer Bolts is 6 instead of D6 if the target is a MONSTER.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

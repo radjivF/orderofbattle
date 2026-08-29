@@ -1,0 +1,431 @@
+{
+  "id": "stormcast-eternals-vigilant-brotherhood",
+  "name": "Vigilant Brotherhood",
+  "parentFactionId": "stormcast-eternals",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/stormcast-eternals/",
+  "roster": [
+    {
+      "unitId": "stormcast-eternals-vigilant-brotherhood-lord-vigilant-on-gryph-stalker",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "stormcast-eternals-vigilant-brotherhood-lord-veritant",
+      "count": 1
+    },
+    {
+      "unitId": "stormcast-eternals-vigilant-brotherhood-prosecutors",
+      "count": 1
+    },
+    {
+      "unitId": "stormcast-eternals-vigilant-brotherhood-liberators",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "stormcast-eternals-vigilant-brotherhood-holy-orders",
+      "name": "HOLY ORDERS",
+      "abilities": [
+        {
+          "name": "SHIELD OF AZYR",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Your Hero Phase",
+          "declare": "Pick a friendly unit.",
+          "effect": "Until the start of your next turn, that unit has WARD (5+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "STORM CHARGE",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Charge Phase",
+          "declare": "Pick a friendly unit that is not in combat.",
+          "effect": "That unit can use CHARGE abilities this turn even if it used a RUN ability in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "stormcast-eternals-vigilant-brotherhood-strike-where-needed",
+      "name": "STRIKE WHERE NEEDED",
+      "abilities": [
+        {
+          "name": "STRIKE WHERE NEEDED",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Reaction: You declared a RETREAT ability",
+          "declare": "Used By: The unit using that RETREAT ability",
+          "effect": "No mortal damage is inflicted on that unit by that RETREAT ability. In addition, that unit can still use CHARGE abilities this turn even though it used a RETREAT ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "stormcast-eternals-vigilant-brotherhood-blaze-of-glory",
+      "name": "BLAZE OF GLORY",
+      "abilities": [
+        {
+          "name": "BLAZE OF GLORY",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "Pick a friendly unit that is in combat.",
+          "effect": "Until the end of the phase, each time a model in that unit is slain, make a vengeance roll of D6. On a 4+, inflict 1 mortal damage on an enemy unit in combat with that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "stormcast-eternals-vigilant-brotherhood-hallowed-scrolls",
+      "name": "HALLOWED SCROLLS",
+      "abilities": [
+        {
+          "name": "HALLOWED SCROLLS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Your general has WARD (5+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "stormcast-eternals-vigilant-brotherhood-quicksilver-draught",
+      "name": "QUICKSILVER DRAUGHT",
+      "abilities": [
+        {
+          "name": "QUICKSILVER DRAUGHT",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "",
+          "effect": "Your general has STRIKE-FIRST this phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "stormcast-eternals-vigilant-brotherhood-morrda-s-talon",
+      "name": "MORRDA'S TALON",
+      "abilities": [
+        {
+          "name": "MORRDA'S TALON",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Your general’s Hallowed Greataxe has Crit (Mortal).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "stormcast-eternals-vigilant-brotherhood-null-pendant",
+      "name": "NULL PENDANT",
+      "abilities": [
+        {
+          "name": "NULL PENDANT",
+          "kind": "Activated",
+          "timing": "Once Per Battle, End of Any Turn",
+          "declare": "Roll a dice for each enemy unit contesting the same objective as your general.",
+          "effect": "On a 2+, subtract the roll from the control score of that enemy unit this turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "stormcast-eternals-vigilant-brotherhood-lord-vigilant-on-gryph-stalker",
+      "name": "Lord-Vigilant on Gryph-Stalker",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "CAVALRY"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "8",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Hallowed Greataxe",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Gryph-stalker’s Beak and Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "DELIVER JUDGEMENT",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "Pick a friendly non-HERO unit wholly within 12\" of this unit to be the target.",
+          "effect": "The target can use 2 FIGHT abilities this phase. After the first is used, however, the target has STRIKE-LAST for the rest of the phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "PLAN THE ATTACK",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick an objective you do not control.",
+          "effect": "For the rest of the turn, add 1 to hit rolls for combat attacks made by friendly units that target enemy units contesting that objective.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "stormcast-eternals-vigilant-brotherhood-lord-veritant",
+      "name": "Lord-Veritant",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "PRIEST",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "6",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Staff of Abjuration",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "3",
+          "ability": ""
+        },
+        {
+          "name": "Judgement Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Anti-WIZARD, (+1, Rend), Anti-PRIEST, (+1, Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "SENSE UNHOLY SORCERY",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "This unit’s Gryph-crow is a token. This unit has WARD (5+) while its Gryph-crow is on the battlefield. If you make an unmodified ward roll of 1 for this unit, remove its Gryph-crow from the battlefield.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "CLEANSING FIRES",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a chanting roll of D6.",
+          "effect": "On a 3+, roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "stormcast-eternals-vigilant-brotherhood-prosecutors",
+      "name": "Prosecutors",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "INFANTRY",
+        "FLY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "2",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Stormcall Javelin",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": ""
+        },
+        {
+          "name": "Stormcall Javelin",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "SKIRMISHERS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "This unit has a coherency range of 2\".",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "HERALDS OF RIGHTEOUSNESS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "When you make a charge roll for this unit, roll 1 additional dice.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "stormcast-eternals-vigilant-brotherhood-liberators",
+      "name": "Liberators",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "2",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Warhammer",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit, (Mortal)"
+        },
+        {
+          "name": "Grandhammer",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "STALWART DEFENDERS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 3 to this unit’s control score while it contests an objective wholly within friendly territory.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

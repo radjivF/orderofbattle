@@ -1,6 +1,7 @@
 "use client";
 
 import { commandAbilityCost } from "@/engine/commands";
+import { warscrollAbilities } from "@/engine/coreRules";
 import { unitWard } from "@/engine/queries";
 import type {
   CatalogueUnit,
@@ -9,12 +10,19 @@ import type {
   UnitAbility,
   UnitWeapon,
 } from "@/engine/types";
-import { SHEET_PANEL_CLASS, SHEET_HEADER_START_CLASS } from "@/lib/builderUi";
+import {
+  datasheetUnitPointsLabel,
+  SHEET_PANEL_CLASS,
+  SHEET_HEADER_START_CLASS,
+} from "@/lib/builderUi";
+import { AbilityMeta } from "./AbilityMeta";
 import { ModalFrame } from "./ModalFrame";
+import { RuleText } from "./RuleText";
 import { SheetCloseButton } from "./ios/SheetIconButton";
 
 type Props = {
   sheet: DatasheetSubject;
+  hidePoints?: boolean;
   onClose: () => void;
 };
 
@@ -26,18 +34,22 @@ function isUnit(sheet: DatasheetSubject): sheet is CatalogueUnit {
   return "hero" in sheet;
 }
 
-export function DatasheetSheet({ sheet, onClose }: Props) {
+export function DatasheetSheet({ sheet, hidePoints, onClose }: Props) {
   const stats = sheet.stats;
   const ward = isUnit(sheet) ? unitWard(sheet) : "";
   const banishment = isManifestation(sheet) ? sheet.banishment : "";
-  const points = isUnit(sheet) ? sheet.points : null;
   const subtitle = isManifestation(sheet)
     ? "Manifestation"
     : isUnit(sheet)
-      ? `${points} points`
+      ? datasheetUnitPointsLabel(sheet.points, Boolean(hidePoints))
       : "Faction terrain";
   const ranged = sheet.weapons.filter((weapon) => weapon.kind === "ranged");
   const melee = sheet.weapons.filter((weapon) => weapon.kind === "melee");
+  const abilities = isUnit(sheet)
+    ? hidePoints
+      ? warscrollAbilities(sheet)
+      : sheet.abilities
+    : sheet.abilities;
   const statCount =
     3 +
     (stats.control ? 1 : 0) +
@@ -51,14 +63,18 @@ export function DatasheetSheet({ sheet, onClose }: Props) {
       panelClassName={`${SHEET_PANEL_CLASS} bg-parchment shadow-2xl`}
     >
         <div className={SHEET_HEADER_START_CLASS}>
-          <div>
-            <h2 className="font-serif text-2xl leading-tight">{sheet.name}</h2>
-            <p className="mt-1 text-sm text-sigmarite">{subtitle}</p>
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+              <h2 className="min-w-0 font-serif text-2xl leading-tight">{sheet.name}</h2>
+              {subtitle ? (
+                <p className="shrink-0 text-sm text-sigmarite">{subtitle}</p>
+              ) : null}
+            </div>
           </div>
           <SheetCloseButton onClick={onClose} />
         </div>
 
-        <div className="overflow-y-auto px-5 pb-8">
+        <div className="modal-sheet-scroll overflow-y-auto px-5 pb-8">
           <dl
             className={`grid gap-2 rounded-xl bg-parchment-ink/5 px-3 py-3 text-center ${
               statCount >= 5 ? "grid-cols-5" : "grid-cols-4"
@@ -90,8 +106,8 @@ export function DatasheetSheet({ sheet, onClose }: Props) {
             <WeaponBlock title="Melee weapons" weapons={melee} />
           ) : null}
 
-          {sheet.abilities.length > 0 ? (
-            <AbilityBlock abilities={sheet.abilities} />
+          {abilities.length > 0 ? (
+            <AbilityBlock abilities={abilities} />
           ) : null}
         </div>
     </ModalFrame>
@@ -107,40 +123,35 @@ function AbilityBlock({ abilities }: { abilities: UnitAbility[] }) {
       <ul className="mt-3 flex flex-col gap-4">
         {abilities.map((ability) => (
           <li key={ability.name}>
-            <p className="font-serif text-lg leading-tight">{ability.name}</p>
-            {ability.keywords ||
-            ability.castingValue ||
-            ability.chantingValue ||
-            commandAbilityCost(ability) != null ? (
-              <p className="mt-0.5 text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-                {[
-                  ability.keywords,
-                  commandAbilityCost(ability) != null
-                    ? `${commandAbilityCost(ability)} CP`
-                    : "",
-                  ability.castingValue ? `Cast ${ability.castingValue}` : "",
-                  ability.chantingValue ? `Chant ${ability.chantingValue}` : "",
-                ]
-                  .filter(Boolean)
-                  .join(" · ")}
+            <div className="flex items-center justify-between gap-3">
+              <p className="min-w-0 font-serif text-lg leading-tight">
+                {ability.name}
               </p>
-            ) : null}
+              <AbilityMeta
+                keywords={ability.keywords}
+                cpCost={commandAbilityCost(ability)}
+                castingValue={ability.castingValue}
+                chantingValue={ability.chantingValue}
+              />
+            </div>
             {ability.timing ? (
               <p className="mt-2 font-serif text-base leading-snug text-parchment-ink">
                 {ability.timing}
               </p>
             ) : null}
             {ability.declare ? (
-              <p className="mt-1 text-sm leading-relaxed text-parchment-ink/80">
-                <span className="text-sheet-muted">Declare · </span>
-                {ability.declare}
-              </p>
+              <RuleText
+                text={ability.declare}
+                label="Declare · "
+                className="mt-1 text-sm"
+              />
             ) : null}
             {ability.effect ? (
-              <p className="mt-1 text-sm leading-relaxed text-parchment-ink/80">
-                <span className="text-sheet-muted">Effect · </span>
-                {ability.effect}
-              </p>
+              <RuleText
+                text={ability.effect}
+                label="Effect · "
+                className="mt-1 text-sm"
+              />
             ) : null}
           </li>
         ))}

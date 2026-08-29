@@ -1,0 +1,430 @@
+{
+  "id": "cities-of-sigmar-zenestra-s-zealots",
+  "name": "Zenestra’s Zealots",
+  "parentFactionId": "cities-of-sigmar",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/cities-of-sigmar/",
+  "roster": [
+    {
+      "unitId": "cities-of-sigmar-zenestra-s-zealots-freeguild-marshal-and-relic-envoy",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "cities-of-sigmar-zenestra-s-zealots-pontifex-zenestra-matriarch-of-the-great-wheel",
+      "count": 1
+    },
+    {
+      "unitId": "cities-of-sigmar-zenestra-s-zealots-freeguild-command-corps-whisperblade",
+      "count": 1
+    },
+    {
+      "unitId": "cities-of-sigmar-zenestra-s-zealots-freeguild-command-corps-arch-knight-and-retinue",
+      "count": 1
+    },
+    {
+      "unitId": "cities-of-sigmar-zenestra-s-zealots-freeguild-steelhelms",
+      "count": 1
+    },
+    {
+      "unitId": "cities-of-sigmar-zenestra-s-zealots-freeguild-steelhelms",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "cities-of-sigmar-zenestra-s-zealots-shadowy-spymaster",
+      "name": "SHADOWY SPYMASTER",
+      "abilities": [
+        {
+          "name": "SUDDEN AMBUSH",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "",
+          "effect": "Set up this unit within 6\" of an enemy unit and not in combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "LADY OF THE WHEEL",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Each time a friendly model is slain by a combat attack, roll a number of dice equal to that model’s Health characteristic. For each 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "cities-of-sigmar-zenestra-s-zealots-fervent-rush",
+      "name": "FERVENT RUSH",
+      "abilities": [
+        {
+          "name": "FERVENT RUSH",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Movement Phase",
+          "declare": "Pick a friendly unit to use this ability.",
+          "effect": "This unit can use CHARGE abilities this turn even if it used a RUN ability in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "cities-of-sigmar-zenestra-s-zealots-fierce-zealots",
+      "name": "FIERCE ZEALOTS",
+      "abilities": [
+        {
+          "name": "FIERCE ZEALOTS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 3 to the control scores of friendly Freeguild Steelhelms units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "cities-of-sigmar-zenestra-s-zealots-devout-commander",
+      "name": "DEVOUT COMMANDER",
+      "abilities": [
+        {
+          "name": "DEVOUT COMMANDER",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to the Attacks characteristic and the Rend characteristic of your general’s Master-forged Weapon.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "cities-of-sigmar-zenestra-s-zealots-stand-fast-comrades",
+      "name": "STAND FAST, COMRADES",
+      "abilities": [
+        {
+          "name": "STAND FAST, COMRADES",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Hero Phase",
+          "declare": "Pick a visible friendly non-HERO unit wholly within 12\" of your general to be the target.",
+          "effect": "The target has WARD (4+) until the start of the next battle round.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "cities-of-sigmar-zenestra-s-zealots-step-to-it",
+      "name": "STEP TO IT!",
+      "abilities": [
+        {
+          "name": "STEP TO IT!",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Reaction: You declared a RUN ability for a non-HERO unit wholly within 12\" of your general",
+          "declare": "",
+          "effect": "Do not make a run roll as part of that RUN ability. Instead, add 6\" to that non-HERO unit’s Move characteristic to determine the distance each model in that unit can move as part of that RUN ability",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "cities-of-sigmar-zenestra-s-zealots-ardent-demand",
+      "name": "ARDENT DEMAND",
+      "abilities": [
+        {
+          "name": "ARDENT DEMAND",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick a visible friendly non-HERO unit wholly within 12\" of your general to be the target.",
+          "effect": "Add 1 to hit rolls for the target’s combat attacks for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "cities-of-sigmar-zenestra-s-zealots-freeguild-marshal-and-relic-envoy",
+      "name": "Freeguild Marshal and Relic Envoy",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "5",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Duelling Pistols",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Master-forged Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "MARSHAL’S ORDERS",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target.",
+          "effect": "Remove this unit’s Relic Envoy token from the battlefield, then give it to the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "RELIC ENVOY",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While a friendly unit other than this unit has the Relic Envoy token, add 1 to wound rolls for that unit’s combat attacks. If this unit is destroyed, remove the Relic Envoy token from the battlefield.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "cities-of-sigmar-zenestra-s-zealots-pontifex-zenestra-matriarch-of-the-great-wheel",
+      "name": "Pontifex Zenestra Matriarch of the Great Wheel",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "PRIEST",
+        "INFANTRY",
+        "WARD (4+)"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "9",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Sceptre of the Wheel",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "VESSEL OF SIGMAR",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick up to 3 visible friendly or enemy units to be the targets.",
+          "effect": "Roll a D3 for each target. On a 2+: If it is a friendly target, it has WARD (5+) until the start of your next turn. If it is an enemy target, inflict an amount of mortal damage on it equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "cities-of-sigmar-zenestra-s-zealots-freeguild-command-corps-whisperblade",
+      "name": "Freeguild Command Corps Whisperblade",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "3",
+        "save": "6+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Enchanted Rapier",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "2",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "FOREWARNED IS FOREARMED",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While it is your turn, this unit has STRIKE-FIRST.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "cities-of-sigmar-zenestra-s-zealots-freeguild-command-corps-arch-knight-and-retinue",
+      "name": "Freeguild Command Corps Arch-Knight and Retinue",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 1,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "2",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Command Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "TALENTED CHAMPIONS",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Reaction: You used a command",
+          "declare": "",
+          "effect": "After that command has been resolved, return the card to your hand. Designer’s Note: This allows you to either use the command a second time or score the battle tactic on that card as well.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "cities-of-sigmar-zenestra-s-zealots-freeguild-steelhelms",
+      "name": "Freeguild Steelhelms",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "1",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Freeguild Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "FANATICAL FOLLOWERS",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "",
+          "effect": "Return 1 slain model to this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

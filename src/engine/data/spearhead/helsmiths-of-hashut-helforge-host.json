@@ -1,0 +1,388 @@
+{
+  "id": "helsmiths-of-hashut-helforge-host",
+  "name": "Helforge Host",
+  "parentFactionId": "helsmiths-of-hashut",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/helsmiths-of-hashut/",
+  "roster": [
+    {
+      "unitId": "helsmiths-of-hashut-helforge-host-war-despot",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "helsmiths-of-hashut-helforge-host-dominator-engine-with-immolation-cannons",
+      "count": 1
+    },
+    {
+      "unitId": "helsmiths-of-hashut-helforge-host-tormentor-bombard",
+      "count": 1
+    },
+    {
+      "unitId": "helsmiths-of-hashut-helforge-host-infernal-cohort-with-hashutite-spears",
+      "count": 1
+    },
+    {
+      "unitId": "helsmiths-of-hashut-helforge-host-infernal-cohort-with-hashutite-spears",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "helsmiths-of-hashut-helforge-host-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "HARNESS DAEMONIC POWER",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Hero Phase",
+          "declare": "",
+          "effect": "You must use this ability at the start of each of your hero phases. Remove all daemonic power points from each friendly unit. Then, gain a number of daemonic power points equal to the current battle round number plus 1. Then, allocate your daemonic power points to friendly units. Each unit can have a maximum of 3 daemonic power points. Then, all unallocated daemonic power points are lost. Designer’s Note: Your units have abilities that become more powerful depending on how many daemonic power points they have. We recommend using coloured dice to track the number of points each unit has.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "helsmiths-of-hashut-helforge-host-grinding-advance",
+      "name": "GRINDING ADVANCE",
+      "abilities": [
+        {
+          "name": "GRINDING ADVANCE",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Deployment Phase",
+          "declare": "Pick up to 2 friendly Infernal Cohort units to be the targets.",
+          "effect": "Each target can immediately move up to 3\" but cannot use CHARGE abilities in the first battle round.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "helsmiths-of-hashut-helforge-host-suppressive-bombardment",
+      "name": "SUPPRESSIVE BOMBARDMENT",
+      "abilities": [
+        {
+          "name": "SUPPRESSIVE BOMBARDMENT",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Your Shooting Phase",
+          "declare": "Pick an enemy INFANTRY unit that had any damage points allocated to it this turn as a result of shooting attacks made by a friendly Tormentor Bombard to be the target.",
+          "effect": "Until the start of your next turn, subtract 1 from the number of dice rolled when making charge rolls for the target, to a minimum of 1.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "helsmiths-of-hashut-helforge-host-scroll-of-petrification",
+      "name": "SCROLL OF PETRIFICATION",
+      "abilities": [
+        {
+          "name": "SCROLL OF PETRIFICATION",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Hero Phase",
+          "declare": "",
+          "effect": "For the rest of the turn, your general has WARD (2+) but cannot use abilities or be picked to be the target of friendly abilities.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "helsmiths-of-hashut-helforge-host-talisman-of-obsidian",
+      "name": "TALISMAN OF OBSIDIAN",
+      "abilities": [
+        {
+          "name": "TALISMAN OF OBSIDIAN",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Ignore the first damage point allocated to your general in each phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "helsmiths-of-hashut-helforge-host-chalice-of-darkness",
+      "name": "CHALICE OF DARKNESS",
+      "abilities": [
+        {
+          "name": "CHALICE OF DARKNESS",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Shooting Phase",
+          "declare": "Pick a visible enemy unit within 12\" of your general to be the target.",
+          "effect": "Inflict D3 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "helsmiths-of-hashut-helforge-host-amulet-of-burning-hate",
+      "name": "AMULET OF BURNING HATE",
+      "abilities": [
+        {
+          "name": "AMULET OF BURNING HATE",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "",
+          "effect": "For the rest of the turn, your general’s attacks score critical hits on unmodified hit rolls of 5+.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "helsmiths-of-hashut-helforge-host-war-despot",
+      "name": "War Despot",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "6",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Daemonflame Glaive",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "BLACK-HEARTED CONQUEROR",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While this unit has any daemonic power points, friendly units with 0 daemonic power points count as having 1 daemonic power point while they are wholly within 6\" of and visible to this unit. For each daemonic power point this unit has, add 3\" to the range of this ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "helsmiths-of-hashut-helforge-host-dominator-engine-with-immolation-cannons",
+      "name": "Dominator Engine with Immolation Cannons",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 1,
+      "categories": [
+        "WAR MACHINE",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "10",
+        "save": "2+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Immolation Cannons",
+          "kind": "ranged",
+          "range": "8\"",
+          "attacks": "5",
+          "hit": "2+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Horns and Pummelling Strikes",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "DAEMONIC STRENGTH",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "For each daemonic power point this unit has: Add 1\" to its Move characteristic. Add 1 to the Attacks characteristic of its weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "helsmiths-of-hashut-helforge-host-tormentor-bombard",
+      "name": "Tormentor Bombard",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "WAR MACHINE"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "8",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Torrent of Ruinous Energy",
+          "kind": "ranged",
+          "range": "30\"",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Anti-INFANTRY, (+1, Rend), Anti-CAVALRY, (+1, Rend)"
+        },
+        {
+          "name": "Artillerist Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "CALCULATED TRAJECTORY",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to hit rolls for this unit’s shooting attacks that target an enemy unit with 5 or more models that is more than 12\" from this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "RUINOUS BOMBARDMENT",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Shooting Phase",
+          "declare": "If this unit used a SHOOT ability this turn and all of its attacks targeted the same enemy unit, that enemy unit is the target. Then, you can pick a number of enemy units within 6\" of the target equal to the number of daemonic power points this unit has to be additional targets.",
+          "effect": "Roll a dice for each target. On a 3+, subtract 3 from the target’s control score for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "helsmiths-of-hashut-helforge-host-infernal-cohort-with-hashutite-spears",
+      "name": "Infernal Cohort with Hashutite Spears",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "1",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Hashutite Spear",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Anti-charge, (+1, Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "STRIKE THE GONGS",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Hero Phase",
+          "declare": "",
+          "effect": "This unit’s Gong Carrier (if any) is a token. You can remove its Gong Carrier from the battlefield and return D3 slain models to this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "DAEMONIC RESILIENCE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Apply the effect below that corresponds with the number of daemonic power points (DPP) this unit has: DPPEffect 1This unit has WARD (6+). 2This unit has WARD (5+). 3This unit has WARD (5+) and you ignore the first damage point allocated to this unit in each phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

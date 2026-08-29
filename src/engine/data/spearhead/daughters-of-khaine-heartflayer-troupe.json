@@ -1,0 +1,384 @@
+{
+  "id": "daughters-of-khaine-heartflayer-troupe",
+  "name": "Heartflayer Troupe",
+  "parentFactionId": "daughters-of-khaine",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/daughters-of-khaine/",
+  "roster": [
+    {
+      "unitId": "daughters-of-khaine-heartflayer-troupe-melusai-ironscale",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "daughters-of-khaine-heartflayer-troupe-witch-aelves",
+      "count": 1
+    },
+    {
+      "unitId": "daughters-of-khaine-heartflayer-troupe-witch-aelves",
+      "count": 1
+    },
+    {
+      "unitId": "daughters-of-khaine-heartflayer-troupe-doomfire-warlocks",
+      "count": 1
+    },
+    {
+      "unitId": "daughters-of-khaine-heartflayer-troupe-blood-stalkers",
+      "count": 1
+    }
+  ],
+  "battleTraits": [],
+  "regimentAbilities": [
+    {
+      "id": "daughters-of-khaine-heartflayer-troupe-murderous-epiphany",
+      "name": "MURDEROUS EPIPHANY",
+      "abilities": [
+        {
+          "name": "MURDEROUS EPIPHANY",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Hero Phase",
+          "declare": "",
+          "effect": "All friendly units gain the Blood Rites passive ability they would have gained at the start of the next battle round (they keep this ability for the rest of the battle, but they do not gain it for a second time at the start of the next battle round).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "daughters-of-khaine-heartflayer-troupe-blessing-of-khaine",
+      "name": "BLESSING OF KHAINE",
+      "abilities": [
+        {
+          "name": "BLESSING OF KHAINE",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick a friendly unit wholly within 12\" of your general. You cannot pick your general.",
+          "effect": "Add 1 to ward rolls for that unit this phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "daughters-of-khaine-heartflayer-troupe-bathed-in-blood",
+      "name": "BATHED IN BLOOD",
+      "abilities": [
+        {
+          "name": "BATHED IN BLOOD",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Each time a model is slain by your general, Heal (1) your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "daughters-of-khaine-heartflayer-troupe-flask-of-shademist",
+      "name": "FLASK OF SHADEMIST",
+      "abilities": [
+        {
+          "name": "FLASK OF SHADEMIST",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "",
+          "effect": "Until the end of the phase, subtract 1 from hit rolls for attacks that target friendly units while they are wholly within 12\" of your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "daughters-of-khaine-heartflayer-troupe-fuelled-by-revenge",
+      "name": "FUELLED BY REVENGE",
+      "abilities": [
+        {
+          "name": "FUELLED BY REVENGE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to the Rend characteristic of melee weapons used by friendly Blood Stalkers units while they are wholly within 12\" of your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "daughters-of-khaine-heartflayer-troupe-zealous-orator",
+      "name": "ZEALOUS ORATOR",
+      "abilities": [
+        {
+          "name": "ZEALOUS ORATOR",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly unit wholly within 9\" of your general that is not in combat. Roll a dice for each slain model from that unit.",
+          "effect": "For each 5+, you can return 1 slain model to that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "daughters-of-khaine-heartflayer-troupe-melusai-ironscale",
+      "name": "Melusai Ironscale",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "6",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Keldrisaíth",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": ""
+        },
+        {
+          "name": "Keldrisaíth",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "ALL-OUT SLAUGHTER",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly unit wholly within 12\" of this unit to be the target. You cannot pick this unit.",
+          "effect": "Add 1 to the Attacks characteristic of the target’s melee weapons for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "TURNED TO CRYSTAL",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "Pick an enemy unit within 1\" of this unit to be the target and roll a dice.",
+          "effect": "On a 2+, inflict 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "daughters-of-khaine-heartflayer-troupe-witch-aelves",
+      "name": "Witch Aelves",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Paired Sciansá",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit, (Auto-wound)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "FRENZIED FERVOUR",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to the Rend characteristic of this unit’s melee weapons if it charged in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "daughters-of-khaine-heartflayer-troupe-doomfire-warlocks",
+      "name": "Doomfire Warlocks",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "CAVALRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "14\"",
+        "health": "3",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Doomfire Crossbow",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Cursed Scimitar",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Dark Steed’s Vicious Bite",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "DOOMFIRE",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
+          "effect": "On a 6+, inflict D3 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "daughters-of-khaine-heartflayer-troupe-blood-stalkers",
+      "name": "Blood Stalkers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "2",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Heartseeker Bow",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit, (Auto-wound)"
+        },
+        {
+          "name": "Scianlar",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "HEARTSEEKERS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Shooting attacks made by this unit score critical hits on unmodified hit rolls of 5+ if this unit did not use a MOVE ability in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

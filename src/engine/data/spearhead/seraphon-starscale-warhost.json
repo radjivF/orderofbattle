@@ -1,0 +1,314 @@
+{
+  "id": "seraphon-starscale-warhost",
+  "name": "Starscale Warhost",
+  "parentFactionId": "seraphon",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/seraphon/",
+  "roster": [
+    {
+      "unitId": "seraphon-starscale-warhost-saurus-oldblood-on-carnosaur",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "seraphon-starscale-warhost-saurus-warriors",
+      "count": 1
+    },
+    {
+      "unitId": "seraphon-starscale-warhost-saurus-warriors",
+      "count": 1
+    },
+    {
+      "unitId": "seraphon-starscale-warhost-kroxigor",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "seraphon-starscale-warhost-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "BEAST OF THE DARK JUNGLES",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick your general to use this ability if they are in combat.",
+          "effect": "Pick 1 of the following: Gargantuan Jaws: Pick an enemy unit in combat with your general and roll a dice. If the roll exceeds that unit’s Health characteristic, 1 model in that unit is slain. Roar: Pick an enemy unit in combat with your general. Subtract D6 from that unit’s control score this turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "seraphon-starscale-warhost-predatory-fighters",
+      "name": "PREDATORY FIGHTERS",
+      "abilities": [
+        {
+          "name": "PREDATORY FIGHTERS",
+          "kind": "Activated",
+          "timing": "Once Per Phase, End of Any Turn",
+          "declare": "Roll a dice for each enemy unit in combat with any friendly units.",
+          "effect": "On a 3+, inflict 1 mortal damage on the unit being rolled for.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "seraphon-starscale-warhost-temple-city-guardians",
+      "name": "TEMPLE-CITY GUARDIANS",
+      "abilities": [
+        {
+          "name": "TEMPLE-CITY GUARDIANS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Friendly units have WARD (6+) while they are wholly within friendly territory.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "seraphon-starscale-warhost-sotek-s-gaze",
+      "name": "SOTEK'S GAZE",
+      "abilities": [
+        {
+          "name": "SOTEK'S GAZE",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "Roll a dice. Add the roll to your general’s control score this turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "seraphon-starscale-warhost-blade-of-realities",
+      "name": "BLADE OF REALITIES",
+      "abilities": [
+        {
+          "name": "BLADE OF REALITIES",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to the Rend characteristic of your general’s Relic Celestite Weapon.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "seraphon-starscale-warhost-ancient-strategist",
+      "name": "ANCIENT STRATEGIST",
+      "abilities": [
+        {
+          "name": "ANCIENT STRATEGIST",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Enemy Movement Phase",
+          "declare": "Pick a friendly unit wholly within 12\" of your general. You cannot pick your general.",
+          "effect": "That unit can use the ‘Normal Move’ ability as if it were your movement phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "seraphon-starscale-warhost-the-wrath-of-chotec",
+      "name": "THE WRATH OF CHOTEC",
+      "abilities": [
+        {
+          "name": "THE WRATH OF CHOTEC",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "The Attacks characteristic of your general’s Sunbolt Gauntlet is 6 instead of D6.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "seraphon-starscale-warhost-saurus-oldblood-on-carnosaur",
+      "name": "Saurus Oldblood on Carnosaur",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "MONSTER"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "14",
+        "save": "4+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Sunbolt Gauntlet",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "D6",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Relic Celestite Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Carnosaur’s Massive Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "ANCIENT WARLORD",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly unit wholly within 12\" of this unit to be the target. You cannot pick this unit.",
+          "effect": "Until the start of your next turn, add 1 to charge rolls for the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "seraphon-starscale-warhost-saurus-warriors",
+      "name": "Saurus Warriors",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "2",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Celestite Club",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "ORDERED COHORTS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to save rolls for this unit while it is contesting an objective you control.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "seraphon-starscale-warhost-kroxigor",
+      "name": "Kroxigor",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "6",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Drakebite Maul",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "BRUTAL BLOWS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "This unit’s melee weapons have Crit (2 Hits) if the target unit has 5 or more models.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

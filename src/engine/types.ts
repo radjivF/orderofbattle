@@ -170,6 +170,27 @@ export type RegimentOfRenownPick = {
   units: Selection[];
 };
 
+export type SpearheadRosterEntry = {
+  unitId: string;
+  count: number;
+  general?: boolean;
+};
+
+export type SpearheadCatalogue = {
+  id: string;
+  name: string;
+  parentFactionId: string;
+  game: string;
+  source: string;
+  roster: SpearheadRosterEntry[];
+  battleTraits: Formation[];
+  regimentAbilities: Formation[];
+  enhancements: EnhancementOption[];
+  units: CatalogueUnit[];
+};
+
+export type ArmyListKind = "matched" | "spearhead";
+
 export type FactionCatalogue = {
   id: string;
   name: string;
@@ -216,6 +237,9 @@ export type ArmyList = {
   id: string;
   name: string;
   factionId: string;
+  kind?: ArmyListKind;
+  spearheadId?: string | null;
+  regimentAbilityId?: string | null;
   pointsCap: number;
   formationId: string | null;
   spellLoreId: string | null;

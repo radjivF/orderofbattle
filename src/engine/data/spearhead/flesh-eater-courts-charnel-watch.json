@@ -1,0 +1,379 @@
+{
+  "id": "flesh-eater-courts-charnel-watch",
+  "name": "Charnel Watch",
+  "parentFactionId": "flesh-eater-courts",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/flesh-eater-courts/",
+  "roster": [
+    {
+      "unitId": "flesh-eater-courts-charnel-watch-abhorrant-gorewarden",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "flesh-eater-courts-charnel-watch-royal-beastflayers",
+      "count": 1
+    },
+    {
+      "unitId": "flesh-eater-courts-charnel-watch-crypt-horrors",
+      "count": 1
+    },
+    {
+      "unitId": "flesh-eater-courts-charnel-watch-crypt-flayers",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "flesh-eater-courts-charnel-watch-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "DELUSIONS AND MADNESS",
+          "kind": "Activated",
+          "timing": "Once Per Battle Round (Army), Start of Battle Round",
+          "declare": "You must use this ability at the start of each battle round. If it is the first battle round, pick a DELUSION. Otherwise, make a delusion roll by rolling a D6.",
+          "effect": "On a 1-3, you must pick a different DELUSION to the one you picked last time. On a 4+, you must pick the same DELUSION as last time. For the rest of the battle round, you believe the DELUSION you picked.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "DELUSION OF THE GREAT FEAST",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Any Turn",
+          "declare": "If you believe this DELUSION, pick each friendly unit on the battlefield to be the targets.",
+          "effect": "Heal (1) each target. If the target is a SERFS unit, return D3 slain models to it instead. KEYWORDSDELUSION",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "DELUSION OF THE KNIGHTLY HOST",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While you believe this DELUSION, if the unmodified charge roll for a friendly HERO or KNIGHTS unit is 8+, add 1 to hit rolls for that unit’s combat attacks for the rest of the turn. KEYWORDSDELUSION",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "flesh-eater-courts-charnel-watch-delusion-of-the-sentinel",
+      "name": "DELUSION OF THE SENTINEL",
+      "abilities": [
+        {
+          "name": "DELUSION OF THE SENTINEL",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While you believe this DELUSION, add 1 to ward rolls for friendly units while each model in the unit is contesting an objective. KEYWORDSDELUSION",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "flesh-eater-courts-charnel-watch-delusion-of-the-hunter",
+      "name": "DELUSION OF THE HUNTER",
+      "abilities": [
+        {
+          "name": "DELUSION OF THE HUNTER",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While you believe this DELUSION, add 1 to wound rolls for combat attacks made by friendly units while no models in the unit are contesting an objective. KEYWORDSDELUSION",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "flesh-eater-courts-charnel-watch-almost-lucid",
+      "name": "ALMOST LUCID",
+      "abilities": [
+        {
+          "name": "ALMOST LUCID",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Reaction: You declared the ‘Delusions and Madness’ ability",
+          "declare": "",
+          "effect": "You can re-roll the delusion roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "flesh-eater-courts-charnel-watch-a-worthy-challenge",
+      "name": "A WORTHY CHALLENGE",
+      "abilities": [
+        {
+          "name": "A WORTHY CHALLENGE",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "Pick an enemy unit that started the battle with 3 or fewer models and is in combat with your general to be the target.",
+          "effect": "Your opponent must decide whether the target will accept or refuse your general’s challenge. If they accept, for the rest of the phase, when your general and the target are picked to use a FIGHT ability, all of their attacks must target each other. If they refuse, the target has STRIKE-LAST for the rest of the phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "flesh-eater-courts-charnel-watch-companion-of-the-hunt",
+      "name": "COMPANION OF THE HUNT",
+      "abilities": [
+        {
+          "name": "COMPANION OF THE HUNT",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "If your general is not in combat, they can move 3\". They cannot move into combat during any part of that move.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "flesh-eater-courts-charnel-watch-choirmaster",
+      "name": "CHOIRMASTER",
+      "abilities": [
+        {
+          "name": "CHOIRMASTER",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Shooting Phase",
+          "declare": "Pick a visible enemy unit within 6\" of your general to be the target.",
+          "effect": "For the rest of the turn, add 1 to the Damage characteristic of friendly units’ ranged weapons for attacks that target that enemy unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "flesh-eater-courts-charnel-watch-abhorrant-gorewarden",
+      "name": "Abhorrant Gorewarden",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "WIZARD",
+        "INFANTRY",
+        "FLY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "7",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Gory Talons and Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "SOUND THE PURSUIT!",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
+          "effect": "On a 6+, until the start of your next turn, when making charge rolls for the target, add 1 to the number of dice rolled, to a maximum of 3, then remove 1 dice of your choice and use the remaining dice as the charge roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "flesh-eater-courts-charnel-watch-royal-beastflayers",
+      "name": "Royal Beastflayers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 10,
+      "categories": [
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Beastflayer Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "LIE OF THE LAND",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "",
+          "effect": "If this unit is not in combat and is wholly within 6\" of a battlefield edge, remove this unit from the battlefield and set it up again wholly within 6\" of a battlefield edge and more than 6\" from all enemy units",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "flesh-eater-courts-charnel-watch-crypt-horrors",
+      "name": "Crypt Horrors",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "7\"",
+        "health": "4",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Club and Septic Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "HOLY BLADES OF BONE",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit and that charged this turn to be the target.",
+          "effect": "Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "flesh-eater-courts-charnel-watch-crypt-flayers",
+      "name": "Crypt Flayers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "INFANTRY",
+        "FLY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "4",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Death Scream",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "1",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Piercing Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "UNHOLY CHORUS",
+          "kind": "Activated",
+          "timing": "Your Shooting Phase",
+          "declare": "Pick a visible enemy unit within 10\" of this unit to be the target.",
+          "effect": "For the rest of the turn, subtract an amount from the target’s control score equal to the number of damage points allocated to the target this phase by this unit’s shooting attacks.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

@@ -1,0 +1,314 @@
+{
+  "id": "fyreslayers-saga-axeband",
+  "name": "Saga Axeband",
+  "parentFactionId": "fyreslayers",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/fyreslayers/",
+  "roster": [
+    {
+      "unitId": "fyreslayers-saga-axeband-battlesmith",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "fyreslayers-saga-axeband-hearthguard-berzerkers",
+      "count": 1
+    },
+    {
+      "unitId": "fyreslayers-saga-axeband-vulkite-berzerkers",
+      "count": 1
+    },
+    {
+      "unitId": "fyreslayers-saga-axeband-vulkite-berzerkers",
+      "count": 1
+    },
+    {
+      "unitId": "fyreslayers-saga-axeband-vulkite-berzerkers",
+      "count": 1
+    },
+    {
+      "unitId": "fyreslayers-saga-axeband-vulkite-berzerkers",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "fyreslayers-saga-axeband-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "AWAKEN THE RUNES",
+          "kind": "Activated",
+          "timing": "Once Per Battle Round, Start of Your Turn",
+          "declare": "Pick 1 of the ur-gold runes from the ur-gold runes table, then make an activation roll of D6. Each urgold rune can only be activated once per battle.",
+          "effect": "On a 1-5, the rune’s standard effect applies. On a 6, the rune’s enhanced effect applies as well. The effects last until the start of your next turn. UR-GOLD RUNES RUNE OF FURY Standard: Add 1 to hit rolls for combat attacks made by friendly units. Enhanced: In addition, add 1 to the Attacks characteristic of your units’ melee weapons. RUNE OF SEARING HEAT Standard: Add 1 to the Rend characteristic of your units’ melee weapons. Enhanced: In addition, add 1 to the Damage characteristic of your units’ melee weapons. RUNE OF FIERY DETERMINATION Standard: Your units have WARD (5+). Enhanced: In addition, add 1 to save rolls for friendly units. RUNE OF RELENTLESS ZEAL Standard: Add 2\" to the Move characteristic of your units. Enhanced: In addition, add 2 to charge rolls for your units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "fyreslayers-saga-axeband-magmic-tunnels",
+      "name": "MAGMIC TUNNELS",
+      "abilities": [
+        {
+          "name": "MAGMIC TUNNELS",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Start of the First Battle Round",
+          "declare": "",
+          "effect": "Pick up to 2 friendly units. Remove them from the battlefield and set them up again anywhere on the battlefield more than 6\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "fyreslayers-saga-axeband-fyresteel-throwing-axes",
+      "name": "FYRESTEEL THROWING AXES",
+      "abilities": [
+        {
+          "name": "FYRESTEEL THROWING AXES",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Shooting Phase",
+          "declare": "Pick any number of friendly units that are not in combat and are within 10\" of any enemy units.",
+          "effect": "For each of those units, pick a visible enemy unit within 10\" of it and roll a dice. On a 4+, inflict D3 mortal damage on that enemy unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "fyreslayers-saga-axeband-too-stubborn-to-die",
+      "name": "TOO STUBBORN TO DIE",
+      "abilities": [
+        {
+          "name": "TOO STUBBORN TO DIE",
+          "kind": "Activated",
+          "timing": "Start of Any Turn",
+          "declare": "",
+          "effect": "Heal (D3) your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "fyreslayers-saga-axeband-horn-of-grimnir",
+      "name": "HORN OF GRIMNIR",
+      "abilities": [
+        {
+          "name": "HORN OF GRIMNIR",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick your general to use this ability if they are not in combat.",
+          "effect": "Roll a dice for each friendly unit on the battlefield that has any slain models. On a 3+, you can return 1 slain model to that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "fyreslayers-saga-axeband-spirit-of-grimnir",
+      "name": "SPIRIT OF GRIMNIR",
+      "abilities": [
+        {
+          "name": "SPIRIT OF GRIMNIR",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "You can re-roll activation rolls you make for the ‘Ur-gold Runes’ ability (see Battle Traits).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "fyreslayers-saga-axeband-powerful-presence",
+      "name": "POWERFUL PRESENCE",
+      "abilities": [
+        {
+          "name": "POWERFUL PRESENCE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 3 to your general’s control score.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "fyreslayers-saga-axeband-battlesmith",
+      "name": "Battlesmith",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "5",
+        "save": "5+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Ancestral Battle-axe",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "ICON OF GRIMNIR",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to save rolls for friendly units while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "PLANT THE ICON",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Hero Phase",
+          "declare": "",
+          "effect": "For the rest of the turn, friendly units have WARD (5+) while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "fyreslayers-saga-axeband-hearthguard-berzerkers",
+      "name": "Hearthguard Berzerkers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "2",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Flamestrike Poleaxe",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "DUTY UNTO DEATH",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While your general is wholly within this unit’s combat range, both this unit and your general have WARD (5+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "fyreslayers-saga-axeband-vulkite-berzerkers",
+      "name": "Vulkite Berzerkers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "2",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Fyresteel Handaxes",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Anti-charge, (+1, Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "WHIRLWIND OF DESTRUCTION",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to the Attacks characteristic of this unit’s melee weapons if it charged in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

@@ -1,0 +1,433 @@
+{
+  "id": "ogor-mawtribes-scrapglutt",
+  "name": "Scrapglutt",
+  "parentFactionId": "ogor-mawtribes",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/ogor-mawtribes/",
+  "roster": [
+    {
+      "unitId": "ogor-mawtribes-scrapglutt-mantrappers",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "ogor-mawtribes-scrapglutt-ironguts",
+      "count": 1
+    },
+    {
+      "unitId": "ogor-mawtribes-scrapglutt-ironguts",
+      "count": 1
+    },
+    {
+      "unitId": "ogor-mawtribes-scrapglutt-lronguts",
+      "count": 1
+    },
+    {
+      "unitId": "ogor-mawtribes-scrapglutt-gnoblars",
+      "count": 1
+    },
+    {
+      "unitId": "ogor-mawtribes-scrapglutt-gnoblar-scraplauncher",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "ogor-mawtribes-scrapglutt-better-late-than-never",
+      "name": "BETTER LATE THAN NEVER",
+      "abilities": [
+        {
+          "name": "LET'S GET STUCK IN",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "",
+          "effect": "Set up this unit wholly within friendly territory, wholly within 6\" of the battlefield edge, and not in combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "ogor-mawtribes-scrapglutt-it-s-a-hard-life",
+      "name": "IT'S A HARD LIFE",
+      "abilities": [
+        {
+          "name": "IT'S A HARD LIFE",
+          "kind": "Activated",
+          "timing": "Any Hero Phase",
+          "declare": "Pick a friendly Gnoblars unit within your general’s combat range to be the target.",
+          "effect": "Roll a D3. On a 2+: Heal (X) your general where X is an amount equal to the roll. 1 model in that Gnoblars unit is slain.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "ogor-mawtribes-scrapglutt-frenzied-artillery",
+      "name": "FRENZIED ARTILLERY",
+      "abilities": [
+        {
+          "name": "FRENZIED ARTILLERY",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "If the unmodified charge roll for a friendly Gnoblar Scraplauncher is 6+, add 3 the Attacks characteristic of the target’s Companion weapons for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "ogor-mawtribes-scrapglutt-savage-instincts",
+      "name": "SAVAGE INSTINCTS",
+      "abilities": [
+        {
+          "name": "SAVAGE INSTINCTS",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a FIGHT ability for your general",
+          "declare": "",
+          "effect": "Pick a friendly unit that has not used a FIGHT ability this turn and is within your general’s combat range to be the target. The target can be picked to use a FIGHT ability immediately after the FIGHT ability used by your general has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "ogor-mawtribes-scrapglutt-massive-bulk",
+      "name": "MASSIVE BULK",
+      "abilities": [
+        {
+          "name": "MASSIVE BULK",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 2 to the Health characteristic of your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "ogor-mawtribes-scrapglutt-nasty-trap",
+      "name": "NASTY TRAP",
+      "abilities": [
+        {
+          "name": "NASTY TRAP",
+          "kind": "Activated",
+          "timing": "Reaction: Once Per Battle, Your Movement Phase",
+          "declare": "Pick an enemy unit within 12\" of your general to be the target.",
+          "effect": "Give the target your general’s Trap token. While the target has a Trap token, each time the target is picked to use a MOVE or CHARGE ability, roll a dice. On a 4+, that MOVE or CHARGE ability has no effect and the target’s Trap token is removed",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "ogor-mawtribes-scrapglutt-veteran-hunter",
+      "name": "VETERAN HUNTER",
+      "abilities": [
+        {
+          "name": "VETERAN HUNTER",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Hero Phase.",
+          "declare": "Pick an enemy unit within 12\" of your general to be the target.",
+          "effect": "For the rest of the turn, add 1 to the Rend characteristic of your general’s combat attacks that target that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "ogor-mawtribes-scrapglutt-mantrappers",
+      "name": "Mantrappers",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "7",
+        "save": "5+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Mantrapper Crossbow",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": ""
+        },
+        {
+          "name": "Frost Sabre's Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Culling Knife",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "STAYING USEFUL",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While any of this unit’s Gnoblar or Frost Sabre tokens are on the battlefield, this unit has WARD (5+). Each time you make a successful ward roll for this unit, remove 1 of this unit’s tokens from the battlefield. If this unit’s Frost Sabre token has been removed, it can no longer attack with its Frost Sabre’s Fangs.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "NO SLACKING!",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly INFANTRY unit wholly within 12\" of this unit.",
+          "effect": "Roll a dice On a 3+, add the result to the target’s control score until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "ogor-mawtribes-scrapglutt-ironguts",
+      "name": "Ironguts",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 2,
+      "categories": [
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "4",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Irongut Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "DOWN TO THE IRONGUTS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Ignore negative modifiers to this unit’s control score.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "ogor-mawtribes-scrapglutt-lronguts",
+      "name": "lronguts",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 4,
+      "categories": [],
+      "stats": {
+        "move": "",
+        "health": "",
+        "save": "",
+        "control": ""
+      },
+      "weapons": [],
+      "abilities": [],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "ogor-mawtribes-scrapglutt-gnoblars",
+      "name": "Gnoblars",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 12,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Sharp Stuff",
+          "kind": "ranged",
+          "range": "8\"",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Motley Assortment of Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "5+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "NO SHORTAGE OF VOLUNTEERS",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "You can return D3 models to this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "ogor-mawtribes-scrapglutt-gnoblar-scraplauncher",
+      "name": "Gnoblar Scraplauncher",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "WAR MACHINE"
+      ],
+      "stats": {
+        "move": "9\"",
+        "health": "9",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Piles of Old Scrap",
+          "kind": "ranged",
+          "range": "24\"",
+          "attacks": "3D6",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit, (Auto-wound)"
+        },
+        {
+          "name": "Scrappers’ Stabbers",
+          "kind": "melee",
+          "range": "",
+          "attacks": "7",
+          "hit": "5+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Rhinox’s Sharp Horns",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "RAIN OF SCRAP",
+          "kind": "Activated",
+          "timing": "Your Shooting Phase",
+          "declare": "Pick an enemy unit that had any models slain this turn by this unit’s shooting attacks to be the target.",
+          "effect": "Subtract 1 from hit rolls for the target’s attacks for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

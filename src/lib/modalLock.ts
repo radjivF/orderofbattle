@@ -1,4 +1,6 @@
-/** Modal stack: pointer lock, z-index layering, and top-only dismiss. */
+/** Modal stack: pointer lock, z-index layering, scroll lock, and top-only dismiss. */
+
+import { lockPageScroll, unlockPageScroll } from "./scrollLock";
 
 const BASE_Z = 100;
 const Z_STEP = 10;
@@ -23,6 +25,7 @@ export function acquireModalLayer(onClose: () => void): number {
   lockCount += 1;
   closeHandlers.push(onClose);
   syncBodyPointerLock();
+  lockPageScroll();
   return BASE_Z + (lockCount - 1) * Z_STEP;
 }
 
@@ -33,6 +36,7 @@ export function releaseModalLayer(onClose: () => void) {
   }
   lockCount = Math.max(0, lockCount - 1);
   syncBodyPointerLock();
+  unlockPageScroll();
 }
 
 export function isTopModal(onClose: () => void): boolean {

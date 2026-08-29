@@ -1,0 +1,428 @@
+{
+  "id": "sylvaneth-bitterbark-copse",
+  "name": "Bitterbark Copse",
+  "parentFactionId": "sylvaneth",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/sylvaneth/",
+  "roster": [
+    {
+      "unitId": "sylvaneth-bitterbark-copse-branchwych",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "sylvaneth-bitterbark-copse-treelord",
+      "count": 1
+    },
+    {
+      "unitId": "sylvaneth-bitterbark-copse-kurnoth-hunters",
+      "count": 1
+    },
+    {
+      "unitId": "sylvaneth-bitterbark-copse-tree-revenants",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "sylvaneth-bitterbark-copse-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "LEY LINES",
+          "kind": "Activated",
+          "timing": "Once Per Turn, End of Any Turn",
+          "declare": "",
+          "effect": "Heal (1) each friendly unit that is within 3\" of any terrain features.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "STRIKE AND FADE",
+          "kind": "Activated",
+          "timing": "Once Per Turn, End of Any Turn",
+          "declare": "Pick a friendly unit that used a FIGHT ability this turn and is within 3\" of any terrain features, then roll a dice.",
+          "effect": "On a 2+, remove that unit from the battlefield and set it up again so that each model in the unit is within 3\" of any terrain features and more than 6\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "sylvaneth-bitterbark-copse-vengeful-spirits-of-the-land",
+      "name": "VENGEFUL SPIRITS OF THE LAND",
+      "abilities": [
+        {
+          "name": "VENGEFUL SPIRITS OF THE LAND",
+          "kind": "Activated",
+          "timing": "Once Per Turn, End of Any Turn",
+          "declare": "Pick an enemy unit that is contesting an objective and roll a dice.",
+          "effect": "On a 4+, inflict D3 mortal damage on that enemy unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "sylvaneth-bitterbark-copse-walkers-of-the-hidden-paths",
+      "name": "WALKERS OF THE HIDDEN PATHS",
+      "abilities": [
+        {
+          "name": "WALKERS OF THE HIDDEN PATHS",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Your Movement Phase",
+          "declare": "Pick a friendly unit that is within 3\" of any terrain features and not in combat.",
+          "effect": "Remove that unit from the battlefield and set it up again more than 6\" from all enemy units. That unit cannot use MOVE abilities for the rest of the phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "sylvaneth-bitterbark-copse-regrowth",
+      "name": "REGROWTH",
+      "abilities": [
+        {
+          "name": "REGROWTH",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly unit wholly within 18\" of your general to be the target, then make a casting roll of 2D6.",
+          "effect": "On a 5+, Heal (D6) the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "sylvaneth-bitterbark-copse-treesong",
+      "name": "TREESONG",
+      "abilities": [
+        {
+          "name": "TREESONG",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly unit wholly within 12\" of your general to be the target, then make a casting roll of 2D6.",
+          "effect": "On a 7+, add 1 to the Rend characteristic of the target unit’s melee weapons until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "sylvaneth-bitterbark-copse-gnarled-warrior",
+      "name": "GNARLED WARRIOR",
+      "abilities": [
+        {
+          "name": "GNARLED WARRIOR",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Ignore negative modifiers to save rolls for your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "sylvaneth-bitterbark-copse-seed-of-rebirth",
+      "name": "SEED OF REBIRTH",
+      "abilities": [
+        {
+          "name": "SEED OF REBIRTH",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "If your general would be destroyed, before removing them from play, roll a dice. On a 3+, your general is not destroyed and any remaining damage points inflicted on them have no effect. Then, Heal (1) your general. This unit cannot use this ability again for the rest of the battle.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "sylvaneth-bitterbark-copse-branchwych",
+      "name": "Branchwych",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "WIZARD",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Greenwood Scythe and Bittergrub",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "VERDUROUS HARMONY",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly unit wholly within 18\" of this unit to be the target, then make a casting roll of 2D6.",
+          "effect": "On a 7+, you can return 1 slain model to the target unit. If you picked a Tree-Revenants unit, you can return D3 slain models instead of 1.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "sylvaneth-bitterbark-copse-treelord",
+      "name": "Treelord",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "MONSTER"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "14",
+        "save": "3+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Strangleroots",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Sweeping Blows",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Massive Impaling Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "GROUNDSHAKER",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target, then roll a dice.",
+          "effect": "On a 4+, the target has STRIKE-LAST this phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "sylvaneth-bitterbark-copse-kurnoth-hunters",
+      "name": "Kurnoth Hunters",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "5",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Kurnoth Greatbow",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Vicious Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "ENVOYS OF THE EVERQUEEN",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While this unit is contesting an objective, friendly units contesting that objective have WARD (6+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "sylvaneth-bitterbark-copse-tree-revenants",
+      "name": "Tree-Revenants",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "2",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Enchanted Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "MARTIAL MEMORIES",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "",
+          "effect": "Pick 1 of the following effects to apply to this unit this phase: Memories of War: Add 1 to hit rolls for attacks made by this unit. Memories of Peace: Add 1 to save rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "FURY OF THE FOREST",
+          "kind": "Activated",
+          "timing": "Enemy Combat Phase",
+          "declare": "Pick a friendly SYLVANETH unit wholly within the creeping overgrowth and that is in combat with only 1 enemy unit to use this ability.",
+          "effect": "The unit using this ability has STRIKE-FIRST for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "THE CREEPING OVERGROWTH",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "The creeping overgrowth is measured from each terrain feature that has a friendly overgrown token. The range of the creeping overgrowth is based on the number of friendly overgrown tokens on the battlefield as shown: Overgrown TokensCreeping Overgrowth Range 0-26\" 3-59\" 6-812\" 9+Whole battlefield Designer’s Note: Awakened Wyldwoods are your main way of generating overgrown tokens. Some unit abilities allow you to do so too. The non-HERO REVENANT, INFANTRY and SYLVANETH",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "CREEPING DREAD",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Start of Any Turn",
+          "declare": "Pick an enemy unit within the creeping overgrowth to be the target.",
+          "effect": "For the rest of the turn, the first time your opponent declares a command for the target while it is not wholly within 12\" of a HERO in their army, unless your opponent spends 1 additional command point to use that command, the command has no effect, it still counts as being used and the command points spent to use the command are still lost. Hit Roll Roll a dice. If the roll equals or exceeds the attacking weapon’s Hit characteristic, the attack scores a successful hit: move on to the next step. If not, the attack fails and the attack sequence ends. Unmodified hit rolls of 1 always fail. If an unmodified hit roll for an attack made with a weapon is a 6, that attack is a critical hit. Critical hits have no effect on their own but often trigger additional effects (see 20.0 Weapon Abilities). 3.2 The General You must pick 1 HERO in your army that is leading a regiment to be your general. If any units in your army have the WARMASTER keyword, you must pick one of those units to be your general. Your general’s regiment can include up to 4 non-HERO units in addition to your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "ENDLESS GROWTH",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Any Turn",
+          "declare": "Pick each friendly SYLVANETH unit that is wholly within the creeping overgrowth to be the targets.",
+          "effect": "For each target, roll a D3 and pick 1 of the following effects: Heal (X) the target, where X is equal to the roll. Return a number of slain models to it with a combined Health characteristic of up to the value of the roll. The MONSTER and SYLVANETH",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

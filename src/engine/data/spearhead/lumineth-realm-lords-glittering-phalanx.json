@@ -1,0 +1,411 @@
+{
+  "id": "lumineth-realm-lords-glittering-phalanx",
+  "name": "Glittering Phalanx",
+  "parentFactionId": "lumineth-realm-lords",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/lumineth-realm-lords/",
+  "roster": [
+    {
+      "unitId": "lumineth-realm-lords-glittering-phalanx-scinari-cathallar",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "lumineth-realm-lords-glittering-phalanx-vanari-auralan-sentinels",
+      "count": 1
+    },
+    {
+      "unitId": "lumineth-realm-lords-glittering-phalanx-vanari-auralan-sentinels",
+      "count": 1
+    },
+    {
+      "unitId": "lumineth-realm-lords-glittering-phalanx-vanari-auralan-wardens",
+      "count": 1
+    },
+    {
+      "unitId": "lumineth-realm-lords-glittering-phalanx-vanari-bladelords",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "lumineth-realm-lords-glittering-phalanx-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "FACETS OF WAR",
+          "kind": "Activated",
+          "timing": "Once Per Battle Round, Start of Battle Round",
+          "declare": "",
+          "effect": "You must use this ability at the start of the battle round. Pick 1 FACET OF WAR ability. That FACET OF WAR ability can be used this battle round but the other two cannot.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "SHINING COMPANY",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Subtract 1 from hit rolls that target friendly units. KEYWORDSFACET OF WAR",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "POWER OF HYSH",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Hero Phase",
+          "declare": "Pick a friendly unit.",
+          "effect": "Roll a dice. On a 2+, until the start of your next turn, attacks made by that unit score critical hits on unmodified hit rolls of 5+. KEYWORDSFACET OF WAR",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "LIGHTNING REACTIONS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "When players are alternating picking units to use a FIGHT ability, when it is your turn to pick a unit, you can pick 2 units instead of 1. Resolve the second FIGHT ability immediately after the first.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "lumineth-realm-lords-glittering-phalanx-arcane-prowess",
+      "name": "ARCANE PROWESS",
+      "abilities": [
+        {
+          "name": "ARCANE PROWESS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to casting rolls for your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "lumineth-realm-lords-glittering-phalanx-heightened-reflexes",
+      "name": "HEIGHTENED REFLEXES",
+      "abilities": [
+        {
+          "name": "HEIGHTENED REFLEXES",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to save rolls for friendly units that use a FIGHT ability immediately after another friendly unit because of the ‘Lightning Reactions’ ability, until the end of the phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "lumineth-realm-lords-glittering-phalanx-waystone",
+      "name": "WAYSTONE",
+      "abilities": [
+        {
+          "name": "WAYSTONE",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "",
+          "effect": "Remove your general from the battlefield and set them up again anywhere on the battlefield more than 6\" from all enemy units. KEYWORDSCORE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "lumineth-realm-lords-glittering-phalanx-protection-of-hysh",
+      "name": "PROTECTION OF HYSH",
+      "abilities": [
+        {
+          "name": "PROTECTION OF HYSH",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly unit wholly within 12\" of your general to be the target, then make a casting roll of 2D6.",
+          "effect": "On a 7+, the target has WARD (5+) until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "lumineth-realm-lords-glittering-phalanx-speed-of-hysh",
+      "name": "SPEED OF HYSH",
+      "abilities": [
+        {
+          "name": "SPEED OF HYSH",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly unit wholly within 18\" of your general, then make a casting roll of 2D6.",
+          "effect": "On a 5+, double the Move characteristic of that unit until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "lumineth-realm-lords-glittering-phalanx-overwhelming-heat",
+      "name": "OVERWHELMING HEAT",
+      "abilities": [
+        {
+          "name": "OVERWHELMING HEAT",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible enemy unit within 24\" of your general, then make a casting roll of 2D6.",
+          "effect": "On a 7+, halve the Move characteristic of that unit until the start of your next turn and roll a dice. If the roll equals or exceeds that unit’s Save characteristic, inflict D3 mortal damage on it.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "lumineth-realm-lords-glittering-phalanx-scinari-cathallar",
+      "name": "Scinari Cathallar",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "WIZARD",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "6+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Despairing Touch",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "D3",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "DARKNESS OF THE SOUL",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick an enemy unit within 12\" of this unit to be the target, then roll a dice.",
+          "effect": "On a 3+, subtract D6 from the control score of the target unit this turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "lumineth-realm-lords-glittering-phalanx-vanari-auralan-sentinels",
+      "name": "Vanari Auralan Sentinels",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "1",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Auralan Bow",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit, (Auto-wound)"
+        },
+        {
+          "name": "Vanari Dagger",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "LOFTED SHOTS",
+          "kind": "Activated",
+          "timing": "Your Shooting Phase",
+          "declare": "",
+          "effect": "Until the end of the phase, add 6\" to the Range characteristic of this unit’s Auralan Bows but subtract 1 from hit rolls for this unit’s shooting attacks.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "lumineth-realm-lords-glittering-phalanx-vanari-auralan-wardens",
+      "name": "Vanari Auralan Wardens",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 10,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "1",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Warden’s Pike",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit, (Mortal), Anti-charge, (+1, Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "MOONFIRE FLASK",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit and that charged this turn to be the target, then roll a dice.",
+          "effect": "On a 2+, inflict D3 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "lumineth-realm-lords-glittering-phalanx-vanari-bladelords",
+      "name": "Vanari Bladelords",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "2",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Sunmetal Greatblade: Perfect Strike",
+          "kind": "melee",
+          "range": "",
+          "attacks": "",
+          "hit": "",
+          "wound": "Sunmetal Greatblade: Perfect Strike",
+          "rend": "1",
+          "damage": "See below",
+          "ability": ""
+        },
+        {
+          "name": "Sunmetal Greatblade: Flurry of Blows",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Anti-INFANTRY, (+1, Rend), Crit, (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "SWORDMASTERS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Each time this unit uses a FIGHT ability, you must pick either the Perfect Strike or Flurry of Blows weapon characteristics for all the attacks it makes with its Sunmetal Greatblade. In addition: Do not use the attack sequence for an attack made with Perfect Strike. Instead, roll a dice. On a 2+, inflict 1 mortal damage on the target unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "GUARDIANS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While your general is wholly within this unit’s combat range, both this unit and your general have WARD (5+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

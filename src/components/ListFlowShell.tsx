@@ -12,8 +12,10 @@ import {
 import { usePathname } from "next/navigation";
 import type { BuilderChromeValue } from "./BuilderChrome";
 import type { LibraryChromeValue } from "./LibraryChrome";
+import { listFlowHeaderMode } from "@/lib/listFlowNav";
 import { ListNavProvider } from "./IosNavSlide";
 import { ListFlowHeader } from "./ListFlowHeader";
+import { LibraryScreen } from "./LibraryScreen";
 
 type ListFlowDecor = {
   backdrop?: ReactNode;
@@ -33,6 +35,10 @@ export function ListFlowShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const isBuilder = pathname.startsWith("/lists/");
   const listId = isBuilder ? (pathname.split("/")[2] ?? null) : null;
+  const [navState, setNavState] = useState({
+    showDetail: false,
+    animatingBack: false,
+  });
   const [decor, setDecorState] = useState<ListFlowDecor>({});
   const [builderChrome, setBuilderChrome] = useState<BuilderChromeValue | null>(
     null,
@@ -42,16 +48,20 @@ export function ListFlowShell({ children }: { children: ReactNode }) {
   );
   const setDecor = useCallback((next: ListFlowDecor) => {
     setDecorState(next);
-  }, []);
+  }, [setDecorState]);
   const decorContext = useMemo(() => ({ setDecor }), [setDecor]);
+  const showBuilderHeader =
+    listFlowHeaderMode({
+      isBuilder,
+      showDetail: navState.showDetail,
+      animatingBack: navState.animatingBack,
+    }) === "builder";
 
   useEffect(() => {
-    if (isBuilder) {
-      setLibraryChrome(null);
-      return;
+    if (!isBuilder) {
+      setBuilderChrome(null);
+      setDecorState({});
     }
-    setBuilderChrome(null);
-    setDecorState({});
   }, [isBuilder]);
 
   return (
@@ -60,10 +70,11 @@ export function ListFlowShell({ children }: { children: ReactNode }) {
         value={{ setBuilderChrome, setLibraryChrome }}
       >
         <ListNavProvider
-          headerMode={isBuilder ? "builder" : "library"}
+          libraryLayer={<LibraryScreen />}
+          onShowDetailChange={setNavState}
           header={
             <ListFlowHeader
-              mode={isBuilder ? "builder" : "library"}
+              mode={showBuilderHeader ? "builder" : "library"}
               listId={listId}
               builderChrome={builderChrome}
               libraryChrome={libraryChrome}

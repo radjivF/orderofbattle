@@ -1,0 +1,391 @@
+{
+  "id": "maggotkin-of-nurgle-bubonic-cell",
+  "name": "Bubonic Cell",
+  "parentFactionId": "maggotkin-of-nurgle",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/maggotkin-of-nurgle/",
+  "roster": [
+    {
+      "unitId": "maggotkin-of-nurgle-bubonic-cell-rotbringer-sorcerer",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "maggotkin-of-nurgle-bubonic-cell-nurglings",
+      "count": 1
+    },
+    {
+      "unitId": "maggotkin-of-nurgle-bubonic-cell-nurglings",
+      "count": 1
+    },
+    {
+      "unitId": "maggotkin-of-nurgle-bubonic-cell-beast-of-nurgle",
+      "count": 1
+    },
+    {
+      "unitId": "maggotkin-of-nurgle-bubonic-cell-rotmire-creed",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "maggotkin-of-nurgle-bubonic-cell-cycle-of-corruption",
+      "name": "CYCLE OF CORRUPTION",
+      "abilities": [
+        {
+          "name": "NUMBERLESS PESTS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Subtract 1 from hit rolls for attacks that target friendly units. KEYWORDSCYCLE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "NAUSEOUS REVULSION",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Subtract 1 from charge rolls for enemy units. KEYWORDSCYCLE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "PLAGUE OF MISERY",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While enemy units are within 6\" of any friendly units, they cannot use abilities that heal or return slain models to a unit. KEYWORDSCYCLE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "BURGEONING FILTH",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Subtract 3 from the control scores of enemy units while they are in combat with any friendly units. KEYWORDSCYCLE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "maggotkin-of-nurgle-bubonic-cell-corruption-of-the-land",
+      "name": "CORRUPTION OF THE LAND",
+      "abilities": [
+        {
+          "name": "CORRUPTION OF THE LAND",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Your Turn",
+          "declare": "Pick a terrain feature, then roll a dice for each enemy unit within 3\" of that terrain feature.",
+          "effect": "On a 4+, inflict D3 mortal damage on that enemy unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "maggotkin-of-nurgle-bubonic-cell-putrefied-ground",
+      "name": "PUTREFIED GROUND",
+      "abilities": [
+        {
+          "name": "PUTREFIED GROUND",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Enemy Hero Phase",
+          "declare": "",
+          "effect": "For the rest of the turn: Subtract 1 from the Move characteristic of enemy units. Subtract 1 from run rolls for enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "maggotkin-of-nurgle-bubonic-cell-unnatural-vitality",
+      "name": "UNNATURAL VITALITY",
+      "abilities": [
+        {
+          "name": "UNNATURAL VITALITY",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Your general has WARD (4+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "maggotkin-of-nurgle-bubonic-cell-gaseous-emanation",
+      "name": "GASEOUS EMANATION",
+      "abilities": [
+        {
+          "name": "GASEOUS EMANATION",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "Pick an enemy unit within your general’s combat range to be the target.",
+          "effect": "The target has STRIKE-LAST for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "maggotkin-of-nurgle-bubonic-cell-subcutaneous-suppuration",
+      "name": "SUBCUTANEOUS SUPPURATION",
+      "abilities": [
+        {
+          "name": "SUBCUTANEOUS SUPPURATION",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Subtract 1 from wound rolls for attacks that target your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "maggotkin-of-nurgle-bubonic-cell-overripe-death-s-heads",
+      "name": "OVERRIPE DEATH'S HEADS",
+      "abilities": [
+        {
+          "name": "OVERRIPE DEATH'S HEADS",
+          "kind": "Activated",
+          "timing": "Your Shooting Phase",
+          "declare": "If your general is not in combat, pick a visible enemy unit within 7\" of them to be the target.",
+          "effect": "Roll a dice. On a 4+, inflict 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "maggotkin-of-nurgle-bubonic-cell-rotbringer-sorcerer",
+      "name": "Rotbringer Sorcerer",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "WIZARD (1)",
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "6",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Rotwood Staff",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "FLESHY ABUNDANCE",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
+          "effect": "On a 6+, subtract 1 from wound rolls for attacks that target that friendly unit until the start of your next turn",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "maggotkin-of-nurgle-bubonic-cell-nurglings",
+      "name": "Nurglings",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "BEAST",
+        "WARD (5+)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "4",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Tiny Razor-sharp Teeth",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "5+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit, (Auto-wound)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "ENDLESS SWARM",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "Heal (D3) this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "maggotkin-of-nurgle-bubonic-cell-beast-of-nurgle",
+      "name": "Beast of Nurgle",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "BEAST",
+        "WARD (5+)"
+      ],
+      "stats": {
+        "move": "7\"",
+        "health": "8",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Filthy Claws and Slobbering Maw",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "ATTENTION SEEKERS",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "If this unit charged this phase, pick an enemy unit in combat with it to be the target.",
+          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "maggotkin-of-nurgle-bubonic-cell-rotmire-creed",
+      "name": "Rotmire Creed",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 10,
+      "categories": [
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Contagion Blowpipes",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit, (Auto-wound)"
+        },
+        {
+          "name": "Bilewood Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "BILEWOOD STILTS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "No mortal damage is inflicted on this unit when it uses RETREAT abilities.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

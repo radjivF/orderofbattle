@@ -33,3 +33,15 @@ export function factionSeoStats(faction: FactionCatalogue): FactionSeoStats {
     pointsCap: faction.pointsCapDefault,
   };
 }
+
+/** Hero vs non-hero warscroll counts for faction pickers. */
+export function factionPickerCounts(faction: FactionCatalogue): {
+  heroes: number;
+  units: number;
+} {
+  const heroes = faction.units.filter((unit) => unit.hero).length;
+  return {
+    heroes,
+    units: faction.units.length - heroes,
+  };
+}

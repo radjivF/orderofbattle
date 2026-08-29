@@ -1,0 +1,372 @@
+{
+  "id": "idoneth-deepkin-soulraid-hunt",
+  "name": "Soulraid Hunt",
+  "parentFactionId": "idoneth-deepkin",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/idoneth-deepkin/",
+  "roster": [
+    {
+      "unitId": "idoneth-deepkin-soulraid-hunt-isharann-soulscryer",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "idoneth-deepkin-soulraid-hunt-akhelian-morrsarr-guard",
+      "count": 1
+    },
+    {
+      "unitId": "idoneth-deepkin-soulraid-hunt-akhelian-allopex",
+      "count": 1
+    },
+    {
+      "unitId": "idoneth-deepkin-soulraid-hunt-namarti-thralls",
+      "count": 1
+    },
+    {
+      "unitId": "idoneth-deepkin-soulraid-hunt-namarti-thralls",
+      "count": 1
+    }
+  ],
+  "battleTraits": [],
+  "regimentAbilities": [
+    {
+      "id": "idoneth-deepkin-soulraid-hunt-way-of-the-cresting-wave",
+      "name": "WAY OF THE CRESTING WAVE",
+      "abilities": [
+        {
+          "name": "WAY OF THE CRESTING WAVE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to the Rend characteristic of melee weapons used by friendly Namarti Thralls units that charged in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "idoneth-deepkin-soulraid-hunt-ethersea-predators",
+      "name": "ETHERSEA PREDATORS",
+      "abilities": [
+        {
+          "name": "ETHERSEA PREDATORS",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Any Turn",
+          "declare": "",
+          "effect": "Pick a friendly CAVALRY unit that used a FIGHT ability this turn. Heal (D3) that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "idoneth-deepkin-soulraid-hunt-arch-ritualist",
+      "name": "ARCH-RITUALIST",
+      "abilities": [
+        {
+          "name": "ARCH-RITUALIST",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to rolls for your general’s ‘Ritual of the Creeping Mist’ ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "idoneth-deepkin-soulraid-hunt-mind-flare",
+      "name": "MIND FLARE",
+      "abilities": [
+        {
+          "name": "MIND FLARE",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with your general.",
+          "effect": "Until the end of the phase, attacks made by that unit only score hits on unmodified hit rolls of 6.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "idoneth-deepkin-soulraid-hunt-steelshell-armour",
+      "name": "STEELSHELL ARMOUR",
+      "abilities": [
+        {
+          "name": "STEELSHELL ARMOUR",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Ignore all modifiers to save rolls for your general (positive and negative).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "idoneth-deepkin-soulraid-hunt-delicious-morsels",
+      "name": "DELICIOUS MORSELS",
+      "abilities": [
+        {
+          "name": "DELICIOUS MORSELS",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "",
+          "effect": "Heal (1) each friendly CAVALRY unit within your general’s combat range.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "idoneth-deepkin-soulraid-hunt-isharann-soulscryer",
+      "name": "Isharann Soulscryer",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Scryfish Shoal",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "8",
+          "hit": "5+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Shoot, in, Combat, Companion"
+        },
+        {
+          "name": "Abyssal Touch",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "D3",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "RITUAL OF THE CREEPING MIST",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target, then roll a dice.",
+          "effect": "On a 3+, until the start of your next turn, subtract 1 from wound rolls for attacks that target that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "idoneth-deepkin-soulraid-hunt-akhelian-morrsarr-guard",
+      "name": "Akhelian Morrsarr Guard",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "CAVALRY",
+        "FLY"
+      ],
+      "stats": {
+        "move": "14\"",
+        "health": "4",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Voltspear",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge, (+1, Damage)"
+        },
+        {
+          "name": "Fangmora’s Fangs and Lashing Tail",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "BIOVOLTAIC BLAST",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Charge Phase",
+          "declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target, then roll a number of dice equal to the number of models in this unit.",
+          "effect": "For each 4-5, inflict 1 mortal damage on the target. For each 6+, inflict D3 mortal damage on the target. Add 1 to each roll if there are more models in the target unit than this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "idoneth-deepkin-soulraid-hunt-akhelian-allopex",
+      "name": "Akhelian Allopex",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 1,
+      "categories": [
+        "CAVALRY",
+        "FLY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "8",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Razorshell Harpoon Launcher",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "Anti-MONSTER, (+1, Rend)"
+        },
+        {
+          "name": "Barbed Hooks and Blades",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Allopex’s Ferocious Bite",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "BLOODTHIRSTY PREDATORS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to the Attacks characteristic of this unit’s Allopex’s Ferocious Bite if it is within 6\" of any damaged enemy units or if it is within 6\" of any enemy units that have had any models slain in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "idoneth-deepkin-soulraid-hunt-namarti-thralls",
+      "name": "Namarti Thralls",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "1",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Lanmari",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Anti-INFANTRY, (+1, Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "SWEEPING BLOWS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to the Damage characteristic of this unit’s Lanmari for attacks that target an enemy MONSTER.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

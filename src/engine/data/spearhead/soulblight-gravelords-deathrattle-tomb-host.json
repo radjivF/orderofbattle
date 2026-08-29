@@ -1,0 +1,368 @@
+{
+  "id": "soulblight-gravelords-deathrattle-tomb-host",
+  "name": "Deathrattle Tomb Host",
+  "parentFactionId": "soulblight-gravelords",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/soulblight-gravelords/",
+  "roster": [
+    {
+      "unitId": "soulblight-gravelords-deathrattle-tomb-host-wight-king",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "soulblight-gravelords-deathrattle-tomb-host-barrow-guard",
+      "count": 1
+    },
+    {
+      "unitId": "soulblight-gravelords-deathrattle-tomb-host-barrow-knights",
+      "count": 1
+    },
+    {
+      "unitId": "soulblight-gravelords-deathrattle-tomb-host-deathrattle-skeletons",
+      "count": 1
+    },
+    {
+      "unitId": "soulblight-gravelords-deathrattle-tomb-host-deathrattle-skeletons",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "soulblight-gravelords-deathrattle-tomb-host-the-unquiet-dead",
+      "name": "THE UNQUIET DEAD",
+      "abilities": [
+        {
+          "name": "THE RISING DEAD",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Your Movement Phase",
+          "declare": "",
+          "effect": "Set up this unit anywhere on the battlefield wholly within 3\" of a battlefield edge and more than 6\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "AURA OF ANTIQUITY",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Combat Phase",
+          "declare": "Pick an enemy unit in combat with any friendly units to be the target.",
+          "effect": "Roll a dice. On a 3+, subtract 1 from the Rend characteristic of the target’s melee weapons until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "soulblight-gravelords-deathrattle-tomb-host-overwhelming-hordes",
+      "name": "OVERWHELMING HORDES",
+      "abilities": [
+        {
+          "name": "OVERWHELMING HORDES",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to wound rolls for combat attacks made by friendly non-HERO units that target a unit that has fewer models than the attacking unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "soulblight-gravelords-deathrattle-tomb-host-deathmarch",
+      "name": "DEATHMARCH",
+      "abilities": [
+        {
+          "name": "DEATHMARCH",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Hero Phase",
+          "declare": "Pick a friendly non-HERO unit that is not in combat to be the target.",
+          "effect": "For the rest of the turn, add 1\" to the target’s Move characteristic and add 3 to its control score.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "soulblight-gravelords-deathrattle-tomb-host-shyishan-blade",
+      "name": "SHYISHAN BLADE",
+      "abilities": [
+        {
+          "name": "SHYISHAN BLADE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "The Rend characteristic of your general’s Baleful Tomb Blade is 2.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "soulblight-gravelords-deathrattle-tomb-host-propelled-by-hate",
+      "name": "PROPELLED BY HATE",
+      "abilities": [
+        {
+          "name": "PROPELLED BY HATE",
+          "kind": "Activated",
+          "timing": "Your Charge Phase",
+          "declare": "Pick another friendly unit wholly within 12\" of your general to be the target.",
+          "effect": "You can re-roll charge rolls for the target for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "soulblight-gravelords-deathrattle-tomb-host-stolen-animus",
+      "name": "STOLEN ANIMUS",
+      "abilities": [
+        {
+          "name": "STOLEN ANIMUS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Each time your general scores a critical hit, Heal (2) your general after the ATTACK ability has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "soulblight-gravelords-deathrattle-tomb-host-soul-drain-pendant",
+      "name": "SOUL-DRAIN PENDANT",
+      "abilities": [
+        {
+          "name": "SOUL-DRAIN PENDANT",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with your general to be the target.",
+          "effect": "Roll a dice. On a 2+, the target has STRIKE-LAST for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "soulblight-gravelords-deathrattle-tomb-host-wight-king",
+      "name": "Wight King",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "5",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Baleful Tomb Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "KING OF SHAMBLING BONES",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly unit wholly within 12\" of this unit to be the target.",
+          "effect": "Roll a dice. On a 2+, add 1 to hit rolls for combat attacks made by the target for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "soulblight-gravelords-deathrattle-tomb-host-barrow-guard",
+      "name": "Barrow Guard",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 10,
+      "categories": [
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "1",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Wight Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit, (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "GUARDIANS OF THE KING",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While your general is within this unit’s combat range, both this unit and your general have WARD (5+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "soulblight-gravelords-deathrattle-tomb-host-barrow-knights",
+      "name": "Barrow Knights",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "CAVALRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "3",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Barrow Lance",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit, (Mortal), Charge, (+1, Damage)"
+        },
+        {
+          "name": "Skeletal Steed’s Hooves and Teeth",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "CURSED TO RISE ONCE MORE",
+          "kind": "Activated",
+          "timing": "End of Your Turn",
+          "declare": "",
+          "effect": "You can return 1 slain model to this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "soulblight-gravelords-deathrattle-tomb-host-deathrattle-skeletons",
+      "name": "Deathrattle Skeletons",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 10,
+      "categories": [
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "1",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Ancient Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "SKELETON LEGION",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "You can return D3 slain models to this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

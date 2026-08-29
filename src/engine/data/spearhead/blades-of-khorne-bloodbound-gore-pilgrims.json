@@ -1,0 +1,398 @@
+{
+  "id": "blades-of-khorne-bloodbound-gore-pilgrims",
+  "name": "Bloodbound Gore Pilgrims",
+  "parentFactionId": "blades-of-khorne",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/blades-of-khorne/",
+  "roster": [
+    {
+      "unitId": "blades-of-khorne-bloodbound-gore-pilgrims-slaughterpriest",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "blades-of-khorne-bloodbound-gore-pilgrims-blood-warriors",
+      "count": 1
+    },
+    {
+      "unitId": "blades-of-khorne-bloodbound-gore-pilgrims-blood-warriors",
+      "count": 1
+    },
+    {
+      "unitId": "blades-of-khorne-bloodbound-gore-pilgrims-bloodreavers",
+      "count": 1
+    },
+    {
+      "unitId": "blades-of-khorne-bloodbound-gore-pilgrims-mighty-skullcrushers",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "THE BLOOD TITHE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Each time a unit is destroyed during the battle, you receive 1 blood tithe point.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "HEADS MUST ROLL",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Any Hero Phase",
+          "declare": "Spend 3 blood tithe points and pick up to 3 friendly units.",
+          "effect": "Add 1 to the Rend characteristic of those units’ melee weapons until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "MURDERLUST",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Any Hero Phase",
+          "declare": "Spend 1 blood tithe point and pick up to D3 friendly units.",
+          "effect": "Each of those units can move D6\" (roll for each).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-favoured-of-khorne",
+      "name": "FAVOURED OF KHORNE",
+      "abilities": [
+        {
+          "name": "FAVOURED OF KHORNE",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Start of Your Turn",
+          "declare": "",
+          "effect": "Roll a dice. On a 2+, you receive 1 blood tithe point.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-blood-woken-runes",
+      "name": "BLOOD-WOKEN RUNES",
+      "abilities": [
+        {
+          "name": "BLOOD-WOKEN RUNES",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Friendly units have WARD (5+) if they have used a FIGHT ability in the same phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-resanguination",
+      "name": "RESANGUINATION",
+      "abilities": [
+        {
+          "name": "RESANGUINATION",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly unit wholly within 16\" of your general, then make a chanting roll of D6.",
+          "effect": "On a 3+, Heal (D3) that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-headhunter",
+      "name": "HEADHUNTER",
+      "abilities": [
+        {
+          "name": "HEADHUNTER",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy HERO in combat with your general.",
+          "effect": "Your general has STRIKE-FIRST this phase, but all attacks made by them this phase must target that enemy HERO.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-the-crimson-plate",
+      "name": "THE CRIMSON PLATE",
+      "abilities": [
+        {
+          "name": "THE CRIMSON PLATE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Your general has WARD (5+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-unholy-flames",
+      "name": "UNHOLY FLAMES",
+      "abilities": [
+        {
+          "name": "UNHOLY FLAMES",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly unit wholly within 16\" of your general, then make a chanting roll of D6.",
+          "effect": "On a 4+, add 1 to the Rend characteristic of that unit’s melee weapons until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-slaughterpriest",
+      "name": "Slaughterpriest",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "PRIEST",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "6",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Hackblade and Wrath-hammer",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "BLOOD BOIL",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible enemy unit within 16\" of this unit to be the target, then make a chanting roll of D6.",
+          "effect": "On a 4+, inflict D3 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "BLOOD SACRIFICE",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly unit within this unit’s combat range to be the target.",
+          "effect": "Roll a dice. On a 2+, inflict D3 mortal damage on the target and you gain 1 blood tithe point.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-blood-warriors",
+      "name": "Blood Warriors",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "2",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Goreaxe and Gorefist",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "NO RESPITE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Each time a model in this unit is slain, you can pick an enemy unit in combat with this unit and roll a dice. On a 4+, inflict 1 mortal damage on that enemy unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-bloodreavers",
+      "name": "Bloodreavers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 10,
+      "categories": [
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [
+        {
+          "name": "Reaver Blades",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "FRENZIED DEVOTION",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "If this unit is within 8\" of your general, you can return D3 slain models to this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-mighty-skullcrushers",
+      "name": "Mighty Skullcrushers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "CAVALRY"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "5",
+        "save": "2+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Bloodglaive",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge, (+1, Damage)"
+        },
+        {
+          "name": "Juggernaut’s Brazen Hooves",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "BRASS STAMPEDE",
+          "kind": "Activated",
+          "timing": "Your Charge Phase",
+          "declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target, then roll a dice.",
+          "effect": "On a 2+, inflict 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "SKULLS FOR THE SKULL THRONE",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Start of Any Turn",
+          "declare": "",
+          "effect": "Pick a BLOOD TITHE ability that you have not unlocked and spend the number of blood tithe points required to unlock that ability (shown in the top-right corner of the ability). That BLOOD TITHE ability is now unlocked for the rest of the battle. 14.3 Charge Phase",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}
