@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { parsePortableLists } from "./listPortable";
-import { looksLikeNewRecruit, parseNewRecruitLists } from "./newRecruit";
+import {
+  looksLikeAosApp,
+  looksLikeNewRecruit,
+  parseNewRecruitLists,
+} from "./newRecruit";
 import { getFaction, getUnit } from "./queries";
 
 const SOULBLIGHT_NEW_RECRUIT = `Full (2540 points) - General's Handbook 2025-26
@@ -191,5 +195,71 @@ Created with New Recruit
     expect(parsed.ok).toBe(false);
     if (parsed.ok) return;
     expect(parsed.error).toContain("faction");
+  });
+
+  it("imports a Warhammer Age of Sigmar App list", () => {
+    const faction = getFaction("cities-of-sigmar");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const raw = `T’es 440/1500 pts
+-----
+Grand Alliance Order | Cities of Sigmar | Zealous Hordes
+General's Handbook 2026-27
+Drops: 1
+-----
+Regiment 1
+Alchemite Warforger (130)
+Flagellants (80)
+Freeguild Steelhelms (90)
+Ironweld Great Cannon (140)
+-----
+Created with Warhammer Age of Sigmar: The App
+App: v1.37.0 (1) | Data: v476
+`;
+    expect(looksLikeAosApp(raw)).toBe(true);
+    expect(looksLikeNewRecruit(raw)).toBe(false);
+
+    const parsed = parsePortableLists(raw);
+    expect(parsed.ok).toBe(true);
+    if (!parsed.ok) return;
+
+    const list = parsed.lists[0];
+    expect(list?.name).toBe("T'es");
+    expect(list?.factionId).toBe("cities-of-sigmar");
+    expect(list?.pointsCap).toBe(1500);
+    expect(list?.formationId).toBe(
+      faction.formations.find((item) => item.name === "Zealous Hordes")?.id,
+    );
+    expect(list?.regiments).toHaveLength(1);
+    expect(getUnit(faction, list?.regiments[0]?.hero?.unitId ?? "")?.name).toBe(
+      "Alchemite Warforger",
+    );
+    expect(
+      list?.regiments[0]?.units.map((slot) => getUnit(faction, slot.unitId)?.name),
+    ).toEqual([
+      "Flagellants",
+      "Freeguild Steelhelms",
+      "Ironweld Great Cannon",
+    ]);
+    expect(list?.generalRegimentId).toBe(list?.regiments[0]?.id);
+  });
+
+  it("reads comma-separated battle tactic cards from the App format", () => {
+    const parsed = parseNewRecruitLists(`Host 2000/2000 pts
+-----
+Grand Alliance Order | Cities of Sigmar | Fearless Exemplars
+Battle Tactic Cards: Scouting Force, Intercept and Recover
+-----
+General's Regiment
+Alchemite Warforger (110)
+• General
+Flagellants (80)
+-----
+Created with Warhammer Age of Sigmar: The App
+`);
+    expect(parsed.ok).toBe(true);
+    if (!parsed.ok) return;
+    expect(parsed.lists[0]?.battleTacticCardIds).toHaveLength(2);
   });
 });

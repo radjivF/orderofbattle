@@ -657,7 +657,7 @@ export function LibraryScreen() {
               <textarea
                 value={importDraft}
                 onChange={(event) => setImportDraft(event.target.value)}
-                placeholder="Paste exported list text or JSON here…"
+                placeholder="Paste a Warhammer App, New Recruit, or Order of Battle list…"
                 aria-label="List to import"
                 className="mx-5 mb-4 min-h-[16rem] flex-1 resize-none rounded-xl bg-parchment-ink/5 px-3 py-3 font-mono text-xs leading-relaxed text-parchment-ink outline-none ring-1 ring-parchment-ink/10 placeholder:text-sheet-muted/70"
               />

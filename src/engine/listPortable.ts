@@ -2,7 +2,7 @@ import { createId } from "@/lib/id";
 import { SITE_NAME } from "@/lib/site";
 import { battleTactics, factions, regimentsOfRenown } from "./data/load";
 import { exportArmyListText, exportFileName } from "./exportText";
-import { looksLikeNewRecruit, parseNewRecruitLists } from "./newRecruit";
+import { looksLikeImportedList, parseNewRecruitLists } from "./newRecruit";
 import { parsePointsCap } from "./pointsCap";
 import { getListUnit } from "./queries";
 import {
@@ -26,7 +26,7 @@ export type ParsePortableResult =
   | { ok: false; error: string };
 
 export const LIST_IMPORT_HELP =
-  "Paste exported list text, a New Recruit list, or JSON below, or choose a .txt or .json file from this device or another.";
+  "You can import lists from the Warhammer Age of Sigmar App and New Recruit. Copy the list text as-is, paste it below, then tap Import. Order of Battle text and JSON work too, or choose a .txt or .json file.";
 
 export type PortableFormat = "text" | "json";
 
@@ -68,7 +68,7 @@ export function parsePortableLists(raw: string): ParsePortableResult {
     }
   }
 
-  if (looksLikeNewRecruit(raw)) {
+  if (looksLikeImportedList(raw)) {
     return parseNewRecruitLists(raw);
   }
 

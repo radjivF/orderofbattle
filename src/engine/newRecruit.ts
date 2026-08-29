@@ -18,9 +18,9 @@ export type NewRecruitParseResult =
   | { ok: true; lists: ArmyList[] }
   | { ok: false; error: string };
 
-const NOT_READABLE = "That New Recruit list could not be read.";
-const UNKNOWN_FACTION = "That New Recruit list is not a faction we support.";
-const NO_UNITS = "Could not match the units in that New Recruit list.";
+const NOT_READABLE = "That list could not be read.";
+const UNKNOWN_FACTION = "That list is not a faction we support.";
+const NO_UNITS = "Could not match the units in that list.";
 
 type CatalogueHit = {
   faction: FactionCatalogue;
@@ -31,8 +31,12 @@ type CatalogueHit = {
 
 type Section = "header" | "regiment" | "aux" | "ror" | "terrain";
 
+function isOrderOfBattleExport(raw: string): boolean {
+  return /^===\s*Order of Battle\s*===/m.test(raw);
+}
+
 export function looksLikeNewRecruit(raw: string): boolean {
-  if (/^===\s*Order of Battle\s*===/m.test(raw)) {
+  if (isOrderOfBattleExport(raw)) {
     return false;
   }
   return (
@@ -41,6 +45,20 @@ export function looksLikeNewRecruit(raw: string): boolean {
     /General's Regiment/i.test(raw) ||
     /\(\d+\s*points?\)\s*[-–—].*General's Handbook/i.test(raw)
   );
+}
+
+export function looksLikeAosApp(raw: string): boolean {
+  if (isOrderOfBattleExport(raw)) {
+    return false;
+  }
+  return (
+    /Created with Warhammer Age of Sigmar:\s*The App/i.test(raw) ||
+    /Grand Alliance\s+(Order|Chaos|Death|Destruction)\s*\|/i.test(raw)
+  );
+}
+
+export function looksLikeImportedList(raw: string): boolean {
+  return looksLikeNewRecruit(raw) || looksLikeAosApp(raw);
 }
 
 export function parseNewRecruitLists(raw: string): NewRecruitParseResult {
@@ -63,6 +81,8 @@ function parseNewRecruitList(
         line &&
         !/^Created with\b/i.test(line) &&
         !/^Data Version:/i.test(line) &&
+        !/^App:\s/i.test(line) &&
+        !/^-{3,}$/.test(line) &&
         !/^https?:\/\//.test(line),
     );
   if (lines.length < 2) {
@@ -86,7 +106,9 @@ function parseNewRecruitList(
     pointsCap:
       catalogue.kind === "spearhead"
         ? 0
-        : inferPointsCap(title.points, catalogue.faction.pointsCapDefault),
+        : title.cap && title.cap >= 1
+          ? title.cap
+          : inferPointsCap(title.points, catalogue.faction.pointsCapDefault),
     formationId: null,
     spellLoreId: null,
     prayerLoreId: null,
@@ -122,6 +144,10 @@ function parseNewRecruitList(
     }
     const { head, extras } = splitInlineBullets(rawLine);
 
+    if (head.includes("|") || /^Grand Alliance\b/i.test(head)) {
+      applyAllianceLine(list, catalogue.faction, head);
+      continue;
+    }
     if (isSkipMeta(head)) {
       continue;
     }
@@ -268,17 +294,32 @@ function parseNewRecruitList(
   }
 }
 
-function parseTitle(line: string): { name: string; points: number | null } {
+function parseTitle(
+  line: string,
+): { name: string; points: number | null; cap: number | null } {
+  const usedCap = line.match(/^(.+?)\s+(\d+)\s*\/\s*(\d+)\s*pts\.?$/i);
+  if (usedCap) {
+    return {
+      name: tidyTitleName(usedCap[1] ?? ""),
+      points: Number.parseInt(usedCap[2] ?? "", 10) || null,
+      cap: Number.parseInt(usedCap[3] ?? "", 10) || null,
+    };
+  }
   const match = line.match(
     /^(.+?)\s*\((\d+)\s*points?\)(?:\s*[-–—]\s*.+)?$/i,
   );
   if (match) {
     return {
-      name: (match[1] ?? "Imported list").trim() || "Imported list",
+      name: tidyTitleName(match[1] ?? ""),
       points: Number.parseInt(match[2] ?? "", 10) || null,
+      cap: null,
     };
   }
-  return { name: line.trim() || "Imported list", points: null };
+  return { name: tidyTitleName(line) || "Imported list", points: null, cap: null };
+}
+
+function tidyTitleName(value: string): string {
+  return value.replace(/[’‘‛]/g, "'").trim() || "Imported list";
 }
 
 function inferPointsCap(used: number | null, fallback: number): number {
@@ -291,12 +332,25 @@ function inferPointsCap(used: number | null, fallback: number): number {
 
 function findCatalogueLine(lines: string[]): CatalogueHit | null {
   for (const line of lines.slice(0, 12)) {
-    const hit = findCatalogue(stripPoints(line));
-    if (hit) {
-      return hit;
+    for (const candidate of catalogueCandidates(line)) {
+      const hit = findCatalogue(candidate);
+      if (hit) {
+        return hit;
+      }
     }
   }
   return null;
+}
+
+function catalogueCandidates(line: string): string[] {
+  const parts = line
+    .split("|")
+    .map((part) => part.trim())
+    .filter(Boolean);
+  if (parts.length > 1) {
+    return parts;
+  }
+  return [stripPoints(line)];
 }
 
 function findCatalogue(name: string): CatalogueHit | null {
@@ -337,8 +391,8 @@ function applyHeaderLine(
     const label = (labeled[1] ?? "").toLowerCase();
     const value = stripTrailingPoints(labeled[2] ?? "");
     if (label === "battle tactic cards") {
-      if (value) {
-        addBattleTactic(list, value);
+      for (const card of value.split(/\s*,\s*/)) {
+        addBattleTactic(list, card);
       }
       return;
     }
@@ -568,12 +622,31 @@ function findNamed(
   return options.find((item) => namesEqual(item.name, name))?.id ?? null;
 }
 
+function applyAllianceLine(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  line: string,
+) {
+  const parts = line
+    .split("|")
+    .map((part) => part.trim())
+    .filter(Boolean);
+  if (!list.formationId) {
+    for (const part of parts) {
+      const formationId = findNamed(faction.formations, part);
+      if (formationId) {
+        list.formationId = formationId;
+        return;
+      }
+    }
+  }
+}
+
 function isSkipMeta(line: string): boolean {
   return (
     /^Auxiliaries?:\s*\d+/i.test(line) ||
     /^Drops:\s*\d+/i.test(line) ||
-    /General's Handbook/i.test(line) ||
-    /^Grand Alliance\b/i.test(line)
+    /General's Handbook/i.test(line)
   );
 }
 

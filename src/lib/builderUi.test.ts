@@ -439,7 +439,7 @@ describe("empty library CTA", () => {
     expect(screen).toContain("sortLibraryLists");
     expect(screen).toContain("Sort lists by");
     expect(screen).toContain("Import a list");
-    expect(screen).toContain("Paste exported list text or JSON here");
+    expect(screen).toContain("Paste a Warhammer App, New Recruit, or Order of Battle list");
     expect(screen).toContain("Export");
     expect(screen).not.toContain("Export all");
     expect(screen).toContain("Export format");

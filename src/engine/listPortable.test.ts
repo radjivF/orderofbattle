@@ -122,9 +122,10 @@ describe("listPortable", () => {
     expect(failed.ok).toBe(false);
     if (failed.ok) return;
     expect(failed.error).toBe("That file is not an Order of Battle list.");
-    expect(LIST_IMPORT_HELP).toContain("Paste");
-    expect(LIST_IMPORT_HELP).toContain(".json");
+    expect(LIST_IMPORT_HELP).toContain("Warhammer");
     expect(LIST_IMPORT_HELP).toContain("New Recruit");
+    expect(LIST_IMPORT_HELP).toContain("paste");
+    expect(LIST_IMPORT_HELP).toContain(".json");
   });
 
   it("names download files for text and json", () => {
