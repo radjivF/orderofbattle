@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { COOKIE_CONSENT_BANNER_CLASS } from "@/lib/builderUi";
 import { setConsentStatus, hasUserResponded } from "@/lib/cookieConsent";
 
 type Props = {
@@ -34,7 +35,7 @@ export function CookieConsent({ consentRequired }: Props) {
     <div
       role="region"
       aria-label="Cookie consent"
-      className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-[max(0.75rem,env(safe-area-inset-top))]"
+      className={COOKIE_CONSENT_BANNER_CLASS}
     >
       <div className="ios-glass pointer-events-auto flex max-w-sm flex-col gap-2 rounded-lg px-3 py-2.5 shadow-lg">
         <p className="text-center text-xs leading-snug text-parchment/80">

@@ -13,10 +13,11 @@ import {
 import { usePathname, useRouter } from "next/navigation";
 import {
   clearListNavigationDirection,
+  clearListOpenSplash,
   peekListNavigationDirection,
   rememberListNavigation,
 } from "@/lib/listTransition";
-import { listFlowTrackClass, listFlowWindowScrollY } from "@/lib/listFlowNav";
+import { listFlowTrackClass, listFlowWindowScrollY, listFlowShowsListDecor } from "@/lib/listFlowNav";
 import { SITE_HEADER_BAR_CLASS } from "@/lib/builderUi";
 import { IndexBackdropLayer } from "./IndexBackdrop";
 
@@ -72,6 +73,7 @@ export function ListNavProvider({
   const isBuilder = pathname.startsWith("/lists/");
   const [showDetail, setShowDetailState] = useState(false);
   const [settled, setSettled] = useState(true);
+  const [animatingBack, setAnimatingBack] = useState(false);
   const timers = useRef<number[]>([]);
   const animatingBackRef = useRef(false);
   const libraryScrollYRef = useRef<number | null>(null);
@@ -92,6 +94,7 @@ export function ListNavProvider({
   const publishNavState = useCallback(
     (next: { showDetail: boolean; animatingBack: boolean }) => {
       setShowDetailState(next.showDetail);
+      setAnimatingBack(next.animatingBack);
       onShowDetailChange?.(next);
     },
     [onShowDetailChange],
@@ -144,21 +147,13 @@ export function ListNavProvider({
         return;
       }
       setSettled(false);
-      setShowDetail(false);
-      let inner = 0;
-      const outer = requestAnimationFrame(() => {
-        inner = requestAnimationFrame(() => {
-          clearListNavigationDirection();
-          scrollToPane(true);
-          setShowDetail(true);
-        });
-      });
+      scrollToPane(true);
+      setShowDetail(true);
       const settleTimer = window.setTimeout(() => {
+        clearListNavigationDirection();
         setSettled(true);
       }, SLIDE_MS);
       return () => {
-        cancelAnimationFrame(outer);
-        cancelAnimationFrame(inner);
         window.clearTimeout(settleTimer);
       };
     }
@@ -173,6 +168,7 @@ export function ListNavProvider({
       return;
     }
     rememberListNavigation("back");
+    clearListOpenSplash();
     clearTimers();
     if (prefersReducedMotion()) {
       setSettled(true);
@@ -196,19 +192,22 @@ export function ListNavProvider({
     <ListNavContext.Provider value={{ goBack }}>
       <div className="relative min-h-dvh w-full overflow-x-hidden">
         <IndexBackdropLayer />
-        {backdrop}
+        {listFlowShowsListDecor(animatingBack) ? backdrop : null}
         {header ? (
           <header className={`${SITE_HEADER_BAR_CLASS} pointer-events-auto fixed inset-x-0 top-0 z-[60] pt-[env(safe-area-inset-top)]`}>
             {header}
           </header>
         ) : null}
-        {overlay}
         <div
           className={`relative z-10 overflow-x-hidden ${listFlowHeaderOffsetClass(headerMode)}`}
         >
           <div className={listFlowTrackClass(showDetail, settled)}>
             <div className="list-flow-pane">{libraryLayer}</div>
-            <div className="list-flow-pane" aria-hidden={!showDetail && !isBuilder}>
+            <div
+              className="list-flow-pane relative"
+              aria-hidden={!showDetail && !isBuilder}
+            >
+              {listFlowShowsListDecor(animatingBack) ? overlay : null}
               {isBuilder ? children : null}
             </div>
           </div>

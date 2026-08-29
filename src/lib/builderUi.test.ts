@@ -20,6 +20,7 @@ import {
   LIST_ISSUE_BANNER_CLASS,
   SITE_HEADER_BAR_CLASS,
   SITE_HEADER_ROW_CLASS,
+  COOKIE_CONSENT_BANNER_CLASS,
   PLAY_SHEET_LINK_CLASS,
   PLAY_UNIT_NAME_ROW_CLASS,
   CONFIRM_SHEET_PANEL_CLASS,
@@ -250,6 +251,21 @@ describe("iOS nav controls", () => {
     expect(SITE_HEADER_ROW_CLASS).toContain("max-w-3xl");
     expect(SITE_HEADER_ROW_CLASS).toContain("gap-2");
     expect(SITE_HEADER_BAR_CLASS).toBe("ios-nav-bar");
+    expect(COOKIE_CONSENT_BANNER_CLASS).toContain(
+      "top-[calc(env(safe-area-inset-top)+3.75rem)]",
+    );
+    expect(COOKIE_CONSENT_BANNER_CLASS).not.toContain("top-0");
+    expect(COOKIE_CONSENT_BANNER_CLASS).toContain("z-40");
+
+    const cookie = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/CookieConsent.tsx",
+      ),
+      "utf8",
+    );
+    expect(cookie).toContain("COOKIE_CONSENT_BANNER_CLASS");
+    expect(cookie).not.toContain("z-50");
 
     const header = readFileSync(
       path.resolve(

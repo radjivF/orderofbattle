@@ -4,9 +4,10 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
   listFlowHeaderMode,
+  listFlowShowsListDecor,
   listFlowTrackClass,
   listFlowWindowScrollY,
-  listOpenBlocksOnSplash,
+  listOpenShowsSplash,
   listOpenDisplayNameForHeader,
   resolveBuilderHeaderDisplay,
 } from "./listFlowNav";
@@ -138,14 +139,21 @@ describe("listFlowTrackClass", () => {
   });
 });
 
-describe("listOpenBlocksOnSplash", () => {
-  it("does not cover a library → list slide when armies are already loaded", () => {
+describe("listOpenShowsSplash", () => {
+  it("covers the incoming list even when armies are already cached", () => {
     expect(
-      listOpenBlocksOnSplash({ splashRequested: true, listsReady: true }),
-    ).toBe(false);
-    expect(
-      listOpenBlocksOnSplash({ splashRequested: true, listsReady: false }),
+      listOpenShowsSplash({ splashRequested: true, animatingBack: false }),
     ).toBe(true);
+    expect(
+      listOpenShowsSplash({ splashRequested: true, animatingBack: true }),
+    ).toBe(false);
+  });
+});
+
+describe("listFlowShowsListDecor", () => {
+  it("hides the list art while sliding back so the library is not covered", () => {
+    expect(listFlowShowsListDecor(false)).toBe(true);
+    expect(listFlowShowsListDecor(true)).toBe(false);
   });
 });
 
@@ -179,16 +187,23 @@ describe("list flow navigation wiring", () => {
     expect(dashboard).toContain("return null");
     expect(nav).toContain("listFlowTrackClass");
     expect(nav).toContain("listFlowTrackClass(showDetail, settled)");
+    expect(nav).not.toContain("setShowDetail(false);");
+    expect(nav).toContain("listFlowShowsListDecor");
+    expect(nav).toContain("clearListOpenSplash");
     expect(nav).toContain("SITE_HEADER_BAR_CLASS");
     expect(nav).toContain("libraryLayer");
     expect(nav).not.toContain("libraryReturnCover");
     expect(nav).not.toContain("ios-push-overlay");
   });
 
-  it("lets the list slide in instead of covering it with a splash", () => {
+  it("lets the list slide in with its opening splash on the incoming pane", () => {
     const builder = readSource("components/BuilderScreen.tsx");
-    expect(builder).toContain("listOpenBlocksOnSplash");
-    expect(builder).toContain("clearListOpenSplash");
+    expect(builder).toContain("listOpenShowsSplash");
+    expect(builder).toContain("setOpeningSplash(true)");
+    expect(builder).toContain(
+      'className="pointer-events-none absolute inset-0 z-30"',
+    );
+    expect(builder).not.toContain("listOpenBlocksOnSplash");
   });
 
   it("resolves header fallback from storage before chrome loads", () => {

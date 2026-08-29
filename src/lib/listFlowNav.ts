@@ -25,12 +25,17 @@ export function listFlowTrackClass(
   return parts.join(" ");
 }
 
-/** Splash only when storage is still loading — otherwise the carousel slides the list in. */
-export function listOpenBlocksOnSplash(input: {
+/** Opening splash covers the incoming list; never show it while sliding back. */
+export function listOpenShowsSplash(input: {
   splashRequested: boolean;
-  listsReady: boolean;
+  animatingBack: boolean;
 }): boolean {
-  return input.splashRequested && !input.listsReady;
+  return input.splashRequested && !input.animatingBack;
+}
+
+/** List faction art is viewport-fixed — hide it on back or it covers the library slide. */
+export function listFlowShowsListDecor(animatingBack: boolean): boolean {
+  return !animatingBack;
 }
 
 /** Window scroll when the library ↔ list carousel changes which pane is on screen. */

@@ -36,9 +36,10 @@ import {
   getListOpenDisplayNameServerSnapshot,
   getListOpenDisplayNameSnapshot,
   peekListOpenSplash,
+  peekListNavigationDirection,
   subscribeListOpenFaction,
 } from "@/lib/listTransition";
-import { listOpenBlocksOnSplash } from "@/lib/listFlowNav";
+import { listOpenShowsSplash } from "@/lib/listFlowNav";
 import { DatasheetSheet } from "./DatasheetSheet";
 import { FactionArtLayers } from "./FactionArtBackground";
 import { FactionBackdrop } from "./FactionBackdrop";
@@ -109,12 +110,11 @@ export function BuilderScreen({ listId }: Props) {
 
   useLayoutEffect(() => {
     if (
-      !listOpenBlocksOnSplash({
+      !listOpenShowsSplash({
         splashRequested: peekListOpenSplash(),
-        listsReady: getArmiesSnapshot() !== undefined,
+        animatingBack: peekListNavigationDirection() === "back",
       })
     ) {
-      clearListOpenSplash();
       return;
     }
     setOpeningSplash(true);
@@ -179,7 +179,7 @@ export function BuilderScreen({ listId }: Props) {
         </div>
       ) : undefined,
       overlay: showSplash ? (
-        <div className="pointer-events-none fixed inset-0 z-30">
+        <div className="pointer-events-none absolute inset-0 z-30">
           <ListLoadingSplash factionName={splashName} />
         </div>
       ) : undefined,

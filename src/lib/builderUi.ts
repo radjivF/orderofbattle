@@ -135,6 +135,10 @@ export const SITE_HEADER_ROW_CLASS =
 /** Full-width bar behind every site header — solid ink, no art showing through. */
 export const SITE_HEADER_BAR_CLASS = "ios-nav-bar";
 
+/** Sit the cookie banner under the solid header so it is not painted over the bar. */
+export const COOKIE_CONSENT_BANNER_CLASS =
+  "pointer-events-none fixed inset-x-0 top-[calc(env(safe-area-inset-top)+3.75rem)] z-40 flex justify-center px-4 pt-2";
+
 /** Bottom sheet panel — full width on phone, card on sm+. */
 export const SHEET_PANEL_CLASS =
   "parchment-card flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden text-parchment-ink sm:rounded-2xl";
