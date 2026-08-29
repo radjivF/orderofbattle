@@ -19,6 +19,7 @@ import { summarize } from "@/engine/validate";
 import type { ArmyList, CatalogueUnit, DatasheetSubject, EnhancementOption, FactionCatalogue, NamedOption } from "@/engine/types";
 import { createId } from "@/lib/id";
 import { IOS_LIQUID_CTA_CLASS, LIST_ISSUE_BANNER_CLASS, SHEET_HEADER_CLASS, SHEET_PANEL_CLASS, SHEET_PANEL_COMPACT_CLASS } from "@/lib/builderUi";
+import { castValueLabel } from "@/lib/abilityUi";
 import {
   getArmiesServerSnapshot,
   getArmiesSnapshot,
@@ -41,6 +42,7 @@ import { FactionBackdrop } from "./FactionBackdrop";
 import { useListFlowChrome, useListFlowDecor } from "./ListFlowShell";
 import { ListLoadingSplash } from "./ListLoadingSplash";
 import { ModalFrame } from "./ModalFrame";
+import { ConfirmSheetActions } from "./ConfirmSheetActions";
 import { RuleText } from "./RuleText";
 import { ChoiceSheet, PickerSheet } from "./PickerSheet";
 import { BuildSlotRow, SheetCloseButton } from "./ios/SheetIconButton";
@@ -682,7 +684,7 @@ function BuilderReady({
                           <p className="mt-1 text-xs tracking-wide uppercase text-aether">
                             {[
                               power.castingValue
-                                ? `Cast ${power.castingValue}`
+                                ? castValueLabel(power.castingValue)
                                 : "",
                               power.kind,
                             ]
@@ -1614,28 +1616,13 @@ function BuilderReady({
           onClose={() => setRegimentRemoveId(null)}
           panelClassName={`${SHEET_PANEL_COMPACT_CLASS} px-5 pt-2 pb-0`}
         >
-          <p className="px-2 pb-4 text-center text-sm text-sheet-muted">
+          <p className="px-2 pb-2 text-center text-sm leading-relaxed text-sheet-muted">
             {regimentRemoveMessage}
           </p>
-          <div className="ios-sheet-actions !gap-3 !pb-5">
-            <div className="ios-action-sheet">
-              <button
-                type="button"
-                onClick={() => void removeRegiment(regimentRemoveId)}
-                className="ios-action-sheet-row ios-action-sheet-row--destructive"
-              >
-                Delete
-              </button>
-              <div className="ios-action-sheet-separator" />
-              <button
-                type="button"
-                onClick={() => setRegimentRemoveId(null)}
-                className="ios-action-sheet-row ios-action-sheet-row--cancel"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
+          <ConfirmSheetActions
+            onConfirm={() => void removeRegiment(regimentRemoveId)}
+            onCancel={() => setRegimentRemoveId(null)}
+          />
         </ModalFrame>
       ) : null}
 

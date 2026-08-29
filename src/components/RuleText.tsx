@@ -37,15 +37,9 @@ export function RuleText({
 
   return (
     <div className={className}>
-      {label ? (
+      {label || parsed.preface ? (
         <p className={`${BODY_CLASS} ${itemClassName}`}>
-          <span className="text-sheet-muted">{label}</span>
-        </p>
-      ) : null}
-      {parsed.preface ? (
-        <p
-          className={`${BODY_CLASS} ${itemClassName} ${label ? "mt-1" : ""}`}
-        >
+          {label ? <span className="text-sheet-muted">{label}</span> : null}
           {parsed.preface}
         </p>
       ) : null}

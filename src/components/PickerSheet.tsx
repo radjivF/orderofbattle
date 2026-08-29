@@ -1,13 +1,24 @@
 "use client";
 
+import { useEffect, useMemo, useRef, useState } from "react";
 import { unitSizeLabel } from "@/engine/queries";
 import type { CatalogueUnit, UnitAbility } from "@/engine/types";
-import { SHEET_PANEL_CLASS, SHEET_HEADER_CLASS } from "@/lib/builderUi";
+import { SHEET_HEADER_CLASS, SHEET_PANEL_CLASS } from "@/lib/builderUi";
+import {
+  filterPickerUnits,
+  PICKER_SEARCH_MIN_UNITS,
+  PICKER_SEARCH_TOGGLE_CLASS,
+  PICKER_SHEET_HEADER_CLASS,
+} from "@/lib/pickerUi";
 import { ModalFrame } from "./ModalFrame";
 import { RuleText } from "./RuleText";
-import { SheetCloseButton, SheetLinkButton } from "./ios/SheetIconButton";
+import {
+  IosSearchIcon,
+  SheetCloseButton,
+  SheetLinkButton,
+} from "./ios/SheetIconButton";
 
-const pickerPanel = `${SHEET_PANEL_CLASS} bg-parchment shadow-2xl`;
+const pickerPanel = `${SHEET_PANEL_CLASS} min-h-[55vh] bg-parchment shadow-2xl`;
 
 type Props = {
   title: string;
@@ -24,19 +35,79 @@ export function PickerSheet({
   onOpenDatasheet,
   onClose,
 }: Props) {
-  const troops = units.filter((unit) => !unit.hero);
-  const heroes = units.filter((unit) => unit.hero);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchRef = useRef<HTMLInputElement>(null);
+  const showSearch = units.length >= PICKER_SEARCH_MIN_UNITS;
+  const visibleUnits = useMemo(
+    () => filterPickerUnits(units, searchQuery),
+    [units, searchQuery],
+  );
+  const troops = visibleUnits.filter((unit) => !unit.hero);
+  const heroes = visibleUnits.filter((unit) => unit.hero);
+
+  useEffect(() => {
+    if (searchOpen) {
+      searchRef.current?.focus();
+    }
+  }, [searchOpen]);
+
+  function toggleSearch() {
+    setSearchOpen((open) => {
+      if (open) {
+        setSearchQuery("");
+      }
+      return !open;
+    });
+  }
 
   return (
     <ModalFrame label={title} onClose={onClose} panelClassName={pickerPanel}>
-        <div className={SHEET_HEADER_CLASS}>
-          <h2 className="font-serif text-2xl">{title}</h2>
-          <SheetCloseButton onClick={onClose} />
+        <div className={PICKER_SHEET_HEADER_CLASS}>
+          <div className="flex min-w-0 flex-1 items-center gap-2.5">
+            {showSearch && !searchOpen ? (
+              <button
+                type="button"
+                aria-label="Search units"
+                onClick={toggleSearch}
+                className={PICKER_SEARCH_TOGGLE_CLASS}
+              >
+                <IosSearchIcon className="h-5 w-5" />
+              </button>
+            ) : null}
+            {searchOpen ? (
+              <>
+                <input
+                  ref={searchRef}
+                  type="search"
+                  value={searchQuery}
+                  onChange={(event) => setSearchQuery(event.target.value)}
+                  placeholder="Filter units…"
+                  aria-label="Filter units"
+                  className="h-9 min-w-0 flex-1 rounded-lg bg-parchment-ink/5 px-3 text-sm text-parchment-ink outline-none ring-1 ring-parchment-ink/10 placeholder:text-sheet-muted/70"
+                />
+                <button
+                  type="button"
+                  onClick={toggleSearch}
+                  className="pressable shrink-0 text-sm font-medium text-sheet-muted"
+                >
+                  Cancel
+                </button>
+              </>
+            ) : (
+              <h2 className="min-w-0 font-serif text-2xl leading-tight">{title}</h2>
+            )}
+          </div>
+          <SheetCloseButton label="Close picker" onClick={onClose} />
         </div>
-        <div className="modal-sheet-scroll overflow-y-auto px-3 pb-6">
+        <div className="modal-sheet-scroll flex min-h-0 flex-1 flex-col overflow-y-auto px-5 pb-6">
           {units.length === 0 ? (
             <p className="px-2 py-6 text-parchment-ink/70">
               Nothing legal for this slot.
+            </p>
+          ) : visibleUnits.length === 0 ? (
+            <p className="flex flex-1 items-center justify-center px-2 py-6 text-center text-sheet-muted">
+              No units match &ldquo;{searchQuery.trim()}&rdquo;.
             </p>
           ) : (
             <>

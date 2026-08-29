@@ -10,6 +10,7 @@ import type {
   UnitWeapon,
 } from "@/engine/types";
 import { SHEET_PANEL_CLASS, SHEET_HEADER_START_CLASS } from "@/lib/builderUi";
+import { AbilityMeta } from "./AbilityMeta";
 import { ModalFrame } from "./ModalFrame";
 import { RuleText } from "./RuleText";
 import { SheetCloseButton } from "./ios/SheetIconButton";
@@ -52,9 +53,11 @@ export function DatasheetSheet({ sheet, onClose }: Props) {
       panelClassName={`${SHEET_PANEL_CLASS} bg-parchment shadow-2xl`}
     >
         <div className={SHEET_HEADER_START_CLASS}>
-          <div>
-            <h2 className="font-serif text-2xl leading-tight">{sheet.name}</h2>
-            <p className="mt-1 text-sm text-sigmarite">{subtitle}</p>
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+              <h2 className="min-w-0 font-serif text-2xl leading-tight">{sheet.name}</h2>
+              <p className="shrink-0 text-sm text-sigmarite">{subtitle}</p>
+            </div>
           </div>
           <SheetCloseButton onClick={onClose} />
         </div>
@@ -108,24 +111,17 @@ function AbilityBlock({ abilities }: { abilities: UnitAbility[] }) {
       <ul className="mt-3 flex flex-col gap-4">
         {abilities.map((ability) => (
           <li key={ability.name}>
-            <p className="font-serif text-lg leading-tight">{ability.name}</p>
-            {ability.keywords ||
-            ability.castingValue ||
-            ability.chantingValue ||
-            commandAbilityCost(ability) != null ? (
-              <p className="mt-0.5 text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-                {[
-                  ability.keywords,
-                  commandAbilityCost(ability) != null
-                    ? `${commandAbilityCost(ability)} CP`
-                    : "",
-                  ability.castingValue ? `Cast ${ability.castingValue}` : "",
-                  ability.chantingValue ? `Chant ${ability.chantingValue}` : "",
-                ]
-                  .filter(Boolean)
-                  .join(" · ")}
+            <div className="flex items-center justify-between gap-3">
+              <p className="min-w-0 font-serif text-lg leading-tight">
+                {ability.name}
               </p>
-            ) : null}
+              <AbilityMeta
+                keywords={ability.keywords}
+                cpCost={commandAbilityCost(ability)}
+                castingValue={ability.castingValue}
+                chantingValue={ability.chantingValue}
+              />
+            </div>
             {ability.timing ? (
               <p className="mt-2 font-serif text-base leading-snug text-parchment-ink">
                 {ability.timing}

@@ -260,6 +260,28 @@ export function IosDatasheetIcon({
   );
 }
 
+export function IosSearchIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 20 20" aria-hidden="true" className={className}>
+      <circle
+        cx="9"
+        cy="9"
+        r="4.75"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+      <path
+        d="m12.8 12.8 3.2 3.2"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 export function IosTrashIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" aria-hidden="true" className={className}>

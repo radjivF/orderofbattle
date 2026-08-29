@@ -260,7 +260,7 @@ describe("iOS polish contracts", () => {
       "utf8",
     );
     expect(library).toContain("SHEET_PANEL_CLASS");
-    expect(library).toContain("ios-action-sheet");
+    expect(library).toContain("ConfirmSheetActions");
   });
 
   it("removes persistent underline from builder list name", () => {

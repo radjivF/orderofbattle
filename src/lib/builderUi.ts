@@ -48,6 +48,20 @@ export const IOS_NAV_PLAY_BUTTON_CLASS =
 export const IOS_LIQUID_CTA_CLASS =
   "ios-liquid-glass pressable inline-flex min-h-11 w-full items-center justify-center rounded-xl px-4 text-[15px] font-semibold text-black";
 
+/** Compact confirm sheet footer — destructive primary + quiet cancel. */
+export const CONFIRM_SHEET_ACTIONS_CLASS =
+  "flex shrink-0 flex-col gap-2 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-1";
+
+export const CONFIRM_DESTRUCTIVE_BUTTON_CLASS =
+  "pressable inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-illegal/12 px-4 text-[15px] font-semibold text-illegal ring-1 ring-illegal/25";
+
+export const CONFIRM_CANCEL_BUTTON_CLASS =
+  "pressable min-h-11 w-full text-base font-medium text-sheet-muted";
+
+/** Primary + quiet secondary actions in form sheets (Create / Back, etc.). */
+export const SHEET_FORM_ACTIONS_CLASS =
+  "mt-2 flex shrink-0 flex-col gap-3 pt-2";
+
 /** Soft gold homepage / footer CTAs — not the in-app parchment glass. */
 export const HOME_CTA_CLASS =
   "home-cta pressable inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl px-5 text-sm font-semibold";

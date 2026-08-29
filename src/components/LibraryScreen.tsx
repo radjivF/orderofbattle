@@ -8,6 +8,7 @@ import { formatPoints } from "@/engine/pointsCap";
 import { summarize } from "@/engine/validate";
 import type { ArmyList, FactionCatalogue } from "@/engine/types";
 import { catalogueArtClass, catalogueArtSrc, factionArtSrc } from "@/lib/factionArt";
+import { factionPickerCounts } from "@/lib/factionSeo";
 import {
   blankArmy,
   deleteArmy,
@@ -25,7 +26,6 @@ import { newListDraftFromSearch } from "@/lib/newListLink";
 import {
   EMPTY_LIBRARY_CTA_CLASS,
   EMPTY_LIBRARY_PANEL_CLASS,
-  IOS_LIQUID_CTA_CLASS,
   LIBRARY_CARD_ACTION_BUTTON_CLASS,
   LIBRARY_CARD_ACTIONS_CLASS,
   LIBRARY_CARD_CLASS,
@@ -37,9 +37,11 @@ import {
 import { useListFlowChrome } from "./ListFlowShell";
 import { FactionArtLayers } from "./FactionArtBackground";
 import { BrandMark } from "./BrandMark";
-import { SheetCloseButton, IosTrashIcon } from "./ios/SheetIconButton";
+import { SheetCloseButton } from "./ios/SheetIconButton";
 import { ListLoadingSplash } from "./ListLoadingSplash";
 import { ModalFrame } from "./ModalFrame";
+import { ConfirmSheetActions } from "./ConfirmSheetActions";
+import { SheetFormActions } from "./SheetFormActions";
 import { PointsCapField } from "./PointsCapField";
 import { SiteFooter } from "./SiteFooter";
 
@@ -328,32 +330,16 @@ export function LibraryScreen() {
           onClose={() => setDeleteTarget(null)}
           panelClassName={`${SHEET_PANEL_COMPACT_CLASS} px-5 pt-2 pb-0`}
         >
-          <p className="px-2 pb-4 text-center text-sm text-sheet-muted">
+          <p className="px-2 pb-2 text-center text-sm leading-relaxed text-sheet-muted">
             <span className="font-serif text-base text-parchment-ink">
               {deleteTarget.name}
             </span>{" "}
             will be removed from this device. This cannot be undone.
           </p>
-          <div className="ios-sheet-actions !gap-3 !pb-5">
-            <div className="ios-action-sheet">
-              <button
-                type="button"
-                onClick={() => void confirmDelete()}
-                aria-label="Delete"
-                className="ios-action-sheet-row ios-action-sheet-row--destructive"
-              >
-                <IosTrashIcon />
-              </button>
-              <div className="ios-action-sheet-separator" />
-              <button
-                type="button"
-                onClick={() => setDeleteTarget(null)}
-                className="ios-action-sheet-row ios-action-sheet-row--cancel"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
+          <ConfirmSheetActions
+            onConfirm={() => void confirmDelete()}
+            onCancel={() => setDeleteTarget(null)}
+          />
         </ModalFrame>
       ) : null}
 
@@ -428,32 +414,24 @@ export function LibraryScreen() {
                   onChange={setDraftPoints}
                   variant="parchment"
                 />
-                <div className="ios-sheet-actions">
-                  <button
-                    type="button"
-                    disabled={creating}
-                    onClick={() => void onCreate()}
-                    className={`${IOS_LIQUID_CTA_CLASS} disabled:opacity-60`}
-                  >
-                    {creating ? "Creating…" : "Create"}
-                  </button>
-                  <button
-                    type="button"
-                    disabled={creating}
-                    onClick={() => {
-                      setDraftFaction(null);
-                      setDraftParent(null);
-                      setDraftName("");
-                    }}
-                    className="min-h-11 w-full text-base text-sheet-muted disabled:opacity-60"
-                  >
-                    Back
-                  </button>
-                </div>
+                <SheetFormActions
+                  primaryLabel={creating ? "Creating…" : "Create"}
+                  onPrimary={() => void onCreate()}
+                  secondaryLabel="Back"
+                  onSecondary={() => {
+                    setDraftFaction(null);
+                    setDraftParent(null);
+                    setDraftName("");
+                  }}
+                  primaryDisabled={creating}
+                  secondaryDisabled={creating}
+                />
               </div>
             ) : (
               <ul className="modal-sheet-scroll overflow-y-auto px-3 pb-6">
-                {listFactions().map((faction) => (
+                {listFactions().map((faction) => {
+                  const counts = factionPickerCounts(faction);
+                  return (
                   <li key={faction.id}>
                     <button
                       type="button"
@@ -463,17 +441,20 @@ export function LibraryScreen() {
                         setDraftName(`My ${faction.name}`);
                         setDraftPoints(faction.pointsCapDefault);
                       }}
-                      className="flex min-h-12 w-full items-center justify-between rounded-lg px-3 py-2.5 text-left hover:bg-parchment-ink/5"
+                      className="flex min-h-12 w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-left hover:bg-parchment-ink/5"
                     >
-                      <span className="font-serif text-xl text-parchment-ink">
+                      <span className="min-w-0 font-serif text-xl text-parchment-ink">
                         {faction.name}
                       </span>
-                      <span className="text-sm font-medium text-sheet-muted">
-                        {faction.units.length}
+                      <span className="shrink-0 text-right text-xs leading-snug text-sheet-muted sm:text-sm">
+                        <span className="block sm:inline">{counts.heroes} heroes</span>
+                        <span className="hidden sm:inline"> · </span>
+                        <span className="block sm:inline">{counts.units} units</span>
                       </span>
                     </button>
                   </li>
-                ))}
+                  );
+                })}
               </ul>
             )}
         </ModalFrame>

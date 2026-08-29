@@ -17,6 +17,7 @@ import {
   weaponAttacksForDamage,
 } from "@/engine/queries";
 import { IOS_LIQUID_CTA_CLASS, SHEET_PANEL_COMPACT_CLASS } from "@/lib/builderUi";
+import { castValueLabel, chantValueLabel } from "@/lib/abilityUi";
 import {
   buildPhaseBoards,
   regimentPlayGroups,
@@ -572,8 +573,8 @@ function AbilityCard({
   const { ability } = row;
   const cpCost = commandAbilityCost(ability);
   const meta = [
-    ability.castingValue ? `Cast ${ability.castingValue}` : "",
-    ability.chantingValue ? `Chant ${ability.chantingValue}` : "",
+    ability.castingValue ? castValueLabel(ability.castingValue) : "",
+    ability.chantingValue ? chantValueLabel(ability.chantingValue) : "",
   ]
     .filter(Boolean)
     .join(" · ");

@@ -25,6 +25,7 @@ import type {
 } from "@/engine/types";
 import { ExpandableRuleCard } from "./ExpandableRuleCard";
 import { RuleText } from "./RuleText";
+import { LaunchMeta } from "./AbilityMeta";
 
 type Props = {
   list: ArmyList;
@@ -143,9 +144,10 @@ export function PlayMagicBoard({
                     </p>
                     {model.summon ? (
                       <div className="mt-3 border-t border-parchment-ink/10 pt-3">
-                        <p className="text-xs tracking-wide uppercase text-aether">
-                          Launch · Cast {model.summon.castingValue || "—"}
-                        </p>
+                        <LaunchMeta
+                          castingValue={model.summon.castingValue}
+                          className="w-full"
+                        />
                         {model.summon.timing ? (
                           <p className="mt-2 font-serif text-base leading-snug text-parchment-ink">
                             {model.summon.timing}
@@ -214,24 +216,21 @@ function PowerCard({
   const choiceKey = powerChoiceKey(bindKey);
   const chosenEffectId = list.powerBinds?.[choiceKey] ?? null;
   const effectChoices = power.effect ? parseEffectChoices(power.effect) : null;
-  const launch =
-    power.kind.toLowerCase() === "prayer"
-      ? power.chantingValue
-        ? `Chant ${power.chantingValue}`
-        : "Prayer"
-      : power.castingValue
-        ? `Cast ${power.castingValue}`
-        : "Spell";
+  const isPrayer = power.kind.toLowerCase() === "prayer";
 
   return (
     <article className="rounded-xl bg-parchment-ink/5 px-3 py-3">
       <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
         {row.source}
       </p>
-      <p className="mt-1 font-serif text-lg leading-tight">{power.name}</p>
-      <p className="mt-1 text-xs tracking-wide uppercase text-aether">
-        Launch · {launch}
-      </p>
+      <div className="mt-1 flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+        <p className="min-w-0 font-serif text-lg leading-tight">{power.name}</p>
+        <LaunchMeta
+          prayer={isPrayer}
+          castingValue={power.castingValue}
+          chantingValue={power.chantingValue}
+        />
+      </div>
       {power.timing ? (
         <p className="mt-2 font-serif text-base leading-snug text-parchment-ink">
           {power.timing}
