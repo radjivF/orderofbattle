@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useLayoutEffect, useState, useSyncExternalStore } from "react";
 import { getFaction, armyOfRenownName } from "@/engine/queries";
 import {
@@ -30,7 +30,10 @@ import {
   rememberListNavigation,
   rememberListOpen,
 } from "@/lib/listTransition";
-import { listOpenDisplayNameForHeader } from "@/lib/listFlowNav";
+import {
+  libraryCreatingSplashVisible,
+  listOpenDisplayNameForHeader,
+} from "@/lib/listFlowNav";
 import { newListDraftFromSearch } from "@/lib/newListLink";
 import {
   encodeNewListArmyValue,
@@ -72,6 +75,7 @@ function rememberOpenList(list: ArmyList) {
 
 export function LibraryScreen() {
   const router = useRouter();
+  const pathname = usePathname();
   const lists = useSyncExternalStore(
     subscribeArmies,
     getArmiesSnapshot,
@@ -161,6 +165,12 @@ export function LibraryScreen() {
     setLibraryChrome({ openNewList: () => setPicking(true) });
     return () => setLibraryChrome(null);
   }, [setLibraryChrome]);
+
+  useLayoutEffect(() => {
+    if (pathname.startsWith("/lists/")) {
+      setCreating(false);
+    }
+  }, [pathname]);
 
   useLayoutEffect(() => {
     const draft = newListDraftFromSearch(
@@ -513,7 +523,7 @@ export function LibraryScreen() {
         </ModalFrame>
       ) : null}
 
-      {creating && draftFaction ? (
+      {libraryCreatingSplashVisible(creating, pathname) && draftFaction ? (
         <div className="fixed inset-0 z-[60] bg-ink text-parchment">
           <div className="absolute inset-0" aria-hidden="true">
             <FactionArtLayers

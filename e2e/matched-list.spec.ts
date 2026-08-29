@@ -13,6 +13,8 @@ test("matched play keeps points, formation, and Magic", async ({ page }) => {
   await createList(page);
 
   await expect(page.getByText("Battle formation")).toBeInViewport();
+  await expect(page.getByText("Creating your list")).toHaveCount(0);
+  await expect(page.getByText("Opening your list")).toHaveCount(0);
   await expect(page.getByText("Spearhead", { exact: true })).toHaveCount(0);
   await expect(page.getByRole("button", { name: "Play" })).toBeVisible();
 

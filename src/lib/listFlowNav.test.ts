@@ -3,6 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
+  libraryCreatingSplashVisible,
   listFlowHeaderMode,
   listFlowIsHome,
   listFlowTrackClass,
@@ -158,6 +159,14 @@ describe("listOpenShowsSplash", () => {
   });
 });
 
+describe("libraryCreatingSplashVisible", () => {
+  it("drops the create splash once the new list route is showing", () => {
+    expect(libraryCreatingSplashVisible(true, "/dashboard")).toBe(true);
+    expect(libraryCreatingSplashVisible(true, "/lists/abc")).toBe(false);
+    expect(libraryCreatingSplashVisible(false, "/dashboard")).toBe(false);
+  });
+});
+
 describe("listFlowWindowScrollY", () => {
   it("resets to the top of the list and restores the library on the way back", () => {
     expect(
@@ -176,6 +185,7 @@ describe("list flow navigation wiring", () => {
     expect(library).toContain("rememberOpenList(list)");
     expect(library).not.toContain("rememberOpenList(list.factionId)");
     expect(library).not.toContain("rememberListOpen(artId, faction?.name)");
+    expect(library).toContain("libraryCreatingSplashVisible");
   });
 
   it("keeps the library mounted in the carousel shell", () => {
