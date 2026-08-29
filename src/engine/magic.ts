@@ -1,3 +1,4 @@
+import { parsePickOneChoices } from "@/lib/ruleText";
 import { armyRoster } from "./phases";
 import { getListUnit, unitHasKeyword } from "./queries";
 import type {
@@ -40,64 +41,17 @@ export type EffectChoiceBlock = {
  * Returns null when the effect is a plain (non-choice) paragraph.
  */
 export function parseEffectChoices(effect: string): EffectChoiceBlock | null {
-  const text = effect.replace(/\s+/g, " ").trim();
-  if (!text) {
+  const parsed = parsePickOneChoices(effect.replace(/\s+/g, " ").trim());
+  if (!parsed) {
     return null;
   }
-
-  const pick = /pick (?:1|one) of the following(?:\s+\w+)?(?:\s+effects)?(?:\s+to apply[^:]*)?:?\s*/i.exec(
-    text,
-  );
-  if (!pick || pick.index === undefined) {
-    return null;
-  }
-
-  const preface = text.slice(0, pick.index + pick[0].length).trim();
-  const rest = text.slice(pick.index + pick[0].length).trim();
-  if (!rest) {
-    return null;
-  }
-
-  const named = [...rest.matchAll(/\*([^*]+)\*\s*:?\s*/g)];
-  if (named.length >= 2) {
-    const options: EffectChoiceOption[] = [];
-    for (const [i, match] of named.entries()) {
-      if (!match || match.index === undefined) {
-        continue;
-      }
-      const title = match[1]?.trim() ?? "";
-      const start = match.index + match[0].length;
-      const end = named[i + 1]?.index ?? rest.length;
-      const body = rest
-        .slice(start, end)
-        .replace(/^[•\u2022]\s*/, "")
-        .trim()
-        .replace(/\.$/, "");
-      options.push({
-        id: String(i),
-        label: body ? `${title}: ${body}` : title,
-      });
-    }
-    if (options.length >= 2) {
-      return { preface, options };
-    }
-  }
-
-  const parts = rest
-    .split(/\s*[•\u2022]\s*/)
-    .map((part) => part.trim().replace(/\.$/, ""))
-    .filter(Boolean);
-  if (parts.length >= 2) {
-    return {
-      preface,
-      options: parts.map((label, index) => ({
-        id: String(index),
-        label,
-      })),
-    };
-  }
-
-  return null;
+  return {
+    preface: parsed.preface,
+    options: parsed.items.map((label, index) => ({
+      id: String(index),
+      label,
+    })),
+  };
 }
 
 export function powerBindRule(power: UnitAbility): PowerBindRule {
