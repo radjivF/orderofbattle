@@ -12,6 +12,7 @@ import {
   useDeferredValue,
 } from "react";
 import { getFaction, getUnit, heroesOf, legalCompanions, armyHasKeyword, namedOption, battleDamagedWarning, battleStatLine, selectionPlayState, selectionPoints, unitBaseName, auxiliaryPickerUnits, unitSizeLabel, canBeGeneral, resolveGeneralRegimentId, listRegimentsOfRenown, getRegimentOfRenown, enhancementChoiceDetail, enhancementLabel, formationLabel } from "@/engine/queries";
+import { catalogueForList, isSpearheadList } from "@/engine/spearhead";
 import { combatModifierNotes } from "@/engine/magic";
 import { exportArmyListText, exportFileName } from "@/engine/exportText";
 import { battleTactics, battleTacticsForRealm } from "@/engine/data/load";
@@ -90,7 +91,7 @@ export function BuilderScreen({ listId }: Props) {
     getListOpenFactionServerSnapshot,
   );
   const list = lists?.find((item) => item.id === listId);
-  const faction = list ? getFaction(list.factionId) : undefined;
+  const faction = list ? catalogueForList(list) : undefined;
   const artFactionId =
     (faction ? faction.parentFactionIds?.[0] ?? faction.id : null) ??
     rememberedId;
@@ -576,6 +577,7 @@ function BuilderReady({
       pointsCap: list.pointsCap,
       drops: totals.drops,
       issue,
+      spearhead: isSpearheadList(list),
     });
     return () => setBuilderChrome(null);
   }, [

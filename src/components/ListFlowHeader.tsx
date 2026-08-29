@@ -127,15 +127,23 @@ function BuilderHeaderRow({
                   className="h-1.5 w-1.5 shrink-0 rounded-full bg-illegal"
                 />
               ) : null}
-              <span>{formatPoints(chrome.points)}</span>
-              <span className="text-ink-muted">/</span>
-              <span className="text-ink-muted">
-                {formatPoints(chrome.pointsCap)}
-              </span>
+              {chrome.spearhead ? (
+                <span>Spearhead</span>
+              ) : (
+                <>
+                  <span>{formatPoints(chrome.points)}</span>
+                  <span className="text-ink-muted">/</span>
+                  <span className="text-ink-muted">
+                    {formatPoints(chrome.pointsCap)}
+                  </span>
+                </>
+              )}
             </p>
-            <p className={HEADER_DROPS_LINE_CLASS}>
-              {dropCountLabel(chrome.drops)}
-            </p>
+            {chrome.spearhead ? null : (
+              <p className={HEADER_DROPS_LINE_CLASS}>
+                {dropCountLabel(chrome.drops)}
+              </p>
+            )}
           </div>
           {builderHeaderShowsPlayButton(playMode) ? (
             <PlayCtaButton onClick={() => chrome.enterPlay()} />

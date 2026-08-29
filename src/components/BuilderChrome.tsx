@@ -11,4 +11,5 @@ export type BuilderChromeValue = {
   pointsCap: number;
   drops: number;
   issue: { text: string; tone: "ok" | "warn" | "bad" };
+  spearhead?: boolean;
 };
