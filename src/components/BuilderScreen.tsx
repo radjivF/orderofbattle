@@ -230,13 +230,16 @@ function BuilderReady({
     () => (playMode ? combatModifierNotes(list, faction) : []),
     [playMode, list, faction],
   );
-  const issue =
-    totals.issues.find((item) => item.tone === "bad") ??
-    totals.issues.find((item) => item.tone === "warn") ??
-    totals.issues[0] ?? {
-      tone: "warn" as const,
-      text: "Add a regiment to begin.",
-    };
+  const issue = useMemo(() => {
+    return (
+      totals.issues.find((item) => item.tone === "bad") ??
+      totals.issues.find((item) => item.tone === "warn") ??
+      totals.issues[0] ?? {
+        tone: "warn" as const,
+        text: "Add a regiment to begin.",
+      }
+    );
+  }, [totals.issues]);
   const deferredPicker = useDeferredValue(picker);
   const pickerUnits = pickerUnitsFor(list, faction, deferredPicker);
   const selectedId = selectedRegimentId ?? list.regiments[0]?.id ?? null;

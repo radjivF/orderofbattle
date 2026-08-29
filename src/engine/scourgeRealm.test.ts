@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { battleTacticsForRealm } from "./data/load";
-import { getFaction, getUnit, unitsForPicker } from "./queries";
+import { getFaction, unitsForPicker } from "./queries";
 import { blankArmy } from "@/lib/storage";
 import { createId } from "@/lib/id";
 import { inferScourgeRealm, listUsesScourgeContent } from "./scourgeRealm";
