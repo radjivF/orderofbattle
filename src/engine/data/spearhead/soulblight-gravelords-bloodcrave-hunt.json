@@ -1,0 +1,314 @@
+{
+  "id": "soulblight-gravelords-bloodcrave-hunt",
+  "name": "Bloodcrave Hunt",
+  "parentFactionId": "soulblight-gravelords",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/soulblight-gravelords/",
+  "roster": [
+    {
+      "unitId": "soulblight-gravelords-bloodcrave-hunt-vampire-lord",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "soulblight-gravelords-bloodcrave-hunt-deathrattle-skeletons",
+      "count": 1
+    },
+    {
+      "unitId": "soulblight-gravelords-bloodcrave-hunt-deathrattle-skeletons",
+      "count": 1
+    },
+    {
+      "unitId": "soulblight-gravelords-bloodcrave-hunt-blood-knights",
+      "count": 1
+    },
+    {
+      "unitId": "soulblight-gravelords-bloodcrave-hunt-vargheists",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "soulblight-gravelords-bloodcrave-hunt-death-s-descent",
+      "name": "DEATH'S DESCENT",
+      "abilities": [
+        {
+          "name": "SWOOP DOWN",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "",
+          "effect": "Set up this unit anywhere on the battlefield more than 6\" from all enemy units. KEYWORDSCORE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "THE HUNGER",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Each time a friendly VAMPIRE unit uses a FIGHT ability, after all of its attacks have been resolved, Heal (X) that VAMPIRE unit where X is the number of damage points allocated by those attacks.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "soulblight-gravelords-bloodcrave-hunt-endless-legions",
+      "name": "ENDLESS LEGIONS",
+      "abilities": [
+        {
+          "name": "ENDLESS LEGIONS",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Movement Phase",
+          "declare": "Pick a friendly Deathrattle Skeletons unit that has been destroyed.",
+          "effect": "You can set up a replacement unit with D6 models in friendly territory more than 6\" from enemy units. KEYWORDSCORE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "soulblight-gravelords-bloodcrave-hunt-ruinous-chargers",
+      "name": "RUINOUS CHARGERS",
+      "abilities": [
+        {
+          "name": "RUINOUS CHARGERS",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "Pick your Blood Knights unit to use this ability if it charged this turn.",
+          "effect": "Inflict D3 mortal damage on each enemy unit it passed across during that CHARGE ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "soulblight-gravelords-bloodcrave-hunt-grave-sand-shard",
+      "name": "GRAVE-SAND SHARD",
+      "abilities": [
+        {
+          "name": "GRAVE-SAND SHARD",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Reaction: You declared the ‘Skeleton Legion’ ability for a unit within 9\" of your general",
+          "declare": "",
+          "effect": "Add 1 to each legion roll made for that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "soulblight-gravelords-bloodcrave-hunt-aura-of-night",
+      "name": "AURA OF NIGHT",
+      "abilities": [
+        {
+          "name": "AURA OF NIGHT",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Ignore negative modifiers to save rolls for shooting attacks that target your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "soulblight-gravelords-bloodcrave-hunt-cloud-of-bats",
+      "name": "CLOUD OF BATS",
+      "abilities": [
+        {
+          "name": "CLOUD OF BATS",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Movement Phase",
+          "declare": "",
+          "effect": "Remove your general from the battlefield and set them up again anywhere on the battlefield more than 6\" from all enemy units. KEYWORDSCORE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "soulblight-gravelords-bloodcrave-hunt-spirit-gale",
+      "name": "SPIRIT GALE",
+      "abilities": [
+        {
+          "name": "SPIRIT GALE",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Make a casting roll of 2D6.",
+          "effect": "On a 7+, inflict 1 mortal damage on each enemy unit on the battlefield.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "soulblight-gravelords-bloodcrave-hunt-vampire-lord",
+      "name": "Vampire Lord",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "WIZARD",
+        "INFANTRY",
+        "VAMPIRE",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "VILE TRANSFERENCE",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible enemy unit within 6\" of this unit to be the target, then make a casting roll of 2D6.",
+          "effect": "On a 6+, roll a number of dice equal to the target’s Health characteristic. For each 5+, inflict 1 mortal damage on the target and Heal (1) this unit. KEYWORDS HERO, WIZARD, INFANTRY, VAMPIRE, WARD (6+)",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "soulblight-gravelords-bloodcrave-hunt-deathrattle-skeletons",
+      "name": "Deathrattle Skeletons",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 10,
+      "categories": [
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "1",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "SKELETON LEGION",
+          "kind": "Activated",
+          "timing": "Your Combat Phase",
+          "declare": "",
+          "effect": "For each slain model from this unit, make a legion roll of D6. For each 6, return 1 slain model to this unit. KEYWORDS INFANTRY, WARD (6+)",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "soulblight-gravelords-bloodcrave-hunt-blood-knights",
+      "name": "Blood Knights",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "CAVALRY",
+        "VAMPIRE",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "3",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "RIDERS OF RUIN",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Models in this unit can pass across enemy INFANTRY models as if this unit had FLY. KEYWORDS CAVALRY, VAMPIRE, WARD (6+) ezstandalone.cmd.push(function() {ezstandalone.showAds(127)});",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "soulblight-gravelords-bloodcrave-hunt-vargheists",
+      "name": "Vargheists",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "INFANTRY",
+        "VAMPIRE",
+        "FLY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "4",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "THE SCENT OF GORE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to wound rolls for attacks made by this unit that target a damaged unit. KEYWORDS INFANTRY, VAMPIRE, FLY, WARD (6+)",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

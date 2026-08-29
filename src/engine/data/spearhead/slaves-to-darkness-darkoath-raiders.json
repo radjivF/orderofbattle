@@ -1,0 +1,293 @@
+{
+  "id": "slaves-to-darkness-darkoath-raiders",
+  "name": "Darkoath Raiders",
+  "parentFactionId": "slaves-to-darkness",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/slaves-to-darkness/",
+  "roster": [
+    {
+      "unitId": "slaves-to-darkness-darkoath-raiders-darkoath-warqueen",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "slaves-to-darkness-darkoath-raiders-darkoath-savagers",
+      "count": 1
+    },
+    {
+      "unitId": "slaves-to-darkness-darkoath-raiders-darkoath-fellriders",
+      "count": 1
+    },
+    {
+      "unitId": "slaves-to-darkness-darkoath-raiders-darkoath-marauders",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "slaves-to-darkness-darkoath-raiders-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "OATHS OF DARKNESS",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Hero Phase",
+          "declare": "",
+          "effect": "You can reveal 1 battle tactic card in your hand to your opponent. If you do so, that battle tactic card becomes your oath for the rest of the turn. While this battle tactic card is your oath, you can still use the command on it, or attempt to score the battle tactic on it, as normal. If you score the battle tactic on your oath this turn, your oath is fulfilled. Instead of discarding the card, it is placed to one side but you can still use the command on it. Once you do so, the card is discarded as normal. Fulfilled oaths placed to one side in this way do not count towards the 3 battle tactic cards you can have in your hand. If you use the command on your oath before it is scored, it is discarded as normal. At the end of the turn, if the oath is still in your hand and that oath has not been fulfilled, it ceases to be your oath.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "slaves-to-darkness-darkoath-raiders-rage-of-arkhar",
+      "name": "RAGE OF ARKHAR",
+      "abilities": [
+        {
+          "name": "RAGE OF ARKHAR",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick a friendly unit in combat to be the target.",
+          "effect": "For the rest of the turn, add 1 to the Attacks characteristic and the Rend characteristic of the target’s melee weapons. Designer’s Note: This does not affect Companion weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "slaves-to-darkness-darkoath-raiders-fearless-invaders",
+      "name": "FEARLESS INVADERS",
+      "abilities": [
+        {
+          "name": "FEARLESS INVADERS",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Movement Phase",
+          "declare": "Pick a friendly unit in combat to be the target.",
+          "effect": "If the target uses a RETREAT ability this turn, no mortal damage is inflicted on it and it can still use CHARGE abilities later in the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "slaves-to-darkness-darkoath-raiders-bloodthirsty-blade",
+      "name": "BLOODTHIRSTY BLADE",
+      "abilities": [
+        {
+          "name": "BLOODTHIRSTY BLADE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "The Rend characteristic of your general’s Rune-etched Axe is 2.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "slaves-to-darkness-darkoath-raiders-champion-of-raids",
+      "name": "CHAMPION OF RAIDS",
+      "abilities": [
+        {
+          "name": "CHAMPION OF RAIDS",
+          "kind": "Activated",
+          "timing": "Your Charge Phase",
+          "declare": "Pick another friendly unit wholly within 12\" of your general to be the target.",
+          "effect": "The target can re-roll charge rolls for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "slaves-to-darkness-darkoath-raiders-godshadow-talisman",
+      "name": "GODSHADOW TALISMAN",
+      "abilities": [
+        {
+          "name": "GODSHADOW TALISMAN",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Your general has WARD (4+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "slaves-to-darkness-darkoath-raiders-fell-ritualist",
+      "name": "FELL RITUALIST",
+      "abilities": [
+        {
+          "name": "FELL RITUALIST",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Each time you draw battle tactic cards, if your general is on the battlefield, you can choose to draw 1 additional battle tactic card, then put 1 of your battle tactic cards in your hand back at the bottom of your battle tactic deck.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "slaves-to-darkness-darkoath-raiders-darkoath-warqueen",
+      "name": "Darkoath Warqueen",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "WARD (5+)"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "OATH OF SUPREMACY",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly unit wholly within 12\" of your general to be the target.",
+          "effect": "Until the start of your next turn, add 1 to hit rolls for attacks made by the target. KEYWORDS HERO, INFANTRY, WARD (5+)",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "slaves-to-darkness-darkoath-raiders-darkoath-savagers",
+      "name": "Darkoath Savagers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 10,
+      "categories": [
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "1",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "VISIONS OF GLORY",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "",
+          "effect": "If this unit includes a Godspeaker, roll 8 dice. For each 4+, until the start of your next turn, you can re-roll 1 hit roll, 1 wound roll, 1 run roll or 1 save roll for this unit. KEYWORDS INFANTRY",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "slaves-to-darkness-darkoath-raiders-darkoath-fellriders",
+      "name": "Darkoath Fellriders",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "CAVALRY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "3",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "SWIFT ATTACKERS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Subtract 1 from hit rolls for shooting attacks that target this unit. KEYWORDS CAVALRY, REINFORCEMENTS",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "slaves-to-darkness-darkoath-raiders-darkoath-marauders",
+      "name": "Darkoath Marauders",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 10,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "1",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "GLORIOUS DEATH",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking model, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved. KEYWORDS INFANTRY, REINFORCEMENTS ezstandalone.cmd.push(function() {ezstandalone.showAds(128)});",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

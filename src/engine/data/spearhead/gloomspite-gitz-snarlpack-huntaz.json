@@ -1,0 +1,298 @@
+{
+  "id": "gloomspite-gitz-snarlpack-huntaz",
+  "name": "Snarlpack Huntaz",
+  "parentFactionId": "gloomspite-gitz",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/gloomspite-gitz/",
+  "roster": [
+    {
+      "unitId": "gloomspite-gitz-snarlpack-huntaz-snarlboss",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "gloomspite-gitz-snarlpack-huntaz-wolfgit-retinue",
+      "count": 1
+    },
+    {
+      "unitId": "gloomspite-gitz-snarlpack-huntaz-snarlpack-cavalry",
+      "count": 1
+    },
+    {
+      "unitId": "gloomspite-gitz-snarlpack-huntaz-snarlpack-cavalry",
+      "count": 1
+    },
+    {
+      "unitId": "gloomspite-gitz-snarlpack-huntaz-sunsteala-wheelas",
+      "count": 1
+    },
+    {
+      "unitId": "gloomspite-gitz-snarlpack-huntaz-sunsteala-wheelas",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "gloomspite-gitz-snarlpack-huntaz-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "FAST AS FRAZZLEGIT",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Friendly units can use CHARGE abilities even if they used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on friendly units by RETREAT abilities.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "gloomspite-gitz-snarlpack-huntaz-flankin-force",
+      "name": "FLANKIN' FORCE",
+      "abilities": [
+        {
+          "name": "FLANKIN' FORCE",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Deployment Phase",
+          "declare": "",
+          "effect": "Pick up to 2 friendly units. Remove them from the battlefield and set them up again anywhere on the battlefield more than 6\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "gloomspite-gitz-snarlpack-huntaz-frazzleboom",
+      "name": "FRAZZLEBOOM",
+      "abilities": [
+        {
+          "name": "FRAZZLEBOOM",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Each time a friendly WAR MACHINE is destroyed, before removing it from play, pick an enemy unit within 3\" of that WAR MACHINE and roll a D3. On a 2+, inflict an amount of mortal damage on that unit equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "gloomspite-gitz-snarlpack-huntaz-kunnin-as-a-snarlfang",
+      "name": "KUNNIN' AS A SNARLFANG",
+      "abilities": [
+        {
+          "name": "KUNNIN' AS A SNARLFANG",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "",
+          "effect": "For the rest of the turn, add 1 to the Rend characteristic of melee weapons used by friendly units while they are wholly within 12\" of the bearer.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "gloomspite-gitz-snarlpack-huntaz-sunsteala-shard",
+      "name": "SUNSTEALA SHARD",
+      "abilities": [
+        {
+          "name": "SUNSTEALA SHARD",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Enemy Movement Phase",
+          "declare": "",
+          "effect": "For the rest of the turn, friendly units cannot be targeted by shooting attacks while they are wholly within 6\" of this unit, unless the attacking unit is in combat with the target unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "gloomspite-gitz-snarlpack-huntaz-glare-of-frazzlegit",
+      "name": "GLARE OF FRAZZLEGIT",
+      "abilities": [
+        {
+          "name": "GLARE OF FRAZZLEGIT",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with your general to be the target.",
+          "effect": "Subtract 1 from hit rolls for attacks made by the target for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "gloomspite-gitz-snarlpack-huntaz-devious-backstabba",
+      "name": "DEVIOUS BACKSTABBA",
+      "abilities": [
+        {
+          "name": "DEVIOUS BACKSTABBA",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "Pick an enemy HERO in combat with this unit to be the target.",
+          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "gloomspite-gitz-snarlpack-huntaz-snarlboss",
+      "name": "Snarlboss",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "CAVALRY"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "GREAT SNARLIN' HOWL",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Hero Phase",
+          "declare": "Pick this unit and another friendly unit within this unit’s combat range to be the targets.",
+          "effect": "Roll a dice. On a 3+, add 1 to the Rend characteristic and the Attacks characteristic of the targets’ Companion melee weapons for the rest of the turn. KEYWORDS HERO, CAVALRY",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "gloomspite-gitz-snarlpack-huntaz-wolfgit-retinue",
+      "name": "Wolfgit Retinue",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 2,
+      "categories": [
+        "CAVALRY"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "2",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "I GOT DIS, BOSS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While a friendly Snarlboss is within this unit’s combat range, both this unit and that Snarlboss have WARD (5+). KEYWORDS CAVALRY ezstandalone.cmd.push(function() {ezstandalone.showAds(127)});",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "gloomspite-gitz-snarlpack-huntaz-snarlpack-cavalry",
+      "name": "Snarlpack Cavalry",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "CAVALRY"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "3",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "FRAZZLEBURNED SCRAP",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "This unit has STRIKE-FIRST if it charged in the same turn. KEYWORDS CAVALRY",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "gloomspite-gitz-snarlpack-huntaz-sunsteala-wheelas",
+      "name": "Sunsteala Wheelas",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "WAR MACHINE"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "6",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "CAREENING DESTRUCTION",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "",
+          "effect": "This unit can move a distance up to its Move characteristic. It can pass through other models and the combat ranges of enemy units, but it cannot end that move in combat. Then, pick up to 1 enemy INFANTRY unit that this unit passed across during that move to be the target. Inflict D3 mortal damage on the target. Designer’s Note: This unit can use this ability even if it is in combat. KEYWORDSCORE, MOVE KEYWORDS WAR MACHINE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

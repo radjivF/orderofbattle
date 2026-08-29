@@ -1,0 +1,669 @@
+{
+  "id": "blades-of-khorne-bloodbound-gore-pilgrims",
+  "name": "Bloodbound Gore Pilgrims",
+  "parentFactionId": "blades-of-khorne",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/blades-of-khorne/",
+  "roster": [
+    {
+      "unitId": "blades-of-khorne-bloodbound-gore-pilgrims-slaughterpriest",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "blades-of-khorne-bloodbound-gore-pilgrims-blood-warriors",
+      "count": 1
+    },
+    {
+      "unitId": "blades-of-khorne-bloodbound-gore-pilgrims-blood-warriors",
+      "count": 1
+    },
+    {
+      "unitId": "blades-of-khorne-bloodbound-gore-pilgrims-bloodreavers",
+      "count": 1
+    },
+    {
+      "unitId": "blades-of-khorne-bloodbound-gore-pilgrims-mighty-skullcrushers",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "THE BLOOD TITHE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Each time a unit is destroyed during the battle, you receive 1 blood tithe point.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "HEADS MUST ROLL",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Any Hero Phase",
+          "declare": "Spend 3 blood tithe points and pick up to 3 friendly units.",
+          "effect": "Add 1 to the Rend characteristic of those units’ melee weapons until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "MURDERLUST",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Any Hero Phase",
+          "declare": "Spend 1 blood tithe point and pick up to D3 friendly units.",
+          "effect": "Each of those units can move D6\" (roll for each).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-favoured-of-khorne",
+      "name": "FAVOURED OF KHORNE",
+      "abilities": [
+        {
+          "name": "FAVOURED OF KHORNE",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Start of Your Turn",
+          "declare": "",
+          "effect": "Roll a dice. On a 2+, you receive 1 blood tithe point.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-blood-woken-runes",
+      "name": "BLOOD-WOKEN RUNES",
+      "abilities": [
+        {
+          "name": "BLOOD-WOKEN RUNES",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Friendly units have WARD (5+) if they have used a FIGHT ability in the same phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-resanguination",
+      "name": "RESANGUINATION",
+      "abilities": [
+        {
+          "name": "RESANGUINATION",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly unit wholly within 16\" of your general, then make a chanting roll of D6.",
+          "effect": "On a 3+, Heal (D3) that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-headhunter",
+      "name": "HEADHUNTER",
+      "abilities": [
+        {
+          "name": "HEADHUNTER",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy HERO in combat with your general.",
+          "effect": "Your general has STRIKE-FIRST this phase, but all attacks made by them this phase must target that enemy HERO.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-the-crimson-plate",
+      "name": "THE CRIMSON PLATE",
+      "abilities": [
+        {
+          "name": "THE CRIMSON PLATE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Your general has WARD (5+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-unholy-flames",
+      "name": "UNHOLY FLAMES",
+      "abilities": [
+        {
+          "name": "UNHOLY FLAMES",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly unit wholly within 16\" of your general, then make a chanting roll of D6.",
+          "effect": "On a 4+, add 1 to the Rend characteristic of that unit’s melee weapons until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-slaughterpriest",
+      "name": "Slaughterpriest",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "PRIEST",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "6",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "BLOOD BOIL",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible enemy unit within 16\" of this unit to be the target, then make a chanting roll of D6.",
+          "effect": "On a 4+, inflict D3 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "BLOOD SACRIFICE",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly unit within this unit’s combat range to be the target.",
+          "effect": "Roll a dice. On a 2+, inflict D3 mortal damage on the target and you gain 1 blood tithe point. KEYWORDS HERO, PRIEST, INFANTRY",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-blood-warriors",
+      "name": "Blood Warriors",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "2",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "NO RESPITE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Each time a model in this unit is slain, you can pick an enemy unit in combat with this unit and roll a dice. On a 4+, inflict 1 mortal damage on that enemy unit. KEYWORDS INFANTRY",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-bloodreavers",
+      "name": "Bloodreavers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 10,
+      "categories": [
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "FRENZIED DEVOTION",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "If this unit is within 8\" of your general, you can return D3 slain models to this unit. KEYWORDS INFANTRY",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "blades-of-khorne-bloodbound-gore-pilgrims-mighty-skullcrushers",
+      "name": "Mighty Skullcrushers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "CAVALRY"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "5",
+        "save": "2+",
+        "control": "2"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "BRASS STAMPEDE",
+          "kind": "Activated",
+          "timing": "Your Charge Phase",
+          "declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target, then roll a dice.",
+          "effect": "On a 2+, inflict 1 mortal damage on the target. KEYWORDS CAVALRY",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "SKULLS FOR THE SKULL THRONE",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Start of Any Turn",
+          "declare": "",
+          "effect": "Pick a BLOOD TITHE ability that you have not unlocked and spend the number of blood tithe points required to unlock that ability (shown in the top-right corner of the ability). That BLOOD TITHE ability is now unlocked for the rest of the battle. 14.3 Charge Phase",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "CHARGE",
+          "kind": "Activated",
+          "timing": "Your Charge Phase",
+          "declare": "Pick a friendly unit that is not in combat and has not used a RUN or RETREAT ability this turn to use this ability. Then, make a charge roll of 2D6.",
+          "effect": "That unit can move a distance up to the value of the charge roll. That unit can move through the combat ranges of any enemy units and must end that move within 1/2\" of a visible enemy unit. If it does so, the unit using this ability has charged. KEYWORDSCORE, MOVE, CHARGE 17.2 Mortal Damage Some abilities inflict mortal damage. If an ability inflicts mortal damage on a unit, add that number of damage points to the unit’s damage pool for that ability (see 18.2 Allocating Damage). Universal Core Abilities - Charge Phase",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "CHARGE",
+          "kind": "Activated",
+          "timing": "Your Charge Phase",
+          "declare": "Pick a friendly unit that is not in combat and has not used a RUN or RETREAT ability this turn to use this ability. Then, make a charge roll of 2D6.",
+          "effect": "That unit can move a distance up to the value of the charge roll. That unit can move through the combat ranges of any enemy units and must end that move within 1/2\" of a visible enemy unit. If it does so, the unit using this ability has charged. KEYWORDSCORE, MOVE, CHARGE 18.4 Destroyed Units When the last model in a unit is slain, the unit is destroyed and all remaining damage points inflicted on that unit have no effect. Similarly, if something causes a unit to be destroyed, all models in the unit are slain and removed from play. 7.0 Combat Range Each model has a combat range that extends 3\" horizontally from its base and any distance vertically from that circle to form a cylinder. The combat range of a unit extends 3\" horizontally and any distance vertically from every model in that unit. Units from opposing armies that are within each other’s combat range and that are visible to each other are in combat with each other. When a unit that is not in combat enters the combat range of a visible enemy unit, it moves into combat. A model is considered to be in combat with an enemy unit if that unit is within the model’s combat range and visible to it’ A unit’s combat range extends 3\" out from every model in that unit. If any enemy models are within a unit’s combat range and visible to it, that unit is in combat. 6.0 Visibility A target model is visible to another model (which we’ll call the ‘observing model’) if you can draw a straight line through the air (whether horizontal, diagonal or vertical) from any point on the observing model to any point on the target model that does not intersect any objects except for other models in the observing model’s unit. A target unit is visible to an observing unit if at least 1 model in the target unit is visible to at least 1 model in the observing unit. A model is always considered to be visible to itself. If a rule or ability requires a target to be both within a given range of and visible to the unit using that ability, or to a model in that unit, both conditions must be met by the same model in the target. You could not, for instance, target a unit where one model is within range but not visible and another model is not in range but is visible. If any part of another model can be seen by an observing model, both the target model and its unit are visible to that observing model. In some cases, it might not be immediately clear whether a model is visible. If so, stoop down to get a look from behind the observing model. If any part of the other model is visible, even if it is just the tip of a spear, then that model is visible for rules purposes. 16.0 Picking Targets When declaring an ATTACK ability for a unit, you must pick the target unit(s) for its attacks. The number of attacks each model can make is equal to the Attacks characteristic of the weapons it is using. In most cases, models attack with every weapon on their warscroll (melee weapons for combat attacks, ranged weapons for shooting attacks), though some warscrolls specify that certain models in the unit are armed with special weapons or that the unit must pick between multiple weapons when it attacks. If the unit is in combat, it can only target units that are in combat with it. If a model has more than one attack, you can split the attacks between eligible targets as you wish. Combat attacks are made with melee weapons. The target unit(s) must be within the combat range of the attacking model and visible to it. The model must attack with all of the melee weapons it is armed with. Shooting attacks are made with ranged weapons. The target unit(s) must be within a distance equal to the Range characteristic of the weapon being used and visible to the attacking model. Models cannot make shooting attacks if their unit is in combat, unless otherwise specified (see 20.0 Weapon Abilities). Shooting attacks Shooting attacks are made with ranged weapons. The target unit(s) must be within a distance equal to the Range characteristic of the weapon being used and visible to the attacking model. Models cannot make shooting attacks if their unit is in combat, unless otherwise specified (see 20.0 Weapon Abilities).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "SHOOT",
+          "kind": "Activated",
+          "timing": "Your Shooting Phase",
+          "declare": "Pick a friendly unit that has not used a RUN or RETREAT ability this turn to use this ability. Then, pick one or more enemy units as the target(s) of that unit’s attacks (see 16.0).",
+          "effect": "Resolve shooting attacks against the target unit(s). KEYWORDSCORE, ATTACK, SHOOT Combat attacks Combat attacks are made with melee weapons. The target unit(s) must be within the combat range of the attacking model and visible to it. The model must attack with all of the melee weapons it is armed with.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "FIGHT",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick a friendly unit that is in combat or that charged this turn to use this ability. That unit can make a pile-in move. Then, if that unit is in combat, you must pick one or more enemy units as the target(s) of that unit’s attacks.",
+          "effect": "Resolve combat attacks against the target unit(s). KEYWORDSCORE, ATTACK, FIGHT Shoot in Combat This weapon can be used to make shooting attacks even if the attacking unit is in combat. 7.0 Manifestations There are two types of manifestation: endless spells, which can be summoned by WIZARDS, and invocations, which can be summoned by PRIESTS. Each manifestation has its own warscroll, and the spell or prayer that allows that manifestation to be summoned will be found in the appropriate manifestation lore. No more than 1 friendly WIZARD or PRIEST can attempt to summon the same manifestation per turn, and a friendly WIZARD or PRIEST cannot attempt to summon a friendly manifestation that was removed from play in the same turn. Manifestations are not units but can be interacted with in similar ways, as explained next: ALL MANIFESTATIONS Models can move through them but cannot end a move on them. Units can finish a charge move within ½\" of an enemy manifestation instead of within ½\" of an enemy unit. They can be damaged and destroyed as if they were units but do not count as destroyed units for the purposes of battle tactics and abilities. They are affected by all enemy abilities as if they were units. They can use CORE abilities as if they were units, and they can use abilities on their warscroll. Unless specified otherwise, they cannot use and are not affected by any other friendly abilities, and they do not count as units for the purposes of battle tactics or friendly abilities. They can only use the ‘Shoot’ or ‘Fight’ abilities if they have weapons of the appropriate type. MANIFESTATIONS WITH A MOVE CHARACTERISTIC OF ‘-’ They cannot move. They only count as being in combat in the combat phase, and enemy units only count as being in combat with them in the combat phase. They cannot make shooting attacks with ranged weapons that do not have Shoot in Combat while there is a visible enemy unit within 3\" of them. MANIFESTATIONS WITH A MOVE CHARACTERISTIC GREATER THAN ‘-’ They are treated as if they were units for the purposes of movement, combat range, being in combat and setting up terrain features, other manifestations and other units. 1.0 Wizards and Priests WIZARDS are special units that can cast spells, and PRIESTS are special units that can chant prayers. Spells and prayers are powerful abilities that can have a dramatic impact on the battle. Banish Manifestation",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "BANISH MANIFESTATION",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly WIZARD or PRIEST to use this ability, pick a MANIFESTATION within 30\" of them that was not summoned this turn to be the target, then make a banishment roll of 2D6. Add 1 to the banishment roll for each additional enemy MANIFESTATION on the battlefield after the first. You cannot pick the same MANIFESTATION to be the target of this ability more than once per turn.",
+          "effect": "If the banishment roll equals or exceeds the banishment value listed on the MANIFESTATION’s warscroll, it is banished and removed from play. KEYWORDSBANISH 7.2 Banishing Manifestations Instead of using a SPELL or PRAYER ability (including when using the ‘Magical Intervention’ ability), each WIZARD and PRIEST can use the ‘Banish Manifestation’ ability:",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "BANISH MANIFESTATION",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly WIZARD or PRIEST to use this ability, pick a MANIFESTATION within 30\" of them that was not summoned this turn to be the target, then make a banishment roll of 2D6. Add 1 to the banishment roll for each additional enemy MANIFESTATION on the battlefield after the first. You cannot pick the same MANIFESTATION to be the target of this ability more than once per turn.",
+          "effect": "If the banishment roll equals or exceeds the banishment value listed on the MANIFESTATION’s warscroll, it is banished and removed from play. KEYWORDSBANISH Hit Roll Roll a dice. If the roll equals or exceeds the attacking weapon’s Hit characteristic, the attack scores a successful hit: move on to the next step. If not, the attack fails and the attack sequence ends. Unmodified hit rolls of 1 always fail. If an unmodified hit roll for an attack made with a weapon is a 6, that attack is a critical hit. Critical hits have no effect on their own but often trigger additional effects (see 20.0 Weapon Abilities). Companion Unless otherwise specified, attacks made by this weapon are not affected by friendly abilities that modify hit rolls, wound rolls or weapon characteristics, except for those that apply negative modifiers (e.g. ‘Covering Fire’). Blood Tithe Abilities",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "MURDERLUST",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Reaction: You declared a CHARGE ability",
+          "declare": "",
+          "effect": "Roll a dice. You can replace one of the dice in the charge roll with that value. If you do so, inflict D3 mortal damage on the unit using that CHARGE ability after that ability is resolved. KEYWORDSBLOOD TITHE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "DIVINE SCORN",
+          "kind": "Activated",
+          "timing": "Once per Turn, Start of Any Turn",
+          "declare": "Pick up to 3 enemy WIZARDS or PRIESTS within 6\" of any friendly BLADES OF KHORNE units to be the target(s).",
+          "effect": "Roll a dice for each target. On a 3+, subtract 1 from the target’s power level, to a minimum of 0, until the start of the next turn. KEYWORDSBLOOD TITHE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "PUNISH THE PACIFIST",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Combat Phase",
+          "declare": "Each unit (friendly and enemy) and enemy MANIFESTATION that is not in combat is a target.",
+          "effect": "Roll a dice. On a 1-2, inflict 1 mortal damage on each target. On a 3+, inflict 1 mortal damage on each enemy target. KEYWORDSBLOOD TITHE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "MURDER THE MYSTIC",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Hero Phase",
+          "declare": "Pick up to 4 enemy MANIFESTATIONS to be the target(s).",
+          "effect": "Make a banishment roll of 2D6 for each target. If the banishment roll equals or exceeds the banishment value listed on that MANIFESTATION’s warscroll, inflict D3 mortal damage on each enemy unit within 3\" of it and then it is banished and removed from play. KEYWORDSBLOOD TITHE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "GLORIOUS COMBAT OR NAUGHT",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Subtract 1 from hit rolls for shooting attacks that target friendly BLADES OF KHORNE units. KEYWORDSBLOOD TITHE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "REVEL IN BATTLE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Other than the Companion weapon ability, weapon abilities for combat attacks made by enemy units that charged this turn and that target a friendly BLADES OF KHORNE unit have no effect. KEYWORDSBLOOD TITHE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "SLAUGHTER TRIUMPHANT",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to the Attacks characteristic of weapons used by friendly BLADES OF KHORNE units that charged in the same turn. KEYWORDSBLOOD TITHE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "CLEAVE WIDE THE GRIN OF KHORNE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to hit rolls for combat attacks made by friendly BLADES OF KHORNE units. KEYWORDSBLOOD TITHE Save Roll The commander of the target unit rolls a dice, subtracting the attacking weapon’s Rend characteristic from the roll. Unmodified save rolls of 1 always fail. If the roll equals or exceeds the Save characteristic of the target unit, the attack fails and the attack sequence ends. If not, it is a successful attack: move on to the next step. The BLOODBOUND keyword is used in the following Blades of Khorne warscrolls: • Blood Warriors • Bloodreavers • Bloodsecrator • Bloodstoker • Claws of Karanak • Deathbringer • Khorgorath • Mighty Lord of Khorne • Mighty Skullcrushers • Realmgore Ritualist • Skullgrinder • Skullreapers • Slaughterpriest • Wrathmongers • Korghos Khul • Lord of Khorne on Juggernaut • Skarr Bloodwrath • Scourge of Aqshy Blood Warriors • Scourge of Ghyran Mighty Lord of Khorne • Garrek’s Reavers • Gorechosen of Dromm • Kamandora’s Blades • Magore’s Fiends • Scyla Anfingrimm • Valkia The Bloody Crit (Mortal) If an attack made with this weapon scores a critical hit, that attack inflicts mortal damage on the target unit equal to the Damage characteristic of that weapon and the attack sequence ends. The non-MONSTER DAEMON keyword is used in the following Blades of Khorne warscrolls: • Bloodcrushers • Bloodletters • Bloodmaster, Herald of Khorne • Flesh Hounds • Herald of Khorne on Blood Throne • Karanak • Skull Cannon • Skulltaker • Khul Ascended • Skullmaster, Herald of Khorne • Scourge of Aqshy Bloodletters • Scourge of Ghyran Bloodcrushers The MONSTER keyword is used in the following Blades of Khorne warscrolls: • Bloodthirster of Insensate Rage • Bloodthirster of Unfettered Fury • Khorgorath • Skarbrand • Wrath of Khorne Bloodthirster Battle Traits",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "BLOOD-DRENCHED",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Reaction: You declared the ‘Skulls for the Skull Throne’ ability",
+          "declare": "",
+          "effect": "After that ability has been resolved, if you unlocked a BLOOD TITHE ability this turn, pick a friendly BLADES OF KHORNE unit to be the target. The following effects apply to the target for the rest of the battle: Wild-eyed Brutality: Ignore positive modifiers to save rolls for the target. Blood Haze: If the target is BLOODBOUND, its Blood-hungry weapons have Crit (Mortal). Weapons of Murder: If the target is a non-MONSTER DAEMON unit, add 1 to the Rend characteristic of its Blood-hungry weapons, including Blood-hungry Companion weapons. Bloodlords Supreme: If the target is a MONSTER, add 1 to the Damage characteristic of its Blood-hungry weapons. 3.5 Regiments of Renown In addition to creating your own regiments, you can also spend points to include 1 Regiment of Renown. Regiments of Renown are pre-built regiments, each with their own special abilities. The rules for each Regiment of Renown will specify which factions can include it. A unit in a Regiment of Renown cannot be your general even if it is a WARMASTER. You cannot include more than one Regiment of Renown in your army unless otherwise specified in the notes column of that regiment’s battle profile. Units in a Regiment of Renown cannot use (but can be picked as the target of, if otherwise eligible) any faction rules from the faction they are allied into, including enhancements and lores. If an ability allows you to set up a replacement unit (Core Rules, 24.2) for a unit in a Regiment of Renown, that unit also counts as being part of that Regiment of Renown. 13.1 Fight Abilities Abilities with the FIGHT keyword follow a different sequence to other abilities. When the players are using Combat Phase abilities as described in 13.0, they cannot use FIGHT abilities. After the players have finished using Combat Phase abilities that are not FIGHT abilities, they must alternate picking 1 eligible unit to use a FIGHT ability, starting with the active player. Each unit in combat must use a FIGHT ability if it is able to. Once a player has no more units that are eligible to use a FIGHT ability, the other player continues to pick units that are eligible to use a FIGHT ability, one after another, until there are no more units that are eligible to use a FIGHT ability. The active player uses Combat Phase abilities that are not FIGHT abilities, then the opponent does the same. Players alternate picking a unit to use a FIGHT ability, starting with the active player. Each unit must use a FIGHT ability if it is able to. The BLADES OF KHORNE and DAEMON keywords are used in the following Blades of Khorne warscrolls: • Bloodcrushers • Bloodletters • Bloodmaster, Herald of Khorne • Bloodthirster of Insensate Rage • Bloodthirster of Unfettered Fury • Flesh Hounds • Herald of Khorne on Blood Throne • Karanak • Skarbrand • Skull Cannon • Skulltaker • Wrath of Khorne Bloodthirster • Khul Ascended • Skullmaster, Herald of Khorne • Scourge of Aqshy Bloodletters • Scourge of Ghyran Bloodcrushers 32.1 Contesting Objectives Unless otherwise specified, if an objective is within a model’s combat range, that model is contesting that objective. If any models in a unit are contesting an objective, that unit is contesting that objective. Each unit can only count as contesting a single objective for the purposes of determining objective control (see 32.2). Before determining objective control, for each of their units contesting two or more objectives, the active player must pick one of those objectives for it to contest. Then, their opponent does the same. Designer’s Note: For purposes other than determining objective control, a unit can contest more than one objective. The CAVALRY keyword is used in the following Blades of Khorne warscrolls: • Bloodcrushers • Mighty Skullcrushers • Lord of Khorne on Juggernaut • Skullmaster, Herald of Khorne • Scourge of Ghyran Bloodcrushers The non-HERO BLOODBOUND keyword is used in the following Blades of Khorne warscrolls: • Blood Warriors • Bloodreavers • Claws of Karanak • Khorgorath • Mighty Skullcrushers • Skullreapers • Wrathmongers • Scourge of Aqshy Blood Warriors • Garrek’s Reavers • Gorechosen of Dromm • Kamandora’s Blades • Magore’s Fiends The non-HERO BLADES OF KHORNE and DAEMON keywords are used in the following Blades of Khorne warscrolls: • Bloodcrushers • Bloodletters • Flesh Hounds • Skull Cannon • Scourge of Aqshy Bloodletters • Scourge of Ghyran Bloodcrushers Wound Roll Roll a dice. If the roll equals or exceeds the attacking weapon’s Wound characteristic, the attack successfully wounds: move on to the next step. If not, the attack fails and the attack sequence ends. Unmodified wound rolls of 1 always fail. The BLOODBOUND and HERO keywords are used in the following Blades of Khorne warscrolls: • Bloodsecrator • Bloodstoker • Deathbringer • Mighty Lord of Khorne • Realmgore Ritualist • Skullgrinder • Slaughterpriest • Korghos Khul • Lord of Khorne on Juggernaut • Skarr Bloodwrath • Scourge of Ghyran Mighty Lord of Khorne • Scyla Anfingrimm • Valkia The Bloody The HERO and BLADES OF KHORNE keywords are used in the following Blades of Khorne warscrolls: • Bloodmaster, Herald of Khorne • Bloodsecrator • Bloodstoker • Bloodthirster of Insensate Rage • Bloodthirster of Unfettered Fury • Deathbringer • Herald of Khorne on Blood Throne • Karanak • Mighty Lord of Khorne • Realmgore Ritualist • Skarbrand • Skullgrinder • Skulltaker • Slaughterpriest • Wrath of Khorne Bloodthirster • Khul Ascended • Korghos Khul • Lord of Khorne on Juggernaut • Skarr Bloodwrath • Skullmaster, Herald of Khorne • Scourge of Ghyran Mighty Lord of Khorne • Scyla Anfingrimm • Valkia The Bloody 18.1 Ward Saves Units with the WARD keyword have the ‘Ward Save’ passive ability. The number after the WARD keyword indicates the ward value for the ward save. If a unit had WARD (5+), for example, its ward value would be 5. If a unit has more than one ward save, only the ward save with the lowest value applies to it; the other has no effect.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "WARD SAVE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "In step 1 of the damage sequence (see 18.0), make a ward roll of D6 for each damage point in this unit’s damage pool. If the roll equals or exceeds this unit’s ward value, remove that damage point from the damage pool. 2.0 Spells The declare step of each spell will tell you to make a casting roll of 2D6. If the roll does not equal or exceed the spell’s casting value (at the top-right corner of the spell), the spell fails and its effect is not resolved. If the unmodified casting roll includes 2 or more rolls of 1, the spell is miscast: the spell fails, its effect is not resolved, D3 mortal damage is inflicted on the WIZARD that used it, and that WIZARD cannot use any more spells in that phase. Enemy reactions can only be used if the casting roll equals or exceeds the spell’s casting value. So long as the spell is not unbound (see 4.0), then it is successfully cast: resolve its effect. EXAMPLE SPELL",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "MYSTIC SHIELD",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly unit wholly within 12\" of this WIZARD to be the target. Then, make a casting roll of 2D6.",
+          "effect": "The target has WARD (6+) this turn. KEYWORDSSPELL 3.0 Prayers The declare step of each prayer will tell you to make a chanting roll of D6. On an unmodified chanting roll of 1, the prayer fails, its effect is not resolved and you must remove D3 ritual points from the PRIEST using the prayer. Otherwise, pick one of the following: Give a number of ritual points to the PRIEST equal to the chanting roll (ritual points can be accumulated over multiple turns). Add the PRIEST’s ritual points to the chanting roll. If the chanting roll equals or exceeds the prayer’s chanting value (at the top-right corner of the prayer), it is answered: resolve the effect of the prayer, then reset the PRIEST’s ritual points total to 0. All PRIESTS know the following prayer:",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "SACRED RITES",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly PRIEST to use this ability, then make a chanting roll of D6. On an unmodified chanting roll of 1, remove 1 ritual point from that PRIEST instead of D3.",
+          "effect": "Give a number to ritual points to the PRIEST equal to the unmodified chanting roll and do not reset the PRIEST’s ritual points to 0. KEYWORDSPRAYER, UNLIMITED EXAMPLE PRAYER",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "RESURRECTION",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Hero Phase",
+          "declare": "Make a chanting roll of D6.",
+          "effect": "Pick a friendly INFANTRY HERO that has been slain and return them to the battlefield. Set up that HERO wholly within 3\" of this PRIEST. KEYWORDSPRAYER The INFANTRY keyword is used in the following Blades of Khorne warscrolls: • Blood Warriors • Bloodletters • Bloodmaster, Herald of Khorne • Bloodreavers • Bloodsecrator • Bloodstoker • Claws of Karanak • Deathbringer • Mighty Lord of Khorne • Realmgore Ritualist • Skullgrinder • Skullreapers • Skulltaker • Slaughterpriest • Wrathmongers • Khul Ascended • Korghos Khul • Skarr Bloodwrath • Scourge of Aqshy Blood Warriors • Scourge of Aqshy Bloodletters • Scourge of Ghyran Mighty Lord of Khorne • Garrek’s Reavers • Gorechosen of Dromm • Kamandora’s Blades • Magore’s Fiends • Valkia The Bloody 1.1 Power Level Each WIZARD and PRIEST has a power level shown after the keyword, e.g. WIZARD (2). A WIZARD’s casting power level determines how many Spell abilities they can use per phase. A PRIEST’s chanting power level determines how many PRAYER abilities they can use per phase. 4.0 Unbinding Spells Each WIZARD can use the ‘Unbind’ reaction a number of times per phase equal to their power level. This is an exception to The Rules of One (Core Rules, 5.3).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "UNBIND",
+          "kind": "Activated",
+          "timing": "Reaction: Opponent declared a SPELL ability",
+          "declare": "Used By: A friendly WIZARD within 30\" of the enemy WIZARD casting the spell.",
+          "effect": "Make an unbinding roll of 2D6. If the roll exceeds the casting roll tor the spell, then the spell is unbound and its effect is not resolved. This reaction cannot be used more than once per casting roll. KEYWORDSUNBIND The BLADES OF KHORNE and PRIEST keywords are used in the following Blades of Khorne warscrolls: • Bloodmaster, Herald of Khorne • Herald of Khorne on Blood Throne • Realmgore Ritualist • Slaughterpriest 18.2 Allocating Damage After resolving the effect of any ability that inflicts damage points (whether via attacks, mortal damage or both), you must allocate the damage points. When allocating damage points to a unit, the damage points in its damage pool are allocated to it one at a time. Each time the number of damage points allocated to the unit equals the Health characteristic of that unit, 1 model in that unit is slain (and removed from play) and the number of damage points allocated to that unit is reset to 0. Keep allocating damage points until there are none left in the damage pool. If the number of damage points allocated to a unit is not enough to slay a model, keep track of the number of damage points currently allocated to the unit (most players place a dice or markers next to the unit). While a unit has any damage points allocated to it, it is damaged. FIGHT THROUGH THE PAIN",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "FIGHT THROUGH THE PAIN",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Before allocating damage to a friendly unit, you can spend any number of rage dice. For each rage dice spent, reduce your fury level by 1, to a minimum of 0, then roll a dice. On a 3+, remove 1 damage point from that unit’s damage pool. 24.1 Reserve Units Some abilities allow you to set up units in reserve. These units are placed to one side instead of being set up on the battlefield. At the start of the fourth battle round, units that were set up in reserve using a DEPLOY ability and that are still in reserve are destroyed. The non-Hero Blades of Khorne Infantry or Cavalry keyword is used in the following Blades of Khorne warscrolls Infantry • Claws of Karanak • Bloodletters • Bloodreavers • Blood Warriors • Skullreapers • Wrathmongers • Garrek’s Reavers • Magore’s Fiends • Gorechosen of Dromm • Kamandora’s Blades • Scourge of Aqshy Bloodletters • Scourge of Aqshy Blood Warriors ERUPTION OF FURY",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "ERUPTION OF FURY",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Any Turn",
+          "declare": "Pick a friendly unit to use this ability, then pick an enemy unit in combat with that friendly unit to be the target.",
+          "effect": "Pick 1 of the melee weapons that the unit using this ability is armed with. Then, spend up to 3 rage dice. Resolve a number of combat attacks against the target using the melee weapon you picked equal to the number of rage dice you spent. Those attacks cannot score critical hits. Instead, for each unmodified hit roll of 6 for those attacks: Inflict an additional D3 mortal damage on each enemy unit in combat with the unit using this ability. Your opponent must increase their fury level by 1, to a maximum of 7. For each unmodified hit roll of 1 for those attacks, allocate D3 mortal damage to this unit after the damage sequence has been resolved (ward rolls cannot be made for those damage points). Designer’s Note: Rage dice do not add to the Attacks characteristic of the weapon you pick; if you spend 3 rage dice to use this ability, you only make 3 combat attacks. KEYWORDSATTACK, FIGHT 3.1 Regiments Armies are made up of one or more regiments, each of which is led by a Hero. You must have at least 1 regiment in your army, and you can include a maximum of 5 regiments. To add a regiment, pick 1 HERO from your faction, then pick up to 3 non-HERO units to accompany them. Each HERO’s battle profile lists which units can be added to their regiment, and each non-HERO unit’s battle profile lists any relevant keywords it has. The battle profiles of some HEROES may say that they can be added to the regiment of another HERO in place of a non-HERO unit in that regiment. Those HEROES can join an eligible regiment as a GORECHOSEN CHAMPIONS. Infantry Hero • Bloodsecrator • Bloodstoker • Mighty Lord of Khorne • Skullgrinder • Slaughterpriest • Deathbringer • Realmgore Ritualist 3.2 The General You must pick 1 HERO in your army that is leading a regiment to be your general. If any units in your army have the WARMASTER keyword, you must pick one of those units to be your general. Your general’s regiment can include up to 4 non-HERO units in addition to your general. Those HEROES can join an eligible regiment as a Bloodbound Warmonger. Infantry Hero • Aspiring Deathbringer • Bloodsecrator • Bloodstoker • Exalted Deathbringer • Skullgrinder Those HEROES can join an eligible regiment as a GORECHOSEN CHAMPIONS HERO. Infantry Hero • Bloodsecrator • Bloodstoker • Mighty Lord of Khorne • Skullgrinder • Slaughterpriest • Deathbringer • Realmgore Ritualist 21.0 Healing Some abilities allow you to heal a unit. To heal a unit, remove a number of damage points from the unit equal to the number in brackets after ‘Heal’, e.g. Heal (2). 32.2 Objective Control In the deployment phase after all Deployment Phase abilities have been used and at the end of each turn, follow this sequence for each objective in an order chosen by the active player: Starting with the active player, each player determines the control score of each of their units that is contesting that objective. A unit’s control score is the combined Control characteristics of all the models in that unit that are contesting the objective. Some abilities modify a unit’s control score, but it cannot be reduced to less than 1. Each player adds up the control scores of all of their units contesting that objective. This is their army control score for that objective. The players compare their army control scores for that objective. If one player’s score is higher, that player gains control of that objective. Once a player gains control of an objective, it remains under their control until their opponent gains control of it. Sometimes objective markers get accidentally nudged while you are moving models around. This is perfectly fine - just remember to put them back in their proper positions when determining objective control. 15.3 Pile-in Moves Some abilities, such as FIGHT abilities, allow a unit to make a short move called a pile-in move to get into a better position for combat. To do so: If your unit is in combat: Pick an enemy unit your unit is in combat with to be the target of the pile-in move. Each model in your unit can move up to 3\". That move can pass through the combat ranges of any enemy units, but each model must end that move no further from the target unit. At the end of the move, your unit must still be in combat with all units that it was in combat with at the start of the move. If your unit is not in combat: Each model in your unit can move 3\" in any direction. That move can pass through and end within the combat ranges of any enemy units. Pile in: move up to 3\". If in combat, the unit must end the move closer, or at least as close, to the target enemy unit. 19.0 Strike-first and Strike-last If there are any STRIKE-FIRST units in combat after any non-FIGHT combat phase abilities have been used, other units cannot be picked to use a FIGHT ability until those units have been picked to use a FIGHT ability. After all those STRIKE-FIRST units have fought, the active player picks the next unit to fight. If there are any STRIKE-LAST units in combat, they cannot be picked to use a FIGHT ability if there are any units in combat that do not have STRIKE-LAST and have not yet used a FIGHT ability. If a unit has STRIKE-FIRST and STRIKE-LAST, treat it as if it had neither. There may be situations when a unit that has STRIKE-FIRST is not in combat at the start of the phase, but because of moves such as pile-in moves, it is ‘pulled into combat’ later in the phase. In such cases, STRIKE-FIRST has no effect on that unit because it was not in combat at the start of the phase. Abilities that allow a unit to use a FIGHT ability immediately after another unit do not override the STRIKE-FIRST or STRIKE-LAST constraints, so you could not pick a unit with STRIKE-LAST to fight immediately after a unit with STRIKE-FIRST.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "HATE-FUELLED KILLERS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "The first time each friendly GORECHOSEN CHAMPIONS unit would be destroyed, before removing it from play, roll a dice. On a 5+, that unit is not destroyed and any remaining damage points inflicted on it have no effect. Then, Heal (1) that unit. Those HEROES can join an eligible regiment as a GORECHOSEN CHAMPIONS PRIEST. Infantry Hero • Slaughterpriest • Realmgore Ritualist The BALEFUL LORDS keyword is used in the following Blades of Khorne warscrolls: Monster Hero • Bloodthirster of Insensate Rage • Bloodthirster of Unfettered Fury • Skarbrand • Wrath of Khorne Bloodthirster Faction Terrain • Skull Altar The HERO, DAEMON and MONSTER keywords are used in the following Blades of Khorne warscrolls: • Bloodthirster of Insensate Rage • Bloodthirster of Unfettered Fury • Skarbrand • Wrath of Khorne Bloodthirster The non-UNIQUE BALEFUL LORDS keyword is used in the following Blades of Khorne warscrolls: Monster Hero • Bloodthirster of Insensate Rage • Bloodthirster of Unfettered Fury • Wrath of Khorne Bloodthirster Faction Terrain • Skull Altar 24.2 Replacement Units Some abilities allow you to set up a replacement unit. When setting up that unit, it should have the same warscroll type, weapon options and number of models as the original unit, unless otherwise specified in the ability. Many of these abilities specify the proportion of models in the replacement unit (e.g. half the number of models from the original unit). In these cases, you can pick which models from the original unit are set up. The replacement unit is otherwise treated as a new unit; any keywords or abilities the original unit gained during the battle, and any persisting effects that applied to it, do not apply to the replacement unit. Each unit can only be replaced once, and you cannot replace replacement units. If the original unit was reinforced and the replacement unit has more than half the number of models from the original unit, the replacement unit is considered to be reinforced. Because a replacement unit is treated as a completely new unit, it could, for instance, use a Once Per Battle ability on its warscroll even if the unit it replaced used that ability earlier in the battle. Unbind",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "UNBIND",
+          "kind": "Activated",
+          "timing": "Reaction: Opponent declared a SPELL ability",
+          "declare": "Used By: A friendly WIZARD within 30\" of the enemy WIZARD casting the spell.",
+          "effect": "Make an unbinding roll of 2D6. If the roll exceeds the casting roll tor the spell, then the spell is unbound and its effect is not resolved. This reaction cannot be used more than once per casting roll. KEYWORDSUNBIND The BALEFUL LORDS and HERO keywords are used in the following Blades of Khorne warscrolls: • Bloodmaster, Herald of Khorne • Bloodsecrator • Bloodstoker • Bloodthirster of Insensate Rage • Bloodthirster of Unfettered Fury • Deathbringer • Herald of Khorne on Blood Throne • Karanak • Mighty Lord of Khorne • Realmgore Ritualist • Skarbrand • Skullgrinder • Skulltaker • Slaughterpriest • Wrath of Khorne Bloodthirster • Khul Ascended • Korghos Khul • Lord of Khorne on Juggernaut • Skarr Bloodwrath • Skullmaster, Herald of Khorne • Scourge of Ghyran Mighty Lord of Khorne • Scyla Anfingrimm • Valkia The Bloody 18.3 Slain Models The commander of a unit must pick which model(s) in the unit are slain. However, after each slain model is removed, the unit must be in a single coherent group (see 15.1). If this is not possible, continue to remove models, one at a time, until the unit is in a single coherent group. You must remove the fewest models possible to make the unit a single coherent group. The HERO keyword is used in the following Blades of Khorne warscrolls: • Bloodmaster, Herald of Khorne • Bloodsecrator • Bloodstoker • Bloodthirster of Insensate Rage • Bloodthirster of Unfettered Fury • Deathbringer • Herald of Khorne on Blood Throne • Karanak • Mighty Lord of Khorne • Realmgore Ritualist • Skarbrand • Skullgrinder • Skulltaker • Slaughterpriest • Wrath of Khorne Bloodthirster • Khul Ascended • Korghos Khul • Lord of Khorne on Juggernaut • Skarr Bloodwrath • Skullmaster, Herald of Khorne • Scourge of Ghyran Mighty Lord of Khorne • Scyla Anfingrimm • Valkia The Bloody The INFANTRY keyword is used in the following Blades of Khorne warscrolls: • Blood Warriors • Bloodletters • Bloodmaster, Herald of Khorne • Bloodreavers • Bloodsecrator • Bloodstoker • Claws of Karanak • Deathbringer • Mighty Lord of Khorne • Realmgore Ritualist • Skullgrinder • Skullreapers • Skulltaker • Slaughterpriest • Wrathmongers • Khul Ascended • Korghos Khul • Skarr Bloodwrath • Scourge of Aqshy Blood Warriors • Scourge of Aqshy Bloodletters • Scourge of Ghyran Mighty Lord of Khorne • Garrek’s Reavers • Gorechosen of Dromm • Kamandora’s Blades • Magore’s Fiends • Valkia The Bloody The CHAOS keyword is used in the following Blades of Khorne warscrolls: • Bleeding Icon • Blood Warriors • Bloodcrushers • Bloodletters • Bloodmaster, Herald of Khorne • Bloodreavers • Bloodsecrator • Bloodstoker • Bloodthirster of Insensate Rage • Bloodthirster of Unfettered Fury • Claws of Karanak • Deathbringer • Flesh Hounds • Herald of Khorne on Blood Throne • Hexgorger Skulls • Karanak • Khorgorath • Mighty Lord of Khorne • Mighty Skullcrushers • Realmgore Ritualist • Skarbrand • Skull Altar • Skull Cannon • Skullgrinder • Skullreapers • Skulltaker • Slaughterpriest • Wrath of Khorne Bloodthirster • Wrath-Axe • Wrathmongers • Khul Ascended • Korghos Khul • Lord of Khorne on Juggernaut • Skarr Bloodwrath • Skullmaster, Herald of Khorne • Scourge of Aqshy Blood Warriors • Scourge of Aqshy Bloodletters • Scourge of Ghyran Bloodcrushers • Scourge of Ghyran Mighty Lord of Khorne • Garrek’s Reavers • Gorechosen of Dromm • Kamandora’s Blades • Magore’s Fiends • Scyla Anfingrimm • Valkia The Bloody The BLADES OF KHORNE keyword is used in the following Blades of Khorne warscrolls: • Bleeding Icon • Blood Warriors • Bloodcrushers • Bloodletters • Bloodmaster, Herald of Khorne • Bloodreavers • Bloodsecrator • Bloodstoker • Bloodthirster of Insensate Rage • Bloodthirster of Unfettered Fury • Claws of Karanak • Deathbringer • Flesh Hounds • Herald of Khorne on Blood Throne • Hexgorger Skulls • Karanak • Khorgorath • Mighty Lord of Khorne • Mighty Skullcrushers • Realmgore Ritualist • Skarbrand • Skull Altar • Skull Cannon • Skullgrinder • Skullreapers • Skulltaker • Slaughterpriest • Wrath of Khorne Bloodthirster • Wrath-Axe • Wrathmongers • Khul Ascended • Korghos Khul • Lord of Khorne on Juggernaut • Skarr Bloodwrath • Skullmaster, Herald of Khorne • Scourge of Aqshy Blood Warriors • Scourge of Aqshy Bloodletters • Scourge of Ghyran Bloodcrushers • Scourge of Ghyran Mighty Lord of Khorne • Garrek’s Reavers • Gorechosen of Dromm • Kamandora’s Blades • Magore’s Fiends • Scyla Anfingrimm • Valkia The Bloody Crit (2 Hits) If an attack made with this weapon scores a critical hit, that attack scores 2 hits on the target unit instead of 1. Make a wound roll for each hit. 1.0 Wizards and Priests WIZARDS are special units that can cast spells, and PRIESTS are special units that can chant prayers. Spells and prayers are powerful abilities that can have a dramatic impact on the battle. Universal Core Abilities - Movement Phase",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "NORMAL MOVE",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick a friendly unit that is not in combat to use this ability.",
+          "effect": "That unit can move a distance up to its Move characteristic. That unit cannot move into combat during any part of that move. KEYWORDSCORE, MOVE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "RUN",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick a friendly unit that is not in combat to use this ability.",
+          "effect": "Make a run roll of D6. That unit can move a distance up to its Move characteristic added to the run roll. That unit cannot move into combat during any part of that move. KEYWORDSCORE, MOVE, RUN",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "RETREAT",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick a friendly unit that is in combat to use this ability.",
+          "effect": "Inflict D3 mortal damage on that unit. That unit can move a distance up to its Move characteristic. That unit can move through the combat ranges of any enemy units but cannot end that move within an enemy unit’s combat range. KEYWORDSCORE, MOVE, RETREAT The non-HERO BLADES OF KHORNE keyword is used in the following Blades of Khorne warscrolls: • Bleeding Icon • Blood Warriors • Bloodcrushers • Bloodletters • Bloodreavers • Claws of Karanak • Flesh Hounds • Hexgorger Skulls • Khorgorath • Mighty Skullcrushers • Skull Altar • Skull Cannon • Skullreapers • Wrath-Axe • Wrathmongers • Scourge of Aqshy Blood Warriors • Scourge of Aqshy Bloodletters • Scourge of Ghyran Bloodcrushers • Garrek’s Reavers • Gorechosen of Dromm • Kamandora’s Blades • Magore’s Fiends Anti-X (+1 Rend) Add 1 to this weapon’s Rend characteristic if the target has the keyword after ‘Anti-’ or fulfils the condition after ‘Anti-’. Multiples of this ability are cumulative. For example, if a weapon has both Anti-charge (+1 Rend) and Anti-HERO (+1 Rend), then add 2 to the Rend characteristic of the weapon for attacks that target a HERO that charged in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "FLY",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "As this unit moves, it ignores other models, terrain features and the combat ranges of enemy units. It cannot end its move in combat unless specified in the ability that allowed it to move. Ignore any vertical distance moved for this unit. 1.1 Power Level Each WIZARD and PRIEST has a power level, shown in brackets after the keyword, e.g. WIZARD (2). A WIZARD or PRIEST’s power level determines the number of SPELL, PRAYER or BANISH abilities they can use per phase, in any combination. For example, a WIZARD (2) unit could use 1 SPELL and 1 BANISH ability in their commander’s hero phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "ALL-OUT DEFENCE",
+          "kind": "Activated",
+          "timing": "Reaction: Opponent declared an ATTACK ability",
+          "declare": "Used By: A unit targeted by that ATTACK ability.",
+          "effect": "Add 1 to save rolls for that unit in this phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "THE QUARRY",
+          "kind": "Activated",
+          "timing": "Start of Battle Round",
+          "declare": "",
+          "effect": "If no enemy units are the quarry, pick an enemy unit to be the quarry (you can pick an enemy unit in reserve). Charge (+1 Damage) Add 1 to this weapon’s Damage characteristic if the attacking unit charged this turn. Army List Warscrolls collated Beast Hero • Karanak • Scyla Anfingrimm Cavalry Hero • Lord of Khorne on Juggernaut • Skullmaster, Herald of Khorne Infantry Hero • Bloodmaster, Herald of Khorne • Bloodsecrator • Bloodstoker • Deathbringer • Mighty Lord of Khorne • Realmgore Ritualist • Skullgrinder • Skulltaker • Slaughterpriest • Khul Ascended • Korghos Khul • Skarr Bloodwrath • Scourge of Ghyran Mighty Lord of Khorne • Valkia The Bloody Monster Hero • Bloodthirster of Insensate Rage • Bloodthirster of Unfettered Fury • Skarbrand • Wrath of Khorne Bloodthirster War Machine Hero • Herald of Khorne on Blood Throne Beast • Flesh Hounds Cavalry • Bloodcrushers • Mighty Skullcrushers • Scourge of Ghyran Bloodcrushers Infantry • Blood Warriors • Bloodletters • Bloodreavers • Claws of Karanak • Skullreapers • Wrathmongers • Scourge of Aqshy Blood Warriors • Scourge of Aqshy Bloodletters • Garrek’s Reavers • Gorechosen of Dromm • Kamandora’s Blades • Magore’s Fiends Monster • Khorgorath War Machine • Skull Cannon Faction Terrain • Skull Altar Manifestation • Bleeding Icon • Hexgorger Skulls • Wrath-Axe Regiment of Renown • Cogfort Raiders • Diseased Revellers • Godmarked Ascendant • Krittok’s Clawpack • Lord Skaldior’s Chosen • One-eyed Grunnock • Phulgoth’s Shudderhood • Rogue Engine • Seeker of the Dread Dirge • The Curse-Steel Battery • The Pustules • Volt-Klaw’s Enginecoven • Brand’s Oathbound • Hargax’s Pit-Beasts • Snerk’s Trogg-Fer-Hire • Squires of the Everchosen • Stumblefoot Gargant Contents Books Designers’ Commentary • Battletome: Blades of Khorne Battle Traits Battle Formations • Khornate Legion • Bloodbound Warhorde • Brass Stampede • Murderhost • Tournament of Skulls • The Goretide Heroic Traits • Slaughterers of Thousands Artefacts of Power • Murderous Artefacts Manifestation Lore • Judgements of Khorne Prayer Lore • Blood Blesssings of Khorne • Gifts of the Blood God • Proclamations of Murder Brazen Mutations Gorechosen Champions • Battle Traits • Heroic Traits • Artefacts of Power The Baleful Lords • Battle Traits • Heroic Traits • Artefacts of Power PATH TO GLORY • The Anvil of Apotheosis • Step 1 - Set a Destiny Point Limit • Step 2 - Fill Out The Starting Warscroll • Step 3 - Pick an Archetype • Step 4 - Pick Your Hero's Origin And/Or Flaw • Step 5 - Pick a Battle Mount • Step 6 - Pick any Battle Mount Upgrades • Step 7 - Pick any Other Upgrades • Path of The Slaughterer • Path of Brazen Butchery SPEARHEAD Fangs of the Blood God • Battle Traits • Regiment Abilities • Enhancements • Warscrolls Bloodbound Gore Pilgrims • Battle Traits • Regiment Abilities • Enhancements • Warscrolls Disable Ads E-mail: Pin code: Disable Ads Get new pin code Boosty subscribers may disable ads: 1. Enter e-mail you have used to login on Boosty. 2. Press Get new pin code button (if you don’t have it already) 3. Enter pin code. Note that login database updated once a day. So, if you are a new booster - try tomorrow. And thank you! $(window).scroll(function() { if ($(this).scrollTop() >= 200) { $('#btnBackToTop').fadeIn(300); } else { $('#btnBackToTop').fadeOut(300); } }); $('#btnBackToTop').on('touchstart', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_ToTop_Hover.png); background-image: var(--button-to-top-hover)'); $(this).fadeIn(300); return true; }); $('#btnBackToTop').on('touchend', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_ToTop.png); background-image: var(--button-to-top)'); $(this).fadeOut(300); document.body.scrollTop = 0; document.documentElement.scrollTop = 0; return true; }); $('#btnBackToTop').on('click', function () { 'use strict'; document.body.scrollTop = 0; document.documentElement.scrollTop = 0; return true; }); $('#btnArmyList').on('touchstart', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_ArmyList_Hover.png); background-image: var(--button-army-list-hover)'); return true; }); $('#btnArmyList').on('touchend', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_ArmyList.png); background-image: var(--button-army-list)'); return true; }); $('#btnContents').on('touchstart', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_Contents_Hover.png); background-image: var(--button-contents-hover)'); return true; }); $('#btnContents').on('touchend', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_Contents.png); background-image: var(--button-contents)'); return true; }); © Vyacheslav Maltsev 2013-2026 ezstandalone.cmd.push(function() {ezstandalone.showAds(103)}); (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-57173050-3', 'auto'); ga('send', 'pageview'); window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-YCMHCMW8RQ');",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

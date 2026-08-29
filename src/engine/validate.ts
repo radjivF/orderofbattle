@@ -19,6 +19,7 @@ import {
   rorUnitAsCatalogue,
   catalogueMatchIds,
 } from "./queries";
+import { isSpearheadList } from "./spearhead";
 import type { ArmyList, EnhancementPick, FactionCatalogue } from "./types";
 
 export type ListIssue = {
@@ -87,17 +88,24 @@ export function summarize(
     }
     const hero = getUnit(faction, regiment.hero.unitId);
     addSel(regiment.hero.unitId, regiment.hero.reinforced, "a regiment");
-    const cap = regimentSlotCap(list, regiment.id);
-    if (regiment.units.length > cap) {
-      issues.push({
-        tone: "bad",
-        text: `${hero?.name ?? "A regiment"} has too many units.`,
-      });
+    if (!isSpearheadList(list)) {
+      const cap = regimentSlotCap(list, regiment.id);
+      if (regiment.units.length > cap) {
+        issues.push({
+          tone: "bad",
+          text: `${hero?.name ?? "A regiment"} has too many units.`,
+        });
+      }
     }
     for (const slot of regiment.units) {
       addSel(slot.unitId, slot.reinforced, "a regiment");
       const companion = getUnit(faction, slot.unitId);
-      if (hero && companion && !canJoinRegiment(hero, companion, faction)) {
+      if (
+        !isSpearheadList(list) &&
+        hero &&
+        companion &&
+        !canJoinRegiment(hero, companion, faction)
+      ) {
         issues.push({
           tone: "bad",
           text: `${companion.name} cannot join ${hero.name}.`,
@@ -177,6 +185,10 @@ export function summarize(
   );
   if (formation?.points) {
     points += formation.points;
+  }
+
+  if (isSpearheadList(list)) {
+    return summarizeSpearhead(list, faction, issues);
   }
 
   if (list.regiments.length === 0) {
@@ -268,6 +280,32 @@ export function summarize(
     regimentCount: list.regiments.length,
     auxiliaryCount,
     slotCap: (regimentId) => regimentSlotCap(list, regimentId),
+    issues,
+  };
+}
+
+function summarizeSpearhead(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  issues: ListIssue[],
+): ListTotals {
+  const abilityId = list.regimentAbilityId ?? list.formationId;
+  if (faction.formations.length > 0 && !abilityId) {
+    issues.push({ tone: "warn", text: "Pick a regiment ability." });
+  }
+  if (faction.heroicTraits.length > 0 && !list.heroicTrait) {
+    issues.push({ tone: "warn", text: "Give your general an enhancement." });
+  }
+  if (issues.length === 0) {
+    issues.push({ tone: "ok", text: "Ready to play." });
+  }
+  return {
+    points: 0,
+    remaining: 0,
+    drops: 1,
+    regimentCount: list.regiments.length,
+    auxiliaryCount: 0,
+    slotCap: () => 99,
     issues,
   };
 }

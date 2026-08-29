@@ -1,0 +1,308 @@
+{
+  "id": "cities-of-sigmar-sentinels-of-embergard",
+  "name": "Sentinels of Embergard",
+  "parentFactionId": "cities-of-sigmar",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/cities-of-sigmar/",
+  "roster": [
+    {
+      "unitId": "cities-of-sigmar-sentinels-of-embergard-jorvan-kreel-heir-of-the-kraken",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "cities-of-sigmar-sentinels-of-embergard-mallus-forgepriest",
+      "count": 1
+    },
+    {
+      "unitId": "cities-of-sigmar-sentinels-of-embergard-freeguild-gallants",
+      "count": 1
+    },
+    {
+      "unitId": "cities-of-sigmar-sentinels-of-embergard-freeguild-grenadiers",
+      "count": 1
+    },
+    {
+      "unitId": "cities-of-sigmar-sentinels-of-embergard-freeguild-grenadiers",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "cities-of-sigmar-sentinels-of-embergard-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "RANGER DOCTRINES",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Reaction: You declared a FIGHT ability for your general or a friendly non-HERO unit wholly within 12\" of your general",
+          "declare": "Used By: The unit using that FIGHT ability",
+          "effect": "Immediately after that FIGHT ability has been resolved, pick a point on the battlefield within 6\" of your general. Remove the unit using this ability from the battlefield and set it up again within 1\" of that point and not in combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "cities-of-sigmar-sentinels-of-embergard-close-quarters-drill",
+      "name": "CLOSE-QUARTERS DRILL",
+      "abilities": [
+        {
+          "name": "CLOSE-QUARTERS DRILL",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Friendly units’ ranged weapons have Shoot in Combat but you must subtract 1 from hit rolls for their shooting attacks while they are in combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "cities-of-sigmar-sentinels-of-embergard-come-and-take-it-blaggards",
+      "name": "COME AND TAKE IT, BLAGGARDS!",
+      "abilities": [
+        {
+          "name": "COME AND TAKE IT, BLAGGARDS!",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 5 to the control scores of friendly non-HERO units while they are in combat with any enemy units that have 6 or more models or a Health characteristic of 3 or more.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "cities-of-sigmar-sentinels-of-embergard-throwing-knives",
+      "name": "THROWING KNIVES",
+      "abilities": [
+        {
+          "name": "THROWING KNIVES",
+          "kind": "Activated",
+          "timing": "Any Shooting Phase",
+          "declare": "Pick a visible enemy unit within 10\" of your general to be the target.",
+          "effect": "Roll a dice. On a 3+, inflict 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "cities-of-sigmar-sentinels-of-embergard-hot-blooded-endurance",
+      "name": "HOT-BLOODED ENDURANCE",
+      "abilities": [
+        {
+          "name": "HOT-BLOODED ENDURANCE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Your general can use CHARGE abilities even if they used a RUN or RETREAT ability in the same turn and no mortal damage is inflicted on them by RETREAT abilities.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "cities-of-sigmar-sentinels-of-embergard-trained-ranger",
+      "name": "TRAINED RANGER",
+      "abilities": [
+        {
+          "name": "TRAINED RANGER",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Movement Phase",
+          "declare": "Pick a friendly unit wholly within 6\" of a battlefield edge to be the target.",
+          "effect": "Remove the target from the battlefield and set it up again wholly within 3\" of a battlefield edge and more than 6\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "cities-of-sigmar-sentinels-of-embergard-blade-of-the-kraken",
+      "name": "BLADE OF THE KRAKEN",
+      "abilities": [
+        {
+          "name": "BLADE OF THE KRAKEN",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "",
+          "effect": "Double the Attacks characteristic of your general’s melee weapons for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "cities-of-sigmar-sentinels-of-embergard-jorvan-kreel-heir-of-the-kraken",
+      "name": "Jorvan Kreel Heir of the Kraken",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "VETERAN SKIRMISHERS",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly unit wholly within 12\" of this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, for the rest of the turn, add 2\" to the target’s Move characteristic but it cannot use RUN abilities.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "PROWLING ASH PANTHER",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "If this unit has the Thexa token, give that token to an enemy unit within 6\" of this unit. If an enemy unit has the Thexa token, inflict D3 mortal damage on that enemy unit. Then, give this unit the Thexa token. KEYWORDS HERO, INFANTRY",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "cities-of-sigmar-sentinels-of-embergard-mallus-forgepriest",
+      "name": "Mallus Forgepriest",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "PRIEST",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "5",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "CONSECRATE THE LAND",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick an objective within 12\" of this unit, then make a chanting roll of D6.",
+          "effect": "On a 3+, for the rest of the turn, friendly units have WARD (5+) while they are contesting that objective. KEYWORDS HERO, PRIEST, INFANTRY",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "cities-of-sigmar-sentinels-of-embergard-freeguild-gallants",
+      "name": "Freeguild Gallants",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "2",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "UNBREACHABLE WILL",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "If this unit has not charged this turn, pick an enemy unit in combat with it to be the target.",
+          "effect": "For the rest of the turn, subtract 1 from the Rend characteristic of the target’s weapons for attacks that target this unit. KEYWORDS INFANTRY ezstandalone.cmd.push(function() {ezstandalone.showAds(130)});",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "cities-of-sigmar-sentinels-of-embergard-freeguild-grenadiers",
+      "name": "Freeguild Grenadiers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "1",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "CINDER AND ASH",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Any Turn",
+          "declare": "Pick up to 1 terrain feature contested by this unit and up to 1 objective contested by this unit, then pick any enemy units also contesting them to be the targets.",
+          "effect": "Roll a dice for each target. On a 3+, inflict 1 mortal damage on the target. KEYWORDS INFANTRY, REINFORCEMENTS",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

@@ -1,0 +1,295 @@
+{
+  "id": "kharadron-overlords-grundstok-trailblazers",
+  "name": "Grundstok Trailblazers",
+  "parentFactionId": "kharadron-overlords",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/kharadron-overlords/",
+  "roster": [
+    {
+      "unitId": "kharadron-overlords-grundstok-trailblazers-endrinmaster-with-dirigible-suit",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "kharadron-overlords-grundstok-trailblazers-grundstok-thunderers",
+      "count": 1
+    },
+    {
+      "unitId": "kharadron-overlords-grundstok-trailblazers-grundstok-gunhauler",
+      "count": 1
+    },
+    {
+      "unitId": "kharadron-overlords-grundstok-trailblazers-endrinriggers",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "kharadron-overlords-grundstok-trailblazers-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "GUNHAULER ESCORT",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Subtract 1 from hit rolls for attacks that target friendly KHARADRON OVERLORDS INFANTRY units while they are wholly within 6\" of a friendly Grundstok Gunhauler.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "kharadron-overlords-grundstok-trailblazers-rapid-relocation",
+      "name": "RAPID RELOCATION",
+      "abilities": [
+        {
+          "name": "RAPID RELOCATION",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Your Movement Phase",
+          "declare": "Pick a friendly unit with FLY to be the target.",
+          "effect": "Remove the target from the battlefield and set it up again anywhere on the battlefield more than 6\" from all enemy units. The target cannot use CHARGE abilities this turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "kharadron-overlords-grundstok-trailblazers-propeller-downdraught",
+      "name": "PROPELLER DOWNDRAUGHT",
+      "abilities": [
+        {
+          "name": "PROPELLER DOWNDRAUGHT",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Subtract 1 from charge rolls for enemy units while they are within 9\" of a friendly Grundstok Gunhauler.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "kharadron-overlords-grundstok-trailblazers-emergency-fuel-injection-pods",
+      "name": "EMERGENCY FUEL INJECTION PODS",
+      "abilities": [
+        {
+          "name": "EMERGENCY FUEL INJECTION PODS",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Any Combat Phase",
+          "declare": "",
+          "effect": "Your general has STRIKE-FIRST for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "kharadron-overlords-grundstok-trailblazers-celestium-burst-bomblets",
+      "name": "CELESTIUM-BURST BOMBLETS",
+      "abilities": [
+        {
+          "name": "CELESTIUM-BURST BOMBLETS",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with your general to be the target.",
+          "effect": "Roll a dice. On a 3+, ward rolls cannot be made for the target for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "kharadron-overlords-grundstok-trailblazers-prospector-and-pioneer",
+      "name": "PROSPECTOR AND PIONEER",
+      "abilities": [
+        {
+          "name": "PROSPECTOR AND PIONEER",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 2 to your general’s control score.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "kharadron-overlords-grundstok-trailblazers-extraction-fail-safes",
+      "name": "EXTRACTION FAIL-SAFES",
+      "abilities": [
+        {
+          "name": "EXTRACTION FAIL-SAFES",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Subtract 1 from the number of damage points inflicted on this unit when it uses a RETREAT ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "kharadron-overlords-grundstok-trailblazers-endrinmaster-with-dirigible-suit",
+      "name": "Endrinmaster with Dirigible Suit",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "FLY"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "8",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "ENDRINMASTER EXTRAORDINAIRE",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly unit with the FLY keyword that is wholly within 12\" of this unit to be the target.",
+          "effect": "Roll a D3. On a 2+, Heal (X) the target where X is equal to the roll. KEYWORDS HERO, INFANTRY, FLY",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "kharadron-overlords-grundstok-trailblazers-grundstok-thunderers",
+      "name": "Grundstok Thunderers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "2",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "BEWILDERBLAST ROUNDS",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Any Shooting Phase",
+          "declare": "Pick an enemy unit that had any damage points allocated to it this phase by this unit’s shooting attacks to be the target.",
+          "effect": "Subtract D6 from the target’s control score for the rest of the turn. KEYWORDS INFANTRY, REINFORCEMENTS",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "kharadron-overlords-grundstok-trailblazers-grundstok-gunhauler",
+      "name": "Grundstok Gunhauler",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "WAR MACHINE",
+        "FLY"
+      ],
+      "stats": {
+        "move": "14\"",
+        "health": "10",
+        "save": "2+",
+        "control": "2"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "GUNHAULER OVERWATCH",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
+          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll. KEYWORDS WAR MACHINE, FLY",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "kharadron-overlords-grundstok-trailblazers-endrinriggers",
+      "name": "Endrinriggers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "INFANTRY",
+        "FLY",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "2",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "CLOUDWEAVING SKYFARERS",
+          "kind": "Activated",
+          "timing": "Enemy Movement Phase",
+          "declare": "",
+          "effect": "Roll a dice. On a 3+, this unit can use the ‘Normal Move’ ability as if it were your movement phase. KEYWORDS INFANTRY, FLY, REINFORCEMENTS ezstandalone.cmd.push(function() {ezstandalone.showAds(127)});",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

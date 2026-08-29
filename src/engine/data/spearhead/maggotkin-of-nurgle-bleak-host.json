@@ -1,0 +1,325 @@
+{
+  "id": "maggotkin-of-nurgle-bleak-host",
+  "name": "Bleak Host",
+  "parentFactionId": "maggotkin-of-nurgle",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/maggotkin-of-nurgle/",
+  "roster": [
+    {
+      "unitId": "maggotkin-of-nurgle-bleak-host-spoilpox-scrivener",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "maggotkin-of-nurgle-bleak-host-pusgoyle-blightlord",
+      "count": 1
+    },
+    {
+      "unitId": "maggotkin-of-nurgle-bleak-host-pusgoyle-blightlord",
+      "count": 1
+    },
+    {
+      "unitId": "maggotkin-of-nurgle-bleak-host-putrid-blightkings",
+      "count": 1
+    },
+    {
+      "unitId": "maggotkin-of-nurgle-bleak-host-plaguebearers",
+      "count": 1
+    },
+    {
+      "unitId": "maggotkin-of-nurgle-bleak-host-plaguebearers",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "maggotkin-of-nurgle-bleak-host-the-infectious-hosts",
+      "name": "THE INFECTIOUS HOSTS",
+      "abilities": [
+        {
+          "name": "DAEMONIC SUMMONING",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "",
+          "effect": "Set up this unit anywhere on the battlefield more than 6\" from all enemy units. KEYWORDSCORE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "DISEASED",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Each time an attack made by a friendly model scores a critical hit, you receive 1 disease point, to a maximum of 7.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "NURGLE'S EMBRACE",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "Spend any number of your disease points. For each disease point you spend, pick an enemy unit that is in combat with any of your units and roll a dice. On a 5+, inflict 1 mortal damage on that unit (you can pick the same unit more than once).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "maggotkin-of-nurgle-bleak-host-locus-of-fecundity",
+      "name": "LOCUS OF FECUNDITY",
+      "abilities": [
+        {
+          "name": "LOCUS OF FECUNDITY",
+          "kind": "Activated",
+          "timing": "Once Per Phase, Your Hero Phase",
+          "declare": "Pick a friendly unit.",
+          "effect": "Heal (D3) that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "maggotkin-of-nurgle-bleak-host-infested-with-wonders",
+      "name": "INFESTED WITH WONDERS",
+      "abilities": [
+        {
+          "name": "INFESTED WITH WONDERS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Each time a friendly model is slain, before it is removed from play, you can pick an enemy unit within 1\" of it and roll a dice. On a 4+, inflict 1 mortal damage on that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "maggotkin-of-nurgle-bleak-host-summoner-of-plaguebearers",
+      "name": "SUMMONER OF PLAGUEBEARERS",
+      "abilities": [
+        {
+          "name": "SUMMONER OF PLAGUEBEARERS",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "Pick a friendly Plaguebearers unit wholly within 14\" of your general.",
+          "effect": "Return 1 slain model to that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "maggotkin-of-nurgle-bleak-host-pestilent-breath",
+      "name": "PESTILENT BREATH",
+      "abilities": [
+        {
+          "name": "PESTILENT BREATH",
+          "kind": "Activated",
+          "timing": "Your Shooting Phase",
+          "declare": "Pick an enemy unit within 7\" of your general and roll a dice for each model in that unit.",
+          "effect": "For each 5+, inflict 1 mortal damage on that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "maggotkin-of-nurgle-bleak-host-gardener-of-nurgle",
+      "name": "GARDENER OF NURGLE",
+      "abilities": [
+        {
+          "name": "GARDENER OF NURGLE",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "If your general is contesting an objective not contested by any enemy models, roll a dice.",
+          "effect": "On a 3+, that objective is considered by you to be desecrated. Friendly units have WARD (4+) while they are contesting a desecrated objective. If your opponent gains control of a desecrated objective, it is no longer desecrated.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "maggotkin-of-nurgle-bleak-host-gift-of-febrile-frenzy",
+      "name": "GIFT OF FEBRILE FRENZY",
+      "abilities": [
+        {
+          "name": "GIFT OF FEBRILE FRENZY",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "",
+          "effect": "Until the end of the phase, add 1 to the Attacks characteristic of melee weapons used by friendly units while they are wholly within 7\" of your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "maggotkin-of-nurgle-bleak-host-spoilpox-scrivener",
+      "name": "Spoilpox Scrivener",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "WARD (5+)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "KEEP COUNTING, I'M WATCHING YOU",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Plaguebearers unit wholly within 14\" of this unit to be the target.",
+          "effect": "Pick 1 of the following. The effect lasts until the start of your next turn. Tally of Blows: Add 1 to the Attacks characteristic of the target unit’s melee weapons. Recorded Stamina: Add 1 to save rolls for the target unit. KEYWORDS HERO, INFANTRY, WARD (5+)",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "maggotkin-of-nurgle-bleak-host-pusgoyle-blightlord",
+      "name": "Pusgoyle Blightlord",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "CAVALRY",
+        "FLY",
+        "WARD (5+)"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "8",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "WRACK AND RUIN",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target and roll a dice.",
+          "effect": "On a 2+, inflict D3 mortal damage on the target. KEYWORDS CAVALRY, FLY, WARD (5+) ezstandalone.cmd.push(function() {ezstandalone.showAds(126)});",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "maggotkin-of-nurgle-bleak-host-putrid-blightkings",
+      "name": "Putrid Blightkings",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "WARD (5+)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "3",
+        "save": "3+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "RELENTLESS ATTACKERS",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "Pick an enemy INFANTRY unit in combat with this unit to be the target and roll a dice for each model in this unit that is within the target unit’s combat range.",
+          "effect": "For each roll that exceeds the target’s Health characteristic, inflict 1 mortal damage on it. KEYWORDS INFANTRY, WARD (5+)",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "maggotkin-of-nurgle-bleak-host-plaguebearers",
+      "name": "Plaguebearers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "WARD (5+)"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "2",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "CLOUD OF FLIES",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Subtract 1 from hit rolls for shooting attacks that target this unit. KEYWORDS INFANTRY, WARD (5+)",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

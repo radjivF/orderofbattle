@@ -1,0 +1,319 @@
+{
+  "id": "flesh-eater-courts-carrion-retainers",
+  "name": "Carrion Retainers",
+  "parentFactionId": "flesh-eater-courts",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/flesh-eater-courts/",
+  "roster": [
+    {
+      "unitId": "flesh-eater-courts-carrion-retainers-abhorrant-archregent",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "flesh-eater-courts-carrion-retainers-cryptguard",
+      "count": 1
+    },
+    {
+      "unitId": "flesh-eater-courts-carrion-retainers-morbheg-knights",
+      "count": 1
+    },
+    {
+      "unitId": "flesh-eater-courts-carrion-retainers-varghulf-courtier",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "flesh-eater-courts-carrion-retainers-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "NOBLE DEEDS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Each time a friendly HERO uses a FIGHT ability, after its attacks have been resolved, give that HERO a number of noble deeds points equal to the number of damage points allocated by that ability. Each HERO can have a maximum of 6 noble deeds points at any time.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "FEEDING FRENZY",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to the Attacks characteristic of melee weapons used by friendly units while they are wholly within 12\" of any friendly HEROES that have 6 noble deeds points.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "SUMMON LOYAL SUBJECTS",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick a friendly HERO with any noble deeds points to use this ability.",
+          "effect": "Spend any number of that HERO’s noble deeds points as follows: Pick a friendly Cryptguard unit within 9\" of this unit and spend 1 noble deeds point to return 1 model to that unit. Pick a friendly Morbheg Knights unit within 9\" of this unit and spend 2 noble deeds points to return 1 model to that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "flesh-eater-courts-carrion-retainers-crusading-army",
+      "name": "CRUSADING ARMY",
+      "abilities": [
+        {
+          "name": "CRUSADING ARMY",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to run rolls and charge rolls for friendly units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "flesh-eater-courts-carrion-retainers-defenders-of-the-realm",
+      "name": "DEFENDERS OF THE REALM",
+      "abilities": [
+        {
+          "name": "DEFENDERS OF THE REALM",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to save rolls for friendly units that are contesting an objective you control.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "flesh-eater-courts-carrion-retainers-ulguan-cloak",
+      "name": "ULGUAN CLOAK",
+      "abilities": [
+        {
+          "name": "ULGUAN CLOAK",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Your general is not visible to enemy models that are more than 12\" away from them.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "flesh-eater-courts-carrion-retainers-rousing-oration",
+      "name": "ROUSING ORATION",
+      "abilities": [
+        {
+          "name": "ROUSING ORATION",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "",
+          "effect": "Roll a dice for each friendly unit wholly within 12\" of your general. Do not roll a dice for your general. For each 5+, give 1 noble deeds point to your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "flesh-eater-courts-carrion-retainers-blood-river-chalice",
+      "name": "BLOOD-RIVER CHALICE",
+      "abilities": [
+        {
+          "name": "BLOOD-RIVER CHALICE",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Hero Phase",
+          "declare": "",
+          "effect": "Heal (2D3) your general.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "flesh-eater-courts-carrion-retainers-crimson-victuals",
+      "name": "CRIMSON VICTUALS",
+      "abilities": [
+        {
+          "name": "CRIMSON VICTUALS",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible enemy unit within 18\" of your general to be the target, then make a casting roll of 2D6.",
+          "effect": "On a 6+, inflict D3 mortal damage on the target. Then, if your Cryptguard unit is within 6\" of the target, you can return 1 slain model to your Cryptguard unit for each damage point allocated by this ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "flesh-eater-courts-carrion-retainers-abhorrant-archregent",
+      "name": "Abhorrant Archregent",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "6",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "DERANGED TRANSFORMATION",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly unit wholly within 18\" of this unit to be the target, then make a casting roll of 2D6.",
+          "effect": "On a 6+, until the start of your next turn, add 2\" to the target’s Move characteristic and add 1 to wound rolls for its attacks. KEYWORDS HERO, INFANTRY, WARD (6+)",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "flesh-eater-courts-carrion-retainers-cryptguard",
+      "name": "Cryptguard",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 10,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS",
+        "WARD (5+)"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "ROYAL BODYGUARD",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to ward rolls for friendly HEROES that are wholly within this unit’s combat range. KEYWORDS INFANTRY, REINFORCEMENTS, WARD (5+)",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "flesh-eater-courts-carrion-retainers-morbheg-knights",
+      "name": "Morbheg Knights",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "CAVALRY",
+        "FLY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "4",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "PREDATOR'S POUNCE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "This unit can use CHARGE abilities even if it used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on this unit when it uses RETREAT abilities. KEYWORDS CAVALRY, FLY, WARD (6+)",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "flesh-eater-courts-carrion-retainers-varghulf-courtier",
+      "name": "Varghulf Courtier",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "10\"",
+        "health": "8",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "VICTORY FEAST",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "If any models were slain by this unit this turn, Heal (D6) this unit, and this unit can immediately use the ‘Retreat’ ability without any mortal damage being inflicted on it. KEYWORDS HERO, INFANTRY, WARD (6+) ezstandalone.cmd.push(function() {ezstandalone.showAds(128)});",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

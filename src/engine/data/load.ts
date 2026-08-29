@@ -1,4 +1,5 @@
-import type { BattleTacticCard, FactionCatalogue, RegimentOfRenown } from "../types";
+import type { BattleTacticCard, FactionCatalogue, RegimentOfRenown, SpearheadCatalogue } from "../types";
+import { spearheads as spearheadCatalogues } from "./spearhead/manifest";
 import bigWaaagh from "./big-waaagh.json";
 import bladesOfKhorneGorechosenChampions from "./blades-of-khorne-gorechosen-champions.json";
 import bladesOfKhorneTheBalefulLords from "./blades-of-khorne-the-baleful-lords.json";
@@ -167,6 +168,8 @@ export const factions = [
 
 export const regimentsOfRenown =
   regimentsOfRenownJson as RegimentOfRenown[];
+
+export const spearheads = spearheadCatalogues as SpearheadCatalogue[];
 
 export const battleTactics = battleTacticsJson as BattleTacticCard[];
 

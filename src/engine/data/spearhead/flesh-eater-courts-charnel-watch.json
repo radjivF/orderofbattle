@@ -1,0 +1,573 @@
+{
+  "id": "flesh-eater-courts-charnel-watch",
+  "name": "Charnel Watch",
+  "parentFactionId": "flesh-eater-courts",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/flesh-eater-courts/",
+  "roster": [
+    {
+      "unitId": "flesh-eater-courts-charnel-watch-abhorrant-gorewarden",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "flesh-eater-courts-charnel-watch-royal-beastflayers",
+      "count": 1
+    },
+    {
+      "unitId": "flesh-eater-courts-charnel-watch-crypt-horrors",
+      "count": 1
+    },
+    {
+      "unitId": "flesh-eater-courts-charnel-watch-crypt-flayers",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "flesh-eater-courts-charnel-watch-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "DELUSIONS AND MADNESS",
+          "kind": "Activated",
+          "timing": "Once Per Battle Round (Army), Start of Battle Round",
+          "declare": "You must use this ability at the start of each battle round. If it is the first battle round, pick a DELUSION. Otherwise, make a delusion roll by rolling a D6.",
+          "effect": "On a 1-3, you must pick a different DELUSION to the one you picked last time. On a 4+, you must pick the same DELUSION as last time. For the rest of the battle round, you believe the DELUSION you picked.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "DELUSION OF THE GREAT FEAST",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Any Turn",
+          "declare": "If you believe this DELUSION, pick each friendly unit on the battlefield to be the targets.",
+          "effect": "Heal (1) each target. If the target is a SERFS unit, return D3 slain models to it instead. KEYWORDSDELUSION",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "DELUSION OF THE KNIGHTLY HOST",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While you believe this DELUSION, if the unmodified charge roll for a friendly HERO or KNIGHTS unit is 8+, add 1 to hit rolls for that unit’s combat attacks for the rest of the turn. KEYWORDSDELUSION",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "flesh-eater-courts-charnel-watch-delusion-of-the-sentinel",
+      "name": "DELUSION OF THE SENTINEL",
+      "abilities": [
+        {
+          "name": "DELUSION OF THE SENTINEL",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While you believe this DELUSION, add 1 to ward rolls for friendly units while each model in the unit is contesting an objective. KEYWORDSDELUSION",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "flesh-eater-courts-charnel-watch-delusion-of-the-hunter",
+      "name": "DELUSION OF THE HUNTER",
+      "abilities": [
+        {
+          "name": "DELUSION OF THE HUNTER",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While you believe this DELUSION, add 1 to wound rolls for combat attacks made by friendly units while no models in the unit are contesting an objective. KEYWORDSDELUSION",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "flesh-eater-courts-charnel-watch-almost-lucid",
+      "name": "ALMOST LUCID",
+      "abilities": [
+        {
+          "name": "ALMOST LUCID",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Reaction: You declared the ‘Delusions and Madness’ ability",
+          "declare": "",
+          "effect": "You can re-roll the delusion roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "flesh-eater-courts-charnel-watch-a-worthy-challenge",
+      "name": "A WORTHY CHALLENGE",
+      "abilities": [
+        {
+          "name": "A WORTHY CHALLENGE",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "Pick an enemy unit that started the battle with 3 or fewer models and is in combat with your general to be the target.",
+          "effect": "Your opponent must decide whether the target will accept or refuse your general’s challenge. If they accept, for the rest of the phase, when your general and the target are picked to use a FIGHT ability, all of their attacks must target each other. If they refuse, the target has STRIKE-LAST for the rest of the phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "flesh-eater-courts-charnel-watch-companion-of-the-hunt",
+      "name": "COMPANION OF THE HUNT",
+      "abilities": [
+        {
+          "name": "COMPANION OF THE HUNT",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "If your general is not in combat, they can move 3\". They cannot move into combat during any part of that move.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "flesh-eater-courts-charnel-watch-choirmaster",
+      "name": "CHOIRMASTER",
+      "abilities": [
+        {
+          "name": "CHOIRMASTER",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Shooting Phase",
+          "declare": "Pick a visible enemy unit within 6\" of your general to be the target.",
+          "effect": "For the rest of the turn, add 1 to the Damage characteristic of friendly units’ ranged weapons for attacks that target that enemy unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "flesh-eater-courts-charnel-watch-abhorrant-gorewarden",
+      "name": "Abhorrant Gorewarden",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "WIZARD",
+        "INFANTRY",
+        "FLY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "7",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "SOUND THE PURSUIT!",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
+          "effect": "On a 6+, until the start of your next turn, when making charge rolls for the target, add 1 to the number of dice rolled, to a maximum of 3, then remove 1 dice of your choice and use the remaining dice as the charge roll. KEYWORDS HERO, WIZARD, INFANTRY, FLY, WARD (6+)",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "flesh-eater-courts-charnel-watch-royal-beastflayers",
+      "name": "Royal Beastflayers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 10,
+      "categories": [
+        "INFANTRY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "1",
+        "save": "6+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "LIE OF THE LAND",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "",
+          "effect": "If this unit is not in combat and is wholly within 6\" of a battlefield edge, remove this unit from the battlefield and set it up again wholly within 6\" of a battlefield edge and more than 6\" from all enemy units KEYWORDS INFANTRY, WARD (6+)",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "flesh-eater-courts-charnel-watch-crypt-horrors",
+      "name": "Crypt Horrors",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 3,
+      "categories": [
+        "INFANTRY",
+        "REINFORCEMENTS",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "7\"",
+        "health": "4",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "HOLY BLADES OF BONE",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit and that charged this turn to be the target.",
+          "effect": "Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target unit. KEYWORDS INFANTRY, REINFORCEMENTS, WARD (6+)",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "flesh-eater-courts-charnel-watch-crypt-flayers",
+      "name": "Crypt Flayers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 3,
+      "categories": [
+        "INFANTRY",
+        "FLY",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "12\"",
+        "health": "4",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "UNHOLY CHORUS",
+          "kind": "Activated",
+          "timing": "Your Shooting Phase",
+          "declare": "Pick a visible enemy unit within 10\" of this unit to be the target.",
+          "effect": "For the rest of the turn, subtract an amount from the target’s control score equal to the number of damage points allocated to the target this phase by this unit’s shooting attacks. KEYWORDS INFANTRY, FLY, WARD (6+) Combat attacks Combat attacks are made with melee weapons. The target unit(s) must be within the combat range of the attacking model and visible to it. The model must attack with all of the melee weapons it is armed with. Hit Roll Roll a dice. If the roll equals or exceeds the attacking weapon’s Hit characteristic, the attack scores a successful hit: move on to the next step. If not, the attack fails and the attack sequence ends. Unmodified hit rolls of 1 always fail. If an unmodified hit roll for an attack made with a weapon is a 6, that attack is a critical hit. Critical hits have no effect on their own but often trigger additional effects (see 20.0 Weapon Abilities). Companion Unless otherwise specified, attacks made by this weapon are not affected by friendly abilities that modify hit rolls, wound rolls or weapon characteristics, except for those that apply negative modifiers (e.g. ‘Covering Fire’). Save Roll The commander of the target unit rolls a dice, subtracting the attacking weapon’s Rend characteristic from the roll. Unmodified save rolls of 1 always fail. If the roll equals or exceeds the Save characteristic of the target unit, the attack fails and the attack sequence ends. If not, it is a successful attack: move on to the next step.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "ALL-OUT ATTACK",
+          "kind": "Activated",
+          "timing": "Reaction: You declared an ATTACK ability",
+          "declare": "Used By: The unit using that ATTACK ability.",
+          "effect": "Add 1 to hit rolls for attacks made as part of that ATTACK ability. This also affects weapons that have the Companion weapon ability. For the rest of the turn, subtract 1 from save rolls for the unit using this ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "ALL-OUT DEFENCE",
+          "kind": "Activated",
+          "timing": "Reaction: Opponent declared an ATTACK ability",
+          "declare": "Used By: A unit targeted by that ATTACK ability.",
+          "effect": "Add 1 to save rolls for that unit until that ATTACK ability has been resolved. The FLESH-EATER COURTS and HERO keywords are used in the following Flesh-eater Courts warscrolls: • Abhorrant Archregent • Abhorrant Cardinal • Abhorrant Ghoul King • Abhorrant Ghoul King on Royal Terrorgheist • Abhorrant Ghoul King on Royal Zombie Dragon • Abhorrant Gorewarden • Crypt Haunter Courtier • Crypt Infernal Courtier • Grand Justice Gormayne • Marrowscroll Herald • Nagash, Supreme Lord of the Undead • Royal Decapitator • Ushoran, Mortarch of Delusion • Scourge of Aqshy Royal Decapitator • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden • Crypt Ghast Courtier The HERO and INFANTRY keywords are used in the following Flesh-eater Courts warscrolls: • Abhorrant Archregent • Abhorrant Cardinal • Abhorrant Ghoul King • Abhorrant Gorewarden • Crypt Haunter Courtier • Crypt Infernal Courtier • Grand Justice Gormayne • High Falconer Felgryn • Marrowscroll Herald • Royal Decapitator • Scourge of Aqshy Royal Decapitator • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden • Crypt Ghast Courtier 7.0 Combat Range Each model has a combat range that extends 3\" horizontally from its base and any distance vertically from that circle to form a cylinder. The combat range of a unit extends 3\" horizontally and any distance vertically from every model in that unit. Units from opposing armies that are within each other’s combat range and that are visible to each other are in combat with each other. When a unit that is not in combat enters the combat range of a visible enemy unit, it moves into combat. A model is considered to be in combat with an enemy unit if that unit is within the model’s combat range and visible to it’ A unit’s combat range extends 3\" out from every model in that unit. If any enemy models are within a unit’s combat range and visible to it, that unit is in combat. The INFANTRY keyword is used in the following Flesh-eater Courts warscrolls: • Abhorrant Archregent • Abhorrant Cardinal • Abhorrant Ghoul King • Abhorrant Gorewarden • Crypt Flayers • Crypt Flayers (2 models) • Crypt Ghouls • Crypt Haunter Courtier • Crypt Horrors • Crypt Horrors (2 models) • Crypt Infernal Courtier • Cryptguard • Grand Justice Gormayne • High Falconer Felgryn • Marrowscroll Herald • Royal Beastflayers • Royal Decapitator • Scourge of Aqshy Royal Decapitator • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden • Crypt Ghast Courtier • The Grymwatch • The Skinnerkin 6.0 Visibility A target model is visible to another model (which we’ll call the ‘observing model’) if you can draw a straight line through the air (whether horizontal, diagonal or vertical) from any point on the observing model to any point on the target model that does not intersect any objects except for other models in the observing model’s unit. A target unit is visible to an observing unit if at least 1 model in the target unit is visible to at least 1 model in the observing unit. A model is always considered to be visible to itself. If a rule or ability requires a target to be both within a given range of and visible to the unit using that ability, or to a model in that unit, both conditions must be met by the same model in the target. You could not, for instance, target a unit where one model is within range but not visible and another model is not in range but is visible. If any part of another model can be seen by an observing model, both the target model and its unit are visible to that observing model. In some cases, it might not be immediately clear whether a model is visible. If so, stoop down to get a look from behind the observing model. If any part of the other model is visible, even if it is just the tip of a spear, then that model is visible for rules purposes. Universal Core Abilities - Charge Phase",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "CHARGE",
+          "kind": "Activated",
+          "timing": "Your Charge Phase",
+          "declare": "Pick a friendly unit that is not in combat and has not used a RUN or RETREAT ability this turn to use this ability. Then, make a charge roll of 2D6.",
+          "effect": "That unit can move a distance up to the value of the charge roll. That unit can move through the combat ranges of any enemy units and must end that move within 1/2\" of a visible enemy unit. If it does so, the unit using this ability has charged. KEYWORDSCORE, MOVE, CHARGE The HERO keyword is used in the following Flesh-eater Courts warscrolls: • Abhorrant Archregent • Abhorrant Cardinal • Abhorrant Ghoul King • Abhorrant Ghoul King on Royal Terrorgheist • Abhorrant Ghoul King on Royal Zombie Dragon • Abhorrant Gorewarden • Crypt Haunter Courtier • Crypt Infernal Courtier • Grand Justice Gormayne • High Falconer Felgryn • Marrowscroll Herald • Nagash, Supreme Lord of the Undead • Royal Decapitator • Ushoran, Mortarch of Delusion • Scourge of Aqshy Royal Decapitator • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden • Crypt Ghast Courtier The ABHORRANT keyword is used in the following Flesh-eater Courts warscrolls: • Abhorrant Archregent • Abhorrant Cardinal • Abhorrant Ghoul King • Abhorrant Ghoul King on Royal Terrorgheist • Abhorrant Ghoul King on Royal Zombie Dragon • Abhorrant Gorewarden • Grand Justice Gormayne • High Falconer Felgryn • Ushoran, Mortarch of Delusion • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden 21.0 Healing Some abilities allow you to heal a unit. To heal a unit, remove a number of damage points from the unit equal to the number in brackets after ‘Heal’, e.g. Heal (2). The SERFS keyword is used in the following Flesh-eater Courts warscrolls: • Crypt Ghouls • Cryptguard • Royal Beastflayers • The Grymwatch • The Skinnerkin The KNIGHTS keyword is used in the following Flesh-eater Courts warscrolls: • Crypt Flayers • Crypt Flayers (2 models) • Crypt Horrors • Crypt Horrors (2 models) • Morbheg Knights 24.2 Replacement Units Some abilities allow you to set up a replacement unit. When setting up that unit, it should have the same warscroll type, weapon options and number of models as the original unit, unless otherwise specified in the ability. Many of these abilities specify the proportion of models in the replacement unit (e.g. half the number of models from the original unit). In these cases, you can pick which models from the original unit are set up. The replacement unit is otherwise treated as a new unit; any keywords or abilities the original unit gained during the battle, and any persisting effects that applied to it, do not apply to the replacement unit. Each unit can only be replaced once, and you cannot replace replacement units. If the original unit was reinforced and the replacement unit has more than half the number of models from the original unit, the replacement unit is considered to be reinforced. Because a replacement unit is treated as a completely new unit, it could, for instance, use a Once Per Battle ability on its warscroll even if the unit it replaced used that ability earlier in the battle. The NOBLE keyword is used in the following Flesh-eater Courts warscrolls: • Crypt Haunter Courtier • Crypt Infernal Courtier • Marrowscroll Herald • Royal Decapitator • Scourge of Aqshy Royal Decapitator • Crypt Ghast Courtier 18.3 Slain Models The commander of a unit must pick which model(s) in the unit are slain. However, after each slain model is removed, the unit must be in a single coherent group (see 15.1). If this is not possible, continue to remove models, one at a time, until the unit is in a single coherent group. You must remove the fewest models possible to make the unit a single coherent group. 15.3 Pile-in Moves Some abilities, such as FIGHT abilities, allow a unit to make a short move called a pile-in move to get into a better position for combat. To do so: If your unit is in combat: Pick an enemy unit your unit is in combat with to be the target of the pile-in move. Each model in your unit can move up to 3\". That move can pass through the combat ranges of any enemy units, but each model must end that move no further from the target unit. At the end of the move, your unit must still be in combat with all units that it was in combat with at the start of the move. If your unit is not in combat: Each model in your unit can move 3\" in any direction. That move can pass through and end within the combat ranges of any enemy units. Pile in: move up to 3\". If in combat, the unit must end the move closer, or at least as close, to the target enemy unit. 17.2 Mortal Damage Some abilities inflict mortal damage. If an ability inflicts mortal damage on a unit, add that number of damage points to the unit’s damage pool for that ability (see 18.2 Allocating Damage). The non-HERO MONSTER keyword is used in the following Flesh-eater Courts warscrolls: • Royal Terrorgheist • Royal Zombie Dragon The BEAST keyword is used in the following Flesh-eater Courts warscrolls: • Varghulf Courtier • Scourge of Aqshy Varghulf Courtier 14.3 Charge Phase",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "CHARGE",
+          "kind": "Activated",
+          "timing": "Your Charge Phase",
+          "declare": "Pick a friendly unit that is not in combat and has not used a RUN or RETREAT ability this turn to use this ability. Then, make a charge roll of 2D6.",
+          "effect": "That unit can move a distance up to the value of the charge roll. That unit can move through the combat ranges of any enemy units and must end that move within 1/2\" of a visible enemy unit. If it does so, the unit using this ability has charged. KEYWORDSCORE, MOVE, CHARGE 19.0 Strike-first and Strike-last If there are any STRIKE-FIRST units in combat after any non-FIGHT combat phase abilities have been used, other units cannot be picked to use a FIGHT ability until those units have been picked to use a FIGHT ability. After all those STRIKE-FIRST units have fought, the active player picks the next unit to fight. If there are any STRIKE-LAST units in combat, they cannot be picked to use a FIGHT ability if there are any units in combat that do not have STRIKE-LAST and have not yet used a FIGHT ability. If a unit has STRIKE-FIRST and STRIKE-LAST, treat it as if it had neither. There may be situations when a unit that has STRIKE-FIRST is not in combat at the start of the phase, but because of moves such as pile-in moves, it is ‘pulled into combat’ later in the phase. In such cases, STRIKE-FIRST has no effect on that unit because it was not in combat at the start of the phase. Abilities that allow a unit to use a FIGHT ability immediately after another unit do not override the STRIKE-FIRST or STRIKE-LAST constraints, so you could not pick a unit with STRIKE-LAST to fight immediately after a unit with STRIKE-FIRST. 18.1 Ward Saves Units with the WARD keyword have the ‘Ward Save’ passive ability. The number after the WARD keyword indicates the ward value for the ward save. If a unit had WARD (5+), for example, its ward value would be 5. If a unit has more than one ward save, only the ward save with the lowest value applies to it; the other has no effect.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "WARD SAVE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "In step 1 of the damage sequence (see 18.0), make a ward roll of D6 for each damage point in this unit’s damage pool. If the roll equals or exceeds this unit’s ward value, remove that damage point from the damage pool. The HERO and FLESH-EATER COURTS keywords are used in the following Flesh-eater Courts warscrolls: • Abhorrant Archregent • Abhorrant Cardinal • Abhorrant Ghoul King • Abhorrant Ghoul King on Royal Terrorgheist • Abhorrant Ghoul King on Royal Zombie Dragon • Abhorrant Gorewarden • Crypt Haunter Courtier • Crypt Infernal Courtier • Grand Justice Gormayne • Marrowscroll Herald • Nagash, Supreme Lord of the Undead • Royal Decapitator • Ushoran, Mortarch of Delusion • Scourge of Aqshy Royal Decapitator • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden • Crypt Ghast Courtier 13.1 Fight Abilities Abilities with the FIGHT keyword follow a different sequence to other abilities. When the players are using Combat Phase abilities as described in 13.0, they cannot use FIGHT abilities. After the players have finished using Combat Phase abilities that are not FIGHT abilities, they must alternate picking 1 eligible unit to use a FIGHT ability, starting with the active player. Each unit in combat must use a FIGHT ability if it is able to. Once a player has no more units that are eligible to use a FIGHT ability, the other player continues to pick units that are eligible to use a FIGHT ability, one after another, until there are no more units that are eligible to use a FIGHT ability. The active player uses Combat Phase abilities that are not FIGHT abilities, then the opponent does the same. Players alternate picking a unit to use a FIGHT ability, starting with the active player. Each unit must use a FIGHT ability if it is able to. The non-HERO FLESH-EATER COURTS keyword is used in the following Flesh-eater Courts warscrolls: • Charnel Throne • Crypt Flayers • Crypt Flayers (2 models) • Crypt Ghouls • Crypt Horrors • Crypt Horrors (2 models) • Cryptguard • Morbheg Knights • Royal Beastflayers • Royal Terrorgheist • Royal Zombie Dragon • Varghulf Courtier • Scourge of Aqshy Varghulf Courtier • The Grymwatch • The Skinnerkin Endless Spell • Cadaverous Barricade • Chalice of Ushoran • Corpsemare Stampede 1.1 Power Level Each WIZARD and PRIEST has a power level shown after the keyword, e.g. WIZARD (2). A WIZARD’s casting power level determines how many Spell abilities they can use per phase. A PRIEST’s chanting power level determines how many PRAYER abilities they can use per phase. 18.4 Destroyed Units When the last model in a unit is slain, the unit is destroyed and all remaining damage points inflicted on that unit have no effect. Similarly, if something causes a unit to be destroyed, all models in the unit are slain and removed from play. 16.0 Picking Targets When declaring an ATTACK ability for a unit, you must pick the target unit(s) for its attacks. The number of attacks each model can make is equal to the Attacks characteristic of the weapons it is using. In most cases, models attack with every weapon on their warscroll (melee weapons for combat attacks, ranged weapons for shooting attacks), though some warscrolls specify that certain models in the unit are armed with special weapons or that the unit must pick between multiple weapons when it attacks. If the unit is in combat, it can only target units that are in combat with it. If a model has more than one attack, you can split the attacks between eligible targets as you wish. Combat attacks are made with melee weapons. The target unit(s) must be within the combat range of the attacking model and visible to it. The model must attack with all of the melee weapons it is armed with. Shooting attacks are made with ranged weapons. The target unit(s) must be within a distance equal to the Range characteristic of the weapon being used and visible to the attacking model. Models cannot make shooting attacks if their unit is in combat, unless otherwise specified (see 20.0 Weapon Abilities). Shooting attacks Shooting attacks are made with ranged weapons. The target unit(s) must be within a distance equal to the Range characteristic of the weapon being used and visible to the attacking model. Models cannot make shooting attacks if their unit is in combat, unless otherwise specified (see 20.0 Weapon Abilities).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "SHOOT",
+          "kind": "Activated",
+          "timing": "Your Shooting Phase",
+          "declare": "Pick a friendly unit that has not used a RUN or RETREAT ability this turn to use this ability. Then, pick one or more enemy units as the target(s) of that unit’s attacks (see 16.0).",
+          "effect": "Resolve shooting attacks against the target unit(s). KEYWORDSCORE, ATTACK, SHOOT",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "FIGHT",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick a friendly unit that is in combat or that charged this turn to use this ability. That unit can make a pile-in move. Then, if that unit is in combat, you must pick one or more enemy units as the target(s) of that unit’s attacks.",
+          "effect": "Resolve combat attacks against the target unit(s). KEYWORDSCORE, ATTACK, FIGHT Shoot in Combat This weapon can be used to make shooting attacks even if the attacking unit is in combat. 7.0 Manifestations There are two types of manifestation: endless spells, which can be summoned by WIZARDS, and invocations, which can be summoned by PRIESTS. Each manifestation has its own warscroll, and the spell or prayer that allows that manifestation to be summoned will be found in the appropriate manifestation lore. No more than 1 friendly WIZARD or PRIEST can attempt to summon the same manifestation per turn, and a friendly WIZARD or PRIEST cannot attempt to summon a friendly manifestation that was removed from play in the same turn. Manifestations are not units but can be interacted with in similar ways, as explained next: ALL MANIFESTATIONS Models can move through them but cannot end a move on them. Units can finish a charge move within ½\" of an enemy manifestation instead of within ½\" of an enemy unit. They can be damaged and destroyed as if they were units but do not count as destroyed units for the purposes of battle tactics and abilities. They are affected by all enemy abilities as if they were units. They can use CORE abilities as if they were units, and they can use abilities on their warscroll. Unless specified otherwise, they cannot use and are not affected by any other friendly abilities, and they do not count as units for the purposes of battle tactics or friendly abilities. They can only use the ‘Shoot’ or ‘Fight’ abilities if they have weapons of the appropriate type. MANIFESTATIONS WITH A MOVE CHARACTERISTIC OF ‘-’ They cannot move. They only count as being in combat in the combat phase, and enemy units only count as being in combat with them in the combat phase. They cannot make shooting attacks with ranged weapons that do not have Shoot in Combat while there is a visible enemy unit within 3\" of them. MANIFESTATIONS WITH A MOVE CHARACTERISTIC GREATER THAN ‘-’ They are treated as if they were units for the purposes of movement, combat range, being in combat and setting up terrain features, other manifestations and other units. 1.0 Wizards and Priests WIZARDS are special units that can cast spells, and PRIESTS are special units that can chant prayers. Spells and prayers are powerful abilities that can have a dramatic impact on the battle. 7.2 Banishing Manifestations Instead of using a SPELL or PRAYER ability (including when using the ‘Magical Intervention’ ability), each WIZARD and PRIEST can use the ‘Banish Manifestation’ ability:",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "BANISH MANIFESTATION",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly WIZARD or PRIEST to use this ability, pick a MANIFESTATION within 30\" of them that was not summoned this turn to be the target, then make a banishment roll of 2D6. Add 1 to the banishment roll for each additional enemy MANIFESTATION on the battlefield after the first. You cannot pick the same MANIFESTATION to be the target of this ability more than once per turn.",
+          "effect": "If the banishment roll equals or exceeds the banishment value listed on the MANIFESTATION’s warscroll, it is banished and removed from play. KEYWORDSBANISH 3.0 Prayers The declare step of each prayer will tell you to make a chanting roll of D6. On an unmodified chanting roll of 1, the prayer fails, its effect is not resolved and you must remove D3 ritual points from the PRIEST using the prayer. Otherwise, pick one of the following: Give a number of ritual points to the PRIEST equal to the chanting roll (ritual points can be accumulated over multiple turns). Add the PRIEST’s ritual points to the chanting roll. If the chanting roll equals or exceeds the prayer’s chanting value (at the top-right corner of the prayer), it is answered: resolve the effect of the prayer, then reset the PRIEST’s ritual points total to 0. All PRIESTS know the following prayer:",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "SACRED RITES",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly PRIEST to use this ability, then make a chanting roll of D6. On an unmodified chanting roll of 1, remove 1 ritual point from that PRIEST instead of D3.",
+          "effect": "Give a number to ritual points to the PRIEST equal to the unmodified chanting roll and do not reset the PRIEST’s ritual points to 0. KEYWORDSPRAYER, UNLIMITED EXAMPLE PRAYER",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "RESURRECTION",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Hero Phase",
+          "declare": "Make a chanting roll of D6.",
+          "effect": "Pick a friendly INFANTRY HERO that has been slain and return them to the battlefield. Set up that HERO wholly within 3\" of this PRIEST. KEYWORDSPRAYER The WIZARD keyword is used in the following Flesh-eater Courts warscrolls: • Abhorrant Archregent • Abhorrant Ghoul King • Abhorrant Ghoul King on Royal Terrorgheist • Abhorrant Ghoul King on Royal Zombie Dragon • Abhorrant Gorewarden • Nagash, Supreme Lord of the Undead • Ushoran, Mortarch of Delusion • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden 32.0 Objectives Many battleplans award victory points for controlling objectives, which are represented by objective markers. Unless otherwise specified, objective markers are round and 40mm wide. Models can move over and end their moves on objective markers. If an objective marker is on the border between territories, it is within all those territories but wholly within none of them. Objective markers don’t block visibility. 32.1 Contesting Objectives Unless otherwise specified, if an objective is within a model’s combat range, that model is contesting that objective. If any models in a unit are contesting an objective, that unit is contesting that objective. Each unit can only count as contesting a single objective for the purposes of determining objective control (see 32.2). Before determining objective control, for each of their units contesting two or more objectives, the active player must pick one of those objectives for it to contest. Then, their opponent does the same. Designer’s Note: For purposes other than determining objective control, a unit can contest more than one objective. 18.2 Allocating Damage After resolving the effect of any ability that inflicts damage points (whether via attacks, mortal damage or both), you must allocate the damage points. When allocating damage points to a unit, the damage points in its damage pool are allocated to it one at a time. Each time the number of damage points allocated to the unit equals the Health characteristic of that unit, 1 model in that unit is slain (and removed from play) and the number of damage points allocated to that unit is reset to 0. Keep allocating damage points until there are none left in the damage pool. If the number of damage points allocated to a unit is not enough to slay a model, keep track of the number of damage points currently allocated to the unit (most players place a dice or markers next to the unit). While a unit has any damage points allocated to it, it is damaged. FIGHT THROUGH THE PAIN",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "FIGHT THROUGH THE PAIN",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Before allocating damage to a friendly unit, you can spend any number of rage dice. For each rage dice spent, reduce your fury level by 1, to a minimum of 0, then roll a dice. On a 3+, remove 1 damage point from that unit’s damage pool. 4.1 Enhancements Each set of faction rules include a number of enhancements that can be given to units, e.g. heroic traits and artefacts of power. You can take 1 enhancement from each enhancement table in your faction rules. Each enhancement table lists which units are eligible to be given that enhancement. UNIQUE units cannot be given enhancements. While some abilities allow you to take extra enhancements, the same unit can never have more than 1 enhancement of the same type, and you can never include the same enhancement in your army more than once. Enhancements cannot be given to Regiment of Renown units, unless they have a keyword that matches that faction’s name. The MONSTER and FLESH-EATER COURTS keywords are used in the following Flesh-eater Courts warscrolls: • Abhorrant Ghoul King on Royal Terrorgheist • Abhorrant Ghoul King on Royal Zombie Dragon • Nagash, Supreme Lord of the Undead • Royal Terrorgheist • Royal Zombie Dragon • Ushoran, Mortarch of Delusion The non-UNIQUE MONSTER keyword is used in the following Flesh-eater Courts warscrolls: • Abhorrant Ghoul King on Royal Terrorgheist • Abhorrant Ghoul King on Royal Zombie Dragon • Royal Terrorgheist • Royal Zombie Dragon The FLESH-EATER COURTS and WIZARD keywords are used in the following Flesh-eater Courts warscrolls: • Abhorrant Archregent • Abhorrant Ghoul King • Abhorrant Ghoul King on Royal Terrorgheist • Abhorrant Ghoul King on Royal Zombie Dragon • Abhorrant Gorewarden • Nagash, Supreme Lord of the Undead • Ushoran, Mortarch of Delusion • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden 2.0 Spells The declare step of each spell will tell you to make a casting roll of 2D6. If the roll does not equal or exceed the spell’s casting value (at the top-right corner of the spell), the spell fails and its effect is not resolved. If the unmodified casting roll includes 2 or more rolls of 1, the spell is miscast: the spell fails, its effect is not resolved, D3 mortal damage is inflicted on the WIZARD that used it, and that WIZARD cannot use any more spells in that phase. Enemy reactions can only be used if the casting roll equals or exceeds the spell’s casting value. So long as the spell is not unbound (see 4.0), then it is successfully cast: resolve its effect. EXAMPLE SPELL",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "MYSTIC SHIELD",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly unit wholly within 12\" of this WIZARD to be the target. Then, make a casting roll of 2D6.",
+          "effect": "The target has WARD (6+) this turn. KEYWORDSSPELL Wound Roll Roll a dice. If the roll equals or exceeds the attacking weapon’s Wound characteristic, the attack successfully wounds: move on to the next step. If not, the attack fails and the attack sequence ends. Unmodified wound rolls of 1 always fail. The non-HERO FLESH-EATER COURTS INFANTRY keyword is used in the following Flesh-eater Courts warscrolls: Infantry • Crypt Ghouls • Crypt Flayers • Crypt Horrors • Royal Beastflayers • Cryptguard • Crypt Flayers (2 models) • Crypt Horrors (2 models) • The Grymwatch • The Skinnerkin Infantry Hero • High Falconer Felgryn The non-HERO FLESH-EATER COURTS CAVALRY keyword is used in the following Flesh-eater Courts warscrolls: Cavalry • Morbheg Knights The KNIGHT keyword is used in the following Flesh-eater Courts warscrolls: • Crypt Flayers • Crypt Flayers (2 models) • Crypt Horrors • Crypt Horrors (2 models) • Morbheg Knights 3.1 Regiments Armies are made up of one or more regiments, each of which is led by a Hero. You must have at least 1 regiment in your army, and you can include a maximum of 5 regiments. To add a regiment, pick 1 HERO from your faction, then pick up to 3 non-HERO units to accompany them. Each HERO’s battle profile lists which units can be added to their regiment, and each non-HERO unit’s battle profile lists any relevant keywords it has. The battle profiles of some HEROES may say that they can be added to the regiment of another HERO in place of a non-HERO unit in that regiment. Those HEROES can join an eligible regiment as a EQUINOX FEAST. Infantry • Crypt Ghouls • Royal Beastflayers • Cryptguard • The Grymwatch • The Skinnerkin Infantry Hero • Marrowscroll Herald • Abhorrant Archregent • Abhorrant Ghoul King • Crypt Haunter Courtier • Crypt Infernal Courtier • Abhorrant Cardinal • Abhorrant Gorewarden • Royal Decapitator • High Falconer Felgryn • Flesh-eater Courts Hero • Crypt Ghast Courtier • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden • Scourge of Aqshy Royal Decapitator Those HEROES can join an eligible regiment as a non-UNIQUE non-MONSTER HEROES. Infantry Hero • Marrowscroll Herald • Abhorrant Archregent • Abhorrant Ghoul King • Crypt Haunter Courtier • Crypt Infernal Courtier • Abhorrant Cardinal • Abhorrant Gorewarden • Royal Decapitator • Flesh-eater Courts Hero • Crypt Ghast Courtier • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden • Scourge of Aqshy Royal Decapitator 3.5 Regiments of Renown In addition to creating your own regiments, you can also spend points to include 1 Regiment of Renown. Regiments of Renown are pre-built regiments, each with their own special abilities. The rules for each Regiment of Renown will specify which factions can include it. A unit in a Regiment of Renown cannot be your general even if it is a WARMASTER. You cannot include more than one Regiment of Renown in your army unless otherwise specified in the notes column of that regiment’s battle profile. Units in a Regiment of Renown cannot use (but can be picked as the target of, if otherwise eligible) any faction rules from the faction they are allied into, including enhancements and lores. If an ability allows you to set up a replacement unit (Core Rules, 24.2) for a unit in a Regiment of Renown, that unit also counts as being part of that Regiment of Renown. Universal Core Abilities - Movement Phase",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "NORMAL MOVE",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick a friendly unit that is not in combat to use this ability.",
+          "effect": "That unit can move a distance up to its Move characteristic. That unit cannot move into combat during any part of that move. KEYWORDSCORE, MOVE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "RUN",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick a friendly unit that is not in combat to use this ability.",
+          "effect": "Make a run roll of D6. That unit can move a distance up to its Move characteristic added to the run roll. That unit cannot move into combat during any part of that move. KEYWORDSCORE, MOVE, RUN",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "RETREAT",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick a friendly unit that is in combat to use this ability.",
+          "effect": "Inflict D3 mortal damage on that unit. That unit can move a distance up to its Move characteristic. That unit can move through the combat ranges of any enemy units but cannot end that move within an enemy unit’s combat range. KEYWORDSCORE, MOVE, RETREAT 1.0 Champions Units with the CHAMPION keyword have one or more champion models. If there is a number after the CHAMPION keyword, that number indicates the proportion of models in that unit that can be champions. In any other case, 1 model in the unit can be a champion. Units with the CHAMPION keyword have the following passive ability:",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "CHAMPION",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Add 1 to the Attacks characteristic of weapons used by champions in this unit. If this unit is a BEAST, this ability affects this unit’s Companion weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "RALLY",
+          "kind": "Activated",
+          "timing": "Any Hero Phase",
+          "declare": "Pick a friendly unit that is not in combat to use this ability.",
+          "effect": "Make 6 rally rolls of D6. For each 4+, you receive 1 rally point. Rally points can be spent in the following ways: For each rally point spent, Heal (1) that unit. You can spend a number of rally points equal to the Health characteristic of that unit to return a slain model to that unit. You can spend the rally points in any combination of the above. Unspent rally points are then lost. 2.0 Musicians Units with the MUSICIAN keyword have one or more musician models. The number after the MUSICIAN keyword indicates the proportion of models in that unit that can be musicians. Units with the MUSICIAN keyword have the following passive ability:",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "MUSICIAN",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While this unit contains any musicians, if it uses the ‘Rally’ command, you can make one additional rally roll of D6. 32.2 Objective Control In the deployment phase after all Deployment Phase abilities have been used and at the end of each turn, follow this sequence for each objective in an order chosen by the active player: Starting with the active player, each player determines the control score of each of their units that is contesting that objective. A unit’s control score is the combined Control characteristics of all the models in that unit that are contesting the objective. Some abilities modify a unit’s control score, but it cannot be reduced to less than 1. Each player adds up the control scores of all of their units contesting that objective. This is their army control score for that objective. The players compare their army control scores for that objective. If one player’s score is higher, that player gains control of that objective. Once a player gains control of an objective, it remains under their control until their opponent gains control of it. Sometimes objective markers get accidentally nudged while you are moving models around. This is perfectly fine - just remember to put them back in their proper positions when determining objective control. 3.0 Standard Bearers Units with the STANDARD BEARER keyword have one or more standard bearer models. The number after the STANDARD BEARER keyword indicates the proportion of models in that unit that can be standard bearers. Units with the STANDARD BEARER keyword have the following passive ability:",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "STANDARD BEARER",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While this unit contains any standard bearers, add 1 to this unit’s control score. Those HEROES can join an eligible regiment as a HERO. Infantry Hero • Marrowscroll Herald • Abhorrant Archregent • Abhorrant Ghoul King • Crypt Haunter Courtier • Crypt Infernal Courtier • Abhorrant Cardinal • Abhorrant Gorewarden • Royal Decapitator • High Falconer Felgryn • Flesh-eater Courts Hero • Crypt Ghast Courtier • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden • Scourge of Aqshy Royal Decapitator Those HEROES can join an eligible regiment as a EQUINOX FEAST WIZARD. Infantry Hero • Abhorrant Archregent • Abhorrant Ghoul King • Abhorrant Gorewarden • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden Those HEROES can join an eligible regiment as a NEW SUMMERCOURT. Infantry • Crypt Flayers • Crypt Horrors • Crypt Flayers (2 models) • Crypt Horrors (2 models) Monster Hero • Ushoran, Mortarch of Delusion Cavalry • Morbheg Knights Infantry Hero • Marrowscroll Herald • Crypt Haunter Courtier • Crypt Infernal Courtier • Grand Justice Gormayne • Royal Decapitator • High Falconer Felgryn • Crypt Ghast Courtier • Scourge of Aqshy Royal Decapitator Beast • Varghulf Courtier The UNIQUE and ABHORRANT keywords are used in the following Flesh-eater Courts warscrolls: • Grand Justice Gormayne • High Falconer Felgryn • Ushoran, Mortarch of Delusion 3.2 The General You must pick 1 HERO in your army that is leading a regiment to be your general. If any units in your army have the WARMASTER keyword, you must pick one of those units to be your general. Your general’s regiment can include up to 4 non-HERO units in addition to your general. Those HEROES can join an eligible regiment as a NEW SUMMERCOURT WIZARD. Monster Hero • Abhorrant Ghoul King on Royal Terrorgheist • Abhorrant Ghoul King on Royal Zombie Dragon • Ushoran, Mortarch of Delusion Infantry Hero • Abhorrant Archregent • Abhorrant Ghoul King • Abhorrant Gorewarden • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden Those HEROES can join an eligible regiment as a NEW SUMMERCOURT INFANTRY. Infantry • Crypt Flayers • Crypt Horrors • Crypt Flayers (2 models) • Crypt Horrors (2 models) Infantry Hero • Marrowscroll Herald • Abhorrant Archregent • Abhorrant Ghoul King • Crypt Haunter Courtier • Crypt Infernal Courtier • Abhorrant Cardinal • Abhorrant Gorewarden • Royal Decapitator • Crypt Ghast Courtier • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden • Scourge of Aqshy Royal Decapitator The HERO keyword is used in the following Flesh-eater Courts warscrolls: • Abhorrant Archregent • Abhorrant Cardinal • Abhorrant Ghoul King • Abhorrant Ghoul King on Royal Terrorgheist • Abhorrant Ghoul King on Royal Zombie Dragon • Abhorrant Gorewarden • Crypt Haunter Courtier • Crypt Infernal Courtier • Grand Justice Gormayne • High Falconer Felgryn • Marrowscroll Herald • Nagash, Supreme Lord of the Undead • Royal Decapitator • Ushoran, Mortarch of Delusion • Scourge of Aqshy Royal Decapitator • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden • Crypt Ghast Courtier The INFANTRY keyword is used in the following Flesh-eater Courts warscrolls: • Abhorrant Archregent • Abhorrant Cardinal • Abhorrant Ghoul King • Abhorrant Gorewarden • Crypt Flayers • Crypt Flayers (2 models) • Crypt Ghouls • Crypt Haunter Courtier • Crypt Horrors • Crypt Horrors (2 models) • Crypt Infernal Courtier • Cryptguard • Grand Justice Gormayne • High Falconer Felgryn • Marrowscroll Herald • Royal Beastflayers • Royal Decapitator • Scourge of Aqshy Royal Decapitator • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden • Crypt Ghast Courtier • The Grymwatch • The Skinnerkin The WARD keyword is used in the following Flesh-eater Courts warscrolls: • Abhorrant Archregent • Abhorrant Cardinal • Abhorrant Ghoul King • Abhorrant Ghoul King on Royal Terrorgheist • Abhorrant Ghoul King on Royal Zombie Dragon • Abhorrant Gorewarden • Crypt Flayers • Crypt Flayers (2 models) • Crypt Ghouls • Crypt Haunter Courtier • Crypt Horrors • Crypt Horrors (2 models) • Crypt Infernal Courtier • Cryptguard • Grand Justice Gormayne • High Falconer Felgryn • Marrowscroll Herald • Morbheg Knights • Nagash, Supreme Lord of the Undead • Royal Beastflayers • Royal Decapitator • Royal Terrorgheist • Royal Zombie Dragon • Ushoran, Mortarch of Delusion • Varghulf Courtier • Scourge of Aqshy Royal Decapitator • Scourge of Aqshy Varghulf Courtier • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden • Crypt Ghast Courtier • The Grymwatch • The Skinnerkin Endless Spell • Cadaverous Barricade • Chalice of Ushoran • Corpsemare Stampede The DEATH keyword is used in the following Flesh-eater Courts warscrolls: • Abhorrant Archregent • Abhorrant Cardinal • Abhorrant Ghoul King • Abhorrant Ghoul King on Royal Terrorgheist • Abhorrant Ghoul King on Royal Zombie Dragon • Abhorrant Gorewarden • Charnel Throne • Crypt Flayers • Crypt Flayers (2 models) • Crypt Ghouls • Crypt Haunter Courtier • Crypt Horrors • Crypt Horrors (2 models) • Crypt Infernal Courtier • Cryptguard • Grand Justice Gormayne • High Falconer Felgryn • Marrowscroll Herald • Morbheg Knights • Nagash, Supreme Lord of the Undead • Royal Beastflayers • Royal Decapitator • Royal Terrorgheist • Royal Zombie Dragon • Ushoran, Mortarch of Delusion • Varghulf Courtier • Scourge of Aqshy Royal Decapitator • Scourge of Aqshy Varghulf Courtier • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden • Crypt Ghast Courtier • The Grymwatch • The Skinnerkin Endless Spell • Cadaverous Barricade • Chalice of Ushoran • Corpsemare Stampede The FLESH-EATER COURTS keyword is used in the following Flesh-eater Courts warscrolls: • Abhorrant Archregent • Abhorrant Cardinal • Abhorrant Ghoul King • Abhorrant Ghoul King on Royal Terrorgheist • Abhorrant Ghoul King on Royal Zombie Dragon • Abhorrant Gorewarden • Charnel Throne • Crypt Flayers • Crypt Flayers (2 models) • Crypt Ghouls • Crypt Haunter Courtier • Crypt Horrors • Crypt Horrors (2 models) • Crypt Infernal Courtier • Cryptguard • Grand Justice Gormayne • Marrowscroll Herald • Morbheg Knights • Nagash, Supreme Lord of the Undead • Royal Beastflayers • Royal Decapitator • Royal Terrorgheist • Royal Zombie Dragon • Ushoran, Mortarch of Delusion • Varghulf Courtier • Scourge of Aqshy Royal Decapitator • Scourge of Aqshy Varghulf Courtier • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden • Crypt Ghast Courtier • The Grymwatch • The Skinnerkin Endless Spell • Cadaverous Barricade • Chalice of Ushoran • Corpsemare Stampede 1.0 Wizards and Priests WIZARDS are special units that can cast spells, and PRIESTS are special units that can chant prayers. Spells and prayers are powerful abilities that can have a dramatic impact on the battle. 1.1 Power Level Each WIZARD and PRIEST has a power level, shown in brackets after the keyword, e.g. WIZARD (2). A WIZARD or PRIEST’s power level determines the number of SPELL, PRAYER or BANISH abilities they can use per phase, in any combination. For example, a WIZARD (2) unit could use 1 SPELL and 1 BANISH ability in their commander’s hero phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "FLY",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "As this unit moves, it ignores other models, terrain features and the combat ranges of enemy units. It cannot end its move in combat unless specified in the ability that allowed it to move. Ignore any vertical distance moved for this unit. Crit (Mortal) If an attack made with this weapon scores a critical hit, that attack inflicts mortal damage on the target unit equal to the Damage characteristic of that weapon and the attack sequence ends. Crit (Auto-wound) If an attack made with this weapon scores a critical hit, that attack automatically wounds the target. Make a save roll as normal. Crit (2 Hits) If an attack made with this weapon scores a critical hit, that attack scores 2 hits on the target unit instead of 1. Make a wound roll for each hit. Anti-X (+1 Rend) Add 1 to this weapon’s Rend characteristic if the target has the keyword after ‘Anti-’ or fulfils the condition after ‘Anti-’. Multiples of this ability are cumulative. For example, if a weapon has both Anti-charge (+1 Rend) and Anti-HERO (+1 Rend), then add 2 to the Rend characteristic of the weapon for attacks that target a HERO that charged in the same turn. Charge (+1 Damage) Add 1 to this weapon’s Damage characteristic if the attacking unit charged this turn. Banish Manifestation",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "BANISH MANIFESTATION",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly WIZARD or PRIEST to use this ability, pick a MANIFESTATION within 30\" of them that was not summoned this turn to be the target, then make a banishment roll of 2D6. Add 1 to the banishment roll for each additional enemy MANIFESTATION on the battlefield after the first. You cannot pick the same MANIFESTATION to be the target of this ability more than once per turn.",
+          "effect": "If the banishment roll equals or exceeds the banishment value listed on the MANIFESTATION’s warscroll, it is banished and removed from play. KEYWORDSBANISH Roll-off If you are instructed to roll off, each player should roll a dice. Whichever player has a higher roll wins the roll-off. If the result is a tie, each player should roll off again until there is a clear winner, unless otherwise specified. The non-UNIQUE FLESH-EATER COURTS keyword is used in the following Flesh-eater Courts warscrolls: • Abhorrant Archregent • Abhorrant Cardinal • Abhorrant Ghoul King • Abhorrant Ghoul King on Royal Terrorgheist • Abhorrant Ghoul King on Royal Zombie Dragon • Abhorrant Gorewarden • Charnel Throne • Crypt Flayers • Crypt Flayers (2 models) • Crypt Ghouls • Crypt Haunter Courtier • Crypt Horrors • Crypt Horrors (2 models) • Crypt Infernal Courtier • Cryptguard • Marrowscroll Herald • Morbheg Knights • Royal Beastflayers • Royal Decapitator • Royal Terrorgheist • Royal Zombie Dragon • Varghulf Courtier • Scourge of Aqshy Royal Decapitator • Scourge of Aqshy Varghulf Courtier • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden • Crypt Ghast Courtier Endless Spell • Cadaverous Barricade • Chalice of Ushoran • Corpsemare Stampede",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "NOBLE DEEDS",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Each time a friendly HERO uses a FIGHT ability, after its attacks have been resolved, give that HERO a number of noble deeds points equal to the number of damage points allocated by that ability. Each HERO can have a maximum of 6 noble deeds points at any time.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "DELUSIONS AND MADNESS",
+          "kind": "Activated",
+          "timing": "Once Per Battle Round (Army), Start of Battle Round",
+          "declare": "You must use this ability at the start of each battle round. If it is the first battle round, pick a DELUSION. Otherwise, make a delusion roll by rolling a D6.",
+          "effect": "On a 1-3, you must pick a different DELUSION to the one you picked last time. On a 4+, you must pick the same DELUSION as last time. For the rest of the battle round, you believe the DELUSION you picked. Army List Warscrolls collated Infantry Hero • Abhorrant Archregent • Abhorrant Cardinal • Abhorrant Ghoul King • Abhorrant Gorewarden • Crypt Haunter Courtier • Crypt Infernal Courtier • Grand Justice Gormayne • High Falconer Felgryn • Marrowscroll Herald • Royal Decapitator • Scourge of Aqshy Royal Decapitator • Scourge of Ghyran Abhorrant Ghoul King • Scourge of Ghyran Abhorrant Gorewarden • Crypt Ghast Courtier Monster Hero • Abhorrant Ghoul King on Royal Terrorgheist • Abhorrant Ghoul King on Royal Zombie Dragon • Nagash, Supreme Lord of the Undead • Ushoran, Mortarch of Delusion Beast • Varghulf Courtier • Scourge of Aqshy Varghulf Courtier Cavalry • Morbheg Knights Infantry • Crypt Flayers • Crypt Flayers (2 models) • Crypt Ghouls • Crypt Horrors • Crypt Horrors (2 models) • Cryptguard • Royal Beastflayers • The Grymwatch • The Skinnerkin Monster • Royal Terrorgheist • Royal Zombie Dragon Faction Terrain • Charnel Throne Endless Spell • Cadaverous Barricade • Chalice of Ushoran • Corpsemare Stampede Regiment of Renown • Big Drogg Fort-Kicka • Blades of the Hollow King • Casket of Resurrections • Cogfort Raiders • Craventhrone Executioners • Enforcers of the Tithe • Heralds of the Bone-tithe • Karahtet’s Siege Breaker • Mask of the Deceiver • Rogue Engine • Scions of the Necropolis • The Beast of Castle Sternieste • The Liche’s Hand • The Lost-Song Spirits • Neferata’s Royal Echelon • Nurgle’s Gift • Stumblefoot Gargant • The Sorrowmourn Choir • The Sternieste Garrison • Veremord’s Shamblers Contents Books Designers’ Commentary • Battletome: Flesh-eater Courts Battle Traits Battle Formations • Knightly Echelon • The Royal Hunt • Lords of the Manor • Royal Menagerie • Impassioned Serfs • Questing Courtiers Heroic Traits • Regal Dispositions Artefacts of Power • The Royal Treasury • The Royal Treasury Monstrous Traits Spell Lore • Lore of Madness Prayer Lore • Rites of Delusion Manifestation Lore • Manifested Insanity Noble Pursuits The Equinox Feast • Battle Traits • Heroic Traits • Artefacts of Power The Knights of New Summercourt • Battle Traits • Heroic Traits • Artefacts of Power PATH TO GLORY • The Anvil of Apotheosis • Step 1 - Set a Destiny Point Limit • Step 2 - Fill Out The Starting Warscroll • Step 3 - Choose an Archetype • Step 4 - Pick Your Hero's Origin And/Or Flaw • Step 5 - Choose a Battle Mount • Step 6 - Pick any Battle Mount Upgrades • Step 7 - Pick any Other Upgrades • Path of Royalty • Path of The Subjects SPEARHEAD Carrion Retainers • Battle Traits • Regiment Abilities • Enhancements • Warscrolls Charnel Watch • Battle Traits • Regiment Abilities • Enhancements • Warscrolls Disable Ads E-mail: Pin code: Disable Ads Get new pin code Boosty subscribers may disable ads: 1. Enter e-mail you have used to login on Boosty. 2. Press Get new pin code button (if you don’t have it already) 3. Enter pin code. Note that login database updated once a day. So, if you are a new booster - try tomorrow. And thank you! $(window).scroll(function() { if ($(this).scrollTop() >= 200) { $('#btnBackToTop').fadeIn(300); } else { $('#btnBackToTop').fadeOut(300); } }); $('#btnBackToTop').on('touchstart', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_ToTop_Hover.png); background-image: var(--button-to-top-hover)'); $(this).fadeIn(300); return true; }); $('#btnBackToTop').on('touchend', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_ToTop.png); background-image: var(--button-to-top)'); $(this).fadeOut(300); document.body.scrollTop = 0; document.documentElement.scrollTop = 0; return true; }); $('#btnBackToTop').on('click', function () { 'use strict'; document.body.scrollTop = 0; document.documentElement.scrollTop = 0; return true; }); $('#btnArmyList').on('touchstart', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_ArmyList_Hover.png); background-image: var(--button-army-list-hover)'); return true; }); $('#btnArmyList').on('touchend', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_ArmyList.png); background-image: var(--button-army-list)'); return true; }); $('#btnContents').on('touchstart', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_Contents_Hover.png); background-image: var(--button-contents-hover)'); return true; }); $('#btnContents').on('touchend', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_Contents.png); background-image: var(--button-contents)'); return true; }); © Vyacheslav Maltsev 2013-2026 ezstandalone.cmd.push(function() {ezstandalone.showAds(103)}); (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-57173050-3', 'auto'); ga('send', 'pageview'); window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-YCMHCMW8RQ');",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

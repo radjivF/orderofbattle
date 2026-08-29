@@ -1,0 +1,310 @@
+{
+  "id": "cities-of-sigmar-fusil-platoon",
+  "name": "Fusil-Platoon",
+  "parentFactionId": "cities-of-sigmar",
+  "game": "Age of Sigmar Spearhead",
+  "source": "https://wahapedia.ru/aos4/factions/cities-of-sigmar/",
+  "roster": [
+    {
+      "unitId": "cities-of-sigmar-fusil-platoon-fusil-major-on-ogor-warhulk",
+      "count": 1,
+      "general": true
+    },
+    {
+      "unitId": "cities-of-sigmar-fusil-platoon-alchemite-warforger",
+      "count": 1
+    },
+    {
+      "unitId": "cities-of-sigmar-fusil-platoon-freeguild-fusiliers",
+      "count": 1
+    },
+    {
+      "unitId": "cities-of-sigmar-fusil-platoon-freeguild-fusiliers",
+      "count": 1
+    },
+    {
+      "unitId": "cities-of-sigmar-fusil-platoon-wildercorps-hunters",
+      "count": 1
+    }
+  ],
+  "battleTraits": [
+    {
+      "id": "cities-of-sigmar-fusil-platoon-battle-traits",
+      "name": "Battle Traits",
+      "abilities": [
+        {
+          "name": "FORTIFY POSITION",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Subtract 1 from the Rend characteristic of weapons used for attacks that target friendly CASTELITE units if they did not use a MOVE ability in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "regimentAbilities": [
+    {
+      "id": "cities-of-sigmar-fusil-platoon-well-provisioned",
+      "name": "WELL PROVISIONED",
+      "abilities": [
+        {
+          "name": "WELL PROVISIONED",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Shooting Phase",
+          "declare": "Pick a friendly non-HERO unit to be the target.",
+          "effect": "Roll a dice. On a 3+, add 1 to wound rolls for that unit’s shooting attacks for the rest of the phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "cities-of-sigmar-fusil-platoon-respected-leader",
+      "name": "RESPECTED LEADER",
+      "abilities": [
+        {
+          "name": "RESPECTED LEADER",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Deployment Phase",
+          "declare": "",
+          "effect": "Friendly Wildercorps Hunters units gain the REINFORCEMENTS keyword.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "cities-of-sigmar-fusil-platoon-adept-tactician",
+      "name": "ADEPT TACTICIAN",
+      "abilities": [
+        {
+          "name": "ADEPT TACTICIAN",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Movement Phase",
+          "declare": "Pick 2 friendly Freeguild Fusiliers units that have been destroyed and have not already been replaced.",
+          "effect": "Set up a single replacement Freeguild Fusiliers unit with 10 models more than 6\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "cities-of-sigmar-fusil-platoon-brace",
+      "name": "BRACE!",
+      "abilities": [
+        {
+          "name": "BRACE!",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "Your general has WARD (5+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "cities-of-sigmar-fusil-platoon-shield-bash",
+      "name": "SHIELD BASH",
+      "abilities": [
+        {
+          "name": "SHIELD BASH",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Your Movement Phase",
+          "declare": "Pick an enemy INFANTRY, WAR MACHINE or CAVALRY unit in combat with your general to be the target.",
+          "effect": "Roll a dice. On a 3+, the target must immediately use the 'Retreat' ability as if it were the enemy movement phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    },
+    {
+      "id": "cities-of-sigmar-fusil-platoon-point-blank-volley",
+      "name": "POINT-BLANK VOLLEY",
+      "abilities": [
+        {
+          "name": "POINT-BLANK VOLLEY",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Enemy Combat Phase",
+          "declare": "Pick an enemy unit in combat with your general to be the target.",
+          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "cities-of-sigmar-fusil-platoon-fusil-major-on-ogor-warhulk",
+      "name": "Fusil-Major on Ogor Warhulk",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "CASTELITE"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "8",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "MARK TARGETS",
+          "kind": "Activated",
+          "timing": "Your Shooting Phase",
+          "declare": "Pick an enemy unit that was targeted by this unit’s shooting attacks this turn to be the target.",
+          "effect": "Add 1 to hit rolls for shooting attacks made by friendly units that target that unit for the rest of the turn. KEYWORDS HERO, INFANTRY, CASTELITE",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "cities-of-sigmar-fusil-platoon-alchemite-warforger",
+      "name": "Alchemite Warforger",
+      "points": 0,
+      "hero": true,
+      "unique": false,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "WIZARD",
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "BLAZING WEAPONS",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
+          "effect": "On a 6+, the target’s melee weapons have Crit (Mortal) until the start of your next turn. KEYWORDS HERO, WIZARD, INFANTRY",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "cities-of-sigmar-fusil-platoon-freeguild-fusiliers",
+      "name": "Freeguild Fusiliers",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": true,
+      "models": 5,
+      "categories": [
+        "INFANTRY",
+        "CASTELITE",
+        "REINFORCEMENTS"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "1",
+        "save": "4+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "BLACKPOWDER SQUIRE",
+          "kind": "Passive",
+          "timing": "Passive",
+          "declare": "",
+          "effect": "While this unit has a Blackpowder Squire token, this unit’s ranged weapons have Shoot in Combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "CAN'T STOP!",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Shooting Phase",
+          "declare": "Pick another friendly Freeguild Fusiliers unit to be the target.",
+          "effect": "Remove this unit’s Blackpowder Squire token from the battlefield, then give it to the target. KEYWORDS INFANTRY, CASTELITE, REINFORCEMENTS ezstandalone.cmd.push(function() {ezstandalone.showAds(128)});",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    },
+    {
+      "id": "cities-of-sigmar-fusil-platoon-wildercorps-hunters",
+      "name": "Wildercorps Hunters",
+      "points": 0,
+      "hero": false,
+      "unique": false,
+      "reinforce": false,
+      "models": 11,
+      "categories": [
+        "INFANTRY"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "1",
+        "save": "5+",
+        "control": "1"
+      },
+      "weapons": [],
+      "abilities": [
+        {
+          "name": "EXPERT TRACKERS",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "",
+          "effect": "This unit can use the ‘Normal Move’ ability as if it were your movement phase. KEYWORDS INFANTRY",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": []
+    }
+  ]
+}

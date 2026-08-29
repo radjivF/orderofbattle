@@ -4,6 +4,11 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useLayoutEffect, useState, useSyncExternalStore } from "react";
 import { getFaction, listArmiesOfRenown, armyOfRenownName } from "@/engine/queries";
+import {
+  catalogueForList,
+  isSpearheadList,
+  listSpearheadsForFaction,
+} from "@/engine/spearhead";
 import { listFactionsByGrandAlliance } from "@/lib/factionAlliance";
 import { formatPoints } from "@/engine/pointsCap";
 import { summarize } from "@/engine/validate";
@@ -12,6 +17,7 @@ import { catalogueArtClass, catalogueArtSrc, factionArtSrc } from "@/lib/faction
 import { factionPickerCounts } from "@/lib/factionSeo";
 import {
   blankArmy,
+  blankSpearhead,
   deleteArmy,
   duplicateArmy,
   getArmiesServerSnapshot,
@@ -44,6 +50,7 @@ import { ModalFrame } from "./ModalFrame";
 import { ConfirmSheetActions } from "./ConfirmSheetActions";
 import { SheetFormActions } from "./SheetFormActions";
 import { PointsCapField } from "./PointsCapField";
+import { IosSegmentedControl } from "./ios/IosSegmentedControl";
 import { SiteFooter } from "./SiteFooter";
 
 function isInteractiveEventTarget(target: EventTarget | null): boolean {
@@ -70,6 +77,8 @@ export function LibraryScreen() {
   );
   const [draftName, setDraftName] = useState("");
   const [draftPoints, setDraftPoints] = useState(2000);
+  const [draftMode, setDraftMode] = useState<"points" | "spearhead">("points");
+  const [draftSpearheadId, setDraftSpearheadId] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
 
   function openList(listId: string, factionId: string | null | undefined) {
@@ -87,6 +96,9 @@ export function LibraryScreen() {
     if (!draftFaction || creating) {
       return;
     }
+    if (draftMode === "spearhead" && !draftSpearheadId) {
+      return;
+    }
     setCreating(true);
     const artFactionId =
       draftParent?.id ??
@@ -95,7 +107,10 @@ export function LibraryScreen() {
     rememberListOpen(artFactionId, (draftParent ?? draftFaction).name);
     rememberListNavigation("forward");
     try {
-      const list = blankArmy(draftFaction.id, draftName, draftPoints);
+      const list =
+        draftMode === "spearhead" && draftSpearheadId
+          ? blankSpearhead(draftSpearheadId, draftName)
+          : blankArmy(draftFaction.id, draftName, draftPoints);
       await saveArmy(list);
       setPicking(false);
       router.push(`/lists/${list.id}`);
@@ -134,6 +149,8 @@ export function LibraryScreen() {
     setDraftParent(null);
     setDraftName("");
     setDraftPoints(2000);
+    setDraftMode("points");
+    setDraftSpearheadId(null);
   }
 
   const { setLibraryChrome } = useListFlowChrome();
@@ -200,10 +217,14 @@ export function LibraryScreen() {
           <ul className="grid grid-cols-1 gap-4 pt-2 lg:grid-cols-2 lg:gap-5">
             {lists.map((list, index) => {
               const faction = getFaction(list.factionId);
-              const totals = faction ? summarize(list, faction) : null;
-              const formation = faction?.formations.find(
-                (item) => item.id === list.formationId,
+              const playCatalogue = catalogueForList(list);
+              const totals = playCatalogue
+                ? summarize(list, playCatalogue)
+                : null;
+              const formation = playCatalogue?.formations.find(
+                (item) => item.id === (list.regimentAbilityId ?? list.formationId),
               );
+              const spearhead = isSpearheadList(list);
               const artSrc = catalogueArtSrc(faction);
               return (
                 <li key={list.id}>
@@ -240,11 +261,14 @@ export function LibraryScreen() {
                       >
                         <span className="min-w-0 flex-1">
                           <span className="block text-base font-semibold text-gold-deep">
-                            {formatPoints(totals?.points ?? 0)} /{" "}
-                            {formatPoints(list.pointsCap)}
+                            {spearhead
+                              ? "Spearhead"
+                              : `${formatPoints(totals?.points ?? 0)} / ${formatPoints(list.pointsCap)}`}
                           </span>
                           <span className="mt-0.5 block text-sm text-sheet-muted sm:text-base">
-                            {formation?.name ?? "No formation"}
+                            {spearhead
+                              ? playCatalogue?.name ?? "Spearhead"
+                              : (formation?.name ?? "No formation")}
                           </span>
                         </span>
                         <svg
