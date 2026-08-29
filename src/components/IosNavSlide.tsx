@@ -94,12 +94,15 @@ export function ListNavProvider({
   const [animatingBack, setAnimatingBack] = useState(false);
   const [backdropExiting, setBackdropExiting] = useState(false);
   const [factionBackdropRevealed, setFactionBackdropRevealed] = useState(false);
+  const [cachedBackdrop, setCachedBackdrop] = useState<ReactNode>(null);
   const timers = useRef<number[]>([]);
   const libraryScrollYRef = useRef<number | null>(null);
-  const lastBackdrop = useRef<ReactNode>(null);
-  if (backdrop) {
-    lastBackdrop.current = backdrop;
-  }
+
+  useEffect(() => {
+    if (backdrop) {
+      setCachedBackdrop(backdrop);
+    }
+  }, [backdrop]);
 
   const publishNavState = useCallback(
     (next: {
@@ -208,7 +211,7 @@ export function ListNavProvider({
   const factionBackdropLayer = showFactionBackdrop
     ? backdrop
     : backdropExiting
-      ? lastBackdrop.current
+      ? cachedBackdrop
       : null;
   const factionBackdropFadingOut = animatingBack || backdropExiting;
   const indexBackdropTransitionClass =
