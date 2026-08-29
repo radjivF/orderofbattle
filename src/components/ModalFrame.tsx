@@ -79,9 +79,11 @@ export function ModalFrame({
     onCloseRef.current = onClose;
   }, [onClose]);
 
-  function sheetScrollEl() {
-    return panelRef.current?.querySelector<HTMLElement>(
-      ".modal-sheet-scroll, .overflow-y-auto",
+  function sheetScrollEl(): HTMLElement | null {
+    return (
+      panelRef.current?.querySelector<HTMLElement>(
+        ".modal-sheet-scroll, .overflow-y-auto",
+      ) ?? null
     );
   }
 
@@ -259,11 +261,13 @@ export function ModalFrame({
   }, []);
 
   useLayoutEffect(() => {
-    const panel = panelRef.current;
-    const scrollEl = sheetScrollEl();
-    if (!panel || !scrollEl || !isMobileSheet(variant)) {
+    const sheetPanel = panelRef.current;
+    const scrollContainer = sheetScrollEl();
+    if (!sheetPanel || !scrollContainer || !isMobileSheet(variant)) {
       return;
     }
+    const panel: HTMLDivElement = sheetPanel;
+    const scrollEl: HTMLElement = scrollContainer;
 
     function onTouchStart(event: TouchEvent) {
       if (!isTopModal(closeHandlerRef.current)) {
