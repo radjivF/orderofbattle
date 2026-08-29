@@ -168,9 +168,6 @@ export const SHEET_FOOTER_ACTIONS_CLASS =
 export const SHEET_SECONDARY_BUTTON_CLASS =
   "pressable inline-flex min-h-11 w-full cursor-pointer items-center justify-center rounded-xl bg-parchment-ink/8 px-4 text-[15px] font-semibold text-parchment-ink ring-1 ring-parchment-ink/15 transition hover:bg-parchment-ink/12";
 
-/** Tappable row in library options sheet. */
-export const SHEET_OPTION_ROW_CLASS =
-  "pressable flex min-h-12 w-full cursor-pointer items-center rounded-xl bg-parchment-ink/5 px-4 text-[15px] font-semibold text-parchment-ink ring-1 ring-parchment-ink/10 transition hover:bg-parchment-ink/8";
 
 export const CONFIRM_DESTRUCTIVE_BUTTON_CLASS =
   "pressable inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-illegal/12 px-4 text-[15px] font-semibold text-illegal ring-1 ring-illegal/25";

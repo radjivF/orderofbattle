@@ -13,7 +13,7 @@ test("Spearhead hides Magic and uses the box roster", async ({ page }) => {
   await page.getByLabel("Army").selectOption({ label: "Fusil-Platoon" });
   await createList(page);
 
-  await expect(page.getByText("Spearhead", { exact: true })).toBeVisible();
+  await expect(page.getByRole("banner").getByText("Spearhead", { exact: true })).toBeVisible();
   await expect(page.getByLabel("Regiment ability")).toBeVisible();
   await expect(page.getByText("Battle formation")).toHaveCount(0);
 
@@ -21,5 +21,7 @@ test("Spearhead hides Magic and uses the box roster", async ({ page }) => {
   await expect(page.getByRole("group", { name: "Play sections" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Units" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Phases" })).toBeVisible();
+  await page.getByRole("button", { name: "Phases" }).click();
+  await expect(page.getByRole("tablist", { name: "Battle phases" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Magic" })).toHaveCount(0);
 });

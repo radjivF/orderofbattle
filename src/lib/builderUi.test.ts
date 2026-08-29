@@ -167,7 +167,7 @@ describe("builder play tabs", () => {
     const builder = readFileSync(
       path.resolve(
         path.dirname(fileURLToPath(import.meta.url)),
-        "../components/BuilderScreen.tsx",
+        "../components/BuilderReady.tsx",
       ),
       "utf8",
     );
@@ -203,10 +203,17 @@ describe("builder play tabs", () => {
       ),
       "utf8",
     );
+    const cardSlots = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/RegimentCardSlots.tsx",
+      ),
+      "utf8",
+    );
     expect(card).toContain("onPickTrait={locked ? undefined : onPickTrait}");
     expect(card).toContain("allowUniqueHeroTrait");
     expect(card).toContain("cursor-default rounded-2xl");
-    expect(card).toContain(
+    expect(cardSlots).toContain(
       "(canReinforce && onToggleReinforce) || onDuplicate || onRemove",
     );
     expect(builder).toContain("hidePoints={spearhead}");
@@ -425,6 +432,18 @@ describe("empty library CTA", () => {
     expect(EMPTY_LIBRARY_PANEL_CLASS).toContain("mx-auto");
     expect(EMPTY_LIBRARY_PANEL_CLASS).toContain("text-center");
 
+    const emptyLibrary = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/LibraryEmptyState.tsx",
+      ),
+      "utf8",
+    );
+    expect(emptyLibrary).toContain("Make your first list");
+    expect(emptyLibrary).toContain("Import a list");
+    expect(emptyLibrary).toContain("EMPTY_LIBRARY_CTA_CLASS");
+    expect(emptyLibrary).toContain("EMPTY_LIBRARY_SECONDARY_CLASS");
+
     const screen = readFileSync(
       path.resolve(
         path.dirname(fileURLToPath(import.meta.url)),
@@ -432,13 +451,12 @@ describe("empty library CTA", () => {
       ),
       "utf8",
     );
-    expect(screen).toContain("Make your first list");
+    expect(screen).toContain("LibraryEmptyState");
     expect(screen).toContain("List options");
     expect(screen).toContain("LIBRARY_TITLE_CLASS");
     expect(LIBRARY_TITLE_CLASS).toContain("text-shadow");
     expect(screen).toContain("sortLibraryLists");
     expect(screen).toContain("Sort lists by");
-    expect(screen).toContain("Import a list");
     expect(screen).toContain("Paste a Warhammer App, New Recruit, or Order of Battle list");
     expect(screen).toContain("Export");
     expect(screen).not.toContain("Export all");
@@ -449,11 +467,15 @@ describe("empty library CTA", () => {
     expect(screen).toContain("libraryListExportSubtitle");
     expect(screen).toContain("text-parchment-ink");
     expect(screen).toContain("Choose one or more lists to export.");
-    expect(screen).toContain("EMPTY_LIBRARY_CTA_CLASS");
-    expect(screen).toContain("EMPTY_LIBRARY_SECONDARY_CLASS");
-    expect(screen).toContain("setPicking(true)");
     expect(screen).not.toContain("No armies yet. Make your first list.");
-    expect(screen).toContain("createCounts.heroes");
+    const createSheet = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/LibraryCreateSheet.tsx",
+      ),
+      "utf8",
+    );
+    expect(createSheet).toContain("createCounts.heroes");
     expect(screen).not.toContain("factionPickerCounts(faction)");
   });
 });
@@ -584,16 +606,16 @@ describe("iOS polish contracts", () => {
     expect(pointsCapInputClass("ink")).toContain("rounded-xl");
     expect(pointsCapInputClass("ink")).not.toContain("rounded-[10px]");
 
-    const library = readFileSync(
+    const libraryCard = readFileSync(
       path.resolve(
         path.dirname(fileURLToPath(import.meta.url)),
-        "../components/LibraryScreen.tsx",
+        "../components/LibraryListCard.tsx",
       ),
       "utf8",
     );
-    expect(library).toContain("absolute inset-0 z-[1]");
-    expect(library).toContain("LIBRARY_CARD_LIST_NAME_INPUT_CLASS");
-    expect(library).not.toContain('sr-only">Open list');
+    expect(libraryCard).toContain("absolute inset-0 z-[1]");
+    expect(libraryCard).toContain("LIBRARY_CARD_LIST_NAME_INPUT_CLASS");
+    expect(libraryCard).not.toContain('sr-only">Open list');
   });
 
   it("keeps datasheet open controls from stretching across the row", () => {
@@ -617,7 +639,7 @@ describe("iOS polish contracts", () => {
     const builder = readFileSync(
       path.resolve(
         path.dirname(fileURLToPath(import.meta.url)),
-        "../components/BuilderScreen.tsx",
+        "../components/BuilderReady.tsx",
       ),
       "utf8",
     );

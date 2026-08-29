@@ -56,14 +56,14 @@ test("library export picker supports text and json import", async ({ page }) => 
 
   await page.getByRole("button", { name: "List options" }).click();
   await page.getByLabel("List to import").fill(fs.readFileSync(jsonPath!, "utf8"));
-  await page.getByRole("button", { name: "Import" }).click();
+  await page.getByRole("button", { name: "Import" }).last().click();
   await expect(page.getByText(/Add .+ to My lists\?/)).toBeVisible();
   await page.getByRole("button", { name: "Add" }).click();
   await expect(page.locator("article")).toHaveCount(1);
 
   await page.getByRole("button", { name: "List options" }).click();
   await page.getByLabel("List to import").fill(fs.readFileSync(textPath!, "utf8"));
-  await page.getByRole("button", { name: "Import" }).click();
+  await page.getByRole("button", { name: "Import" }).last().click();
   await expect(
     page.getByText("Those lists are already in My lists. Nothing will be added."),
   ).toBeVisible();

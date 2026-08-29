@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import { TryLanding } from "@/components/TryLanding";
-import { faqPageNode } from "@/lib/jsonLd";
-import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, sitePath } from "@/lib/site";
+import { homeFaqJsonLd } from "@/lib/jsonLd";
+import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: {
@@ -21,12 +21,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          ...faqPageNode(sitePath("/")),
-        }}
-      />
+      <JsonLd data={homeFaqJsonLd()} />
       <TryLanding />
     </>
   );

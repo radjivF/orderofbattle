@@ -220,11 +220,12 @@ describe("listFlowWindowScrollY", () => {
 describe("list flow navigation wiring", () => {
   it("stores the list name when opening from the library", () => {
     const library = readSource("components/LibraryScreen.tsx");
-    expect(library).toContain("listOpenDisplayNameForHeader(list)");
-    expect(library).toContain("rememberOpenList(list)");
+    const libraryCard = readSource("components/LibraryListCard.tsx");
+    expect(libraryCard).toContain("listOpenDisplayNameForHeader(list)");
+    expect(libraryCard).toContain("rememberOpenList(list)");
     expect(library).toContain("rememberListCreate");
-    expect(library).not.toContain("rememberOpenList(list.factionId)");
-    expect(library).not.toContain("rememberListOpen(artId, faction?.name)");
+    expect(libraryCard).not.toContain("rememberOpenList(list.factionId)");
+    expect(libraryCard).not.toContain("rememberListOpen(artId, faction?.name)");
     expect(library).toContain("libraryCreatingSplashVisible");
   });
 

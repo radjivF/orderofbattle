@@ -49,3 +49,18 @@ test("matched play keeps points, formation, and Magic", async ({ page }) => {
   await page.waitForURL(/\/lists\/.+/);
   await expect(page.getByText("Battle formation")).toBeInViewport();
 });
+
+test("library rename persists after reload", async ({ page }) => {
+  await openDashboard(page);
+  await startNewList(page);
+  await pickFaction(page, "Stormcast Eternals");
+  await createList(page);
+
+  await page.goto("/dashboard");
+  const nameField = page.getByLabel("List name").first();
+  await nameField.fill("Persistent Name");
+  await nameField.blur();
+
+  await page.reload();
+  await expect(page.getByLabel("List name").first()).toHaveValue("Persistent Name");
+});

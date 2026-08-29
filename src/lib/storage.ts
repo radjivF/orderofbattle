@@ -1,10 +1,17 @@
 import type { ArmyList } from "@/engine/types";
-import { getFaction } from "@/engine/queries";
-import { getSpearhead } from "@/engine/spearhead";
-import { inferScourgeRealm } from "@/engine/scourgeRealm";
-import { pruneOrphanEnhancements } from "@/engine/validate";
 import { partitionPortableLists } from "@/engine/listPortable";
-import { createId } from "./id";
+import {
+  normalizeArmyList,
+  prepareImportedArmy,
+} from "@/engine/listFactories";
+
+export {
+  appendRegimentWithHero,
+  blankArmy,
+  blankSpearhead,
+  duplicateArmy,
+  prepareImportedArmy,
+} from "@/engine/listFactories";
 
 const DB_NAME = "orderofbattle";
 const STORE = "lists";
@@ -29,22 +36,7 @@ function isBrowser() {
 }
 
 function normalizeList(list: ArmyList): ArmyList {
-  const scourgeRealm = inferScourgeRealm(list);
-  return pruneOrphanEnhancements({
-    ...list,
-    regimentOfRenown: list.regimentOfRenown ?? null,
-    powerBinds: list.powerBinds ?? {},
-    monstrousTrait: list.monstrousTrait ?? null,
-    visionOfFate: list.visionOfFate ?? null,
-    specialEnhancements: list.specialEnhancements ?? [],
-    battleTacticCardIds: list.battleTacticCardIds ?? [],
-    battleTacticStage: list.battleTacticStage ?? {},
-    scourgeRealm,
-    lastOpenedAt: list.lastOpenedAt ?? list.updatedAt,
-    kind: list.kind === "spearhead" ? "spearhead" : "matched",
-    spearheadId: list.spearheadId ?? null,
-    regimentAbilityId: list.regimentAbilityId ?? null,
-  });
+  return normalizeArmyList(list);
 }
 
 function listRecency(list: ArmyList) {
@@ -186,7 +178,7 @@ export function getArmiesServerSnapshot(): ArmyList[] | undefined {
 
 export async function saveArmy(list: ArmyList): Promise<ArmyList> {
   const stored = {
-    ...pruneOrphanEnhancements(list),
+    ...normalizeArmyList(list),
     updatedAt: Date.now(),
   };
   const current = cache ?? (await readAll());
@@ -227,162 +219,6 @@ export async function deleteArmy(id: string): Promise<void> {
   await writeAllToIndexedDB(cache);
   markReady();
   emit();
-}
-
-export function blankArmy(
-  factionId = "stormcast-eternals",
-  name?: string,
-  pointsCap?: number,
-): ArmyList {
-  const faction = getFaction(factionId);
-  const now = Date.now();
-  return {
-    id: createId(),
-    name: name?.trim() || faction?.name || "New list",
-    factionId,
-    pointsCap: pointsCap ?? faction?.pointsCapDefault ?? 2000,
-    formationId: faction?.formations[0]?.id ?? null,
-    spellLoreId:
-      faction?.spellLores.length === 1 ? faction.spellLores[0].id : null,
-    prayerLoreId:
-      faction?.prayerLores.length === 1 ? faction.prayerLores[0].id : null,
-    manifestationLoreId: null,
-    artefact: null,
-    heroicTrait: null,
-    monstrousTrait: null,
-    visionOfFate: null,
-    specialEnhancements: [],
-    battleTacticCardIds: [],
-    battleTacticStage: {},
-    scourgeRealm: "aqshy",
-    generalRegimentId: null,
-    regiments: [],
-    auxiliaries: [],
-    regimentOfRenown: null,
-    powerBinds: {},
-    kind: "matched",
-    spearheadId: null,
-    regimentAbilityId: null,
-    createdAt: now,
-    updatedAt: now,
-    lastOpenedAt: now,
-  };
-}
-
-const MAX_REGIMENTS = 5;
-
-export function appendRegimentWithHero(
-  list: ArmyList,
-  unitId: string,
-  ids: { regimentId: string; heroSelectionId: string },
-): ArmyList | null {
-  if (list.regiments.length >= MAX_REGIMENTS) {
-    return null;
-  }
-  return {
-    ...list,
-    regiments: [
-      ...list.regiments,
-      {
-        id: ids.regimentId,
-        hero: {
-          id: ids.heroSelectionId,
-          unitId,
-          reinforced: false,
-        },
-        units: [],
-      },
-    ],
-    generalRegimentId: list.generalRegimentId ?? ids.regimentId,
-  };
-}
-
-export function blankSpearhead(
-  spearheadId: string,
-  name?: string,
-): ArmyList {
-  const box = getSpearhead(spearheadId);
-  const now = Date.now();
-  const regimentId = createId();
-  const generalEntry =
-    box?.roster.find((item) => item.general) ?? box?.roster[0] ?? null;
-  const hero = generalEntry
-    ? { id: createId(), unitId: generalEntry.unitId, reinforced: false }
-    : null;
-  const units = (box?.roster ?? []).flatMap((entry) => {
-    const copies = entry.general ? Math.max(0, entry.count - 1) : entry.count;
-    return Array.from({ length: copies }, () => ({
-      id: createId(),
-      unitId: entry.unitId,
-      reinforced: false,
-    }));
-  });
-  return {
-    id: createId(),
-    name: name?.trim() || box?.name || "New Spearhead",
-    factionId: box?.parentFactionId ?? "stormcast-eternals",
-    kind: "spearhead",
-    spearheadId,
-    regimentAbilityId: null,
-    pointsCap: 0,
-    formationId: null,
-    spellLoreId: null,
-    prayerLoreId: null,
-    manifestationLoreId: null,
-    artefact: null,
-    heroicTrait: null,
-    monstrousTrait: null,
-    visionOfFate: null,
-    specialEnhancements: [],
-    battleTacticCardIds: [],
-    battleTacticStage: {},
-    scourgeRealm: null,
-    generalRegimentId: regimentId,
-    regiments: [{ id: regimentId, hero, units }],
-    auxiliaries: [],
-    regimentOfRenown: null,
-    powerBinds: {},
-    createdAt: now,
-    updatedAt: now,
-    lastOpenedAt: now,
-  };
-}
-
-export function duplicateArmy(list: ArmyList): ArmyList {
-  const now = Date.now();
-  return {
-    ...structuredClone(list),
-    id: createId(),
-    name: `${list.name} copy`,
-    createdAt: now,
-    updatedAt: now,
-    lastOpenedAt: now,
-  };
-}
-
-/** Clone a list from an import file with a new id so it never overwrites a local list. */
-export function prepareImportedArmy(list: ArmyList): ArmyList {
-  const now = Date.now();
-  const cloned = structuredClone(list);
-  return normalizeList({
-    ...cloned,
-    id: createId(),
-    name: cloned.name.trim() || "Imported list",
-    pointsCap:
-      typeof cloned.pointsCap === "number" ? cloned.pointsCap : 2000,
-    formationId: cloned.formationId ?? null,
-    spellLoreId: cloned.spellLoreId ?? null,
-    prayerLoreId: cloned.prayerLoreId ?? null,
-    manifestationLoreId: cloned.manifestationLoreId ?? null,
-    artefact: cloned.artefact ?? null,
-    heroicTrait: cloned.heroicTrait ?? null,
-    generalRegimentId: cloned.generalRegimentId ?? null,
-    regiments: Array.isArray(cloned.regiments) ? cloned.regiments : [],
-    auxiliaries: Array.isArray(cloned.auxiliaries) ? cloned.auxiliaries : [],
-    createdAt: now,
-    updatedAt: now,
-    lastOpenedAt: now,
-  });
 }
 
 export async function importArmies(lists: ArmyList[]): Promise<ArmyList[]> {

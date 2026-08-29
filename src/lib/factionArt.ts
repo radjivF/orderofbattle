@@ -187,9 +187,6 @@ export function factionBackdropArtClass(factionId: string | null | undefined): s
   return "object-cover object-center";
 }
 
-export function hasFactionArt(factionId: string | null | undefined): boolean {
-  return factionArtSrc(factionId) !== null;
-}
 
 /** Dark gradient over faction backdrop art — same crop and weight for splash and builder. */
 export function factionArtScrimClass(): string {
