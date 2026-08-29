@@ -623,6 +623,7 @@ export function LibraryScreen() {
               onClick={closeLibrarySheet}
             />
           </div>
+          <div className="modal-sheet-scroll flex min-h-0 flex-1 flex-col overflow-y-auto">
           <div className="px-5 pb-4">
             <p className="pb-2 text-sm font-medium text-sheet-muted">
               Sort lists by
@@ -696,7 +697,7 @@ export function LibraryScreen() {
                 </div>
               ) : null}
               {lists && lists.length > 0 ? (
-                <ul className="modal-sheet-scroll flex max-h-[min(24rem,50vh)] flex-col gap-2 overflow-y-auto px-3 pb-4">
+                <ul className="flex flex-col gap-2 px-3 pb-4">
                   {lists.map((list) => {
                     const faction = getFaction(list.factionId);
                     const playCatalogue = catalogueForList(list);
@@ -806,6 +807,7 @@ export function LibraryScreen() {
               </div>
             </>
           )}
+          </div>
         </ModalFrame>
       ) : null}
 
