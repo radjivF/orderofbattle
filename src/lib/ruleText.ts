@@ -6,6 +6,9 @@ export type RuleTextBlock =
 const SEGMENT_SPLIT =
   /\s*[•\u2022]\s*|(?<=\.)\s+(?=(?:In addition|Additionally|Also),)/i;
 
+const CONNECTOR_SPLIT =
+  /(?<=\.)\s+(?=(?:In addition|Additionally|Also),)/i;
+
 function splitSegments(text: string): string[] {
   return text
     .trim()
@@ -15,7 +18,13 @@ function splitSegments(text: string): string[] {
 }
 
 function stripConnectorPrefix(text: string): string {
-  return text.replace(/^(?:In addition|Additionally|Also),\s+/i, "").trim();
+  const stripped = text
+    .replace(/^(?:In addition|Additionally|Also),\s+/i, "")
+    .trim();
+  if (stripped !== text.trim() && stripped) {
+    return stripped.charAt(0).toUpperCase() + stripped.slice(1);
+  }
+  return stripped;
 }
 
 function flattenBulletItems(segments: string[]): string[] {
@@ -23,8 +32,11 @@ function flattenBulletItems(segments: string[]): string[] {
   for (const segment of segments) {
     const nested = splitSegments(segment);
     if (nested.length > 1) {
-      if (nested[0]) {
+      if (nested[0] && !isIntroLead(nested[0])) {
         items.push(stripConnectorPrefix(nested[0]));
+      } else if (nested[0] && isIntroLead(nested[0])) {
+        items.push(...flattenBulletItems(nested.slice(1)));
+        continue;
       }
       items.push(...flattenBulletItems(nested.slice(1)));
       continue;
@@ -32,6 +44,10 @@ function flattenBulletItems(segments: string[]): string[] {
     items.push(stripConnectorPrefix(segment));
   }
   return items.filter(Boolean);
+}
+
+function isIntroLead(text: string): boolean {
+  return /:\s*$/.test(text.trim());
 }
 
 /** Split warscroll rule copy into lead prose and bullet items. */
@@ -50,16 +66,20 @@ export function parseRuleText(text: string): RuleTextBlock[] {
     return items.length > 0 ? [{ kind: "bullets", items }] : [];
   }
 
+  if (CONNECTOR_SPLIT.test(trimmed)) {
+    const items = flattenBulletItems(segments);
+    return items.length > 0 ? [{ kind: "bullets", items }] : [];
+  }
+
   const [lead, ...rest] = segments;
-  const blocks: RuleTextBlock[] = [];
-  if (lead) {
-    blocks.push({ kind: "prose", text: lead });
+  if (lead && isIntroLead(lead) && rest.length > 0) {
+    const items = flattenBulletItems(rest);
+    return [
+      { kind: "prose", text: lead },
+      ...(items.length > 0 ? [{ kind: "bullets", items }] : []),
+    ];
   }
 
-  const items = flattenBulletItems(rest);
-  if (items.length > 0) {
-    blocks.push({ kind: "bullets", items });
-  }
-
-  return blocks.length > 0 ? blocks : [{ kind: "prose", text: trimmed }];
+  const items = flattenBulletItems(segments);
+  return items.length > 0 ? [{ kind: "bullets", items }] : [];
 }
