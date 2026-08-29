@@ -53,7 +53,7 @@ export default function FactionsPage() {
           table. Catalogues come from community BSData, not Games Workshop.
         </p>
         <ul className="grid list-none grid-cols-1 gap-3 pl-0 sm:grid-cols-2">
-          {factions.map((faction) => {
+          {factions.map((faction, index) => {
             const stats = factionSeoStats(faction);
             const art = factionArtSrc(faction.id);
             return (
@@ -69,6 +69,8 @@ export default function FactionsPage() {
                       width={64}
                       height={64}
                       unoptimized
+                      priority={index === 0}
+                      loading={index === 0 ? "eager" : "lazy"}
                       className="h-14 w-14 rounded-lg object-cover"
                     />
                   ) : (

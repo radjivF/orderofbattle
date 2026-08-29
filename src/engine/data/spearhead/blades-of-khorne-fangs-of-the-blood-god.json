@@ -179,14 +179,26 @@
         "save": "5+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Savage Maws and Goreslick Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti-HERO, (+1, Rend)"
+        }
+      ],
       "abilities": [
         {
           "name": "STALK THE PREY",
           "kind": "Activated",
           "timing": "Any Hero Phase",
           "declare": "",
-          "effect": "This unit can move D6\". It cannot end that move in combat unless it was in combat at the start of that move and, if there is an enemy quarry on the battlefield, it must end that move closer to the quarry. KEYWORDS HERO, BEAST, WARD (6+)",
+          "effect": "This unit can move D6\". It cannot end that move in combat unless it was in combat at the start of that move and, if there is an enemy quarry on the battlefield, it must end that move closer to the quarry.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -215,14 +227,26 @@
         "save": "6+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Blood-dark Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "UNFLAGGING HUNTERS",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "Add 1 to charge rolls for this unit. KEYWORDS BEAST, WARD (6+), REINFORCEMENTS",
+          "effect": "Add 1 to charge rolls for this unit.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -250,14 +274,26 @@
         "save": "5+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Weapons of the Hunt",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit, (2, Hits)"
+        }
+      ],
       "abilities": [
         {
           "name": "PACK HUNTERS",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "Pick an enemy unit in combat with both this unit and a friendly Flesh Hounds unit to be the target.",
-          "effect": "For the rest of the turn, this unit’s combat attacks that target that enemy unit score critical hits on unmodified hit rolls of 5+. KEYWORDS INFANTRY, REINFORCEMENTS ezstandalone.cmd.push(function() {ezstandalone.showAds(126)});",
+          "effect": "For the rest of the turn, this unit’s combat attacks that target that enemy unit score critical hits on unmodified hit rolls of 5+.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",

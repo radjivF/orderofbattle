@@ -175,14 +175,37 @@
         "save": "5+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Boss Loppa",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Snarlfang’s Slavering Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "GREAT SNARLIN' HOWL",
           "kind": "Activated",
           "timing": "Once Per Turn (Army), Your Hero Phase",
           "declare": "Pick this unit and another friendly unit within this unit’s combat range to be the targets.",
-          "effect": "Roll a dice. On a 3+, add 1 to the Rend characteristic and the Attacks characteristic of the targets’ Companion melee weapons for the rest of the turn. KEYWORDS HERO, CAVALRY",
+          "effect": "Roll a dice. On a 3+, add 1 to the Rend characteristic and the Attacks characteristic of the targets’ Companion melee weapons for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -209,14 +232,48 @@
         "save": "5+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Grot Bow",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Stabbin’ Stikka",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Snarlfang’s Slavering Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "I GOT DIS, BOSS",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "While a friendly Snarlboss is within this unit’s combat range, both this unit and that Snarlboss have WARD (5+). KEYWORDS CAVALRY ezstandalone.cmd.push(function() {ezstandalone.showAds(127)});",
+          "effect": "While a friendly Snarlboss is within this unit’s combat range, both this unit and that Snarlboss have WARD (5+).",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -243,14 +300,37 @@
         "save": "4+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Pointy Skewas",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Charge, (+1, Damage)"
+        },
+        {
+          "name": "Giant Snarlfang’s Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "FRAZZLEBURNED SCRAP",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "This unit has STRIKE-FIRST if it charged in the same turn. KEYWORDS CAVALRY",
+          "effect": "This unit has STRIKE-FIRST if it charged in the same turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -277,14 +357,48 @@
         "save": "4+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Grot Bow",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Wheela Slicers and Stabbin’ Stikka",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Snarlfangs’ Slavering Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "CAREENING DESTRUCTION",
           "kind": "Activated",
           "timing": "Your Movement Phase",
           "declare": "",
-          "effect": "This unit can move a distance up to its Move characteristic. It can pass through other models and the combat ranges of enemy units, but it cannot end that move in combat. Then, pick up to 1 enemy INFANTRY unit that this unit passed across during that move to be the target. Inflict D3 mortal damage on the target. Designer’s Note: This unit can use this ability even if it is in combat. KEYWORDSCORE, MOVE KEYWORDS WAR MACHINE",
+          "effect": "This unit can move a distance up to its Move characteristic. It can pass through other models and the combat ranges of enemy units, but it cannot end that move in combat. Then, pick up to 1 enemy INFANTRY unit that this unit passed across during that move to be the target. Inflict D3 mortal damage on the target. Designer’s Note: This unit can use this ability even if it is in combat.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",

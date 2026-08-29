@@ -192,14 +192,26 @@
         "save": "5+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Shacklegheist Chains",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (Auto-wound)"
+        }
+      ],
       "abilities": [
         {
           "name": "CAPTURED SOUL ENERGY",
           "kind": "Activated",
           "timing": "Your Hero Phase",
           "declare": "Pick a friendly unit wholly within 12\" of this unit to be the target.",
-          "effect": "Roll a dice. On a 3+, add 1 to wound rolls for the target’s combat attacks for the rest of the turn. KEYWORDS HERO, INFANTRY, FLY, WARD (5+)",
+          "effect": "Roll a dice. On a 3+, add 1 to wound rolls for the target’s combat attacks for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -228,14 +240,37 @@
         "save": "6+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Ghastflails",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "1",
+          "ability": "Crit, (Auto-wound)"
+        },
+        {
+          "name": "Ghastflails",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "1",
+          "ability": "Crit, (Auto-wound)"
+        }
+      ],
       "abilities": [
         {
           "name": "ANOTHER LINK IN THE CHAIN",
           "kind": "Activated",
           "timing": "Your Combat Phase",
           "declare": "",
-          "effect": "Roll a dice. Add 1 to the roll if this unit is wholly within 12\" of any friendly Spirit Torments. On a 3+, for the rest of the turn, add 1 to hit rolls for combat attacks made by friendly units while they are wholly within 12\" of this unit. KEYWORDS INFANTRY, FLY, WARD (5+)",
+          "effect": "Roll a dice. Add 1 to the roll if this unit is wholly within 12\" of any friendly Spirit Torments. On a 3+, for the rest of the turn, add 1 to hit rolls for combat attacks made by friendly units while they are wholly within 12\" of this unit.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -264,14 +299,26 @@
         "save": "6+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Tomb Greatblade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit, (Auto-wound)"
+        }
+      ],
       "abilities": [
         {
           "name": "THRASHING DESPERATION",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "While this unit contests an objective you control, enemy units cannot end a charge move within ½\" of this unit unless the unmodified charge roll was 5 or more. KEYWORDS INFANTRY, FLY, WARD (5+) ezstandalone.cmd.push(function() {ezstandalone.showAds(126)});",
+          "effect": "While this unit contests an objective you control, enemy units cannot end a charge move within ½\" of this unit unless the unmodified charge roll was 5 or more.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -300,14 +347,26 @@
         "save": "6+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Scythed Limbs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit, (Auto-wound)"
+        }
+      ],
       "abilities": [
         {
           "name": "HARROWING SHRIEKS",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "Enemy units cannot be healed or have slain models returned to them while they are in combat with this unit. KEYWORDS INFANTRY, FLY, WARD (5+)",
+          "effect": "Enemy units cannot be healed or have slain models returned to them while they are in combat with this unit.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -336,14 +395,37 @@
         "save": "6+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Dreadblade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (Auto-wound)"
+        },
+        {
+          "name": "Ethereal Steed’s Ghostly Hooves and Teeth",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion, Crit, (Auto-wound)"
+        }
+      ],
       "abilities": [
         {
           "name": "PHANTASMAL DISCORPORATION",
           "kind": "Activated",
           "timing": "Once Per Battle, Your Movement Phase",
           "declare": "",
-          "effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 6\" from all enemy units. KEYWORDS CAVALRY, FLY, WARD (5+)",
+          "effect": "Remove this unit from the battlefield and set it up again on the battlefield more than 6\" from all enemy units.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",

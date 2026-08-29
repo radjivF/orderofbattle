@@ -171,14 +171,48 @@
         "save": "3+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Dragoon Pistol",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Master-forged Longsword",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Warhorse’s Steel-shod Hooves",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "DECISIVE COMMANDER",
           "kind": "Activated",
           "timing": "Your Hero Phase",
           "declare": "Pick a friendly Freeguild Steelhelms unit wholly within 12\" of this unit to be the target and roll a dice.",
-          "effect": "On a 2+, pick 1: On Your Feet!: If the target unit is not in combat, you can return D3 slain models to it. Yield No Quarter!: Add 3 to the target unit’s control score until the start of your next turn. KEYWORDS HERO, CAVALRY",
+          "effect": "On a 2+, pick 1: On Your Feet!: If the target unit is not in combat, you can return D3 slain models to it. Yield No Quarter!: Add 3 to the target unit’s control score until the start of your next turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -206,14 +240,26 @@
         "save": "4+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Freeguild Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "CONSECRATE THE LAND",
           "kind": "Activated",
           "timing": "Your Movement Phase",
           "declare": "If this unit is contesting an objective you control that is not contested by any enemy models, roll a dice.",
-          "effect": "On a 3+, that objective is considered by you to be consecrated. Friendly units have WARD (6+) while they are contesting a consecrated objective. If your opponent gains control of a consecrated objective, it is no longer consecrated. KEYWORDS INFANTRY, REINFORCEMENTS ezstandalone.cmd.push(function() {ezstandalone.showAds(129)});",
+          "effect": "On a 3+, that objective is considered by you to be consecrated. Friendly units have WARD (6+) while they are contesting a consecrated objective. If your opponent gains control of a consecrated objective, it is no longer consecrated.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -241,14 +287,37 @@
         "save": "3+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Cavalier Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge, (+1, Damage)"
+        },
+        {
+          "name": "Warhorse’s Steel-shod Hooves",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "DEVASTATING CHARGE",
           "kind": "Activated",
           "timing": "Any Charge Phase",
           "declare": "If this unit charged this phase, pick an enemy unit in combat with it to be the target and roll a dice.",
-          "effect": "On a 2+, inflict D3 mortal damage on the target. KEYWORDS CAVALRY, REINFORCEMENTS",
+          "effect": "On a 2+, inflict D3 mortal damage on the target.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -276,14 +345,48 @@
         "save": "4+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Great Cannon: Cannonball",
+          "kind": "ranged",
+          "range": "24\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "D3+2",
+          "ability": ""
+        },
+        {
+          "name": "Great Cannon: Grapeshot",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Crew’s Tools and Sidearms",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "SHOT AND SHELL",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "Each time this unit uses a SHOOT ability, choose either the Cannonball or Grapeshot weapon characteristics for all the attacks it makes with its Great Cannon. The Cannonball can only be chosen if this unit has not used a MOVE ability that turn. KEYWORDS WAR MACHINE, REINFORCEMENTS",
+          "effect": "Each time this unit uses a SHOOT ability, choose either the Cannonball or Grapeshot weapon characteristics for all the attacks it makes with its Great Cannon. The Cannonball can only be chosen if this unit has not used a MOVE ability that turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",

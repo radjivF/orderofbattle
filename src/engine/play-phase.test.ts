@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { createId } from "@/lib/id";
-import { blankArmy } from "@/lib/storage";
+import { blankArmy, blankSpearhead } from "@/lib/storage";
 import {
   buildPhaseBoards,
   regimentPlayGroups,
@@ -11,6 +11,7 @@ import {
   getFaction,
   moveStatLine,
 } from "./queries";
+import { getSpearhead, spearheadAsFaction } from "./spearhead";
 import type { ManifestationModel } from "./types";
 import { summarize } from "./validate";
 
@@ -83,6 +84,71 @@ describe("regimentPlayGroups", () => {
     const rosterIds = rosterSelectionIds(list);
     expect(rosterIds.has(heroSelectionId)).toBe(true);
     expect(rosterIds.has(unitSelectionId)).toBe(true);
+  });
+});
+
+describe("spearhead army phase", () => {
+  it("puts battle traits, regiment ability, and passives on the Army board", () => {
+    const box = getSpearhead("stormcast-eternals-vigilant-brotherhood");
+    expect(box).toBeTruthy();
+    if (!box) return;
+
+    const faction = spearheadAsFaction(box);
+    const ability = box.regimentAbilities[0];
+    const enhancement = box.enhancements[0];
+    expect(ability && enhancement).toBeTruthy();
+    if (!ability || !enhancement) return;
+
+    const list = blankSpearhead(box.id);
+    const generalId = list.regiments[0]?.hero?.id;
+    expect(generalId).toBeTruthy();
+    if (!generalId) return;
+
+    const boards = buildPhaseBoards(
+      {
+        ...list,
+        regimentAbilityId: ability.id,
+        formationId: null,
+        heroicTrait: { heroSelectionId: generalId, optionId: enhancement.id },
+      },
+      faction,
+    );
+    const army = boards.find((board) => board.phase.id === "passive");
+    expect(army).toBeTruthy();
+    if (!army) return;
+
+    const names = army.abilities.map((row) => row.ability.name);
+    expect(names).toContain("SHIELD OF AZYR");
+    expect(names).toContain("STORM CHARGE");
+    expect(names).toContain(ability.name);
+    expect(names).toContain(enhancement.abilities[0]?.name);
+
+    expect(
+      army.abilities.some((row) =>
+        row.unitName.startsWith("Regiment ability ·"),
+      ),
+    ).toBe(true);
+    expect(
+      army.abilities.some((row) => row.unitName.includes("Enhancement")),
+    ).toBe(true);
+  });
+
+  it("keeps core ward and move rules off the phase boards", () => {
+    const box = getSpearhead("kruleboyz-swampskulka-gang");
+    expect(box).toBeTruthy();
+    if (!box) return;
+
+    const boards = buildPhaseBoards(
+      blankSpearhead(box.id),
+      spearheadAsFaction(box),
+    );
+    const names = boards.flatMap((board) =>
+      board.abilities.map((row) => row.ability.name),
+    );
+    expect(names).not.toContain("WARD SAVE");
+    expect(names).not.toContain("NORMAL MOVE");
+    expect(names).not.toContain("CHARGE");
+    expect(names).not.toContain("FIGHT");
   });
 });
 

@@ -190,14 +190,26 @@
         "save": "4+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Arch-Revenant’s Glaive",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "HEARTWOOD HUNTING HORN",
           "kind": "Activated",
           "timing": "Your Hero Phase",
           "declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target.",
-          "effect": "Until the start of your next turn, when determining which effects of the ‘Song of the Hunt’ ability apply to the target, you count as having 1 additional chord. KEYWORDS HERO, INFANTRY, FLY",
+          "effect": "Until the start of your next turn, when determining which effects of the ‘Song of the Hunt’ ability apply to the target, you count as having 1 additional chord.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -225,14 +237,37 @@
         "save": "5+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Gossamid Bow",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Cruel Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "ZEPHYRSPITES",
           "kind": "Activated",
           "timing": "Reaction: You declared a SHOOT ability for this unit",
           "declare": "",
-          "effect": "After that SHOOT ability has been resolved, this unit can move up to D6\". It cannot move into combat during any part of that move. KEYWORDSMOVE KEYWORDS INFANTRY, FLY",
+          "effect": "After that SHOOT ability has been resolved, this unit can move up to D6\". It cannot move into combat during any part of that move.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -260,14 +295,37 @@
         "save": "4+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Spiterider Lance",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge, (+1, Damage)"
+        },
+        {
+          "name": "Dragonspite's Mandibles",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "SPITERIDER CHARGE",
           "kind": "Activated",
           "timing": "Any Charge Phase",
           "declare": "If this unit charged this phase, pick a visible enemy unit within 1\" of it to be the target.",
-          "effect": "Roll a D3. Add 1 to the roll if the target is the enemy quarry. On a 2+, inflict an amount of mortal damage on the target equal to the roll. KEYWORDS CAVALRY, FLY",
+          "effect": "Roll a D3. Add 1 to the roll if the target is the enemy quarry. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -295,14 +353,37 @@
         "save": "4+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Seeker’s Sickle",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit, (Mortal)"
+        },
+        {
+          "name": "Dragonspite's Mandibles",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "DEAFENING DRONE",
           "kind": "Activated",
           "timing": "Any Combat Phase",
           "declare": "If this unit did not charge this turn, pick an enemy unit in combat with it to be the target.",
-          "effect": "Roll a dice. If the roll exceeds the target’s Control characteristic, subtract 1 from the Attacks characteristic of the target’s melee weapons for the rest of the turn. KEYWORDS CAVALRY, FLY ezstandalone.cmd.push(function() {ezstandalone.showAds(128)});",
+          "effect": "Roll a dice. If the roll exceeds the target’s Control characteristic, subtract 1 from the Attacks characteristic of the target’s melee weapons for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",

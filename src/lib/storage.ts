@@ -268,6 +268,34 @@ export function blankArmy(
   };
 }
 
+const MAX_REGIMENTS = 5;
+
+export function appendRegimentWithHero(
+  list: ArmyList,
+  unitId: string,
+  ids: { regimentId: string; heroSelectionId: string },
+): ArmyList | null {
+  if (list.regiments.length >= MAX_REGIMENTS) {
+    return null;
+  }
+  return {
+    ...list,
+    regiments: [
+      ...list.regiments,
+      {
+        id: ids.regimentId,
+        hero: {
+          id: ids.heroSelectionId,
+          unitId,
+          reinforced: false,
+        },
+        units: [],
+      },
+    ],
+    generalRegimentId: list.generalRegimentId ?? ids.regimentId,
+  };
+}
+
 export function blankSpearhead(
   spearheadId: string,
   name?: string,

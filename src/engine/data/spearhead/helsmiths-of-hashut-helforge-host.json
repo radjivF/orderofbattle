@@ -171,14 +171,26 @@
         "save": "3+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Daemonflame Glaive",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (Mortal)"
+        }
+      ],
       "abilities": [
         {
           "name": "BLACK-HEARTED CONQUEROR",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "While this unit has any daemonic power points, friendly units with 0 daemonic power points count as having 1 daemonic power point while they are wholly within 6\" of and visible to this unit. For each daemonic power point this unit has, add 3\" to the range of this ability. KEYWORDS HERO, INFANTRY",
+          "effect": "While this unit has any daemonic power points, friendly units with 0 daemonic power points count as having 1 daemonic power point while they are wholly within 6\" of and visible to this unit. For each daemonic power point this unit has, add 3\" to the range of this ability.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -206,14 +218,37 @@
         "save": "2+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Immolation Cannons",
+          "kind": "ranged",
+          "range": "8\"",
+          "attacks": "5",
+          "hit": "2+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Horns and Pummelling Strikes",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "DAEMONIC STRENGTH",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "For each daemonic power point this unit has: Add 1\" to its Move characteristic. Add 1 to the Attacks characteristic of its weapons. KEYWORDS WAR MACHINE, REINFORCEMENTS",
+          "effect": "For each daemonic power point this unit has: Add 1\" to its Move characteristic. Add 1 to the Attacks characteristic of its weapons.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -240,7 +275,30 @@
         "save": "3+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Torrent of Ruinous Energy",
+          "kind": "ranged",
+          "range": "30\"",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Anti-INFANTRY, (+1, Rend), Anti-CAVALRY, (+1, Rend)"
+        },
+        {
+          "name": "Artillerist Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "CALCULATED TRAJECTORY",
@@ -258,238 +316,7 @@
           "kind": "Activated",
           "timing": "Once Per Turn (Army), Your Shooting Phase",
           "declare": "If this unit used a SHOOT ability this turn and all of its attacks targeted the same enemy unit, that enemy unit is the target. Then, you can pick a number of enemy units within 6\" of the target equal to the number of daemonic power points this unit has to be additional targets.",
-          "effect": "Roll a dice for each target. On a 3+, subtract 3 from the target’s control score for the rest of the turn. KEYWORDS WAR MACHINE The non-HOBGROT HELSMITHS OF HASHUT keyword is used in the following Helsmiths of Hashut warscrolls: • Anointed Sentinels • Ashen Elder • Bull Centaurs • Daemonsmith • Daemonsmith on Infernal Taurus • Deathshrieker Rocket Battery • Dominator Engine with Bane Maces • Dominator Engine with Immolation Cannons • Infernal Cohort with Hashutite Blades • Infernal Cohort with Hashutite Spears • Infernal Razers with Blunderbusses • Infernal Razers with Flamehurlers • Tormentor Bombard • Urak Taar, the First Daemonsmith • War Despot • Scourge of Aqshy Anointed Sentinels • Scourge of Aqshy Daemonsmith on Infernal Taurus • Scourge of Ghyran Infernal Cohort with Hashutite Blades • Scourge of Ghyran War Despot • The Blood of the Bull",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "HARNESS DAEMONIC POWER",
-          "kind": "Activated",
-          "timing": "Once Per Turn (Army), Start of Your Turn",
-          "declare": "",
-          "effect": "You must use this ability at the start of each of your turns. Remove all daemonic power points from each friendly unit. Then, gain 1 daemonic power point for each friendly desolation token on the battlefield. Then, allocate your daemonic power points to friendly non-HOBGROT HELSMITHS OF HASHUT units. Each unit can have a maximum of 3 daemonic power points. Then, all unallocated daemonic power points are lost. Designer’s Note: Non-HOBGROT units have abilities that become more powerful depending on how many daemonic power points they have. We recommend using coloured dice to track the number of points each unit has. 3.1 Regiments Armies are made up of one or more regiments, each of which is led by a Hero. You must have at least 1 regiment in your army, and you can include a maximum of 5 regiments. To add a regiment, pick 1 HERO from your faction, then pick up to 3 non-HERO units to accompany them. Each HERO’s battle profile lists which units can be added to their regiment, and each non-HERO unit’s battle profile lists any relevant keywords it has. The battle profiles of some HEROES may say that they can be added to the regiment of another HERO in place of a non-HERO unit in that regiment. Those HEROES can join an eligible regiment as a GRAND FORGEHOST WIZARD. Monster Hero • Urak Taar, the First Daemonsmith Infantry Hero • Daemonsmith 6.0 Visibility A target model is visible to another model (which we’ll call the ‘observing model’) if you can draw a straight line through the air (whether horizontal, diagonal or vertical) from any point on the observing model to any point on the target model that does not intersect any objects except for other models in the observing model’s unit. A target unit is visible to an observing unit if at least 1 model in the target unit is visible to at least 1 model in the observing unit. A model is always considered to be visible to itself. If a rule or ability requires a target to be both within a given range of and visible to the unit using that ability, or to a model in that unit, both conditions must be met by the same model in the target. You could not, for instance, target a unit where one model is within range but not visible and another model is not in range but is visible. If any part of another model can be seen by an observing model, both the target model and its unit are visible to that observing model. In some cases, it might not be immediately clear whether a model is visible. If so, stoop down to get a look from behind the observing model. If any part of the other model is visible, even if it is just the tip of a spear, then that model is visible for rules purposes. 18.1 Ward Saves Units with the WARD keyword have the ‘Ward Save’ passive ability. The number after the WARD keyword indicates the ward value for the ward save. If a unit had WARD (5+), for example, its ward value would be 5. If a unit has more than one ward save, only the ward save with the lowest value applies to it; the other has no effect.",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "WARD SAVE",
-          "kind": "Passive",
-          "timing": "Passive",
-          "declare": "",
-          "effect": "In step 1 of the damage sequence (see 18.0), make a ward roll of D6 for each damage point in this unit’s damage pool. If the roll equals or exceeds this unit’s ward value, remove that damage point from the damage pool. 2.0 Spells The declare step of each spell will tell you to make a casting roll of 2D6. If the roll does not equal or exceed the spell’s casting value (at the top-right corner of the spell), the spell fails and its effect is not resolved. If the unmodified casting roll includes 2 or more rolls of 1, the spell is miscast: the spell fails, its effect is not resolved, D3 mortal damage is inflicted on the WIZARD that used it, and that WIZARD cannot use any more spells in that phase. Enemy reactions can only be used if the casting roll equals or exceeds the spell’s casting value. So long as the spell is not unbound (see 4.0), then it is successfully cast: resolve its effect. EXAMPLE SPELL",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "MYSTIC SHIELD",
-          "kind": "Activated",
-          "timing": "Your Hero Phase",
-          "declare": "Pick a visible friendly unit wholly within 12\" of this WIZARD to be the target. Then, make a casting roll of 2D6.",
-          "effect": "The target has WARD (6+) this turn. KEYWORDSSPELL The HELSMITHS OF HASHUT keyword is used in the following Helsmiths of Hashut warscrolls: • Anointed Sentinels • Ashen Elder • Bull Centaurs • Daemonsmith • Daemonsmith on Infernal Taurus • Deathshrieker Rocket Battery • Dominator Engine with Bane Maces • Dominator Engine with Immolation Cannons • Hobgrotz Vandalz • Infernal Cohort with Hashutite Blades • Infernal Cohort with Hashutite Spears • Infernal Razers with Blunderbusses • Infernal Razers with Flamehurlers • Tormentor Bombard • Urak Taar, the First Daemonsmith • War Despot • Scourge of Aqshy Anointed Sentinels • Scourge of Aqshy Daemonsmith on Infernal Taurus • Scourge of Ghyran Infernal Cohort with Hashutite Blades • Scourge of Ghyran War Despot • The Blood of the Bull",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "REINFORCE DAEMONSTEEL",
-          "kind": "Activated",
-          "timing": "Your Hero Phase",
-          "declare": "Pick a friendly GRAND FORGEHOST WIZARD to cast this spell, then make a casting roll of 2D6.",
-          "effect": "Until the start of your next turn, ignore the first damage point allocated to each friendly HELSMITHS OF HASHUT unit in each phase while they are wholly within 12\" of the caster. KEYWORDSSPELL, UNLIMITED The GRAND FORGEHOST keywords are used in the following Helsmiths of Hashut warscrolls: Monster Hero • Urak Taar, the First Daemonsmith War Machine • Deathshrieker Rocket Battery • Tormentor Bombard • Dominator Engine with Bane Maces • Dominator Engine with Immolation Cannons Infantry • Infernal Cohort with Hashutite Spears • Infernal Razers with Flamehurlers • Infernal Razers with Blunderbusses • Infernal Cohort with Hashutite Blades • The Blood of the Bull • Scourge of Ghyran Infernal Cohort with Hashutite Blades Infantry Hero • Daemonsmith • War Despot • Ashen Elder • Helsmiths of Hashut Hero • Scourge of Ghyran War Despot 32.0 Objectives Many battleplans award victory points for controlling objectives, which are represented by objective markers. Unless otherwise specified, objective markers are round and 40mm wide. Models can move over and end their moves on objective markers. If an objective marker is on the border between territories, it is within all those territories but wholly within none of them. Objective markers don’t block visibility. 32.1 Contesting Objectives Unless otherwise specified, if an objective is within a model’s combat range, that model is contesting that objective. If any models in a unit are contesting an objective, that unit is contesting that objective. Each unit can only count as contesting a single objective for the purposes of determining objective control (see 32.2). Before determining objective control, for each of their units contesting two or more objectives, the active player must pick one of those objectives for it to contest. Then, their opponent does the same. Designer’s Note: For purposes other than determining objective control, a unit can contest more than one objective. 7.0 Combat Range Each model has a combat range that extends 3\" horizontally from its base and any distance vertically from that circle to form a cylinder. The combat range of a unit extends 3\" horizontally and any distance vertically from every model in that unit. Units from opposing armies that are within each other’s combat range and that are visible to each other are in combat with each other. When a unit that is not in combat enters the combat range of a visible enemy unit, it moves into combat. A model is considered to be in combat with an enemy unit if that unit is within the model’s combat range and visible to it’ A unit’s combat range extends 3\" out from every model in that unit. If any enemy models are within a unit’s combat range and visible to it, that unit is in combat. The INFANTRY keyword is used in the following Helsmiths of Hashut warscrolls: • Ashen Elder • Daemonsmith • Hobgrotz Vandalz • Infernal Cohort with Hashutite Blades • Infernal Cohort with Hashutite Spears • Infernal Razers with Blunderbusses • Infernal Razers with Flamehurlers • War Despot • Scourge of Ghyran Infernal Cohort with Hashutite Blades • Scourge of Ghyran War Despot • The Blood of the Bull 21.0 Healing Some abilities allow you to heal a unit. To heal a unit, remove a number of damage points from the unit equal to the number in brackets after ‘Heal’, e.g. Heal (2).",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "RALLY",
-          "kind": "Activated",
-          "timing": "Any Hero Phase",
-          "declare": "Pick a friendly unit that is not in combat to use this ability.",
-          "effect": "Make 6 rally rolls of D6. For each 4+, you receive 1 rally point. Rally points can be spent in the following ways: For each rally point spent, Heal (1) that unit. You can spend a number of rally points equal to the Health characteristic of that unit to return a slain model to that unit. You can spend the rally points in any combination of the above. Unspent rally points are then lost. The HELSMITHS OF HASHUT and CAVALRY keywords are used in the following Helsmiths of Hashut warscrolls: • Anointed Sentinels • Bull Centaurs • Scourge of Aqshy Anointed Sentinels The MONSTER keyword is used in the following Helsmiths of Hashut warscrolls: • Daemonsmith on Infernal Taurus • Urak Taar, the First Daemonsmith • Scourge of Aqshy Daemonsmith on Infernal Taurus The WAR MACHINE keyword is used in the following Helsmiths of Hashut warscrolls: • Daemonsmith on Infernal Taurus • Deathshrieker Rocket Battery • Dominator Engine with Bane Maces • Dominator Engine with Immolation Cannons • Tormentor Bombard • Urak Taar, the First Daemonsmith • Scourge of Aqshy Daemonsmith on Infernal Taurus Unbind",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "UNBIND",
-          "kind": "Activated",
-          "timing": "Reaction: Opponent declared a SPELL ability",
-          "declare": "Used By: A friendly WIZARD within 30\" of the enemy WIZARD casting the spell.",
-          "effect": "Make an unbinding roll of 2D6. If the roll exceeds the casting roll tor the spell, then the spell is unbound and its effect is not resolved. This reaction cannot be used more than once per casting roll. KEYWORDSUNBIND 1.0 Wizards and Priests WIZARDS are special units that can cast spells, and PRIESTS are special units that can chant prayers. Spells and prayers are powerful abilities that can have a dramatic impact on the battle. Banish Manifestation",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "BANISH MANIFESTATION",
-          "kind": "Activated",
-          "timing": "Your Hero Phase",
-          "declare": "Pick a friendly WIZARD or PRIEST to use this ability, pick a MANIFESTATION within 30\" of them that was not summoned this turn to be the target, then make a banishment roll of 2D6. Add 1 to the banishment roll for each additional enemy MANIFESTATION on the battlefield after the first. You cannot pick the same MANIFESTATION to be the target of this ability more than once per turn.",
-          "effect": "If the banishment roll equals or exceeds the banishment value listed on the MANIFESTATION’s warscroll, it is banished and removed from play. KEYWORDSBANISH 3.0 Prayers The declare step of each prayer will tell you to make a chanting roll of D6. On an unmodified chanting roll of 1, the prayer fails, its effect is not resolved and you must remove D3 ritual points from the PRIEST using the prayer. Otherwise, pick one of the following: Give a number of ritual points to the PRIEST equal to the chanting roll (ritual points can be accumulated over multiple turns). Add the PRIEST’s ritual points to the chanting roll. If the chanting roll equals or exceeds the prayer’s chanting value (at the top-right corner of the prayer), it is answered: resolve the effect of the prayer, then reset the PRIEST’s ritual points total to 0. All PRIESTS know the following prayer:",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "SACRED RITES",
-          "kind": "Activated",
-          "timing": "Your Hero Phase",
-          "declare": "Pick a friendly PRIEST to use this ability, then make a chanting roll of D6. On an unmodified chanting roll of 1, remove 1 ritual point from that PRIEST instead of D3.",
-          "effect": "Give a number to ritual points to the PRIEST equal to the unmodified chanting roll and do not reset the PRIEST’s ritual points to 0. KEYWORDSPRAYER, UNLIMITED EXAMPLE PRAYER",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "RESURRECTION",
-          "kind": "Activated",
-          "timing": "Once Per Battle, Your Hero Phase",
-          "declare": "Make a chanting roll of D6.",
-          "effect": "Pick a friendly INFANTRY HERO that has been slain and return them to the battlefield. Set up that HERO wholly within 3\" of this PRIEST. KEYWORDSPRAYER The WIZARD keyword is used in the following Helsmiths of Hashut warscrolls: • Daemonsmith • Daemonsmith on Infernal Taurus • Urak Taar, the First Daemonsmith • Scourge of Aqshy Daemonsmith on Infernal Taurus 17.2 Mortal Damage Some abilities inflict mortal damage. If an ability inflicts mortal damage on a unit, add that number of damage points to the unit’s damage pool for that ability (see 18.2 Allocating Damage).",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "POWER THROUGH",
-          "kind": "Activated",
-          "timing": "End of Any Turn",
-          "declare": "Pick a friendly unit that charged this turn to use this ability, then you must pick an enemy unit in combat with it to be the target. The target must have a lower Health characteristic than the unit using this ability.",
-          "effect": "Inflict D3 mortal damage on the target. Then, the unit using this ability can move a distance up to its Move characteristic. It can pass through and end that move within the combat ranges of enemy units that were in combat with it at the start of the move, but not those of other enemy units. It does not have to end the move in combat. KEYWORDSMOVE Hit Roll Roll a dice. If the roll equals or exceeds the attacking weapon’s Hit characteristic, the attack scores a successful hit: move on to the next step. If not, the attack fails and the attack sequence ends. Unmodified hit rolls of 1 always fail. If an unmodified hit roll for an attack made with a weapon is a 6, that attack is a critical hit. Critical hits have no effect on their own but often trigger additional effects (see 20.0 Weapon Abilities). Shooting attacks Shooting attacks are made with ranged weapons. The target unit(s) must be within a distance equal to the Range characteristic of the weapon being used and visible to the attacking model. Models cannot make shooting attacks if their unit is in combat, unless otherwise specified (see 20.0 Weapon Abilities). The CAVALRY keyword is used in the following Helsmiths of Hashut warscrolls: • Anointed Sentinels • Bull Centaurs • Scourge of Aqshy Anointed Sentinels The HERO keyword is used in the following Helsmiths of Hashut warscrolls: • Ashen Elder • Daemonsmith • Daemonsmith on Infernal Taurus • Urak Taar, the First Daemonsmith • War Despot • Scourge of Aqshy Daemonsmith on Infernal Taurus • Scourge of Ghyran War Despot The HELSMITHS OF HASHUT and AUTOMATON keywords are used in the following Helsmiths of Hashut warscrolls: • Dominator Engine with Bane Maces • Dominator Engine with Immolation Cannons 15.3 Pile-in Moves Some abilities, such as FIGHT abilities, allow a unit to make a short move called a pile-in move to get into a better position for combat. To do so: If your unit is in combat: Pick an enemy unit your unit is in combat with to be the target of the pile-in move. Each model in your unit can move up to 3\". That move can pass through the combat ranges of any enemy units, but each model must end that move no further from the target unit. At the end of the move, your unit must still be in combat with all units that it was in combat with at the start of the move. If your unit is not in combat: Each model in your unit can move 3\" in any direction. That move can pass through and end within the combat ranges of any enemy units. Pile in: move up to 3\". If in combat, the unit must end the move closer, or at least as close, to the target enemy unit. 19.0 Strike-first and Strike-last If there are any STRIKE-FIRST units in combat after any non-FIGHT combat phase abilities have been used, other units cannot be picked to use a FIGHT ability until those units have been picked to use a FIGHT ability. After all those STRIKE-FIRST units have fought, the active player picks the next unit to fight. If there are any STRIKE-LAST units in combat, they cannot be picked to use a FIGHT ability if there are any units in combat that do not have STRIKE-LAST and have not yet used a FIGHT ability. If a unit has STRIKE-FIRST and STRIKE-LAST, treat it as if it had neither. There may be situations when a unit that has STRIKE-FIRST is not in combat at the start of the phase, but because of moves such as pile-in moves, it is ‘pulled into combat’ later in the phase. In such cases, STRIKE-FIRST has no effect on that unit because it was not in combat at the start of the phase. Abilities that allow a unit to use a FIGHT ability immediately after another unit do not override the STRIKE-FIRST or STRIKE-LAST constraints, so you could not pick a unit with STRIKE-LAST to fight immediately after a unit with STRIKE-FIRST. Wound Roll Roll a dice. If the roll equals or exceeds the attacking weapon’s Wound characteristic, the attack successfully wounds: move on to the next step. If not, the attack fails and the attack sequence ends. Unmodified wound rolls of 1 always fail. Combat attacks Combat attacks are made with melee weapons. The target unit(s) must be within the combat range of the attacking model and visible to it. The model must attack with all of the melee weapons it is armed with. 16.0 Picking Targets When declaring an ATTACK ability for a unit, you must pick the target unit(s) for its attacks. The number of attacks each model can make is equal to the Attacks characteristic of the weapons it is using. In most cases, models attack with every weapon on their warscroll (melee weapons for combat attacks, ranged weapons for shooting attacks), though some warscrolls specify that certain models in the unit are armed with special weapons or that the unit must pick between multiple weapons when it attacks. If the unit is in combat, it can only target units that are in combat with it. If a model has more than one attack, you can split the attacks between eligible targets as you wish. Combat attacks are made with melee weapons. The target unit(s) must be within the combat range of the attacking model and visible to it. The model must attack with all of the melee weapons it is armed with. Shooting attacks are made with ranged weapons. The target unit(s) must be within a distance equal to the Range characteristic of the weapon being used and visible to the attacking model. Models cannot make shooting attacks if their unit is in combat, unless otherwise specified (see 20.0 Weapon Abilities).",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "SHOOT",
-          "kind": "Activated",
-          "timing": "Your Shooting Phase",
-          "declare": "Pick a friendly unit that has not used a RUN or RETREAT ability this turn to use this ability. Then, pick one or more enemy units as the target(s) of that unit’s attacks (see 16.0).",
-          "effect": "Resolve shooting attacks against the target unit(s). KEYWORDSCORE, ATTACK, SHOOT Universal Core Abilities - Charge Phase",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "CHARGE",
-          "kind": "Activated",
-          "timing": "Your Charge Phase",
-          "declare": "Pick a friendly unit that is not in combat and has not used a RUN or RETREAT ability this turn to use this ability. Then, make a charge roll of 2D6.",
-          "effect": "That unit can move a distance up to the value of the charge roll. That unit can move through the combat ranges of any enemy units and must end that move within 1/2\" of a visible enemy unit. If it does so, the unit using this ability has charged. KEYWORDSCORE, MOVE, CHARGE 1.1 Power Level Each WIZARD and PRIEST has a power level shown after the keyword, e.g. WIZARD (2). A WIZARD’s casting power level determines how many Spell abilities they can use per phase. A PRIEST’s chanting power level determines how many PRAYER abilities they can use per phase. 4.1 Enhancements Each set of faction rules include a number of enhancements that can be given to units, e.g. heroic traits and artefacts of power. You can take 1 enhancement from each enhancement table in your faction rules. Each enhancement table lists which units are eligible to be given that enhancement. UNIQUE units cannot be given enhancements. While some abilities allow you to take extra enhancements, the same unit can never have more than 1 enhancement of the same type, and you can never include the same enhancement in your army more than once. Enhancements cannot be given to Regiment of Renown units, unless they have a keyword that matches that faction’s name. 1.1 Army Roster These rules will explain how to create an army roster to prepare for a battle. You can find a blank army roster printable copy below: 14.3 Charge Phase",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "CHARGE",
-          "kind": "Activated",
-          "timing": "Your Charge Phase",
-          "declare": "Pick a friendly unit that is not in combat and has not used a RUN or RETREAT ability this turn to use this ability. Then, make a charge roll of 2D6.",
-          "effect": "That unit can move a distance up to the value of the charge roll. That unit can move through the combat ranges of any enemy units and must end that move within 1/2\" of a visible enemy unit. If it does so, the unit using this ability has charged. KEYWORDSCORE, MOVE, CHARGE Companion Unless otherwise specified, attacks made by this weapon are not affected by friendly abilities that modify hit rolls, wound rolls or weapon characteristics, except for those that apply negative modifiers (e.g. ‘Covering Fire’). Crit (2 Hits) If an attack made with this weapon scores a critical hit, that attack scores 2 hits on the target unit instead of 1. Make a wound roll for each hit. Obscuring While every model in a non-MONSTER non‐WAR MACHINE unit that does not have the FLY keyword is within 1\" of this terrain feature, the following apply: That unit is only visible to enemy units that are within its combat range. The Range characteristic of that unit’s ranged weapons is halved (rounding down to the nearest inch). Crit (Mortal) If an attack made with this weapon scores a critical hit, that attack inflicts mortal damage on the target unit equal to the Damage characteristic of that weapon and the attack sequence ends. 32.2 Objective Control In the deployment phase after all Deployment Phase abilities have been used and at the end of each turn, follow this sequence for each objective in an order chosen by the active player: Starting with the active player, each player determines the control score of each of their units that is contesting that objective. A unit’s control score is the combined Control characteristics of all the models in that unit that are contesting the objective. Some abilities modify a unit’s control score, but it cannot be reduced to less than 1. Each player adds up the control scores of all of their units contesting that objective. This is their army control score for that objective. The players compare their army control scores for that objective. If one player’s score is higher, that player gains control of that objective. Once a player gains control of an objective, it remains under their control until their opponent gains control of it. Sometimes objective markers get accidentally nudged while you are moving models around. This is perfectly fine - just remember to put them back in their proper positions when determining objective control. 3.2 The General You must pick 1 HERO in your army that is leading a regiment to be your general. If any units in your army have the WARMASTER keyword, you must pick one of those units to be your general. Your general’s regiment can include up to 4 non-HERO units in addition to your general. The non-HOBGROT HELSMITHS OF HASHUT and INFANTRY keywords are used in the following Helsmiths of Hashut warscrolls: • Ashen Elder • Daemonsmith • Infernal Cohort with Hashutite Blades • Infernal Cohort with Hashutite Spears • Infernal Razers with Blunderbusses • Infernal Razers with Flamehurlers • War Despot • Scourge of Ghyran Infernal Cohort with Hashutite Blades • Scourge of Ghyran War Despot • The Blood of the Bull The non-HERO HELSMITHS OF HASHUT and WAR MACHINE keywords are used in the following Helsmiths of Hashut warscrolls: • Deathshrieker Rocket Battery • Dominator Engine with Bane Maces • Dominator Engine with Immolation Cannons • Tormentor Bombard 3.5 Regiments of Renown In addition to creating your own regiments, you can also spend points to include 1 Regiment of Renown. Regiments of Renown are pre-built regiments, each with their own special abilities. The rules for each Regiment of Renown will specify which factions can include it. A unit in a Regiment of Renown cannot be your general even if it is a WARMASTER. You cannot include more than one Regiment of Renown in your army unless otherwise specified in the notes column of that regiment’s battle profile. Units in a Regiment of Renown cannot use (but can be picked as the target of, if otherwise eligible) any faction rules from the faction they are allied into, including enhancements and lores. If an ability allows you to set up a replacement unit (Core Rules, 24.2) for a unit in a Regiment of Renown, that unit also counts as being part of that Regiment of Renown. The GRAND FORGEHOST WIZARD keywords are used in the following Helsmiths of Hashut warscrolls: Monster Hero • Urak Taar, the First Daemonsmith Infantry Hero • Daemonsmith The GRAND FORGEHOST PRIEST keywords are used in the following Helsmiths of Hashut warscrolls: Infantry Hero • Ashen Elder The GRAND FORGEHOST WAR MACHINES keywords are used in the following Helsmiths of Hashut warscrolls: Monster Hero • Urak Taar, the First Daemonsmith War Machine • Deathshrieker Rocket Battery • Tormentor Bombard • Dominator Engine with Bane Maces • Dominator Engine with Immolation Cannons The non-HERO GRAND FORGEHOST INFANTRY keywords are used in the following Helsmiths of Hashut warscrolls: Infantry • Infernal Cohort with Hashutite Spears • Infernal Razers with Flamehurlers • Infernal Razers with Blunderbusses • Infernal Cohort with Hashutite Blades • The Blood of the Bull • Scourge of Ghyran Infernal Cohort with Hashutite Blades 24.2 Replacement Units Some abilities allow you to set up a replacement unit. When setting up that unit, it should have the same warscroll type, weapon options and number of models as the original unit, unless otherwise specified in the ability. Many of these abilities specify the proportion of models in the replacement unit (e.g. half the number of models from the original unit). In these cases, you can pick which models from the original unit are set up. The replacement unit is otherwise treated as a new unit; any keywords or abilities the original unit gained during the battle, and any persisting effects that applied to it, do not apply to the replacement unit. Each unit can only be replaced once, and you cannot replace replacement units. If the original unit was reinforced and the replacement unit has more than half the number of models from the original unit, the replacement unit is considered to be reinforced. Because a replacement unit is treated as a completely new unit, it could, for instance, use a Once Per Battle ability on its warscroll even if the unit it replaced used that ability earlier in the battle. The GRAND FORGEHOST HERO keywords are used in the following Helsmiths of Hashut warscrolls: Monster Hero • Urak Taar, the First Daemonsmith Infantry Hero • Daemonsmith • War Despot • Ashen Elder • Helsmiths of Hashut Hero • Scourge of Ghyran War Despot Those HEROES can join an eligible regiment as a ZIGGURAT STAMPEDE. Monster Hero • Daemonsmith on Infernal Taurus War Machine • Dominator Engine with Bane Maces • Dominator Engine with Immolation Cannons Cavalry • Bull Centaurs • Anointed Sentinels • Scourge of Aqshy Anointed Sentinels This HERO can join an eligible regiment as a Ziggurat Stampede HERO. Monster Hero • Daemonsmith on Infernal Taurus Save Roll The commander of the target unit rolls a dice, subtracting the attacking weapon’s Rend characteristic from the roll. Unmodified save rolls of 1 always fail. If the roll equals or exceeds the Save characteristic of the target unit, the attack fails and the attack sequence ends. If not, it is a successful attack: move on to the next step. 13.1 Fight Abilities Abilities with the FIGHT keyword follow a different sequence to other abilities. When the players are using Combat Phase abilities as described in 13.0, they cannot use FIGHT abilities. After the players have finished using Combat Phase abilities that are not FIGHT abilities, they must alternate picking 1 eligible unit to use a FIGHT ability, starting with the active player. Each unit in combat must use a FIGHT ability if it is able to. Once a player has no more units that are eligible to use a FIGHT ability, the other player continues to pick units that are eligible to use a FIGHT ability, one after another, until there are no more units that are eligible to use a FIGHT ability. The active player uses Combat Phase abilities that are not FIGHT abilities, then the opponent does the same. Players alternate picking a unit to use a FIGHT ability, starting with the active player. Each unit must use a FIGHT ability if it is able to. This HERO can join an eligible regiment as a ZIGGURAT STAMPEDE WIZARD. Monster Hero • Daemonsmith on Infernal Taurus 1.5 Faction Terrain Some factions have special terrain features called faction terrain features. Faction terrain features have their own warscrolls. They are not considered to be units, with the following exceptions: In the combat phase, they are treated as if they were units for the purposes of movement, combat range and being in combat. They are affected by all enemy abilities as if they were units. They can be damaged in the same manner as units. However, when they are removed from play, they count as being demolished instead of slain or destroyed (this means that they do not count as destroyed units for the purposes of abilities, scoring battle tactics, etc.). Enemy units can finish a charge move within ½\" of a terrain feature that is garrisoned (see 1.5.1). Faction terrain features cannot contest objectives even while they are garrisoned. If a terrain feature has any melee or ranged weapons, it can use the 'Fight' and 'Shoot' CORE abilities as if it were a unit. Terrain features that have a Move characteristic of 0\" ('-') cannot move (note that pile-in moves are a type of move). Faction terrain features with a Move characteristic greater than '-' are treated as if they were units in all phases for the purposes of movement, combat range, being in combat and setting up terrain features, other manifestations and other units. Some faction terrain features allow you to place a unit on them (this will be clearly specified in that terrain feature’s rules). When doing so, instead of measuring range or visibility to and from the unit that is on that terrain feature, measure to and from the terrain feature instead. Unless otherwise specified, units on a faction terrain feature cannot use FIGHT abilities. If a unit placed on a terrain feature is removed from it (e.g. if an ability removes them from the battlefield), that unit counts as having left that terrain feature and loses any special role or benefits it had as a result of being placed on it. The Citadel Terrain List shows the number of scenery pieces each terrain feature can consist of. If you are using terrain features that are not included on that list, agree with your opponent before setting up the battlefield how many scenery pieces make up each terrain feature. The HERO keyword is used in the following Helsmiths of Hashut warscrolls: • Ashen Elder • Daemonsmith • Daemonsmith on Infernal Taurus • Urak Taar, the First Daemonsmith • War Despot • Scourge of Aqshy Daemonsmith on Infernal Taurus • Scourge of Ghyran War Despot The INFANTRY keyword is used in the following Helsmiths of Hashut warscrolls: • Ashen Elder • Daemonsmith • Hobgrotz Vandalz • Infernal Cohort with Hashutite Blades • Infernal Cohort with Hashutite Spears • Infernal Razers with Blunderbusses • Infernal Razers with Flamehurlers • War Despot • Scourge of Ghyran Infernal Cohort with Hashutite Blades • Scourge of Ghyran War Despot • The Blood of the Bull The CHAOS keyword is used in the following Helsmiths of Hashut warscrolls: • Anointed Sentinels • Ashen Elder • Bull Centaurs • Daemonsmith • Daemonsmith on Infernal Taurus • Deathshrieker Rocket Battery • Dominator Engine with Bane Maces • Dominator Engine with Immolation Cannons • Hobgrotz Vandalz • Infernal Cohort with Hashutite Blades • Infernal Cohort with Hashutite Spears • Infernal Razers with Blunderbusses • Infernal Razers with Flamehurlers • Tormentor Bombard • Urak Taar, the First Daemonsmith • War Despot • Scourge of Aqshy Anointed Sentinels • Scourge of Aqshy Daemonsmith on Infernal Taurus • Scourge of Ghyran Infernal Cohort with Hashutite Blades • Scourge of Ghyran War Despot • The Blood of the Bull The HELSMITHS OF HASHUT keyword is used in the following Helsmiths of Hashut warscrolls: • Anointed Sentinels • Ashen Elder • Bull Centaurs • Daemonsmith • Daemonsmith on Infernal Taurus • Deathshrieker Rocket Battery • Dominator Engine with Bane Maces • Dominator Engine with Immolation Cannons • Hobgrotz Vandalz • Infernal Cohort with Hashutite Blades • Infernal Cohort with Hashutite Spears • Infernal Razers with Blunderbusses • Infernal Razers with Flamehurlers • Tormentor Bombard • Urak Taar, the First Daemonsmith • War Despot • Scourge of Aqshy Anointed Sentinels • Scourge of Aqshy Daemonsmith on Infernal Taurus • Scourge of Ghyran Infernal Cohort with Hashutite Blades • Scourge of Ghyran War Despot • The Blood of the Bull The DUARDIN keyword is used in the following Helsmiths of Hashut warscrolls: • Anointed Sentinels • Ashen Elder • Bull Centaurs • Daemonsmith • Daemonsmith on Infernal Taurus • Infernal Cohort with Hashutite Blades • Infernal Cohort with Hashutite Spears • Infernal Razers with Blunderbusses • Infernal Razers with Flamehurlers • Urak Taar, the First Daemonsmith • War Despot • Scourge of Aqshy Anointed Sentinels • Scourge of Aqshy Daemonsmith on Infernal Taurus • Scourge of Ghyran Infernal Cohort with Hashutite Blades • Scourge of Ghyran War Despot • The Blood of the Bull 1.1 Power Level Each WIZARD and PRIEST has a power level, shown in brackets after the keyword, e.g. WIZARD (2). A WIZARD or PRIEST’s power level determines the number of SPELL, PRAYER or BANISH abilities they can use per phase, in any combination. For example, a WIZARD (2) unit could use 1 SPELL and 1 BANISH ability in their commander’s hero phase. 1.0 Wizards and Priests WIZARDS are special units that can cast spells, and PRIESTS are special units that can chant prayers. Spells and prayers are powerful abilities that can have a dramatic impact on the battle. 1.4.4 Places of Power Examples: Realmgate, Cleansing Aqualith, Nexus Syphon Terrain Abilities: Cover, Place of Power, Unstable",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "LEAVE THE LAND IN RUIN",
-          "kind": "Activated",
-          "timing": "Once Per Turn (Army), Start of Any Turn",
-          "declare": "Pick a terrain feature or objective that does not have a friendly desolation token and is contested by a friendly HELSMITHS OF HASHUT unit that is not in combat to be the target.",
-          "effect": "Give the target a desolation token. Universal Core Abilities - Movement Phase",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "NORMAL MOVE",
-          "kind": "Activated",
-          "timing": "Your Movement Phase",
-          "declare": "Pick a friendly unit that is not in combat to use this ability.",
-          "effect": "That unit can move a distance up to its Move characteristic. That unit cannot move into combat during any part of that move. KEYWORDSCORE, MOVE",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "RUN",
-          "kind": "Activated",
-          "timing": "Your Movement Phase",
-          "declare": "Pick a friendly unit that is not in combat to use this ability.",
-          "effect": "Make a run roll of D6. That unit can move a distance up to its Move characteristic added to the run roll. That unit cannot move into combat during any part of that move. KEYWORDSCORE, MOVE, RUN",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "RETREAT",
-          "kind": "Activated",
-          "timing": "Your Movement Phase",
-          "declare": "Pick a friendly unit that is in combat to use this ability.",
-          "effect": "Inflict D3 mortal damage on that unit. That unit can move a distance up to its Move characteristic. That unit can move through the combat ranges of any enemy units but cannot end that move within an enemy unit’s combat range. KEYWORDSCORE, MOVE, RETREAT",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "REDEPLOY",
-          "kind": "Activated",
-          "timing": "Enemy Movement Phase",
-          "declare": "Pick a friendly unit that is not in combat to use this ability.",
-          "effect": "Each model in that unit can move up to D6\". That move cannot pass through or end within the combat range of an enemy unit. KEYWORDSMOVE, RUN",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "FLY",
-          "kind": "Passive",
-          "timing": "Passive",
-          "declare": "",
-          "effect": "As this unit moves, it ignores other models, terrain features and the combat ranges of enemy units. It cannot end its move in combat unless specified in the ability that allowed it to move. Ignore any vertical distance moved for this unit. Charge (+1 Damage) Add 1 to this weapon’s Damage characteristic if the attacking unit charged this turn. 18.4 Destroyed Units When the last model in a unit is slain, the unit is destroyed and all remaining damage points inflicted on that unit have no effect. Similarly, if something causes a unit to be destroyed, all models in the unit are slain and removed from play.",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "FIGHT",
-          "kind": "Activated",
-          "timing": "Any Combat Phase",
-          "declare": "Pick a friendly unit that is in combat or that charged this turn to use this ability. That unit can make a pile-in move. Then, if that unit is in combat, you must pick one or more enemy units as the target(s) of that unit’s attacks.",
-          "effect": "Resolve combat attacks against the target unit(s). KEYWORDSCORE, ATTACK, FIGHT Shoot in Combat This weapon can be used to make shooting attacks even if the attacking unit is in combat. 7.0 Manifestations There are two types of manifestation: endless spells, which can be summoned by WIZARDS, and invocations, which can be summoned by PRIESTS. Each manifestation has its own warscroll, and the spell or prayer that allows that manifestation to be summoned will be found in the appropriate manifestation lore. No more than 1 friendly WIZARD or PRIEST can attempt to summon the same manifestation per turn, and a friendly WIZARD or PRIEST cannot attempt to summon a friendly manifestation that was removed from play in the same turn. Manifestations are not units but can be interacted with in similar ways, as explained next: ALL MANIFESTATIONS Models can move through them but cannot end a move on them. Units can finish a charge move within ½\" of an enemy manifestation instead of within ½\" of an enemy unit. They can be damaged and destroyed as if they were units but do not count as destroyed units for the purposes of battle tactics and abilities. They are affected by all enemy abilities as if they were units. They can use CORE abilities as if they were units, and they can use abilities on their warscroll. Unless specified otherwise, they cannot use and are not affected by any other friendly abilities, and they do not count as units for the purposes of battle tactics or friendly abilities. They can only use the ‘Shoot’ or ‘Fight’ abilities if they have weapons of the appropriate type. MANIFESTATIONS WITH A MOVE CHARACTERISTIC OF ‘-’ They cannot move. They only count as being in combat in the combat phase, and enemy units only count as being in combat with them in the combat phase. They cannot make shooting attacks with ranged weapons that do not have Shoot in Combat while there is a visible enemy unit within 3\" of them. MANIFESTATIONS WITH A MOVE CHARACTERISTIC GREATER THAN ‘-’ They are treated as if they were units for the purposes of movement, combat range, being in combat and setting up terrain features, other manifestations and other units.",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "DAEMONIC RESILIENCE",
-          "kind": "Activated",
-          "timing": "End of Your Turn",
-          "declare": "",
-          "effect": "Apply the effect below that corresponds with the number of daemonic power points (DPP) this unit has: DPPEffect 1This unit has WARD (6+). 2This unit has WARD (5+). 3This unit has WARD (4+) against damage inflicted by SPELLS, PRAYERS and abilities used by MANIFESTATIONS. Otherwise, it has WARD (5+). Anti-X (+1 Rend) Add 1 to this weapon’s Rend characteristic if the target has the keyword after ‘Anti-’ or fulfils the condition after ‘Anti-’. Multiples of this ability are cumulative. For example, if a weapon has both Anti-charge (+1 Rend) and Anti-HERO (+1 Rend), then add 2 to the Rend characteristic of the weapon for attacks that target a HERO that charged in the same turn. The non-HERO HELSMITHS OF HASHUT keyword is used in the following Helsmiths of Hashut warscrolls: • Anointed Sentinels • Bull Centaurs • Deathshrieker Rocket Battery • Dominator Engine with Bane Maces • Dominator Engine with Immolation Cannons • Hobgrotz Vandalz • Infernal Cohort with Hashutite Blades • Infernal Cohort with Hashutite Spears • Infernal Razers with Blunderbusses • Infernal Razers with Flamehurlers • Tormentor Bombard • Scourge of Aqshy Anointed Sentinels • Scourge of Ghyran Infernal Cohort with Hashutite Blades • The Blood of the Bull The HERO and INFANTRY keywords are used in the following Helsmiths of Hashut warscrolls: • Ashen Elder • Daemonsmith • War Despot • Scourge of Ghyran War Despot 18.2 Allocating Damage After resolving the effect of any ability that inflicts damage points (whether via attacks, mortal damage or both), you must allocate the damage points. When allocating damage points to a unit, the damage points in its damage pool are allocated to it one at a time. Each time the number of damage points allocated to the unit equals the Health characteristic of that unit, 1 model in that unit is slain (and removed from play) and the number of damage points allocated to that unit is reset to 0. Keep allocating damage points until there are none left in the damage pool. If the number of damage points allocated to a unit is not enough to slay a model, keep track of the number of damage points currently allocated to the unit (most players place a dice or markers next to the unit). While a unit has any damage points allocated to it, it is damaged. 23.0 Tokens Tokens are not considered to be models for rules purposes and can be ignored or moved out of the way for purposes of visibility, coherency or abilities. They cannot be picked as the target of abilities. Their purpose is to indicate persisting effects on units they are placed next to. Each time a unit with a token finishes a move or is set up, place the token next to the unit. 18.3 Slain Models The commander of a unit must pick which model(s) in the unit are slain. However, after each slain model is removed, the unit must be in a single coherent group (see 15.1). If this is not possible, continue to remove models, one at a time, until the unit is in a single coherent group. You must remove the fewest models possible to make the unit a single coherent group. Army List Warscrolls collated Infantry Hero • Ashen Elder • Daemonsmith • War Despot • Scourge of Ghyran War Despot Monster Hero • Daemonsmith on Infernal Taurus • Urak Taar, the First Daemonsmith • Scourge of Aqshy Daemonsmith on Infernal Taurus Cavalry • Anointed Sentinels • Bull Centaurs • Scourge of Aqshy Anointed Sentinels Infantry • Hobgrotz Vandalz • Infernal Cohort with Hashutite Blades • Infernal Cohort with Hashutite Spears • Infernal Razers with Blunderbusses • Infernal Razers with Flamehurlers • Scourge of Ghyran Infernal Cohort with Hashutite Blades • The Blood of the Bull War Machine • Deathshrieker Rocket Battery • Dominator Engine with Bane Maces • Dominator Engine with Immolation Cannons • Tormentor Bombard Regiment of Renown • Cogfort Raiders • Diseased Revellers • Enforcers of the Tithe • Lord Skaldior’s Chosen • Mask of the Deceiver • Mist-Clad Revellers • One-eyed Grunnock • Phulgoth’s Shudderhood • Rogue Engine • Seekers of Silver • The Accursed Reflection • The Exiled One • The Pustules • The Red Revelation • Brand’s Oathbound • Hargax’s Pit-Beasts • Nurgle’s Gift • Stumblefoot Gargant Contents Books Designers’ Commentary • Battletome: Helsmiths of Hashut Battle Traits Battle Formations • Hashutite Host • The Bullfather’s Horns • Castigation Battery • Daemonsmith Cabal • Domination Force • Industrial Polluters Heroic Traits • Tyrants and Overseers Artefacts of Power • Dark Gifts of Hashut • Dark Gifts of Hashut Accursed Devices • Accursed Device • Accursed Device Spell Lore • Lore of Infernal Power Prayer Lore • Prayers of the Scorched Sect Taar’s Grand Forgehost • Battle Traits • Heroic Traits • Artefacts of Power Ziggurat Stampede • Battle Traits • Heroic Traits • Artefacts of Power PATH TO GLORY • The Anvil of Apotheosis • Step 1 - Set a Destiny Point Limit • Step 2 - Fill Out The Starting Warscroll • Step 3 - Choose an Archetype • Step 4 - Pick Your Hero's Origin And/Or Flaw • Step 5 - Choose a Battle Mount • Step 6 - Battle Mount Upgrades • Step 7 - Pick any Other Upgrades • Path of The Overlord • Path of The Hashutite SPEARHEAD Helforge Host • Battle Traits • Regiment Abilities • Enhancements • Warscrolls Disable Ads E-mail: Pin code: Disable Ads Get new pin code Boosty subscribers may disable ads: 1. Enter e-mail you have used to login on Boosty. 2. Press Get new pin code button (if you don’t have it already) 3. Enter pin code. Note that login database updated once a day. So, if you are a new booster - try tomorrow. And thank you! $(window).scroll(function() { if ($(this).scrollTop() >= 200) { $('#btnBackToTop').fadeIn(300); } else { $('#btnBackToTop').fadeOut(300); } }); $('#btnBackToTop').on('touchstart', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_ToTop_Hover.png); background-image: var(--button-to-top-hover)'); $(this).fadeIn(300); return true; }); $('#btnBackToTop').on('touchend', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_ToTop.png); background-image: var(--button-to-top)'); $(this).fadeOut(300); document.body.scrollTop = 0; document.documentElement.scrollTop = 0; return true; }); $('#btnBackToTop').on('click', function () { 'use strict'; document.body.scrollTop = 0; document.documentElement.scrollTop = 0; return true; }); $('#btnArmyList').on('touchstart', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_ArmyList_Hover.png); background-image: var(--button-army-list-hover)'); return true; }); $('#btnArmyList').on('touchend', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_ArmyList.png); background-image: var(--button-army-list)'); return true; }); $('#btnContents').on('touchstart', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_Contents_Hover.png); background-image: var(--button-contents-hover)'); return true; }); $('#btnContents').on('touchend', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_Contents.png); background-image: var(--button-contents)'); return true; }); © Vyacheslav Maltsev 2013-2026 ezstandalone.cmd.push(function() {ezstandalone.showAds(103)}); (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-57173050-3', 'auto'); ga('send', 'pageview'); window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-YCMHCMW8RQ');",
+          "effect": "Roll a dice for each target. On a 3+, subtract 3 from the target’s control score for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -517,7 +344,19 @@
         "save": "3+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Hashutite Spear",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Anti-charge, (+1, Rend)"
+        }
+      ],
       "abilities": [
         {
           "name": "STRIKE THE GONGS",
@@ -535,7 +374,7 @@
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "Apply the effect below that corresponds with the number of daemonic power points (DPP) this unit has: DPPEffect 1This unit has WARD (6+). 2This unit has WARD (5+). 3This unit has WARD (5+) and you ignore the first damage point allocated to this unit in each phase. KEYWORDS INFANTRY, REINFORCEMENTS",
+          "effect": "Apply the effect below that corresponds with the number of daemonic power points (DPP) this unit has: DPPEffect 1This unit has WARD (6+). 2This unit has WARD (5+). 3This unit has WARD (5+) and you ignore the first damage point allocated to this unit in each phase.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",

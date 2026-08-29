@@ -190,7 +190,19 @@
         "save": "4+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Celestite Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "SCALED PROTECTORS",
@@ -208,7 +220,7 @@
           "kind": "Activated",
           "timing": "Your Hero Phase",
           "declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target and roll a dice.",
-          "effect": "On a 3+, the target’s weapons have Crit (2 Hits) for the rest of the turn, including Companion weapons. KEYWORDS HERO, INFANTRY",
+          "effect": "On a 3+, the target’s weapons have Crit (2 Hits) for the rest of the turn, including Companion weapons.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -235,14 +247,26 @@
         "save": "4+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Celestite Club",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "ORDERED COHORTS",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "Add 1 to save rolls for this unit while it is contesting an objective you control. KEYWORDS INFANTRY",
+          "effect": "Add 1 to save rolls for this unit while it is contesting an objective you control.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -269,14 +293,37 @@
         "save": "6+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Dartpipe",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Feeble Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "STAR-VENOM",
           "kind": "Activated",
           "timing": "Any Shooting Phase",
           "declare": "Pick an enemy unit that had any damage points allocated to it this turn by attacks made with this unit’s Dartpipe to be the target.",
-          "effect": "Roll a dice. On a 2+, subtract 1 from wound rolls for the target’s combat attacks for the rest of the turn. KEYWORDS INFANTRY ezstandalone.cmd.push(function() {ezstandalone.showAds(122)});",
+          "effect": "Roll a dice. On a 2+, subtract 1 from wound rolls for the target’s combat attacks for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -305,14 +352,26 @@
         "save": "5+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Snapping Beaks",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "NERVE-SHREDDING SCREECHES",
           "kind": "Activated",
           "timing": "Any Combat Phase",
           "declare": "Pick an enemy unit in combat with this unit to be the target.",
-          "effect": "Roll a dice. On a 4+, subtract 1 from hit rolls for the target’s combat attacks for the rest of the turn. KEYWORDS BEAST, FLY, REINFORCEMENTS",
+          "effect": "Roll a dice. On a 4+, subtract 1 from hit rolls for the target’s combat attacks for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -339,14 +398,37 @@
         "save": "5+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Glob of Flame Acid",
+          "kind": "ranged",
+          "range": "16\"",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "D3+3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Fiery Maw",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "SUN ACOLYTES",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "This unit has a crew of 3 Sun Acolytes that are tokens. Add 1 to this unit’s control score for each Sun Acolyte it has. If this unit has no Sun Acolytes, it has a maximum control score of 1. Each time you make an unmodified save roll of 1 for this unit, remove 1 of its Sun Acolytes from the battlefield after the Attack ability has been resolved (the damage point is still inflicted). KEYWORDS BEAST",
+          "effect": "This unit has a crew of 3 Sun Acolytes that are tokens. Add 1 to this unit’s control score for each Sun Acolyte it has. If this unit has no Sun Acolytes, it has a maximum control score of 1. Each time you make an unmodified save roll of 1 for this unit, remove 1 of its Sun Acolytes from the battlefield after the Attack ability has been resolved (the damage point is still inflicted).",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",

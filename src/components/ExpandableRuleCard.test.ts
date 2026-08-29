@@ -6,15 +6,18 @@ import { describe, expect, it } from "vitest";
 const here = path.dirname(fileURLToPath(import.meta.url));
 
 describe("expandable rule cards", () => {
-  it("clamps Effect text in the summary so the truncated line is tappable", () => {
+  it("keeps Effect text out of the summary so collapse hides the body", () => {
     const card = readFileSync(
       path.join(here, "ExpandableRuleCard.tsx"),
       "utf8",
     );
-    expect(card).toContain("line-clamp-2");
     expect(card).toContain("RuleText");
-    expect(card).toContain("group-open:hidden");
-    expect(card).toContain("collapseDetails");
+    expect(card).toContain("<summary");
+    expect(card).toContain("cursor-default list-none");
+    expect(card).not.toContain("cursor-pointer list-none");
+    expect(card).not.toContain("line-clamp-2");
+    expect(card).not.toContain("group-open:hidden");
+    expect(card).not.toContain("collapseDetails");
     expect(card).not.toContain("\n      open\n");
   });
 });

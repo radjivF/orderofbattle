@@ -8,6 +8,9 @@ export const SHEET_CLOSE_BUTTON_CLASS =
 export const SHEET_LINK_BUTTON_CLASS =
   "pressable inline-flex h-11 w-11 shrink-0 items-center justify-center text-aether";
 
+const SHEET_LINK_ICON_WRAP_CLASS =
+  "inline-flex h-11 w-11 shrink-0 items-center justify-center text-aether";
+
 type CloseProps = {
   label?: string;
   onClick: () => void;
@@ -60,6 +63,61 @@ export function SheetLinkIcon({ className = "h-4 w-4" }: { className?: string })
   );
 }
 
+const OPEN_SHEET_BUTTON_CLASS =
+  "flex w-fit max-w-full min-w-0 items-start gap-0 text-left active:opacity-60";
+
+function OpenSheetButton({
+  name,
+  subtitle,
+  sheetLabel,
+  onOpenSheet,
+  reinforced,
+  iconClassName,
+  nameClassName,
+  subtitleClassName,
+}: {
+  name: string;
+  subtitle?: string;
+  sheetLabel: string;
+  onOpenSheet: (event: MouseEvent<HTMLButtonElement>) => void;
+  reinforced?: boolean;
+  iconClassName: string;
+  nameClassName: string;
+  subtitleClassName?: string;
+}) {
+  return (
+    <button
+      type="button"
+      aria-label={sheetLabel}
+      onClick={onOpenSheet}
+      className={OPEN_SHEET_BUTTON_CLASS}
+    >
+      <span className={iconClassName}>
+        <IosDatasheetIcon />
+      </span>
+      <span className="min-w-0 py-2 pr-2">
+        <p className={nameClassName}>
+          {name}
+          {reinforced ? (
+            <span className="ml-2 font-sans text-xs text-sheet-muted">
+              reinforced
+            </span>
+          ) : null}
+        </p>
+        {subtitle ? (
+          <p
+            className={
+              subtitleClassName ?? "mt-0.5 text-sm text-sheet-muted"
+            }
+          >
+            {subtitle}
+          </p>
+        ) : null}
+      </span>
+    </button>
+  );
+}
+
 /** Play-mode unit row: sheet icon · name/stats · optional damage track. */
 export function PlaySlotRow({
   name,
@@ -83,40 +141,24 @@ export function PlaySlotRow({
 
   return (
     <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-2.5">
-      <div className="flex min-w-0 flex-1 items-start gap-2">
-        <SheetLinkButton
-          label={sheetLabel}
-          onClick={openSheet}
-          className={`${SHEET_LINK_BUTTON_CLASS} h-10 w-10 sm:h-11 sm:w-11`}
-        />
-        <button
-          type="button"
-          onClick={openSheet}
-          className="min-w-0 flex-1 text-left active:opacity-60"
-        >
-          <p className="font-serif text-base leading-snug sm:text-lg sm:leading-tight">
-            {name}
-            {reinforced ? (
-              <span className="ml-2 font-sans text-xs text-sheet-muted">
-                reinforced
-              </span>
-            ) : null}
-          </p>
-          {subtitle ? (
-            <p className="mt-1 text-xs leading-relaxed text-sheet-muted sm:mt-0.5 sm:text-sm">
-              {subtitle}
-            </p>
-          ) : null}
-        </button>
-      </div>
+      <OpenSheetButton
+        name={name}
+        subtitle={subtitle}
+        sheetLabel={sheetLabel}
+        onOpenSheet={openSheet}
+        reinforced={reinforced}
+        iconClassName={`${SHEET_LINK_ICON_WRAP_CLASS} h-10 w-10 sm:h-11 sm:w-11`}
+        nameClassName="font-serif text-base leading-snug sm:text-lg sm:leading-tight"
+        subtitleClassName="mt-1 text-xs leading-relaxed text-sheet-muted sm:mt-0.5 sm:text-sm"
+      />
       {trailing ? (
-        <div className="w-full shrink-0 sm:w-auto">{trailing}</div>
+        <div className="w-full shrink-0 sm:ml-auto sm:w-auto">{trailing}</div>
       ) : null}
     </div>
   );
 }
 
-/** Build-mode unit row: sheet icon · tappable name/stats · trailing actions. */
+/** Build-mode unit row: sheet icon · name/stats · trailing actions. */
 export function BuildSlotRow({
   name,
   subtitle,
@@ -138,27 +180,18 @@ export function BuildSlotRow({
   }
 
   return (
-    <div className="flex min-h-11 items-center gap-1 rounded-xl bg-parchment-ink/5 pl-3">
-      <SheetLinkButton label={sheetLabel} onClick={openSheet} />
-      <button
-        type="button"
-        onClick={openSheet}
-        className="min-w-0 flex-1 py-2 pr-2 text-left active:opacity-60"
-      >
-        <p className="font-serif text-lg leading-tight">
-          {name}
-          {reinforced ? (
-            <span className="ml-2 font-sans text-xs text-sheet-muted">
-              reinforced
-            </span>
-          ) : null}
-        </p>
-        {subtitle ? (
-          <p className="mt-0.5 text-sm text-sheet-muted">{subtitle}</p>
-        ) : null}
-      </button>
+    <div className="flex min-h-11 items-center gap-1 rounded-xl bg-parchment-ink/5 pl-1">
+      <OpenSheetButton
+        name={name}
+        subtitle={subtitle}
+        sheetLabel={sheetLabel}
+        onOpenSheet={openSheet}
+        reinforced={reinforced}
+        iconClassName={SHEET_LINK_ICON_WRAP_CLASS}
+        nameClassName="font-serif text-lg leading-tight"
+      />
       {trailing ? (
-        <div className="flex shrink-0 items-stretch">{trailing}</div>
+        <div className="ml-auto flex shrink-0 items-stretch">{trailing}</div>
       ) : null}
     </div>
   );

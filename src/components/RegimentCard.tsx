@@ -71,6 +71,10 @@ type Props = {
   onRemoveRegiment: () => void;
   onPlayHealth?: (selectionId: string, damage: number) => void;
   bindNotes?: CombatModifierNote[];
+  locked?: boolean;
+  /** Spearhead generals take an enhancement even when the warscroll is unique. */
+  allowUniqueHeroTrait?: boolean;
+  traitKind?: string;
 };
 
 export function RegimentCard({
@@ -111,6 +115,9 @@ export function RegimentCard({
   onRemoveRegiment,
   onPlayHealth,
   bindNotes,
+  locked = false,
+  allowUniqueHeroTrait = false,
+  traitKind,
 }: Props) {
   const hero = regiment.hero
     ? getUnit(faction, regiment.hero.unitId)
@@ -119,7 +126,7 @@ export function RegimentCard({
 
   return (
     <article
-      className={`rounded-2xl bg-parchment p-5 text-parchment-ink shadow-sm ${
+      className={`cursor-default rounded-2xl bg-parchment p-5 text-parchment-ink shadow-sm ${
         selected && !playMode ? "ring-2 ring-aether" : ""
       }`}
       onClick={playMode ? undefined : onSelect}
@@ -130,7 +137,7 @@ export function RegimentCard({
             <p className="text-sm font-semibold tracking-wide uppercase text-aether">
               General&apos;s regiment
             </p>
-          ) : playMode ? (
+          ) : playMode || locked ? (
             <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
               Regiment
             </p>
@@ -154,7 +161,7 @@ export function RegimentCard({
             {hero?.name ?? "Empty regiment"}
           </h2>
         </div>
-        {!playMode ? (
+        {!playMode && !locked ? (
           <button
             type="button"
             aria-label="Remove regiment"
@@ -176,8 +183,9 @@ export function RegimentCard({
             selection={regiment.hero}
             points={selectionPoints(hero, false)}
             playMode={playMode}
+            hidePoints={locked}
             bindNotes={bindNotes}
-            onReplace={onPickHero}
+            onReplace={locked ? undefined : onPickHero}
             onOpenDatasheet={() => onOpenDatasheet(hero)}
             onPlayHealth={onPlayHealth}
           />
@@ -185,6 +193,8 @@ export function RegimentCard({
             selectionId={regiment.hero.id}
             unit={hero}
             playMode={playMode}
+            allowUniqueHeroTrait={allowUniqueHeroTrait}
+            traitKind={traitKind}
             artefactBearerId={artefactBearerId}
             artefactLabel={artefactLabel}
             artefactAbilities={artefactAbilities}
@@ -211,6 +221,8 @@ export function RegimentCard({
           />
         </>
       ) : playMode ? (
+        <p className="text-sm text-sheet-muted">No hero</p>
+      ) : locked ? (
         <p className="text-sm text-sheet-muted">No hero</p>
       ) : (
         <button
@@ -240,14 +252,17 @@ export function RegimentCard({
                 reinforced={slot.reinforced}
                 canReinforce={unit.reinforce}
                 playMode={playMode}
+                hidePoints={locked}
                 bindNotes={bindNotes}
-                onToggleReinforce={() => onToggleReinforce(slot.id)}
-                onDuplicate={
-                  !unit.unique && openSlots > 0
-                    ? () => onDuplicateUnit(slot.id)
-                    : undefined
+                onToggleReinforce={
+                  locked ? undefined : () => onToggleReinforce(slot.id)
                 }
-                onRemove={() => onRemoveUnit(slot.id)}
+                onDuplicate={
+                  locked || unit.unique || openSlots <= 0
+                    ? undefined
+                    : () => onDuplicateUnit(slot.id)
+                }
+                onRemove={locked ? undefined : () => onRemoveUnit(slot.id)}
                 onOpenDatasheet={() => onOpenDatasheet(unit)}
                 onPlayHealth={onPlayHealth}
               />
@@ -255,6 +270,7 @@ export function RegimentCard({
                 selectionId={slot.id}
                 unit={unit}
                 playMode={playMode}
+                traitKind={traitKind}
                 artefactBearerId={artefactBearerId}
                 artefactLabel={artefactLabel}
                 artefactAbilities={artefactAbilities}
@@ -267,8 +283,8 @@ export function RegimentCard({
                 visionBearerId={visionBearerId}
                 visionLabel={visionLabel}
                 visionAbilities={visionAbilities}
-                onPickArtefact={onPickArtefact}
-                onPickTrait={onPickTrait}
+                onPickArtefact={locked ? undefined : onPickArtefact}
+                onPickTrait={locked ? undefined : onPickTrait}
                 onPickMonstrousTrait={onPickMonstrousTrait}
                 onPickVision={onPickVision}
                 specialTables={specialTables}
@@ -284,7 +300,7 @@ export function RegimentCard({
         })}
       </ul>
 
-      {!playMode && hero && openSlots > 0 ? (
+      {!playMode && !locked && hero && openSlots > 0 ? (
         <button
           type="button"
           onClick={(event) => {
@@ -323,6 +339,8 @@ export function SlotEnhancements({
   specialTables,
   specialEnhancementPicks,
   onPickSpecial,
+  allowUniqueHeroTrait = false,
+  traitKind = "Heroic trait",
 }: {
   selectionId: string;
   unit: CatalogueUnit;
@@ -346,8 +364,11 @@ export function SlotEnhancements({
   specialTables?: SpecialEnhancementTable[];
   specialEnhancementPicks?: SpecialEnhancementPick[];
   onPickSpecial?: (tableId: string) => void;
+  allowUniqueHeroTrait?: boolean;
+  traitKind?: string;
 }) {
   const showHero = Boolean(unit.hero && !unit.unique);
+  const showTrait = Boolean(unit.hero && (!unit.unique || allowUniqueHeroTrait));
   const showMonstrous = canTakeMonstrousTrait(unit);
   const showVision = canTakeVisionOfFate(unit);
   const canTakeSpecial = !unit.unique;
@@ -355,6 +376,7 @@ export function SlotEnhancements({
   const hasTrait = heroicTraitBearerId === selectionId;
   const hasMonstrous = monstrousTraitBearerId === selectionId;
   const hasVision = visionBearerId === selectionId;
+  const playTraitKind = traitKind === "Heroic trait" ? "Trait" : traitKind;
 
   if (playMode) {
     const hasSpecial = (specialTables ?? []).some((table) => {
@@ -377,7 +399,7 @@ export function SlotEnhancements({
         ) : null}
         {hasTrait && heroicTraitLabel ? (
           <CollapsibleEnhancement
-            kind="Trait"
+            kind={playTraitKind}
             label={heroicTraitLabel}
             abilities={heroicTraitAbilities}
           />
@@ -424,7 +446,7 @@ export function SlotEnhancements({
   }
 
   const artefactPick = showHero ? onPickArtefact : undefined;
-  const traitPick = showHero ? onPickTrait : undefined;
+  const traitPick = showTrait ? onPickTrait : undefined;
   const monstrousPick = showMonstrous ? onPickMonstrousTrait : undefined;
   const visionPick = showVision ? onPickVision : undefined;
   const specialPick = canTakeSpecial ? onPickSpecial : undefined;
@@ -453,10 +475,10 @@ export function SlotEnhancements({
       />
       <EnhancementRow
         has={hasTrait}
-        kind="Heroic trait"
+        kind={traitKind}
         label={heroicTraitLabel}
         abilities={heroicTraitAbilities}
-        emptyLabel="Heroic trait"
+        emptyLabel={traitKind}
         onPick={traitPick ? () => traitPick(selectionId) : undefined}
       />
       <EnhancementRow
@@ -548,7 +570,7 @@ function EnhancementRow({
   return (
     <button
       type="button"
-      className="flex min-h-9 w-full items-center gap-2.5 text-left text-sm text-sheet-muted"
+      className="flex min-h-9 w-fit items-center gap-2.5 text-left text-sm text-sheet-muted"
       onClick={(event) => {
         event.stopPropagation();
         onPick();
@@ -609,6 +631,7 @@ function SlotLine({
   reinforced,
   canReinforce,
   playMode,
+  hidePoints,
   bindNotes,
   onReplace,
   onToggleReinforce,
@@ -623,6 +646,7 @@ function SlotLine({
   reinforced?: boolean;
   canReinforce?: boolean;
   playMode: boolean;
+  hidePoints?: boolean;
   bindNotes?: CombatModifierNote[];
   onReplace?: () => void;
   onToggleReinforce?: () => void;
@@ -673,7 +697,11 @@ function SlotLine({
   return (
     <BuildSlotRow
       name={unit.name}
-      subtitle={`${unitSizeLabel(unit, Boolean(reinforced))} · ${points} pts`}
+      subtitle={
+        hidePoints
+          ? unitSizeLabel(unit, Boolean(reinforced))
+          : `${unitSizeLabel(unit, Boolean(reinforced))} · ${points} pts`
+      }
       reinforced={reinforced}
       sheetLabel={`${unit.name} datasheet`}
       onOpenSheet={onOpenDatasheet}
@@ -688,7 +716,7 @@ function SlotLine({
               }}
             />
           ) : null}
-          {canReinforce || onDuplicate || onRemove ? (
+          {(canReinforce && onToggleReinforce) || onDuplicate || onRemove ? (
             <SlotMoreMenu
               reinforced={reinforced}
               canReinforce={canReinforce}

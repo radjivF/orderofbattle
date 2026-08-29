@@ -172,14 +172,37 @@
         "save": "3+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Long Fusil",
+          "kind": "ranged",
+          "range": "24\"",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Warhulk's Mace",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "MARK TARGETS",
           "kind": "Activated",
           "timing": "Your Shooting Phase",
           "declare": "Pick an enemy unit that was targeted by this unit’s shooting attacks this turn to be the target.",
-          "effect": "Add 1 to hit rolls for shooting attacks made by friendly units that target that unit for the rest of the turn. KEYWORDS HERO, INFANTRY, CASTELITE",
+          "effect": "Add 1 to hit rolls for shooting attacks made by friendly units that target that unit for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -208,14 +231,26 @@
         "save": "5+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Tongstaff",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "BLAZING WEAPONS",
           "kind": "Activated",
           "timing": "Your Hero Phase",
           "declare": "Pick a friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
-          "effect": "On a 6+, the target’s melee weapons have Crit (Mortal) until the start of your next turn. KEYWORDS HERO, WIZARD, INFANTRY",
+          "effect": "On a 6+, the target’s melee weapons have Crit (Mortal) until the start of your next turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -244,7 +279,30 @@
         "save": "4+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Fusil-cannon",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Bayonet",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "BLACKPOWDER SQUIRE",
@@ -262,7 +320,7 @@
           "kind": "Activated",
           "timing": "Once Per Turn (Army), Your Shooting Phase",
           "declare": "Pick another friendly Freeguild Fusiliers unit to be the target.",
-          "effect": "Remove this unit’s Blackpowder Squire token from the battlefield, then give it to the target. KEYWORDS INFANTRY, CASTELITE, REINFORCEMENTS ezstandalone.cmd.push(function() {ezstandalone.showAds(128)});",
+          "effect": "Remove this unit’s Blackpowder Squire token from the battlefield, then give it to the target.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -289,14 +347,48 @@
         "save": "5+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Hunting Crossbow",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Hunting Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Trailhound’s Ferocious Bite",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "EXPERT TRACKERS",
           "kind": "Activated",
           "timing": "Deployment Phase",
           "declare": "",
-          "effect": "This unit can use the ‘Normal Move’ ability as if it were your movement phase. KEYWORDS INFANTRY",
+          "effect": "This unit can use the ‘Normal Move’ ability as if it were your movement phase.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",

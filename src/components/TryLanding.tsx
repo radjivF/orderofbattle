@@ -3,8 +3,8 @@ import Link from "next/link";
 import { listFactions } from "@/engine/queries";
 import { GEO_FAQS } from "@/lib/geoContent";
 import { SITE_DESCRIPTION, SITE_GITHUB_URL } from "@/lib/site";
-import { HOME_CTA_CLASS, HOME_CTA_QUIET_CLASS } from "@/lib/builderUi";
-import { BrandMark } from "./BrandMark";
+import { HOME_CTA_CLASS, HOME_CTA_QUIET_CLASS, SITE_HEADER_BAR_CLASS, SITE_HEADER_ROW_CLASS } from "@/lib/builderUi";
+import { SiteBrandLockup } from "./BrandMark";
 import { IndexBackdrop } from "./IndexBackdrop";
 import { LandingMotion } from "./LandingMotion";
 import { SiteFooter } from "./SiteFooter";
@@ -39,15 +39,10 @@ export function TryLanding() {
   return (
     <LandingMotion>
       <IndexBackdrop veil="hero">
-        <header className="relative z-20 mx-auto flex w-full max-w-3xl items-center justify-between px-5 pt-[max(1.25rem,env(safe-area-inset-top))] pb-4 sm:px-6 sm:py-6 lg:max-w-5xl">
-          <Link href="/" className="flex min-h-11 items-center gap-2.5">
-            <BrandMark
-              size={36}
-              className="h-8 w-auto drop-shadow-md"
-              priority
-            />
-          </Link>
-          <div className="flex items-center gap-3 sm:gap-4">
+        <header className={`${SITE_HEADER_BAR_CLASS} relative z-20 pt-[env(safe-area-inset-top)]`}>
+          <div className={`${SITE_HEADER_ROW_CLASS} lg:max-w-5xl`}>
+            <SiteBrandLockup />
+            <div className="flex shrink-0 items-center gap-3 sm:gap-4">
             <a
               href={SITE_GITHUB_URL}
               target="_blank"
@@ -76,6 +71,7 @@ export function TryLanding() {
                 />
               </svg>
             </Link>
+            </div>
           </div>
         </header>
 

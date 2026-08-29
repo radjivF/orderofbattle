@@ -168,7 +168,30 @@
         "save": "3+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Akhelian Royal Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Deepmare’s Fangs, Talons and Lashing Tails",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "RAIDERS' RESOLVE",
@@ -186,7 +209,7 @@
           "kind": "Activated",
           "timing": "Any Charge Phase",
           "declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
-          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll. KEYWORDS HERO, CAVALRY, FLY",
+          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -214,14 +237,37 @@
         "save": "4+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Voltspear",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge, (+1, Damage)"
+        },
+        {
+          "name": "Fangmora’s Fangs and Lashing Tail",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "BIOVOLTAIC BLAST",
           "kind": "Activated",
           "timing": "Once Per Battle, Any Charge Phase",
           "declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target, then roll a number of dice equal to the number of models in this unit.",
-          "effect": "For each 4-5, inflict 1 mortal damage on the target. For each 6+, inflict D3 mortal damage on the target. Add 1 to each roll if there are more models in the target unit than this unit. KEYWORDS CAVALRY, FLY",
+          "effect": "For each 4-5, inflict 1 mortal damage on the target. For each 6+, inflict D3 mortal damage on the target. Add 1 to each roll if there are more models in the target unit than this unit.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -249,14 +295,37 @@
         "save": "4+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Helsabre",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Fangmora’s Fangs and Lashing Tail",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "BIOVOLTAIC BARRIER",
           "kind": "Activated",
           "timing": "Once Per Battle, Any Combat Phase",
           "declare": "Pick an enemy unit in combat with this unit to be the target.",
-          "effect": "Roll a dice. On a 3+, subtract 1 from the Attacks characteristic of the target unit’s weapons for the rest of the turn. KEYWORDS CAVALRY, FLY ezstandalone.cmd.push(function() {ezstandalone.showAds(126)});",
+          "effect": "Roll a dice. On a 3+, subtract 1 from the Attacks characteristic of the target unit’s weapons for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -284,14 +353,37 @@
         "save": "5+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Whisperbow",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit, (Auto-wound)"
+        },
+        {
+          "name": "Keening Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "STRIKE ON THE MOVE",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "This unit can use SHOOT abilities even if it used a RUN or RETREAT ability in the same turn. KEYWORDS INFANTRY, REINFORCEMENTS",
+          "effect": "This unit can use SHOOT abilities even if it used a RUN or RETREAT ability in the same turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",

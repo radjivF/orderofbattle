@@ -171,14 +171,37 @@
         "save": "3+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Masterwork Volley Pistol",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Skalfhammer",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "3",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "ALWAYS TAKE WHAT YOU ARE OWED",
           "kind": "Activated",
           "timing": "Your Hero Phase",
           "declare": "Pick a friendly Arkanaut Company unit wholly within 12\" of this unit to be the target.",
-          "effect": "Add D6 to the target’s control score until the start of your next turn. KEYWORDS HERO, INFANTRY",
+          "effect": "Add D6 to the target’s control score until the start of your next turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -206,267 +229,81 @@
         "save": "4+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Privateer Pistol",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Aethermatic Volley Gun",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "2D6",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Light Skyhook",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": ""
+        },
+        {
+          "name": "Arkanaut Cutter",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Gun Butt",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Skypike",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (Mortal)"
+        }
+      ],
       "abilities": [
         {
           "name": "GLORY-SEEKERS",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "Add 1 to hit rolls for attacks made by this unit that target a unit contesting an objective. KEYWORDS INFANTRY, REINFORCEMENTS",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "COUNTER-CHARGE",
-          "kind": "Activated",
-          "timing": "Enemy Charge Phase",
-          "declare": "Pick a friendly unit that is not in combat to use this ability.",
-          "effect": "That unit can use a CHARGE ability as if it were your charge phase. 3.3 Reinforced Units When you add a unit to your army roster, you can add it as a reinforced unit. A reinforced unit has twice as many models as its minimum unit size and costs twice as many points. If a unit has a minimum unit size of 1, it cannot be reinforced. In addition, some units with a unit size of more than 1 can not be reinforced. This will be noted on their battle profile. 14.3 Charge Phase",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "CHARGE",
-          "kind": "Activated",
-          "timing": "Your Charge Phase",
-          "declare": "Pick a friendly unit that is not in combat and has not used a RUN or RETREAT ability this turn to use this ability. Then, make a charge roll of 2D6.",
-          "effect": "That unit can move a distance up to the value of the charge roll. That unit can move through the combat ranges of any enemy units and must end that move within 1/2\" of a visible enemy unit. If it does so, the unit using this ability has charged. KEYWORDSCORE, MOVE, CHARGE",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "BLAZEBEARD AND SONS BAMBOOZLING FLAKGUN",
-          "kind": "Activated",
-          "timing": "Once Per Turn, Reaction: Opponent declared a CHARGE ability for a unit within 12\" of this unit",
-          "declare": "",
-          "effect": "Pick 1 dice in that charge roll. Then, make a bamboozling flak roll of D6. If the roll equals or exceeds the value on the dice, remove that dice from the charge roll.",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "FORWARD TO VICTORY",
-          "kind": "Activated",
-          "timing": "Reaction: You declared a CHARGE ability",
-          "declare": "Used By: The unit using that CHARGE ability.",
-          "effect": "You can re-roll the charge roll. Hit Roll Roll a dice. If the roll equals or exceeds the attacking weapon’s Hit characteristic, the attack scores a successful hit: move on to the next step. If not, the attack fails and the attack sequence ends. Unmodified hit rolls of 1 always fail. If an unmodified hit roll for an attack made with a weapon is a 6, that attack is a critical hit. Critical hits have no effect on their own but often trigger additional effects (see 20.0 Weapon Abilities). The INFANTRY keyword is used in the following Kharadron Overlords warscrolls: • Aether-Khemist • Aetheric Navigator • Arkanaut Admiral • Arkanaut Company • Brokk Grungsson, Lord-Magnate of Barak-Nar • Codewright • Drekki Flynt • Endrinmaster with Dirigible Suit • Endrinmaster with Endrinharness • Endrinriggers • Grundstok Thunderers • Null-Khemist • Skywardens • Vongrim Harpoon Crew • Vongrim Salvagers • Grombrindal, The White Dwarf • Scourge of Aqshy Endrinriggers • Scourge of Aqshy Null-Khemist • Scourge of Ghyran Codewright • Thundrik’s Profiteers Universal Core Abilities - Charge Phase",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "CHARGE",
-          "kind": "Activated",
-          "timing": "Your Charge Phase",
-          "declare": "Pick a friendly unit that is not in combat and has not used a RUN or RETREAT ability this turn to use this ability. Then, make a charge roll of 2D6.",
-          "effect": "That unit can move a distance up to the value of the charge roll. That unit can move through the combat ranges of any enemy units and must end that move within 1/2\" of a visible enemy unit. If it does so, the unit using this ability has charged. KEYWORDSCORE, MOVE, CHARGE The SKYVESSEL keyword is used in the following Kharadron Overlords warscrolls: • Arkanaut Frigate • Arkanaut Ironclad • Grundstok Gunhauler • Scourge of Ghyran Grundstok Gunhauler 3.1 Regiments Armies are made up of one or more regiments, each of which is led by a Hero. You must have at least 1 regiment in your army, and you can include a maximum of 5 regiments. To add a regiment, pick 1 HERO from your faction, then pick up to 3 non-HERO units to accompany them. Each HERO’s battle profile lists which units can be added to their regiment, and each non-HERO unit’s battle profile lists any relevant keywords it has. The battle profiles of some HEROES may say that they can be added to the regiment of another HERO in place of a non-HERO unit in that regiment. 24.1 Reserve Units Some abilities allow you to set up units in reserve. These units are placed to one side instead of being set up on the battlefield. At the start of the fourth battle round, units that were set up in reserve using a DEPLOY ability and that are still in reserve are destroyed. 7.0 Combat Range Each model has a combat range that extends 3\" horizontally from its base and any distance vertically from that circle to form a cylinder. The combat range of a unit extends 3\" horizontally and any distance vertically from every model in that unit. Units from opposing armies that are within each other’s combat range and that are visible to each other are in combat with each other. When a unit that is not in combat enters the combat range of a visible enemy unit, it moves into combat. A model is considered to be in combat with an enemy unit if that unit is within the model’s combat range and visible to it’ A unit’s combat range extends 3\" out from every model in that unit. If any enemy models are within a unit’s combat range and visible to it, that unit is in combat. 18.1 Ward Saves Units with the WARD keyword have the ‘Ward Save’ passive ability. The number after the WARD keyword indicates the ward value for the ward save. If a unit had WARD (5+), for example, its ward value would be 5. If a unit has more than one ward save, only the ward save with the lowest value applies to it; the other has no effect.",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "WARD SAVE",
-          "kind": "Passive",
-          "timing": "Passive",
-          "declare": "",
-          "effect": "In step 1 of the damage sequence (see 18.0), make a ward roll of D6 for each damage point in this unit’s damage pool. If the roll equals or exceeds this unit’s ward value, remove that damage point from the damage pool. 32.1 Contesting Objectives Unless otherwise specified, if an objective is within a model’s combat range, that model is contesting that objective. If any models in a unit are contesting an objective, that unit is contesting that objective. Each unit can only count as contesting a single objective for the purposes of determining objective control (see 32.2). Before determining objective control, for each of their units contesting two or more objectives, the active player must pick one of those objectives for it to contest. Then, their opponent does the same. Designer’s Note: For purposes other than determining objective control, a unit can contest more than one objective. The non-UNIQUE HERO keyword is used in the following Kharadron Overlords warscrolls: • Aether-Khemist • Aetheric Navigator • Arkanaut Admiral • Codewright • Endrinmaster with Dirigible Suit • Endrinmaster with Endrinharness • Null-Khemist • Scourge of Aqshy Null-Khemist • Scourge of Ghyran Codewright The HERO keyword is used in the following Kharadron Overlords warscrolls: • Aether-Khemist • Aetheric Navigator • Arkanaut Admiral • Brokk Grungsson, Lord-Magnate of Barak-Nar • Codewright • Drekki Flynt • Endrinmaster with Dirigible Suit • Endrinmaster with Endrinharness • Null-Khemist • Grombrindal, The White Dwarf • Scourge of Aqshy Null-Khemist • Scourge of Ghyran Codewright The non-HERO INFANTRY keyword is used in the following Kharadron Overlords warscrolls: • Arkanaut Company • Endrinriggers • Grundstok Thunderers • Skywardens • Vongrim Harpoon Crew • Vongrim Salvagers • Scourge of Aqshy Endrinriggers • Thundrik’s Profiteers 17.2 Mortal Damage Some abilities inflict mortal damage. If an ability inflicts mortal damage on a unit, add that number of damage points to the unit’s damage pool for that ability (see 18.2 Allocating Damage). Universal Core Abilities - Movement Phase",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "NORMAL MOVE",
-          "kind": "Activated",
-          "timing": "Your Movement Phase",
-          "declare": "Pick a friendly unit that is not in combat to use this ability.",
-          "effect": "That unit can move a distance up to its Move characteristic. That unit cannot move into combat during any part of that move. KEYWORDSCORE, MOVE",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "RUN",
-          "kind": "Activated",
-          "timing": "Your Movement Phase",
-          "declare": "Pick a friendly unit that is not in combat to use this ability.",
-          "effect": "Make a run roll of D6. That unit can move a distance up to its Move characteristic added to the run roll. That unit cannot move into combat during any part of that move. KEYWORDSCORE, MOVE, RUN",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "RETREAT",
-          "kind": "Activated",
-          "timing": "Your Movement Phase",
-          "declare": "Pick a friendly unit that is in combat to use this ability.",
-          "effect": "Inflict D3 mortal damage on that unit. That unit can move a distance up to its Move characteristic. That unit can move through the combat ranges of any enemy units but cannot end that move within an enemy unit’s combat range. KEYWORDSCORE, MOVE, RETREAT 32.2 Objective Control In the deployment phase after all Deployment Phase abilities have been used and at the end of each turn, follow this sequence for each objective in an order chosen by the active player: Starting with the active player, each player determines the control score of each of their units that is contesting that objective. A unit’s control score is the combined Control characteristics of all the models in that unit that are contesting the objective. Some abilities modify a unit’s control score, but it cannot be reduced to less than 1. Each player adds up the control scores of all of their units contesting that objective. This is their army control score for that objective. The players compare their army control scores for that objective. If one player’s score is higher, that player gains control of that objective. Once a player gains control of an objective, it remains under their control until their opponent gains control of it. Sometimes objective markers get accidentally nudged while you are moving models around. This is perfectly fine - just remember to put them back in their proper positions when determining objective control. 13.1 Fight Abilities Abilities with the FIGHT keyword follow a different sequence to other abilities. When the players are using Combat Phase abilities as described in 13.0, they cannot use FIGHT abilities. After the players have finished using Combat Phase abilities that are not FIGHT abilities, they must alternate picking 1 eligible unit to use a FIGHT ability, starting with the active player. Each unit in combat must use a FIGHT ability if it is able to. Once a player has no more units that are eligible to use a FIGHT ability, the other player continues to pick units that are eligible to use a FIGHT ability, one after another, until there are no more units that are eligible to use a FIGHT ability. The active player uses Combat Phase abilities that are not FIGHT abilities, then the opponent does the same. Players alternate picking a unit to use a FIGHT ability, starting with the active player. Each unit must use a FIGHT ability if it is able to. 15.3 Pile-in Moves Some abilities, such as FIGHT abilities, allow a unit to make a short move called a pile-in move to get into a better position for combat. To do so: If your unit is in combat: Pick an enemy unit your unit is in combat with to be the target of the pile-in move. Each model in your unit can move up to 3\". That move can pass through the combat ranges of any enemy units, but each model must end that move no further from the target unit. At the end of the move, your unit must still be in combat with all units that it was in combat with at the start of the move. If your unit is not in combat: Each model in your unit can move 3\" in any direction. That move can pass through and end within the combat ranges of any enemy units. Pile in: move up to 3\". If in combat, the unit must end the move closer, or at least as close, to the target enemy unit. 19.0 Strike-first and Strike-last If there are any STRIKE-FIRST units in combat after any non-FIGHT combat phase abilities have been used, other units cannot be picked to use a FIGHT ability until those units have been picked to use a FIGHT ability. After all those STRIKE-FIRST units have fought, the active player picks the next unit to fight. If there are any STRIKE-LAST units in combat, they cannot be picked to use a FIGHT ability if there are any units in combat that do not have STRIKE-LAST and have not yet used a FIGHT ability. If a unit has STRIKE-FIRST and STRIKE-LAST, treat it as if it had neither. There may be situations when a unit that has STRIKE-FIRST is not in combat at the start of the phase, but because of moves such as pile-in moves, it is ‘pulled into combat’ later in the phase. In such cases, STRIKE-FIRST has no effect on that unit because it was not in combat at the start of the phase. Abilities that allow a unit to use a FIGHT ability immediately after another unit do not override the STRIKE-FIRST or STRIKE-LAST constraints, so you could not pick a unit with STRIKE-LAST to fight immediately after a unit with STRIKE-FIRST. 6.0 Visibility A target model is visible to another model (which we’ll call the ‘observing model’) if you can draw a straight line through the air (whether horizontal, diagonal or vertical) from any point on the observing model to any point on the target model that does not intersect any objects except for other models in the observing model’s unit. A target unit is visible to an observing unit if at least 1 model in the target unit is visible to at least 1 model in the observing unit. A model is always considered to be visible to itself. If a rule or ability requires a target to be both within a given range of and visible to the unit using that ability, or to a model in that unit, both conditions must be met by the same model in the target. You could not, for instance, target a unit where one model is within range but not visible and another model is not in range but is visible. If any part of another model can be seen by an observing model, both the target model and its unit are visible to that observing model. In some cases, it might not be immediately clear whether a model is visible. If so, stoop down to get a look from behind the observing model. If any part of the other model is visible, even if it is just the tip of a spear, then that model is visible for rules purposes. 2.0 Spells The declare step of each spell will tell you to make a casting roll of 2D6. If the roll does not equal or exceed the spell’s casting value (at the top-right corner of the spell), the spell fails and its effect is not resolved. If the unmodified casting roll includes 2 or more rolls of 1, the spell is miscast: the spell fails, its effect is not resolved, D3 mortal damage is inflicted on the WIZARD that used it, and that WIZARD cannot use any more spells in that phase. Enemy reactions can only be used if the casting roll equals or exceeds the spell’s casting value. So long as the spell is not unbound (see 4.0), then it is successfully cast: resolve its effect. EXAMPLE SPELL",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "MYSTIC SHIELD",
-          "kind": "Activated",
-          "timing": "Your Hero Phase",
-          "declare": "Pick a visible friendly unit wholly within 12\" of this WIZARD to be the target. Then, make a casting roll of 2D6.",
-          "effect": "The target has WARD (6+) this turn. KEYWORDSSPELL Unbind",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "UNBIND",
-          "kind": "Activated",
-          "timing": "Reaction: Opponent declared a SPELL ability",
-          "declare": "Used By: A friendly WIZARD within 30\" of the enemy WIZARD casting the spell.",
-          "effect": "Make an unbinding roll of 2D6. If the roll exceeds the casting roll tor the spell, then the spell is unbound and its effect is not resolved. This reaction cannot be used more than once per casting roll. KEYWORDSUNBIND 1.1 Power Level Each WIZARD and PRIEST has a power level shown after the keyword, e.g. WIZARD (2). A WIZARD’s casting power level determines how many Spell abilities they can use per phase. A PRIEST’s chanting power level determines how many PRAYER abilities they can use per phase. 15.4 Flying Units with the FLY keyword have the following passive ability:",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "FLY",
-          "kind": "Passive",
-          "timing": "Passive",
-          "declare": "",
-          "effect": "As this unit moves, it ignores other models, terrain features and the combat ranges of enemy units. It cannot end its move in combat unless specified in the ability that allowed it to move. Ignore any vertical distance moved for this unit. When moving flying units, move them horizontally in any direction, ignoring intervening models and terrain, and place them where you wish, so long as they are allowed to end their move on that spot. Note that some units have the FLY keyword even if that unit can’t really fly. This often represents units that bounce, bound or skitter across the battlefield so adeptly that they might as well be flying! The FLY keyword is used in the following Kharadron Overlords warscrolls: • Arkanaut Frigate • Arkanaut Ironclad • Auto-Endrin • Brokk Grungsson, Lord-Magnate of Barak-Nar • Endrinmaster with Dirigible Suit • Endrinriggers • Grundstok Gunhauler • Null-Khemist • Skywardens • Vongrim Harpoon Crew • Vongrim Salvagers • Zontari Endrin Dock • Scourge of Aqshy Endrinriggers • Scourge of Aqshy Null-Khemist • Scourge of Ghyran Grundstok Gunhauler 4.1 Enhancements Each set of faction rules include a number of enhancements that can be given to units, e.g. heroic traits and artefacts of power. You can take 1 enhancement from each enhancement table in your faction rules. Each enhancement table lists which units are eligible to be given that enhancement. UNIQUE units cannot be given enhancements. While some abilities allow you to take extra enhancements, the same unit can never have more than 1 enhancement of the same type, and you can never include the same enhancement in your army more than once. Enhancements cannot be given to Regiment of Renown units, unless they have a keyword that matches that faction’s name. 18.4 Destroyed Units When the last model in a unit is slain, the unit is destroyed and all remaining damage points inflicted on that unit have no effect. Similarly, if something causes a unit to be destroyed, all models in the unit are slain and removed from play. 16.0 Picking Targets When declaring an ATTACK ability for a unit, you must pick the target unit(s) for its attacks. The number of attacks each model can make is equal to the Attacks characteristic of the weapons it is using. In most cases, models attack with every weapon on their warscroll (melee weapons for combat attacks, ranged weapons for shooting attacks), though some warscrolls specify that certain models in the unit are armed with special weapons or that the unit must pick between multiple weapons when it attacks. If the unit is in combat, it can only target units that are in combat with it. If a model has more than one attack, you can split the attacks between eligible targets as you wish. Combat attacks are made with melee weapons. The target unit(s) must be within the combat range of the attacking model and visible to it. The model must attack with all of the melee weapons it is armed with. Shooting attacks are made with ranged weapons. The target unit(s) must be within a distance equal to the Range characteristic of the weapon being used and visible to the attacking model. Models cannot make shooting attacks if their unit is in combat, unless otherwise specified (see 20.0 Weapon Abilities). Shooting attacks Shooting attacks are made with ranged weapons. The target unit(s) must be within a distance equal to the Range characteristic of the weapon being used and visible to the attacking model. Models cannot make shooting attacks if their unit is in combat, unless otherwise specified (see 20.0 Weapon Abilities).",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "SHOOT",
-          "kind": "Activated",
-          "timing": "Your Shooting Phase",
-          "declare": "Pick a friendly unit that has not used a RUN or RETREAT ability this turn to use this ability. Then, pick one or more enemy units as the target(s) of that unit’s attacks (see 16.0).",
-          "effect": "Resolve shooting attacks against the target unit(s). KEYWORDSCORE, ATTACK, SHOOT Combat attacks Combat attacks are made with melee weapons. The target unit(s) must be within the combat range of the attacking model and visible to it. The model must attack with all of the melee weapons it is armed with.",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "FIGHT",
-          "kind": "Activated",
-          "timing": "Any Combat Phase",
-          "declare": "Pick a friendly unit that is in combat or that charged this turn to use this ability. That unit can make a pile-in move. Then, if that unit is in combat, you must pick one or more enemy units as the target(s) of that unit’s attacks.",
-          "effect": "Resolve combat attacks against the target unit(s). KEYWORDSCORE, ATTACK, FIGHT Shoot in Combat This weapon can be used to make shooting attacks even if the attacking unit is in combat. 7.0 Manifestations There are two types of manifestation: endless spells, which can be summoned by WIZARDS, and invocations, which can be summoned by PRIESTS. Each manifestation has its own warscroll, and the spell or prayer that allows that manifestation to be summoned will be found in the appropriate manifestation lore. No more than 1 friendly WIZARD or PRIEST can attempt to summon the same manifestation per turn, and a friendly WIZARD or PRIEST cannot attempt to summon a friendly manifestation that was removed from play in the same turn. Manifestations are not units but can be interacted with in similar ways, as explained next: ALL MANIFESTATIONS Models can move through them but cannot end a move on them. Units can finish a charge move within ½\" of an enemy manifestation instead of within ½\" of an enemy unit. They can be damaged and destroyed as if they were units but do not count as destroyed units for the purposes of battle tactics and abilities. They are affected by all enemy abilities as if they were units. They can use CORE abilities as if they were units, and they can use abilities on their warscroll. Unless specified otherwise, they cannot use and are not affected by any other friendly abilities, and they do not count as units for the purposes of battle tactics or friendly abilities. They can only use the ‘Shoot’ or ‘Fight’ abilities if they have weapons of the appropriate type. MANIFESTATIONS WITH A MOVE CHARACTERISTIC OF ‘-’ They cannot move. They only count as being in combat in the combat phase, and enemy units only count as being in combat with them in the combat phase. They cannot make shooting attacks with ranged weapons that do not have Shoot in Combat while there is a visible enemy unit within 3\" of them. MANIFESTATIONS WITH A MOVE CHARACTERISTIC GREATER THAN ‘-’ They are treated as if they were units for the purposes of movement, combat range, being in combat and setting up terrain features, other manifestations and other units. 1.1 Army Roster These rules will explain how to create an army roster to prepare for a battle. You can find a blank army roster printable copy below: The KHARADRON OVERLORDS and HERO keywords are used in the following Kharadron Overlords warscrolls: • Aether-Khemist • Aetheric Navigator • Arkanaut Admiral • Brokk Grungsson, Lord-Magnate of Barak-Nar • Codewright • Drekki Flynt • Endrinmaster with Dirigible Suit • Endrinmaster with Endrinharness • Null-Khemist • Scourge of Aqshy Null-Khemist • Scourge of Ghyran Codewright The non-HERO INFANTRY and KHARADRON OVERLORDS keywords are used in the following Kharadron Overlords warscrolls: • Arkanaut Company • Endrinriggers • Grundstok Thunderers • Skywardens • Vongrim Harpoon Crew • Vongrim Salvagers • Scourge of Aqshy Endrinriggers • Thundrik’s Profiteers",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "FLY",
-          "kind": "Passive",
-          "timing": "Passive",
-          "declare": "",
-          "effect": "As this unit moves, it ignores other models, terrain features and the combat ranges of enemy units. It cannot end its move in combat unless specified in the ability that allowed it to move. Ignore any vertical distance moved for this unit. Wound Roll Roll a dice. If the roll equals or exceeds the attacking weapon’s Wound characteristic, the attack successfully wounds: move on to the next step. If not, the attack fails and the attack sequence ends. Unmodified wound rolls of 1 always fail. Those HEROES can join an eligible regiment as a EXPEDITIONARY FORCE. Infantry Hero • Aether-Khemist • Aetheric Navigator • Arkanaut Admiral • Endrinmaster with Dirigible Suit • Endrinmaster with Endrinharness • Codewright Infantry • Grundstok Thunderers War Machine • Grundstok Gunhauler 3.5 Regiments of Renown In addition to creating your own regiments, you can also spend points to include 1 Regiment of Renown. Regiments of Renown are pre-built regiments, each with their own special abilities. The rules for each Regiment of Renown will specify which factions can include it. A unit in a Regiment of Renown cannot be your general even if it is a WARMASTER. You cannot include more than one Regiment of Renown in your army unless otherwise specified in the notes column of that regiment’s battle profile. Units in a Regiment of Renown cannot use (but can be picked as the target of, if otherwise eligible) any faction rules from the faction they are allied into, including enhancements and lores. If an ability allows you to set up a replacement unit (Core Rules, 24.2) for a unit in a Regiment of Renown, that unit also counts as being part of that Regiment of Renown. Those HEROES can join an eligible regiment as a Expeditionary Force Infantry. Infantry Hero • Aether-Khemist • Aetheric Navigator • Arkanaut Admiral • Endrinmaster with Dirigible Suit • Endrinmaster with Endrinharness • Codewright Infantry • Grundstok Thunderers Crit (Mortal) If an attack made with this weapon scores a critical hit, that attack inflicts mortal damage on the target unit equal to the Damage characteristic of that weapon and the attack sequence ends. Save Roll The commander of the target unit rolls a dice, subtracting the attacking weapon’s Rend characteristic from the roll. Unmodified save rolls of 1 always fail. If the roll equals or exceeds the Save characteristic of the target unit, the attack fails and the attack sequence ends. If not, it is a successful attack: move on to the next step.",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "ALL-OUT DEFENCE",
-          "kind": "Activated",
-          "timing": "Reaction: Opponent declared an ATTACK ability",
-          "declare": "Used By: A unit targeted by that ATTACK ability.",
-          "effect": "Add 1 to save rolls for that unit until that ATTACK ability has been resolved. 1.0 Wizards and Priests WIZARDS are special units that can cast spells, and PRIESTS are special units that can chant prayers. Spells and prayers are powerful abilities that can have a dramatic impact on the battle. 7.2 Banishing Manifestations Instead of using a SPELL or PRAYER ability (including when using the ‘Magical Intervention’ ability), each WIZARD and PRIEST can use the ‘Banish Manifestation’ ability:",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "BANISH MANIFESTATION",
-          "kind": "Activated",
-          "timing": "Your Hero Phase",
-          "declare": "Pick a friendly WIZARD or PRIEST to use this ability, pick a MANIFESTATION within 30\" of them that was not summoned this turn to be the target, then make a banishment roll of 2D6. Add 1 to the banishment roll for each additional enemy MANIFESTATION on the battlefield after the first. You cannot pick the same MANIFESTATION to be the target of this ability more than once per turn.",
-          "effect": "If the banishment roll equals or exceeds the banishment value listed on the MANIFESTATION’s warscroll, it is banished and removed from play. KEYWORDSBANISH Those HEROES can join an eligible regiment as a PIONEER. Infantry Hero • Aetheric Navigator • Arkanaut Admiral • Endrinmaster with Endrinharness Infantry • Arkanaut Company • Endrinriggers • Grundstok Thunderers • Skywardens • Vongrim Harpoon Crew • Vongrim Salvagers • Thundrik’s Profiteers • Scourge of Aqshy Endrinriggers War Machine • Grundstok Gunhauler This HERO can join an eligible regiment as a non-INFANTRY PIONEER. War Machine • Grundstok Gunhauler 1.5 Faction Terrain Some factions have special terrain features called faction terrain features. Faction terrain features have their own warscrolls. They are not considered to be units, with the following exceptions: In the combat phase, they are treated as if they were units for the purposes of movement, combat range and being in combat. They are affected by all enemy abilities as if they were units. They can be damaged in the same manner as units. However, when they are removed from play, they count as being demolished instead of slain or destroyed (this means that they do not count as destroyed units for the purposes of abilities, scoring battle tactics, etc.). Enemy units can finish a charge move within ½\" of a terrain feature that is garrisoned (see 1.5.1). Faction terrain features cannot contest objectives even while they are garrisoned. If a terrain feature has any melee or ranged weapons, it can use the 'Fight' and 'Shoot' CORE abilities as if it were a unit. Terrain features that have a Move characteristic of 0\" ('-') cannot move (note that pile-in moves are a type of move). Faction terrain features with a Move characteristic greater than '-' are treated as if they were units in all phases for the purposes of movement, combat range, being in combat and setting up terrain features, other manifestations and other units. Some faction terrain features allow you to place a unit on them (this will be clearly specified in that terrain feature’s rules). When doing so, instead of measuring range or visibility to and from the unit that is on that terrain feature, measure to and from the terrain feature instead. Unless otherwise specified, units on a faction terrain feature cannot use FIGHT abilities. If a unit placed on a terrain feature is removed from it (e.g. if an ability removes them from the battlefield), that unit counts as having left that terrain feature and loses any special role or benefits it had as a result of being placed on it. The Citadel Terrain List shows the number of scenery pieces each terrain feature can consist of. If you are using terrain features that are not included on that list, agree with your opponent before setting up the battlefield how many scenery pieces make up each terrain feature. 32.0 Objectives Many battleplans award victory points for controlling objectives, which are represented by objective markers. Unless otherwise specified, objective markers are round and 40mm wide. Models can move over and end their moves on objective markers. If an objective marker is on the border between territories, it is within all those territories but wholly within none of them. Objective markers don’t block visibility. The warscrolls using ORDER and DUARDIN keywords can be found in the following Factions: Order: Cities of Sigmar, Fyreslayers, Kharadron Overlords. The ORDER and DUARDIN keywords are used in the following warscrolls: • Aether-Khemist • Aetheric Navigator • Allies of the Free Cities Auric Hearthguard • Allies of the Free Cities Vulkyn Flameseekers • Arkanaut Admiral • Arkanaut Company • Arkanaut Frigate • Arkanaut Ironclad • Auric Flamekeeper • Auric Hearthguard • Auric Runefather • Auric Runefather on Magmadroth • Auric Runemaster • Auric Runesmiter • Auric Runesmiter on Magmadroth • Auric Runeson • Auric Runeson on Magmadroth • Battlesmith • Brokk Grungsson, Lord-Magnate of Barak-Nar • Codewright • Doomseeker • Drekki Flynt • Endrinmaster with Dirigible Suit • Endrinmaster with Endrinharness • Endrinriggers • Grimhold Exile • Grimwrath Berzerker • Grundstok Gunhauler • Grundstok Thunderers • Hearthguard Berzerker with Berzerker Broadaxes • Hearthguard Berzerkers with Flamestrike Poleaxes • Null-Khemist • Skywardens • Vongrim Harpoon Crew • Vongrim Salvagers • Vulkite Berzerkers with Bladed Slingshields • Vulkite Berzerkers with Fyresteel Weapons • Vulkyn Flameseekers • Grombrindal, The White Dwarf • Grombrindal, The White Dwarf • Grombrindal, The White Dwarf • Cogsmith • Drolf Ironhead, the Grizzled Explorer • Gyrobomber • Gyrocopter • Hammerers • Ironbreakers • Irondrakes • Longbeards • Runelord • Scourge of Aqshy Auric Runeson on Magmadroth and others... 3.2 The General You must pick 1 HERO in your army that is leading a regiment to be your general. If any units in your army have the WARMASTER keyword, you must pick one of those units to be your general. Your general’s regiment can include up to 4 non-HERO units in addition to your general. The FYRESLAYERS keyword is used in the following Fyreslayers warscrolls: • Auric Flamekeeper • Auric Hearthguard • Auric Runefather • Auric Runefather on Magmadroth • Auric Runemaster • Auric Runesmiter • Auric Runesmiter on Magmadroth • Auric Runeson • Auric Runeson on Magmadroth • Battlesmith • Doomseeker • Grimhold Exile • Grimwrath Berzerker • Hearthguard Berzerker with Berzerker Broadaxes • Hearthguard Berzerkers with Flamestrike Poleaxes • Magmic Battleforge • Molten Infernoth • Runic Fyrewall • Vulkite Berzerkers with Bladed Slingshields • Vulkite Berzerkers with Fyresteel Weapons • Vulkyn Flameseekers • Zharrgron Flame-spitter • Scourge of Aqshy Auric Runeson on Magmadroth • Scourge of Aqshy Vulkyn Flameseekers • Scourge of Ghyran Auric Runeson on Magmadroth • The Chosen Axes The KHARADRON OVERLORDS keyword is used in the following Kharadron Overlords warscrolls: • Aether-Khemist • Aetheric Navigator • Arkanaut Admiral • Arkanaut Company • Arkanaut Frigate • Arkanaut Ironclad • Auto-Endrin • Brokk Grungsson, Lord-Magnate of Barak-Nar • Codewright • Drekki Flynt • Endrinmaster with Dirigible Suit • Endrinmaster with Endrinharness • Endrinriggers • Grundstok Gunhauler • Grundstok Thunderers • Null-Khemist • Skywardens • Vongrim Harpoon Crew • Vongrim Salvagers • Zontari Endrin Dock • Scourge of Aqshy Endrinriggers • Scourge of Aqshy Null-Khemist • Scourge of Ghyran Codewright • Scourge of Ghyran Grundstok Gunhauler • Thundrik’s Profiteers The CITIES OF SIGMAR and DUARDIN keywords are used in the following Cities of Sigmar warscrolls: • Allies of the Free Cities Auric Hearthguard • Allies of the Free Cities Vulkyn Flameseekers • Cogsmith • Drolf Ironhead, the Grizzled Explorer • Gyrobomber • Gyrocopter • Hammerers • Ironbreakers • Irondrakes • Longbeards • Runelord • Warden King The warscrolls using DUARDIN, ORDER and PRIEST keywords can be found in the following Factions: Order: Cities of Sigmar, Fyreslayers. The DUARDIN, ORDER and PRIEST keywords are used in the following warscrolls: • Auric Runemaster • Auric Runesmiter • Auric Runesmiter on Magmadroth • Runelord 3.0 Prayers The declare step of each prayer will tell you to make a chanting roll of D6. On an unmodified chanting roll of 1, the prayer fails, its effect is not resolved and you must remove D3 ritual points from the PRIEST using the prayer. Otherwise, pick one of the following: Give a number of ritual points to the PRIEST equal to the chanting roll (ritual points can be accumulated over multiple turns). Add the PRIEST’s ritual points to the chanting roll. If the chanting roll equals or exceeds the prayer’s chanting value (at the top-right corner of the prayer), it is answered: resolve the effect of the prayer, then reset the PRIEST’s ritual points total to 0. All PRIESTS know the following prayer:",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "SACRED RITES",
-          "kind": "Activated",
-          "timing": "Your Hero Phase",
-          "declare": "Pick a friendly PRIEST to use this ability, then make a chanting roll of D6. On an unmodified chanting roll of 1, remove 1 ritual point from that PRIEST instead of D3.",
-          "effect": "Give a number to ritual points to the PRIEST equal to the unmodified chanting roll and do not reset the PRIEST’s ritual points to 0. KEYWORDSPRAYER, UNLIMITED EXAMPLE PRAYER",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "RESURRECTION",
-          "kind": "Activated",
-          "timing": "Once Per Battle, Your Hero Phase",
-          "declare": "Make a chanting roll of D6.",
-          "effect": "Pick a friendly INFANTRY HERO that has been slain and return them to the battlefield. Set up that HERO wholly within 3\" of this PRIEST. KEYWORDSPRAYER The warscrolls using ORDER, DUARDIN and INFANTRY keywords can be found in the following Factions: Order: Cities of Sigmar, Fyreslayers, Kharadron Overlords. The ORDER, DUARDIN and INFANTRY keywords are used in the following warscrolls: • Aether-Khemist • Aetheric Navigator • Allies of the Free Cities Auric Hearthguard • Allies of the Free Cities Vulkyn Flameseekers • Arkanaut Admiral • Arkanaut Company • Auric Flamekeeper • Auric Hearthguard • Auric Runefather • Auric Runemaster • Auric Runesmiter • Auric Runeson • Battlesmith • Brokk Grungsson, Lord-Magnate of Barak-Nar • Codewright • Doomseeker • Drekki Flynt • Endrinmaster with Dirigible Suit • Endrinmaster with Endrinharness • Endrinriggers • Grimhold Exile • Grimwrath Berzerker • Grundstok Thunderers • Hearthguard Berzerker with Berzerker Broadaxes • Hearthguard Berzerkers with Flamestrike Poleaxes • Null-Khemist • Skywardens • Vongrim Harpoon Crew • Vongrim Salvagers • Vulkite Berzerkers with Bladed Slingshields • Vulkite Berzerkers with Fyresteel Weapons • Vulkyn Flameseekers • Grombrindal, The White Dwarf • Grombrindal, The White Dwarf • Grombrindal, The White Dwarf • Cogsmith • Drolf Ironhead, the Grizzled Explorer • Hammerers • Ironbreakers • Irondrakes • Longbeards • Runelord • Scourge of Aqshy Endrinriggers • Scourge of Aqshy Null-Khemist • Scourge of Aqshy Vulkyn Flameseekers • Scourge of Ghyran Codewright • Warden King • The Chosen Axes • Thundrik’s Profiteers The warscrolls using DUARDIN, ORDER and HERO keywords can be found in the following Factions: Order: Cities of Sigmar, Fyreslayers, Kharadron Overlords. The DUARDIN, ORDER and HERO keywords are used in the following warscrolls: • Aether-Khemist • Aetheric Navigator • Arkanaut Admiral • Auric Flamekeeper • Auric Runefather • Auric Runefather on Magmadroth • Auric Runemaster • Auric Runesmiter • Auric Runesmiter on Magmadroth • Auric Runeson • Auric Runeson on Magmadroth • Battlesmith • Brokk Grungsson, Lord-Magnate of Barak-Nar • Codewright • Doomseeker • Drekki Flynt • Endrinmaster with Dirigible Suit • Endrinmaster with Endrinharness • Grimhold Exile • Grimwrath Berzerker • Null-Khemist • Grombrindal, The White Dwarf • Grombrindal, The White Dwarf • Grombrindal, The White Dwarf • Cogsmith • Drolf Ironhead, the Grizzled Explorer • Runelord • Scourge of Aqshy Auric Runeson on Magmadroth • Scourge of Aqshy Null-Khemist • Scourge of Ghyran Auric Runeson on Magmadroth • Scourge of Ghyran Codewright • Warden King 21.0 Healing Some abilities allow you to heal a unit. To heal a unit, remove a number of damage points from the unit equal to the number in brackets after ‘Heal’, e.g. Heal (2). Those HEROES can join an eligible regiment as a MAGNATE’S CREW. Infantry Hero • Brokk Grungsson, Lord-Magnate of Barak-Nar • Endrinmaster with Dirigible Suit • Null-Khemist Infantry • Endrinriggers • Skywardens • Vongrim Harpoon Crew • Vongrim Salvagers War Machine • Arkanaut Frigate • Arkanaut Ironclad • Grundstok Gunhauler Those HEROES can join an eligible regiment as a MAGNATE’S CREW INFANTRY. Infantry Hero • Brokk Grungsson, Lord-Magnate of Barak-Nar • Endrinmaster with Dirigible Suit • Null-Khemist Infantry • Endrinriggers • Skywardens • Vongrim Harpoon Crew • Vongrim Salvagers Those HEROES can join an eligible regiment as a MAGNATE’S CREW SKYVESSEL. War Machine • Arkanaut Frigate • Arkanaut Ironclad • Grundstok Gunhauler",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "REDEPLOY",
-          "kind": "Activated",
-          "timing": "Enemy Movement Phase",
-          "declare": "Pick a friendly unit that is not in combat to use this ability.",
-          "effect": "Each model in that unit can move up to D6\". That move cannot pass through or end within the combat range of an enemy unit. KEYWORDSMOVE, RUN The HERO keyword is used in the following Kharadron Overlords warscrolls: • Aether-Khemist • Aetheric Navigator • Arkanaut Admiral • Brokk Grungsson, Lord-Magnate of Barak-Nar • Codewright • Drekki Flynt • Endrinmaster with Dirigible Suit • Endrinmaster with Endrinharness • Null-Khemist • Grombrindal, The White Dwarf • Scourge of Aqshy Null-Khemist • Scourge of Ghyran Codewright The INFANTRY keyword is used in the following Kharadron Overlords warscrolls: • Aether-Khemist • Aetheric Navigator • Arkanaut Admiral • Arkanaut Company • Brokk Grungsson, Lord-Magnate of Barak-Nar • Codewright • Drekki Flynt • Endrinmaster with Dirigible Suit • Endrinmaster with Endrinharness • Endrinriggers • Grundstok Thunderers • Null-Khemist • Skywardens • Vongrim Harpoon Crew • Vongrim Salvagers • Grombrindal, The White Dwarf • Scourge of Aqshy Endrinriggers • Scourge of Aqshy Null-Khemist • Scourge of Ghyran Codewright • Thundrik’s Profiteers The ORDER keyword is used in the following Kharadron Overlords warscrolls: • Aether-Khemist • Aetheric Navigator • Arkanaut Admiral • Arkanaut Company • Arkanaut Frigate • Arkanaut Ironclad • Auto-Endrin • Brokk Grungsson, Lord-Magnate of Barak-Nar • Codewright • Drekki Flynt • Endrinmaster with Dirigible Suit • Endrinmaster with Endrinharness • Endrinriggers • Grundstok Gunhauler • Grundstok Thunderers • Null-Khemist • Skywardens • Vongrim Harpoon Crew • Vongrim Salvagers • Zontari Endrin Dock • Grombrindal, The White Dwarf • Scourge of Aqshy Endrinriggers • Scourge of Aqshy Null-Khemist • Scourge of Ghyran Codewright • Scourge of Ghyran Grundstok Gunhauler • Thundrik’s Profiteers The KHARADRON OVERLORDS keyword is used in the following Kharadron Overlords warscrolls: • Aether-Khemist • Aetheric Navigator • Arkanaut Admiral • Arkanaut Company • Arkanaut Frigate • Arkanaut Ironclad • Auto-Endrin • Brokk Grungsson, Lord-Magnate of Barak-Nar • Codewright • Drekki Flynt • Endrinmaster with Dirigible Suit • Endrinmaster with Endrinharness • Endrinriggers • Grundstok Gunhauler • Grundstok Thunderers • Null-Khemist • Skywardens • Vongrim Harpoon Crew • Vongrim Salvagers • Zontari Endrin Dock • Scourge of Aqshy Endrinriggers • Scourge of Aqshy Null-Khemist • Scourge of Ghyran Codewright • Scourge of Ghyran Grundstok Gunhauler • Thundrik’s Profiteers The DUARDIN keyword is used in the following Kharadron Overlords warscrolls: • Aether-Khemist • Aetheric Navigator • Arkanaut Admiral • Arkanaut Company • Arkanaut Frigate • Arkanaut Ironclad • Brokk Grungsson, Lord-Magnate of Barak-Nar • Codewright • Drekki Flynt • Endrinmaster with Dirigible Suit • Endrinmaster with Endrinharness • Endrinriggers • Grundstok Gunhauler • Grundstok Thunderers • Null-Khemist • Skywardens • Vongrim Harpoon Crew • Vongrim Salvagers • Grombrindal, The White Dwarf • Scourge of Aqshy Endrinriggers • Scourge of Aqshy Null-Khemist • Scourge of Ghyran Codewright • Scourge of Ghyran Grundstok Gunhauler • Thundrik’s Profiteers The SKYFARER keyword is used in the following Kharadron Overlords warscrolls: • Aether-Khemist • Aetheric Navigator • Arkanaut Admiral • Arkanaut Company • Brokk Grungsson, Lord-Magnate of Barak-Nar • Codewright • Drekki Flynt • Endrinmaster with Dirigible Suit • Endrinmaster with Endrinharness • Endrinriggers • Grundstok Thunderers • Null-Khemist • Skywardens • Vongrim Harpoon Crew • Vongrim Salvagers • Scourge of Aqshy Endrinriggers • Scourge of Aqshy Null-Khemist • Scourge of Ghyran Codewright • Thundrik’s Profiteers 1.1 Power Level Each WIZARD and PRIEST has a power level, shown in brackets after the keyword, e.g. WIZARD (2). A WIZARD or PRIEST’s power level determines the number of SPELL, PRAYER or BANISH abilities they can use per phase, in any combination. For example, a WIZARD (2) unit could use 1 SPELL and 1 BANISH ability in their commander’s hero phase.",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "TRANSPORT SKYFARERS",
-          "kind": "Activated",
-          "timing": "Your Movement Phase, Reaction: You declared a non-CHARGE MOVE ability for a friendly SKYVESSEL",
-          "declare": "",
-          "effect": "Pick a number of units up to that SKYVESSEL’s Transport Capacity (see its warscroll) that are wholly within 6\" of it and not in combat to be the targets. Units that have been transported this turn cannot be targets. Remove the targets from the battlefield. After the SKYVESSEL ends its move, you must set up each target unit on the battlefield, wholly within 6\" of that SKYVESSEL and not in combat. Those units have been transported. A unit cannot use CHARGE abilities if it was transported in the same turn.",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "THE FLAGSHIP",
-          "kind": "Activated",
-          "timing": "Once Per Battle (Army), Deployment Phase",
-          "declare": "Pick a friendly SKYVESSEL to be the target. The target can be in reserve.",
-          "effect": "The target has the FLAGSHIP keyword for the rest of the battle. If the target does not have a Great Endrinwork, give the target 1 Great Endrinwork. Designer’s Note: This Great Endrinwork is given to the unit during the deployment phase, not during army composition. Charge (+1 Damage) Add 1 to this weapon’s Damage characteristic if the attacking unit charged this turn. Anti-X (+1 Rend) Add 1 to this weapon’s Rend characteristic if the target has the keyword after ‘Anti-’ or fulfils the condition after ‘Anti-’. Multiples of this ability are cumulative. For example, if a weapon has both Anti-charge (+1 Rend) and Anti-HERO (+1 Rend), then add 2 to the Rend characteristic of the weapon for attacks that target a HERO that charged in the same turn. Crit (2 Hits) If an attack made with this weapon scores a critical hit, that attack scores 2 hits on the target unit instead of 1. Make a wound roll for each hit.",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
-        },
-        {
-          "name": "RALLY",
-          "kind": "Activated",
-          "timing": "Any Hero Phase",
-          "declare": "Pick a friendly unit that is not in combat to use this ability.",
-          "effect": "Make 6 rally rolls of D6. For each 4+, you receive 1 rally point. Rally points can be spent in the following ways: For each rally point spent, Heal (1) that unit. You can spend a number of rally points equal to the Health characteristic of that unit to return a slain model to that unit. You can spend the rally points in any combination of the above. Unspent rally points are then lost. The non-HERO non-SKYVESSEL keyword is used in the following Kharadron Overlords warscrolls: Infantry • Arkanaut Company • Endrinriggers • Grundstok Thunderers • Skywardens • Vongrim Harpoon Crew • Vongrim Salvagers • Thundrik’s Profiteers • Scourge of Aqshy Endrinriggers War Machine • Auto-Endrin Faction Terrain • Zontari Endrin Dock 24.2 Replacement Units Some abilities allow you to set up a replacement unit. When setting up that unit, it should have the same warscroll type, weapon options and number of models as the original unit, unless otherwise specified in the ability. Many of these abilities specify the proportion of models in the replacement unit (e.g. half the number of models from the original unit). In these cases, you can pick which models from the original unit are set up. The replacement unit is otherwise treated as a new unit; any keywords or abilities the original unit gained during the battle, and any persisting effects that applied to it, do not apply to the replacement unit. Each unit can only be replaced once, and you cannot replace replacement units. If the original unit was reinforced and the replacement unit has more than half the number of models from the original unit, the replacement unit is considered to be reinforced. Because a replacement unit is treated as a completely new unit, it could, for instance, use a Once Per Battle ability on its warscroll even if the unit it replaced used that ability earlier in the battle. Crit (Auto-wound) If an attack made with this weapon scores a critical hit, that attack automatically wounds the target. Make a save roll as normal. 18.2 Allocating Damage After resolving the effect of any ability that inflicts damage points (whether via attacks, mortal damage or both), you must allocate the damage points. When allocating damage points to a unit, the damage points in its damage pool are allocated to it one at a time. Each time the number of damage points allocated to the unit equals the Health characteristic of that unit, 1 model in that unit is slain (and removed from play) and the number of damage points allocated to that unit is reset to 0. Keep allocating damage points until there are none left in the damage pool. If the number of damage points allocated to a unit is not enough to slay a model, keep track of the number of damage points currently allocated to the unit (most players place a dice or markers next to the unit). While a unit has any damage points allocated to it, it is damaged. 18.3 Slain Models The commander of a unit must pick which model(s) in the unit are slain. However, after each slain model is removed, the unit must be in a single coherent group (see 15.1). If this is not possible, continue to remove models, one at a time, until the unit is in a single coherent group. You must remove the fewest models possible to make the unit a single coherent group. Army List Warscrolls collated Infantry Hero • Aether-Khemist • Aetheric Navigator • Arkanaut Admiral • Brokk Grungsson, Lord-Magnate of Barak-Nar • Codewright • Drekki Flynt • Endrinmaster with Dirigible Suit • Endrinmaster with Endrinharness • Null-Khemist • Grombrindal, The White Dwarf • Scourge of Aqshy Null-Khemist • Scourge of Ghyran Codewright Infantry • Arkanaut Company • Endrinriggers • Grundstok Thunderers • Skywardens • Vongrim Harpoon Crew • Vongrim Salvagers • Scourge of Aqshy Endrinriggers • Thundrik’s Profiteers War Machine • Arkanaut Frigate • Arkanaut Ironclad • Auto-Endrin • Grundstok Gunhauler • Scourge of Ghyran Grundstok Gunhauler Faction Terrain • Zontari Endrin Dock Regiment of Renown • Bloodthirsty Shiver • Bundo Whalebiter • Cogfort Raiders • Dawnrider Lance • Elthwin’s Thorns • Enforcers of the Tithe • Heroes of The Jade Abbey • Khinerai Death Flight • Mask of the Deceiver • Namarti Shore Raid • Norgrimm’s Rune Throng • Reinholt’s Sharpshooters • Rogue Engine • Saviours of Cinderfall • Sigil Convocation • The Crimson Lash • The Horizon Seekers • The Scarlet Jury • Valnir’s Stormwing • Ven Denst’s Hounds • Fjori’s Flamebearers • Gotrek Gurnisson • Nurgle’s Gift • Stumblefoot Gargant • The Blacktalons Contents Books Designers’ Commentary • Battletome: Kharadron Overlords Battle Traits Battle Formations • Pioneers and Scavengers • Veteran Ground Troops • Rapid Redeployment Squadron • Endrineers Guild Expeditionary Force Heroic Traits • Lords of the Sky-fleets Artefacts of Power • Inventions of the Sky-Ports • Ingenious Innovations • Ingenious Innovations Great Endrinworks • Great Endrinwork Artycle References Grundstok Expeditionary Force • Battle Traits • Heroic Traits • Artefacts of Power Pioneer Outpost • Battle Traits • Heroic Traits • Artefacts of Power The Duardin Ascendant • Battle Traits • Heroic Traits • Artefacts of Power The Magnate’s Crew • Battle Traits • Heroic Traits • Artefacts of Power PATH TO GLORY • The Anvil of Apotheosis • Step 1 - Set a Destiny Point Limit • Step 2 - Fill Out The Starting Warscroll • Step 3 - Choose an Archetype • Step 4 - Pick Your Hero's Origin And/Or Flaw • Step 5 - Pick Any Endrinwork Upgrades • Step 6 - Pick any Other Upgrades • Path of The Magnate • Path of The Privateer • Path of The Skyfleet SPEARHEAD Grundstok Trailblazers • Battle Traits • Regiment Abilities • Enhancements • Warscrolls Skyhammer Task Force • Battle Traits • Regiment Abilities • Enhancements • Warscrolls Disable Ads E-mail: Pin code: Disable Ads Get new pin code Boosty subscribers may disable ads: 1. Enter e-mail you have used to login on Boosty. 2. Press Get new pin code button (if you don’t have it already) 3. Enter pin code. Note that login database updated once a day. So, if you are a new booster - try tomorrow. And thank you! $(window).scroll(function() { if ($(this).scrollTop() >= 200) { $('#btnBackToTop').fadeIn(300); } else { $('#btnBackToTop').fadeOut(300); } }); $('#btnBackToTop').on('touchstart', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_ToTop_Hover.png); background-image: var(--button-to-top-hover)'); $(this).fadeIn(300); return true; }); $('#btnBackToTop').on('touchend', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_ToTop.png); background-image: var(--button-to-top)'); $(this).fadeOut(300); document.body.scrollTop = 0; document.documentElement.scrollTop = 0; return true; }); $('#btnBackToTop').on('click', function () { 'use strict'; document.body.scrollTop = 0; document.documentElement.scrollTop = 0; return true; }); $('#btnArmyList').on('touchstart', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_ArmyList_Hover.png); background-image: var(--button-army-list-hover)'); return true; }); $('#btnArmyList').on('touchend', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_ArmyList.png); background-image: var(--button-army-list)'); return true; }); $('#btnContents').on('touchstart', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_Contents_Hover.png); background-image: var(--button-contents-hover)'); return true; }); $('#btnContents').on('touchend', function () { 'use strict'; $(this).attr('style', 'background-image: url(/aos4/img/Button_Contents.png); background-image: var(--button-contents)'); return true; }); © Vyacheslav Maltsev 2013-2026 ezstandalone.cmd.push(function() {ezstandalone.showAds(103)}); (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-57173050-3', 'auto'); ga('send', 'pageview'); window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-YCMHCMW8RQ');",
+          "effect": "Add 1 to hit rolls for attacks made by this unit that target a unit contesting an objective.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -495,14 +332,59 @@
         "save": "4+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Vulcaniser Pistol",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Aethermatic Volley Gun",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "2D6",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Skypike",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (Mortal)"
+        },
+        {
+          "name": "Gun Butt",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "TIMED CHARGES",
           "kind": "Activated",
           "timing": "End of Any Turn",
           "declare": "Pick an enemy unit in combat with this unit to be the target, then roll a dice.",
-          "effect": "On a 2+, inflict 1 mortal damage on the target, and this unit can immediately use the ‘Retreat’ ability without any mortal damage being inflicted on it. KEYWORDS INFANTRY, FLY, REINFORCEMENTS",
+          "effect": "On a 2+, inflict 1 mortal damage on the target, and this unit can immediately use the ‘Retreat’ ability without any mortal damage being inflicted on it.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -530,25 +412,48 @@
         "save": "3+",
         "control": "5"
       },
-      "weapons": [],
-      "abilities": [
+      "weapons": [
         {
-          "name": "BATTLE DAMAGED",
-          "kind": "Passive",
-          "timing": "Passive",
-          "declare": "",
-          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Heavy Skyhook is 1.",
-          "keywords": "",
-          "castingValue": "",
-          "chantingValue": "",
-          "cost": ""
+          "name": "Heavy Skyhook",
+          "kind": "ranged",
+          "range": "24\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D6",
+          "ability": ""
         },
+        {
+          "name": "Aethershot Carbines",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Crew’s Boarding Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "8",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
+      "abilities": [
         {
           "name": "BOMB RACKS",
           "kind": "Activated",
           "timing": "Once Per Battle, Your Movement Phase",
           "declare": "Pick an enemy unit that this unit passed across this phase to be the target.",
-          "effect": "Inflict D3+1 mortal damage on the target. KEYWORDS WAR MACHINE, FLY",
+          "effect": "Inflict D3+1 mortal damage on the target.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",

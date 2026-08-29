@@ -168,14 +168,26 @@
         "save": "5+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Rune-etched Axe",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (Mortal)"
+        }
+      ],
       "abilities": [
         {
           "name": "OATH OF SUPREMACY",
           "kind": "Activated",
           "timing": "Your Hero Phase",
           "declare": "Pick a friendly unit wholly within 12\" of your general to be the target.",
-          "effect": "Until the start of your next turn, add 1 to hit rolls for attacks made by the target. KEYWORDS HERO, INFANTRY, WARD (5+)",
+          "effect": "Until the start of your next turn, add 1 to hit rolls for attacks made by the target.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -202,14 +214,26 @@
         "save": "5+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Darkoath Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit, (Mortal)"
+        }
+      ],
       "abilities": [
         {
           "name": "VISIONS OF GLORY",
           "kind": "Activated",
           "timing": "Your Hero Phase",
           "declare": "",
-          "effect": "If this unit includes a Godspeaker, roll 8 dice. For each 4+, until the start of your next turn, you can re-roll 1 hit roll, 1 wound roll, 1 run roll or 1 save roll for this unit. KEYWORDS INFANTRY",
+          "effect": "If this unit includes a Godspeaker, roll 8 dice. For each 4+, until the start of your next turn, you can re-roll 1 hit roll, 1 wound roll, 1 run roll or 1 save roll for this unit.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -237,14 +261,37 @@
         "save": "5+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Fellrider Blades",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Charge, (+1, Damage)"
+        },
+        {
+          "name": "Warsteed’s Hooves",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "SWIFT ATTACKERS",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "Subtract 1 from hit rolls for shooting attacks that target this unit. KEYWORDS CAVALRY, REINFORCEMENTS",
+          "effect": "Subtract 1 from hit rolls for shooting attacks that target this unit.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -272,14 +319,26 @@
         "save": "5+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Raider Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "GLORIOUS DEATH",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking model, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved. KEYWORDS INFANTRY, REINFORCEMENTS ezstandalone.cmd.push(function() {ezstandalone.showAds(128)});",
+          "effect": "Each time a model in this unit is slain by a combat attack and that model was in combat with the attacking model, roll a dice. On a 5+, inflict 1 mortal damage on the attacking unit after the FIGHT ability has been resolved.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",

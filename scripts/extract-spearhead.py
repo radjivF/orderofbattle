@@ -10,6 +10,7 @@ from __future__ import annotations
 import html as htmlmod
 import json
 import re
+import sys
 import urllib.request
 from pathlib import Path
 
@@ -73,6 +74,107 @@ def collapse(raw: str) -> str:
     return re.sub(r"\s+", " ", strip_tags(raw)).strip()
 
 
+# Core / command / example-prayer names Wahapedia appends after a Spearhead sheet.
+LEAKED_WARSCROLL_NAMES = {
+    "ward save",
+    "normal move",
+    "run",
+    "retreat",
+    "charge",
+    "shoot",
+    "fight",
+    "unbind",
+    "banish manifestation",
+    "fly",
+    "mystic shield",
+    "sacred rites",
+    "resurrection",
+    "deploy faction terrain",
+    "champion",
+    "rally",
+    "redeploy",
+    "at the double",
+    "covering fire",
+    "all-out attack",
+    "all-out defence",
+    "counter-charge",
+    "forward to victory",
+    "power through",
+    "magical intervention",
+}
+
+
+def scrub_rules_text(text: str) -> str:
+    """Drop warscroll keyword footers and ad scripts that trail ability text."""
+    text = re.split(r"(?i)KEYWORDS", text, maxsplit=1)[0]
+    text = re.split(r"(?i)Universal Core Abilities", text, maxsplit=1)[0]
+    text = re.split(r"(?i)keyword is used in the following", text, maxsplit=1)[0]
+    text = re.split(r"ezstandalone\.", text, maxsplit=1)[0]
+    return text.strip()
+
+
+def trim_warscroll_body(target: str) -> str:
+    """Stop at keywords / the next page section so core-rules HTML is not scraped."""
+    cut = re.search(
+        r'class="wsKeywordLine|<h3 class="|<a name="|Universal Core Abilities|<div class="datasheet',
+        target,
+    )
+    return target[: cut.start()] if cut else target
+
+
+def is_leaked_warscroll_name(name: str) -> bool:
+    return name.strip().lower() in LEAKED_WARSCROLL_NAMES
+
+
+def pack_ability_names(box: dict) -> set[str]:
+    names: set[str] = set()
+    for group in ("battleTraits", "regimentAbilities", "enhancements"):
+        for item in box.get(group) or []:
+            names.add(str(item.get("name", "")).strip().lower())
+            for ability in item.get("abilities") or []:
+                names.add(str(ability.get("name", "")).strip().lower())
+    return names
+
+
+def clean_warscroll_abilities(
+    abilities: list[dict],
+    pack_names: set[str] | None = None,
+) -> list[dict]:
+    pack = pack_names or set()
+    out: list[dict] = []
+    for ability in abilities:
+        key = str(ability.get("name", "")).strip().lower()
+        if key == "battle damaged":
+            continue
+        if is_leaked_warscroll_name(ability.get("name", "")):
+            break
+        if key in pack:
+            continue
+        blob = f"{ability.get('declare', '')} {ability.get('effect', '')}"
+        if re.search(r"heroic trait", blob, re.I):
+            continue
+        if out and re.search(
+            r"Universal Core Abilities|keyword is used in the following",
+            blob,
+            re.I,
+        ):
+            continue
+        cleaned = {
+            **ability,
+            "declare": scrub_rules_text(str(ability.get("declare", ""))),
+            "effect": scrub_rules_text(str(ability.get("effect", ""))),
+        }
+        if cleaned["declare"] or cleaned["effect"] or cleaned.get("timing"):
+            out.append(cleaned)
+    return out
+
+
+def clean_box(box: dict) -> None:
+    skip = pack_ability_names(box)
+    for unit in box.get("units") or []:
+        unit["abilities"] = clean_warscroll_abilities(unit.get("abilities") or [], skip)
+
+
 def ability(
     name: str,
     timing: str,
@@ -95,7 +197,7 @@ def ability(
     }
 
 
-def parse_ab_blocks(section: str) -> list[dict]:
+def parse_ab_blocks(section: str, *, stop_at_leaked: bool = False) -> list[dict]:
     parts = re.split(r'<td class="abHeader"[^>]*>', section)
     out: list[dict] = []
     for part in parts[1:]:
@@ -118,13 +220,24 @@ def parse_ab_blocks(section: str) -> list[dict]:
         declare_m = re.search(r"<b>Declare:</b>\s*(.*?)(?:<br><br>|<b>Effect:|<b>Used By:|$)", body, re.S)
         used_m = re.search(r"<b>Used By:</b>\s*(.*?)(?:<br><br>|<b>Effect:|$)", body, re.S)
         effect_m = re.search(r"<b>Effect:</b>\s*(.*?)$", body, re.S)
-        declare = collapse(declare_m.group(1)) if declare_m else ""
+        declare = scrub_rules_text(collapse(declare_m.group(1)) if declare_m else "")
         if used_m and not declare:
-            declare = collapse("Used By: " + used_m.group(1))
+            declare = scrub_rules_text(collapse("Used By: " + used_m.group(1)))
         elif used_m:
-            declare = (declare + " Used By: " + collapse(used_m.group(1))).strip()
-        effect = collapse(effect_m.group(1)) if effect_m else collapse(fluff.group(1) if fluff else "")
+            declare = scrub_rules_text(
+                (declare + " Used By: " + collapse(used_m.group(1))).strip()
+            )
+        effect = scrub_rules_text(
+            collapse(effect_m.group(1)) if effect_m else collapse(fluff.group(1) if fluff else "")
+        )
         if not name:
+            continue
+        key = name.strip().lower()
+        if key == "battle damaged":
+            continue
+        if is_leaked_warscroll_name(name):
+            if stop_at_leaked:
+                break
             continue
         out.append(ability(name, timing, declare, effect))
     return out
@@ -172,53 +285,102 @@ def parse_keywords(block: str) -> list[str]:
     return [part.strip() for part in text.split(",") if part.strip()]
 
 
+def weapon_from_tbody(body: str, kind: str) -> dict | None:
+    name_m = re.search(
+        r'<tr class="wsDataRow wsDataRow_short"[^>]*>\s*<td[^>]*>(.*?)</td>',
+        body,
+        re.S,
+    )
+    name = collapse(re.sub(r"\[.*?\]", "", name_m.group(1) if name_m else ""))
+    ability_bits = re.findall(
+        r'class="tt kwbu"[^>]*>(.*?)</span>',
+        name_m.group(1) if name_m else "",
+        re.S,
+    )
+    ability = ", ".join(collapse(bit) for bit in ability_bits)
+    # Faction colour suffix varies (dsColorFrSE, dsColorFrCoS, …).
+    stat_row = re.search(r'<tr class="wsDataRow dsColorFr\w*">(.*?)</tr>', body, re.S)
+    if not stat_row:
+        return None
+    cells = re.findall(r"<td[^>]*>(.*?)</td>", stat_row.group(1), re.S)
+    values = [collapse(cell) for cell in cells if collapse(cell)]
+    if kind == "ranged":
+        stats = values[-6:] if len(values) >= 6 else values
+        while len(stats) < 6:
+            stats.insert(0, "")
+        rng, attacks, hit, wound, rend, damage = stats[-6:]
+    else:
+        stats = values[-5:] if len(values) >= 5 else values
+        while len(stats) < 5:
+            stats.insert(0, "")
+        rng = ""
+        attacks, hit, wound, rend, damage = stats[-5:]
+    if not name and values:
+        name = values[0]
+    if not name:
+        return None
+    return {
+        "name": name,
+        "kind": kind,
+        "range": rng,
+        "attacks": attacks,
+        "hit": hit,
+        "wound": wound,
+        "rend": rend,
+        "damage": damage,
+        "ability": ability,
+    }
+
+
+def wtable_inners(block: str) -> list[str]:
+    """Return wTable bodies, counting nested tables so 'See below' cells are not cut short."""
+    inners: list[str] = []
+    pos = 0
+    while True:
+        match = re.search(r'<table class="[^"]*wTable[^"]*"[^>]*>', block[pos:])
+        if not match:
+            break
+        start = pos + match.end()
+        depth = 1
+        cursor = start
+        inner = ""
+        while cursor < len(block) and depth:
+            next_open = block.find("<table", cursor)
+            next_close = block.find("</table>", cursor)
+            if next_close < 0:
+                break
+            if 0 <= next_open < next_close:
+                depth += 1
+                cursor = next_open + 6
+            else:
+                depth -= 1
+                if depth == 0:
+                    inner = block[start:next_close]
+                cursor = next_close + 8
+        if inner:
+            inners.append(inner)
+        pos = cursor if cursor > pos else start + 1
+    return inners
+
+
 def parse_weapons(block: str) -> list[dict]:
     weapons: list[dict] = []
-    tables = re.findall(r'<table class="wTable"[^>]*>(.*?)</table>', block, re.S)
-    for table in tables:
-        ranged = "RANGED WEAPONS" in table.upper() or "wsHeaderCellName_RangedWeapons" in table
-        kind = "ranged" if ranged else "melee"
-        bodies = re.findall(r'<tbody class="bkg">(.*?)</tbody>', table, re.S)
-        for body in bodies:
-            name_m = re.search(r"<tr class=\"wsDataRow wsDataRow_short\"[^>]*>\s*<td[^>]*>(.*?)</td>", body, re.S)
-            name = collapse(re.sub(r"\[.*?\]", "", name_m.group(1) if name_m else ""))
-            ability_bits = re.findall(r'class="tt kwbu"[^>]*>(.*?)</span>', name_m.group(1) if name_m else "", re.S)
-            ability = ", ".join(collapse(bit) for bit in ability_bits)
-            stat_row = re.search(r'<tr class="wsDataRow dsColorFrSE">(.*?)</tr>', body, re.S)
-            if not stat_row:
-                continue
-            cells = re.findall(r"<td[^>]*>(.*?)</td>", stat_row.group(1), re.S)
-            values = [collapse(cell) for cell in cells if collapse(cell)]
-            # Name is often repeated as a cell; keep trailing combat stats.
-            if kind == "ranged":
-                # range, atk, hit, wound, rend, damage — name may prefix
-                stats = values[-6:] if len(values) >= 6 else values
-                while len(stats) < 6:
-                    stats.insert(0, "")
-                rng, attacks, hit, wound, rend, damage = stats[-6:]
-            else:
-                stats = values[-5:] if len(values) >= 5 else values
-                while len(stats) < 5:
-                    stats.insert(0, "")
-                rng = ""
-                attacks, hit, wound, rend, damage = stats[-5:]
-            if not name and values:
-                name = values[0]
-            if not name:
-                continue
-            weapons.append(
-                {
-                    "name": name,
-                    "kind": kind,
-                    "range": rng,
-                    "attacks": attacks,
-                    "hit": hit,
-                    "wound": wound,
-                    "rend": rend,
-                    "damage": damage,
-                    "ability": ability,
-                }
-            )
+    for table in wtable_inners(block):
+        kind = "melee"
+        pos = 0
+        while True:
+            tbody_m = re.search(r'<tbody class="bkg">(.*?)</tbody>', table[pos:], re.S)
+            if not tbody_m:
+                break
+            header_region = table[pos : pos + tbody_m.start()]
+            last_ranged = header_region.rfind("wsHeaderCellName_RangedWeapons")
+            last_melee = header_region.rfind("wsHeaderCellName_MeleeWeapons")
+            if last_ranged >= 0 or last_melee >= 0:
+                kind = "ranged" if last_ranged > last_melee else "melee"
+            weapon = weapon_from_tbody(tbody_m.group(1), kind)
+            if weapon:
+                weapons.append(weapon)
+            pos += tbody_m.end()
     return weapons
 
 
@@ -256,7 +418,10 @@ def parse_warscrolls(block: str) -> list[dict]:
                     "control": control,
                 },
                 "weapons": parse_weapons(target),
-                "abilities": parse_ab_blocks(target),
+                "abilities": parse_ab_blocks(
+                    trim_warscroll_body(target),
+                    stop_at_leaked=True,
+                ),
                 "categories": keywords,
                 "hero": "HERO" in upper,
                 "unique": "UNIQUE" in upper,
@@ -389,8 +554,7 @@ def extract_boxes(parent_id: str, page: str) -> list[dict]:
                 }
             )
 
-        boxes.append(
-            {
+        box = {
                 "id": box_slug,
                 "name": title,
                 "parentFactionId": parent_id,
@@ -424,7 +588,8 @@ def extract_boxes(parent_id: str, page: str) -> list[dict]:
                 ],
                 "units": catalogue_units,
             }
-        )
+        clean_box(box)
+        boxes.append(box)
     return boxes
 
 
@@ -444,7 +609,20 @@ def write_manifest(files: list[str]) -> None:
     )
 
 
+def clean_existing() -> None:
+    count = 0
+    for path in sorted(OUT_DIR.glob("*.json")):
+        box = json.loads(path.read_text(encoding="utf-8"))
+        clean_box(box)
+        path.write_text(json.dumps(box, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        count += 1
+    print(f"cleaned {count} catalogues in {OUT_DIR}")
+
+
 def main() -> None:
+    if len(sys.argv) > 1 and sys.argv[1] == "--clean":
+        clean_existing()
+        return
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     written: list[str] = []
     total_boxes = 0

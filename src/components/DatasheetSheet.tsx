@@ -1,6 +1,7 @@
 "use client";
 
 import { commandAbilityCost } from "@/engine/commands";
+import { warscrollAbilities } from "@/engine/coreRules";
 import { unitWard } from "@/engine/queries";
 import type {
   CatalogueUnit,
@@ -9,7 +10,11 @@ import type {
   UnitAbility,
   UnitWeapon,
 } from "@/engine/types";
-import { SHEET_PANEL_CLASS, SHEET_HEADER_START_CLASS } from "@/lib/builderUi";
+import {
+  datasheetUnitPointsLabel,
+  SHEET_PANEL_CLASS,
+  SHEET_HEADER_START_CLASS,
+} from "@/lib/builderUi";
 import { AbilityMeta } from "./AbilityMeta";
 import { ModalFrame } from "./ModalFrame";
 import { RuleText } from "./RuleText";
@@ -17,6 +22,7 @@ import { SheetCloseButton } from "./ios/SheetIconButton";
 
 type Props = {
   sheet: DatasheetSubject;
+  hidePoints?: boolean;
   onClose: () => void;
 };
 
@@ -28,18 +34,22 @@ function isUnit(sheet: DatasheetSubject): sheet is CatalogueUnit {
   return "hero" in sheet;
 }
 
-export function DatasheetSheet({ sheet, onClose }: Props) {
+export function DatasheetSheet({ sheet, hidePoints, onClose }: Props) {
   const stats = sheet.stats;
   const ward = isUnit(sheet) ? unitWard(sheet) : "";
   const banishment = isManifestation(sheet) ? sheet.banishment : "";
-  const points = isUnit(sheet) ? sheet.points : null;
   const subtitle = isManifestation(sheet)
     ? "Manifestation"
     : isUnit(sheet)
-      ? `${points} points`
+      ? datasheetUnitPointsLabel(sheet.points, Boolean(hidePoints))
       : "Faction terrain";
   const ranged = sheet.weapons.filter((weapon) => weapon.kind === "ranged");
   const melee = sheet.weapons.filter((weapon) => weapon.kind === "melee");
+  const abilities = isUnit(sheet)
+    ? hidePoints
+      ? warscrollAbilities(sheet)
+      : sheet.abilities
+    : sheet.abilities;
   const statCount =
     3 +
     (stats.control ? 1 : 0) +
@@ -56,7 +66,9 @@ export function DatasheetSheet({ sheet, onClose }: Props) {
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
               <h2 className="min-w-0 font-serif text-2xl leading-tight">{sheet.name}</h2>
-              <p className="shrink-0 text-sm text-sigmarite">{subtitle}</p>
+              {subtitle ? (
+                <p className="shrink-0 text-sm text-sigmarite">{subtitle}</p>
+              ) : null}
             </div>
           </div>
           <SheetCloseButton onClick={onClose} />
@@ -94,8 +106,8 @@ export function DatasheetSheet({ sheet, onClose }: Props) {
             <WeaponBlock title="Melee weapons" weapons={melee} />
           ) : null}
 
-          {sheet.abilities.length > 0 ? (
-            <AbilityBlock abilities={sheet.abilities} />
+          {abilities.length > 0 ? (
+            <AbilityBlock abilities={abilities} />
           ) : null}
         </div>
     </ModalFrame>

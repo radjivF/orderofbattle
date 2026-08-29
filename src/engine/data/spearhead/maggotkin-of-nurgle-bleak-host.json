@@ -198,14 +198,37 @@
         "save": "5+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Disgusting Sneezes",
+          "kind": "ranged",
+          "range": "7\"",
+          "attacks": "D6",
+          "hit": "2+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Distended Maw",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "KEEP COUNTING, I'M WATCHING YOU",
           "kind": "Activated",
           "timing": "Your Hero Phase",
           "declare": "Pick a friendly Plaguebearers unit wholly within 14\" of this unit to be the target.",
-          "effect": "Pick 1 of the following. The effect lasts until the start of your next turn. Tally of Blows: Add 1 to the Attacks characteristic of the target unit’s melee weapons. Recorded Stamina: Add 1 to save rolls for the target unit. KEYWORDS HERO, INFANTRY, WARD (5+)",
+          "effect": "Pick 1 of the following. The effect lasts until the start of your next turn. Tally of Blows: Add 1 to the Attacks characteristic of the target unit’s melee weapons. Recorded Stamina: Add 1 to save rolls for the target unit.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -234,14 +257,37 @@
         "save": "4+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Blighted Scythe",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Rot Fly’s Mouthparts and Sting",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "WRACK AND RUIN",
           "kind": "Activated",
           "timing": "Any Charge Phase",
           "declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target and roll a dice.",
-          "effect": "On a 2+, inflict D3 mortal damage on the target. KEYWORDS CAVALRY, FLY, WARD (5+) ezstandalone.cmd.push(function() {ezstandalone.showAds(126)});",
+          "effect": "On a 2+, inflict D3 mortal damage on the target.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -269,14 +315,26 @@
         "save": "3+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Blighted Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "RELENTLESS ATTACKERS",
           "kind": "Activated",
           "timing": "End of Any Turn",
           "declare": "Pick an enemy INFANTRY unit in combat with this unit to be the target and roll a dice for each model in this unit that is within the target unit’s combat range.",
-          "effect": "For each roll that exceeds the target’s Health characteristic, inflict 1 mortal damage on it. KEYWORDS INFANTRY, WARD (5+)",
+          "effect": "For each roll that exceeds the target’s Health characteristic, inflict 1 mortal damage on it.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -304,14 +362,26 @@
         "save": "6+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Plaguesword",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit, (Mortal)"
+        }
+      ],
       "abilities": [
         {
           "name": "CLOUD OF FLIES",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "Subtract 1 from hit rolls for shooting attacks that target this unit. KEYWORDS INFANTRY, WARD (5+)",
+          "effect": "Subtract 1 from hit rolls for shooting attacks that target this unit.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",

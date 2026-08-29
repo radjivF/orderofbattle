@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { BrandMark } from "@/components/BrandMark";
+import { SiteBrandLockup } from "@/components/BrandMark";
+import { HOME_CTA_CLASS, SITE_HEADER_BAR_CLASS, SITE_HEADER_ROW_CLASS } from "@/lib/builderUi";
 
 const linkClass =
   "text-sigmarite underline decoration-sigmarite/40 underline-offset-2";
@@ -24,19 +25,16 @@ export function ContentDoc({
 }: Props) {
   return (
     <div className="min-h-full bg-ink text-parchment">
-      <header className="mx-auto flex max-w-3xl items-center justify-between px-5 pt-[max(1.25rem,env(safe-area-inset-top))] pb-4 sm:px-6 sm:py-6">
-        <Link href="/" className="flex min-h-11 items-center gap-3">
-          <BrandMark size={40} className="h-9 w-auto" priority />
-          <span className="gold-text font-serif text-xl leading-none sm:text-2xl">
-            Order of Battle
-          </span>
-        </Link>
-        <Link
-          href="/dashboard"
-          className="min-h-11 rounded-xl border border-sigmarite/30 px-4 text-sm leading-[2.75rem] text-parchment/85"
-        >
-          My lists
-        </Link>
+      <header className={`${SITE_HEADER_BAR_CLASS} pt-[env(safe-area-inset-top)]`}>
+        <div className={SITE_HEADER_ROW_CLASS}>
+          <SiteBrandLockup />
+          <Link
+            href="/dashboard"
+            className={`${HOME_CTA_CLASS} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sigmarite`}
+          >
+            My lists
+          </Link>
+        </div>
       </header>
 
       <article className="mx-auto w-full max-w-3xl px-6 pb-16">

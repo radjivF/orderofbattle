@@ -3,6 +3,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
+  BUILDER_ADD_ACTION_CLASS,
+  BUILDER_ADD_ACTION_EMPHASIS_CLASS,
   BUILDER_LIST_NAME_INPUT_CLASS,
   EMPTY_LIBRARY_CTA_CLASS,
   EMPTY_LIBRARY_PANEL_CLASS,
@@ -16,11 +18,19 @@ import {
   IOS_NAV_PLAY_BUTTON_CLASS,
   LIBRARY_CARD_CLASS,
   LIST_ISSUE_BANNER_CLASS,
+  SITE_HEADER_BAR_CLASS,
+  SITE_HEADER_ROW_CLASS,
   PLAY_SHEET_LINK_CLASS,
   PLAY_UNIT_NAME_ROW_CLASS,
+  CONFIRM_SHEET_PANEL_CLASS,
   SHEET_PANEL_CLASS,
   builderHeaderShowsListStats,
   builderHeaderShowsPlayButton,
+  builderHeaderShowsIssueDot,
+  builderPlayTabs,
+  playPhaseShowsCommandTab,
+  playPhaseShowsCoreRulesTab,
+  datasheetUnitPointsLabel,
   dropCountLabel,
   pointsCapInputClass,
 } from "./builderUi";
@@ -48,6 +58,107 @@ describe("builder header stats", () => {
     expect(HEADER_STATS_STACK_CLASS).toContain("leading-none");
     expect(HEADER_DROPS_LINE_CLASS).toContain("mt-0.5");
     expect(HEADER_DROPS_LINE_CLASS).not.toContain("block text-sm text-aether");
+  });
+
+  it("hides the validation dot on Spearhead lists", () => {
+    expect(builderHeaderShowsIssueDot(true, "warn")).toBe(false);
+    expect(builderHeaderShowsIssueDot(true, "bad")).toBe(false);
+    expect(builderHeaderShowsIssueDot(false, "warn")).toBe(true);
+    expect(builderHeaderShowsIssueDot(false, "ok")).toBe(false);
+  });
+});
+
+describe("builder play tabs", () => {
+  it("keeps Magic and tactics out of Spearhead play", () => {
+    expect(builderPlayTabs(true).map((item) => item.value)).toEqual([
+      "units",
+      "phases",
+    ]);
+    expect(builderPlayTabs(true).map((item) => item.label)).toEqual([
+      "Units",
+      "Phases",
+    ]);
+    expect(builderPlayTabs(false).map((item) => item.value)).toEqual([
+      "units",
+      "magic",
+      "phases",
+    ]);
+    expect(playPhaseShowsCommandTab(true)).toBe(false);
+    expect(playPhaseShowsCommandTab(false)).toBe(true);
+    expect(playPhaseShowsCoreRulesTab(true)).toBe(true);
+    expect(playPhaseShowsCoreRulesTab(false)).toBe(false);
+
+    const phases = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/PlayPhaseBoard.tsx",
+      ),
+      "utf8",
+    );
+    expect(phases).toContain("playPhaseShowsCommandTab(spearhead)");
+    expect(phases).toContain("playPhaseShowsCoreRulesTab(spearhead)");
+
+    const builder = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/BuilderScreen.tsx",
+      ),
+      "utf8",
+    );
+    expect(builder).toContain("builderPlayTabs(spearhead)");
+    expect(builder).toContain(
+      'forPlayMode && playTab === "phases" && !spearhead',
+    );
+    expect(builder).toContain(
+      'forPlayMode && playTab === "magic" && !spearhead',
+    );
+    expect(builder).toContain('traitKind={spearhead ? "Enhancement" : undefined}');
+    expect(builder).toContain("allowUniqueHeroTrait={spearhead && regimentIsGeneral}");
+    expect(builder).toContain("spearhead && !regimentIsGeneral");
+    expect(builder).toContain("openNewRegimentHeroPicker");
+    expect(builder).toContain("appendRegimentWithHero");
+    expect(builder).not.toContain("hero: null, units: []");
+
+    const picks = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/SpearheadPicks.tsx",
+      ),
+      "utf8",
+    );
+    expect(picks).not.toContain("Enhancement");
+    expect(picks).toContain("Regiment ability");
+    expect(picks).not.toContain('heading="Battle traits"');
+
+    const card = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/RegimentCard.tsx",
+      ),
+      "utf8",
+    );
+    expect(card).toContain("onPickTrait={locked ? undefined : onPickTrait}");
+    expect(card).toContain("allowUniqueHeroTrait");
+    expect(card).toContain("cursor-default rounded-2xl");
+    expect(card).toContain(
+      "(canReinforce && onToggleReinforce) || onDuplicate || onRemove",
+    );
+    expect(builder).toContain("hidePoints={spearhead}");
+
+    const datasheet = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/DatasheetSheet.tsx",
+      ),
+      "utf8",
+    );
+    expect(datasheet).toContain("hidePoints");
+    expect(datasheet).toContain("warscrollAbilities(sheet)");
+  });
+
+  it("omits the datasheet points label on Spearhead", () => {
+    expect(datasheetUnitPointsLabel(0, true)).toBeNull();
+    expect(datasheetUnitPointsLabel(140, false)).toBe("140 points");
   });
 });
 
@@ -123,12 +234,77 @@ describe("iOS nav controls", () => {
       ),
       "utf8",
     );
+    expect(header).toContain("builderHeaderShowsIssueDot");
     expect(header).toContain('label="New list"');
     expect(header).toContain('label={playMode ? "Build" : "Lists"}');
-    expect(header).toContain('href={playMode ? undefined : "/dashboard"}');
+    expect(header).toContain("onClick={playMode ? () => chrome?.exitPlay() : goBack}");
+    expect(header).not.toContain('href={playMode ? undefined : "/dashboard"}');
     expect(header).not.toContain("<span>{label}</span>");
     expect(IOS_NAV_PLAY_BUTTON_CLASS).toContain("ios-liquid-glass");
     expect(IOS_NAV_PLAY_BUTTON_CLASS).toContain("text-black");
+    expect(IOS_NAV_PLAY_BUTTON_CLASS).toContain("cursor-pointer");
+  });
+
+  it("uses the same header row and brand lockup across screens", () => {
+    expect(SITE_HEADER_ROW_CLASS).toContain("min-h-[3.5rem]");
+    expect(SITE_HEADER_ROW_CLASS).toContain("max-w-3xl");
+    expect(SITE_HEADER_ROW_CLASS).toContain("gap-2");
+    expect(SITE_HEADER_BAR_CLASS).toBe("ios-nav-bar");
+
+    const header = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/ListFlowHeader.tsx",
+      ),
+      "utf8",
+    );
+    expect(header).toContain("SITE_HEADER_ROW_CLASS");
+    expect(header).toContain("SiteBrandLockup");
+    expect(header).not.toContain("LIST_FLOW_HEADER_ROW_LIBRARY");
+
+    const content = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/ContentDoc.tsx",
+      ),
+      "utf8",
+    );
+    const legal = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/LegalDoc.tsx",
+      ),
+      "utf8",
+    );
+    const landing = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/TryLanding.tsx",
+      ),
+      "utf8",
+    );
+    expect(content).toContain("SiteBrandLockup");
+    expect(content).toContain("SITE_HEADER_BAR_CLASS");
+    expect(content).toContain("SITE_HEADER_ROW_CLASS");
+    expect(legal).toContain("SiteBrandLockup");
+    expect(legal).toContain("SITE_HEADER_BAR_CLASS");
+    expect(legal).toContain("SITE_HEADER_ROW_CLASS");
+    expect(landing).toContain("SiteBrandLockup");
+    expect(landing).toContain("SITE_HEADER_BAR_CLASS");
+    expect(landing).toContain("SITE_HEADER_ROW_CLASS");
+
+    const css = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../app/globals.css",
+      ),
+      "utf8",
+    );
+    const start = css.indexOf(".ios-nav-bar {");
+    const navBar = css.slice(start, css.indexOf("}", start) + 1);
+    expect(navBar).toContain("background: var(--ink)");
+    expect(navBar).not.toContain("backdrop-filter");
+    expect(navBar).not.toContain("color-mix(in srgb, var(--ink)");
   });
 });
 
@@ -154,6 +330,8 @@ describe("empty library CTA", () => {
     expect(screen).toContain("EMPTY_LIBRARY_CTA_CLASS");
     expect(screen).toContain("setPicking(true)");
     expect(screen).not.toContain("No armies yet. Make your first list.");
+    expect(screen).toContain("createCounts.heroes");
+    expect(screen).not.toContain("factionPickerCounts(faction)");
   });
 });
 
@@ -216,6 +394,7 @@ describe("iOS polish contracts", () => {
       "utf8",
     );
     expect(css).toContain(".pressable:active");
+    expect(css).toContain("cursor: pointer");
     expect(css).toContain("transform: scale(0.97)");
   });
 
@@ -252,6 +431,8 @@ describe("iOS polish contracts", () => {
   it("uses sheet panel classes without hard-coded rounded-2xl on modals", () => {
     expect(SHEET_PANEL_CLASS).toContain("max-h-[85vh]");
     expect(SHEET_PANEL_CLASS).toContain("sm:rounded-2xl");
+    expect(CONFIRM_SHEET_PANEL_CLASS).toContain("pt-4");
+    expect(CONFIRM_SHEET_PANEL_CLASS).toContain("sm:pt-5");
 
     const library = readFileSync(
       path.resolve(
@@ -261,6 +442,7 @@ describe("iOS polish contracts", () => {
       "utf8",
     );
     expect(library).toContain("SHEET_PANEL_CLASS");
+    expect(library).toContain("CONFIRM_SHEET_PANEL_CLASS");
     expect(library).toContain("ConfirmSheetActions");
   });
 
@@ -276,6 +458,46 @@ describe("iOS polish contracts", () => {
     expect(LIBRARY_CARD_CLASS).not.toContain("pressable");
     expect(pointsCapInputClass("ink")).toContain("rounded-xl");
     expect(pointsCapInputClass("ink")).not.toContain("rounded-[10px]");
+
+    const library = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/LibraryScreen.tsx",
+      ),
+      "utf8",
+    );
+    expect(library).toContain("absolute inset-0 z-[1]");
+    expect(library).toContain("cursor-text");
+    expect(library).not.toContain('sr-only">Open list');
+  });
+
+  it("keeps datasheet open controls from stretching across the row", () => {
+    const sheet = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/ios/SheetIconButton.tsx",
+      ),
+      "utf8",
+    );
+    expect(sheet).toContain("w-fit max-w-full");
+    expect(sheet).not.toContain("min-w-0 flex-1 py-2 pr-2 text-left");
+    expect(sheet).not.toContain("min-w-0 flex-1 text-left active:opacity-60");
+  });
+
+  it("puts a pointer cursor on builder add-regiment actions", () => {
+    expect(BUILDER_ADD_ACTION_CLASS).toContain("cursor-pointer");
+    expect(BUILDER_ADD_ACTION_EMPHASIS_CLASS).toContain("cursor-pointer");
+    expect(BUILDER_ADD_ACTION_EMPHASIS_CLASS).toContain("text-sigmarite");
+
+    const builder = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/BuilderScreen.tsx",
+      ),
+      "utf8",
+    );
+    expect(builder).toContain("BUILDER_ADD_ACTION_CLASS");
+    expect(builder).toContain("cursor-default flex-wrap");
   });
 
   it("uses solid parchment chip for selected segments", () => {

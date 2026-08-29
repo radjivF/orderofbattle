@@ -190,14 +190,26 @@
         "save": "5+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Gory Talons and Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "DERANGED TRANSFORMATION",
           "kind": "Activated",
           "timing": "Your Hero Phase",
           "declare": "Pick a visible friendly unit wholly within 18\" of this unit to be the target, then make a casting roll of 2D6.",
-          "effect": "On a 6+, until the start of your next turn, add 2\" to the target’s Move characteristic and add 1 to wound rolls for its attacks. KEYWORDS HERO, INFANTRY, WARD (6+)",
+          "effect": "On a 6+, until the start of your next turn, add 2\" to the target’s Move characteristic and add 1 to wound rolls for its attacks.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -226,14 +238,26 @@
         "save": "6+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Cursed Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "ROYAL BODYGUARD",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "Add 1 to ward rolls for friendly HEROES that are wholly within this unit’s combat range. KEYWORDS INFANTRY, REINFORCEMENTS, WARD (5+)",
+          "effect": "Add 1 to ward rolls for friendly HEROES that are wholly within this unit’s combat range.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -262,14 +286,37 @@
         "save": "4+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Grisly Lance",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge, (+1, Damage)"
+        },
+        {
+          "name": "Nightshrieker’s Claws and Teeth",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "PREDATOR'S POUNCE",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "This unit can use CHARGE abilities even if it used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on this unit when it uses RETREAT abilities. KEYWORDS CAVALRY, FLY, WARD (6+)",
+          "effect": "This unit can use CHARGE abilities even if it used a RETREAT ability in the same turn. In addition, no mortal damage is inflicted on this unit when it uses RETREAT abilities.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -298,14 +345,37 @@
         "save": "5+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Immense Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "7",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Dagger-like Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "VICTORY FEAST",
           "kind": "Activated",
           "timing": "End of Any Turn",
           "declare": "",
-          "effect": "If any models were slain by this unit this turn, Heal (D6) this unit, and this unit can immediately use the ‘Retreat’ ability without any mortal damage being inflicted on it. KEYWORDS HERO, INFANTRY, WARD (6+) ezstandalone.cmd.push(function() {ezstandalone.showAds(128)});",
+          "effect": "If any models were slain by this unit this turn, Heal (D6) this unit, and this unit can immediately use the ‘Retreat’ ability without any mortal damage being inflicted on it.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",

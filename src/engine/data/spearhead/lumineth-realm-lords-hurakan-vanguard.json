@@ -191,14 +191,37 @@
         "save": "5+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Windblast Vortex",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "1",
+          "hit": "2+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": ""
+        },
+        {
+          "name": "Aspiragillum",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "WINDLEAP",
           "kind": "Activated",
           "timing": "Your Hero Phase",
           "declare": "Pick a visible friendly unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
-          "effect": "On a 6+, for the rest of the turn: The target can use RETREAT abilities and still use SHOOT and/or CHARGE abilities later in the turn. No mortal damage is inflicted on the target by RETREAT abilities. KEYWORDS HERO, WIZARD (1), INFANTRY, FLY",
+          "effect": "On a 6+, for the rest of the turn: The target can use RETREAT abilities and still use SHOOT and/or CHARGE abilities later in the turn. No mortal damage is inflicted on the target by RETREAT abilities.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -225,14 +248,48 @@
         "save": "4+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Windcharger Bow",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Windcharger Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Treerunner’s Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "LEAP INTO THE STORM",
           "kind": "Activated",
           "timing": "End of Your Turn",
           "declare": "",
-          "effect": "If this unit is not in combat, remove it from the battlefield and set it up again wholly within 3\" of the leeward battlefield edge and more than 6\" from all enemy units. KEYWORDSRIDE THE HURRICANE KEYWORDS CAVALRY ezstandalone.cmd.push(function() {ezstandalone.showAds(126)});",
+          "effect": "If this unit is not in combat, remove it from the battlefield and set it up again wholly within 3\" of the leeward battlefield edge and more than 6\" from all enemy units.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -260,14 +317,26 @@
         "save": "4+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Warden Pike and Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit, (Mortal), Anti-charge, (+1, Rend)"
+        }
+      ],
       "abilities": [
         {
           "name": "WALL OF BLADES",
           "kind": "Activated",
           "timing": "Any Combat Phase",
           "declare": "",
-          "effect": "If this unit did not charge this turn and is in combat with an enemy unit that charged this turn, roll a dice. Add 1 to the roll if that enemy unit is CAVALRY. On a 3+, this unit has STRIKE-FIRST for the rest of the turn. KEYWORDS INFANTRY, REINFORCEMENTS",
+          "effect": "If this unit did not charge this turn and is in combat with an enemy unit that charged this turn, roll a dice. Add 1 to the roll if that enemy unit is CAVALRY. On a 3+, this unit has STRIKE-FIRST for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -296,7 +365,30 @@
         "save": "4+",
         "control": "5"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Bow of the Wind’s Vengeance",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "4",
+          "hit": "2+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Swirling Shards",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "2+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "EYE OF THE STORM",
@@ -314,7 +406,7 @@
           "kind": "Activated",
           "timing": "Any Shooting Phase",
           "declare": "Pick an enemy unit that had any damage points allocated to it this turn by this unit’s shooting attacks to be the target.",
-          "effect": "Roll a dice. On a 3+, the target has STRIKE-LAST for the rest of the turn. KEYWORDS MONSTER, FLY, WARD (5+)",
+          "effect": "Roll a dice. On a 3+, the target has STRIKE-LAST for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",

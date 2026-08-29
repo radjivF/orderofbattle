@@ -185,14 +185,26 @@
         "save": "3+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Dynastic War-relic",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "VILE TRANSFERENCE",
           "kind": "Activated",
           "timing": "Your Hero Phase",
           "declare": "Pick a visible enemy unit within 6\" of this unit to be the target, then make a casting roll of 2D6.",
-          "effect": "On a 6+, roll a number of dice equal to the target’s Health characteristic. For each 5+, inflict 1 mortal damage on the target and Heal (1) this unit. KEYWORDS HERO, WIZARD, INFANTRY, VAMPIRE, WARD (6+)",
+          "effect": "On a 6+, roll a number of dice equal to the target’s Health characteristic. For each 5+, inflict 1 mortal damage on the target and Heal (1) this unit.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -220,14 +232,26 @@
         "save": "5+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Ancient Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "SKELETON LEGION",
           "kind": "Activated",
           "timing": "Your Combat Phase",
           "declare": "",
-          "effect": "For each slain model from this unit, make a legion roll of D6. For each 6, return 1 slain model to this unit. KEYWORDS INFANTRY, WARD (6+)",
+          "effect": "For each slain model from this unit, make a legion roll of D6. For each 6, return 1 slain model to this unit.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -256,14 +280,37 @@
         "save": "3+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Templar Lance or Templar Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge, (+1, Damage)"
+        },
+        {
+          "name": "Nightmare’s Hooves and Teeth",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "RIDERS OF RUIN",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "Models in this unit can pass across enemy INFANTRY models as if this unit had FLY. KEYWORDS CAVALRY, VAMPIRE, WARD (6+) ezstandalone.cmd.push(function() {ezstandalone.showAds(127)});",
+          "effect": "Models in this unit can pass across enemy INFANTRY models as if this unit had FLY.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -293,14 +340,26 @@
         "save": "5+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Murderous Fangs and Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit, (2, Hits)"
+        }
+      ],
       "abilities": [
         {
           "name": "THE SCENT OF GORE",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "Add 1 to wound rolls for attacks made by this unit that target a damaged unit. KEYWORDS INFANTRY, VAMPIRE, FLY, WARD (6+)",
+          "effect": "Add 1 to wound rolls for attacks made by this unit that target a damaged unit.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",

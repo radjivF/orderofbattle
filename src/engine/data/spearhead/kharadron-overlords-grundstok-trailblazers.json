@@ -168,14 +168,48 @@
         "save": "3+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Aethercannon",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "3",
+          "ability": ""
+        },
+        {
+          "name": "Dirigible Suit Weapon Battery",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "6",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Upgraded Aethermatic Saw",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "ENDRINMASTER EXTRAORDINAIRE",
           "kind": "Activated",
           "timing": "Your Hero Phase",
           "declare": "Pick a friendly unit with the FLY keyword that is wholly within 12\" of this unit to be the target.",
-          "effect": "Roll a D3. On a 2+, Heal (X) the target where X is equal to the roll. KEYWORDS HERO, INFANTRY, FLY",
+          "effect": "Roll a D3. On a 2+, Heal (X) the target where X is equal to the roll.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -203,14 +237,59 @@
         "save": "3+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Aethershot Rifle",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Aetheric Fumigator or Decksweeper",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Grundstok Mortar or Aethercannon",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Gun Butt",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "BEWILDERBLAST ROUNDS",
           "kind": "Activated",
           "timing": "Once Per Battle (Army), Any Shooting Phase",
           "declare": "Pick an enemy unit that had any damage points allocated to it this phase by this unit’s shooting attacks to be the target.",
-          "effect": "Subtract D6 from the target’s control score for the rest of the turn. KEYWORDS INFANTRY, REINFORCEMENTS",
+          "effect": "Subtract D6 from the target’s control score for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -238,14 +317,37 @@
         "save": "2+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Sky Ordnance",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "3",
+          "ability": ""
+        },
+        {
+          "name": "Boarding Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "GUNHAULER OVERWATCH",
           "kind": "Activated",
           "timing": "Any Combat Phase",
           "declare": "Pick an enemy unit that charged this turn and is in combat with this unit to be the target.",
-          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll. KEYWORDS WAR MACHINE, FLY",
+          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -274,14 +376,70 @@
         "save": "3+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Rapid-fire Rivet Gun",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Aethermatic Volley Gun",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "2D6",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit, (2, Hits)"
+        },
+        {
+          "name": "Skyrigger Heavy Weapon",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Anti-MONSTER, (+1, Rend)"
+        },
+        {
+          "name": "Aethermatic Saw",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti-charge, (+1, Rend)"
+        },
+        {
+          "name": "Gun Butt",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "CLOUDWEAVING SKYFARERS",
           "kind": "Activated",
           "timing": "Enemy Movement Phase",
           "declare": "",
-          "effect": "Roll a dice. On a 3+, this unit can use the ‘Normal Move’ ability as if it were your movement phase. KEYWORDS INFANTRY, FLY, REINFORCEMENTS ezstandalone.cmd.push(function() {ezstandalone.showAds(127)});",
+          "effect": "Roll a dice. On a 3+, this unit can use the ‘Normal Move’ ability as if it were your movement phase.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",

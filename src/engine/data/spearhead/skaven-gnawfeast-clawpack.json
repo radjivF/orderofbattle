@@ -187,14 +187,48 @@
         "save": "4+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Ratling Pistol",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "D6",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Shoot, in, Combat, Crit, (Auto-wound)"
+        },
+        {
+          "name": "Warpforged Halberd",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Gnaw-beast's Chisel Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "CORNERED RAT",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "While this unit is damaged, add 3 to the Attacks characteristic of its Warpforged Halberd. KEYWORDS HERO, CAVALRY, WARD (6+)",
+          "effect": "While this unit is damaged, add 3 to the Attacks characteristic of its Warpforged Halberd.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -223,7 +257,19 @@
         "save": "6+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Warpstone Staff",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "WILL OF THE HORNED RAT",
@@ -241,7 +287,7 @@
           "kind": "Activated",
           "timing": "Your Hero Phase",
           "declare": "Pick a visible enemy unit within 13\" of this unit to be the target, then make a casting roll of 2D6.",
-          "effect": "On a 6+, inflict D3 mortal damage on the target. KEYWORDS HERO, WIZARD, INFANTRY",
+          "effect": "On a 6+, inflict D3 mortal damage on the target.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -269,14 +315,37 @@
         "save": "5+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Warplock Musket",
+          "kind": "ranged",
+          "range": "24\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": "Crit, (Auto-wound)"
+        },
+        {
+          "name": "Warpforged Dagger",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "MORE-MORE WARP ENERGY!",
           "kind": "Activated",
           "timing": "Reaction: You declared a SHOOT ability for this unit and it has not used a MOVE ability this turn",
           "declare": "",
-          "effect": "Roll a dice. On a 2+, set the Damage characteristic of its Warplock Musket to 3 this phase. On a 1, inflict D3 mortal damage on this unit. KEYWORDS HERO, INFANTRY",
+          "effect": "Roll a dice. On a 2+, set the Damage characteristic of its Warplock Musket to 3 this phase. On a 1, inflict D3 mortal damage on this unit.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -304,14 +373,26 @@
         "save": "5+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Rusty Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "SEETHING SWARM",
           "kind": "Activated",
           "timing": "End of Any Turn",
           "declare": "",
-          "effect": "You can return D3 slain models to this unit. KEYWORDS INFANTRY, REINFORCEMENTS",
+          "effect": "You can return D3 slain models to this unit.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -338,14 +419,37 @@
         "save": "5+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Warpfire Gun",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "2D6",
+          "hit": "2+",
+          "wound": "4+",
+          "rend": "2",
+          "damage": "1",
+          "ability": "Shoot, in, Combat"
+        },
+        {
+          "name": "Claws, Blades and Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "UNLEASHED WARP-FURY",
           "kind": "Activated",
           "timing": "Any Combat Phase, Once Per Battle",
           "declare": "",
-          "effect": "Inflict D3 mortal damage on this unit. Then, add 1 to the Attacks characteristic of its melee weapons this phase. KEYWORDS INFANTRY ezstandalone.cmd.push(function() {ezstandalone.showAds(127)});",
+          "effect": "Inflict D3 mortal damage on this unit. Then, add 1 to the Attacks characteristic of its melee weapons this phase.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",

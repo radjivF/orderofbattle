@@ -154,7 +154,30 @@
         "save": "5+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Keldrisaíth",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": ""
+        },
+        {
+          "name": "Keldrisaíth",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "ALL-OUT SLAUGHTER",
@@ -172,7 +195,7 @@
           "kind": "Activated",
           "timing": "End of Any Turn",
           "declare": "Pick an enemy unit within 1\" of this unit to be the target and roll a dice.",
-          "effect": "On a 2+, inflict 1 mortal damage on the target. KEYWORDS HERO, INFANTRY, WARD (6+)",
+          "effect": "On a 2+, inflict 1 mortal damage on the target.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -201,14 +224,26 @@
         "save": "6+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Paired Sciansá",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit, (Auto-wound)"
+        }
+      ],
       "abilities": [
         {
           "name": "FRENZIED FERVOUR",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "Add 1 to the Rend characteristic of this unit’s melee weapons if it charged in the same turn. KEYWORDS INFANTRY, REINFORCEMENTS, WARD (6+) ezstandalone.cmd.push(function() {ezstandalone.showAds(128)});",
+          "effect": "Add 1 to the Rend characteristic of this unit’s melee weapons if it charged in the same turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -236,14 +271,48 @@
         "save": "5+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Doomfire Crossbow",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Cursed Scimitar",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Dark Steed’s Vicious Bite",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "DOOMFIRE",
           "kind": "Activated",
           "timing": "Your Hero Phase",
           "declare": "Pick a visible enemy unit within 12\" of this unit to be the target, then make a casting roll of 2D6.",
-          "effect": "On a 6+, inflict D3 mortal damage on the target. KEYWORDS CAVALRY, WARD (6+)",
+          "effect": "On a 6+, inflict D3 mortal damage on the target.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -271,14 +340,37 @@
         "save": "5+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Heartseeker Bow",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit, (Auto-wound)"
+        },
+        {
+          "name": "Scianlar",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "HEARTSEEKERS",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "Shooting attacks made by this unit score critical hits on unmodified hit rolls of 5+ if this unit did not use a MOVE ability in the same turn. KEYWORDS INFANTRY, WARD (6+)",
+          "effect": "Shooting attacks made by this unit score critical hits on unmodified hit rolls of 5+ if this unit did not use a MOVE ability in the same turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",

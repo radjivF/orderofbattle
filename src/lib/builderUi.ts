@@ -13,6 +13,59 @@ export function builderHeaderShowsPlayButton(playMode: boolean): boolean {
   return !playMode;
 }
 
+/** Spearhead has a fixed roster — don't flag the header with a validation dot. */
+export function builderHeaderShowsIssueDot(
+  spearhead: boolean,
+  tone: "ok" | "warn" | "bad",
+): boolean {
+  return !spearhead && tone !== "ok";
+}
+
+export function builderPlayTabs(spearhead: boolean): {
+  value: "units" | "magic" | "phases";
+  label: string;
+  ariaLabel?: string;
+}[] {
+  if (spearhead) {
+    return [
+      { value: "units", label: "Units" },
+      { value: "phases", label: "Phases", ariaLabel: "Phases" },
+    ];
+  }
+  return [
+    { value: "units", label: "Units" },
+    {
+      value: "magic",
+      label: "Magic",
+      ariaLabel: "Magic and prayer lores",
+    },
+    {
+      value: "phases",
+      label: "Tactics & Phases",
+      ariaLabel: "Battle tactics and phases",
+    },
+  ];
+}
+
+/** Spearhead has no command points — hide the Command phase sub-tab. */
+export function playPhaseShowsCommandTab(spearhead: boolean): boolean {
+  return !spearhead;
+}
+
+/** Spearhead shows universal core rules per phase instead of Command. */
+export function playPhaseShowsCoreRulesTab(spearhead: boolean): boolean {
+  return spearhead;
+}
+
+/** Spearhead has a fixed roster — don't show a points cost on the datasheet. */
+export function datasheetUnitPointsLabel(
+  points: number,
+  hidePoints: boolean,
+): string | null {
+  if (hidePoints) return null;
+  return `${points} points`;
+}
+
 export const HEADER_STATS_STACK_CLASS = "text-right tabular-nums leading-none";
 export const HEADER_DROPS_LINE_CLASS = "mt-0.5 text-[11px] text-ink-muted";
 
@@ -35,18 +88,18 @@ export const PLAY_SHEET_LINK_CLASS =
 
 /** Parchment frosted lens, dark glyph — add and back. */
 export const IOS_NAV_ICON_BUTTON_CLASS =
-  "ios-liquid-glass pressable inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-black";
+  "ios-liquid-glass pressable inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full text-black";
 
 export const IOS_NAV_ADD_BUTTON_CLASS = IOS_NAV_ICON_BUTTON_CLASS;
 
 export const IOS_NAV_BACK_BUTTON_CLASS = IOS_NAV_ICON_BUTTON_CLASS;
 
 export const IOS_NAV_PLAY_BUTTON_CLASS =
-  "ios-liquid-glass pressable inline-flex h-11 shrink-0 items-center justify-center rounded-full px-4 text-[15px] font-semibold leading-none text-black";
+  "ios-liquid-glass pressable inline-flex h-11 shrink-0 cursor-pointer items-center justify-center rounded-full px-4 text-[15px] font-semibold leading-none text-black";
 
 /** In-app primary CTA — same parchment glass as the nav +. */
 export const IOS_LIQUID_CTA_CLASS =
-  "ios-liquid-glass pressable inline-flex min-h-11 w-full items-center justify-center rounded-xl px-4 text-[15px] font-semibold text-black";
+  "ios-liquid-glass pressable inline-flex min-h-11 w-full cursor-pointer items-center justify-center rounded-xl px-4 text-[15px] font-semibold text-black";
 
 /** Compact confirm sheet footer — destructive primary + quiet cancel. */
 export const CONFIRM_SHEET_ACTIONS_CLASS =
@@ -57,6 +110,12 @@ export const CONFIRM_DESTRUCTIVE_BUTTON_CLASS =
 
 export const CONFIRM_CANCEL_BUTTON_CLASS =
   "pressable min-h-11 w-full text-base font-medium text-sheet-muted";
+
+export const BUILDER_ADD_ACTION_CLASS =
+  "pressable min-h-11 cursor-pointer px-2 text-sm text-ink-muted";
+
+export const BUILDER_ADD_ACTION_EMPHASIS_CLASS =
+  "pressable min-h-11 cursor-pointer px-2 text-sm text-sigmarite";
 
 /** Primary + quiet secondary actions in form sheets (Create / Back, etc.). */
 export const SHEET_FORM_ACTIONS_CLASS =
@@ -69,12 +128,23 @@ export const HOME_CTA_CLASS =
 export const HOME_CTA_QUIET_CLASS =
   "home-cta-quiet pressable inline-flex min-h-11 items-center justify-center rounded-xl px-6 text-sm font-semibold";
 
+/** Shared inner row for library, builder, home, and content headers. */
+export const SITE_HEADER_ROW_CLASS =
+  "mx-auto flex min-h-[3.5rem] w-full max-w-3xl items-center gap-2 px-3 py-1.5 sm:min-h-[3.75rem] sm:px-4";
+
+/** Full-width bar behind every site header — solid ink, no art showing through. */
+export const SITE_HEADER_BAR_CLASS = "ios-nav-bar";
+
 /** Bottom sheet panel — full width on phone, card on sm+. */
 export const SHEET_PANEL_CLASS =
   "parchment-card flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden text-parchment-ink sm:rounded-2xl";
 
 export const SHEET_PANEL_COMPACT_CLASS =
   "parchment-card w-full max-w-sm text-parchment-ink sm:rounded-2xl";
+
+/** Delete / remove confirm sheets — room below the grabber like SHEET_HEADER_CLASS. */
+export const CONFIRM_SHEET_PANEL_CLASS =
+  `${SHEET_PANEL_COMPACT_CLASS} px-5 pt-4 pb-0 sm:pt-5`;
 
 /** Shared sheet header row — card-aligned rhythm below the grabber. */
 export const SHEET_HEADER_CLASS =
@@ -83,16 +153,16 @@ export const SHEET_HEADER_CLASS =
 export const SHEET_HEADER_START_CLASS = SHEET_HEADER_CLASS;
 
 export const LIBRARY_CARD_CLASS =
-  "parchment-card grid min-h-[8.5rem] cursor-pointer grid-cols-[minmax(0,1fr)_7.5rem] overflow-hidden rounded-2xl text-parchment-ink sm:grid-cols-[minmax(0,1fr)_9.5rem]";
+  "parchment-card relative grid min-h-[8.5rem] cursor-pointer grid-cols-[minmax(0,1fr)_7.5rem] overflow-hidden rounded-2xl text-parchment-ink sm:grid-cols-[minmax(0,1fr)_9.5rem]";
 
 export const LIBRARY_CARD_ACTIONS_CLASS =
   "mt-3 flex items-center justify-end gap-1 text-sm";
 
 export const LIBRARY_CARD_ACTION_BUTTON_CLASS =
-  "pressable min-h-10 px-2 text-sheet-muted sm:min-h-11 sm:px-2.5";
+  "pressable min-h-10 cursor-pointer px-2 text-sheet-muted sm:min-h-11 sm:px-2.5";
 
 export const LIBRARY_CARD_DELETE_BUTTON_CLASS =
-  "pressable min-h-10 px-2 text-illegal sm:min-h-11 sm:px-2.5";
+  "pressable min-h-10 cursor-pointer px-2 text-illegal sm:min-h-11 sm:px-2.5";
 
 export const BUILDER_LIST_NAME_INPUT_CLASS =
   "h-8 min-w-0 flex-1 border-b border-transparent bg-transparent font-serif text-[15px] font-semibold leading-none outline-none placeholder:text-parchment/35 focus:border-parchment/25 sm:text-lg";

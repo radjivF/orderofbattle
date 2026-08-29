@@ -2,6 +2,7 @@
 
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useLayoutEffect,
@@ -15,7 +16,8 @@ import {
   peekListNavigationDirection,
   rememberListNavigation,
 } from "@/lib/listTransition";
-import { iosPushSlideClass, type SlidePhase } from "@/lib/iosNavSlide";
+import { listFlowTrackClass, listFlowWindowScrollY } from "@/lib/listFlowNav";
+import { SITE_HEADER_BAR_CLASS } from "@/lib/builderUi";
 import { IndexBackdropLayer } from "./IndexBackdrop";
 
 const SLIDE_MS = 320;
@@ -36,10 +38,15 @@ function prefersReducedMotion() {
 
 type ListNavProviderProps = {
   children: ReactNode;
+  libraryLayer: ReactNode;
   header?: ReactNode;
   headerMode?: "builder" | "library" | null;
   backdrop?: ReactNode;
   overlay?: ReactNode;
+  onShowDetailChange?: (state: {
+    showDetail: boolean;
+    animatingBack: boolean;
+  }) => void;
 };
 
 function listFlowHeaderOffsetClass(
@@ -53,16 +60,49 @@ function listFlowHeaderOffsetClass(
 
 export function ListNavProvider({
   children,
+  libraryLayer,
   header,
   headerMode = null,
   backdrop,
   overlay,
+  onShowDetailChange,
 }: ListNavProviderProps) {
   const router = useRouter();
   const pathname = usePathname();
   const isBuilder = pathname.startsWith("/lists/");
-  const [phase, setPhase] = useState<SlidePhase>("settled");
+  const [showDetail, setShowDetailState] = useState(false);
+  const [settled, setSettled] = useState(true);
   const timers = useRef<number[]>([]);
+  const animatingBackRef = useRef(false);
+  const libraryScrollYRef = useRef<number | null>(null);
+
+  function scrollToPane(showingDetail: boolean) {
+    if (!showingDetail && libraryScrollYRef.current == null) {
+      return;
+    }
+    window.scrollTo(
+      0,
+      listFlowWindowScrollY({
+        showingDetail,
+        libraryScrollY: libraryScrollYRef.current ?? 0,
+      }),
+    );
+  }
+
+  const publishNavState = useCallback(
+    (next: { showDetail: boolean; animatingBack: boolean }) => {
+      setShowDetailState(next.showDetail);
+      onShowDetailChange?.(next);
+    },
+    [onShowDetailChange],
+  );
+
+  const setShowDetail = useCallback(
+    (next: boolean) => {
+      publishNavState({ showDetail: next, animatingBack: animatingBackRef.current });
+    },
+    [publishNavState],
+  );
 
   function clearTimers() {
     for (const id of timers.current) {
@@ -71,9 +111,11 @@ export function ListNavProvider({
     timers.current = [];
   }
 
-  useEffect(() => {
-    return () => clearTimers();
-  }, []);
+  function schedule(fn: () => void, ms: number) {
+    const id = window.setTimeout(fn, ms);
+    timers.current.push(id);
+    return id;
+  }
 
   useEffect(() => {
     if (!isBuilder) {
@@ -83,50 +125,93 @@ export function ListNavProvider({
   }, [isBuilder, router]);
 
   useLayoutEffect(() => {
-    clearTimers();
-
     if (!isBuilder) {
-      setPhase("settled");
+      animatingBackRef.current = false;
+      publishNavState({ showDetail: false, animatingBack: false });
+      setSettled(true);
+      scrollToPane(false);
       return;
     }
 
     const direction = peekListNavigationDirection();
-    if (direction !== "forward") {
-      setPhase("settled");
-      return;
+    if (direction === "forward") {
+      libraryScrollYRef.current = window.scrollY;
+      if (prefersReducedMotion()) {
+        clearListNavigationDirection();
+        setSettled(true);
+        scrollToPane(true);
+        setShowDetail(true);
+        return;
+      }
+      setSettled(false);
+      setShowDetail(false);
+      let inner = 0;
+      const outer = requestAnimationFrame(() => {
+        inner = requestAnimationFrame(() => {
+          clearListNavigationDirection();
+          scrollToPane(true);
+          setShowDetail(true);
+        });
+      });
+      const settleTimer = window.setTimeout(() => {
+        setSettled(true);
+      }, SLIDE_MS);
+      return () => {
+        cancelAnimationFrame(outer);
+        cancelAnimationFrame(inner);
+        window.clearTimeout(settleTimer);
+      };
     }
-    clearListNavigationDirection();
-    if (prefersReducedMotion()) {
-      setPhase("settled");
-      return;
-    }
-    setPhase("start");
-    requestAnimationFrame(() => {
-      setPhase("in");
-      const id = window.setTimeout(() => setPhase("settled"), SLIDE_MS);
-      timers.current.push(id);
-    });
-  }, [isBuilder, pathname]);
+
+    setSettled(true);
+    scrollToPane(true);
+    setShowDetail(true);
+  }, [isBuilder, pathname, publishNavState, setShowDetail]);
 
   function goBack() {
+    if (animatingBackRef.current || !isBuilder) {
+      return;
+    }
     rememberListNavigation("back");
+    clearTimers();
+    if (prefersReducedMotion()) {
+      setSettled(true);
+      scrollToPane(false);
+      router.push("/dashboard", { scroll: false });
+      return;
+    }
+    animatingBackRef.current = true;
+    setSettled(false);
+    publishNavState({ showDetail: false, animatingBack: true });
+    scrollToPane(false);
+    schedule(() => {
+      router.push("/dashboard", { scroll: false });
+      animatingBackRef.current = false;
+      setSettled(true);
+      publishNavState({ showDetail: false, animatingBack: false });
+    }, SLIDE_MS);
   }
 
   return (
     <ListNavContext.Provider value={{ goBack }}>
-      <div className="relative min-h-dvh w-full">
+      <div className="relative min-h-dvh w-full overflow-x-hidden">
         <IndexBackdropLayer />
         {backdrop}
         {header ? (
-          <header className="ios-nav-bar pointer-events-auto fixed inset-x-0 top-0 z-[60] pt-[env(safe-area-inset-top)]">
+          <header className={`${SITE_HEADER_BAR_CLASS} pointer-events-auto fixed inset-x-0 top-0 z-[60] pt-[env(safe-area-inset-top)]`}>
             {header}
           </header>
         ) : null}
         {overlay}
         <div
-          className={`ios-push-root relative z-10 ${listFlowHeaderOffsetClass(headerMode)} ${iosPushSlideClass(phase)}`}
+          className={`relative z-10 overflow-x-hidden ${listFlowHeaderOffsetClass(headerMode)}`}
         >
-          {children}
+          <div className={listFlowTrackClass(showDetail, settled)}>
+            <div className="list-flow-pane">{libraryLayer}</div>
+            <div className="list-flow-pane" aria-hidden={!showDetail && !isBuilder}>
+              {isBuilder ? children : null}
+            </div>
+          </div>
         </div>
       </div>
     </ListNavContext.Provider>

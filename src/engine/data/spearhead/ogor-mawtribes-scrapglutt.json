@@ -175,7 +175,41 @@
         "save": "5+",
         "control": "5"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Mantrapper Crossbow",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": ""
+        },
+        {
+          "name": "Frost Sabre's Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Culling Knife",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "STAYING USEFUL",
@@ -193,7 +227,7 @@
           "kind": "Activated",
           "timing": "Your Hero Phase",
           "declare": "Pick a friendly INFANTRY unit wholly within 12\" of this unit.",
-          "effect": "Roll a dice On a 3+, add the result to the target’s control score until the start of your next turn. KEYWORDS HERO, INFANTRY",
+          "effect": "Roll a dice On a 3+, add the result to the target’s control score until the start of your next turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -220,14 +254,26 @@
         "save": "5+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Irongut Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "DOWN TO THE IRONGUTS",
           "kind": "Passive",
           "timing": "Passive",
           "declare": "",
-          "effect": "Ignore negative modifiers to this unit’s control score. KEYWORDS INFANTRY",
+          "effect": "Ignore negative modifiers to this unit’s control score.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -275,14 +321,37 @@
         "save": "6+",
         "control": "1"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Sharp Stuff",
+          "kind": "ranged",
+          "range": "8\"",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Motley Assortment of Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "1",
+          "hit": "5+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        }
+      ],
       "abilities": [
         {
           "name": "NO SHORTAGE OF VOLUNTEERS",
           "kind": "Activated",
           "timing": "End of Any Turn",
           "declare": "",
-          "effect": "You can return D3 models to this unit. KEYWORDS INFANTRY, REINFORCEMENTS ezstandalone.cmd.push(function() {ezstandalone.showAds(128)});",
+          "effect": "You can return D3 models to this unit.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
@@ -309,14 +378,48 @@
         "save": "4+",
         "control": "2"
       },
-      "weapons": [],
+      "weapons": [
+        {
+          "name": "Piles of Old Scrap",
+          "kind": "ranged",
+          "range": "24\"",
+          "attacks": "3D6",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit, (Auto-wound)"
+        },
+        {
+          "name": "Scrappers’ Stabbers",
+          "kind": "melee",
+          "range": "",
+          "attacks": "7",
+          "hit": "5+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": ""
+        },
+        {
+          "name": "Rhinox’s Sharp Horns",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Companion"
+        }
+      ],
       "abilities": [
         {
           "name": "RAIN OF SCRAP",
           "kind": "Activated",
           "timing": "Your Shooting Phase",
           "declare": "Pick an enemy unit that had any models slain this turn by this unit’s shooting attacks to be the target.",
-          "effect": "Subtract 1 from hit rolls for the target’s attacks for the rest of the turn. KEYWORDS WAR MACHINE",
+          "effect": "Subtract 1 from hit rolls for the target’s attacks for the rest of the turn.",
           "keywords": "",
           "castingValue": "",
           "chantingValue": "",
