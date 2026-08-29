@@ -2,6 +2,7 @@ import { createId } from "@/lib/id";
 import { SITE_NAME } from "@/lib/site";
 import { battleTactics, factions, regimentsOfRenown } from "./data/load";
 import { exportArmyListText, exportFileName } from "./exportText";
+import { looksLikeNewRecruit, parseNewRecruitLists } from "./newRecruit";
 import { parsePointsCap } from "./pointsCap";
 import { getListUnit } from "./queries";
 import {
@@ -25,7 +26,9 @@ export type ParsePortableResult =
   | { ok: false; error: string };
 
 export const LIST_IMPORT_HELP =
-  "Use a .txt file exported from Order of Battle. It is the same readable list you get from Export — from this device or another.";
+  "Paste exported list text, a New Recruit list, or JSON below, or choose a .txt or .json file from this device or another.";
+
+export type PortableFormat = "text" | "json";
 
 const BANNER = `=== ${SITE_NAME} ===`;
 const NOT_A_LIST = "That file is not an Order of Battle list.";
@@ -39,7 +42,36 @@ export function serializeListsFile(lists: ArmyList[]): string {
     .join("\n");
 }
 
+export function serializeListsJson(lists: ArmyList[]): string {
+  return JSON.stringify(lists, null, 2);
+}
+
+export function serializeListsForFormat(
+  lists: ArmyList[],
+  format: PortableFormat,
+): string {
+  return format === "json" ? serializeListsJson(lists) : serializeListsFile(lists);
+}
+
+export function portableMimeType(format: PortableFormat): string {
+  return format === "json"
+    ? "application/json;charset=utf-8"
+    : "text/plain;charset=utf-8";
+}
+
 export function parsePortableLists(raw: string): ParsePortableResult {
+  const trimmed = raw.replace(/^\uFEFF/, "").trimStart();
+  if (trimmed.startsWith("[") || trimmed.startsWith("{")) {
+    const json = parsePortableListsJson(raw);
+    if (json.ok) {
+      return json;
+    }
+  }
+
+  if (looksLikeNewRecruit(raw)) {
+    return parseNewRecruitLists(raw);
+  }
+
   const lists = splitListBlocks(raw)
     .map((block) => parseListBlock(block))
     .filter((list): list is ArmyList => Boolean(list));
@@ -49,12 +81,42 @@ export function parsePortableLists(raw: string): ParsePortableResult {
   return { ok: true, lists };
 }
 
-export function portableAllListsFileName(): string {
-  return "order-of-battle-lists.txt";
+export function parsePortableListsJson(raw: string): ParsePortableResult {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    return { ok: false, error: NOT_A_LIST };
+  }
+
+  const candidates: unknown[] = [];
+  if (Array.isArray(parsed)) {
+    candidates.push(...parsed);
+  } else if (parsed && typeof parsed === "object") {
+    const record = parsed as Record<string, unknown>;
+    if (Array.isArray(record.lists)) {
+      candidates.push(...record.lists);
+    } else if (looksLikeArmyList(parsed)) {
+      candidates.push(parsed);
+    }
+  }
+
+  const lists = candidates.filter(looksLikeArmyList);
+  if (lists.length === 0) {
+    return { ok: false, error: NOT_A_LIST };
+  }
+  return { ok: true, lists };
 }
 
-export function portableListFileName(listName: string): string {
-  return exportFileName(listName);
+export function portableAllListsFileName(format: PortableFormat = "text"): string {
+  return format === "json" ? "order-of-battle-lists.json" : "order-of-battle-lists.txt";
+}
+
+export function portableListFileName(
+  listName: string,
+  format: PortableFormat = "text",
+): string {
+  return exportFileName(listName, format === "json" ? "json" : "txt");
 }
 
 export type PortablePartition = {
@@ -101,6 +163,32 @@ export function listContentKey(list: ArmyList): string {
         }
       : null,
   });
+}
+
+function looksLikeArmyList(value: unknown): value is ArmyList {
+  if (!value || typeof value !== "object") {
+    return false;
+  }
+  const record = value as Record<string, unknown>;
+  return (
+    typeof record.name === "string" &&
+    typeof record.factionId === "string" &&
+    Array.isArray(record.regiments)
+  );
+}
+
+function splitListBlocks(raw: string): string[] {
+  const text = raw.replace(/^\uFEFF/, "").trim();
+  if (!text) {
+    return [];
+  }
+  if (text.includes(BANNER)) {
+    return text
+      .split(BANNER)
+      .map((block) => block.trim())
+      .filter(Boolean);
+  }
+  return [text];
 }
 
 export function partitionPortableLists(
@@ -153,20 +241,6 @@ function enhancementKey(
     optionId: pick.optionId,
     bearer: selectionUnitKey(list, pick.heroSelectionId),
   };
-}
-
-function splitListBlocks(raw: string): string[] {
-  const text = raw.replace(/^\uFEFF/, "").trim();
-  if (!text) {
-    return [];
-  }
-  if (text.includes(BANNER)) {
-    return text
-      .split(BANNER)
-      .map((block) => block.trim())
-      .filter(Boolean);
-  }
-  return [text];
 }
 
 function parseListBlock(block: string): ArmyList | null {

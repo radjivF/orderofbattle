@@ -3,8 +3,12 @@ export function listFlowHeaderMode(input: {
   isBuilder: boolean;
   showDetail: boolean;
   animatingBack: boolean;
+  settled?: boolean;
 }): "library" | "builder" {
-  if (input.isBuilder && (input.showDetail || input.animatingBack)) {
+  if (input.animatingBack) {
+    return "builder";
+  }
+  if (input.isBuilder && input.showDetail) {
     return "builder";
   }
   return "library";
@@ -54,9 +58,33 @@ export function listFlowWindowScrollY(input: {
   return input.showingDetail ? 0 : input.libraryScrollY;
 }
 
-/** Display name stored when opening a list from the library carousel. */
+/** Custom list name for the builder header while the list hydrates. */
 export function listOpenDisplayNameForHeader(list: { name: string }): string {
   return list.name.trim();
+}
+
+/** Faction label on the opening splash — not the player's list name. */
+export function listOpenSplashFactionName(input: {
+  list?: {
+    factionId: string;
+    kind?: string;
+    spearheadId?: string | null;
+  } | null;
+  catalogueName?: string | null;
+  parentFactionName?: string | null;
+  rememberedFactionName?: string | null;
+  listNameFallback?: string | null;
+}): string | undefined {
+  if (input.list?.kind === "spearhead" || input.list?.spearheadId) {
+    return input.parentFactionName ?? input.catalogueName ?? undefined;
+  }
+  if (input.catalogueName) {
+    return input.catalogueName;
+  }
+  if (input.rememberedFactionName) {
+    return input.rememberedFactionName;
+  }
+  return input.listNameFallback?.trim() || undefined;
 }
 
 /** Builder header values before BuilderChrome hydrates (regression guard). */

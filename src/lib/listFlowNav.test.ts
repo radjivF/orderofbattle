@@ -10,6 +10,7 @@ import {
   listFlowWindowScrollY,
   listOpenShowsSplash,
   listOpenDisplayNameForHeader,
+  listOpenSplashFactionName,
   resolveBuilderHeaderDisplay,
 } from "./listFlowNav";
 
@@ -25,6 +26,33 @@ describe("listOpenDisplayNameForHeader", () => {
       listOpenDisplayNameForHeader({ name: "  My Stormhost  " }),
     ).toBe("My Stormhost");
     expect(listOpenDisplayNameForHeader({ name: "Cardone" })).toBe("Cardone");
+  });
+});
+
+describe("listOpenSplashFactionName", () => {
+  it("shows the faction catalogue name, not the custom list name", () => {
+    expect(
+      listOpenSplashFactionName({
+        catalogueName: "Daughters of Khaine",
+        rememberedFactionName: "Daughters of Khaine",
+        listNameFallback: "My Daughters of Khaine",
+      }),
+    ).toBe("Daughters of Khaine");
+  });
+
+  it("uses parent faction for spearhead lists", () => {
+    expect(
+      listOpenSplashFactionName({
+        list: {
+          factionId: "stormcast-eternals",
+          kind: "spearhead",
+          spearheadId: "vigilant-brotherhood",
+        },
+        catalogueName: "Vigilant Brotherhood",
+        parentFactionName: "Stormcast Eternals",
+        listNameFallback: "My Spearhead",
+      }),
+    ).toBe("Stormcast Eternals");
   });
 });
 
@@ -107,6 +135,17 @@ describe("listFlowHeaderMode", () => {
         isBuilder: true,
         showDetail: false,
         animatingBack: true,
+      }),
+    ).toBe("builder");
+  });
+
+  it("keeps the builder header once the list detail pane is showing", () => {
+    expect(
+      listFlowHeaderMode({
+        isBuilder: true,
+        showDetail: true,
+        animatingBack: false,
+        settled: false,
       }),
     ).toBe("builder");
   });
@@ -210,7 +249,7 @@ describe("list flow navigation wiring", () => {
     );
     expect(nav).not.toContain("headerMode");
     expect(nav).not.toContain("setShowDetail(false);");
-    expect(nav).toContain("{backdrop}");
+    expect(nav).toContain("showFactionBackdrop");
     expect(nav).toContain("clearListOpenSplash");
     expect(nav).toContain('direction === "instant"');
     expect(nav).toContain("SITE_HEADER_BAR_CLASS");
@@ -221,16 +260,26 @@ describe("list flow navigation wiring", () => {
 
   it("lets the list slide in with its opening splash on the incoming pane", () => {
     const builder = readSource("components/BuilderScreen.tsx");
+    const nav = readSource("components/IosNavSlide.tsx");
     expect(builder).toContain("listOpenShowsSplash");
     expect(builder).toContain("consumeSkipListSplash");
     expect(builder).toContain("clearListCreateSplash");
     expect(builder).toContain("setOpeningSplash(true)");
-    expect(builder).toContain(
-      'className="pointer-events-none absolute inset-0 z-30"',
+    expect(builder).toContain("fading={overlayFading}");
+    expect(builder).toContain("LIST_OPEN_LANDING_MS");
+    expect(builder).toContain("splashExiting");
+    expect(nav).toContain("indexBackdropRevealed");
+    expect(nav).toContain("LIST_BACKDROP_RETURN_MS");
+    expect(nav).toContain("LIST_DETAIL_BACKDROP_TRANSITION_CLASS");
+    expect(nav).toContain("factionBackdropRevealed");
+    expect(nav).toContain("revealed={indexBackdropRevealed}");
+    expect(nav).toContain("transitionClass={indexBackdropTransitionClass}");
+    expect(nav).not.toMatch(/\{backdrop\}[\s\S]*list-flow-pane/);
+    expect(nav).toContain("lockPageScroll");
+    expect(builder).toContain("LIST_OPEN_SPLASH_MS");
+    expect(nav).toMatch(
+      /settled: false[\s\S]*LIST_FLOW_SLIDE_MS[\s\S]*restoreScrollY\(0\)/,
     );
-    expect(builder).toContain("LIST_PANE_ART_CLASS");
-    expect(builder).toContain('className="relative h-full w-full"');
-    expect(builder).not.toContain("fixed inset-0 z-[1]");
   });
 
   it("resolves header fallback from storage before chrome loads", () => {
@@ -252,5 +301,6 @@ describe("list flow navigation wiring", () => {
       ".builder-view-track--play > .builder-view-pane:first-child",
     );
     expect(css).toContain("min-height: 0");
+    expect(css).toContain("scrollbar-gutter: stable");
   });
 });

@@ -4,18 +4,15 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
   factionArtScrimClass,
+  isBackdropArtReady,
   listBackdropArtSrc,
+  preloadBackdropArt,
   scourgeRealmVeilClass,
 } from "./factionArt";
 
 describe("factionArtScrimClass", () => {
-  it("uses a lighter scrim while the open splash is visible", () => {
-    const splash = factionArtScrimClass(true);
-    const builder = factionArtScrimClass(false);
-
-    expect(splash).toContain("from-ink/38");
-    expect(builder).toContain("from-ink/78");
-    expect(splash).not.toBe(builder);
+  it("uses a stable dark scrim for backdrop art", () => {
+    expect(factionArtScrimClass()).toContain("from-ink/78");
   });
 });
 
@@ -41,27 +38,49 @@ describe("listBackdropArtSrc", () => {
   });
 });
 
+describe("preloadBackdropArt", () => {
+  it("marks art ready after preload resolves", async () => {
+    const src = listBackdropArtSrc("stormcast-eternals", null);
+    expect(src).toBeTruthy();
+    expect(isBackdropArtReady("stormcast-eternals", null)).toBe(false);
+    await preloadBackdropArt("stormcast-eternals", null);
+    expect(isBackdropArtReady("stormcast-eternals", null)).toBe(true);
+  });
+});
+
 describe("faction art LCP", () => {
-  it("loads above-the-fold Stormcast art eagerly", () => {
+  it("loads backdrop art with high priority native img", () => {
     const dir = path.dirname(fileURLToPath(import.meta.url));
     const backdrop = readFileSync(
       path.resolve(dir, "../components/FactionArtBackground.tsx"),
       "utf8",
     );
-    expect(backdrop).toContain('loading="eager"');
+    expect(backdrop).toContain('decoding="sync"');
     expect(backdrop).toContain('fetchPriority="high"');
-    expect(backdrop).toContain("priority");
+    expect(backdrop).not.toContain("scale-[1.03]");
+    expect(backdrop).toContain("LIST_DETAIL_BACKDROP_TRANSITION_CLASS");
+    expect(backdrop).toContain("scrim ? \"opacity-100\" : \"opacity-0\"");
+
+    const builder = readFileSync(
+      path.resolve(dir, "../components/BuilderScreen.tsx"),
+      "utf8",
+    );
+    expect(builder).toContain("scrim={scrimOn}");
+
+    const library = readFileSync(
+      path.resolve(dir, "../components/LibraryScreen.tsx"),
+      "utf8",
+    );
+    expect(library).toContain("scrim={false}");
+    expect(library).not.toMatch(
+      /libraryCreatingSplashVisible[\s\S]*bg-ink/,
+    );
 
     const factions = readFileSync(
       path.resolve(dir, "../app/factions/page.tsx"),
       "utf8",
     );
     expect(factions).toContain('loading={index === 0 ? "eager" : "lazy"}');
-
-    const library = readFileSync(
-      path.resolve(dir, "../components/LibraryScreen.tsx"),
-      "utf8",
-    );
     expect(library).toContain('loading={index === 0 ? "eager" : "lazy"}');
   });
 });

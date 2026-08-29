@@ -18,7 +18,7 @@ import { battleTactics, battleTacticsForRealm } from "@/engine/data/load";
 import { summarize } from "@/engine/validate";
 import type { ArmyList, CatalogueUnit, DatasheetSubject, EnhancementOption, FactionCatalogue, NamedOption } from "@/engine/types";
 import { createId } from "@/lib/id";
-import { BUILDER_ADD_ACTION_CLASS, BUILDER_ADD_ACTION_EMPHASIS_CLASS, LIST_ISSUE_BANNER_CLASS, LIST_PANE_ART_CLASS, CONFIRM_SHEET_PANEL_CLASS, builderPlayTabs } from "@/lib/builderUi";
+import { BUILDER_ADD_ACTION_CLASS, BUILDER_ADD_ACTION_EMPHASIS_CLASS, LIST_ISSUE_BANNER_CLASS, LIST_LANDING_CONTENT_CLASS, LIST_LANDING_CONTENT_HIDDEN_CLASS, LIST_LANDING_CONTENT_VISIBLE_CLASS, LIST_OPEN_LANDING_MS, LIST_OPEN_SPLASH_MS, LIST_PANE_ART_CLASS, CONFIRM_SHEET_PANEL_CLASS, builderPlayTabs } from "@/lib/builderUi";
 import { castValueLabel } from "@/lib/abilityUi";
 import {
   getArmiesServerSnapshot,
@@ -36,13 +36,16 @@ import {
   consumeSkipListSplash,
   getListOpenDisplayNameServerSnapshot,
   getListOpenDisplayNameSnapshot,
+  getListOpenScourgeServerSnapshot,
+  getListOpenScourgeSnapshot,
   peekListOpenSplash,
   peekListNavigationDirection,
   subscribeListOpenFaction,
 } from "@/lib/listTransition";
-import { listOpenShowsSplash } from "@/lib/listFlowNav";
+import { listOpenShowsSplash, listOpenSplashFactionName } from "@/lib/listFlowNav";
 import { DatasheetSheet } from "./DatasheetSheet";
 import { FactionArtLayers } from "./FactionArtBackground";
+import { isBackdropArtReady, listBackdropArtSrc, preloadBackdropArt } from "@/lib/factionArt";
 import { FactionBackdrop } from "./FactionBackdrop";
 import { useListFlowChrome, useListFlowDecor } from "./ListFlowShell";
 import { ListLoadingSplash } from "./ListLoadingSplash";
@@ -82,7 +85,9 @@ type Props = {
   listId: string;
 };
 
-const MIN_OPEN_SPLASH_MS = 650;
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
 
 export function BuilderScreen({ listId }: Props) {
   const lists = useSyncExternalStore(
@@ -105,28 +110,45 @@ export function BuilderScreen({ listId }: Props) {
     getListOpenDisplayNameSnapshot,
     getListOpenDisplayNameServerSnapshot,
   );
+  const rememberedScourge = useSyncExternalStore(
+    subscribeListOpenFaction,
+    getListOpenScourgeSnapshot,
+    getListOpenScourgeServerSnapshot,
+  );
   const [openingSplash, setOpeningSplash] = useState(false);
+  const [artReady, setArtReady] = useState(true);
   const openedRecorded = useRef<string | null>(null);
   const splashStarted = useRef(0);
-  const skipOpenSplash = useRef(consumeSkipListSplash());
+  const [skipSplash] = useState(consumeSkipListSplash);
+  const [backdropLock, setBackdropLock] = useState<{
+    listId: string;
+    factionId: string;
+    scourgeRealm: ArmyList["scourgeRealm"];
+  } | null>(null);
+  const [splashExiting, setSplashExiting] = useState(false);
+  const hadSplash = useRef(false);
 
   useLayoutEffect(() => {
-    if (skipOpenSplash.current) {
+    setSplashExiting(false);
+    if (skipSplash) {
+      setOpeningSplash(false);
+      splashStarted.current = 0;
+      hadSplash.current = false;
       return;
     }
-    if (
-      !listOpenShowsSplash({
-        splashRequested: peekListOpenSplash(),
-        animatingBack: peekListNavigationDirection() === "back",
-      })
-    ) {
-      return;
-    }
-    setOpeningSplash(true);
-    if (splashStarted.current === 0) {
+    const shouldShow = listOpenShowsSplash({
+      splashRequested: peekListOpenSplash(),
+      animatingBack: peekListNavigationDirection() === "back",
+    });
+    if (shouldShow) {
+      setOpeningSplash(true);
       splashStarted.current = Date.now();
+      hadSplash.current = true;
+    } else {
+      setOpeningSplash(false);
+      splashStarted.current = 0;
     }
-  }, []);
+  }, [listId, skipSplash]);
 
   useEffect(() => {
     if (!openingSplash) {
@@ -137,7 +159,7 @@ export function BuilderScreen({ listId }: Props) {
     }
     const wait = Math.max(
       0,
-      MIN_OPEN_SPLASH_MS - (Date.now() - splashStarted.current),
+      LIST_OPEN_SPLASH_MS - (Date.now() - splashStarted.current),
     );
     const timer = window.setTimeout(() => {
       setOpeningSplash(false);
@@ -146,12 +168,87 @@ export function BuilderScreen({ listId }: Props) {
     return () => window.clearTimeout(timer);
   }, [openingSplash, lists]);
 
-  const splashName =
-    rememberedDisplayName ??
-    faction?.name ??
-    (rememberedId ? getFaction(rememberedId)?.name : undefined);
-  const showSplash = lists === undefined || openingSplash;
-  const scourgeRealm = list?.scourgeRealm ?? null;
+  const splashName = listOpenSplashFactionName({
+    list,
+    catalogueName: faction?.name,
+    parentFactionName: list ? getFaction(list.factionId)?.name : undefined,
+    rememberedFactionName: rememberedId
+      ? getFaction(rememberedId)?.name
+      : undefined,
+    listNameFallback: rememberedDisplayName,
+  });
+
+  useLayoutEffect(() => {
+    setBackdropLock(
+      artFactionId
+        ? {
+            listId,
+            factionId: artFactionId,
+            scourgeRealm:
+              list?.scourgeRealm ?? rememberedScourge ?? null,
+          }
+        : null,
+    );
+    // Snapshot once per list open — scourge is stored on card click before navigate.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- intentional
+  }, [listId]);
+
+  const backdropFactionId = backdropLock?.factionId ?? artFactionId;
+  const backdropScourgeRealm =
+    backdropLock?.scourgeRealm ??
+    list?.scourgeRealm ??
+    rememberedScourge ??
+    null;
+  const backdropSrc = listBackdropArtSrc(
+    backdropFactionId,
+    backdropScourgeRealm,
+  );
+
+  useLayoutEffect(() => {
+    if (!backdropSrc) {
+      setArtReady(true);
+      return;
+    }
+    if (isBackdropArtReady(backdropFactionId, backdropScourgeRealm)) {
+      setArtReady(true);
+      return;
+    }
+    let cancelled = false;
+    setArtReady(false);
+    void preloadBackdropArt(backdropFactionId, backdropScourgeRealm).then(() => {
+      if (!cancelled) {
+        setArtReady(true);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [backdropFactionId, backdropScourgeRealm, backdropSrc]);
+
+  const showSplash =
+    lists === undefined || openingSplash || !artReady;
+
+  useEffect(() => {
+    if (showSplash) {
+      hadSplash.current = true;
+    }
+  }, [showSplash]);
+
+  useEffect(() => {
+    if (showSplash || skipSplash || !hadSplash.current) {
+      return;
+    }
+    if (prefersReducedMotion()) {
+      hadSplash.current = false;
+      return;
+    }
+    setSplashExiting(true);
+    const done = window.setTimeout(() => {
+      setSplashExiting(false);
+      hadSplash.current = false;
+    }, LIST_OPEN_LANDING_MS);
+    return () => window.clearTimeout(done);
+  }, [showSplash, skipSplash]);
 
   useEffect(() => {
     if (showSplash) {
@@ -176,50 +273,65 @@ export function BuilderScreen({ listId }: Props) {
 
   const { setDecor } = useListFlowDecor();
 
+  const overlayUp = showSplash || splashExiting;
+  const overlayFading = splashExiting && !showSplash;
+  const scrimOn = !showSplash;
+  const contentRevealed = !showSplash;
+
   useLayoutEffect(() => {
     setDecor({
-      backdrop: artFactionId ? (
+      backdrop: backdropFactionId ? (
         <div className={LIST_PANE_ART_CLASS} aria-hidden="true">
-          <div className="relative h-full w-full">
-            <FactionArtLayers
-              factionId={artFactionId}
-              scourgeRealm={scourgeRealm}
-              splash={showSplash}
-            />
-          </div>
+          <FactionArtLayers
+            factionId={backdropFactionId}
+            scourgeRealm={backdropScourgeRealm}
+            scrim={scrimOn}
+          />
         </div>
       ) : undefined,
-      overlay: showSplash ? (
-        <div className="pointer-events-none absolute inset-0 z-30">
-          <ListLoadingSplash factionName={splashName} />
-        </div>
+      overlay: overlayUp ? (
+        <ListLoadingSplash
+          factionName={splashName}
+          fading={overlayFading}
+        />
       ) : undefined,
     });
     return () => setDecor({});
-  }, [artFactionId, scourgeRealm, showSplash, splashName, setDecor]);
-
-  if (!showSplash && (!list || !faction)) {
-    return (
-      <div className="relative z-10 flex min-h-full flex-col items-start bg-ink px-6 py-10 text-parchment">
-        <p className="font-serif text-3xl">This list is gone.</p>
-        <Link href="/dashboard" className="mt-6 min-h-11 text-sigmarite">
-          Back to library
-        </Link>
-      </div>
-    );
-  }
+  }, [
+    backdropFactionId,
+    backdropScourgeRealm,
+    overlayFading,
+    overlayUp,
+    scrimOn,
+    splashName,
+    setDecor,
+  ]);
 
   if (!list || !faction) {
-    return null;
-  }
-
-  if (showSplash) {
+    if (lists !== undefined) {
+      return (
+        <div className="relative z-10 flex min-h-full flex-col items-start bg-ink px-6 py-10 text-parchment">
+          <p className="font-serif text-3xl">This list is gone.</p>
+          <Link href="/dashboard" className="mt-6 min-h-11 text-sigmarite">
+            Back to library
+          </Link>
+        </div>
+      );
+    }
     return null;
   }
 
   return (
     <FactionBackdrop>
-      <BuilderReady list={list} faction={faction} />
+      <div
+        className={`${LIST_LANDING_CONTENT_CLASS} ${
+          contentRevealed
+            ? LIST_LANDING_CONTENT_VISIBLE_CLASS
+            : LIST_LANDING_CONTENT_HIDDEN_CLASS
+        }`}
+      >
+        <BuilderReady list={list} faction={faction} />
+      </div>
     </FactionBackdrop>
   );
 }
@@ -237,6 +349,7 @@ function BuilderReady({
   const [picker, setPicker] = useState<Picker>(null);
   const [datasheet, setDatasheet] = useState<DatasheetSubject | null>(null);
   const [pane, setPane] = useState<"build" | "play">("build");
+  const [optionsOpen, setOptionsOpen] = useState(false);
   const [playTab, setPlayTab] = useState<"units" | "magic" | "phases">("units");
   const [regimentRemoveId, setRegimentRemoveId] = useState<string | null>(null);
   const totals = useMemo(() => summarize(list, faction), [list, faction]);
@@ -559,6 +672,7 @@ function BuilderReady({
     : "This regiment and its units will be removed from the list.";
 
   const enterPlay = useCallback(() => {
+    setOptionsOpen(false);
     setPane("play");
     setPlayTab("units");
     setPicker(null);
@@ -630,18 +744,31 @@ function BuilderReady({
           />
         ) : !forPlayMode ? (
         <div className="flex min-w-0 flex-col gap-4">
-          <details className="group min-w-0 rounded-2xl bg-ink-raised ring-1 ring-parchment/12 open:pb-4">
-            <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm text-parchment/85 marker:content-none [&::-webkit-details-marker]:hidden">
+          <section
+            className={`min-w-0 rounded-2xl bg-ink-raised ring-1 ring-parchment/12 ${
+              optionsOpen ? "pb-4" : ""
+            }`}
+          >
+            <button
+              type="button"
+              aria-expanded={optionsOpen}
+              onClick={() => setOptionsOpen((open) => !open)}
+              className="flex min-h-11 w-full cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-left text-sm text-parchment/85"
+            >
               <span className="font-medium tracking-wide">Options</span>
               <span className="flex items-center gap-2 text-xs text-ink-muted">
-                <span className="group-open:hidden">
-                  Points · Lores · Tactics
-                </span>
-                <span aria-hidden="true" className="transition group-open:rotate-180">
+                {!optionsOpen ? (
+                  <span>Points · Lores · Tactics</span>
+                ) : null}
+                <span
+                  aria-hidden="true"
+                  className={`transition ${optionsOpen ? "rotate-180" : ""}`}
+                >
                   ▾
                 </span>
               </span>
-            </summary>
+            </button>
+            {optionsOpen ? (
             <div className="flex min-w-0 flex-col gap-4 border-t border-parchment/10 px-4 pt-4">
               <PointsCapField
                 value={list.pointsCap}
@@ -786,7 +913,8 @@ function BuilderReady({
                 />
               </div>
             </div>
-          </details>
+            ) : null}
+          </section>
           {faction.formations.length > 0 ? (
           <div className="flex min-w-0 flex-col gap-2">
             <label className="flex min-w-0 flex-col gap-2 text-sm text-parchment/80">

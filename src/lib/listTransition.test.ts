@@ -10,6 +10,7 @@ import {
   getListOpenDisplayNameSnapshot,
   getListOpenFactionServerSnapshot,
   getListOpenFactionSnapshot,
+  getListOpenScourgeSnapshot,
   markListSplashShown,
   peekListCreateSplash,
   peekListNavigationDirection,
@@ -58,6 +59,13 @@ describe("listTransition hydration safety", () => {
     rememberListOpen("kruleboyz");
     expect(peekListOpenFactionId()).toBe("kruleboyz");
     expect(consumeSkipListSplash()).toBe(false);
+  });
+
+  it("remembers scourge realm for backdrop art on open", () => {
+    rememberListOpen("stormcast-eternals", "My Host", "aqshy");
+    expect(getListOpenScourgeSnapshot()).toBe("aqshy");
+    rememberListOpen("daughters-of-khaine", "Khaine", null);
+    expect(getListOpenScourgeSnapshot()).toBeNull();
   });
 
   it("markListSplashShown skips the faction backdrop splash once", () => {

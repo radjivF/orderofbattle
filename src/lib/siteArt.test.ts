@@ -17,6 +17,8 @@ describe("index backdrop", () => {
       "utf8",
     );
     expect(layer).toContain("INDEX_BACKDROP_ART_CLASS");
+    expect(layer).toContain("LIST_LANDING_CONTENT_CLASS");
+    expect(layer).toContain("revealed");
     expect(layer).toContain("<Image");
     expect(layer).toContain("unoptimized");
     expect(layer).not.toContain("backgroundAttachment");

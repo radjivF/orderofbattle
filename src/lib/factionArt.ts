@@ -97,6 +97,40 @@ export function listBackdropArtSrc(
   return factionArtSrc(factionId);
 }
 
+const loadedBackdropSrcs = new Set<string>();
+
+/** Warm the cache before the list pane mounts — avoids art scale-in on open. */
+export function preloadBackdropArt(
+  factionId: string | null | undefined,
+  scourgeRealm?: ScourgeRealmBackdrop,
+): Promise<void> {
+  const src = listBackdropArtSrc(factionId, scourgeRealm);
+  if (!src || loadedBackdropSrcs.has(src)) {
+    return Promise.resolve();
+  }
+  if (typeof Image === "undefined") {
+    loadedBackdropSrcs.add(src);
+    return Promise.resolve();
+  }
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      loadedBackdropSrcs.add(src);
+      resolve();
+    };
+    img.onerror = () => resolve();
+    img.src = src;
+  });
+}
+
+export function isBackdropArtReady(
+  factionId: string | null | undefined,
+  scourgeRealm?: ScourgeRealmBackdrop,
+): boolean {
+  const src = listBackdropArtSrc(factionId, scourgeRealm);
+  return !src || loadedBackdropSrcs.has(src);
+}
+
 export function factionArtSize(factionId: string): {
   width: number;
   height: number;
@@ -157,11 +191,9 @@ export function hasFactionArt(factionId: string | null | undefined): boolean {
   return factionArtSrc(factionId) !== null;
 }
 
-/** Dark gradient over faction backdrop art. Lighter while the open splash is visible. */
-export function factionArtScrimClass(splash = false): string {
-  return splash
-    ? "bg-gradient-to-b from-ink/38 via-ink/48 to-ink/58"
-    : "bg-gradient-to-b from-ink/78 via-ink/88 to-ink/94";
+/** Dark gradient over faction backdrop art — same crop and weight for splash and builder. */
+export function factionArtScrimClass(): string {
+  return "bg-gradient-to-b from-ink/78 via-ink/88 to-ink/94";
 }
 
 /** Tint veil for scourge season backdrop art. */

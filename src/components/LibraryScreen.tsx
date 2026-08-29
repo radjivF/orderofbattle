@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useLayoutEffect, useEffect, useRef, useState, useSyncExternalStore, type ChangeEvent } from "react";
+import { useLayoutEffect, useEffect, useMemo, useRef, useState, useSyncExternalStore, type ChangeEvent } from "react";
 import { getFaction, armyOfRenownName } from "@/engine/queries";
 import {
   catalogueForList,
@@ -19,10 +19,12 @@ import {
   partitionPortableLists,
   portableAllListsFileName,
   portableListFileName,
-  serializeListsFile,
+  portableMimeType,
+  serializeListsForFormat,
+  type PortableFormat,
 } from "@/engine/listPortable";
 import type { ArmyList, FactionCatalogue } from "@/engine/types";
-import { catalogueArtClass, catalogueArtSrc, factionArtSrc } from "@/lib/factionArt";
+import { catalogueArtClass, catalogueArtSrc, factionArtSrc, preloadBackdropArt } from "@/lib/factionArt";
 import { factionPickerCounts } from "@/lib/factionSeo";
 import { downloadTextFile } from "@/lib/downloadFile";
 import {
@@ -55,6 +57,14 @@ import {
   parseNewListArmyValue,
 } from "@/lib/newListArmyOptions";
 import {
+  getLibrarySortServerSnapshot,
+  getLibrarySortSnapshot,
+  setLibrarySortMode,
+  sortLibraryLists,
+  subscribeLibrarySort,
+  type LibrarySortMode,
+} from "@/lib/librarySort";
+import {
   CONFIRM_CANCEL_BUTTON_CLASS,
   CONFIRM_SHEET_ACTIONS_CLASS,
   CONFIRM_SHEET_PANEL_CLASS,
@@ -62,13 +72,22 @@ import {
   EMPTY_LIBRARY_PANEL_CLASS,
   EMPTY_LIBRARY_SECONDARY_CLASS,
   IOS_LIQUID_CTA_CLASS,
-  LIBRARY_BACKUP_BUTTON_CLASS,
+  LIBRARY_OPTIONS_BUTTON_CLASS,
+  LIBRARY_TITLE_CLASS,
+  LIBRARY_TITLE_ROW_CLASS,
+  SHEET_CHECKLIST_ITEM_CLASS,
+  SHEET_CHECKLIST_ITEM_SELECTED_CLASS,
+  SHEET_FOOTER_ACTIONS_CLASS,
+  SHEET_INLINE_LINK_CLASS,
+  SHEET_SECONDARY_BUTTON_CLASS,
   LIBRARY_CARD_ACTION_BUTTON_CLASS,
   LIBRARY_CARD_ACTIONS_CLASS,
   LIBRARY_CARD_CLASS,
   LIBRARY_CARD_DELETE_BUTTON_CLASS,
+  LIBRARY_CARD_LIST_NAME_INPUT_CLASS,
   SHEET_HEADER_CLASS,
   SHEET_PANEL_CLASS,
+  libraryListExportSubtitle,
 } from "@/lib/builderUi";
 import { useListFlowChrome } from "./ListFlowShell";
 import { FactionArtLayers } from "./FactionArtBackground";
@@ -79,7 +98,21 @@ import { ModalFrame } from "./ModalFrame";
 import { ConfirmSheetActions } from "./ConfirmSheetActions";
 import { SheetFormActions } from "./SheetFormActions";
 import { PointsCapField } from "./PointsCapField";
+import { IosSegmentedControl } from "./ios/IosSegmentedControl";
 import { SiteFooter } from "./SiteFooter";
+
+type LibrarySheetTab = "import" | "export";
+type ExportPhase = "pick" | "preview";
+
+function LibraryOptionsIcon() {
+  return (
+    <svg viewBox="0 0 20 20" aria-hidden="true" className="h-5 w-5">
+      <circle cx="10" cy="5" r="1.35" fill="currentColor" />
+      <circle cx="10" cy="10" r="1.35" fill="currentColor" />
+      <circle cx="10" cy="15" r="1.35" fill="currentColor" />
+    </svg>
+  );
+}
 
 function rememberOpenList(list: ArmyList) {
   const faction = getFaction(list.factionId);
@@ -87,7 +120,8 @@ function rememberOpenList(list: ArmyList) {
     faction?.parentFactionIds?.[0] ??
     (factionArtSrc(list.factionId) ? list.factionId : null) ??
     list.factionId;
-  rememberListOpen(artId, listOpenDisplayNameForHeader(list));
+  rememberListOpen(artId, listOpenDisplayNameForHeader(list), list.scourgeRealm);
+  void preloadBackdropArt(artId, list.scourgeRealm);
   rememberListNavigation("forward");
 }
 
@@ -112,12 +146,28 @@ export function LibraryScreen() {
   const [draftSpearheadId, setDraftSpearheadId] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
   const [importError, setImportError] = useState<string | null>(null);
-  const [importHelpOpen, setImportHelpOpen] = useState(false);
+  const [importDraft, setImportDraft] = useState("");
   const [importConfirm, setImportConfirm] = useState<{
     novel: ArmyList[];
     skipped: number;
   } | null>(null);
+  const [librarySheetOpen, setLibrarySheetOpen] = useState(false);
+  const [librarySheetTab, setLibrarySheetTab] =
+    useState<LibrarySheetTab>("import");
+  const [exportPhase, setExportPhase] = useState<ExportPhase>("pick");
+  const [exportSelectedIds, setExportSelectedIds] = useState<string[]>([]);
+  const [exportFormat, setExportFormat] = useState<PortableFormat>("text");
+  const [exportCopied, setExportCopied] = useState(false);
   const importInputRef = useRef<HTMLInputElement>(null);
+  const sortMode = useSyncExternalStore(
+    subscribeLibrarySort,
+    getLibrarySortSnapshot,
+    getLibrarySortServerSnapshot,
+  );
+  const displayedLists = useMemo(
+    () => (lists ? sortLibraryLists(lists, sortMode) : []),
+    [lists, sortMode],
+  );
   const createSplash = useSyncExternalStore(
     subscribeListOpenFaction,
     peekListCreateSplash,
@@ -174,27 +224,140 @@ export function LibraryScreen() {
     await saveArmy({ ...list, name: next });
   }
 
-  function exportAllLists() {
-    if (!lists || lists.length === 0) {
+  const exportLists = useMemo(() => {
+    if (
+      !lists ||
+      !librarySheetOpen ||
+      librarySheetTab !== "export" ||
+      exportPhase !== "preview"
+    ) {
+      return [];
+    }
+    const selected = new Set(exportSelectedIds);
+    return lists.filter((list) => selected.has(list.id));
+  }, [
+    exportPhase,
+    exportSelectedIds,
+    librarySheetOpen,
+    librarySheetTab,
+    lists,
+  ]);
+
+  const exportContent = useMemo(() => {
+    if (exportLists.length === 0) {
+      return "";
+    }
+    return serializeListsForFormat(exportLists, exportFormat);
+  }, [exportLists, exportFormat]);
+
+  function resetExportState() {
+    setExportPhase("pick");
+    setExportSelectedIds([]);
+    setExportFormat("text");
+    setExportCopied(false);
+  }
+
+  function openLibrarySheet(tab: LibrarySheetTab = "import") {
+    setLibrarySheetTab(tab);
+    setImportDraft("");
+    resetExportState();
+    setLibrarySheetOpen(true);
+  }
+
+  function closeLibrarySheet() {
+    setLibrarySheetOpen(false);
+    setImportDraft("");
+    resetExportState();
+  }
+
+  function openLibraryOptions() {
+    openLibrarySheet("import");
+  }
+
+  function onLibrarySheetTabChange(next: string) {
+    const tab = next as LibrarySheetTab;
+    if (tab === librarySheetTab) {
       return;
     }
-    downloadTextFile(
-      portableAllListsFileName(),
-      serializeListsFile(lists),
-      "text/plain;charset=utf-8",
+    setLibrarySheetTab(tab);
+    if (tab === "import") {
+      resetExportState();
+    } else {
+      setImportDraft("");
+      resetExportState();
+    }
+  }
+
+  function onSortModeChange(next: string) {
+    setLibrarySortMode(next as LibrarySortMode);
+  }
+
+  function toggleExportList(listId: string) {
+    setExportSelectedIds((current) =>
+      current.includes(listId)
+        ? current.filter((id) => id !== listId)
+        : [...current, listId],
     );
   }
 
-  function exportOneList(list: ArmyList) {
-    downloadTextFile(
-      portableListFileName(list.name),
-      serializeListsFile([list]),
-      "text/plain;charset=utf-8",
-    );
+  function selectAllForExport() {
+    setExportSelectedIds(lists?.map((list) => list.id) ?? []);
+  }
+
+  function confirmExportSelection() {
+    if (!lists || exportSelectedIds.length === 0) {
+      return;
+    }
+    setExportFormat("text");
+    setExportCopied(false);
+    setExportPhase("preview");
+  }
+
+  function backToExportPicker() {
+    setExportFormat("text");
+    setExportCopied(false);
+    setExportPhase("pick");
+  }
+
+  async function copyExport() {
+    if (!exportContent) {
+      return;
+    }
+    await navigator.clipboard.writeText(exportContent);
+    setExportCopied(true);
+  }
+
+  function downloadExport() {
+    if (exportLists.length === 0 || !exportContent) {
+      return;
+    }
+    const filename =
+      exportLists.length === 1
+        ? portableListFileName(exportLists[0]!.name, exportFormat)
+        : portableAllListsFileName(exportFormat);
+    downloadTextFile(filename, exportContent, portableMimeType(exportFormat));
   }
 
   function openImportPicker() {
-    setImportHelpOpen(true);
+    openLibrarySheet("import");
+  }
+
+  function beginImport(raw: string) {
+    const trimmed = raw.trim();
+    if (!trimmed) {
+      return;
+    }
+    closeLibrarySheet();
+    const parsed = parsePortableLists(trimmed);
+    if (!parsed.ok) {
+      setImportError(parsed.error);
+      return;
+    }
+    setImportConfirm(partitionPortableLists(parsed.lists, lists ?? []));
+  }
+
+  function importFromDraft() {
+    beginImport(importDraft);
   }
 
   function chooseImportFile() {
@@ -204,18 +367,10 @@ export function LibraryScreen() {
   async function onImportFile(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
     event.target.value = "";
-    setImportHelpOpen(false);
     if (!file) {
       return;
     }
-    const parsed = parsePortableLists(await file.text());
-    if (!parsed.ok) {
-      setImportError(parsed.error);
-      return;
-    }
-    setImportConfirm(
-      partitionPortableLists(parsed.lists, lists ?? []),
-    );
+    beginImport(await file.text());
   }
 
   async function confirmImport() {
@@ -270,36 +425,23 @@ export function LibraryScreen() {
 
   return (
     <div className="relative z-10 min-h-full text-parchment">
-      <div className="mx-auto flex w-full max-w-3xl items-end justify-between gap-3 px-5 pt-2 pb-3 sm:px-6 lg:max-w-5xl">
-        <h1 className="font-serif text-3xl text-parchment">My lists</h1>
-        <div className="flex shrink-0 items-center gap-1">
+      <div className="mx-auto w-full max-w-3xl px-5 pt-2 pb-3 sm:px-6 lg:max-w-5xl">
+        <div className={LIBRARY_TITLE_ROW_CLASS}>
           <button
             type="button"
-            className={LIBRARY_BACKUP_BUTTON_CLASS}
-            onClick={openImportPicker}
+            aria-label="List options"
+            onClick={openLibraryOptions}
+            className={LIBRARY_OPTIONS_BUTTON_CLASS}
           >
-            Import list
+            <LibraryOptionsIcon />
           </button>
-          {lists && lists.length > 0 ? (
-            <>
-              <span aria-hidden="true" className="text-parchment/25">
-                ·
-              </span>
-              <button
-                type="button"
-                className={LIBRARY_BACKUP_BUTTON_CLASS}
-                onClick={exportAllLists}
-              >
-                Export all
-              </button>
-            </>
-          ) : null}
+          <h1 className={LIBRARY_TITLE_CLASS}>My lists</h1>
         </div>
       </div>
       <input
         ref={importInputRef}
         type="file"
-        accept=".txt,text/plain"
+        accept=".txt,.json,text/plain,application/json"
         className="hidden"
         aria-hidden="true"
         tabIndex={-1}
@@ -347,7 +489,7 @@ export function LibraryScreen() {
           </div>
         ) : (
           <ul className="grid grid-cols-1 gap-4 pt-2 lg:grid-cols-2 lg:gap-5">
-            {lists.map((list, index) => {
+            {displayedLists.map((list, index) => {
               const faction = getFaction(list.factionId);
               const playCatalogue = catalogueForList(list);
               const totals = playCatalogue
@@ -383,7 +525,7 @@ export function LibraryScreen() {
                             event.currentTarget.blur();
                           }
                         }}
-                        className="pointer-events-auto relative mt-1 w-full cursor-text bg-transparent font-serif text-[1.45rem] leading-tight outline-none sm:text-2xl"
+                        className={LIBRARY_CARD_LIST_NAME_INPUT_CLASS}
                       />
                       <div className="mt-2 flex w-full flex-1 items-center gap-2">
                         <div className="min-w-0 flex-1">
@@ -431,19 +573,6 @@ export function LibraryScreen() {
                         </span>
                         <button
                           type="button"
-                          className={LIBRARY_CARD_ACTION_BUTTON_CLASS}
-                          onClick={() => exportOneList(list)}
-                        >
-                          Export
-                        </button>
-                        <span
-                          aria-hidden="true"
-                          className="text-parchment-ink/25"
-                        >
-                          ·
-                        </span>
-                        <button
-                          type="button"
                           className={LIBRARY_CARD_DELETE_BUTTON_CLASS}
                           onClick={() => setDeleteTarget(list)}
                         >
@@ -481,31 +610,202 @@ export function LibraryScreen() {
       </main>
       <SiteFooter />
 
-      {importHelpOpen ? (
+      {librarySheetOpen ? (
         <ModalFrame
-          label="Import a list"
-          onClose={() => setImportHelpOpen(false)}
-          panelClassName={CONFIRM_SHEET_PANEL_CLASS}
+          label="List options"
+          onClose={closeLibrarySheet}
+          panelClassName={SHEET_PANEL_CLASS}
         >
           <div className={SHEET_HEADER_CLASS}>
-            <h2 className="font-serif text-2xl">Import a list</h2>
+            <h2 className="font-serif text-2xl">List options</h2>
             <SheetCloseButton
-              label="Close import"
-              onClick={() => setImportHelpOpen(false)}
+              label="Close list options"
+              onClick={closeLibrarySheet}
             />
           </div>
-          <p className="px-5 pb-4 text-sm leading-relaxed text-sheet-muted">
-            {LIST_IMPORT_HELP}
-          </p>
-          <div className={CONFIRM_SHEET_ACTIONS_CLASS}>
-            <button
-              type="button"
-              onClick={chooseImportFile}
-              className={IOS_LIQUID_CTA_CLASS}
-            >
-              Choose file
-            </button>
+          <div className="px-5 pb-4">
+            <p className="pb-2 text-sm font-medium text-sheet-muted">
+              Sort lists by
+            </p>
+            <IosSegmentedControl
+              ariaLabel="Sort lists"
+              value={sortMode}
+              onChange={onSortModeChange}
+              options={[
+                { value: "recent", label: "Recent" },
+                { value: "alphabetic", label: "A–Z" },
+              ]}
+            />
           </div>
+          <div className="px-5 pb-4">
+            <IosSegmentedControl
+              ariaLabel="Import or export lists"
+              value={librarySheetTab}
+              onChange={onLibrarySheetTabChange}
+              options={[
+                { value: "import", label: "Import" },
+                { value: "export", label: "Export" },
+              ]}
+            />
+          </div>
+
+          {librarySheetTab === "import" ? (
+            <>
+              <p className="px-5 pb-3 text-sm leading-relaxed text-sheet-muted">
+                {LIST_IMPORT_HELP}
+              </p>
+              <textarea
+                value={importDraft}
+                onChange={(event) => setImportDraft(event.target.value)}
+                placeholder="Paste exported list text or JSON here…"
+                aria-label="List to import"
+                className="mx-5 mb-4 min-h-[16rem] flex-1 resize-none rounded-xl bg-parchment-ink/5 px-3 py-3 font-mono text-xs leading-relaxed text-parchment-ink outline-none ring-1 ring-parchment-ink/10 placeholder:text-sheet-muted/70"
+              />
+              <div className={SHEET_FOOTER_ACTIONS_CLASS}>
+                <button
+                  type="button"
+                  disabled={importDraft.trim().length === 0}
+                  onClick={importFromDraft}
+                  className={IOS_LIQUID_CTA_CLASS}
+                >
+                  Import
+                </button>
+                <button
+                  type="button"
+                  onClick={chooseImportFile}
+                  className={SHEET_SECONDARY_BUTTON_CLASS}
+                >
+                  Choose file
+                </button>
+              </div>
+            </>
+          ) : exportPhase === "pick" ? (
+            <>
+              <p className="px-5 pb-3 text-sm leading-relaxed text-sheet-muted">
+                Choose one or more lists to export.
+              </p>
+              {lists && lists.length > 1 ? (
+                <div className="px-5 pb-2">
+                  <button
+                    type="button"
+                    onClick={selectAllForExport}
+                    className={SHEET_INLINE_LINK_CLASS}
+                  >
+                    Select all
+                  </button>
+                </div>
+              ) : null}
+              {lists && lists.length > 0 ? (
+                <ul className="modal-sheet-scroll flex max-h-[min(24rem,50vh)] flex-col gap-2 overflow-y-auto px-3 pb-4">
+                  {lists.map((list) => {
+                    const faction = getFaction(list.factionId);
+                    const playCatalogue = catalogueForList(list);
+                    const totals = playCatalogue
+                      ? summarize(list, playCatalogue)
+                      : null;
+                    const spearhead = isSpearheadList(list);
+                    const checked = exportSelectedIds.includes(list.id);
+                    return (
+                      <li key={list.id}>
+                        <label
+                          className={`${SHEET_CHECKLIST_ITEM_CLASS} ${
+                            checked ? SHEET_CHECKLIST_ITEM_SELECTED_CLASS : ""
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={checked}
+                            onChange={() => toggleExportList(list.id)}
+                            aria-label={`Export ${list.name}`}
+                            className="mt-0.5 size-5 shrink-0 accent-aether"
+                          />
+                          <span className="min-w-0">
+                            <span className="block font-medium text-parchment-ink">
+                              {list.name}
+                            </span>
+                            <span className="block text-sm text-sheet-muted">
+                              {libraryListExportSubtitle({
+                                factionName: faction?.name ?? "Unknown faction",
+                                spearhead,
+                                pointsCap: list.pointsCap,
+                                spearheadBoxName: playCatalogue?.name,
+                                drops: totals?.drops,
+                              })}
+                            </span>
+                          </span>
+                        </label>
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                <p className="px-5 pb-4 text-sm text-sheet-muted">
+                  No lists to export yet.
+                </p>
+              )}
+              <div className={SHEET_FOOTER_ACTIONS_CLASS}>
+                <button
+                  type="button"
+                  disabled={exportSelectedIds.length === 0}
+                  onClick={confirmExportSelection}
+                  className={IOS_LIQUID_CTA_CLASS}
+                >
+                  Continue
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <h3 className="px-5 pb-3 font-serif text-xl text-parchment-ink">
+                {exportLists.length === 1
+                  ? "Export list"
+                  : `Export ${exportLists.length} lists`}
+              </h3>
+              <div className="px-5 pb-3">
+                <IosSegmentedControl
+                  ariaLabel="Export format"
+                  value={exportFormat}
+                  onChange={(next) => {
+                    setExportFormat(next as PortableFormat);
+                    setExportCopied(false);
+                  }}
+                  options={[
+                    { value: "text", label: "Text" },
+                    { value: "json", label: "JSON" },
+                  ]}
+                />
+              </div>
+              <textarea
+                readOnly
+                value={exportContent}
+                aria-label="Exported list"
+                className="mx-5 mb-4 min-h-[16rem] flex-1 resize-none rounded-xl bg-parchment-ink/5 px-3 py-3 font-mono text-xs leading-relaxed text-parchment-ink outline-none ring-1 ring-parchment-ink/10"
+              />
+              <div className={SHEET_FOOTER_ACTIONS_CLASS}>
+                <button
+                  type="button"
+                  onClick={() => void copyExport()}
+                  className={IOS_LIQUID_CTA_CLASS}
+                >
+                  {exportCopied ? "Copied" : "Copy"}
+                </button>
+                <button
+                  type="button"
+                  onClick={downloadExport}
+                  className={SHEET_SECONDARY_BUTTON_CLASS}
+                >
+                  {exportFormat === "json" ? "Download .json" : "Download .txt"}
+                </button>
+                <button
+                  type="button"
+                  onClick={backToExportPicker}
+                  className={CONFIRM_CANCEL_BUTTON_CLASS}
+                >
+                  Back
+                </button>
+              </div>
+            </>
+          )}
         </ModalFrame>
       ) : null}
 
@@ -763,7 +1063,7 @@ export function LibraryScreen() {
       ) : null}
 
       {libraryCreatingSplashVisible(creating, createSplash) && draftFaction ? (
-        <div className="fixed inset-0 z-[60] bg-ink text-parchment">
+        <div className="fixed inset-0 z-[60] text-parchment">
           <div className="absolute inset-0" aria-hidden="true">
             <FactionArtLayers
               factionId={
@@ -771,7 +1071,7 @@ export function LibraryScreen() {
                 draftFaction.parentFactionIds?.[0] ??
                 draftFaction.id
               }
-              splash
+              scrim={false}
             />
           </div>
           <ListLoadingSplash

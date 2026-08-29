@@ -1,5 +1,6 @@
 const FACTION_KEY = "oob:list-open-faction";
 const DISPLAY_NAME_KEY = "oob:list-open-display-name";
+const SCOURGE_KEY = "oob:list-open-scourge";
 const SKIP_SPLASH_KEY = "oob:skip-list-splash";
 const NAV_DIRECTION_KEY = "oob:list-nav-direction";
 const OPEN_SPLASH_KEY = "oob:list-open-splash";
@@ -52,6 +53,7 @@ export function clearListCreateSplash() {
 export function rememberListOpen(
   factionId: string | null | undefined,
   displayName?: string | null,
+  scourgeRealm?: "aqshy" | "ghyran" | null,
 ) {
   if (!canUseStorage() || !factionId) {
     return;
@@ -61,6 +63,11 @@ export function rememberListOpen(
     sessionStorage.setItem(DISPLAY_NAME_KEY, displayName.trim());
   } else {
     sessionStorage.removeItem(DISPLAY_NAME_KEY);
+  }
+  if (scourgeRealm === "aqshy" || scourgeRealm === "ghyran") {
+    sessionStorage.setItem(SCOURGE_KEY, scourgeRealm);
+  } else {
+    sessionStorage.removeItem(SCOURGE_KEY);
   }
   sessionStorage.removeItem(SKIP_SPLASH_KEY);
   emitFactionListeners();
@@ -113,6 +120,23 @@ export function getListOpenFactionServerSnapshot(): string | null {
   return null;
 }
 
+export function peekListOpenScourgeRealm(): "aqshy" | "ghyran" | null {
+  if (!canUseStorage()) {
+    return null;
+  }
+  const value = sessionStorage.getItem(SCOURGE_KEY);
+  return value === "aqshy" || value === "ghyran" ? value : null;
+}
+
+export function getListOpenScourgeSnapshot(): "aqshy" | "ghyran" | null {
+  return peekListOpenScourgeRealm();
+}
+
+/** Always null — sessionStorage is client-only; avoids hydration mismatch. */
+export function getListOpenScourgeServerSnapshot(): "aqshy" | "ghyran" | null {
+  return null;
+}
+
 /** True once after create/open navigation; clears the skip flag. */
 export function consumeSkipListSplash(): boolean {
   if (!canUseStorage()) {
@@ -131,6 +155,7 @@ export function clearListOpenMemory() {
   }
   sessionStorage.removeItem(FACTION_KEY);
   sessionStorage.removeItem(DISPLAY_NAME_KEY);
+  sessionStorage.removeItem(SCOURGE_KEY);
   sessionStorage.removeItem(SKIP_SPLASH_KEY);
   sessionStorage.removeItem(NAV_DIRECTION_KEY);
   sessionStorage.removeItem(OPEN_SPLASH_KEY);

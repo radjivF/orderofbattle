@@ -4,10 +4,12 @@ import {
   LIST_IMPORT_HELP,
   listContentKey,
   parsePortableLists,
+  parsePortableListsJson,
   partitionPortableLists,
   portableAllListsFileName,
   portableListFileName,
   serializeListsFile,
+  serializeListsJson,
 } from "./listPortable";
 import { getFaction, heroesOf, unitsForRealm } from "./queries";
 import { catalogueForList } from "./spearhead";
@@ -90,6 +92,28 @@ describe("listPortable", () => {
     expect(parsed.lists[0]?.factionId).toBe("stormcast-eternals");
   });
 
+  it("round-trips a list through JSON export", () => {
+    const list = blankArmy("stormcast-eternals", "Json host", 2000);
+    const raw = serializeListsJson([list]);
+    expect(raw.startsWith("[")).toBe(true);
+
+    const parsed = parsePortableLists(raw);
+    expect(parsed.ok).toBe(true);
+    if (!parsed.ok) return;
+    expect(parsed.lists[0]?.name).toBe("Json host");
+    expect(parsed.lists[0]?.id).toBe(list.id);
+  });
+
+  it("reads a wrapped JSON export with a lists field", () => {
+    const list = blankArmy("cities-of-sigmar", "Wrapped", 1500);
+    const parsed = parsePortableListsJson(
+      JSON.stringify({ version: 1, lists: [list] }),
+    );
+    expect(parsed.ok).toBe(true);
+    if (!parsed.ok) return;
+    expect(parsed.lists[0]?.name).toBe("Wrapped");
+  });
+
   it("rejects files that are not an Order of Battle list", () => {
     expect(parsePortableLists("").ok).toBe(false);
     expect(parsePortableLists("not a list").ok).toBe(false);
@@ -98,12 +122,16 @@ describe("listPortable", () => {
     expect(failed.ok).toBe(false);
     if (failed.ok) return;
     expect(failed.error).toBe("That file is not an Order of Battle list.");
-    expect(LIST_IMPORT_HELP).toContain(".txt");
+    expect(LIST_IMPORT_HELP).toContain("Paste");
+    expect(LIST_IMPORT_HELP).toContain(".json");
+    expect(LIST_IMPORT_HELP).toContain("New Recruit");
   });
 
-  it("names download files as text", () => {
-    expect(portableAllListsFileName()).toBe("order-of-battle-lists.txt");
-    expect(portableListFileName("My Cool List!")).toBe("My-Cool-List.txt");
+  it("names download files for text and json", () => {
+    expect(portableAllListsFileName("text")).toBe("order-of-battle-lists.txt");
+    expect(portableAllListsFileName("json")).toBe("order-of-battle-lists.json");
+    expect(portableListFileName("My Cool List!", "text")).toBe("My-Cool-List.txt");
+    expect(portableListFileName("My Cool List!", "json")).toBe("My-Cool-List.json");
   });
 
   it("skips lists that are already on the device and keeps new ones", () => {
