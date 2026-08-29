@@ -15,7 +15,7 @@ export function filterPickerUnits(
 /** Show the discreet search toggle from this count up (always hidden for 0–1 units). */
 export const PICKER_SEARCH_MIN_UNITS = 2;
 
-/** Picker header — matches in-app card top rhythm (p-5) below the sheet grabber. */
+/** Picker header — centered row for title + search icon. */
 export const PICKER_SHEET_HEADER_CLASS =
   "flex shrink-0 items-center justify-between gap-3 px-5 pt-4 pb-3 sm:pt-5";
 
