@@ -203,9 +203,6 @@ export const BUILDER_ADD_ACTION_EMPHASIS_CLASS =
 export const SHEET_FORM_ACTIONS_CLASS =
   "mt-2 flex shrink-0 flex-col gap-3 pt-2";
 
-/** Header CTA on marketing / guide pages — links to /dashboard. */
-export const SITE_MY_LIST_CTA_LABEL = "My list";
-
 /** Soft gold homepage / footer CTAs — not the in-app parchment glass. */
 export const HOME_CTA_CLASS =
   "home-cta pressable inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl px-5 text-sm font-semibold";

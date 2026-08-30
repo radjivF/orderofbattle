@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { SiteBrandLockup } from "@/components/BrandMark";
-import { HOME_CTA_CLASS, SITE_HEADER_BAR_CLASS, SITE_HEADER_ROW_CLASS, SITE_MY_LIST_CTA_LABEL } from "@/lib/builderUi";
+import { NewListCtaLink } from "@/components/StartListCta";
+import { SITE_HEADER_BAR_CLASS, SITE_HEADER_ROW_CLASS } from "@/lib/builderUi";
 
 type Props = {
   title: string;
@@ -15,12 +16,7 @@ export function LegalDoc({ title, updated, children }: Props) {
       <header className={`${SITE_HEADER_BAR_CLASS} pt-[env(safe-area-inset-top)]`}>
         <div className={SITE_HEADER_ROW_CLASS}>
           <SiteBrandLockup />
-          <Link
-            href="/dashboard"
-            className={`${HOME_CTA_CLASS} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sigmarite`}
-          >
-            {SITE_MY_LIST_CTA_LABEL}
-          </Link>
+          <NewListCtaLink layout="header" />
         </div>
       </header>
 
