@@ -42,10 +42,7 @@ import {
   BUILDER_ADD_ACTION_CLASS,
   BUILDER_ADD_ACTION_EMPHASIS_CLASS,
   CONFIRM_SHEET_PANEL_CLASS,
-  IOS_LIQUID_CTA_CLASS,
   LIST_ISSUE_BANNER_CLASS,
-  RULE_INFO_BUTTON_CLASS,
-  SHEET_PANEL_COMPACT_CLASS,
   builderPlayTabs,
 } from "@/lib/builderUi";
 import { createId } from "@/lib/id";
@@ -75,7 +72,8 @@ import {
 import { RuleText } from "./RuleText";
 import { SpearheadPicks } from "./SpearheadPicks";
 import { TerrainCard } from "./TerrainCard";
-import { BuildSlotRow, IosInfoIcon } from "./ios/SheetIconButton";
+import { RuleInfoButton } from "./RuleInfoButton";
+import { BuildSlotRow } from "./ios/SheetIconButton";
 import { IosSegmentedControl } from "./ios/IosSegmentedControl";
 import { PointsCapField } from "./PointsCapField";
 import { useListFlowChrome } from "./ListFlowShell";
@@ -1517,49 +1515,5 @@ export function BuilderReady({
         </ModalFrame>
       ) : null}
     </div>
-  );
-}
-
-function RuleInfoButton({
-  label,
-  title,
-  text,
-}: {
-  label: string;
-  title: string;
-  text: string;
-}) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className={RULE_INFO_BUTTON_CLASS}
-        aria-label={label}
-      >
-        <IosInfoIcon />
-      </button>
-      {open ? (
-        <ModalFrame
-          label={label}
-          onClose={() => setOpen(false)}
-          panelClassName={`${SHEET_PANEL_COMPACT_CLASS} p-5`}
-        >
-          <h2 className="font-serif text-2xl">{title}</h2>
-          <p className="mt-3 text-base leading-relaxed text-sheet-muted">
-            {text}
-          </p>
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            className={`mt-5 ${IOS_LIQUID_CTA_CLASS}`}
-          >
-            Got it
-          </button>
-        </ModalFrame>
-      ) : null}
-    </>
   );
 }
