@@ -1,6 +1,6 @@
 "use client";
 
-import { IOS_NAV_ICON_BUTTON_CLASS } from "@/lib/builderUi";
+import { IOS_NAV_ICON_BUTTON_CLASS, LIBRARY_HEADER_OPTIONS_BUTTON_CLASS } from "@/lib/builderUi";
 
 type Props = {
   label: string;
@@ -26,7 +26,7 @@ export function IosNavOptionsButton({ label, onClick }: Props) {
       type="button"
       onClick={onClick}
       aria-label={label}
-      className={IOS_NAV_ICON_BUTTON_CLASS}
+      className={LIBRARY_HEADER_OPTIONS_BUTTON_CLASS}
     >
       <IosEllipsisIcon />
     </button>

@@ -26,7 +26,7 @@ vi.mock("next/image", () => ({
 }));
 
 describe("ListFlowHeader", () => {
-  it("keeps the crest, My lists, and trailing liquid-glass options and new list", async () => {
+  it("puts a solid new-list control opposite a light options icon", async () => {
     const user = userEvent.setup();
     const openNewList = vi.fn();
     const openLibraryOptions = vi.fn();
@@ -45,18 +45,15 @@ describe("ListFlowHeader", () => {
     const options = screen.getByRole("button", { name: "List options" });
     const add = screen.getByRole("button", { name: "New list" });
 
-    expect(options.className).toContain("ios-liquid-glass");
     expect(add.className).toContain("ios-liquid-glass");
+    expect(options.className).not.toContain("ios-liquid-glass");
+    expect(heading.compareDocumentPosition(add)).toBe(
+      Node.DOCUMENT_POSITION_PRECEDING,
+    );
     expect(heading.compareDocumentPosition(brand)).toBe(
       Node.DOCUMENT_POSITION_PRECEDING,
     );
     expect(heading.compareDocumentPosition(options)).toBe(
-      Node.DOCUMENT_POSITION_FOLLOWING,
-    );
-    expect(heading.compareDocumentPosition(add)).toBe(
-      Node.DOCUMENT_POSITION_FOLLOWING,
-    );
-    expect(options.compareDocumentPosition(add)).toBe(
       Node.DOCUMENT_POSITION_FOLLOWING,
     );
 

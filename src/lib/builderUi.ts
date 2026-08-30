@@ -132,13 +132,17 @@ export const PLAY_SHEET_LINK_CLASS =
 export const IOS_NAV_ICON_BUTTON_CLASS =
   "ios-liquid-glass pressable inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full text-black";
 
-/** My lists title after the crest — trailing actions sit opposite. */
+/** My lists between leading + and trailing options. */
 export const LIBRARY_HEADER_TITLE_CLASS =
-  "min-w-0 flex-1 truncate font-serif text-[17px] font-semibold leading-none text-parchment sm:text-lg";
+  "min-w-0 truncate font-serif text-[17px] font-semibold leading-none text-parchment sm:text-lg";
 
-/** Options + New list — two separate glass circles, trailing edge. */
-export const LIBRARY_HEADER_ACTIONS_CLASS =
-  "flex shrink-0 items-center gap-2.5";
+/** Crest + title, optically centered between the two side actions. */
+export const LIBRARY_HEADER_TITLE_CLUSTER_CLASS =
+  "flex min-w-0 flex-1 items-center justify-center gap-2";
+
+/** Options — icon only, no glass fill. */
+export const LIBRARY_HEADER_OPTIONS_BUTTON_CLASS =
+  "pressable inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full text-parchment/65";
 
 export const IOS_NAV_ADD_BUTTON_CLASS = IOS_NAV_ICON_BUTTON_CLASS;
 

@@ -11,7 +11,7 @@ import {
   HEADER_STATS_STACK_CLASS,
   IOS_NAV_PLAY_BUTTON_CLASS,
   LIBRARY_HEADER_TITLE_CLASS,
-  LIBRARY_HEADER_ACTIONS_CLASS,
+  LIBRARY_HEADER_TITLE_CLUSTER_CLASS,
   SITE_HEADER_ROW_CLASS,
   builderHeaderShowsPlayButton,
   builderHeaderShowsIssueDot,
@@ -45,24 +45,24 @@ function LibraryHeaderRow({
 }) {
   return (
     <div className={SITE_HEADER_ROW_CLASS}>
-      <Link
-        href="/"
-        aria-label="Order of Battle"
-        className="flex h-11 shrink-0 items-center"
-      >
-        <BrandMark size={32} className="h-8 w-auto" priority />
-      </Link>
-      <h1 className={LIBRARY_HEADER_TITLE_CLASS}>My lists</h1>
-      <div className={LIBRARY_HEADER_ACTIONS_CLASS}>
-        <IosNavOptionsButton
-          label="List options"
-          onClick={() => libraryChrome?.openLibraryOptions()}
-        />
-        <IosNavAddButton
-          label="New list"
-          onClick={() => libraryChrome?.openNewList()}
-        />
+      <IosNavAddButton
+        label="New list"
+        onClick={() => libraryChrome?.openNewList()}
+      />
+      <div className={LIBRARY_HEADER_TITLE_CLUSTER_CLASS}>
+        <Link
+          href="/"
+          aria-label="Order of Battle"
+          className="flex h-11 shrink-0 items-center"
+        >
+          <BrandMark size={32} className="h-8 w-auto" priority />
+        </Link>
+        <h1 className={LIBRARY_HEADER_TITLE_CLASS}>My lists</h1>
       </div>
+      <IosNavOptionsButton
+        label="List options"
+        onClick={() => libraryChrome?.openLibraryOptions()}
+      />
     </div>
   );
 }
