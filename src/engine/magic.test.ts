@@ -2,10 +2,14 @@ import { describe, expect, it } from "vitest";
 import {
   combatModifierNotes,
   parseEffectChoices,
+  parsePowerBindTargets,
   powerBindCandidates,
   powerBindKey,
+  powerBindMaxTargets,
   powerBindRule,
   powerChoiceKey,
+  powerIsUnlimited,
+  serializePowerBindTargets,
 } from "./magic";
 import { getFaction, preferredUnitForRealm } from "./queries";
 import type { ArmyList } from "./types";
@@ -74,6 +78,51 @@ describe("parseEffectChoices", () => {
 
   it("returns null for plain paragraphs", () => {
     expect(parseEffectChoices("Inflict D3 mortal wounds.")).toBeNull();
+  });
+});
+
+describe("powerIsUnlimited", () => {
+  it("detects Unlimited in keywords", () => {
+    const faction = getFaction("soulblight-gravelords");
+    const spell = faction?.spellLores[0]?.powers.find(
+      (power) => power.name === "Vile Transference",
+    );
+    expect(spell).toBeTruthy();
+    if (!spell) return;
+    expect(powerIsUnlimited(spell)).toBe(true);
+  });
+});
+
+describe("powerBindMaxTargets", () => {
+  it("defaults to 1 for single-target spells", () => {
+    const faction = getFaction("soulblight-gravelords");
+    const spell = faction?.units
+      .flatMap((unit) => unit.abilities)
+      .find((power) => power.name === "The Queen's Dictat");
+    expect(spell).toBeTruthy();
+    if (!spell) return;
+    expect(powerBindMaxTargets(spell)).toBe(1);
+  });
+
+  it("reads pick up to N from effect text", () => {
+    const faction = getFaction("ironjawz");
+    const prayer = faction?.prayerLores[0]?.powers.find(
+      (power) => power.effect.includes("pick up to 2 eligible units"),
+    );
+    expect(prayer).toBeTruthy();
+    if (!prayer) return;
+    expect(powerBindMaxTargets(prayer)).toBe(2);
+  });
+});
+
+describe("parsePowerBindTargets", () => {
+  it("round-trips multiple selection ids", () => {
+    const ids = ["u1", "u2"];
+    expect(parsePowerBindTargets(serializePowerBindTargets(ids))).toEqual(ids);
+  });
+
+  it("keeps legacy single-id binds", () => {
+    expect(parsePowerBindTargets("u1")).toEqual(["u1"]);
   });
 });
 
@@ -147,5 +196,16 @@ describe("Daughters of Khaine magic binds", () => {
           note.enemyLabel === "Enemy Witch Aelves",
       ),
     ).toBe(true);
+
+    list.powerBinds = {
+      [powerBindKey("spell", "Mindrazor")]: "u1,u2",
+    };
+    const multiNotes = combatModifierNotes(list, faction).filter(
+      (note) => note.powerName === "Mindrazor",
+    );
+    expect(multiNotes.map((note) => note.selectionId).sort()).toEqual([
+      "u1",
+      "u2",
+    ]);
   });
 });

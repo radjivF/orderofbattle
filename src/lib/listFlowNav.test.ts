@@ -276,10 +276,12 @@ describe("list flow navigation wiring", () => {
     expect(nav).toContain("revealed={indexBackdropRevealed}");
     expect(nav).toContain("transitionClass={indexBackdropTransitionClass}");
     expect(nav).not.toMatch(/\{backdrop\}[\s\S]*list-flow-pane/);
-    expect(nav).toContain("lockPageScroll");
+    expect(nav).toContain("listFlowWindowScrollY");
+    expect(nav).toContain("scrollToPane");
+    expect(nav).not.toContain("lockPageScroll");
     expect(builder).toContain("LIST_OPEN_SPLASH_MS");
     expect(nav).toMatch(
-      /settled: false[\s\S]*LIST_FLOW_SLIDE_MS[\s\S]*restoreScrollY\(0\)/,
+      /settled: false[\s\S]*requestAnimationFrame[\s\S]*scrollToPane\(true/,
     );
   });
 
@@ -294,7 +296,7 @@ describe("list flow navigation wiring", () => {
     expect(css).toContain(".list-flow-track");
     expect(css).toContain(".list-flow-track--detail");
     expect(css).toContain(".list-flow-track--settled");
-    expect(css).toContain("translateX(-50%)");
+    expect(css).toMatch(/translate3d\(-50%/);
     expect(css).toContain(
       ".list-flow-track--settled.list-flow-track--detail > .list-flow-pane:first-child",
     );

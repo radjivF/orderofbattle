@@ -164,6 +164,17 @@ export const CONFIRM_SHEET_ACTIONS_CLASS =
 export const SHEET_FOOTER_ACTIONS_CLASS =
   "ios-sheet-actions shrink-0 px-5 pb-5";
 
+/** Scroll body inside a bottom sheet — one surface, edge fades via scroll host. */
+export const MODAL_SHEET_SCROLL_CLASS =
+  "modal-sheet-scroll min-h-0 flex-1 overflow-y-auto";
+
+export const MODAL_SHEET_SCROLL_HOST_CLASS =
+  "modal-sheet-scroll-host min-h-0 flex-1";
+
+/** Pinned sheet footer below the scroll body — stays visible while content moves. */
+export const MODAL_SHEET_FOOTER_CLASS =
+  "modal-sheet-footer ios-sheet-actions shrink-0 px-5 pb-5";
+
 /** Secondary sheet action — file pick, download, etc. */
 export const SHEET_SECONDARY_BUTTON_CLASS =
   "pressable inline-flex min-h-11 w-full cursor-pointer items-center justify-center rounded-xl bg-parchment-ink/8 px-4 text-[15px] font-semibold text-parchment-ink ring-1 ring-parchment-ink/15 transition hover:bg-parchment-ink/12";
@@ -242,6 +253,10 @@ export const COOKIE_CONSENT_BANNER_CLASS =
 /** Bottom sheet panel — full width on phone, card on sm+. */
 export const SHEET_PANEL_CLASS =
   "parchment-card flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden text-parchment-ink sm:rounded-2xl";
+
+/** List options — fixed phone height so Import/Export tabs do not resize the sheet. */
+export const LIBRARY_OPTIONS_SHEET_PANEL_CLASS =
+  `${SHEET_PANEL_CLASS} h-[85vh] sm:h-auto sm:min-h-[32rem]`;
 
 export const SHEET_PANEL_COMPACT_CLASS =
   "parchment-card w-full max-w-sm text-parchment-ink sm:rounded-2xl";

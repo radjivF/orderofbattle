@@ -61,11 +61,13 @@ import {
   LIBRARY_TITLE_ROW_CLASS,
   SHEET_CHECKLIST_ITEM_CLASS,
   SHEET_CHECKLIST_ITEM_SELECTED_CLASS,
-  SHEET_FOOTER_ACTIONS_CLASS,
+  MODAL_SHEET_SCROLL_CLASS,
+  MODAL_SHEET_SCROLL_HOST_CLASS,
+  MODAL_SHEET_FOOTER_CLASS,
   SHEET_INLINE_LINK_CLASS,
   SHEET_SECONDARY_BUTTON_CLASS,
   SHEET_HEADER_CLASS,
-  SHEET_PANEL_CLASS,
+  LIBRARY_OPTIONS_SHEET_PANEL_CLASS,
   libraryListExportSubtitle,
 } from "@/lib/builderUi";
 import { useListFlowChrome } from "./ListFlowShell";
@@ -499,7 +501,7 @@ export function LibraryScreen() {
         <ModalFrame
           label="List options"
           onClose={closeLibrarySheet}
-          panelClassName={SHEET_PANEL_CLASS}
+          panelClassName={LIBRARY_OPTIONS_SHEET_PANEL_CLASS}
         >
           <div className={SHEET_HEADER_CLASS}>
             <h2 className="font-serif text-2xl">List options</h2>
@@ -508,46 +510,148 @@ export function LibraryScreen() {
               onClick={closeLibrarySheet}
             />
           </div>
-          <div className="modal-sheet-scroll flex min-h-0 flex-1 flex-col overflow-y-auto">
-          <div className="px-5 pb-4">
-            <p className="pb-2 text-sm font-medium text-sheet-muted">
-              Sort lists by
-            </p>
-            <IosSegmentedControl
-              ariaLabel="Sort lists"
-              value={sortMode}
-              onChange={onSortModeChange}
-              options={[
-                { value: "recent", label: "Recent" },
-                { value: "alphabetic", label: "A–Z" },
-              ]}
-            />
-          </div>
-          <div className="px-5 pb-4">
-            <IosSegmentedControl
-              ariaLabel="Import or export lists"
-              value={librarySheetTab}
-              onChange={onLibrarySheetTabChange}
-              options={[
-                { value: "import", label: "Import" },
-                { value: "export", label: "Export" },
-              ]}
-            />
-          </div>
-
-          {librarySheetTab === "import" ? (
-            <>
-              <p className="px-5 pb-3 text-sm leading-relaxed text-sheet-muted">
-                {LIST_IMPORT_HELP}
+          <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+            <div className="shrink-0 px-5 pb-4">
+              <p className="pb-2 text-sm font-medium text-sheet-muted">
+                Sort lists by
               </p>
-              <textarea
-                value={importDraft}
-                onChange={(event) => setImportDraft(event.target.value)}
-                placeholder="Paste a Warhammer App, New Recruit, or Order of Battle list…"
-                aria-label="List to import"
-                className="mx-5 mb-4 min-h-[16rem] flex-1 resize-none rounded-xl bg-parchment-ink/5 px-3 py-3 font-mono text-xs leading-relaxed text-parchment-ink outline-none ring-1 ring-parchment-ink/10 placeholder:text-sheet-muted/70"
+              <IosSegmentedControl
+                ariaLabel="Sort lists"
+                value={sortMode}
+                onChange={onSortModeChange}
+                options={[
+                  { value: "recent", label: "Recent" },
+                  { value: "alphabetic", label: "A–Z" },
+                ]}
               />
-              <div className={SHEET_FOOTER_ACTIONS_CLASS}>
+            </div>
+            <div className="shrink-0 px-5 pb-4">
+              <IosSegmentedControl
+                ariaLabel="Import or export lists"
+                value={librarySheetTab}
+                onChange={onLibrarySheetTabChange}
+                options={[
+                  { value: "import", label: "Import" },
+                  { value: "export", label: "Export" },
+                ]}
+              />
+            </div>
+            <div className={MODAL_SHEET_SCROLL_HOST_CLASS}>
+              <div className={MODAL_SHEET_SCROLL_CLASS}>
+                {librarySheetTab === "import" ? (
+                  <>
+                    <p className="px-5 pb-3 text-sm leading-relaxed text-sheet-muted">
+                      {LIST_IMPORT_HELP}
+                    </p>
+                    <textarea
+                      value={importDraft}
+                      onChange={(event) => setImportDraft(event.target.value)}
+                      placeholder="Paste a Warhammer App, New Recruit, or Order of Battle list…"
+                      aria-label="List to import"
+                      className="mx-5 mb-4 block min-h-[16rem] w-[calc(100%-2.5rem)] resize-none rounded-xl bg-parchment-ink/5 px-3 py-3 font-mono text-xs leading-relaxed text-parchment-ink outline-none ring-1 ring-parchment-ink/10 placeholder:text-sheet-muted/70"
+                    />
+                  </>
+                ) : exportPhase === "pick" ? (
+                  <>
+                    <p className="px-5 pb-3 text-sm leading-relaxed text-sheet-muted">
+                      Choose one or more lists to export.
+                    </p>
+                    {lists && lists.length > 1 ? (
+                      <div className="px-5 pb-2">
+                        <button
+                          type="button"
+                          onClick={selectAllForExport}
+                          className={SHEET_INLINE_LINK_CLASS}
+                        >
+                          Select all
+                        </button>
+                      </div>
+                    ) : null}
+                    {lists && lists.length > 0 ? (
+                      <ul className="flex flex-col gap-2 px-3 pb-4">
+                        {lists.map((list) => {
+                          const faction = getFaction(list.factionId);
+                          const playCatalogue = catalogueForList(list);
+                          const totals = playCatalogue
+                            ? summarize(list, playCatalogue)
+                            : null;
+                          const spearhead = isSpearheadList(list);
+                          const checked = exportSelectedIds.includes(list.id);
+                          return (
+                            <li key={list.id}>
+                              <label
+                                className={`${SHEET_CHECKLIST_ITEM_CLASS} ${
+                                  checked
+                                    ? SHEET_CHECKLIST_ITEM_SELECTED_CLASS
+                                    : ""
+                                }`}
+                              >
+                                <input
+                                  type="checkbox"
+                                  checked={checked}
+                                  onChange={() => toggleExportList(list.id)}
+                                  aria-label={`Export ${list.name}`}
+                                  className="mt-0.5 size-5 shrink-0 accent-aether"
+                                />
+                                <span className="min-w-0">
+                                  <span className="block font-medium text-parchment-ink">
+                                    {list.name}
+                                  </span>
+                                  <span className="block text-sm text-sheet-muted">
+                                    {libraryListExportSubtitle({
+                                      factionName:
+                                        faction?.name ?? "Unknown faction",
+                                      spearhead,
+                                      pointsCap: list.pointsCap,
+                                      spearheadBoxName: playCatalogue?.name,
+                                      drops: totals?.drops,
+                                    })}
+                                  </span>
+                                </span>
+                              </label>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    ) : (
+                      <p className="px-5 pb-4 text-sm text-sheet-muted">
+                        No lists to export yet.
+                      </p>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <h3 className="px-5 pb-3 font-serif text-xl text-parchment-ink">
+                      {exportLists.length === 1
+                        ? "Export list"
+                        : `Export ${exportLists.length} lists`}
+                    </h3>
+                    <div className="px-5 pb-3">
+                      <IosSegmentedControl
+                        ariaLabel="Export format"
+                        value={exportFormat}
+                        onChange={(next) => {
+                          setExportFormat(next as PortableFormat);
+                          setExportCopied(false);
+                        }}
+                        options={[
+                          { value: "text", label: "Text" },
+                          { value: "json", label: "JSON" },
+                        ]}
+                      />
+                    </div>
+                    <textarea
+                      readOnly
+                      value={exportContent}
+                      aria-label="Exported list"
+                      className="mx-5 mb-4 block min-h-[16rem] w-[calc(100%-2.5rem)] resize-none rounded-xl bg-parchment-ink/5 px-3 py-3 font-mono text-xs leading-relaxed text-parchment-ink outline-none ring-1 ring-parchment-ink/10"
+                    />
+                  </>
+                )}
+              </div>
+            </div>
+            {librarySheetTab === "import" ? (
+              <div className={MODAL_SHEET_FOOTER_CLASS}>
                 <button
                   type="button"
                   disabled={importDraft.trim().length === 0}
@@ -564,72 +668,8 @@ export function LibraryScreen() {
                   Choose file
                 </button>
               </div>
-            </>
-          ) : exportPhase === "pick" ? (
-            <>
-              <p className="px-5 pb-3 text-sm leading-relaxed text-sheet-muted">
-                Choose one or more lists to export.
-              </p>
-              {lists && lists.length > 1 ? (
-                <div className="px-5 pb-2">
-                  <button
-                    type="button"
-                    onClick={selectAllForExport}
-                    className={SHEET_INLINE_LINK_CLASS}
-                  >
-                    Select all
-                  </button>
-                </div>
-              ) : null}
-              {lists && lists.length > 0 ? (
-                <ul className="flex flex-col gap-2 px-3 pb-4">
-                  {lists.map((list) => {
-                    const faction = getFaction(list.factionId);
-                    const playCatalogue = catalogueForList(list);
-                    const totals = playCatalogue
-                      ? summarize(list, playCatalogue)
-                      : null;
-                    const spearhead = isSpearheadList(list);
-                    const checked = exportSelectedIds.includes(list.id);
-                    return (
-                      <li key={list.id}>
-                        <label
-                          className={`${SHEET_CHECKLIST_ITEM_CLASS} ${
-                            checked ? SHEET_CHECKLIST_ITEM_SELECTED_CLASS : ""
-                          }`}
-                        >
-                          <input
-                            type="checkbox"
-                            checked={checked}
-                            onChange={() => toggleExportList(list.id)}
-                            aria-label={`Export ${list.name}`}
-                            className="mt-0.5 size-5 shrink-0 accent-aether"
-                          />
-                          <span className="min-w-0">
-                            <span className="block font-medium text-parchment-ink">
-                              {list.name}
-                            </span>
-                            <span className="block text-sm text-sheet-muted">
-                              {libraryListExportSubtitle({
-                                factionName: faction?.name ?? "Unknown faction",
-                                spearhead,
-                                pointsCap: list.pointsCap,
-                                spearheadBoxName: playCatalogue?.name,
-                                drops: totals?.drops,
-                              })}
-                            </span>
-                          </span>
-                        </label>
-                      </li>
-                    );
-                  })}
-                </ul>
-              ) : (
-                <p className="px-5 pb-4 text-sm text-sheet-muted">
-                  No lists to export yet.
-                </p>
-              )}
-              <div className={SHEET_FOOTER_ACTIONS_CLASS}>
+            ) : exportPhase === "pick" ? (
+              <div className={MODAL_SHEET_FOOTER_CLASS}>
                 <button
                   type="button"
                   disabled={exportSelectedIds.length === 0}
@@ -639,35 +679,8 @@ export function LibraryScreen() {
                   Continue
                 </button>
               </div>
-            </>
-          ) : (
-            <>
-              <h3 className="px-5 pb-3 font-serif text-xl text-parchment-ink">
-                {exportLists.length === 1
-                  ? "Export list"
-                  : `Export ${exportLists.length} lists`}
-              </h3>
-              <div className="px-5 pb-3">
-                <IosSegmentedControl
-                  ariaLabel="Export format"
-                  value={exportFormat}
-                  onChange={(next) => {
-                    setExportFormat(next as PortableFormat);
-                    setExportCopied(false);
-                  }}
-                  options={[
-                    { value: "text", label: "Text" },
-                    { value: "json", label: "JSON" },
-                  ]}
-                />
-              </div>
-              <textarea
-                readOnly
-                value={exportContent}
-                aria-label="Exported list"
-                className="mx-5 mb-4 min-h-[16rem] flex-1 resize-none rounded-xl bg-parchment-ink/5 px-3 py-3 font-mono text-xs leading-relaxed text-parchment-ink outline-none ring-1 ring-parchment-ink/10"
-              />
-              <div className={SHEET_FOOTER_ACTIONS_CLASS}>
+            ) : (
+              <div className={MODAL_SHEET_FOOTER_CLASS}>
                 <button
                   type="button"
                   onClick={() => void copyExport()}
@@ -690,8 +703,7 @@ export function LibraryScreen() {
                   Back
                 </button>
               </div>
-            </>
-          )}
+            )}
           </div>
         </ModalFrame>
       ) : null}

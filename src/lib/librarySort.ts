@@ -1,4 +1,5 @@
 import type { ArmyList } from "@/engine/types";
+import { getFaction } from "@/engine/queries";
 
 export type LibrarySortMode = "recent" | "alphabetic";
 
@@ -48,15 +49,32 @@ export function libraryListRecency(list: ArmyList): number {
   return list.lastOpenedAt ?? list.updatedAt;
 }
 
+/** A–Z key: default "My …" lists by faction; custom names by list title. */
+export function libraryAlphabeticSortLabel(list: ArmyList): string {
+  const name = list.name.trim();
+  if (/^my\s/i.test(name)) {
+    return getFaction(list.factionId)?.name ?? "Unknown faction";
+  }
+  return name;
+}
+
 export function sortLibraryLists(
   lists: ArmyList[],
   mode: LibrarySortMode,
 ): ArmyList[] {
   const copy = [...lists];
   if (mode === "alphabetic") {
-    return copy.sort((a, b) =>
-      a.name.localeCompare(b.name, undefined, { sensitivity: "base" }),
-    );
+    return copy.sort((a, b) => {
+      const byKey = libraryAlphabeticSortLabel(a).localeCompare(
+        libraryAlphabeticSortLabel(b),
+        undefined,
+        { sensitivity: "base" },
+      );
+      if (byKey !== 0) {
+        return byKey;
+      }
+      return a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
+    });
   }
   return copy.sort(
     (a, b) => libraryListRecency(b) - libraryListRecency(a),

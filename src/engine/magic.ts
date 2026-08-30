@@ -15,6 +15,8 @@ export type PowerBindRule = {
   role: PowerBindRole;
   /** True when the text asks for a Hero (not a generic unit). */
   heroesOnly: boolean;
+  /** Max friendly units that can be bound (from "pick up to N" / 10+ clauses). */
+  maxTargets: number;
 };
 
 export function powerBindKey(kind: "spell" | "prayer", name: string): string {
@@ -24,6 +26,42 @@ export function powerBindKey(kind: "spell" | "prayer", name: string): string {
 /** Persisted pick among "choose 1 of the following" effect options. */
 export function powerChoiceKey(bindKey: string): string {
   return `choice:${bindKey}`;
+}
+
+const POWER_BIND_TARGET_SEP = ",";
+
+/** True when the ability has the Unlimited keyword (spells/prayers castable more than once). */
+export function powerIsUnlimited(power: UnitAbility): boolean {
+  return /\bunlimited\b/i.test(power.keywords);
+}
+
+/** Parse stored bind value into one or more roster selection ids. */
+export function parsePowerBindTargets(value: string | null | undefined): string[] {
+  if (!value?.trim()) {
+    return [];
+  }
+  return value
+    .split(POWER_BIND_TARGET_SEP)
+    .map((id) => id.trim())
+    .filter(Boolean);
+}
+
+export function serializePowerBindTargets(ids: string[]): string | null {
+  const unique = [...new Set(ids.filter(Boolean))];
+  return unique.length > 0 ? unique.join(POWER_BIND_TARGET_SEP) : null;
+}
+
+/** Highest number of targets the spell/prayer text allows (default 1). */
+export function powerBindMaxTargets(power: UnitAbility): number {
+  const text = `${power.declare} ${power.effect}`.replace(/\s+/g, " ");
+  const counts = [1];
+  for (const match of text.matchAll(/pick up to (\d+)/gi)) {
+    const count = Number(match[1]);
+    if (Number.isFinite(count) && count > 0) {
+      counts.push(count);
+    }
+  }
+  return Math.max(...counts);
 }
 
 export type EffectChoiceOption = {
@@ -60,7 +98,7 @@ export function powerBindRule(power: UnitAbility): PowerBindRule {
 
   // Only lasting buffs/debuffs need attribution, not one-shot damage/heals.
   if (!isLastingEffect(lower)) {
-    return { role: "none", heroesOnly: false };
+    return { role: "none", heroesOnly: false, maxTargets: 1 };
   }
 
   const castSplit = lower.split(
@@ -74,7 +112,7 @@ export function powerBindRule(power: UnitAbility): PowerBindRule {
   );
 
   if (!firstPick) {
-    return { role: "none", heroesOnly: false };
+    return { role: "none", heroesOnly: false, maxTargets: 1 };
   }
 
   const side = (firstPick[1] ?? "").toLowerCase();
@@ -84,14 +122,15 @@ export function powerBindRule(power: UnitAbility): PowerBindRule {
     return {
       role: "target",
       heroesOnly: clauseHeroesOnly(clause),
+      maxTargets: powerBindMaxTargets(power),
     };
   }
 
   if (side === "enemy") {
-    return { role: "enemy", heroesOnly: false };
+    return { role: "enemy", heroesOnly: false, maxTargets: 1 };
   }
 
-  return { role: "none", heroesOnly: false };
+  return { role: "none", heroesOnly: false, maxTargets: 1 };
 }
 
 /** True for persistent modifiers (−1 hit/wound, +attacks, Strike-last, etc.). */
@@ -265,12 +304,14 @@ export function combatModifierNotes(
       effectText.replace(/\s+/g, " ").trim().slice(0, 72);
 
     if (rule.role === "target") {
-      notes.push({
-        selectionId: value,
-        powerName,
-        kind,
-        summary,
-      });
+      for (const selectionId of parsePowerBindTargets(value)) {
+        notes.push({
+          selectionId,
+          powerName,
+          kind,
+          summary,
+        });
+      }
     } else {
       notes.push({
         selectionId: null,
