@@ -99,4 +99,63 @@ describe("PlayMagicBoard", () => {
       monsterId,
     );
   });
+
+  it("uses stacked dropdowns when a prayer can pick up to 2 units", async () => {
+    const faction = getFaction("ironjawz");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const warchanter = faction.units.find((unit) => unit.name === "Warchanter");
+    const ardboyz = faction.units.find((unit) => unit.name === "Ardboyz");
+    const brutes = faction.units.find((unit) => unit.name === "Brutes");
+    expect(warchanter && ardboyz && brutes).toBeTruthy();
+    if (!warchanter || !ardboyz || !brutes) return;
+
+    const ardboyzId = createId();
+    const brutesId = createId();
+    const onBindPower = vi.fn();
+    const list = {
+      ...blankArmy(faction.id),
+      prayerLoreId: faction.prayerLores[0]?.id ?? null,
+      regiments: [
+        {
+          id: "reg-1",
+          hero: {
+            id: createId(),
+            unitId: warchanter.id,
+            reinforced: false,
+          },
+          units: [
+            { id: ardboyzId, unitId: ardboyz.id, reinforced: false },
+            { id: brutesId, unitId: brutes.id, reinforced: false },
+          ],
+        },
+      ],
+    };
+
+    render(
+      <PlayMagicBoard
+        list={list}
+        faction={faction}
+        onOpenSheet={vi.fn()}
+        onBindPower={onBindPower}
+      />,
+    );
+
+    const killaCard = screen.getByText("Killa Beat").closest("article");
+    expect(killaCard).toBeTruthy();
+    if (!killaCard) return;
+
+    expect(within(killaCard).queryByRole("listbox")).not.toBeInTheDocument();
+    expect(
+      within(killaCard).getByText(/pick up to 2 units/i),
+    ).toBeInTheDocument();
+
+    const user = userEvent.setup();
+    await user.selectOptions(
+      within(killaCard).getByRole("combobox", { name: /add unit/i }),
+      ardboyzId,
+    );
+    expect(onBindPower).toHaveBeenCalledWith("prayer:Killa Beat", ardboyzId);
+  });
 });

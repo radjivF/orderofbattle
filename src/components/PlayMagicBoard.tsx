@@ -28,6 +28,7 @@ import type {
 } from "@/engine/types";
 import { RuleText } from "./RuleText";
 import { LaunchMeta } from "./AbilityMeta";
+import { SelectSlots } from "./SelectSlots";
 
 type Props = {
   list: ArmyList;
@@ -361,65 +362,21 @@ function PowerTargetSelect({
   const fieldLabel =
     maxTargets > 1 ? `${targetLabel} · up to ${maxTargets}` : targetLabel;
 
-  if (candidates.length === 0) {
-    return (
-      <p className="mt-3 text-sm text-sheet-muted">
-        No eligible {heroesOnly ? "heroes" : "units"} on this list.
-      </p>
-    );
-  }
-
-  if (maxTargets === 1) {
-    return (
-      <label className="mt-3 flex flex-col gap-1.5 text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-        {fieldLabel}
-        <select
-          value={selectedTargets[0] ?? ""}
-          onChange={(event) =>
-            onBind(bindKey, event.target.value || null)
-          }
-          className={TARGET_SELECT_CLASS}
-        >
-          <option value="">Choose…</option>
-          {candidates.map((candidate) => (
-            <option
-              key={candidate.selectionId}
-              value={candidate.selectionId}
-            >
-              {bindCandidateLabel(list, candidate, candidates)}
-            </option>
-          ))}
-        </select>
-      </label>
-    );
-  }
-
   return (
-    <label className="mt-3 flex flex-col gap-1.5 text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-      {fieldLabel}
-      <select
-        multiple
-        value={selectedTargets}
-        size={Math.min(candidates.length, 4)}
-        onChange={(event) => {
-          const next = Array.from(
-            event.target.selectedOptions,
-            (option) => option.value,
-          ).slice(0, maxTargets);
-          onBind(bindKey, serializePowerBindTargets(next));
-        }}
-        className={`${TARGET_SELECT_CLASS} py-2`}
-      >
-        {candidates.map((candidate) => (
-          <option key={candidate.selectionId} value={candidate.selectionId}>
-            {bindCandidateLabel(list, candidate, candidates)}
-          </option>
-        ))}
-      </select>
-      <span className="text-xs font-normal normal-case tracking-normal text-sheet-muted">
-        Pick up to {maxTargets} units.
-      </span>
-    </label>
+    <SelectSlots
+      label={fieldLabel}
+      itemNoun={heroesOnly ? "Hero" : "Unit"}
+      options={candidates.map((candidate) => ({
+        value: candidate.selectionId,
+        label: bindCandidateLabel(list, candidate, candidates),
+      }))}
+      value={selectedTargets}
+      max={maxTargets}
+      onChange={(next) => onBind(bindKey, serializePowerBindTargets(next))}
+      emptyText={`No eligible ${heroesOnly ? "heroes" : "units"} on this list.`}
+      hint={maxTargets > 1 ? `Pick up to ${maxTargets} units.` : undefined}
+      selectClassName={TARGET_SELECT_CLASS}
+    />
   );
 }
 
