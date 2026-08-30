@@ -90,9 +90,9 @@ describe("PlayMagicBoard", () => {
     expect(within(dictatCard).getByText(/on unit/i)).toBeInTheDocument();
 
     const user = userEvent.setup();
-    await user.selectOptions(
-      within(dictatCard).getByRole("combobox", { name: /on unit/i }),
-      monsterId,
+    expect(within(dictatCard).queryByRole("combobox")).not.toBeInTheDocument();
+    await user.click(
+      within(dictatCard).getByRole("checkbox", { name: /prince vhordrai/i }),
     );
     expect(onBindPower).toHaveBeenCalledWith(
       "spell:The Queen's Dictat",
@@ -100,7 +100,7 @@ describe("PlayMagicBoard", () => {
     );
   });
 
-  it("uses stacked dropdowns when a prayer can pick up to 2 units", async () => {
+  it("lets the user check two units on any target prayer", async () => {
     const faction = getFaction("ironjawz");
     expect(faction).toBeTruthy();
     if (!faction) return;
@@ -117,6 +117,7 @@ describe("PlayMagicBoard", () => {
     const list = {
       ...blankArmy(faction.id),
       prayerLoreId: faction.prayerLores[0]?.id ?? null,
+      powerBinds: { "prayer:Killa Beat": ardboyzId },
       regiments: [
         {
           id: "reg-1",
@@ -146,16 +147,18 @@ describe("PlayMagicBoard", () => {
     expect(killaCard).toBeTruthy();
     if (!killaCard) return;
 
-    expect(within(killaCard).queryByRole("listbox")).not.toBeInTheDocument();
+    expect(within(killaCard).queryByRole("combobox")).not.toBeInTheDocument();
     expect(
-      within(killaCard).getByText(/pick up to 2 units/i),
-    ).toBeInTheDocument();
+      within(killaCard).getByRole("checkbox", { name: /ardboyz/i }),
+    ).toBeChecked();
 
     const user = userEvent.setup();
-    await user.selectOptions(
-      within(killaCard).getByRole("combobox", { name: /add unit/i }),
-      ardboyzId,
+    await user.click(
+      within(killaCard).getByRole("checkbox", { name: /brutes/i }),
     );
-    expect(onBindPower).toHaveBeenCalledWith("prayer:Killa Beat", ardboyzId);
+    expect(onBindPower).toHaveBeenCalledWith(
+      "prayer:Killa Beat",
+      `${ardboyzId},${brutesId}`,
+    );
   });
 });

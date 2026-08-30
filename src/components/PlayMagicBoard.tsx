@@ -254,7 +254,6 @@ function PowerCard({
           candidates={candidates}
           heroesOnly={rule.heroesOnly}
           list={list}
-          maxTargets={rule.maxTargets}
           onBind={onBind}
           selectedTargets={selectedTargets}
         />
@@ -338,15 +337,11 @@ function PowerCard({
   );
 }
 
-const TARGET_SELECT_CLASS =
-  "min-h-10 w-full rounded-lg bg-parchment px-3 font-sans text-sm normal-case tracking-normal text-parchment-ink";
-
 function PowerTargetSelect({
   bindKey,
   candidates,
   heroesOnly,
   list,
-  maxTargets,
   onBind,
   selectedTargets,
 }: {
@@ -354,28 +349,19 @@ function PowerTargetSelect({
   candidates: BindCandidate[];
   heroesOnly: boolean;
   list: ArmyList;
-  maxTargets: number;
   onBind: (key: string, value: string | null) => void;
   selectedTargets: string[];
 }) {
-  const targetLabel = heroesOnly ? "On hero" : "On unit";
-  const fieldLabel =
-    maxTargets > 1 ? `${targetLabel} · up to ${maxTargets}` : targetLabel;
-
   return (
     <SelectSlots
-      label={fieldLabel}
-      itemNoun={heroesOnly ? "Hero" : "Unit"}
+      label={heroesOnly ? "On hero" : "On unit"}
       options={candidates.map((candidate) => ({
         value: candidate.selectionId,
         label: bindCandidateLabel(list, candidate, candidates),
       }))}
       value={selectedTargets}
-      max={maxTargets}
       onChange={(next) => onBind(bindKey, serializePowerBindTargets(next))}
       emptyText={`No eligible ${heroesOnly ? "heroes" : "units"} on this list.`}
-      hint={maxTargets > 1 ? `Pick up to ${maxTargets} units.` : undefined}
-      selectClassName={TARGET_SELECT_CLASS}
     />
   );
 }

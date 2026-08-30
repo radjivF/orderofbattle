@@ -1,5 +1,5 @@
-import { describe, expect, it, vi } from "vitest";
-import { render, screen, within } from "@/test-utils/render";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { cleanup, render, screen } from "@/test-utils/render";
 import userEvent from "@testing-library/user-event";
 import { SelectSlots } from "./SelectSlots";
 
@@ -10,7 +10,10 @@ const options = [
 ];
 
 describe("SelectSlots", () => {
-  it("uses one combobox when max is 1", async () => {
+  afterEach(() => {
+    cleanup();
+  });
+  it("toggles a checkmark row without a dropdown", async () => {
     const onChange = vi.fn();
     const user = userEvent.setup();
     render(
@@ -18,79 +21,58 @@ describe("SelectSlots", () => {
         label="On unit"
         options={options}
         value={[]}
-        max={1}
         onChange={onChange}
       />,
     );
 
-    await user.selectOptions(
-      screen.getByRole("combobox", { name: /on unit/i }),
-      "b",
-    );
-    expect(onChange).toHaveBeenCalledWith(["b"]);
+    expect(screen.queryByRole("combobox")).not.toBeInTheDocument();
+    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+    await user.click(screen.getByRole("checkbox", { name: "Ardboyz" }));
+    expect(onChange).toHaveBeenCalledWith(["a"]);
   });
 
-  it("adds a second native dropdown after the first pick", async () => {
+  it("lets the user check more than one row", async () => {
     const onChange = vi.fn();
     const user = userEvent.setup();
     const { rerender } = render(
       <SelectSlots
-        label="On unit · up to 2"
-        itemNoun="Unit"
+        label="On unit"
         options={options}
         value={[]}
-        max={2}
         onChange={onChange}
-        hint="Pick up to 2 units."
       />,
     );
 
-    await user.selectOptions(
-      screen.getByRole("combobox", { name: /add unit/i }),
-      "a",
-    );
+    await user.click(screen.getByRole("checkbox", { name: "Ardboyz" }));
     expect(onChange).toHaveBeenCalledWith(["a"]);
 
     rerender(
       <SelectSlots
-        label="On unit · up to 2"
-        itemNoun="Unit"
+        label="On unit"
         options={options}
         value={["a"]}
-        max={2}
         onChange={onChange}
-        hint="Pick up to 2 units."
       />,
     );
 
-    expect(screen.getByRole("combobox", { name: "Unit 1" })).toHaveValue("a");
-    const add = screen.getByRole("combobox", { name: /add unit/i });
-    expect(
-      within(add).queryByRole("option", { name: "Ardboyz" }),
-    ).not.toBeInTheDocument();
-    await user.selectOptions(add, "b");
+    expect(screen.getByRole("checkbox", { name: "Ardboyz" })).toBeChecked();
+    await user.click(screen.getByRole("checkbox", { name: "Brutes" }));
     expect(onChange).toHaveBeenCalledWith(["a", "b"]);
   });
 
-  it("clears a slot without a native multiple listbox", async () => {
+  it("unchecks a row", async () => {
     const onChange = vi.fn();
     const user = userEvent.setup();
     render(
       <SelectSlots
-        label="On unit · up to 2"
-        itemNoun="Unit"
+        label="On unit"
         options={options}
         value={["a", "b"]}
-        max={2}
         onChange={onChange}
       />,
     );
 
-    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
-    await user.selectOptions(
-      screen.getByRole("combobox", { name: "Unit 2" }),
-      "",
-    );
+    await user.click(screen.getByRole("checkbox", { name: "Brutes" }));
     expect(onChange).toHaveBeenCalledWith(["a"]);
   });
 });
