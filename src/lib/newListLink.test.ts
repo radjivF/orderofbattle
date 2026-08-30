@@ -64,16 +64,16 @@ describe("newListDraftFromSearch", () => {
 });
 
 describe("article CTAs", () => {
-  it("faction pages deep-link into the new-list sheet", () => {
+  it("faction pages link into the new-list sheet", () => {
     const page = readFileSync(
       path.join(here, "../app/factions/[slug]/page.tsx"),
       "utf8",
     );
     expect(page).toContain("StartListCta");
-    expect(page).toContain("factionId={faction.id}");
+    expect(page).not.toContain("factionId=");
   });
 
-  it("how-to guide starts a Cities of Sigmar list", () => {
+  it("how-to guide opens the new-list sheet", () => {
     const page = readFileSync(
       path.join(
         here,
@@ -82,7 +82,7 @@ describe("article CTAs", () => {
       "utf8",
     );
     expect(page).toContain("StartListCta");
-    expect(page).toContain('factionId="cities-of-sigmar"');
+    expect(page).not.toContain("factionId=");
   });
 
   it("library applies the new-list query on open", () => {
