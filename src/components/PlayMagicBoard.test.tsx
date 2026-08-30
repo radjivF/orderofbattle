@@ -90,9 +90,11 @@ describe("PlayMagicBoard", () => {
     expect(within(dictatCard).getByText(/on unit/i)).toBeInTheDocument();
 
     const user = userEvent.setup();
-    expect(within(dictatCard).queryByRole("combobox")).not.toBeInTheDocument();
     await user.click(
-      within(dictatCard).getByRole("checkbox", { name: /prince vhordrai/i }),
+      within(dictatCard).getByRole("combobox", { name: /on unit/i }),
+    );
+    await user.click(
+      within(dictatCard).getByRole("option", { name: /prince vhordrai/i }),
     );
     expect(onBindPower).toHaveBeenCalledWith(
       "spell:The Queen's Dictat",
@@ -147,14 +149,15 @@ describe("PlayMagicBoard", () => {
     expect(killaCard).toBeTruthy();
     if (!killaCard) return;
 
-    expect(within(killaCard).queryByRole("combobox")).not.toBeInTheDocument();
-    expect(
-      within(killaCard).getByRole("checkbox", { name: /ardboyz/i }),
-    ).toBeChecked();
+    expect(within(killaCard).queryByRole("listbox")).not.toBeInTheDocument();
+    expect(within(killaCard).getByText(/ardboyz/i)).toBeInTheDocument();
 
     const user = userEvent.setup();
     await user.click(
-      within(killaCard).getByRole("checkbox", { name: /brutes/i }),
+      within(killaCard).getByRole("combobox", { name: /on unit/i }),
+    );
+    await user.click(
+      within(killaCard).getByRole("option", { name: /brutes/i }),
     );
     expect(onBindPower).toHaveBeenCalledWith(
       "prayer:Killa Beat",

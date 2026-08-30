@@ -13,7 +13,8 @@ describe("SelectSlots", () => {
   afterEach(() => {
     cleanup();
   });
-  it("toggles a checkmark row without a dropdown", async () => {
+
+  it("picks from a searchable dropdown without a native listbox", async () => {
     const onChange = vi.fn();
     const user = userEvent.setup();
     render(
@@ -25,13 +26,13 @@ describe("SelectSlots", () => {
       />,
     );
 
-    expect(screen.queryByRole("combobox")).not.toBeInTheDocument();
-    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
-    await user.click(screen.getByRole("checkbox", { name: "Ardboyz" }));
+    await user.click(screen.getByRole("combobox", { name: /on unit/i }));
+    await user.click(screen.getByRole("option", { name: "Ardboyz" }));
     expect(onChange).toHaveBeenCalledWith(["a"]);
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
   });
 
-  it("lets the user check more than one row", async () => {
+  it("keeps the menu open so a second unit can be tagged", async () => {
     const onChange = vi.fn();
     const user = userEvent.setup();
     const { rerender } = render(
@@ -43,8 +44,8 @@ describe("SelectSlots", () => {
       />,
     );
 
-    await user.click(screen.getByRole("checkbox", { name: "Ardboyz" }));
-    expect(onChange).toHaveBeenCalledWith(["a"]);
+    await user.click(screen.getByRole("combobox", { name: /on unit/i }));
+    await user.click(screen.getByRole("option", { name: "Ardboyz" }));
 
     rerender(
       <SelectSlots
@@ -55,12 +56,12 @@ describe("SelectSlots", () => {
       />,
     );
 
-    expect(screen.getByRole("checkbox", { name: "Ardboyz" })).toBeChecked();
-    await user.click(screen.getByRole("checkbox", { name: "Brutes" }));
+    await user.click(screen.getByRole("combobox", { name: /on unit/i }));
+    await user.click(screen.getByRole("option", { name: "Brutes" }));
     expect(onChange).toHaveBeenCalledWith(["a", "b"]);
   });
 
-  it("unchecks a row", async () => {
+  it("removes a tag from the field", async () => {
     const onChange = vi.fn();
     const user = userEvent.setup();
     render(
@@ -72,7 +73,27 @@ describe("SelectSlots", () => {
       />,
     );
 
-    await user.click(screen.getByRole("checkbox", { name: "Brutes" }));
+    await user.click(screen.getByRole("button", { name: "Remove Brutes" }));
     expect(onChange).toHaveBeenCalledWith(["a"]);
+  });
+
+  it("filters a long option list as the user types", async () => {
+    const onChange = vi.fn();
+    const user = userEvent.setup();
+    render(
+      <SelectSlots
+        label="On unit"
+        options={options}
+        value={[]}
+        onChange={onChange}
+      />,
+    );
+
+    await user.click(screen.getByRole("combobox", { name: /on unit/i }));
+    await user.type(screen.getByRole("combobox", { name: /on unit/i }), "brut");
+    expect(screen.getByRole("option", { name: "Brutes" })).toBeInTheDocument();
+    expect(
+      screen.queryByRole("option", { name: "Ardboyz" }),
+    ).not.toBeInTheDocument();
   });
 });
