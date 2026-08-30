@@ -35,6 +35,7 @@ type Props = {
   onDraftPointsChange: (points: number) => void;
   onSelectFaction: (faction: FactionCatalogue) => void;
   onArmyChange: (value: string) => void;
+  onBattlepackChange: (preset: PathToGloryBattlepackPreset) => void;
   onBackToFactions: () => void;
 };
 
@@ -55,6 +56,7 @@ export function LibraryCreateSheet({
   onDraftPointsChange,
   onSelectFaction,
   onArmyChange,
+  onBattlepackChange,
   onBackToFactions,
 }: Props) {
   if (!open) {
@@ -96,11 +98,10 @@ export function LibraryCreateSheet({
                         kind: "spearhead",
                         spearheadId: draftSpearheadId,
                       })
-                    : draftMode === "pathToGlory" && draftBattlepackPreset
+                    : draftMode === "pathToGlory"
                       ? encodeNewListArmyValue({
                           kind: "pathToGlory",
                           factionId: draftFaction.id,
-                          battlepackPreset: draftBattlepackPreset,
                         })
                     : draftFaction.id
                 }
@@ -119,13 +120,36 @@ export function LibraryCreateSheet({
                   ),
                 )}
               </select>
-              {draftMode === "pathToGlory" && draftBattlepackPreset ? (
-                <span className="text-sm text-sheet-muted">
-                  {PATH_TO_GLORY_PRESETS.find(
-                    (item) => item.id === draftBattlepackPreset,
-                  )?.hint}
-                </span>
-              ) : null}
+            </label>
+          ) : null}
+          {draftMode === "pathToGlory" ? (
+            <label className="flex flex-col gap-2 text-base text-sheet-muted">
+              Battlepack
+              <select
+                value={draftBattlepackPreset ?? "ascension"}
+                onChange={(event) =>
+                  onBattlepackChange(
+                    event.target.value as PathToGloryBattlepackPreset,
+                  )
+                }
+                className="min-h-11 w-full rounded-xl bg-parchment-ink/5 px-3 font-serif text-xl text-parchment-ink"
+              >
+                {PATH_TO_GLORY_PRESETS.filter(
+                  (preset) => preset.id !== "all",
+                ).map((preset) => (
+                  <option key={preset.id} value={preset.id}>
+                    {preset.label}
+                  </option>
+                ))}
+              </select>
+              <span className="text-sm text-sheet-muted">
+                {
+                  PATH_TO_GLORY_PRESETS.find(
+                    (item) =>
+                      item.id === (draftBattlepackPreset ?? "ascension"),
+                  )?.hint
+                }
+              </span>
             </label>
           ) : null}
           <label className="flex flex-col gap-2 text-base text-sheet-muted">

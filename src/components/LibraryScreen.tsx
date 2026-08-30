@@ -409,7 +409,7 @@ export function LibraryScreen() {
       const next = getFaction(parsed.factionId) ?? draftFaction ?? draftParent;
       setDraftMode("pathToGlory");
       setDraftSpearheadId(null);
-      setDraftBattlepackPreset(parsed.battlepackPreset);
+      setDraftBattlepackPreset((current) => current ?? "ascension");
       setDraftFaction(next);
       setDraftPoints((current) => (current === 2000 ? 1000 : current));
       return;
@@ -811,6 +811,7 @@ export function LibraryScreen() {
             setDraftBattlepackPreset(null);
           }}
           onArmyChange={onDraftArmyChange}
+          onBattlepackChange={setDraftBattlepackPreset}
           onBackToFactions={backToFactionPicker}
         />
       ) : null}

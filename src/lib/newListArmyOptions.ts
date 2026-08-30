@@ -4,22 +4,21 @@ import {
   listArmiesOfRenown,
 } from "@/engine/queries";
 import { listSpearheadsForFaction } from "@/engine/spearhead";
-import {
-  PATH_TO_GLORY_PRESETS,
-  type PathToGloryBattlepackPreset,
-} from "@/engine/pathToGlory";
 
 export const SPEARHEAD_VALUE_PREFIX = "spearhead:";
 export const PATH_TO_GLORY_VALUE_PREFIX = "pathToGlory:";
 
+const LEGACY_BATTLEPACK_PREFIXES = [
+  "ascension:",
+  "ravaged-coast:",
+  "blighted-wilds:",
+  "all:",
+] as const;
+
 export type NewListArmySelectValue =
   | { kind: "matched"; factionId: string }
   | { kind: "spearhead"; spearheadId: string }
-  | {
-      kind: "pathToGlory";
-      factionId: string;
-      battlepackPreset: PathToGloryBattlepackPreset;
-    };
+  | { kind: "pathToGlory"; factionId: string };
 
 export type NewListArmySelectGroup = {
   label: string;
@@ -31,7 +30,7 @@ export function encodeNewListArmyValue(value: NewListArmySelectValue): string {
     return `${SPEARHEAD_VALUE_PREFIX}${value.spearheadId}`;
   }
   if (value.kind === "pathToGlory") {
-    return `${PATH_TO_GLORY_VALUE_PREFIX}${value.battlepackPreset}:${value.factionId}`;
+    return `${PATH_TO_GLORY_VALUE_PREFIX}${value.factionId}`;
   }
   return value.factionId;
 }
@@ -45,12 +44,13 @@ export function parseNewListArmyValue(raw: string): NewListArmySelectValue {
   }
   if (raw.startsWith(PATH_TO_GLORY_VALUE_PREFIX)) {
     const rest = raw.slice(PATH_TO_GLORY_VALUE_PREFIX.length);
-    const split = rest.indexOf(":");
-    const battlepackPreset = (
-      split === -1 ? rest : rest.slice(0, split)
-    ) as PathToGloryBattlepackPreset;
-    const factionId = split === -1 ? "" : rest.slice(split + 1);
-    return { kind: "pathToGlory", factionId, battlepackPreset };
+    const legacy = LEGACY_BATTLEPACK_PREFIXES.find((prefix) =>
+      rest.startsWith(prefix),
+    );
+    return {
+      kind: "pathToGlory",
+      factionId: legacy ? rest.slice(legacy.length) : rest,
+    };
   }
   return { kind: "matched", factionId: raw };
 }
@@ -94,16 +94,15 @@ export function newListArmySelectGroups(
   }
   groups.push({
     label: "Path to Glory",
-    options: PATH_TO_GLORY_PRESETS.map((preset) => ({
-      value: encodeNewListArmyValue({
-        kind: "pathToGlory",
-        factionId: armyFactionId,
-        battlepackPreset: preset.id,
-      }),
-      label: preset.hint.startsWith("Includes")
-        ? `${preset.label} (${preset.hint.replace(/\.$/, "")})`
-        : preset.label,
-    })),
+    options: [
+      {
+        value: encodeNewListArmyValue({
+          kind: "pathToGlory",
+          factionId: armyFactionId,
+        }),
+        label: "Path to Glory",
+      },
+    ],
   });
   return groups;
 }
