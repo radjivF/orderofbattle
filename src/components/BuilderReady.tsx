@@ -1427,8 +1427,8 @@ export function BuilderReady({
   }
 
   return (
-    <div className="min-h-full w-full max-w-[100vw] overflow-x-hidden text-parchment">
-      <div className="overflow-x-hidden">
+    <div className="min-h-full w-full max-w-[100vw] overflow-x-hidden overflow-y-visible text-parchment">
+      <div className="overflow-x-hidden overflow-y-visible">
         <div
           className={`builder-view-track ${pane === "play" ? "builder-view-track--play" : ""}`}
         >
