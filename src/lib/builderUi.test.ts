@@ -388,9 +388,13 @@ describe("iOS nav controls", () => {
     expect(content).toContain("SiteBrandLockup");
     expect(content).toContain("SITE_HEADER_BAR_CLASS");
     expect(content).toContain("SITE_HEADER_ROW_CLASS");
+    expect(content).toContain("NewListCtaLink");
+    expect(content).not.toContain("HOME_CTA_CLASS");
     expect(legal).toContain("SiteBrandLockup");
     expect(legal).toContain("SITE_HEADER_BAR_CLASS");
     expect(legal).toContain("SITE_HEADER_ROW_CLASS");
+    expect(legal).toContain("NewListCtaLink");
+    expect(legal).not.toContain("HOME_CTA_CLASS");
     expect(landing).toContain("SiteBrandLockup");
     expect(landing).toContain("SITE_HEADER_BAR_CLASS");
     expect(landing).toContain("SITE_HEADER_ROW_CLASS");
