@@ -21,15 +21,11 @@ export function CtaChevron() {
 }
 
 type NewListCtaLinkProps = {
-  factionId?: string;
   /** header: compact for nav bars; block: article hero; inline: mid-article repeat. */
   layout?: "header" | "block" | "inline";
 };
 
-export function NewListCtaLink({
-  factionId,
-  layout = "block",
-}: NewListCtaLinkProps) {
+export function NewListCtaLink({ layout = "block" }: NewListCtaLinkProps) {
   const layoutClass =
     layout === "header"
       ? "shrink-0 min-h-11 px-5 text-sm"
@@ -39,7 +35,7 @@ export function NewListCtaLink({
 
   return (
     <Link
-      href={newListPath(factionId)}
+      href={newListPath()}
       className={`${HOME_CTA_CLASS} ${FOCUS_RING_CLASS} no-underline ${layoutClass}`}
     >
       New list
@@ -49,35 +45,12 @@ export function NewListCtaLink({
 }
 
 type StartListCtaProps = {
-  factionId?: string;
-  factionName?: string;
   layout?: "block" | "inline";
 };
 
-export function StartListCta({
-  factionId,
-  factionName,
-  layout = "block",
-}: StartListCtaProps) {
-  const helper = factionName
-    ? `${factionName} pre-selected in the new-list sheet.`
-    : "Opens the new-list sheet on My list.";
-
-  const link = (
-    <NewListCtaLink
-      factionId={factionId}
-      layout={layout === "inline" ? "inline" : "block"}
-    />
-  );
-
-  if (layout === "inline") {
-    return link;
-  }
-
+/** Article CTA — opens the new-list sheet with faction picker. */
+export function StartListCta({ layout = "block" }: StartListCtaProps) {
   return (
-    <div className="my-2 flex flex-col items-stretch gap-2 sm:my-3 sm:items-start">
-      {link}
-      <p className="text-sm leading-snug text-ink-muted">{helper}</p>
-    </div>
+    <NewListCtaLink layout={layout === "inline" ? "inline" : "block"} />
   );
 }
