@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { ArmyList } from "@/engine/types";
 import {
   getLibrarySortSnapshot,
+  libraryAlphabeticSortLabel,
   librarySortModeLabel,
   setLibrarySortMode,
   sortLibraryLists,
@@ -22,11 +23,16 @@ function installLocalStorage() {
   vi.stubGlobal("window", { localStorage: storage });
 }
 
-function sampleList(id: string, name: string, lastOpenedAt: number): ArmyList {
+function sampleList(
+  id: string,
+  name: string,
+  lastOpenedAt: number,
+  factionId = "stormcast-eternals",
+): ArmyList {
   return {
     id,
     name,
-    factionId: "stormcast-eternals",
+    factionId,
     pointsCap: 2000,
     updatedAt: lastOpenedAt,
     lastOpenedAt,
@@ -72,7 +78,7 @@ describe("sortLibraryLists", () => {
     ]);
   });
 
-  it("sorts alphabetically by list name", () => {
+  it("sorts alphabetically by list name when titles are custom", () => {
     const lists = [
       sampleList("1", "Zulu", 500),
       sampleList("2", "Alpha", 100),
@@ -80,6 +86,34 @@ describe("sortLibraryLists", () => {
     ];
     expect(sortLibraryLists(lists, "alphabetic").map((list) => list.name)).toEqual(
       ["Alpha", "Mike", "Zulu"],
+    );
+  });
+
+  it("sorts default My lists by faction name", () => {
+    const lists = [
+      sampleList("1", "My Zzz", 100, "skaven"),
+      sampleList("2", "My Aaa", 200, "lumineth-realm-lords"),
+      sampleList("3", "My Mmm", 300, "maggotkin-of-nurgle"),
+    ];
+    expect(
+      sortLibraryLists(lists, "alphabetic").map((list) =>
+        libraryAlphabeticSortLabel(list),
+      ),
+    ).toEqual([
+      "Lumineth Realm-lords",
+      "Maggotkin of Nurgle",
+      "Skaven",
+    ]);
+  });
+
+  it("sorts custom names by title and My lists by faction", () => {
+    const lists = [
+      sampleList("1", "Full", 100, "soulblight-gravelords"),
+      sampleList("2", "My Bleak Host", 200, "maggotkin-of-nurgle"),
+      sampleList("3", "Alpha", 300, "cities-of-sigmar"),
+    ];
+    expect(sortLibraryLists(lists, "alphabetic").map((list) => list.name)).toEqual(
+      ["Alpha", "Full", "My Bleak Host"],
     );
   });
 });

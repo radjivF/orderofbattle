@@ -64,12 +64,7 @@ export default function HowToBuildPage() {
           led by heroes. Order of Battle is a free unofficial builder for that
           job. Lists stay on your device.
         </p>
-        <p>
-          <StartListCta
-            factionId="cities-of-sigmar"
-            factionName="Cities of Sigmar"
-          />
-        </p>
+        <StartListCta />
 
         <h2>Before you start</h2>
         <ul>
@@ -111,12 +106,7 @@ export default function HowToBuildPage() {
           prayers, and read abilities for the current phase. Confirm the final
           list with official points and your opponent or TO before an event.
         </p>
-        <p>
-          <StartListCta
-            factionId="cities-of-sigmar"
-            factionName="Cities of Sigmar"
-          />
-        </p>
+        <StartListCta layout="inline" />
         <p>
           <Link href="/guides/free-age-of-sigmar-army-builder">
             Free army builder overview

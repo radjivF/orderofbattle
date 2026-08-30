@@ -115,9 +115,7 @@ export default async function FactionPage({ params }: Props) {
           Play to track wounds, spells, and phase abilities. No account. Lists
           stay on your device.
         </p>
-        <p>
-          <StartListCta factionId={faction.id} factionName={faction.name} />
-        </p>
+        <StartListCta />
 
         <h2>In the catalogue</h2>
         <p className="mt-3">
@@ -178,13 +176,8 @@ export default async function FactionPage({ params }: Props) {
         </p>
 
         <h2>Start a {faction.name} list</h2>
-        <p className="mt-3">
-          <StartListCta factionId={faction.id} factionName={faction.name} />
-        </p>
-        <ol>
-          <li>
-            The new-list sheet opens on My lists with {faction.name} selected.
-          </li>
+        <ol className="mt-3">
+          <li>Open New list on My lists and choose your faction.</li>
           <li>Set points, pick a battle formation, add a general.</li>
           <li>Fill regiments. Add a Regiment of Renown if the list allows it.</li>
           <li>

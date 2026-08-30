@@ -343,6 +343,29 @@ export function IosTrashIcon({ className = "h-5 w-5" }: { className?: string }) 
   );
 }
 
+export function IosInfoIcon({ className = "size-5" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 20 20" aria-hidden="true" className={className}>
+      <circle
+        cx="10"
+        cy="10"
+        r="8.25"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.75"
+      />
+      <path
+        d="M10 9v5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+      />
+      <circle cx="10" cy="6.25" r="1.1" fill="currentColor" />
+    </svg>
+  );
+}
+
 function IosXIcon() {
   return (
     <svg viewBox="0 0 20 20" aria-hidden="true" className="h-5 w-5">

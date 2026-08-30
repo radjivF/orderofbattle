@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { SiteBrandLockup } from "@/components/BrandMark";
-import { HOME_CTA_CLASS, SITE_HEADER_BAR_CLASS, SITE_HEADER_ROW_CLASS } from "@/lib/builderUi";
+import { NewListCtaLink } from "@/components/StartListCta";
+import { SITE_HEADER_BAR_CLASS, SITE_HEADER_ROW_CLASS } from "@/lib/builderUi";
 
 const linkClass =
   "text-sigmarite underline decoration-sigmarite/40 underline-offset-2";
@@ -28,12 +29,7 @@ export function ContentDoc({
       <header className={`${SITE_HEADER_BAR_CLASS} pt-[env(safe-area-inset-top)]`}>
         <div className={SITE_HEADER_ROW_CLASS}>
           <SiteBrandLockup />
-          <Link
-            href="/dashboard"
-            className={`${HOME_CTA_CLASS} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sigmarite`}
-          >
-            My lists
-          </Link>
+          <NewListCtaLink layout="header" />
         </div>
       </header>
 
