@@ -96,7 +96,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${instrument.variable} ${cinzel.variable} h-full antialiased`}
+      className={`${instrument.variable} ${cinzel.variable} antialiased`}
     >
       <head>
         <link rel="llms-txt" href="/llms.txt" />

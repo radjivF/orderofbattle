@@ -21,12 +21,11 @@ import {
   LIST_LANDING_CONTENT_VISIBLE_CLASS,
   SITE_HEADER_BAR_CLASS,
 } from "@/lib/builderUi";
-import { listFlowIsHome, listFlowTrackClass } from "@/lib/listFlowNav";
 import {
-  lockPageScroll,
-  pageScrollLockDepth,
-  unlockPageScroll,
-} from "@/lib/scrollLock";
+  listFlowIsHome,
+  listFlowTrackClass,
+  listFlowWindowScrollY,
+} from "@/lib/listFlowNav";
 import {
   clearListNavigationDirection,
   clearListOpenSplash,
@@ -50,18 +49,20 @@ function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-function restoreScrollY(restoreY: number) {
-  if (pageScrollLockDepth() > 0) {
-    unlockPageScroll(restoreY);
+function scrollToPane(
+  showingDetail: boolean,
+  libraryScrollYRef: { current: number | null },
+) {
+  if (!showingDetail && libraryScrollYRef.current == null) {
     return;
   }
-  window.scrollTo(0, restoreY);
-}
-
-function freezeScroll() {
-  if (pageScrollLockDepth() === 0) {
-    lockPageScroll();
-  }
+  window.scrollTo(
+    0,
+    listFlowWindowScrollY({
+      showingDetail,
+      libraryScrollY: libraryScrollYRef.current ?? 0,
+    }),
+  );
 }
 
 type ListNavProviderProps = {
@@ -96,6 +97,7 @@ export function ListNavProvider({
   const [factionBackdropRevealed, setFactionBackdropRevealed] = useState(false);
   const [cachedBackdrop, setCachedBackdrop] = useState<ReactNode>(null);
   const timers = useRef<number[]>([]);
+  const animatingBackRef = useRef(false);
   const libraryScrollYRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -140,12 +142,15 @@ export function ListNavProvider({
 
   useLayoutEffect(() => {
     if (isHome) {
+      animatingBackRef.current = false;
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
       return;
     }
     if (!isBuilder) {
+      animatingBackRef.current = false;
+      clearListNavigationDirection();
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
-      restoreScrollY(libraryScrollYRef.current ?? 0);
+      scrollToPane(false, libraryScrollYRef);
       return;
     }
 
@@ -153,7 +158,7 @@ export function ListNavProvider({
     if (direction === "instant") {
       clearListNavigationDirection();
       publishNavState({ showDetail: true, animatingBack: false, settled: true });
-      restoreScrollY(0);
+      scrollToPane(true, libraryScrollYRef);
       return;
     }
     if (direction === "forward") {
@@ -161,27 +166,38 @@ export function ListNavProvider({
       if (prefersReducedMotion()) {
         clearListNavigationDirection();
         publishNavState({ showDetail: true, animatingBack: false, settled: true });
-        restoreScrollY(0);
+        scrollToPane(true, libraryScrollYRef);
         return;
       }
-      freezeScroll();
-      publishNavState({ showDetail: true, animatingBack: false, settled: false });
+      publishNavState({ showDetail: false, animatingBack: false, settled: false });
+      let inner = 0;
+      const outer = window.requestAnimationFrame(() => {
+        inner = window.requestAnimationFrame(() => {
+          clearListNavigationDirection();
+          scrollToPane(true, libraryScrollYRef);
+          publishNavState({
+            showDetail: true,
+            animatingBack: false,
+            settled: false,
+          });
+        });
+      });
       const settleTimer = window.setTimeout(() => {
-        clearListNavigationDirection();
         publishNavState({ showDetail: true, animatingBack: false, settled: true });
-        restoreScrollY(0);
       }, LIST_FLOW_SLIDE_MS);
       return () => {
+        window.cancelAnimationFrame(outer);
+        window.cancelAnimationFrame(inner);
         window.clearTimeout(settleTimer);
       };
     }
 
     publishNavState({ showDetail: true, animatingBack: false, settled: true });
-    restoreScrollY(0);
+    scrollToPane(true, libraryScrollYRef);
   }, [isBuilder, isHome, pathname, publishNavState]);
 
   function goBack() {
-    if (animatingBack || !isBuilder) {
+    if (animatingBackRef.current || !isBuilder) {
       return;
     }
     rememberListNavigation("back");
@@ -190,17 +206,19 @@ export function ListNavProvider({
     clearTimers();
     if (prefersReducedMotion()) {
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
-      restoreScrollY(libraryScrollYRef.current ?? 0);
+      scrollToPane(false, libraryScrollYRef);
       router.push("/dashboard", { scroll: false });
       return;
     }
-    freezeScroll();
+    animatingBackRef.current = true;
     setBackdropExiting(true);
     publishNavState({ showDetail: false, animatingBack: true, settled: false });
+    scrollToPane(false, libraryScrollYRef);
     schedule(() => {
+      clearListNavigationDirection();
       router.push("/dashboard", { scroll: false });
+      animatingBackRef.current = false;
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
-      restoreScrollY(libraryScrollYRef.current ?? 0);
       schedule(() => setBackdropExiting(false), LIST_BACKDROP_RETURN_MS);
     }, LIST_FLOW_SLIDE_MS);
   }
@@ -242,7 +260,9 @@ export function ListNavProvider({
           transitionClass={indexBackdropTransitionClass}
         />
         {header ? (
-          <header className={`${SITE_HEADER_BAR_CLASS} pointer-events-auto fixed inset-x-0 top-0 z-[60] pt-[env(safe-area-inset-top)]`}>
+          <header
+            className={`${SITE_HEADER_BAR_CLASS} pointer-events-auto fixed inset-x-0 top-0 z-[60] pt-[env(safe-area-inset-top)]`}
+          >
             {header}
           </header>
         ) : null}
@@ -263,9 +283,7 @@ export function ListNavProvider({
         <div className="relative z-10 overflow-x-hidden">
           <div className={listFlowTrackClass(showDetail, settled)}>
             <div className="list-flow-pane">
-              <div className={LIST_FLOW_HEADER_OFFSET_CLASS}>
-                {libraryLayer}
-              </div>
+              <div className={LIST_FLOW_HEADER_OFFSET_CLASS}>{libraryLayer}</div>
             </div>
             <div
               className="list-flow-pane relative min-h-dvh"

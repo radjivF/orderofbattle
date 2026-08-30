@@ -208,13 +208,6 @@ export function summarize(
   const renownDrop = rorPick ? 1 : 0;
   const drops = list.regiments.length + auxiliaryCount + renownDrop;
 
-  if (auxiliaryCount > 0) {
-    issues.push({
-      tone: "warn",
-      text: `${auxiliaryCount} auxiliar${auxiliaryCount === 1 ? "y" : "ies"}: extra drops, fewer command points.`,
-    });
-  }
-
   const warmasters = warmasterRegiments(list, faction);
   if (warmasters.length > 0) {
     const general = list.regiments.find(

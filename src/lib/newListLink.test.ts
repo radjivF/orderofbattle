@@ -90,9 +90,13 @@ describe("article CTAs", () => {
       path.join(here, "../components/LibraryScreen.tsx"),
       "utf8",
     );
+    const createSheet = readFileSync(
+      path.join(here, "../components/LibraryCreateSheet.tsx"),
+      "utf8",
+    );
     expect(screen).toContain("newListDraftFromSearch");
     expect(screen).toContain('router.replace("/dashboard"');
-    expect(screen).toContain("newListArmySelectGroups");
-    expect(screen).toContain("<optgroup");
+    expect(createSheet).toContain("newListArmySelectGroups");
+    expect(createSheet).toContain("<optgroup");
   });
 });

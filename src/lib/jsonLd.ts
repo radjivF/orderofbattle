@@ -143,3 +143,10 @@ export function pageGraph(nodes: Record<string, unknown>[]) {
     "@graph": nodes,
   };
 }
+
+export function homeFaqJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    ...faqPageNode(sitePath("/")),
+  };
+}

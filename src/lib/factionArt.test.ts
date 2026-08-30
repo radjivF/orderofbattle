@@ -71,6 +71,10 @@ describe("faction art LCP", () => {
       path.resolve(dir, "../components/LibraryScreen.tsx"),
       "utf8",
     );
+    const libraryCard = readFileSync(
+      path.resolve(dir, "../components/LibraryListCard.tsx"),
+      "utf8",
+    );
     expect(library).toContain("scrim={false}");
     expect(library).not.toMatch(
       /libraryCreatingSplashVisible[\s\S]*bg-ink/,
@@ -81,6 +85,6 @@ describe("faction art LCP", () => {
       "utf8",
     );
     expect(factions).toContain('loading={index === 0 ? "eager" : "lazy"}');
-    expect(library).toContain('loading={index === 0 ? "eager" : "lazy"}');
+    expect(libraryCard).toContain('loading={index === 0 ? "eager" : "lazy"}');
   });
 });

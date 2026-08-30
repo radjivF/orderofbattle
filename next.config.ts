@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withSentryConfig } from "@sentry/nextjs";
 
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -7,7 +8,8 @@ const contentSecurityPolicy = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://*.clarity.ms https://c.bing.com",
   "font-src 'self' data:",
-  "connect-src 'self' https://*.clarity.ms https://scripts.clarity.ms https://c.bing.com https://analytics.ahrefs.com",
+  "connect-src 'self' https://*.clarity.ms https://scripts.clarity.ms https://c.bing.com https://analytics.ahrefs.com https://*.ingest.sentry.io https://*.ingest.us.sentry.io",
+  "worker-src 'self' blob:",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -37,7 +39,10 @@ const securityHeaders = [
   },
 ];
 
+const sentryDsn = process.env.SENTRY_DSN?.trim();
+
 const nextConfig: NextConfig = {
+  ...(sentryDsn ? { env: { SENTRY_DSN: sentryDsn } } : {}),
   images: {
     formats: ["image/avif", "image/webp"],
     qualities: [65, 68, 70, 72, 75, 78, 80, 82],
@@ -66,4 +71,18 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+const sentryEnabled = Boolean(sentryDsn);
+
+export default sentryEnabled
+  ? withSentryConfig(nextConfig, {
+      org: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJECT,
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      silent: !process.env.CI,
+      tunnelRoute: "/monitoring",
+      widenClientFileUpload: true,
+      sourcemaps: {
+        disable: !process.env.SENTRY_AUTH_TOKEN,
+      },
+    })
+  : nextConfig;
