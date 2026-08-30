@@ -254,7 +254,7 @@ export function ListNavProvider({
 
   return (
     <ListNavContext.Provider value={{ goBack }}>
-      <div className="relative min-h-dvh w-full overflow-x-hidden">
+      <div className="relative min-h-dvh w-full overflow-x-hidden overflow-y-visible">
         <IndexBackdropLayer
           revealed={indexBackdropRevealed}
           transitionClass={indexBackdropTransitionClass}
@@ -280,7 +280,7 @@ export function ListNavProvider({
         {isBuilder && overlay ? (
           <div className="pointer-events-none fixed inset-0 z-[30]">{overlay}</div>
         ) : null}
-        <div className="relative z-10 overflow-x-hidden">
+        <div className="relative z-10 overflow-x-hidden overflow-y-visible">
           <div className={listFlowTrackClass(showDetail, settled)}>
             <div className="list-flow-pane">
               <div className={LIST_FLOW_HEADER_OFFSET_CLASS}>{libraryLayer}</div>

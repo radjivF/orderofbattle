@@ -45,14 +45,14 @@ body {
   background: var(--ink);
   color: var(--parchment);
   font-family: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
-  overflow-x: hidden;
 }
 
 html {
   scrollbar-gutter: stable;
   height: auto;
   min-height: 100%;
-  overflow-y: auto;
+  overflow-x: hidden;
+  overflow-y: scroll;
   font-size: 106.25%;
 }
 
