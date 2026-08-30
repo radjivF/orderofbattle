@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useLayoutEffect, useEffect, useMemo, useRef, useState, useSyncExternalStore, type ChangeEvent } from "react";
+import { useLayoutEffect, useEffect, useCallback, useMemo, useRef, useState, useSyncExternalStore, type ChangeEvent } from "react";
 import { getFaction, armyOfRenownName } from "@/engine/queries";
 import {
   catalogueForList,
@@ -56,9 +56,6 @@ import {
   CONFIRM_SHEET_ACTIONS_CLASS,
   CONFIRM_SHEET_PANEL_CLASS,
   IOS_LIQUID_CTA_CLASS,
-  LIBRARY_OPTIONS_BUTTON_CLASS,
-  LIBRARY_TITLE_CLASS,
-  LIBRARY_TITLE_ROW_CLASS,
   SHEET_CHECKLIST_ITEM_CLASS,
   SHEET_CHECKLIST_ITEM_SELECTED_CLASS,
   MODAL_SHEET_SCROLL_CLASS,
@@ -85,16 +82,6 @@ import { SiteFooter } from "./SiteFooter";
 
 type LibrarySheetTab = "import" | "export";
 type ExportPhase = "pick" | "preview";
-
-function LibraryOptionsIcon() {
-  return (
-    <svg viewBox="0 0 20 20" aria-hidden="true" className="h-5 w-5">
-      <circle cx="10" cy="5" r="1.35" fill="currentColor" />
-      <circle cx="10" cy="10" r="1.35" fill="currentColor" />
-      <circle cx="10" cy="15" r="1.35" fill="currentColor" />
-    </svg>
-  );
-}
 
 export function LibraryScreen() {
   const router = useRouter();
@@ -241,9 +228,15 @@ export function LibraryScreen() {
     resetExportState();
   }
 
-  function openLibraryOptions() {
-    openLibrarySheet("import");
-  }
+  const openLibraryOptions = useCallback(() => {
+    setLibrarySheetTab("import");
+    setImportDraft("");
+    setExportPhase("pick");
+    setExportSelectedIds([]);
+    setExportFormat("text");
+    setExportCopied(false);
+    setLibrarySheetOpen(true);
+  }, []);
 
   function onLibrarySheetTabChange(next: string) {
     const tab = next as LibrarySheetTab;
@@ -409,9 +402,12 @@ export function LibraryScreen() {
   const { setLibraryChrome } = useListFlowChrome();
 
   useLayoutEffect(() => {
-    setLibraryChrome({ openNewList: () => setPicking(true) });
+    setLibraryChrome({
+      openNewList: () => setPicking(true),
+      openLibraryOptions,
+    });
     return () => setLibraryChrome(null);
-  }, [setLibraryChrome]);
+  }, [setLibraryChrome, openLibraryOptions]);
 
   useEffect(() => {
     if (!createSplash && creating) {
@@ -436,19 +432,6 @@ export function LibraryScreen() {
 
   return (
     <div className="relative z-10 min-h-full text-parchment">
-      <div className="mx-auto w-full max-w-3xl px-5 pt-2 pb-3 sm:px-6 lg:max-w-5xl">
-        <div className={LIBRARY_TITLE_ROW_CLASS}>
-          <button
-            type="button"
-            aria-label="List options"
-            onClick={openLibraryOptions}
-            className={LIBRARY_OPTIONS_BUTTON_CLASS}
-          >
-            <LibraryOptionsIcon />
-          </button>
-          <h1 className={LIBRARY_TITLE_CLASS}>My lists</h1>
-        </div>
-      </div>
       <input
         ref={importInputRef}
         type="file"

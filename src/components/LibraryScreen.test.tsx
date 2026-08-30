@@ -75,9 +75,10 @@ vi.mock("@/lib/librarySort", () => ({
 }));
 
 describe("LibraryScreen", () => {
-  it("shows empty-library call to action", () => {
+  it("shows empty-library call to action without page-title chrome", () => {
     render(<LibraryScreen />);
-    expect(screen.getByRole("heading", { name: "My lists" })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "My lists" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "List options" })).toBeNull();
     expect(
       screen.getByRole("button", { name: "Make your first list" }),
     ).toBeInTheDocument();

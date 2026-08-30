@@ -20,6 +20,19 @@ export function IosNavAddButton({ label, onClick }: Props) {
   );
 }
 
+export function IosNavOptionsButton({ label, onClick }: Props) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={label}
+      className={IOS_NAV_ICON_BUTTON_CLASS}
+    >
+      <IosEllipsisIcon />
+    </button>
+  );
+}
+
 export function IosNavBackButton({ label, onClick }: Props) {
   return (
     <button
@@ -58,6 +71,16 @@ function IosPlusIcon() {
         strokeWidth="2.6"
         strokeLinecap="round"
       />
+    </svg>
+  );
+}
+
+function IosEllipsisIcon() {
+  return (
+    <svg viewBox="0 0 20 20" aria-hidden="true" className="h-5 w-5">
+      <circle cx="10" cy="5" r="1.35" fill="currentColor" />
+      <circle cx="10" cy="10" r="1.35" fill="currentColor" />
+      <circle cx="10" cy="15" r="1.35" fill="currentColor" />
     </svg>
   );
 }

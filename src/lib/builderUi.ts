@@ -132,25 +132,13 @@ export const PLAY_SHEET_LINK_CLASS =
 export const IOS_NAV_ICON_BUTTON_CLASS =
   "ios-liquid-glass pressable inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full text-black";
 
-/** Import / export in the library nav — ink fill, white glyph and ring. */
-export const LIBRARY_NAV_BACKUP_ICON_BUTTON_CLASS =
-  "pressable inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/90 bg-black text-white";
+/** My lists title after the crest — trailing actions sit opposite. */
+export const LIBRARY_HEADER_TITLE_CLASS =
+  "min-w-0 flex-1 truncate font-serif text-[17px] font-semibold leading-none text-parchment sm:text-lg";
 
-/** Options trigger beside My lists — same ink pill as backup actions. */
-export const LIBRARY_OPTIONS_BUTTON_CLASS =
-  LIBRARY_NAV_BACKUP_ICON_BUTTON_CLASS;
-
-/** Right-side library nav cluster — roomy tap targets. */
-export const LIBRARY_NAV_ACTIONS_CLASS =
-  "ml-auto flex shrink-0 items-center gap-3";
-
-/** Row actions beside the My lists title. */
-export const LIBRARY_TITLE_ROW_CLASS =
-  "flex items-center gap-3";
-
-/** Page title over index art — shadow for contrast on busy backdrops. */
-export const LIBRARY_TITLE_CLASS =
-  "font-serif text-3xl font-semibold text-parchment [text-shadow:0_2px_16px_rgba(0,0,0,0.95),0_1px_3px_rgba(0,0,0,1)]";
+/** Options + New list — two separate glass circles, trailing edge. */
+export const LIBRARY_HEADER_ACTIONS_CLASS =
+  "flex shrink-0 items-center gap-2.5";
 
 export const IOS_NAV_ADD_BUTTON_CLASS = IOS_NAV_ICON_BUTTON_CLASS;
 

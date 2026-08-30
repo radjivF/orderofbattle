@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useSyncExternalStore } from "react";
 import { getFaction } from "@/engine/queries";
 import { formatPoints } from "@/engine/pointsCap";
@@ -9,6 +10,8 @@ import {
   HEADER_DROPS_LINE_CLASS,
   HEADER_STATS_STACK_CLASS,
   IOS_NAV_PLAY_BUTTON_CLASS,
+  LIBRARY_HEADER_TITLE_CLASS,
+  LIBRARY_HEADER_ACTIONS_CLASS,
   SITE_HEADER_ROW_CLASS,
   builderHeaderShowsPlayButton,
   builderHeaderShowsIssueDot,
@@ -28,8 +31,12 @@ import {
 import type { BuilderChromeValue } from "./BuilderChrome";
 import type { LibraryChromeValue } from "./LibraryChrome";
 import { useListNav } from "./IosNavSlide";
-import { IosNavAddButton, IosNavBackButton } from "./ios/IosNavIconButton";
-import { SiteBrandLockup } from "./BrandMark";
+import {
+  IosNavAddButton,
+  IosNavBackButton,
+  IosNavOptionsButton,
+} from "./ios/IosNavIconButton";
+import { BrandMark } from "./BrandMark";
 
 function LibraryHeaderRow({
   libraryChrome,
@@ -38,11 +45,24 @@ function LibraryHeaderRow({
 }) {
   return (
     <div className={SITE_HEADER_ROW_CLASS}>
-      <SiteBrandLockup />
-      <IosNavAddButton
-        label="New list"
-        onClick={() => libraryChrome?.openNewList()}
-      />
+      <Link
+        href="/"
+        aria-label="Order of Battle"
+        className="flex h-11 shrink-0 items-center"
+      >
+        <BrandMark size={32} className="h-8 w-auto" priority />
+      </Link>
+      <h1 className={LIBRARY_HEADER_TITLE_CLASS}>My lists</h1>
+      <div className={LIBRARY_HEADER_ACTIONS_CLASS}>
+        <IosNavOptionsButton
+          label="List options"
+          onClick={() => libraryChrome?.openLibraryOptions()}
+        />
+        <IosNavAddButton
+          label="New list"
+          onClick={() => libraryChrome?.openNewList()}
+        />
+      </div>
     </div>
   );
 }

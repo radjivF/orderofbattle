@@ -17,9 +17,7 @@ import {
   IOS_NAV_ADD_BUTTON_CLASS,
   IOS_NAV_BACK_BUTTON_CLASS,
   IOS_NAV_PLAY_BUTTON_CLASS,
-  LIBRARY_NAV_ACTIONS_CLASS,
-  LIBRARY_NAV_BACKUP_ICON_BUTTON_CLASS,
-  LIBRARY_TITLE_CLASS,
+  LIBRARY_HEADER_TITLE_CLASS,
   SHEET_CHECKLIST_ITEM_CLASS,
   LIBRARY_CARD_CLASS,
   LIBRARY_CARD_LIST_NAME_INPUT_CLASS,
@@ -361,8 +359,16 @@ describe("iOS nav controls", () => {
       "utf8",
     );
     expect(header).toContain("SITE_HEADER_ROW_CLASS");
-    expect(header).toContain("SiteBrandLockup");
+    expect(header).toContain("IosNavOptionsButton");
+    expect(header).toContain("LIBRARY_HEADER_TITLE_CLASS");
+    expect(header).toContain("LIBRARY_HEADER_ACTIONS_CLASS");
+    expect(header).toContain("My lists");
+    expect(header).toContain("openLibraryOptions");
+    expect(header).toContain("BrandMark");
+    expect(header).not.toContain("SiteBrandLockup");
     expect(header).not.toContain("LIST_FLOW_HEADER_ROW_LIBRARY");
+    expect(LIBRARY_HEADER_TITLE_CLASS).toContain("flex-1");
+    expect(LIBRARY_HEADER_TITLE_CLASS).not.toContain("text-center");
 
     const content = readFileSync(
       path.resolve(
@@ -418,10 +424,6 @@ describe("empty library CTA", () => {
     expect(EMPTY_LIBRARY_CTA_CLASS).not.toContain("gold-plate");
     expect(EMPTY_LIBRARY_SECONDARY_CLASS).toContain("rounded-full");
     expect(EMPTY_LIBRARY_SECONDARY_CLASS).toContain("ring-1");
-    expect(LIBRARY_NAV_BACKUP_ICON_BUTTON_CLASS).toContain("bg-black");
-    expect(LIBRARY_NAV_BACKUP_ICON_BUTTON_CLASS).toContain("text-white");
-    expect(LIBRARY_NAV_BACKUP_ICON_BUTTON_CLASS).toContain("border-white");
-    expect(LIBRARY_NAV_ACTIONS_CLASS).toContain("gap-3");
     expect(SHEET_CHECKLIST_ITEM_CLASS).toContain("ring-parchment-ink/10");
     expect(SHEET_FOOTER_ACTIONS_CLASS).toContain("px-5");
     expect(SHEET_SECONDARY_BUTTON_CLASS).toContain("ring-1");
@@ -454,8 +456,10 @@ describe("empty library CTA", () => {
     );
     expect(screen).toContain("LibraryEmptyState");
     expect(screen).toContain("List options");
-    expect(screen).toContain("LIBRARY_TITLE_CLASS");
-    expect(LIBRARY_TITLE_CLASS).toContain("text-shadow");
+    expect(screen).toContain("openLibraryOptions");
+    expect(screen).not.toContain("LIBRARY_TITLE_CLASS");
+    expect(screen).not.toContain("LIBRARY_TITLE_ROW_CLASS");
+    expect(screen).not.toContain("LIBRARY_OPTIONS_BUTTON_CLASS");
     expect(screen).toContain("sortLibraryLists");
     expect(screen).toContain("Sort lists by");
     expect(screen).toContain("Paste a Warhammer App, New Recruit, or Order of Battle list");
