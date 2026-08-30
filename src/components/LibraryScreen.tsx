@@ -56,6 +56,8 @@ import {
   CONFIRM_SHEET_ACTIONS_CLASS,
   CONFIRM_SHEET_PANEL_CLASS,
   IOS_LIQUID_CTA_CLASS,
+  LIBRARY_TITLE_CLASS,
+  LIBRARY_TITLE_ROW_CLASS,
   SHEET_CHECKLIST_ITEM_CLASS,
   SHEET_CHECKLIST_ITEM_SELECTED_CLASS,
   MODAL_SHEET_SCROLL_CLASS,
@@ -78,6 +80,7 @@ import { ListLoadingSplash } from "./ListLoadingSplash";
 import { ModalFrame } from "./ModalFrame";
 import { ConfirmSheetActions } from "./ConfirmSheetActions";
 import { IosSegmentedControl } from "./ios/IosSegmentedControl";
+import { IosNavAddButton } from "./ios/IosNavIconButton";
 import { SiteFooter } from "./SiteFooter";
 
 type LibrarySheetTab = "import" | "export";
@@ -403,7 +406,6 @@ export function LibraryScreen() {
 
   useLayoutEffect(() => {
     setLibraryChrome({
-      openNewList: () => setPicking(true),
       openLibraryOptions,
     });
     return () => setLibraryChrome(null);
@@ -432,6 +434,15 @@ export function LibraryScreen() {
 
   return (
     <div className="relative z-10 min-h-full text-parchment">
+      <div className="mx-auto w-full max-w-3xl px-5 pt-2 pb-3 sm:px-6 lg:max-w-5xl">
+        <div className={LIBRARY_TITLE_ROW_CLASS}>
+          <h1 className={LIBRARY_TITLE_CLASS}>My lists</h1>
+          <IosNavAddButton
+            label="New list"
+            onClick={() => setPicking(true)}
+          />
+        </div>
+      </div>
       <input
         ref={importInputRef}
         type="file"

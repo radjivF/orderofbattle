@@ -26,9 +26,8 @@ vi.mock("next/image", () => ({
 }));
 
 describe("ListFlowHeader", () => {
-  it("puts a solid new-list control opposite a light options icon", async () => {
+  it("keeps brand in the library header with a light options control", async () => {
     const user = userEvent.setup();
-    const openNewList = vi.fn();
     const openLibraryOptions = vi.fn();
 
     render(
@@ -36,29 +35,18 @@ describe("ListFlowHeader", () => {
         mode="library"
         listId={null}
         builderChrome={null}
-        libraryChrome={{ openNewList, openLibraryOptions }}
+        libraryChrome={{ openLibraryOptions }}
       />,
     );
 
-    const brand = screen.getByRole("link", { name: "Order of Battle" });
-    const heading = screen.getByRole("heading", { name: "My lists" });
+    expect(
+      screen.getByRole("link", { name: /Order of Battle/i }),
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "My lists" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "New list" })).toBeNull();
+
     const options = screen.getByRole("button", { name: "List options" });
-    const add = screen.getByRole("button", { name: "New list" });
-
-    expect(add.className).toContain("ios-liquid-glass");
     expect(options.className).not.toContain("ios-liquid-glass");
-    expect(heading.compareDocumentPosition(add)).toBe(
-      Node.DOCUMENT_POSITION_PRECEDING,
-    );
-    expect(heading.compareDocumentPosition(brand)).toBe(
-      Node.DOCUMENT_POSITION_PRECEDING,
-    );
-    expect(heading.compareDocumentPosition(options)).toBe(
-      Node.DOCUMENT_POSITION_FOLLOWING,
-    );
-
-    await user.click(add);
-    expect(openNewList).toHaveBeenCalledTimes(1);
 
     await user.click(options);
     expect(openLibraryOptions).toHaveBeenCalledTimes(1);

@@ -75,9 +75,10 @@ vi.mock("@/lib/librarySort", () => ({
 }));
 
 describe("LibraryScreen", () => {
-  it("shows empty-library call to action without page-title chrome", () => {
+  it("puts New list beside My lists and keeps the empty-library CTA", () => {
     render(<LibraryScreen />);
-    expect(screen.queryByRole("heading", { name: "My lists" })).toBeNull();
+    expect(screen.getByRole("heading", { name: "My lists" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "New list" })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "List options" })).toBeNull();
     expect(
       screen.getByRole("button", { name: "Make your first list" }),

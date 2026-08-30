@@ -18,7 +18,7 @@ import {
   IOS_NAV_BACK_BUTTON_CLASS,
   IOS_NAV_PLAY_BUTTON_CLASS,
   LIBRARY_HEADER_OPTIONS_BUTTON_CLASS,
-  LIBRARY_HEADER_TITLE_CLASS,
+  LIBRARY_TITLE_CLASS,
   SHEET_CHECKLIST_ITEM_CLASS,
   LIBRARY_CARD_CLASS,
   LIBRARY_CARD_LIST_NAME_INPUT_CLASS,
@@ -308,7 +308,8 @@ describe("iOS nav controls", () => {
       "utf8",
     );
     expect(header).toContain("builderHeaderShowsIssueDot");
-    expect(header).toContain('label="New list"');
+    expect(header).toContain('label="List options"');
+    expect(header).not.toContain('label="New list"');
     expect(header).not.toContain("IosNavImportButton");
     expect(header).not.toContain("IosNavExportButton");
     expect(header).toContain('label={playMode ? "Build" : "Lists"}');
@@ -360,17 +361,12 @@ describe("iOS nav controls", () => {
       "utf8",
     );
     expect(header).toContain("SITE_HEADER_ROW_CLASS");
+    expect(header).toContain("SiteBrandLockup");
     expect(header).toContain("IosNavOptionsButton");
-    expect(header).toContain("LIBRARY_HEADER_TITLE_CLASS");
-    expect(header).toContain("LIBRARY_HEADER_TITLE_CLUSTER_CLASS");
-    expect(header).toContain("My lists");
-    expect(header).toContain("openLibraryOptions");
-    expect(header).toContain("BrandMark");
-    expect(header).not.toContain("SiteBrandLockup");
+    expect(header).not.toContain("IosNavAddButton");
+    expect(header).not.toContain("LIBRARY_HEADER_TITLE_CLASS");
+    expect(header).not.toContain("LIBRARY_HEADER_TITLE_CLUSTER_CLASS");
     expect(header).not.toContain("LIST_FLOW_HEADER_ROW_LIBRARY");
-    expect(header).not.toContain("LIBRARY_HEADER_ACTIONS_CLASS");
-    expect(LIBRARY_HEADER_TITLE_CLASS).not.toContain("flex-1");
-    expect(LIBRARY_HEADER_TITLE_CLASS).not.toContain("text-center");
     expect(LIBRARY_HEADER_OPTIONS_BUTTON_CLASS).not.toContain("ios-liquid-glass");
     expect(LIBRARY_HEADER_OPTIONS_BUTTON_CLASS).toContain("text-parchment/65");
 
@@ -461,9 +457,10 @@ describe("empty library CTA", () => {
     expect(screen).toContain("LibraryEmptyState");
     expect(screen).toContain("List options");
     expect(screen).toContain("openLibraryOptions");
-    expect(screen).not.toContain("LIBRARY_TITLE_CLASS");
-    expect(screen).not.toContain("LIBRARY_TITLE_ROW_CLASS");
-    expect(screen).not.toContain("LIBRARY_OPTIONS_BUTTON_CLASS");
+    expect(screen).toContain("LIBRARY_TITLE_CLASS");
+    expect(screen).toContain("LIBRARY_TITLE_ROW_CLASS");
+    expect(screen).toContain("IosNavAddButton");
+    expect(LIBRARY_TITLE_CLASS).toContain("text-shadow");
     expect(screen).toContain("sortLibraryLists");
     expect(screen).toContain("Sort lists by");
     expect(screen).toContain("Paste a Warhammer App, New Recruit, or Order of Battle list");
