@@ -8,6 +8,7 @@ import {
 export {
   appendRegimentWithHero,
   blankArmy,
+  blankPathToGlory,
   blankSpearhead,
   duplicateArmy,
   prepareImportedArmy,

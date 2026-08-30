@@ -4,6 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { getFaction } from "@/engine/queries";
 import { catalogueForList, isSpearheadList } from "@/engine/spearhead";
+import {
+  battlepackPresetLabel,
+  isPathToGloryList,
+  pathToGloryPreset,
+} from "@/engine/pathToGlory";
 import { formatPoints } from "@/engine/pointsCap";
 import { summarize } from "@/engine/validate";
 import type { ArmyList } from "@/engine/types";
@@ -52,6 +57,8 @@ export function LibraryListCard({
     (item) => item.id === (list.regimentAbilityId ?? list.formationId),
   );
   const spearhead = isSpearheadList(list);
+  const pathToGlory = isPathToGloryList(list);
+  const preset = pathToGloryPreset(list);
   const artSrc = catalogueArtSrc(faction);
 
   return (
@@ -83,11 +90,15 @@ export function LibraryListCard({
             <p className="text-base font-semibold text-gold-deep">
               {spearhead
                 ? "Spearhead"
+                : pathToGlory
+                  ? "Path to Glory"
                 : `${formatPoints(totals?.points ?? 0)} / ${formatPoints(list.pointsCap)}`}
             </p>
             <p className="mt-0.5 text-sm text-sheet-muted sm:text-base">
               {spearhead
                 ? (playCatalogue?.name ?? "Spearhead")
+                : pathToGlory && preset
+                  ? `${battlepackPresetLabel(preset)} · ${formatPoints(totals?.points ?? 0)} / ${formatPoints(list.pointsCap)}`
                 : (formation?.name ?? "No formation")}
             </p>
           </div>

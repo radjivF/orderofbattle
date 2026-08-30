@@ -10,6 +10,8 @@ import {
   newListArmySelectGroups,
   newListArmySelectHasExtras,
 } from "@/lib/newListArmyOptions";
+import { PATH_TO_GLORY_PRESETS } from "@/engine/pathToGlory";
+import type { PathToGloryBattlepackPreset } from "@/engine/pathToGlory";
 import { SHEET_HEADER_CLASS, SHEET_PANEL_CLASS } from "@/lib/builderUi";
 import { ModalFrame } from "./ModalFrame";
 import { PointsCapField } from "./PointsCapField";
@@ -23,8 +25,9 @@ type Props = {
   draftParent: FactionCatalogue | null;
   draftName: string;
   draftPoints: number;
-  draftMode: "points" | "spearhead";
+  draftMode: "points" | "spearhead" | "pathToGlory";
   draftSpearheadId: string | null;
+  draftBattlepackPreset: PathToGloryBattlepackPreset | null;
   createCounts: { heroes: number; units: number } | null;
   onClose: () => void;
   onCreate: () => void;
@@ -44,6 +47,7 @@ export function LibraryCreateSheet({
   draftPoints,
   draftMode,
   draftSpearheadId,
+  draftBattlepackPreset,
   createCounts,
   onClose,
   onCreate,
@@ -92,21 +96,36 @@ export function LibraryCreateSheet({
                         kind: "spearhead",
                         spearheadId: draftSpearheadId,
                       })
+                    : draftMode === "pathToGlory" && draftBattlepackPreset
+                      ? encodeNewListArmyValue({
+                          kind: "pathToGlory",
+                          factionId: draftFaction.id,
+                          battlepackPreset: draftBattlepackPreset,
+                        })
                     : draftFaction.id
                 }
                 onChange={(event) => onArmyChange(event.target.value)}
                 className="min-h-11 w-full rounded-xl bg-parchment-ink/5 px-3 font-serif text-xl text-parchment-ink"
               >
-                {newListArmySelectGroups(draftParent.id).map((group) => (
-                  <optgroup key={group.label} label={group.label}>
-                    {group.options.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </optgroup>
-                ))}
+                {newListArmySelectGroups(draftParent.id, draftFaction.id).map(
+                  (group) => (
+                    <optgroup key={group.label} label={group.label}>
+                      {group.options.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </optgroup>
+                  ),
+                )}
               </select>
+              {draftMode === "pathToGlory" && draftBattlepackPreset ? (
+                <span className="text-sm text-sheet-muted">
+                  {PATH_TO_GLORY_PRESETS.find(
+                    (item) => item.id === draftBattlepackPreset,
+                  )?.hint}
+                </span>
+              ) : null}
             </label>
           ) : null}
           <label className="flex flex-col gap-2 text-base text-sheet-muted">

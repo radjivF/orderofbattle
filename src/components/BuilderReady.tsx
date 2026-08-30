@@ -27,6 +27,11 @@ import { battleTacticsForRealm } from "@/engine/data/load";
 import { dropEnhancements, pickerUnitsFor, type ListPicker as Picker } from "@/engine/listPicker";
 import { combatModifierNotes } from "@/engine/magic";
 import { isSpearheadList } from "@/engine/spearhead";
+import {
+  pathToGloryPreset,
+  patchSelection,
+  showsBattleWoundsAndScars,
+} from "@/engine/pathToGlory";
 import { summarize } from "@/engine/validate";
 import type {
   ArmyList,
@@ -779,6 +784,11 @@ export function BuilderReady({
             selected={selectedId === regiment.id}
             playMode={forPlayMode}
             locked={spearhead}
+            pathToGloryPreset={pathToGloryPreset(list)}
+            showBattleWounds={showsBattleWoundsAndScars(list)}
+            onPatchSelection={(selectionId, next) =>
+              void commit(patchSelection(list, selectionId, next))
+            }
             allowUniqueHeroTrait={spearhead && regimentIsGeneral}
             traitKind={spearhead ? "Enhancement" : undefined}
             onSelect={() => setSelectedRegimentId(regiment.id)}
@@ -967,6 +977,11 @@ export function BuilderReady({
           <RegimentOfRenownCard
             list={list}
             playMode={forPlayMode}
+            pathToGloryPreset={pathToGloryPreset(list)}
+            showBattleWounds={showsBattleWoundsAndScars(list)}
+            onPatchSelection={(selectionId, next) =>
+              void commit(patchSelection(list, selectionId, next))
+            }
             artefactBearerId={list.artefact?.heroSelectionId}
             artefactLabel={enhancementLabel(
               faction.artefacts,

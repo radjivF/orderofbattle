@@ -21,10 +21,12 @@ import {
   type PortableFormat,
 } from "@/engine/listPortable";
 import type { ArmyList, FactionCatalogue } from "@/engine/types";
+import type { PathToGloryBattlepackPreset } from "@/engine/pathToGlory";
 import { factionPickerCounts } from "@/lib/factionSeo";
 import { downloadTextFile } from "@/lib/downloadFile";
 import {
   blankArmy,
+  blankPathToGlory,
   blankSpearhead,
   deleteArmy,
   duplicateArmy,
@@ -113,8 +115,12 @@ export function LibraryScreen() {
   );
   const [draftName, setDraftName] = useState("");
   const [draftPoints, setDraftPoints] = useState(2000);
-  const [draftMode, setDraftMode] = useState<"points" | "spearhead">("points");
+  const [draftMode, setDraftMode] = useState<
+    "points" | "spearhead" | "pathToGlory"
+  >("points");
   const [draftSpearheadId, setDraftSpearheadId] = useState<string | null>(null);
+  const [draftBattlepackPreset, setDraftBattlepackPreset] =
+    useState<PathToGloryBattlepackPreset | null>(null);
   const [creating, setCreating] = useState(false);
   const [importError, setImportError] = useState<string | null>(null);
   const [importDraft, setImportDraft] = useState("");
@@ -155,6 +161,9 @@ export function LibraryScreen() {
     if (draftMode === "spearhead" && !draftSpearheadId) {
       return;
     }
+    if (draftMode === "pathToGlory" && !draftBattlepackPreset) {
+      return;
+    }
     setCreating(true);
     const artFactionId =
       draftParent?.id ??
@@ -165,6 +174,13 @@ export function LibraryScreen() {
       const list =
         draftMode === "spearhead" && draftSpearheadId
           ? blankSpearhead(draftSpearheadId, draftName)
+          : draftMode === "pathToGlory" && draftBattlepackPreset
+            ? blankPathToGlory(
+                draftFaction.id,
+                draftBattlepackPreset,
+                draftName,
+                draftPoints,
+              )
           : blankArmy(draftFaction.id, draftName, draftPoints);
       await saveArmy(list);
       setPicking(false);
@@ -364,6 +380,7 @@ export function LibraryScreen() {
     setDraftPoints(2000);
     setDraftMode("points");
     setDraftSpearheadId(null);
+    setDraftBattlepackPreset(null);
   }
 
   function onDraftArmyChange(value: string) {
@@ -379,6 +396,7 @@ export function LibraryScreen() {
       const box = getSpearhead(parsed.spearheadId);
       setDraftMode("spearhead");
       setDraftSpearheadId(parsed.spearheadId);
+      setDraftBattlepackPreset(null);
       setDraftFaction(draftParent);
       setDraftName((current) =>
         current === `My ${previousLabel}`
@@ -387,9 +405,19 @@ export function LibraryScreen() {
       );
       return;
     }
+    if (parsed.kind === "pathToGlory") {
+      const next = getFaction(parsed.factionId) ?? draftFaction ?? draftParent;
+      setDraftMode("pathToGlory");
+      setDraftSpearheadId(null);
+      setDraftBattlepackPreset(parsed.battlepackPreset);
+      setDraftFaction(next);
+      setDraftPoints((current) => (current === 2000 ? 1000 : current));
+      return;
+    }
     const next = getFaction(parsed.factionId) ?? draftParent;
     setDraftMode("points");
     setDraftSpearheadId(null);
+    setDraftBattlepackPreset(null);
     setDraftFaction(next);
     setDraftName((current) =>
       current === `My ${previousLabel}`
@@ -404,6 +432,7 @@ export function LibraryScreen() {
     setDraftName("");
     setDraftMode("points");
     setDraftSpearheadId(null);
+    setDraftBattlepackPreset(null);
   }
 
   const { setLibraryChrome } = useListFlowChrome();
@@ -766,6 +795,7 @@ export function LibraryScreen() {
           draftPoints={draftPoints}
           draftMode={draftMode}
           draftSpearheadId={draftSpearheadId}
+          draftBattlepackPreset={draftBattlepackPreset}
           createCounts={createCounts}
           onClose={closePicker}
           onCreate={onCreate}
@@ -776,6 +806,9 @@ export function LibraryScreen() {
             setDraftFaction(faction);
             setDraftName(`My ${faction.name}`);
             setDraftPoints(faction.pointsCapDefault);
+            setDraftMode("points");
+            setDraftSpearheadId(null);
+            setDraftBattlepackPreset(null);
           }}
           onArmyChange={onDraftArmyChange}
           onBackToFactions={backToFactionPicker}

@@ -17,6 +17,11 @@ import type {
   UnitAbility,
 } from "@/engine/types";
 import { PlayBindNotes, PlayHealthTrack, SlotEnhancements, SlotMoreMenu } from "./RegimentCard";
+import { PathToGloryUnitExtras } from "./PathToGloryUnitExtras";
+import {
+  selectionDisplayName,
+  type PathToGloryBattlepackPreset,
+} from "@/engine/pathToGlory";
 import { RuleText } from "./RuleText";
 import { BuildSlotRow, PlaySlotRow } from "./ios/SheetIconButton";
 
@@ -46,6 +51,9 @@ type Props = {
   onRemove: () => void;
   onPlayHealth?: (selectionId: string, damage: number) => void;
   bindNotes?: CombatModifierNote[];
+  pathToGloryPreset?: PathToGloryBattlepackPreset | null;
+  showBattleWounds?: boolean;
+  onPatchSelection?: (selectionId: string, next: Selection) => void;
 };
 
 export function RegimentOfRenownCard({
@@ -74,6 +82,9 @@ export function RegimentOfRenownCard({
   onRemove,
   onPlayHealth,
   bindNotes,
+  pathToGloryPreset = null,
+  showBattleWounds = false,
+  onPatchSelection,
 }: Props) {
   const pick = list.regimentOfRenown;
   const ror = pick ? getRegimentOfRenown(pick.renownId) : undefined;
@@ -126,6 +137,9 @@ export function RegimentOfRenownCard({
               unit={unit}
               canEnhance={template.canTakeEnhancements}
               playMode={playMode}
+              pathToGloryPreset={pathToGloryPreset}
+              showBattleWounds={showBattleWounds}
+              onPatchSelection={onPatchSelection}
               artefactBearerId={artefactBearerId}
               artefactLabel={artefactLabel}
               artefactAbilities={artefactAbilities}
@@ -165,6 +179,9 @@ function RoRSlotRow({
   unit,
   canEnhance,
   playMode,
+  pathToGloryPreset,
+  showBattleWounds,
+  onPatchSelection,
   artefactBearerId,
   artefactLabel,
   artefactAbilities,
@@ -192,6 +209,9 @@ function RoRSlotRow({
   unit: CatalogueUnit;
   canEnhance: boolean;
   playMode: boolean;
+  pathToGloryPreset?: PathToGloryBattlepackPreset | null;
+  showBattleWounds?: boolean;
+  onPatchSelection?: (selectionId: string, next: Selection) => void;
   artefactBearerId?: string | null;
   artefactLabel?: string;
   artefactAbilities?: UnitAbility[];
@@ -217,6 +237,17 @@ function RoRSlotRow({
 }) {
   const play = selectionPlayState(selection, unit);
   const warning = battleDamagedWarning(unit, play.damage);
+  const displayName = selectionDisplayName(selection, unit);
+  const extras =
+    pathToGloryPreset && !playMode && onPatchSelection ? (
+      <PathToGloryUnitExtras
+        selection={selection}
+        warscrollName={unit.name}
+        preset={pathToGloryPreset}
+        showBattleWounds={Boolean(showBattleWounds)}
+        onChange={(next) => onPatchSelection(next.id, next)}
+      />
+    ) : null;
   const enhancements = (
     <SlotEnhancements
       selectionId={selection.id}
@@ -253,7 +284,7 @@ function RoRSlotRow({
       {playMode ? (
         <>
           <PlaySlotRow
-            name={unit.name}
+            name={displayName}
             subtitle={battleStatLine(unit)}
             sheetLabel={`${unit.name} datasheet`}
             onOpenSheet={() => onOpenDatasheet(unit)}
@@ -278,11 +309,12 @@ function RoRSlotRow({
       ) : (
         <>
           <BuildSlotRow
-            name={unit.name}
+            name={displayName}
             subtitle={battleStatLine(unit)}
             sheetLabel={`${unit.name} datasheet`}
             onOpenSheet={() => onOpenDatasheet(unit)}
           />
+          {extras}
           {enhancements}
         </>
       )}

@@ -189,7 +189,32 @@ export type SpearheadCatalogue = {
   units: CatalogueUnit[];
 };
 
-export type ArmyListKind = "matched" | "spearhead";
+export type ArmyListKind = "matched" | "spearhead" | "pathToGlory";
+
+export type PathToGloryBattlepackPreset =
+  | "ascension"
+  | "ravaged-coast"
+  | "blighted-wilds"
+  | "all";
+
+export type PathToGloryPackId =
+  | "ascension"
+  | "ravaged-coast"
+  | "blighted-wilds";
+
+export type PathToGloryScarSeverity = "critical" | "serious" | "severe";
+
+export type PathToGloryState = {
+  battlepackPreset: PathToGloryBattlepackPreset;
+};
+
+export type PathToGlorySelectionState = {
+  renown: number;
+  pathId: string | null;
+  pathOptionIds: string[];
+  battleWoundId: string | null;
+  scarId: string | null;
+};
 
 export type FactionCatalogue = {
   id: string;
@@ -219,6 +244,10 @@ export type Selection = {
   id: string;
   unitId: string;
   reinforced: boolean;
+  /** Custom name. Empty or omitted uses the warscroll name. */
+  nickname?: string;
+  /** Path to Glory overlay. Independent of Play damage. */
+  pathToGlory?: PathToGlorySelectionState;
   /** Damage taken in Play mode (counts up). Models left are derived. */
   play?: {
     damage: number;
@@ -239,6 +268,7 @@ export type ArmyList = {
   factionId: string;
   kind?: ArmyListKind;
   spearheadId?: string | null;
+  pathToGlory?: PathToGloryState;
   regimentAbilityId?: string | null;
   pointsCap: number;
   formationId: string | null;

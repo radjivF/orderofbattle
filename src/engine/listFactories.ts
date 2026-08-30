@@ -1,4 +1,4 @@
-import type { ArmyList } from "@/engine/types";
+import type { ArmyList, PathToGloryBattlepackPreset } from "@/engine/types";
 import { getFaction } from "@/engine/queries";
 import { getSpearhead } from "@/engine/spearhead";
 import { inferScourgeRealm } from "@/engine/scourgeRealm";
@@ -20,9 +20,21 @@ export function normalizeArmyList(list: ArmyList): ArmyList {
     battleTacticStage: list.battleTacticStage ?? {},
     scourgeRealm,
     lastOpenedAt: list.lastOpenedAt ?? list.updatedAt,
-    kind: list.kind === "spearhead" ? "spearhead" : "matched",
+    kind:
+      list.kind === "spearhead"
+        ? "spearhead"
+        : list.kind === "pathToGlory"
+          ? "pathToGlory"
+          : "matched",
     spearheadId: list.spearheadId ?? null,
     regimentAbilityId: list.regimentAbilityId ?? null,
+    pathToGlory:
+      list.kind === "pathToGlory"
+        ? {
+            battlepackPreset:
+              list.pathToGlory?.battlepackPreset ?? "ascension",
+          }
+        : undefined,
   });
 }
 
@@ -63,6 +75,19 @@ export function blankArmy(
     createdAt: now,
     updatedAt: now,
     lastOpenedAt: now,
+  };
+}
+
+export function blankPathToGlory(
+  factionId: string,
+  battlepackPreset: PathToGloryBattlepackPreset,
+  name?: string,
+  pointsCap?: number,
+): ArmyList {
+  return {
+    ...blankArmy(factionId, name, pointsCap ?? 1000),
+    kind: "pathToGlory",
+    pathToGlory: { battlepackPreset },
   };
 }
 

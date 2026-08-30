@@ -16,6 +16,7 @@ describe("newListArmySelectGroups", () => {
       "Stormcast Eternals",
       "Army of Renown",
       "Spearhead",
+      "Path to Glory",
     ]);
 
     const aorIds = listArmiesOfRenown("stormcast-eternals").map((item) => item.id);
@@ -56,6 +57,36 @@ describe("newList army select values", () => {
     expect(parseNewListArmyValue("stormcast-eternals")).toEqual({
       kind: "matched",
       factionId: "stormcast-eternals",
+    });
+  });
+
+  it("round-trips Path to Glory values onto the chosen army", () => {
+    const encoded = encodeNewListArmyValue({
+      kind: "pathToGlory",
+      factionId: "stormcast-eternals",
+      battlepackPreset: "ravaged-coast",
+    });
+    expect(parseNewListArmyValue(encoded)).toEqual({
+      kind: "pathToGlory",
+      factionId: "stormcast-eternals",
+      battlepackPreset: "ravaged-coast",
+    });
+  });
+
+  it("encodes Path to Glory onto an Army of Renown when that army is selected", () => {
+    const aorId = listArmiesOfRenown("stormcast-eternals")[0]?.id;
+    expect(aorId).toBeTruthy();
+    if (!aorId) return;
+
+    const groups = newListArmySelectGroups("stormcast-eternals", aorId);
+    const pathGroup = groups.find((group) => group.label === "Path to Glory");
+    const ravaged = pathGroup?.options.find((item) =>
+      item.label.startsWith("Ravaged Coast"),
+    );
+    expect(parseNewListArmyValue(ravaged?.value ?? "")).toEqual({
+      kind: "pathToGlory",
+      factionId: aorId,
+      battlepackPreset: "ravaged-coast",
     });
   });
 });

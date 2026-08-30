@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { createId } from "@/lib/id";
-import { blankArmy, blankSpearhead } from "@/lib/storage";
+import { blankArmy, blankPathToGlory, blankSpearhead } from "@/lib/storage";
 import {
   buildPhaseBoards,
   phasesForAbility,
@@ -300,5 +300,56 @@ describe("battle formation points", () => {
 
     expect(withFree).toBe(base);
     expect(withPaid - base).toBe(paid.points);
+  });
+});
+
+describe("path to glory on phase boards", () => {
+  it("uses the unit nickname and lists the Path on the Army board", () => {
+    const faction = getFaction("sylvaneth");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const hero = faction.units.find((unit) => unit.name === "Arch-Revenant");
+    expect(hero).toBeTruthy();
+    if (!hero) return;
+
+    const heroSelectionId = createId();
+    const list = {
+      ...blankPathToGlory(faction.id, "ascension"),
+      regiments: [
+        {
+          id: "reg-1",
+          hero: {
+            id: heroSelectionId,
+            unitId: hero.id,
+            reinforced: false,
+            nickname: "Thalia",
+            pathToGlory: {
+              renown: 5,
+              pathId: "path-of-the-warrior",
+              pathOptionIds: [],
+              battleWoundId: null,
+              scarId: null,
+            },
+          },
+          units: [],
+        },
+      ],
+    };
+
+    const army =
+      buildPhaseBoards(list, faction).find((board) => board.phase.id === "passive") ??
+      null;
+    expect(army).toBeTruthy();
+    if (!army) return;
+
+    expect(
+      army.abilities.some(
+        (row) =>
+          row.selectionId === heroSelectionId &&
+          row.unitName === "Thalia" &&
+          row.ability.name === "Path of the Warrior",
+      ),
+    ).toBe(true);
   });
 });

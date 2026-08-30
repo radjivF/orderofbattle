@@ -1,5 +1,6 @@
-import { getListUnit, getRegimentOfRenown } from "./queries";
+import { getListUnit, getRegimentOfRenown, getSelection } from "./queries";
 import { isSpearheadList } from "./spearhead";
+import { findPath, selectionDisplayName } from "./pathToGlory";
 import { isUniversalCoreAbility, warscrollAbilities } from "./coreRules";
 import type {
   ArmyList,
@@ -357,6 +358,8 @@ export function buildPhaseBoards(
     const abilities = isSpearheadList(list)
       ? warscrollAbilities(entry.unit)
       : entry.unit.abilities;
+    const selection = getSelection(list, entry.selectionId);
+    const unitName = selectionDisplayName(selection, entry.unit);
     for (const ability of abilities) {
       if (omitFromPhaseBoard(ability, isSpearheadList(list))) {
         continue;
@@ -364,17 +367,34 @@ export function buildPhaseBoards(
       for (const phaseId of phasesForAbility(ability)) {
         boards.get(phaseId)?.abilities.push({
           selectionId: entry.selectionId,
-          unitName: entry.unit.name,
+          unitName,
           ability,
         });
       }
+    }
+    const path = findPath(selection?.pathToGlory?.pathId);
+    if (path) {
+      boards.get("passive")?.abilities.push({
+        selectionId: entry.selectionId,
+        unitName,
+        ability: {
+          name: path.name,
+          kind: "passive",
+          timing: "Path to Glory",
+          declare: "",
+          effect: "",
+          keywords: "",
+          castingValue: "",
+          chantingValue: "",
+        },
+      });
     }
     for (const weapon of entry.unit.weapons) {
       const phaseId: PlayPhaseId =
         weapon.kind === "ranged" ? "shooting" : "combat";
       boards.get(phaseId)?.weapons.push({
         selectionId: entry.selectionId,
-        unitName: entry.unit.name,
+        unitName,
         weapon,
       });
     }
@@ -527,25 +547,10 @@ function rosterUnitName(
   faction: FactionCatalogue,
   selectionId: string,
 ): string | null {
-  for (const regiment of list.regiments) {
-    if (regiment.hero?.id === selectionId) {
-      return getListUnit(list, faction, regiment.hero.unitId)?.name ?? null;
-    }
-    for (const slot of regiment.units) {
-      if (slot.id === selectionId) {
-        return getListUnit(list, faction, slot.unitId)?.name ?? null;
-      }
-    }
+  const selection = getSelection(list, selectionId);
+  if (!selection) {
+    return null;
   }
-  for (const slot of list.auxiliaries) {
-    if (slot.id === selectionId) {
-      return getListUnit(list, faction, slot.unitId)?.name ?? null;
-    }
-  }
-  for (const slot of list.regimentOfRenown?.units ?? []) {
-    if (slot.id === selectionId) {
-      return getListUnit(list, faction, slot.unitId)?.name ?? null;
-    }
-  }
-  return null;
+  const unit = getListUnit(list, faction, selection.unitId);
+  return unit ? selectionDisplayName(selection, unit) : null;
 }

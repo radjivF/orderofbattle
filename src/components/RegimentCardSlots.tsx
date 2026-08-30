@@ -10,6 +10,7 @@ import {
   selectionPlayState,
   unitSizeLabel,
 } from "@/engine/queries";
+import { selectionDisplayName } from "@/engine/pathToGlory";
 import type { CombatModifierNote } from "@/engine/magic";
 import type {
   CatalogueUnit,
@@ -379,7 +380,7 @@ export function SlotLine({
     return (
       <div className="w-full rounded-xl bg-parchment-ink/5 px-3 py-2.5">
         <PlaySlotRow
-          name={unit.name}
+          name={selectionDisplayName(selection, unit)}
           subtitle={stats || undefined}
           reinforced={reinforced}
           sheetLabel={`${unit.name} datasheet`}
@@ -408,7 +409,7 @@ export function SlotLine({
 
   return (
     <BuildSlotRow
-      name={unit.name}
+      name={selectionDisplayName(selection, unit)}
       subtitle={
         hidePoints
           ? unitSizeLabel(unit, Boolean(reinforced))

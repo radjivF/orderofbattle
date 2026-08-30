@@ -15,6 +15,7 @@ import type {
   FactionCatalogue,
   Selection,
 } from "./types";
+import { pathToGloryExportBits, selectionDisplayName } from "./pathToGlory";
 import { summarize } from "./validate";
 
 function selectionLine(
@@ -27,13 +28,16 @@ function selectionLine(
   if (!unit) {
     return "- Unknown unit";
   }
+  const display = selectionDisplayName(selection, unit);
   const size = unitSizeLabel(unit, selection.reinforced);
   const reinforced = selection.reinforced ? ", reinforced" : "";
+  const extra = pathToGloryExportBits(selection);
+  const extraText = extra.length > 0 ? ` · ${extra.join(" · ")}` : "";
   if (opts?.omitPoints) {
-    return `- ${unit.name}${reinforced} · ${size}`;
+    return `- ${display}${reinforced} · ${size}${extraText}`;
   }
   const pts = selectionPoints(unit, selection.reinforced);
-  return `- ${unit.name}${reinforced} · ${size} · ${formatPoints(pts)} pts`;
+  return `- ${display}${reinforced} · ${size} · ${formatPoints(pts)} pts${extraText}`;
 }
 
 function bearerName(

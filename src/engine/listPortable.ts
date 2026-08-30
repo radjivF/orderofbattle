@@ -131,6 +131,7 @@ export function listContentKey(list: ArmyList): string {
     factionId: list.factionId,
     kind: list.kind ?? "matched",
     spearheadId: list.spearheadId ?? null,
+    pathToGlory: list.pathToGlory ?? null,
     regimentAbilityId: list.regimentAbilityId ?? null,
     pointsCap: list.pointsCap,
     formationId: list.formationId,
@@ -214,7 +215,7 @@ function unitKey(selection: Selection | null): string | null {
   if (!selection) {
     return null;
   }
-  return `${selection.unitId}:${selection.reinforced ? 1 : 0}`;
+  return `${selection.unitId}:${selection.reinforced ? 1 : 0}:${selection.nickname ?? ""}:${selection.pathToGlory?.pathId ?? ""}:${selection.pathToGlory?.renown ?? 0}:${selection.pathToGlory?.battleWoundId ?? ""}:${selection.pathToGlory?.scarId ?? ""}`;
 }
 
 function selectionUnitKey(list: ArmyList, selectionId: string): string | null {
