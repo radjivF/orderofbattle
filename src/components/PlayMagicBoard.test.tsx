@@ -90,8 +90,9 @@ describe("PlayMagicBoard", () => {
     expect(within(dictatCard).getByText(/on unit/i)).toBeInTheDocument();
 
     const user = userEvent.setup();
-    await user.click(
-      within(dictatCard).getByRole("checkbox", { name: /Prince Vhordrai/i }),
+    await user.selectOptions(
+      within(dictatCard).getByRole("combobox", { name: /on unit/i }),
+      monsterId,
     );
     expect(onBindPower).toHaveBeenCalledWith(
       "spell:The Queen's Dictat",

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { SiteBrandLockup } from "@/components/BrandMark";
-import { HOME_CTA_CLASS, SITE_HEADER_BAR_CLASS, SITE_HEADER_ROW_CLASS } from "@/lib/builderUi";
+import { HOME_CTA_CLASS, SITE_HEADER_BAR_CLASS, SITE_HEADER_ROW_CLASS, SITE_MY_LIST_CTA_LABEL } from "@/lib/builderUi";
 
 const linkClass =
   "text-sigmarite underline decoration-sigmarite/40 underline-offset-2";
@@ -32,7 +32,7 @@ export function ContentDoc({
             href="/dashboard"
             className={`${HOME_CTA_CLASS} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sigmarite`}
           >
-            My lists
+            {SITE_MY_LIST_CTA_LABEL}
           </Link>
         </div>
       </header>

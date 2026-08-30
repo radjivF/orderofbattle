@@ -248,61 +248,15 @@ function PowerCard({
       ) : null}
 
       {rule.role === "target" ? (
-        <>
-          <div className="mt-3 flex flex-col gap-1.5">
-            <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-              {rule.heroesOnly ? "On hero" : "On unit"}
-              {rule.maxTargets > 1
-                ? ` · up to ${rule.maxTargets}`
-                : null}
-            </p>
-            <ul className="flex flex-col gap-1.5">
-              {candidates.map((candidate) => {
-                const checked = selectedTargets.includes(candidate.selectionId);
-                const atCap =
-                  !checked && selectedTargets.length >= rule.maxTargets;
-                return (
-                  <li key={candidate.selectionId}>
-                    <label
-                      className={`flex cursor-pointer items-start gap-2.5 rounded-lg px-2 py-2 hover:bg-parchment-ink/5 ${atCap ? "cursor-not-allowed opacity-50" : ""}`}
-                    >
-                      <input
-                        type="checkbox"
-                        checked={checked}
-                        disabled={atCap}
-                        onChange={() => {
-                          const next = checked
-                            ? selectedTargets.filter(
-                                (id) => id !== candidate.selectionId,
-                              )
-                            : rule.maxTargets === 1
-                              ? [candidate.selectionId]
-                              : [
-                                  ...selectedTargets,
-                                  candidate.selectionId,
-                                ];
-                          onBind(
-                            bindKey,
-                            serializePowerBindTargets(next),
-                          );
-                        }}
-                        className="mt-0.5 size-4 shrink-0 accent-aether"
-                      />
-                      <span className="text-sm leading-relaxed text-parchment-ink">
-                        {bindCandidateLabel(list, candidate, candidates)}
-                      </span>
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          {candidates.length === 0 ? (
-            <p className="mt-1 text-sm text-sheet-muted">
-              No eligible {rule.heroesOnly ? "heroes" : "units"} on this list.
-            </p>
-          ) : null}
-        </>
+        <PowerTargetSelect
+          bindKey={bindKey}
+          candidates={candidates}
+          heroesOnly={rule.heroesOnly}
+          list={list}
+          maxTargets={rule.maxTargets}
+          onBind={onBind}
+          selectedTargets={selectedTargets}
+        />
       ) : null}
 
       {rule.role === "enemy" ? (
@@ -380,6 +334,92 @@ function PowerCard({
         </div>
       ) : null}
     </article>
+  );
+}
+
+const TARGET_SELECT_CLASS =
+  "min-h-10 w-full rounded-lg bg-parchment px-3 font-sans text-sm normal-case tracking-normal text-parchment-ink";
+
+function PowerTargetSelect({
+  bindKey,
+  candidates,
+  heroesOnly,
+  list,
+  maxTargets,
+  onBind,
+  selectedTargets,
+}: {
+  bindKey: string;
+  candidates: BindCandidate[];
+  heroesOnly: boolean;
+  list: ArmyList;
+  maxTargets: number;
+  onBind: (key: string, value: string | null) => void;
+  selectedTargets: string[];
+}) {
+  const targetLabel = heroesOnly ? "On hero" : "On unit";
+  const fieldLabel =
+    maxTargets > 1 ? `${targetLabel} · up to ${maxTargets}` : targetLabel;
+
+  if (candidates.length === 0) {
+    return (
+      <p className="mt-3 text-sm text-sheet-muted">
+        No eligible {heroesOnly ? "heroes" : "units"} on this list.
+      </p>
+    );
+  }
+
+  if (maxTargets === 1) {
+    return (
+      <label className="mt-3 flex flex-col gap-1.5 text-sm font-semibold tracking-wide uppercase text-sheet-muted">
+        {fieldLabel}
+        <select
+          value={selectedTargets[0] ?? ""}
+          onChange={(event) =>
+            onBind(bindKey, event.target.value || null)
+          }
+          className={TARGET_SELECT_CLASS}
+        >
+          <option value="">Choose…</option>
+          {candidates.map((candidate) => (
+            <option
+              key={candidate.selectionId}
+              value={candidate.selectionId}
+            >
+              {bindCandidateLabel(list, candidate, candidates)}
+            </option>
+          ))}
+        </select>
+      </label>
+    );
+  }
+
+  return (
+    <label className="mt-3 flex flex-col gap-1.5 text-sm font-semibold tracking-wide uppercase text-sheet-muted">
+      {fieldLabel}
+      <select
+        multiple
+        value={selectedTargets}
+        size={Math.min(candidates.length, 4)}
+        onChange={(event) => {
+          const next = Array.from(
+            event.target.selectedOptions,
+            (option) => option.value,
+          ).slice(0, maxTargets);
+          onBind(bindKey, serializePowerBindTargets(next));
+        }}
+        className={`${TARGET_SELECT_CLASS} py-2`}
+      >
+        {candidates.map((candidate) => (
+          <option key={candidate.selectionId} value={candidate.selectionId}>
+            {bindCandidateLabel(list, candidate, candidates)}
+          </option>
+        ))}
+      </select>
+      <span className="text-xs font-normal normal-case tracking-normal text-sheet-muted">
+        Pick up to {maxTargets} units.
+      </span>
+    </label>
   );
 }
 

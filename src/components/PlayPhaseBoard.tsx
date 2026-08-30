@@ -16,7 +16,7 @@ import {
   selectionDamage,
   weaponAttacksForDamage,
 } from "@/engine/queries";
-import { IOS_LIQUID_CTA_CLASS, SHEET_PANEL_COMPACT_CLASS, playPhaseShowsCommandTab, playPhaseShowsCoreRulesTab } from "@/lib/builderUi";
+import { IOS_LIQUID_CTA_CLASS, RULE_INFO_BUTTON_CLASS, SHEET_PANEL_COMPACT_CLASS, playPhaseShowsCommandTab, playPhaseShowsCoreRulesTab } from "@/lib/builderUi";
 import { castValueLabel, chantValueLabel } from "@/lib/abilityUi";
 import { isSpearheadList } from "@/engine/spearhead";
 import { coreRulesForPhase } from "@/engine/coreRules";
@@ -37,6 +37,7 @@ import type {
 import { ModalFrame } from "./ModalFrame";
 import { ExpandableRuleCard } from "./ExpandableRuleCard";
 import { IosUnderlineTabs } from "./ios/IosUnderlineTabs";
+import { IosInfoIcon } from "./ios/SheetIconButton";
 
 type PhaseSubTab = "abilities" | "weapons" | "command" | "units" | "rules";
 
@@ -399,35 +400,9 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
                             type="button"
                             onClick={() => setCommandRulesOpen(true)}
                             aria-label="How universal commands work"
-                            className="inline-flex size-11 shrink-0 items-center justify-center rounded-full text-sheet-muted"
+                            className={RULE_INFO_BUTTON_CLASS}
                           >
-                            <svg
-                              viewBox="0 0 20 20"
-                              aria-hidden="true"
-                              className="size-5"
-                            >
-                              <circle
-                                cx="10"
-                                cy="10"
-                                r="8.25"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="1.75"
-                              />
-                              <path
-                                d="M10 9v5"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="1.75"
-                                strokeLinecap="round"
-                              />
-                              <circle
-                                cx="10"
-                                cy="6.25"
-                                r="1.1"
-                                fill="currentColor"
-                              />
-                            </svg>
+                            <IosInfoIcon />
                           </button>
                         </div>
                         <ul className="mt-3 flex flex-col gap-3">

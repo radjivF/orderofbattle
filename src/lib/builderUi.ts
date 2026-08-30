@@ -107,6 +107,13 @@ export const HEADER_DROPS_LINE_CLASS = "mt-0.5 text-[11px] text-ink-muted";
 export const LIST_ISSUE_BANNER_CLASS =
   "flex items-center gap-2 rounded-xl bg-illegal/25 px-4 py-2.5 text-sm font-bold text-illegal-lit ring-1 ring-illegal/40";
 
+/** GHB reminder — auxiliaries are allowed; they affect drops and CP. */
+export const AUXILIARY_RULES_TEXT =
+  "Each auxiliary adds an extra drop and reduces your command points.";
+
+export const RULE_INFO_BUTTON_CLASS =
+  "inline-flex size-11 shrink-0 items-center justify-center rounded-full text-sheet-muted";
+
 export function pointsCapInputClass(variant: "ink" | "parchment"): string {
   const fill =
     variant === "ink"
@@ -195,6 +202,9 @@ export const BUILDER_ADD_ACTION_EMPHASIS_CLASS =
 /** Primary + quiet secondary actions in form sheets (Create / Back, etc.). */
 export const SHEET_FORM_ACTIONS_CLASS =
   "mt-2 flex shrink-0 flex-col gap-3 pt-2";
+
+/** Header CTA on marketing / guide pages — links to /dashboard. */
+export const SITE_MY_LIST_CTA_LABEL = "My list";
 
 /** Soft gold homepage / footer CTAs — not the in-app parchment glass. */
 export const HOME_CTA_CLASS =
