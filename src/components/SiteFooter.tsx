@@ -74,6 +74,9 @@ export function SiteFooter({ showPitch = true }: { showPitch?: boolean }) {
         <Link href="/guides/how-to-build-an-age-of-sigmar-army-list" className={linkClass}>
           How to build a list
         </Link>
+        <Link href="/guides/path-to-glory-age-of-sigmar" className={linkClass}>
+          Path to Glory
+        </Link>
         <Link href="/compare" className={linkClass}>
           Compare builders
         </Link>

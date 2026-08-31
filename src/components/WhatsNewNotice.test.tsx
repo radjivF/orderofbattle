@@ -3,8 +3,8 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { blankArmy } from "@/engine/listFactories";
 import type { ArmyList } from "@/engine/types";
-import { WHATS_NEW_AUTO_DISMISS_MS } from "@/lib/whatsNew";
-import { UPDATES_PATH } from "@/lib/updatesPage";
+import { WHATS_NEW_AUTO_DISMISS_MS, WHATS_NEW_TOAST_COPY } from "@/lib/whatsNew";
+import { newListPath } from "@/lib/newListLink";
 import { act, cleanup, render, screen } from "@/test-utils/render";
 import { WhatsNewNotice } from "./WhatsNewNotice";
 
@@ -57,24 +57,24 @@ describe("WhatsNewNotice", () => {
     expect(screen.queryByRole("status", { name: "What's new" })).toBeNull();
   });
 
-  it("asks a returning user if they want to see the bug fixes", () => {
+  it("asks a returning user if they want to try Path to Glory", () => {
     armyStore.items = [blankArmy("stormcast-eternals", "My army")];
     render(<WhatsNewNotice />);
 
     const notice = screen.getByRole("status", { name: "What's new" });
-    expect(notice).toHaveTextContent("We fixed a few bugs. Want to see?");
+    expect(notice).toHaveTextContent(WHATS_NEW_TOAST_COPY);
     expect(screen.queryByRole("dialog")).toBeNull();
     expect(screen.queryByRole("list")).toBeNull();
   });
 
-  it("sends See to the updates page instead of stuffing the list in the toast", () => {
+  it("sends Try to the new-list sheet instead of stuffing the list in the toast", () => {
     armyStore.items = [blankArmy("stormcast-eternals", "My army")];
     render(<WhatsNewNotice />);
 
     expect(screen.queryByRole("dialog")).toBeNull();
     expect(screen.queryByRole("list")).toBeNull();
-    const see = screen.getByRole("link", { name: "See" });
-    expect(see).toHaveAttribute("href", UPDATES_PATH);
+    const tryLink = screen.getByRole("link", { name: "Try" });
+    expect(tryLink).toHaveAttribute("href", newListPath());
   });
 
   it("goes away after Dismiss and stays gone", async () => {

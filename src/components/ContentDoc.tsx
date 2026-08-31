@@ -13,6 +13,7 @@ type Props = {
   kicker: string;
   title: string;
   updated: string;
+  updatedDateTime?: string;
   children: ReactNode;
   crumbs?: Crumb[];
 };
@@ -21,6 +22,7 @@ export function ContentDoc({
   kicker,
   title,
   updated,
+  updatedDateTime = "2026-08-27",
   children,
   crumbs,
 }: Props) {
@@ -53,7 +55,7 @@ export function ContentDoc({
         </p>
         <h1 className="mt-2 font-serif text-4xl text-parchment">{title}</h1>
         <p className="mt-3 text-sm text-ink-muted">
-          Last updated: <time dateTime="2026-08-27">{updated}</time>
+          Last updated: <time dateTime={updatedDateTime}>{updated}</time>
         </p>
 
         <div className="mt-10 space-y-8 text-base leading-relaxed text-parchment/85 [&_a]:text-sigmarite [&_a]:underline [&_a]:decoration-sigmarite/40 [&_a]:underline-offset-2 [&_a.home-cta]:text-parchment-ink [&_a.home-cta]:no-underline [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:text-parchment [&_h3]:mt-6 [&_h3]:font-serif [&_h3]:text-xl [&_h3]:text-parchment [&_li]:mt-2 [&_ol]:list-decimal [&_ol]:pl-5 [&_table]:w-full [&_table]:text-left [&_table]:text-sm [&_td]:border-t [&_td]:border-sigmarite/20 [&_td]:py-2 [&_td]:pr-3 [&_th]:py-2 [&_th]:pr-3 [&_th]:font-semibold [&_th]:text-parchment [&_ul]:list-disc [&_ul]:pl-5">

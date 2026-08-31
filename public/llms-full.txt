@@ -1,12 +1,12 @@
 # Order of Battle
 
-> Order of Battle is a free unofficial Age of Sigmar 4th edition army builder and table companion. Build lists with regiments and Regiments of Renown, then track wounds, spells, and phase abilities at the table. No account; lists stay on your device.
+> Order of Battle is a free unofficial Age of Sigmar 4th edition army builder and table companion. Build matched-play lists with regiments and Regiments of Renown, or Path to Glory campaign lists, then track wounds, spells, and phase abilities at the table. No account; lists stay on your device.
 
 ## The app
 
 Order of Battle is a browser app for Warhammer Age of Sigmar 4th edition. You can:
 
-1. Build army lists by regiment: heroes, units, reinforcements, battle formations, lores, artefacts, heroic traits, and optional Regiments of Renown.
+1. Build army lists by regiment: heroes, units, reinforcements, battle formations, lores, artefacts, heroic traits, and optional Regiments of Renown. Path to Glory campaign lists add battlepacks, paths, scars, Anvil of Apotheosis, and learned spells.
 2. Play from a phone: track wounds, lasting spells and prayers, and abilities filtered by phase.
 
 It is free. There is no account. Lists sit in the browser on the player's device (IndexedDB). They are not uploaded to Order of Battle servers.
@@ -30,7 +30,8 @@ Each faction has a page at /factions/{id} (for example /factions/stormcast-etern
 3. Set a points limit (2,000 is the usual matched-play default).
 4. Choose a battle formation.
 5. Add a general and regiments. Optionally add a Regiment of Renown.
-6. Open Play mode at the table to track wounds, magic, and phase abilities.
+6. For Path to Glory: pick Path to Glory in Army, tick battlepacks, start at 1,000 points. Details: /guides/path-to-glory-age-of-sigmar
+7. Open Play mode at the table to track wounds, magic, and phase abilities.
 
 Full steps: /guides/how-to-build-an-age-of-sigmar-army-list
 

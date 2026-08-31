@@ -80,7 +80,12 @@ export default function FreeBuilderPage() {
         <p className="mt-3">
           The builder has faction catalogues, battle formations, lores,
           artefacts, heroic traits, regiment options, and Regiments of Renown.
-          Play mode tracks wounds, magic targets, and abilities by phase. If
+          Path to Glory lists add battlepacks, paths, Anvil of Apotheosis, and
+          learned spells.{" "}
+          <Link href="/guides/path-to-glory-age-of-sigmar">
+            Path to Glory guide
+          </Link>
+          . Play mode tracks wounds, magic targets, and abilities by phase. If
           you clear the browser, lists can vanish, so export anything you care
           about.
         </p>

@@ -19,6 +19,10 @@ export const STATIC_PUBLIC_ROUTES: PublicRoute[] = [
     path: "/guides/free-age-of-sigmar-army-builder",
     title: "Free Age of Sigmar army builder",
   },
+  {
+    path: "/guides/path-to-glory-age-of-sigmar",
+    title: "Path to Glory Age of Sigmar army builder",
+  },
   { path: "/factions", title: "Factions" },
   { path: "/compare", title: "Age of Sigmar army builder comparison" },
   {

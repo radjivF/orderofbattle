@@ -46,8 +46,10 @@ describe("shouldShowWhatsNew", () => {
 });
 
 describe("WHATS_NEW_ITEMS", () => {
-  it("lists this release's play-mode ability fix", () => {
-    expect(WHATS_NEW_ITEMS.some((item) => /abilit/i.test(item))).toBe(true);
+  it("lists Path to Glory in this release", () => {
+    expect(WHATS_NEW_ITEMS.some((item) => /path to glory/i.test(item))).toBe(
+      true,
+    );
   });
 });
 

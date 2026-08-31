@@ -39,22 +39,22 @@ export default function ComparePage() {
       <ContentDoc
         kicker="Comparison"
         title="Which Age of Sigmar army builder should you use?"
-        updated="27 August 2026"
+        updated="31 August 2026"
         crumbs={[
           { href: "/", label: "Home" },
           { href: "/compare", label: "Compare" },
         ]}
       >
         <p>
-          Four free Age of Sigmar 4th edition army builders exist: Order of Battle, New Recruit, Listbot, and the official Warhammer app. Order of Battle is a browser builder with Play mode. Play mode tracks wounds on every unit, marks lasting spells and prayers, and filters abilities by phase (hero, movement, shooting, charge, combat, end of turn). No account. Lists stay on your device in IndexedDB. New Recruit is a browser builder with optional cloud sync. It covers many game systems, not just Age of Sigmar. Optional account. Listbot is a text-focused browser builder. No account. Lists in browser storage. The official Warhammer app is Games Workshop&apos;s mobile app. Needs a GW account. Uses official Games Workshop data. All four build regiments, add battle formations, and total points. Pick based on what you need: Play mode, cloud sync, simplicity, or official data.
+          Four free Age of Sigmar 4th edition army builders exist: Order of Battle, New Recruit, Listbot, and the official Warhammer app. Order of Battle is a browser builder with Play mode and Path to Glory campaign lists. Play mode tracks wounds on every unit, marks lasting spells and prayers, and filters abilities by phase (hero, movement, shooting, charge, combat, end of turn). No account. Lists stay on your device in IndexedDB. New Recruit is a browser builder with optional cloud sync. It covers many game systems, not just Age of Sigmar. Optional account. Listbot is a text-focused browser builder. No account. Lists in browser storage. The official Warhammer app is Games Workshop&apos;s mobile app. Needs a GW account. Uses official Games Workshop data. All four build regiments, add battle formations, and total points. Pick based on what you need: Play mode, Path to Glory, cloud sync, simplicity, or official data.
         </p>
 
         <h2>What is Order of Battle?</h2>
         <ul>
           <li>
             <strong>Order of Battle</strong>: This one. Free browser builder with
-            Play mode (wound tracking, lasting spells, phase abilities). No
-            account. Lists stay on your device.
+            Play mode (wound tracking, lasting spells, phase abilities) and Path
+            to Glory campaign lists. No account. Lists stay on your device.
           </li>
           <li>
             <strong>New Recruit</strong> (newrecruit.eu): Browser builder, optional
@@ -120,6 +120,13 @@ export default function ComparePage() {
               <td>Yes</td>
               <td>Yes</td>
               <td>Yes</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>Path to Glory campaign lists</td>
+              <td>Yes (battlepacks, Anvil, learned spells)</td>
+              <td>Yes</td>
+              <td>Check the tool</td>
               <td>Yes</td>
             </tr>
             <tr>
@@ -230,6 +237,10 @@ export default function ComparePage() {
           Walkthrough:{" "}
           <Link href="/guides/how-to-build-an-age-of-sigmar-army-list">
             how to build a list
+          </Link>
+          . Path to Glory:{" "}
+          <Link href="/guides/path-to-glory-age-of-sigmar">
+            campaign lists
           </Link>
           . Overview:{" "}
           <Link href="/guides/free-age-of-sigmar-army-builder">

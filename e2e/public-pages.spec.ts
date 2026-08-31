@@ -25,6 +25,10 @@ const pages: Array<{ path: string; heading: string | RegExp }> = [
     path: "/guides/free-age-of-sigmar-army-builder",
     heading: "Free Age of Sigmar army builder",
   },
+  {
+    path: "/guides/path-to-glory-age-of-sigmar",
+    heading: "Path to Glory army lists in Age of Sigmar",
+  },
   { path: "/privacy", heading: "Privacy policy" },
   { path: "/terms", heading: "Terms of use" },
 ];

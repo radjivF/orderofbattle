@@ -85,6 +85,15 @@ describe("article CTAs", () => {
     expect(page).not.toContain("factionId=");
   });
 
+  it("Path to Glory guide opens the new-list sheet", () => {
+    const page = readFileSync(
+      path.join(here, "../app/guides/path-to-glory-age-of-sigmar/page.tsx"),
+      "utf8",
+    );
+    expect(page).toContain("StartListCta");
+    expect(page).not.toContain("factionId=");
+  });
+
   it("library applies the new-list query on open", () => {
     const screen = readFileSync(
       path.join(here, "../components/LibraryScreen.tsx"),

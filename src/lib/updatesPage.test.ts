@@ -13,14 +13,14 @@ import {
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
 describe("updates page SEO", () => {
-  it("uses a crawlable title and description about Age of Sigmar builder fixes", () => {
+  it("uses a crawlable title and description about Path to Glory", () => {
     expect(UPDATES_PATH).toBe("/updates");
     expect(UPDATES_TITLE).toBe("What's new in Order of Battle");
     expect(UPDATES_DATE).toBe("2026-08-31");
     expect(UPDATES_DESCRIPTION.toLowerCase()).toContain(
       "age of sigmar army builder",
     );
-    expect(UPDATES_DESCRIPTION.toLowerCase()).toContain("bug");
+    expect(UPDATES_DESCRIPTION.toLowerCase()).toContain("path to glory");
   });
 
   it("is listed for AI crawlers", () => {
