@@ -31,6 +31,16 @@ export const GEO_FAQS: GeoFaq[] = [
       "Yes. Open a saved list and switch to Play. Mark wounds on units, lasting spells and prayers, and the abilities for the phase you are in: hero, movement, shooting, charge, combat, end of turn.",
   },
   {
+    question: "What makes Order of Battle Play different from other Age of Sigmar apps?",
+    answer:
+      "Play is organized around the turn, not a frozen copy of the list. You get this phase's abilities, the weapons that fire now, commands, core rules, and a tap into the datasheet. Other list tools often stop at the roster, or show that roster as an uneditable Play screen.",
+  },
+  {
+    question: "Can I see weapons and datasheets during an Age of Sigmar game?",
+    answer:
+      "Yes. Shooting lists ranged weapons. Combat lists melee. Tap a unit for the full datasheet: stats, weapons, abilities. Close it and you are back on the phase.",
+  },
+  {
     question: "Which Age of Sigmar factions can I build in Order of Battle?",
     answer:
       "The factions page lists the 4th edition catalogues in the app, from Stormcast Eternals and Cities of Sigmar through Skaven, Nighthaunt, and the rest. Coverage follows the community BSData project, not an official Games Workshop feed.",

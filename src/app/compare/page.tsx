@@ -7,7 +7,7 @@ import { sitePath } from "@/lib/site";
 
 const title = "Which Age of Sigmar army builder should you use?";
 const description =
-  "Order of Battle, New Recruit, Listbot, and the official Warhammer app. This one adds Play (wounds, lasting spells, phase abilities). New Recruit has cloud sync. Listbot is smaller. The official app needs a GW account.";
+  "Order of Battle, New Recruit, Listbot, and the official Warhammer app. This one organizes Play: phase, weapons, abilities, datasheet. New Recruit has cloud sync. Listbot is smaller. The official app needs a GW account.";
 
 export const metadata: Metadata = {
   title,
@@ -162,6 +162,27 @@ export default function ComparePage() {
               <td>No</td>
             </tr>
             <tr>
+              <td>Weapons for this phase</td>
+              <td>Yes</td>
+              <td>No</td>
+              <td>No</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>Datasheet during the game</td>
+              <td>Yes</td>
+              <td>No</td>
+              <td>No</td>
+              <td>Warscroll lookup</td>
+            </tr>
+            <tr>
+              <td>Battle tactics in Play</td>
+              <td>Yes</td>
+              <td>No</td>
+              <td>No</td>
+              <td>No</td>
+            </tr>
+            <tr>
               <td>Works offline</td>
               <td>Yes (after first load)</td>
               <td>Limited</td>
@@ -187,10 +208,12 @@ export default function ComparePage() {
 
         <h2>When Order of Battle fits</h2>
         <p className="mt-3">
-          Use this if you want the list and the game in one place. Build in the
-          browser, open Play, mark wounds and lasting magic, and filter
-          abilities by phase. Nothing to sign up for. Lists stay on the
-          device; export if you want a backup.
+          Use this if you want the list and the game in one place. Other tools
+          often stop at a roster, or show that roster as a Play screen you
+          cannot change. Play here is organized around the turn: this phase,
+          these weapons, these abilities, the datasheet if you need the whole
+          sheet. Nothing to sign up for. Lists stay on the device; export if
+          you want a backup.
         </p>
         <p>
           Catalogue is community BSData, not Games Workshop. Confirm points

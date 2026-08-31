@@ -31,7 +31,7 @@ const playFeatures = [
   },
   {
     title: "Abilities by phase",
-    body: "Hero, movement, shooting, charge, combat, end of turn. Only what that phase needs.",
+    body: "Hero, movement, shooting, charge, combat, end of turn. Weapons and abilities for that phase, plus the datasheet one tap away.",
   },
 ] as const;
 
@@ -191,8 +191,9 @@ export function TryLanding() {
               <div className="gold-rule mt-4 w-20" aria-hidden="true" />
               <p className="mt-5 text-sm leading-relaxed text-parchment/70 sm:text-base">
                 Open a saved list, tap Play, and keep the army in front of you
-                during the game. Wounds, lasting magic, and the abilities for
-                this phase, without digging through warscrolls between turns.
+                during the game. This phase, these weapons, these abilities, the
+                datasheet if you need it, without digging through warscrolls
+                between turns.
               </p>
             </div>
             <ul className="mt-6 grid gap-3 sm:grid-cols-3 sm:gap-4">

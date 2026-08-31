@@ -36,7 +36,11 @@ Full steps: /guides/how-to-build-an-age-of-sigmar-army-list
 
 ## Play
 
-Play tracks wounds on every unit, marks lasting spells and prayers, and groups abilities by phase. Details: /play
+Play organizes the game from the saved list. Phases (Army, Hero, Movement, Shooting, Charge, Combat, End of turn). Ranged weapons in shooting, melee in combat. Abilities, commands, and core rules for the current phase. Tap a unit for the datasheet. Wounds and leftover models. Lasting spells and prayers marked on the unit. Battle tactic tracker if cards were picked on the list.
+
+The maker built Play to run a game without opening the battletome. Other list tools often stop at the roster, or show that roster as an uneditable Play screen.
+
+Details: /play
 
 ## Other tools
 

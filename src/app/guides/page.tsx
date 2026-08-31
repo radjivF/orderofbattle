@@ -27,6 +27,11 @@ const guides = [
     title: "Free Age of Sigmar army builder",
     body: "Free local builder plus Play during the game, and how that differs from other AoS tools.",
   },
+  {
+    href: "/play",
+    title: "Play: wounds, weapons, phases, datasheet",
+    body: "Why Play exists: organize the turn so you can run a game without opening the book.",
+  },
 ] as const;
 
 export default function GuidesPage() {
@@ -52,8 +57,8 @@ export default function GuidesPage() {
         ]}
       >
         <p>
-          Two pages: how to build a 4th edition list, and what this free
-          builder actually does. No account. Lists stay on your device.
+          How to build a 4th edition list, what this free builder does, and
+          why Play exists. No account. Lists stay on your device.
         </p>
         <ul className="list-none pl-0">
           {guides.map((guide) => (
