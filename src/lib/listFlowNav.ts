@@ -66,6 +66,30 @@ export function listOpenNeedsSplash(listsReady: boolean): boolean {
   return !listsReady;
 }
 
+/** Spinner while the list route is still coming — not a pause to show faction art. */
+export function listFlowPendingRouteSplash(
+  showDetail: boolean,
+  isBuilder: boolean,
+): boolean {
+  return showDetail && !isBuilder;
+}
+
+/** List art sits behind the list. Drop it as soon as we return to My lists. */
+export function listFlowFactionBackdropOnScreen(input: {
+  hasBackdrop: boolean;
+  returningToLibrary: boolean;
+}): boolean {
+  return input.hasBackdrop && !input.returningToLibrary;
+}
+
+/** Keep library art up until list art is actually showing — no dark gap. */
+export function listFlowIndexBackdropRevealed(input: {
+  factionBackdropOnScreen: boolean;
+  returningToLibrary: boolean;
+}): boolean {
+  return input.returningToLibrary || !input.factionBackdropOnScreen;
+}
+
 /** Opening splash covers the incoming list; never show it while sliding back. */
 export function listOpenShowsSplash(input: {
   splashRequested: boolean;

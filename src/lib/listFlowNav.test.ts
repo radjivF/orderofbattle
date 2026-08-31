@@ -10,6 +10,9 @@ import {
   listFlowSkipsPostRouteSlide,
   listFlowTrackClass,
   listFlowWindowScrollY,
+  listFlowFactionBackdropOnScreen,
+  listFlowIndexBackdropRevealed,
+  listFlowPendingRouteSplash,
   listOpenNeedsSplash,
   listOpenShowsSplash,
   listOpenDisplayNameForHeader,
@@ -228,6 +231,54 @@ describe("listOpenNeedsSplash", () => {
   });
 });
 
+describe("listFlowPendingRouteSplash", () => {
+  it("covers the slide only until the list page mounts", () => {
+    expect(listFlowPendingRouteSplash(true, false)).toBe(true);
+    expect(listFlowPendingRouteSplash(true, true)).toBe(false);
+    expect(listFlowPendingRouteSplash(false, false)).toBe(false);
+  });
+});
+
+describe("listFlowFactionBackdropOnScreen", () => {
+  it("does not keep faction art on screen while returning to My lists", () => {
+    expect(
+      listFlowFactionBackdropOnScreen({
+        hasBackdrop: true,
+        returningToLibrary: false,
+      }),
+    ).toBe(true);
+    expect(
+      listFlowFactionBackdropOnScreen({
+        hasBackdrop: true,
+        returningToLibrary: true,
+      }),
+    ).toBe(false);
+  });
+});
+
+describe("listFlowIndexBackdropRevealed", () => {
+  it("keeps library art visible until list art is actually showing", () => {
+    expect(
+      listFlowIndexBackdropRevealed({
+        factionBackdropOnScreen: false,
+        returningToLibrary: false,
+      }),
+    ).toBe(true);
+    expect(
+      listFlowIndexBackdropRevealed({
+        factionBackdropOnScreen: true,
+        returningToLibrary: false,
+      }),
+    ).toBe(false);
+    expect(
+      listFlowIndexBackdropRevealed({
+        factionBackdropOnScreen: true,
+        returningToLibrary: true,
+      }),
+    ).toBe(true);
+  });
+});
+
 describe("listOpenShowsSplash", () => {
   it("covers the incoming list even when armies are already cached", () => {
     expect(
@@ -296,7 +347,12 @@ describe("list flow navigation wiring", () => {
     );
     expect(nav).not.toContain("headerMode");
     expect(nav).not.toContain("setShowDetail(false);");
-    expect(nav).toContain("showFactionBackdrop");
+    expect(nav).toContain("listFlowFactionBackdropOnScreen");
+    expect(nav).toContain("listFlowIndexBackdropRevealed");
+    expect(nav).toContain("listFlowPendingRouteSplash");
+    expect(nav).not.toContain("optimisticBackdrop");
+    expect(nav).not.toContain("LIST_BACKDROP_RETURN_MS");
+    expect(nav).not.toContain("setBackdropExiting");
     expect(nav).toContain("clearListOpenSplash");
     expect(nav).toContain('direction === "instant"');
     expect(nav).toContain("SITE_HEADER_BAR_CLASS");
@@ -305,7 +361,7 @@ describe("list flow navigation wiring", () => {
     expect(nav).not.toContain("ios-push-overlay");
   });
 
-  it("lets the list slide in with its opening splash on the incoming pane", () => {
+  it("lets the list slide in with a loader only until it mounts", () => {
     const builder = readSource("components/BuilderScreen.tsx");
     const nav = readSource("components/IosNavSlide.tsx");
     expect(builder).toContain("listOpenNeedsSplash");
@@ -313,15 +369,15 @@ describe("list flow navigation wiring", () => {
     expect(builder).not.toContain("LIST_OPEN_SPLASH_MS");
     expect(builder).not.toContain("setOpeningSplash(true)");
     expect(builder).not.toContain("splashExiting");
-    expect(nav).toContain("FactionArtLayers");
-    expect(nav).toContain("optimisticBackdrop");
+    expect(nav).not.toContain("optimisticBackdrop");
+    expect(nav).not.toContain("FactionArtLayers");
+    expect(nav).toContain("listFlowPendingRouteSplash");
+    expect(nav).toContain("listFlowFactionBackdropOnScreen");
     expect(nav).toContain("indexBackdropRevealed");
-    expect(nav).toContain("LIST_BACKDROP_RETURN_MS");
-    expect(nav).toContain("LIST_DETAIL_BACKDROP_TRANSITION_CLASS");
-    expect(nav).toContain("factionBackdropRevealed");
+    expect(nav).not.toContain("LIST_BACKDROP_RETURN_MS");
+    expect(nav).not.toContain("factionBackdropRevealed");
     expect(nav).toContain("revealed={indexBackdropRevealed}");
-    expect(nav).toContain("transitionClass={indexBackdropTransitionClass}");
-    expect(nav).not.toMatch(/\{backdrop\}[\s\S]*list-flow-pane/);
+    expect(nav).not.toMatch(/list-flow-pane[\s\S]*\{backdrop\}/);
     expect(nav).toContain("listFlowWindowScrollY");
     expect(nav).toContain("scrollToPane");
     expect(nav).not.toContain("lockPageScroll");
