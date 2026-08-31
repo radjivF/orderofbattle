@@ -4,11 +4,13 @@ import { withSentryConfig } from "@sentry/nextjs";
 const contentSecurityPolicy = [
   "default-src 'self'",
   // Clarity load-balances across https://[a-z].clarity.ms (e.g. h.clarity.ms/collect).
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.clarity.ms https://scripts.clarity.ms https://analytics.ahrefs.com",
-  "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://*.clarity.ms https://c.bing.com",
-  "font-src 'self' data:",
-  "connect-src 'self' https://*.clarity.ms https://scripts.clarity.ms https://c.bing.com https://analytics.ahrefs.com https://*.ingest.sentry.io https://*.ingest.us.sentry.io",
+  // vercel.live: Vercel Toolbar / preview comments (feedback.js).
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.clarity.ms https://scripts.clarity.ms https://analytics.ahrefs.com https://vercel.live",
+  "style-src 'self' 'unsafe-inline' https://vercel.live",
+  "img-src 'self' data: blob: https://*.clarity.ms https://c.bing.com https://vercel.live https://vercel.com",
+  "font-src 'self' data: https://vercel.live https://assets.vercel.com",
+  "connect-src 'self' https://*.clarity.ms https://scripts.clarity.ms https://c.bing.com https://analytics.ahrefs.com https://*.ingest.sentry.io https://*.ingest.us.sentry.io https://vercel.live wss://ws-us3.pusher.com",
+  "frame-src 'self' https://vercel.live",
   "worker-src 'self' blob:",
   "object-src 'none'",
   "base-uri 'self'",
