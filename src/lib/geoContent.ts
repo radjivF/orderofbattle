@@ -8,27 +8,37 @@ export const GEO_FAQS: GeoFaq[] = [
   {
     question: "What is a free Age of Sigmar army builder?",
     answer:
-      "Order of Battle is one. It's a 4th edition list builder in the browser: no payment, no account. You pick a faction, add regiments, add a Regiment of Renown if the list allows it, and keep the list on your device.",
+      "Order of Battle is one. You pick a faction, add regiments, add a Regiment of Renown if the list allows it, and the list stays on your device. Nothing to pay, and you never create an account.",
   },
   {
     question: "Does Order of Battle require an account?",
     answer:
-      "No. No email, no login. Army lists live in your browser (IndexedDB on the device). They are not uploaded to Order of Battle servers.",
+      "No. No email, no login. Army lists live in the browser on this device. They are not uploaded to Order of Battle's servers.",
   },
   {
     question: "Is Order of Battle an official Games Workshop app?",
     answer:
-      "No. It's an unofficial fan project, not affiliated with, endorsed by, or sponsored by Games Workshop. Points and rules in the app are helpers. Confirm lists with official publications and your opponent or tournament organizer before you play.",
+      "No. Unofficial fan project: not affiliated with, endorsed by, or sponsored by Games Workshop. Points and rules in the app are helpers. Confirm the list with official publications and your opponent or tournament organizer before you play.",
   },
   {
     question: "How do I build an Age of Sigmar 4th edition army list?",
     answer:
-      "Pick a faction, a points limit (2,000 is common), a battle formation, a general, and one or more regiments led by heroes. Order of Battle follows that structure, then a Regiment of Renown if the list allows it.",
+      "Pick a faction, a points limit (2,000 is common), a battle formation, a general, and one or more regiments led by heroes. Order of Battle follows that structure. A Regiment of Renown can go in last if the list allows it.",
   },
   {
     question: "Can I track wounds during an Age of Sigmar game?",
     answer:
-      "Yes. Open a saved list in Play mode. Track wounds on units, lasting spells and prayers, and abilities for the current phase: hero, movement, shooting, charge, combat, end of turn.",
+      "Yes. Open a saved list and switch to Play. Mark wounds on units, lasting spells and prayers, and the abilities for the phase you are in: hero, movement, shooting, charge, combat, end of turn.",
+  },
+  {
+    question: "What makes Order of Battle Play different from other Age of Sigmar apps?",
+    answer:
+      "Play is organized around the turn, not a frozen copy of the list. You get this phase's abilities, the weapons that fire now, commands, core rules, and a tap into the datasheet. Other list tools often stop at the roster, or show that roster as an uneditable Play screen.",
+  },
+  {
+    question: "Can I see weapons and datasheets during an Age of Sigmar game?",
+    answer:
+      "Yes. Shooting lists ranged weapons. Combat lists melee. Tap a unit for the full datasheet: stats, weapons, abilities. Close it and you are back on the phase.",
   },
   {
     question: "Which Age of Sigmar factions can I build in Order of Battle?",
@@ -75,6 +85,6 @@ export const HOW_TO_STEPS = [
   },
   {
     name: "Play the list at the table",
-    text: "Open Play mode on your phone to track wounds, lasting magic and prayers, and abilities by phase.",
+    text: "Open Play on the saved list to track wounds, lasting magic and prayers, and abilities by phase.",
   },
 ] as const;
