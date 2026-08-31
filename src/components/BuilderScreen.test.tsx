@@ -109,7 +109,7 @@ vi.mock("./ListFlowShell", () => ({
 vi.mock("@/lib/factionArt", () => ({
   listBackdropArtSrc: () => art.src,
   isBackdropArtReady: () => art.ready,
-  preloadBackdropArt: (...args: unknown[]) => art.preload(...args),
+  preloadBackdropArt: () => art.preload(),
 }));
 
 function pendingArt() {
