@@ -1,5 +1,6 @@
-import { describe, expect, it, vi } from "vitest";
-import { render, screen } from "@/test-utils/render";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import userEvent from "@testing-library/user-event";
+import { cleanup, render, screen } from "@/test-utils/render";
 import { BuilderScreen } from "./BuilderScreen";
 
 const { list } = vi.hoisted(() => {
@@ -99,9 +100,48 @@ vi.mock("@/lib/factionArt", () => ({
 }));
 
 describe("BuilderScreen", () => {
+  beforeEach(() => {
+    cleanup();
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: (query: string) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+        dispatchEvent: () => false,
+      }),
+    });
+  });
+
   it("renders build pane for an existing list", () => {
     render(<BuilderScreen listId={list.id} />);
     expect(screen.getByText("Battle formation")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "+ Regiment" })).toBeInTheDocument();
+  });
+
+  it("opens the hero picker when Add a regiment to begin is tapped", async () => {
+    const user = userEvent.setup();
+
+    render(<BuilderScreen listId={list.id} />);
+    await user.click(
+      screen.getByRole("button", { name: /Add a regiment to begin/i }),
+    );
+
+    expect(
+      screen.getByRole("dialog", { name: "Choose a hero" }),
+    ).toBeInTheDocument();
+  });
+
+  it("still opens the hero picker from + Regiment", async () => {
+    const user = userEvent.setup();
+
+    render(<BuilderScreen listId={list.id} />);
+    await user.click(screen.getByRole("button", { name: "+ Regiment" }));
+
+    expect(
+      screen.getByRole("dialog", { name: "Choose a hero" }),
+    ).toBeInTheDocument();
   });
 });

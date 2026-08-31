@@ -50,6 +50,7 @@ import {
   playPhaseShowsCoreRulesTab,
   datasheetUnitPointsLabel,
   dropCountLabel,
+  listIssueOpensAddRegiment,
   libraryListExportSubtitle,
   libraryListGameLabel,
   pointsCapInputClass,
@@ -262,6 +263,19 @@ describe("list issue banner", () => {
     expect(LIST_ISSUE_BANNER_CLASS).toContain("text-illegal-lit");
     expect(LIST_ISSUE_BANNER_CLASS).not.toContain("font-medium");
     expect(LIST_ISSUE_BANNER_CLASS).not.toMatch(/(?:^|\s)text-illegal(?:\s|$)/);
+  });
+});
+
+describe("listIssueOpensAddRegiment", () => {
+  it("opens the hero picker for the empty-list prompt people tap", () => {
+    expect(listIssueOpensAddRegiment("Add a regiment to begin.")).toBe(true);
+  });
+
+  it("stays inert for other warnings", () => {
+    expect(
+      listIssueOpensAddRegiment("Pick up to 2 battle tactic cards."),
+    ).toBe(false);
+    expect(listIssueOpensAddRegiment("Choose a spell lore.")).toBe(false);
   });
 });
 
