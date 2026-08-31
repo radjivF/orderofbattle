@@ -41,6 +41,12 @@ describe("undefined binding regressions", () => {
     }
   });
 
+  it("does not reference the removed library header cluster class", () => {
+    for (const { rel, source } of sourceFiles()) {
+      expect(source, rel).not.toContain("LIBRARY_HEADER_TITLE_CLUSTER_CLASS");
+    }
+  });
+
   it("imports HOME_CTA_CLASS in every file that uses it", () => {
     for (const { rel, source } of sourceFiles()) {
       if (rel === "lib/builderUi.ts") {
@@ -53,8 +59,22 @@ describe("undefined binding regressions", () => {
     }
   });
 
+  it("imports useListFlowChrome in every file that uses it", () => {
+    for (const { rel, source } of sourceFiles()) {
+      if (rel === "components/ListFlowShell.tsx") {
+        continue;
+      }
+      if (!/\buseListFlowChrome\b/.test(source)) {
+        continue;
+      }
+      expect(hasImport(source, "useListFlowChrome"), rel).toBe(true);
+    }
+  });
+
   it("imports RuleInfoButton instead of relying on a late local definition", () => {
-    const builder = sourceFiles().find((file) => file.rel === "components/BuilderReady.tsx");
+    const builder = sourceFiles().find(
+      (file) => file.rel === "components/BuilderReady.tsx",
+    );
     expect(builder).toBeDefined();
     expect(hasImport(builder!.source, "RuleInfoButton")).toBe(true);
     expect(builder!.source).not.toMatch(/^function RuleInfoButton\(/m);
