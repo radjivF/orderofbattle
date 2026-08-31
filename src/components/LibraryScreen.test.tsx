@@ -1,8 +1,11 @@
-import { describe, expect, it, vi } from "vitest";
-import { render, screen } from "@/test-utils/render";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import userEvent from "@testing-library/user-event";
+import { blankArmy } from "@/engine/listFactories";
+import type { ArmyList } from "@/engine/types";
+import { cleanup, render, screen } from "@/test-utils/render";
 import { LibraryScreen } from "./LibraryScreen";
 
-const lists: never[] = [];
+const armyStore = vi.hoisted(() => ({ items: [] as ArmyList[] }));
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), replace: vi.fn() }),
@@ -35,8 +38,8 @@ vi.mock("@/lib/storage", () => ({
     onStoreChange();
     return () => {};
   },
-  getArmiesSnapshot: () => lists,
-  getArmiesServerSnapshot: () => lists,
+  getArmiesSnapshot: () => armyStore.items,
+  getArmiesServerSnapshot: () => armyStore.items,
   blankArmy: vi.fn(),
   blankSpearhead: vi.fn(),
   deleteArmy: vi.fn(),
@@ -56,13 +59,6 @@ vi.mock("@/lib/listTransition", () => ({
   },
 }));
 
-vi.mock("./ListFlowShell", () => ({
-  useListFlowChrome: () => ({
-    setBuilderChrome: vi.fn(),
-    setLibraryChrome: vi.fn(),
-  }),
-}));
-
 vi.mock("@/lib/librarySort", () => ({
   subscribeLibrarySort: (cb: () => void) => {
     cb();
@@ -74,14 +70,69 @@ vi.mock("@/lib/librarySort", () => ({
   sortLibraryLists: (items: unknown[]) => items,
 }));
 
+async function openExportPicker() {
+  const user = userEvent.setup({ pointerEventsCheck: 0 });
+  await user.click(screen.getByRole("button", { name: "List options" }));
+  await user.click(screen.getByRole("button", { name: "Export" }));
+  return user;
+}
+
 describe("LibraryScreen", () => {
-  it("puts New list beside My lists and keeps the empty-library CTA", () => {
+  beforeEach(() => {
+    cleanup();
+    armyStore.items = [];
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: (query: string) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+        dispatchEvent: () => false,
+      }),
+    });
+  });
+
+  it("puts options left of My lists, New list on the right, and keeps the empty-library CTA", () => {
     render(<LibraryScreen />);
-    expect(screen.getByRole("heading", { name: "My lists" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "New list" })).toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: "List options" })).toBeNull();
-    expect(
-      screen.getByRole("button", { name: "Make your first list" }),
-    ).toBeInTheDocument();
+    const heading = screen.getByRole("heading", { name: "My lists" });
+    const options = screen.getByRole("button", { name: "List options" });
+    const add = screen.getByRole("button", { name: "New list" });
+
+    expect(options.className).not.toContain("ios-liquid-glass");
+    expect(options.compareDocumentPosition(heading) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    );
+    expect(heading.compareDocumentPosition(add) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    );
+    expect(screen.getByRole("button", { name: "Make your first list" }));
+  });
+
+  it("tells you to pick a list when Continue is pressed with none selected", async () => {
+    armyStore.items = [blankArmy("stormcast-eternals", "Test list")];
+    render(<LibraryScreen />);
+    const user = await openExportPicker();
+
+    await user.click(screen.getByRole("button", { name: "Continue" }));
+
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "Select a list to export it.",
+    );
+    expect(screen.queryByRole("heading", { name: "Export list" })).toBeNull();
+  });
+
+  it("clears the empty-selection alert after a list is chosen and Continue proceeds", async () => {
+    armyStore.items = [blankArmy("stormcast-eternals", "Test list")];
+    render(<LibraryScreen />);
+    const user = await openExportPicker();
+
+    await user.click(screen.getByRole("button", { name: "Continue" }));
+    await user.click(screen.getByRole("checkbox", { name: "Export Test list" }));
+    expect(screen.queryByRole("alert")).toBeNull();
+
+    await user.click(screen.getByRole("button", { name: "Continue" }));
+    expect(screen.getByRole("heading", { name: "Export list" }));
   });
 });

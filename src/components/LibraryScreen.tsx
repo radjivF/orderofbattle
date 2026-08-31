@@ -56,6 +56,7 @@ import {
   CONFIRM_SHEET_ACTIONS_CLASS,
   CONFIRM_SHEET_PANEL_CLASS,
   IOS_LIQUID_CTA_CLASS,
+  LIST_ISSUE_BANNER_CLASS,
   LIBRARY_TITLE_CLASS,
   LIBRARY_TITLE_ROW_CLASS,
   SHEET_CHECKLIST_ITEM_CLASS,
@@ -67,9 +68,9 @@ import {
   SHEET_SECONDARY_BUTTON_CLASS,
   SHEET_HEADER_CLASS,
   LIBRARY_OPTIONS_SHEET_PANEL_CLASS,
+  LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS,
   libraryListExportSubtitle,
 } from "@/lib/builderUi";
-import { useListFlowChrome } from "./ListFlowShell";
 import { FactionArtLayers } from "./FactionArtBackground";
 import { LibraryEmptyState } from "./LibraryEmptyState";
 import { LibraryCreateSheet } from "./LibraryCreateSheet";
@@ -80,7 +81,7 @@ import { ListLoadingSplash } from "./ListLoadingSplash";
 import { ModalFrame } from "./ModalFrame";
 import { ConfirmSheetActions } from "./ConfirmSheetActions";
 import { IosSegmentedControl } from "./ios/IosSegmentedControl";
-import { IosNavAddButton } from "./ios/IosNavIconButton";
+import { IosNavAddButton, IosNavOptionsButton } from "./ios/IosNavIconButton";
 import { SiteFooter } from "./SiteFooter";
 
 type LibrarySheetTab = "import" | "export";
@@ -117,6 +118,7 @@ export function LibraryScreen() {
     useState<LibrarySheetTab>("import");
   const [exportPhase, setExportPhase] = useState<ExportPhase>("pick");
   const [exportSelectedIds, setExportSelectedIds] = useState<string[]>([]);
+  const [exportPickError, setExportPickError] = useState<string | null>(null);
   const [exportFormat, setExportFormat] = useState<PortableFormat>("text");
   const [exportCopied, setExportCopied] = useState(false);
   const importInputRef = useRef<HTMLInputElement>(null);
@@ -214,6 +216,7 @@ export function LibraryScreen() {
   function resetExportState() {
     setExportPhase("pick");
     setExportSelectedIds([]);
+    setExportPickError(null);
     setExportFormat("text");
     setExportCopied(false);
   }
@@ -236,6 +239,7 @@ export function LibraryScreen() {
     setImportDraft("");
     setExportPhase("pick");
     setExportSelectedIds([]);
+    setExportPickError(null);
     setExportFormat("text");
     setExportCopied(false);
     setLibrarySheetOpen(true);
@@ -260,6 +264,7 @@ export function LibraryScreen() {
   }
 
   function toggleExportList(listId: string) {
+    setExportPickError(null);
     setExportSelectedIds((current) =>
       current.includes(listId)
         ? current.filter((id) => id !== listId)
@@ -268,13 +273,16 @@ export function LibraryScreen() {
   }
 
   function selectAllForExport() {
+    setExportPickError(null);
     setExportSelectedIds(lists?.map((list) => list.id) ?? []);
   }
 
   function confirmExportSelection() {
     if (!lists || exportSelectedIds.length === 0) {
+      setExportPickError("Select a list to export it.");
       return;
     }
+    setExportPickError(null);
     setExportFormat("text");
     setExportCopied(false);
     setExportPhase("preview");
@@ -402,15 +410,6 @@ export function LibraryScreen() {
     setDraftSpearheadId(null);
   }
 
-  const { setLibraryChrome } = useListFlowChrome();
-
-  useLayoutEffect(() => {
-    setLibraryChrome({
-      openLibraryOptions,
-    });
-    return () => setLibraryChrome(null);
-  }, [setLibraryChrome, openLibraryOptions]);
-
   useEffect(() => {
     if (!createSplash && creating) {
       setCreating(false);
@@ -436,6 +435,10 @@ export function LibraryScreen() {
     <div className="relative z-10 min-h-full text-parchment">
       <div className="mx-auto w-full max-w-3xl px-5 pt-2 pb-3 sm:px-6 lg:max-w-5xl">
         <div className={LIBRARY_TITLE_ROW_CLASS}>
+          <IosNavOptionsButton
+            label="List options"
+            onClick={openLibraryOptions}
+          />
           <h1 className={LIBRARY_TITLE_CLASS}>My lists</h1>
           <IosNavAddButton
             label="New list"
@@ -519,7 +522,11 @@ export function LibraryScreen() {
                 ]}
               />
             </div>
-            <div className="shrink-0 px-5 pb-4">
+            <div
+              role="separator"
+              className={LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS}
+            />
+            <div className="shrink-0 px-5 pb-4 pt-4">
               <IosSegmentedControl
                 ariaLabel="Import or export lists"
                 value={librarySheetTab}
@@ -664,9 +671,13 @@ export function LibraryScreen() {
               </div>
             ) : exportPhase === "pick" ? (
               <div className={MODAL_SHEET_FOOTER_CLASS}>
+                {exportPickError ? (
+                  <p role="alert" className={LIST_ISSUE_BANNER_CLASS}>
+                    {exportPickError}
+                  </p>
+                ) : null}
                 <button
                   type="button"
-                  disabled={exportSelectedIds.length === 0}
                   onClick={confirmExportSelection}
                   className={IOS_LIQUID_CTA_CLASS}
                 >

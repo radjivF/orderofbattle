@@ -132,11 +132,11 @@ export const PLAY_SHEET_LINK_CLASS =
 export const IOS_NAV_ICON_BUTTON_CLASS =
   "ios-liquid-glass pressable inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full text-black";
 
-/** Options in the library nav — icon only, no glass fill. */
+/** Options over library art — translucent ink disc with a gold rim. */
 export const LIBRARY_HEADER_OPTIONS_BUTTON_CLASS =
-  "pressable inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full text-parchment/65";
+  "pressable inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full border border-sigmarite/70 bg-ink/50 text-parchment shadow-[0_2px_12px_rgba(0,0,0,0.4)] backdrop-blur-sm";
 
-/** My lists heading with New list on the trailing edge. */
+/** My lists heading: options leading, New list trailing. */
 export const LIBRARY_TITLE_ROW_CLASS =
   "flex items-center gap-3";
 
@@ -249,6 +249,10 @@ export const LIST_LANDING_CONTENT_HIDDEN_CLASS = "opacity-0";
 export const COOKIE_CONSENT_BANNER_CLASS =
   "pointer-events-none fixed inset-x-0 top-[calc(env(safe-area-inset-top)+3.75rem)] z-40 flex justify-center px-4 pt-2";
 
+/** Bottom toast — does not cover the header or cookie banner. */
+export const WHATS_NEW_BANNER_CLASS =
+  "pointer-events-none fixed inset-x-0 bottom-[calc(env(safe-area-inset-bottom)+1rem)] z-40 flex justify-center px-4 pb-2";
+
 /** Bottom sheet panel — full width on phone, card on sm+. */
 export const SHEET_PANEL_CLASS =
   "parchment-card flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden text-parchment-ink sm:rounded-2xl";
@@ -256,6 +260,10 @@ export const SHEET_PANEL_CLASS =
 /** List options — fixed phone height so Import/Export tabs do not resize the sheet. */
 export const LIBRARY_OPTIONS_SHEET_PANEL_CLASS =
   `${SHEET_PANEL_CLASS} h-[85vh] sm:h-auto sm:min-h-[32rem]`;
+
+/** Rule between sort and Import/Export in list options. */
+export const LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS =
+  "mx-5 border-t border-parchment-ink/20";
 
 export const SHEET_PANEL_COMPACT_CLASS =
   "parchment-card w-full max-w-sm text-parchment-ink sm:rounded-2xl";

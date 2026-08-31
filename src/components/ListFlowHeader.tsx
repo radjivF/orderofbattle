@@ -28,21 +28,13 @@ import {
 import type { BuilderChromeValue } from "./BuilderChrome";
 import type { LibraryChromeValue } from "./LibraryChrome";
 import { useListNav } from "./IosNavSlide";
-import { IosNavBackButton, IosNavOptionsButton } from "./ios/IosNavIconButton";
+import { IosNavBackButton } from "./ios/IosNavIconButton";
 import { SiteBrandLockup } from "./BrandMark";
 
-function LibraryHeaderRow({
-  libraryChrome,
-}: {
-  libraryChrome: LibraryChromeValue | null;
-}) {
+function LibraryHeaderRow() {
   return (
     <div className={SITE_HEADER_ROW_CLASS}>
       <SiteBrandLockup />
-      <IosNavOptionsButton
-        label="List options"
-        onClick={() => libraryChrome?.openLibraryOptions()}
-      />
     </div>
   );
 }
@@ -168,7 +160,6 @@ export function ListFlowHeader({
   mode,
   listId,
   builderChrome,
-  libraryChrome,
 }: {
   mode: "library" | "builder";
   listId: string | null;
@@ -176,7 +167,7 @@ export function ListFlowHeader({
   libraryChrome: LibraryChromeValue | null;
 }) {
   if (mode === "library") {
-    return <LibraryHeaderRow libraryChrome={libraryChrome} />;
+    return <LibraryHeaderRow />;
   }
   return <BuilderHeaderRow chrome={builderChrome} listId={listId} />;
 }
