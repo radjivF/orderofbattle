@@ -71,9 +71,9 @@ export default function FreeBuilderPage() {
 
         <h2>When it fits</h2>
         <p className="mt-3">
-          You want a free AoS list builder without signing up. You want that
-          same list on your phone during the game. Lists stay on the device.
-          This app has no cloud login.
+          You want a free AoS list builder without signing up, and you want that
+          same list next to you during the game. Lists stay on the device. This
+          app has no cloud login.
         </p>
 
         <h2>Build and Play</h2>
@@ -95,8 +95,8 @@ export default function FreeBuilderPage() {
           Some community builders sync to the cloud or cover more games. The
           official Warhammer app uses a Games Workshop account. Wahapedia is a
           rules reference, not a list builder. Order of Battle is the unofficial
-          browser option that keeps lists on your device and runs the game from
-          the phone.
+          browser option that keeps lists on your device and stays with you
+          during the game.
         </p>
         <table>
           <thead>

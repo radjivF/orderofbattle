@@ -50,6 +50,7 @@ import {
   playPhaseShowsCoreRulesTab,
   datasheetUnitPointsLabel,
   dropCountLabel,
+  listIssueOpensAddRegiment,
   libraryListExportSubtitle,
   libraryListGameLabel,
   pointsCapInputClass,
@@ -270,6 +271,19 @@ describe("list issue banner", () => {
   });
 });
 
+describe("listIssueOpensAddRegiment", () => {
+  it("opens the hero picker for the empty-list prompt people tap", () => {
+    expect(listIssueOpensAddRegiment("Add a regiment to begin.")).toBe(true);
+  });
+
+  it("stays inert for other warnings", () => {
+    expect(
+      listIssueOpensAddRegiment("Pick up to 2 battle tactic cards."),
+    ).toBe(false);
+    expect(listIssueOpensAddRegiment("Choose a spell lore.")).toBe(false);
+  });
+});
+
 describe("play-mode sheet link", () => {
   it("sits on the same row as the unit name", () => {
     expect(PLAY_UNIT_NAME_ROW_CLASS).toContain("flex");
@@ -418,9 +432,13 @@ describe("iOS nav controls", () => {
     expect(content).toContain("SiteBrandLockup");
     expect(content).toContain("SITE_HEADER_BAR_CLASS");
     expect(content).toContain("SITE_HEADER_ROW_CLASS");
+    expect(content).toContain("NewListCtaLink");
+    expect(content).not.toContain("HOME_CTA_CLASS");
     expect(legal).toContain("SiteBrandLockup");
     expect(legal).toContain("SITE_HEADER_BAR_CLASS");
     expect(legal).toContain("SITE_HEADER_ROW_CLASS");
+    expect(legal).toContain("NewListCtaLink");
+    expect(legal).not.toContain("HOME_CTA_CLASS");
     expect(landing).toContain("SiteBrandLockup");
     expect(landing).toContain("SITE_HEADER_BAR_CLASS");
     expect(landing).toContain("SITE_HEADER_ROW_CLASS");
@@ -574,6 +592,8 @@ describe("iOS polish contracts", () => {
     expect(css).toContain(".pressable:active");
     expect(css).toContain("cursor: pointer");
     expect(css).toContain("transform: scale(0.97)");
+    expect(css).toContain(".library-card:has(.library-card-open:active)");
+    expect(css).toContain('.library-card[data-opening="true"]');
   });
 
   it("defines bottom sheet animation and grabber", () => {
@@ -638,6 +658,7 @@ describe("iOS polish contracts", () => {
   });
 
   it("uses pressable library cards and rounded-xl points cap", () => {
+    expect(LIBRARY_CARD_CLASS).toContain("library-card");
     expect(LIBRARY_CARD_CLASS).toContain("cursor-pointer");
     expect(LIBRARY_CARD_CLASS).toContain("rounded-2xl");
     expect(LIBRARY_CARD_CLASS).not.toContain("pressable");
@@ -653,8 +674,9 @@ describe("iOS polish contracts", () => {
       ),
       "utf8",
     );
-    expect(libraryCard).toContain("absolute inset-0 z-[1]");
+    expect(libraryCard).toContain("library-card-open absolute inset-0 z-[1]");
     expect(libraryCard).toContain("LIBRARY_CARD_LIST_NAME_INPUT_CLASS");
+    expect(libraryCard).toContain('data-opening={opening ? "true" : undefined}');
     expect(libraryCard).not.toContain('sr-only">Open list');
   });
 

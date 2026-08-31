@@ -283,6 +283,7 @@ function EnhancementRow({
             kind={kind}
             label={label}
             abilities={abilities}
+            onPick={onPick}
           />
         </div>
         <EditLinkButton
@@ -315,18 +316,31 @@ function CollapsibleEnhancement({
   kind,
   label,
   abilities,
+  onPick,
 }: {
   kind: string;
   label: string;
   abilities?: UnitAbility[];
+  onPick?: () => void;
 }) {
   const rules = abilities ?? [];
+  const title = `${kind} · ${label}`;
   if (rules.length === 0) {
-    return (
-      <p className="text-sm text-sheet-muted">
-        {kind} · {label}
-      </p>
-    );
+    if (onPick) {
+      return (
+        <button
+          type="button"
+          className="text-left text-sm text-sheet-muted active:opacity-60"
+          onClick={(event) => {
+            event.stopPropagation();
+            onPick();
+          }}
+        >
+          {title}
+        </button>
+      );
+    }
+    return <p className="text-sm text-sheet-muted">{title}</p>;
   }
 
   const primary = rules[0];
@@ -334,7 +348,7 @@ function CollapsibleEnhancement({
     <div onClick={(event) => event.stopPropagation()}>
       <ExpandableRuleCard
         nested
-        title={`${kind} · ${label}`}
+        title={title}
         timing={primary.timing}
         declare={primary.declare}
         effect={primary.effect}

@@ -14,7 +14,7 @@ import { sitePath } from "@/lib/site";
 
 const title = "How to build an Age of Sigmar army list";
 const description =
-  "How to build a Warhammer Age of Sigmar 4th edition army list for free: pick a faction, set points, choose a formation, add regiments, then play the list on your phone.";
+  "How to build a Warhammer Age of Sigmar 4th edition army list for free: pick a faction, set points, choose a formation, add regiments, then open Play during the game.";
 
 export const metadata: Metadata = {
   title,
@@ -102,9 +102,10 @@ export default function HowToBuildPage() {
 
         <h2>Then play it</h2>
         <p className="mt-3">
-          Open Play mode. Track wounds on each unit, mark lasting spells and
-          prayers, and read abilities for the current phase. Confirm the final
-          list with official points and your opponent or TO before an event.
+          Open Play on the saved list. Track wounds on each unit, mark lasting
+          spells and prayers, and read abilities for the current phase. Confirm
+          the final list with official points and your opponent or TO before an
+          event.
         </p>
         <StartListCta layout="inline" />
         <p>

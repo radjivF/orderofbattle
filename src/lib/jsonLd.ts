@@ -58,7 +58,7 @@ export function softwareApplicationNode() {
       "Regiments and Regiments of Renown",
       "Play mode: wounds, spells, phase abilities",
       "Path to Glory campaign lists",
-      "No account; lists stored on device",
+      "No account; lists stay on the device",
     ],
     publisher: { "@id": `${sitePath("/")}/#organization` },
   };

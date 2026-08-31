@@ -7,7 +7,7 @@ import { sitePath } from "@/lib/site";
 
 const title = "Age of Sigmar army builder guides";
 const description =
-  "Guides for Order of Battle: how to build a free Age of Sigmar 4th edition army list, Path to Glory campaign lists, and what the unofficial builder and Play companion actually do.";
+  "Guides for Order of Battle: how to build a free Age of Sigmar 4th edition army list, Path to Glory campaign lists, and what this unofficial builder actually does.";
 
 export const metadata: Metadata = {
   title,
@@ -20,12 +20,17 @@ const guides = [
   {
     href: "/guides/how-to-build-an-age-of-sigmar-army-list",
     title: "How to build an Age of Sigmar army list",
-    body: "Faction, points, formation, regiments, then Play on your phone.",
+    body: "Faction, points, formation, regiments, then Play during the game.",
   },
   {
     href: "/guides/free-age-of-sigmar-army-builder",
     title: "Free Age of Sigmar army builder",
-    body: "Free local builder plus table companion, and how that differs from other AoS tools.",
+    body: "Free local builder plus Play during the game, and how that differs from other AoS tools.",
+  },
+  {
+    href: "/play",
+    title: "Play: wounds, weapons, phases, datasheet",
+    body: "Why Play exists: organize the turn so you can run a game without opening the book.",
   },
   {
     href: "/guides/path-to-glory-age-of-sigmar",
@@ -58,9 +63,9 @@ export default function GuidesPage() {
         ]}
       >
         <p>
-          How to build a 4th edition list, Path to Glory campaign lists, and
-          what this free builder actually does. No account. Lists stay on your
-          device.
+          How to build a 4th edition list, Path to Glory campaign lists, what
+          this free builder does, and why Play exists. No account. Lists stay
+          on your device.
         </p>
         <ul className="list-none pl-0">
           {guides.map((guide) => (

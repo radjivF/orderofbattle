@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Faction not found" };
   }
   const title = `${faction.name} army builder`;
-  const description = `Build a free ${faction.name} army list for Warhammer Age of Sigmar 4th edition. Unofficial browser builder with regiments, formations, and Play mode. No account; lists stay on your device.`;
+  const description = `Build a free ${faction.name} army list for Warhammer Age of Sigmar 4th edition. Unofficial browser builder with regiments, formations, and Play. No account; lists stay on your device.`;
   return {
     title,
     description,
@@ -112,8 +112,8 @@ export default async function FactionPage({ params }: Props) {
         ) : null}
         <p>
           Build a <strong>{faction.name}</strong> list in the browser, then open
-          Play to track wounds, spells, and phase abilities. No account. Lists
-          stay on your device.
+          Play for wounds, spells, and phase abilities. You don&apos;t need an
+          account; the list stays on this device.
         </p>
         <StartListCta />
 

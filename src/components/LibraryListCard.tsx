@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getFaction } from "@/engine/queries";
@@ -60,15 +61,22 @@ export function LibraryListCard({
   const pathToGlory = isPathToGloryList(list);
   const packIds = pathToGloryPackIds(list);
   const artSrc = catalogueArtSrc(faction);
+  const [opening, setOpening] = useState(false);
 
   return (
-    <article className={LIBRARY_CARD_CLASS}>
+    <article
+      className={LIBRARY_CARD_CLASS}
+      data-opening={opening ? "true" : undefined}
+    >
       <Link
         href={`/lists/${list.id}`}
         scroll={false}
         aria-label={`Open ${list.name}`}
-        onClick={() => rememberOpenList(list)}
-        className="absolute inset-0 z-[1]"
+        onClick={() => {
+          setOpening(true);
+          rememberOpenList(list);
+        }}
+        className="library-card-open absolute inset-0 z-[1]"
       />
       <div className="pointer-events-none relative z-[2] flex min-w-0 flex-col p-4 sm:p-5">
         <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">

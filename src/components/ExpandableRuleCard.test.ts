@@ -6,15 +6,15 @@ import { describe, expect, it } from "vitest";
 const here = path.dirname(fileURLToPath(import.meta.url));
 
 describe("expandable rule cards", () => {
-  it("keeps Effect text out of the summary so collapse hides the body", () => {
+  it("keeps Effect text out of the header so collapse hides the body", () => {
     const card = readFileSync(
       path.join(here, "ExpandableRuleCard.tsx"),
       "utf8",
     );
     expect(card).toContain("RuleText");
-    expect(card).toContain("<summary");
-    expect(card).toContain("cursor-default list-none");
-    expect(card).not.toContain("cursor-pointer list-none");
+    expect(card).toContain('type="button"');
+    expect(card).toContain("aria-expanded");
+    expect(card).not.toContain("<summary");
     expect(card).not.toContain("line-clamp-2");
     expect(card).not.toContain("group-open:hidden");
     expect(card).not.toContain("collapseDetails");

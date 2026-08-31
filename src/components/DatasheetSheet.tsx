@@ -7,6 +7,7 @@ import type {
   CatalogueUnit,
   DatasheetSubject,
   ManifestationModel,
+  RegimentOfRenown,
   UnitAbility,
   UnitWeapon,
 } from "@/engine/types";
@@ -16,6 +17,7 @@ import {
   SHEET_HEADER_START_CLASS,
 } from "@/lib/builderUi";
 import { AbilityMeta } from "./AbilityMeta";
+import { KeywordChips } from "./KeywordChip";
 import { ModalFrame } from "./ModalFrame";
 import { RuleText } from "./RuleText";
 import { SheetCloseButton } from "./ios/SheetIconButton";
@@ -34,7 +36,17 @@ function isUnit(sheet: DatasheetSubject): sheet is CatalogueUnit {
   return "hero" in sheet;
 }
 
+function isRegimentOfRenown(
+  sheet: DatasheetSubject,
+): sheet is RegimentOfRenown {
+  return "factionIds" in sheet;
+}
+
 export function DatasheetSheet({ sheet, hidePoints, onClose }: Props) {
+  if (isRegimentOfRenown(sheet)) {
+    return <RenownDatasheet sheet={sheet} onClose={onClose} />;
+  }
+
   const stats = sheet.stats;
   const ward = isUnit(sheet) ? unitWard(sheet) : "";
   const banishment = isManifestation(sheet) ? sheet.banishment : "";
@@ -87,17 +99,7 @@ export function DatasheetSheet({ sheet, hidePoints, onClose }: Props) {
             {banishment ? <Stat label="Banish" value={banishment} /> : null}
             {ward ? <Stat label="Ward" value={ward} /> : null}
           </dl>
-
-          {sheet.categories.length > 0 ? (
-            <section className="mt-5">
-              <h3 className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-                Keywords
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-parchment-ink/80">
-                {sheet.categories.join(", ")}
-              </p>
-            </section>
-          ) : null}
+          <KeywordChips categories={sheet.categories} />
 
           {ranged.length > 0 ? (
             <WeaponBlock title="Ranged weapons" weapons={ranged} ranged />
@@ -110,6 +112,56 @@ export function DatasheetSheet({ sheet, hidePoints, onClose }: Props) {
             <AbilityBlock abilities={abilities} />
           ) : null}
         </div>
+    </ModalFrame>
+  );
+}
+
+function RenownDatasheet({
+  sheet,
+  onClose,
+}: {
+  sheet: RegimentOfRenown;
+  onClose: () => void;
+}) {
+  const roster = sheet.units
+    .map((unit) => (unit.count > 1 ? `${unit.count}× ${unit.name}` : unit.name))
+    .join(", ");
+  const points = datasheetUnitPointsLabel(sheet.points, false);
+
+  return (
+    <ModalFrame
+      label={`${sheet.name} datasheet`}
+      onClose={onClose}
+      panelClassName={`${SHEET_PANEL_CLASS} bg-parchment shadow-2xl`}
+    >
+      <div className={SHEET_HEADER_START_CLASS}>
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+            <h2 className="min-w-0 font-serif text-2xl leading-tight">
+              {sheet.name}
+            </h2>
+            {points ? (
+              <p className="shrink-0 text-sm text-sigmarite">{points}</p>
+            ) : null}
+          </div>
+        </div>
+        <SheetCloseButton onClick={onClose} />
+      </div>
+      <div className="modal-sheet-scroll overflow-y-auto px-5 pb-8">
+        {roster ? (
+          <section>
+            <h3 className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
+              Units
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-parchment-ink/80">
+              {roster}
+            </p>
+          </section>
+        ) : null}
+        {sheet.abilities.length > 0 ? (
+          <AbilityBlock abilities={sheet.abilities} />
+        ) : null}
+      </div>
     </ModalFrame>
   );
 }
@@ -181,7 +233,7 @@ function WeaponBlock({
   ranged?: boolean;
 }) {
   return (
-    <section className="mt-6">
+    <section className="mt-4">
       <h3 className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
         {title}
       </h3>

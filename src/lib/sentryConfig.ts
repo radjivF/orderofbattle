@@ -1,13 +1,19 @@
 /**
  * Sentry settings — DSN lives in private `SENTRY_DSN` only.
  * Client bundles receive it at build time via next.config `env` (not NEXT_PUBLIC_).
+ * Capture only on Vercel preview (`dev`) and production (`main`), never localhost.
  */
 export function getSentryDsn(): string | undefined {
   return process.env.SENTRY_DSN?.trim() || undefined;
 }
 
 export function isSentryEnabled(): boolean {
-  return Boolean(getSentryDsn());
+  if (!getSentryDsn()) {
+    return false;
+  }
+  const vercelEnv =
+    process.env.NEXT_PUBLIC_VERCEL_ENV ?? process.env.VERCEL_ENV;
+  return vercelEnv === "preview" || vercelEnv === "production";
 }
 
 export function getSentryEnvironment(): string {

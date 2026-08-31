@@ -7,7 +7,7 @@ import { SITE_DESCRIPTION, sitePath } from "@/lib/site";
 
 const title = "About";
 const description =
-  "Order of Battle is a free unofficial Age of Sigmar 4th edition fan project: army builder, table companion, local lists, BSData catalogues, no Games Workshop affiliation.";
+  "Order of Battle is a free unofficial Age of Sigmar 4th edition fan project. Army builder, Play at the table, lists on your device, BSData catalogues. Not affiliated with Games Workshop.";
 
 export const metadata: Metadata = {
   title,
@@ -43,8 +43,8 @@ export default function AboutPage() {
         <h2>The app</h2>
         <p className="mt-3">
           You build Age of Sigmar 4th edition lists by regiment, then open Play
-          to track wounds, lasting spells and prayers, and abilities by phase.
-          Made for the hobby. This app does not sell subscriptions, ads, or
+          for wounds, lasting spells and prayers, and abilities by phase. Hobby
+          helper, not a shop. This app does not sell subscriptions, ads, or
           your lists.
         </p>
 

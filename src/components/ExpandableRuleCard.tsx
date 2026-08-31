@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { RuleText } from "./RuleText";
 
 type Props = {
@@ -24,6 +24,7 @@ export function ExpandableRuleCard({
   trailing,
   nested = false,
 }: Props) {
+  const [open, setOpen] = useState(false);
   const expandable = Boolean(declareText || effect || meta);
   const pad = nested ? "px-2.5 py-2.5" : "px-3 py-3";
   const shell = nested ? "rounded-lg" : "rounded-xl";
@@ -52,8 +53,8 @@ export function ExpandableRuleCard({
       <div className="flex shrink-0 items-center gap-2">
         {trailing}
         {expandable ? (
-          <span className="inline-flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center">
-            <CollapseChevron />
+          <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center">
+            <CollapseChevron open={open} />
           </span>
         ) : null}
       </div>
@@ -69,53 +70,65 @@ export function ExpandableRuleCard({
   }
 
   return (
-    <details
-      className={`group w-full ${shell} bg-parchment-ink/5 open:bg-parchment-ink/[0.07]`}
+    <div
+      className={`w-full ${shell} bg-parchment-ink/5 ${open ? "bg-parchment-ink/[0.07]" : ""}`}
     >
-      <summary
-        className={`cursor-default list-none ${pad} [&::-webkit-details-marker]:hidden`}
+      <button
+        type="button"
+        aria-expanded={open}
+        className={`w-full ${pad} text-left active:opacity-80`}
+        onClick={() => setOpen((value) => !value)}
       >
         {header}
-      </summary>
-      <div
-        className={`border-t border-parchment-ink/10 ${nested ? "px-2.5" : "px-3"} pb-3 pt-2`}
-      >
-        {meta ? (
-          <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-            {meta}
-          </p>
-        ) : null}
-        {declareText ? (
-          <RuleText
-            text={declareText}
-            label="Declare · "
-            className="mt-2 text-sm"
-          />
-        ) : null}
-        {effect ? (
-          <RuleText
-            text={effect}
-            label="Effect · "
-            className={declareText ? "mt-1 text-sm" : "mt-2 text-sm"}
-          />
-        ) : null}
-      </div>
-    </details>
+      </button>
+      {open ? (
+        <div
+          className={`border-t border-parchment-ink/10 ${nested ? "px-2.5" : "px-3"} pb-3 pt-2`}
+        >
+          {meta ? (
+            <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
+              {meta}
+            </p>
+          ) : null}
+          {declareText ? (
+            <RuleText
+              text={declareText}
+              label="Declare · "
+              className="mt-2 text-sm"
+            />
+          ) : null}
+          {effect ? (
+            <RuleText
+              text={effect}
+              label="Effect · "
+              className={declareText ? "mt-1 text-sm" : "mt-2 text-sm"}
+            />
+          ) : null}
+        </div>
+      ) : null}
+    </div>
   );
 }
 
-export function CollapseChevron({ turned }: { turned?: boolean } = {}) {
+export function CollapseChevron({
+  open,
+  turned,
+}: {
+  open?: boolean;
+  turned?: boolean;
+} = {}) {
+  const state = open ?? turned;
   const rotate =
-    turned === true
+    state === true
       ? "rotate-180"
-      : turned === false
+      : state === false
         ? ""
         : "group-open:rotate-180";
   return (
     <svg
       viewBox="0 0 20 20"
       aria-hidden="true"
-      className={`h-5 w-5 shrink-0 text-sheet-muted transition-transform duration-200 ${rotate}`}
+      className={`h-4 w-4 shrink-0 text-sheet-muted transition-transform duration-200 ${rotate}`}
     >
       <path
         d="M5 8l5 5 5-5"

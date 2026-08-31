@@ -11,6 +11,7 @@ import {
 import type {
   ArmyList,
   CatalogueUnit,
+  DatasheetSubject,
   Selection,
   SpecialEnhancementPick,
   SpecialEnhancementTable,
@@ -22,8 +23,7 @@ import {
   selectionDisplayName,
   type PathToGloryPackId,
 } from "@/engine/pathToGlory";
-import { RuleText } from "./RuleText";
-import { BuildSlotRow, PlaySlotRow } from "./ios/SheetIconButton";
+import { BuildSlotRow, PlaySlotRow, SheetLinkButton } from "./ios/SheetIconButton";
 
 type Props = {
   list: ArmyList;
@@ -47,7 +47,7 @@ type Props = {
   specialTables?: SpecialEnhancementTable[];
   specialEnhancementPicks?: SpecialEnhancementPick[];
   onPickSpecial?: (tableId: string, selectionId: string) => void;
-  onOpenDatasheet: (unit: CatalogueUnit) => void;
+  onOpenDatasheet: (sheet: DatasheetSubject) => void;
   onRemove: () => void;
   onPlayHealth?: (selectionId: string, damage: number) => void;
   bindNotes?: CombatModifierNote[];
@@ -95,33 +95,21 @@ export function RegimentOfRenownCard({
   return (
     <article className="rounded-2xl bg-parchment p-5 text-parchment-ink shadow-sm">
       <header className="mb-4 flex items-start justify-between gap-3">
-        <div>
+        <div className="min-w-0 flex-1">
           <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
             Regiment of Renown
           </p>
           <h2 className="font-serif text-2xl leading-tight">{ror.name}</h2>
           <p className="mt-0.5 text-sm text-sigmarite">{ror.points} pts</p>
         </div>
-        {!playMode ? <SlotMoreMenu onRemove={onRemove} /> : null}
+        <div className="flex shrink-0 items-start gap-1">
+          <SheetLinkButton
+            label={`${ror.name} datasheet`}
+            onClick={() => onOpenDatasheet(ror)}
+          />
+          {!playMode ? <SlotMoreMenu onRemove={onRemove} /> : null}
+        </div>
       </header>
-
-      {ror.abilities.length > 0 ? (
-        <ul className="mb-4 space-y-2 border-b border-parchment-ink/10 pb-4">
-          {ror.abilities.map((ability) => (
-            <li key={ability.name} className="text-sm text-parchment-ink/75">
-              <p className="font-serif text-base text-parchment-ink">
-                {ability.name}
-              </p>
-              {ability.timing ? (
-                <p className="text-xs text-sheet-muted">{ability.timing}</p>
-              ) : null}
-              {ability.effect ? (
-                <RuleText text={ability.effect} className="mt-1 text-sm" />
-              ) : null}
-            </li>
-          ))}
-        </ul>
-      ) : null}
 
       <ul className="flex flex-col gap-3">
         {pick.units.map((slot) => {
@@ -163,7 +151,7 @@ export function RegimentOfRenownCard({
                   ? (tableId) => onPickSpecial(tableId, slot.id)
                   : undefined
               }
-              onOpenDatasheet={onOpenDatasheet}
+              onOpenDatasheet={(unit) => onOpenDatasheet(unit)}
               onPlayHealth={onPlayHealth}
               bindNotes={bindNotes}
             />

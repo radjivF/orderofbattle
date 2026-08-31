@@ -27,7 +27,7 @@ export const STATIC_PUBLIC_ROUTES: PublicRoute[] = [
   { path: "/compare", title: "Age of Sigmar army builder comparison" },
   {
     path: "/play",
-    title: "Age of Sigmar wound tracker and table companion",
+    title: "Play: wounds, spells, and phases",
   },
   { path: "/privacy", title: "Privacy policy" },
   { path: "/terms", title: "Terms of use" },

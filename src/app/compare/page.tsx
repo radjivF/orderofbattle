@@ -7,7 +7,7 @@ import { sitePath } from "@/lib/site";
 
 const title = "Which Age of Sigmar army builder should you use?";
 const description =
-  "Order of Battle, New Recruit, Listbot, and the official Warhammer app compared. Order of Battle adds Play mode (wound tracking, lasting spells, phase abilities). New Recruit has cloud sync. Listbot is simplest. Official app needs a GW account.";
+  "Order of Battle, New Recruit, Listbot, and the official Warhammer app. This one organizes Play: phase, weapons, abilities, datasheet. New Recruit has cloud sync. Listbot is smaller. The official app needs a GW account.";
 
 export const metadata: Metadata = {
   title,
@@ -46,15 +46,28 @@ export default function ComparePage() {
         ]}
       >
         <p>
-          Four free Age of Sigmar 4th edition army builders exist: Order of Battle, New Recruit, Listbot, and the official Warhammer app. Order of Battle is a browser builder with Play mode and Path to Glory campaign lists. Play mode tracks wounds on every unit, marks lasting spells and prayers, and filters abilities by phase (hero, movement, shooting, charge, combat, end of turn). No account. Lists stay on your device in IndexedDB. New Recruit is a browser builder with optional cloud sync. It covers many game systems, not just Age of Sigmar. Optional account. Listbot is a text-focused browser builder. No account. Lists in browser storage. The official Warhammer app is Games Workshop&apos;s mobile app. Needs a GW account. Uses official Games Workshop data. All four build regiments, add battle formations, and total points. Pick based on what you need: Play mode, Path to Glory, cloud sync, simplicity, or official data.
+          A few free 4th edition list tools exist: this one, New Recruit,
+          Listbot, and Games Workshop&apos;s official app. They all do
+          regiments, formations, and points. The difference is what happens
+          after the list is done.
+        </p>
+        <p>
+          Order of Battle stays with you during the game. Play marks wounds,
+          lasting spells and prayers, and the abilities for the current phase.
+          Path to Glory campaign lists sit next to matched play. No account.
+          Lists stay on this device. New Recruit is a browser
+          builder with optional cloud sync, and it covers many game systems.
+          Listbot is a small text-first builder. The official app is Games
+          Workshop&apos;s, needs a GW account, and uses their data.
         </p>
 
-        <h2>What is Order of Battle?</h2>
+        <h2>The four builders</h2>
         <ul>
           <li>
             <strong>Order of Battle</strong>: This one. Free browser builder with
-            Play mode (wound tracking, lasting spells, phase abilities) and Path
-            to Glory campaign lists. No account. Lists stay on your device.
+            Play mode (wounds, lasting spells, phase abilities) and Path to
+            Glory campaign lists. You don&apos;t
+            need an account; lists stay on your device.
           </li>
           <li>
             <strong>New Recruit</strong> (newrecruit.eu): Browser builder, optional
@@ -70,12 +83,12 @@ export default function ComparePage() {
           </li>
         </ul>
         <p>
-          All four work. Order of Battle adds Play mode. New Recruit and the
-          official app have cloud sync. Listbot is the simplest. Pick what you
-          need.
+          All four work. Order of Battle is the one with Play. New Recruit and
+          the official app sync to the cloud. Listbot is the smallest. Pick
+          what you actually need.
         </p>
 
-        <h2>Which Age of Sigmar builder has wound tracking?</h2>
+        <h2>Who tracks wounds?</h2>
         <table>
           <thead>
             <tr>
@@ -103,7 +116,7 @@ export default function ComparePage() {
             </tr>
             <tr>
               <td>List storage</td>
-              <td>Device (IndexedDB)</td>
+              <td>On this device</td>
               <td>Cloud or local</td>
               <td>Device</td>
               <td>Cloud (GW account)</td>
@@ -130,7 +143,7 @@ export default function ComparePage() {
               <td>Yes</td>
             </tr>
             <tr>
-              <td>Play mode / table companion</td>
+              <td>Play (wounds, spells, phases)</td>
               <td>Yes (wounds, spells, phases)</td>
               <td>No</td>
               <td>No</td>
@@ -158,6 +171,27 @@ export default function ComparePage() {
               <td>No</td>
             </tr>
             <tr>
+              <td>Weapons for this phase</td>
+              <td>Yes</td>
+              <td>No</td>
+              <td>No</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>Datasheet during the game</td>
+              <td>Yes</td>
+              <td>No</td>
+              <td>No</td>
+              <td>Warscroll lookup</td>
+            </tr>
+            <tr>
+              <td>Battle tactics in Play</td>
+              <td>Yes</td>
+              <td>No</td>
+              <td>No</td>
+              <td>No</td>
+            </tr>
+            <tr>
               <td>Works offline</td>
               <td>Yes (after first load)</td>
               <td>Limited</td>
@@ -172,7 +206,7 @@ export default function ComparePage() {
               <td>All Warhammer</td>
             </tr>
             <tr>
-              <td>Phone interface</td>
+              <td>Small screen</td>
               <td>Yes (Play mode)</td>
               <td>Yes</td>
               <td>Basic</td>
@@ -181,45 +215,45 @@ export default function ComparePage() {
           </tbody>
         </table>
 
-        <h2>When should you use Order of Battle?</h2>
+        <h2>When Order of Battle fits</h2>
         <p className="mt-3">
-          Use Order of Battle if you want Play mode. Build the list in the browser,
-          then open Play to track wounds, mark lasting spells and prayers, and
-          filter abilities by phase. No account. Lists stay on your device in
-          IndexedDB. Export if you want a backup.
+          Use this if you want the list and the game in one place. Other tools
+          often stop at a roster, or show that roster as a Play screen you
+          cannot change. Play here is organized around the turn: this phase,
+          these weapons, these abilities, the datasheet if you need the whole
+          sheet. Nothing to sign up for. Lists stay on the device; export if
+          you want a backup.
         </p>
         <p>
-          Catalogue is community BSData, not Games Workshop. Confirm points with
-          your opponent or TO before you play.
+          Catalogue is community BSData, not Games Workshop. Confirm points
+          with your opponent or TO before you play.
         </p>
 
-        <h2>When should you use New Recruit?</h2>
+        <h2>When New Recruit fits</h2>
         <p className="mt-3">
-          Use New Recruit if you need cloud sync or if you play multiple game
-          systems. Browser builder with optional cloud sync. Covers many systems,
-          not just Age of Sigmar. Optional account. If you need lists across
-          devices, New Recruit does that.
+          New Recruit if you play several game systems, or you want the same
+          lists on more than one device. Browser builder, optional cloud,
+          optional account.
         </p>
 
-        <h2>When should you use Listbot?</h2>
+        <h2>When Listbot fits</h2>
         <p className="mt-3">
-          Use Listbot if you want the simplest interface. Text-focused builder in
-          the browser. No account, no frills. If you want minimal interface and no
-          Play features, Listbot works.
+          Listbot if you want a small text-first builder and nothing else. No
+          account, no Play features.
         </p>
 
-        <h2>When should you use the official Warhammer app?</h2>
+        <h2>When the official app fits</h2>
         <p className="mt-3">
-          Use the official app if you have a GW account and want official Games
-          Workshop data. Most accurate points and rules. Integrates with other GW
-          services. Covers all Warhammer systems.
+          The official app if you already have a GW account and want their
+          data. Closest to published points and rules, and it covers the rest
+          of Warhammer too.
         </p>
 
-        <h2>Is Wahapedia an Age of Sigmar army builder?</h2>
+        <h2>Is Wahapedia a builder?</h2>
         <p className="mt-3">
-          No. Wahapedia is a rules reference, not a builder. Good for looking up
-          warscrolls and abilities. You cannot build or export lists. Use it
-          alongside any of the builders.
+          No. Wahapedia is a rules reference. Good for looking up warscrolls
+          and abilities. You cannot build or export lists there. Use it next
+          to any of the builders.
         </p>
 
         <h2>Start here</h2>
