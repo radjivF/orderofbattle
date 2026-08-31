@@ -18,6 +18,7 @@ import {
   enhancementLabel,
   formationLabel,
   getListUnit,
+  getRegimentOfRenown,
   getUnit,
   listRegimentsOfRenown,
   resolveGeneralRegimentId,
@@ -47,6 +48,7 @@ import {
   CONFIRM_SHEET_PANEL_CLASS,
   LIST_ISSUE_BANNER_CLASS,
   builderPlayTabs,
+  listIssueOpensAddRegiment,
 } from "@/lib/builderUi";
 import { createId } from "@/lib/id";
 import { appendRegimentWithHero, saveArmy } from "@/lib/storage";
@@ -488,13 +490,21 @@ export function BuilderReady({
           />
         ) : null}
         {!forPlayMode && issue.tone !== "ok" ? (
-          <p
-            className={LIST_ISSUE_BANNER_CLASS}
-            role="status"
-          >
-            <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-illegal" />
-            <span>{issue.text}</span>
-          </p>
+          listIssueOpensAddRegiment(issue.text) ? (
+            <button
+              type="button"
+              className={`${LIST_ISSUE_BANNER_CLASS} pressable w-full cursor-pointer text-left`}
+              onClick={() => openNewRegimentHeroPicker()}
+            >
+              <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-illegal" />
+              <span>{issue.text}</span>
+            </button>
+          ) : (
+            <p className={LIST_ISSUE_BANNER_CLASS} role="status">
+              <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-illegal" />
+              <span>{issue.text}</span>
+            </p>
+          )
         ) : null}
         {!forPlayMode && spearhead ? (
           <SpearheadPicks
@@ -1511,6 +1521,12 @@ export function BuilderReady({
               regimentOfRenown: next,
             });
             setPicker(null);
+          }}
+          onOpenDatasheet={(option) => {
+            const ror = getRegimentOfRenown(option.id);
+            if (ror) {
+              setDatasheet(ror);
+            }
           }}
           onClose={() => setPicker(null)}
         />

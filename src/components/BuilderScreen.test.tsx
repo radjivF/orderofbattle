@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import userEvent from "@testing-library/user-event";
 import { act, cleanup, render, screen } from "@/test-utils/render";
 import {
   LIST_LANDING_CONTENT_HIDDEN_CLASS,
@@ -193,5 +194,29 @@ describe("BuilderScreen", () => {
 
     expect(landing()).toHaveClass(LIST_LANDING_CONTENT_VISIBLE_CLASS);
     expect(landing()).not.toHaveClass(LIST_LANDING_CONTENT_HIDDEN_CLASS);
+  });
+
+  it("opens the hero picker when Add a regiment to begin is tapped", async () => {
+    const user = userEvent.setup();
+
+    render(<BuilderScreen listId={list.id} />);
+    await user.click(
+      screen.getByRole("button", { name: /Add a regiment to begin/i }),
+    );
+
+    expect(
+      screen.getByRole("dialog", { name: "Choose a hero" }),
+    ).toBeInTheDocument();
+  });
+
+  it("still opens the hero picker from + Regiment", async () => {
+    const user = userEvent.setup();
+
+    render(<BuilderScreen listId={list.id} />);
+    await user.click(screen.getByRole("button", { name: "+ Regiment" }));
+
+    expect(
+      screen.getByRole("dialog", { name: "Choose a hero" }),
+    ).toBeInTheDocument();
   });
 });
