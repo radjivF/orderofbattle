@@ -1,10 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
-import { act, cleanup, render, screen } from "@/test-utils/render";
+import { cleanup, render, screen } from "@/test-utils/render";
 import {
   LIST_LANDING_CONTENT_HIDDEN_CLASS,
   LIST_LANDING_CONTENT_VISIBLE_CLASS,
-  LIST_OPEN_SPLASH_MS,
 } from "@/lib/builderUi";
 import { BuilderScreen } from "./BuilderScreen";
 
@@ -179,18 +178,12 @@ describe("BuilderScreen", () => {
     expect(landing()).toHaveClass(LIST_LANDING_CONTENT_VISIBLE_CLASS);
   });
 
-  it("hides the opening splash after the minimum time even if art is still loading", async () => {
+  it("shows the list as soon as it is mounted, without a splash pause", () => {
     pendingArt();
     listOpen.skipSplash = false;
     listOpen.splashRequested = true;
-    vi.useFakeTimers();
 
     render(<BuilderScreen listId={list.id} />);
-    expect(landing()).toHaveClass(LIST_LANDING_CONTENT_HIDDEN_CLASS);
-
-    await act(async () => {
-      await vi.advanceTimersByTimeAsync(LIST_OPEN_SPLASH_MS);
-    });
 
     expect(landing()).toHaveClass(LIST_LANDING_CONTENT_VISIBLE_CLASS);
     expect(landing()).not.toHaveClass(LIST_LANDING_CONTENT_HIDDEN_CLASS);

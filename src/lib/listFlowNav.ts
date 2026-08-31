@@ -61,6 +61,11 @@ export function listFlowTrackClass(
   return parts.join(" ");
 }
 
+/** Splash only while list data is missing — never a timed pause. */
+export function listOpenNeedsSplash(listsReady: boolean): boolean {
+  return !listsReady;
+}
+
 /** Opening splash covers the incoming list; never show it while sliding back. */
 export function listOpenShowsSplash(input: {
   splashRequested: boolean;

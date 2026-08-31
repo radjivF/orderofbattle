@@ -19,6 +19,7 @@ import {
   LIST_DETAIL_BACKDROP_TRANSITION_CLASS,
   LIST_LANDING_CONTENT_HIDDEN_CLASS,
   LIST_LANDING_CONTENT_VISIBLE_CLASS,
+  LIST_PANE_ART_CLASS,
   SITE_HEADER_BAR_CLASS,
 } from "@/lib/builderUi";
 import {
@@ -34,9 +35,11 @@ import {
   peekListNavigationDirection,
   peekListOpenDisplayName,
   peekListOpenFactionId,
+  peekListOpenScourgeRealm,
   rememberListNavigation,
 } from "@/lib/listTransition";
 import { getFaction } from "@/engine/queries";
+import { FactionArtLayers } from "./FactionArtBackground";
 import { IndexBackdropLayer } from "./IndexBackdrop";
 import { ListLoadingSplash } from "./ListLoadingSplash";
 
@@ -288,14 +291,26 @@ export function ListNavProvider({
   const pendingSplashName = openFactionId
     ? getFaction(openFactionId)?.name
     : peekListOpenDisplayName();
-  const showFactionBackdrop = isBuilder && Boolean(backdrop);
+  const optimisticBackdrop =
+    showDetail && openFactionId ? (
+      <div className={LIST_PANE_ART_CLASS} aria-hidden="true">
+        <FactionArtLayers
+          factionId={openFactionId}
+          scourgeRealm={peekListOpenScourgeRealm()}
+          scrim
+        />
+      </div>
+    ) : null;
+  const showFactionBackdrop = Boolean(backdrop) || Boolean(optimisticBackdrop);
   const indexBackdropRevealed =
     !showFactionBackdrop || animatingBack || backdropExiting;
-  const factionBackdropLayer = showFactionBackdrop
+  const factionBackdropLayer = backdrop
     ? backdrop
-    : backdropExiting
-      ? cachedBackdrop
-      : null;
+    : optimisticBackdrop
+      ? optimisticBackdrop
+      : backdropExiting
+        ? cachedBackdrop
+        : null;
   const factionBackdropFadingOut = animatingBack || backdropExiting;
   const indexBackdropTransitionClass =
     showFactionBackdrop && !factionBackdropFadingOut
@@ -310,11 +325,7 @@ export function ListNavProvider({
       setFactionBackdropRevealed(false);
       return;
     }
-    setFactionBackdropRevealed(false);
-    const raf = window.requestAnimationFrame(() => {
-      setFactionBackdropRevealed(true);
-    });
-    return () => window.cancelAnimationFrame(raf);
+    setFactionBackdropRevealed(true);
   }, [factionBackdropFadingOut, factionBackdropLayer]);
 
   return (
@@ -342,7 +353,11 @@ export function ListNavProvider({
             {factionBackdropLayer}
           </div>
         ) : null}
-        {isBuilder && overlay ? (
+        {showDetail && !isBuilder ? (
+          <div className="pointer-events-none fixed inset-0 z-[30]">
+            <ListLoadingSplash factionName={pendingSplashName} />
+          </div>
+        ) : isBuilder && overlay ? (
           <div className="pointer-events-none fixed inset-0 z-[30]">{overlay}</div>
         ) : null}
         <div className="relative z-10 overflow-x-hidden overflow-y-visible">
@@ -355,11 +370,7 @@ export function ListNavProvider({
               aria-hidden={!showDetail && !isBuilder}
             >
               <div className={`relative z-10 ${LIST_FLOW_HEADER_OFFSET_CLASS}`}>
-                {isBuilder ? (
-                  children
-                ) : showDetail ? (
-                  <ListLoadingSplash factionName={pendingSplashName} />
-                ) : null}
+                {isBuilder ? children : null}
               </div>
             </div>
           </div>

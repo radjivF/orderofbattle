@@ -10,6 +10,7 @@ import {
   listFlowSkipsPostRouteSlide,
   listFlowTrackClass,
   listFlowWindowScrollY,
+  listOpenNeedsSplash,
   listOpenShowsSplash,
   listOpenDisplayNameForHeader,
   listOpenSplashFactionName,
@@ -220,6 +221,13 @@ describe("listFlowTrackClass", () => {
   });
 });
 
+describe("listOpenNeedsSplash", () => {
+  it("covers the list only until data is ready", () => {
+    expect(listOpenNeedsSplash(false)).toBe(true);
+    expect(listOpenNeedsSplash(true)).toBe(false);
+  });
+});
+
 describe("listOpenShowsSplash", () => {
   it("covers the incoming list even when armies are already cached", () => {
     expect(
@@ -300,13 +308,13 @@ describe("list flow navigation wiring", () => {
   it("lets the list slide in with its opening splash on the incoming pane", () => {
     const builder = readSource("components/BuilderScreen.tsx");
     const nav = readSource("components/IosNavSlide.tsx");
-    expect(builder).toContain("listOpenShowsSplash");
-    expect(builder).toContain("consumeSkipListSplash");
+    expect(builder).toContain("listOpenNeedsSplash");
     expect(builder).toContain("clearListCreateSplash");
-    expect(builder).toContain("setOpeningSplash(true)");
-    expect(builder).toContain("fading={overlayFading}");
-    expect(builder).toContain("LIST_OPEN_LANDING_MS");
-    expect(builder).toContain("splashExiting");
+    expect(builder).not.toContain("LIST_OPEN_SPLASH_MS");
+    expect(builder).not.toContain("setOpeningSplash(true)");
+    expect(builder).not.toContain("splashExiting");
+    expect(nav).toContain("FactionArtLayers");
+    expect(nav).toContain("optimisticBackdrop");
     expect(nav).toContain("indexBackdropRevealed");
     expect(nav).toContain("LIST_BACKDROP_RETURN_MS");
     expect(nav).toContain("LIST_DETAIL_BACKDROP_TRANSITION_CLASS");
@@ -317,7 +325,6 @@ describe("list flow navigation wiring", () => {
     expect(nav).toContain("listFlowWindowScrollY");
     expect(nav).toContain("scrollToPane");
     expect(nav).not.toContain("lockPageScroll");
-    expect(builder).toContain("LIST_OPEN_SPLASH_MS");
     expect(nav).toMatch(
       /settled: false[\s\S]*requestAnimationFrame[\s\S]*scrollToPane\(true/,
     );

@@ -15,8 +15,6 @@ import {
   LIST_LANDING_CONTENT_CLASS,
   LIST_LANDING_CONTENT_HIDDEN_CLASS,
   LIST_LANDING_CONTENT_VISIBLE_CLASS,
-  LIST_OPEN_LANDING_MS,
-  LIST_OPEN_SPLASH_MS,
   LIST_PANE_ART_CLASS,
 } from "@/lib/builderUi";
 import {
@@ -24,7 +22,7 @@ import {
   preloadBackdropArt,
 } from "@/lib/factionArt";
 import {
-  listOpenShowsSplash,
+  listOpenNeedsSplash,
   listOpenSplashFactionName,
 } from "@/lib/listFlowNav";
 import {
@@ -36,15 +34,12 @@ import {
 import {
   clearListCreateSplash,
   clearListOpenSplash,
-  consumeSkipListSplash,
   getListOpenDisplayNameServerSnapshot,
   getListOpenDisplayNameSnapshot,
   getListOpenFactionServerSnapshot,
   getListOpenFactionSnapshot,
   getListOpenScourgeServerSnapshot,
   getListOpenScourgeSnapshot,
-  peekListNavigationDirection,
-  peekListOpenSplash,
   subscribeListOpenFaction,
 } from "@/lib/listTransition";
 import { BuilderReady } from "./BuilderReady";
@@ -56,10 +51,6 @@ import { ListLoadingSplash } from "./ListLoadingSplash";
 type Props = {
   listId: string;
 };
-
-function prefersReducedMotion() {
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
 
 export function BuilderScreen({ listId }: Props) {
   const lists = useSyncExternalStore(
@@ -87,58 +78,14 @@ export function BuilderScreen({ listId }: Props) {
     getListOpenScourgeSnapshot,
     getListOpenScourgeServerSnapshot,
   );
-  const [openingSplash, setOpeningSplash] = useState(false);
   const openedRecorded = useRef<string | null>(null);
-  const splashStarted = useRef(0);
-  const [skipSplash] = useState(consumeSkipListSplash);
   const [backdropLock, setBackdropLock] = useState<{
     listId: string;
     factionId: string;
     scourgeRealm: ArmyList["scourgeRealm"];
   } | null>(null);
-  const [splashExiting, setSplashExiting] = useState(false);
-  const hadSplash = useRef(false);
 
-  useLayoutEffect(() => {
-    setSplashExiting(false);
-    if (skipSplash) {
-      setOpeningSplash(false);
-      splashStarted.current = 0;
-      hadSplash.current = false;
-      return;
-    }
-    const shouldShow = listOpenShowsSplash({
-      splashRequested: peekListOpenSplash(),
-      animatingBack: peekListNavigationDirection() === "back",
-    });
-    if (shouldShow) {
-      setOpeningSplash(true);
-      splashStarted.current = Date.now();
-      hadSplash.current = true;
-    } else {
-      setOpeningSplash(false);
-      splashStarted.current = 0;
-    }
-  }, [listId, skipSplash]);
-
-  useEffect(() => {
-    if (!openingSplash) {
-      return;
-    }
-    if (lists === undefined) {
-      return;
-    }
-    const wait = Math.max(
-      0,
-      LIST_OPEN_SPLASH_MS - (Date.now() - splashStarted.current),
-    );
-    const timer = window.setTimeout(() => {
-      setOpeningSplash(false);
-      clearListOpenSplash();
-    }, wait);
-    return () => window.clearTimeout(timer);
-  }, [openingSplash, lists]);
-
+  const showSplash = listOpenNeedsSplash(lists !== undefined);
   const splashName = listOpenSplashFactionName({
     list,
     catalogueName: faction?.name,
@@ -183,34 +130,11 @@ export function BuilderScreen({ listId }: Props) {
     );
   }, [backdropFactionId, backdropScourgeRealm, backdropSrc]);
 
-  const showSplash = lists === undefined || openingSplash;
-
-  useEffect(() => {
-    if (showSplash) {
-      hadSplash.current = true;
-    }
-  }, [showSplash]);
-
-  useEffect(() => {
-    if (showSplash || skipSplash || !hadSplash.current) {
-      return;
-    }
-    if (prefersReducedMotion()) {
-      hadSplash.current = false;
-      return;
-    }
-    setSplashExiting(true);
-    const done = window.setTimeout(() => {
-      setSplashExiting(false);
-      hadSplash.current = false;
-    }, LIST_OPEN_LANDING_MS);
-    return () => window.clearTimeout(done);
-  }, [showSplash, skipSplash]);
-
   useEffect(() => {
     if (showSplash) {
       return;
     }
+    clearListOpenSplash();
     clearListCreateSplash();
   }, [showSplash]);
 
@@ -230,9 +154,7 @@ export function BuilderScreen({ listId }: Props) {
 
   const { setDecor } = useListFlowDecor();
 
-  const overlayUp = showSplash || splashExiting;
-  const overlayFading = splashExiting && !showSplash;
-  const scrimOn = !showSplash;
+  const overlayUp = showSplash;
   const contentRevealed = !showSplash;
 
   useLayoutEffect(() => {
@@ -242,24 +164,19 @@ export function BuilderScreen({ listId }: Props) {
           <FactionArtLayers
             factionId={backdropFactionId}
             scourgeRealm={backdropScourgeRealm}
-            scrim={scrimOn}
+            scrim
           />
         </div>
       ) : undefined,
       overlay: overlayUp ? (
-        <ListLoadingSplash
-          factionName={splashName}
-          fading={overlayFading}
-        />
+        <ListLoadingSplash factionName={splashName} />
       ) : undefined,
     });
     return () => setDecor({});
   }, [
     backdropFactionId,
     backdropScourgeRealm,
-    overlayFading,
     overlayUp,
-    scrimOn,
     splashName,
     setDecor,
   ]);
