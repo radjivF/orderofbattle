@@ -354,7 +354,7 @@ export function TryLanding() {
           </section>
         </main>
 
-        <SiteFooter />
+        <SiteFooter showFreePitch />
       </IndexBackdrop>
     </LandingMotion>
   );
