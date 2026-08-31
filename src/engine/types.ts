@@ -100,8 +100,6 @@ export type FactionTerrain = {
   abilities: UnitAbility[];
 };
 
-export type DatasheetSubject = CatalogueUnit | ManifestationModel | FactionTerrain;
-
 export type Formation = {
   id: string;
   name: string;
@@ -169,6 +167,12 @@ export type RegimentOfRenownPick = {
   renownId: string;
   units: Selection[];
 };
+
+export type DatasheetSubject =
+  | CatalogueUnit
+  | ManifestationModel
+  | FactionTerrain
+  | RegimentOfRenown;
 
 export type SpearheadRosterEntry = {
   unitId: string;

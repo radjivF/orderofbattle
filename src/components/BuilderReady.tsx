@@ -18,6 +18,7 @@ import {
   enhancementLabel,
   formationLabel,
   getListUnit,
+  getRegimentOfRenown,
   getUnit,
   listRegimentsOfRenown,
   resolveGeneralRegimentId,
@@ -1520,6 +1521,12 @@ export function BuilderReady({
               regimentOfRenown: next,
             });
             setPicker(null);
+          }}
+          onOpenDatasheet={(option) => {
+            const ror = getRegimentOfRenown(option.id);
+            if (ror) {
+              setDatasheet(ror);
+            }
           }}
           onClose={() => setPicker(null)}
         />
