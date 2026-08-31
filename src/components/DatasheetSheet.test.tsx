@@ -42,7 +42,7 @@ describe("DatasheetSheet keywords", () => {
     render(<DatasheetSheet sheet={unit()} onClose={vi.fn()} />);
 
     expect(screen.getByText("Move")).toBeInTheDocument();
-    expect(screen.queryByRole("heading", { name: "Keywords" })).toBeNull();
+    expect(screen.getByRole("heading", { name: "Keywords" })).toBeInTheDocument();
 
     const keywords = screen.getByRole("list", { name: "Keywords" });
     expect(keywords).toHaveTextContent("HERO");
