@@ -315,6 +315,18 @@ a {
   filter: brightness(0.96);
 }
 
+.library-card {
+  transition:
+    transform 120ms ease,
+    filter 120ms ease;
+}
+
+.library-card:has(.library-card-open:active),
+.library-card[data-opening="true"] {
+  transform: scale(0.97);
+  filter: brightness(0.96);
+}
+
 .ios-liquid-glass:active {
   filter: brightness(0.96);
 }
