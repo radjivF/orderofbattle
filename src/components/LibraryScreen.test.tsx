@@ -6,9 +6,11 @@ import { cleanup, render, screen } from "@/test-utils/render";
 import { LibraryScreen } from "./LibraryScreen";
 
 const armyStore = vi.hoisted(() => ({ items: [] as ArmyList[] }));
+const navigation = vi.hoisted(() => ({ pathname: "/dashboard" }));
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), replace: vi.fn() }),
+  usePathname: () => navigation.pathname,
 }));
 
 vi.mock("next/link", () => ({
@@ -81,6 +83,7 @@ describe("LibraryScreen", () => {
   beforeEach(() => {
     cleanup();
     armyStore.items = [];
+    navigation.pathname = "/dashboard";
     Object.defineProperty(window, "matchMedia", {
       writable: true,
       value: (query: string) => ({
@@ -164,6 +167,27 @@ describe("LibraryScreen", () => {
       .closest("article");
 
     await user.click(screen.getByRole("button", { name: "Duplicate" }));
+    expect(card).not.toHaveAttribute("data-opening");
+  });
+
+  it("releases the press when returning to My lists", async () => {
+    const list = blankArmy("stormcast-eternals", "Sigmar host");
+    armyStore.items = [list];
+    const { rerender } = render(<LibraryScreen />);
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    const card = screen
+      .getByRole("link", { name: "Open Sigmar host" })
+      .closest("article");
+
+    await user.click(screen.getByRole("link", { name: "Open Sigmar host" }));
+    expect(card).toHaveAttribute("data-opening", "true");
+
+    navigation.pathname = `/lists/${list.id}`;
+    rerender(<LibraryScreen />);
+    expect(card).toHaveAttribute("data-opening", "true");
+
+    navigation.pathname = "/dashboard";
+    rerender(<LibraryScreen />);
     expect(card).not.toHaveAttribute("data-opening");
   });
 });

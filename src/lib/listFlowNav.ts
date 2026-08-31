@@ -19,6 +19,11 @@ export function listFlowIsHome(pathname: string): boolean {
   return pathname === "/";
 }
 
+/** Keep the library card pressed only while list details are on screen. */
+export function libraryCardPressHoldsOn(pathname: string): boolean {
+  return pathname.startsWith("/lists/");
+}
+
 /** Carousel track class when the list detail pane is visible. */
 export function listFlowTrackClass(
   showDetail: boolean,

@@ -3,6 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
+  libraryCardPressHoldsOn,
   libraryCreatingSplashVisible,
   listFlowHeaderMode,
   listFlowIsHome,
@@ -166,6 +167,14 @@ describe("listFlowIsHome", () => {
     expect(listFlowIsHome("/")).toBe(true);
     expect(listFlowIsHome("/dashboard")).toBe(false);
     expect(listFlowIsHome("/lists/abc")).toBe(false);
+  });
+});
+
+describe("libraryCardPressHoldsOn", () => {
+  it("holds the press on list details and releases back on My lists", () => {
+    expect(libraryCardPressHoldsOn("/lists/abc")).toBe(true);
+    expect(libraryCardPressHoldsOn("/dashboard")).toBe(false);
+    expect(libraryCardPressHoldsOn("/")).toBe(false);
   });
 });
 

@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { getFaction } from "@/engine/queries";
 import { catalogueForList, isSpearheadList } from "@/engine/spearhead";
 import { formatPoints } from "@/engine/pointsCap";
@@ -13,7 +14,7 @@ import {
   rememberListNavigation,
   rememberListOpen,
 } from "@/lib/listTransition";
-import { listOpenDisplayNameForHeader } from "@/lib/listFlowNav";
+import { libraryCardPressHoldsOn, listOpenDisplayNameForHeader } from "@/lib/listFlowNav";
 import {
   LIBRARY_CARD_ACTION_BUTTON_CLASS,
   LIBRARY_CARD_ACTIONS_CLASS,
@@ -54,7 +55,14 @@ export function LibraryListCard({
   );
   const spearhead = isSpearheadList(list);
   const artSrc = catalogueArtSrc(faction);
+  const pathname = usePathname();
   const [opening, setOpening] = useState(false);
+
+  useEffect(() => {
+    if (!libraryCardPressHoldsOn(pathname)) {
+      setOpening(false);
+    }
+  }, [pathname]);
 
   return (
     <article
