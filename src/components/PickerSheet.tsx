@@ -158,6 +158,10 @@ function PickerRow({
 }) {
   return (
     <li className="flex items-center gap-1">
+      <SheetLinkButton
+        label={`${unit.name} datasheet`}
+        onClick={() => onOpenDatasheet(unit)}
+      />
       <button
         type="button"
         onClick={() => onPick(unit)}
@@ -175,10 +179,6 @@ function PickerRow({
         </span>
         <span className="font-medium text-sigmarite">{unit.points}</span>
       </button>
-      <SheetLinkButton
-        label={`${unit.name} datasheet`}
-        onClick={() => onOpenDatasheet(unit)}
-      />
     </li>
   );
 }

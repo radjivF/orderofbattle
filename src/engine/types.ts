@@ -299,6 +299,8 @@ export type Selection = {
     damage: number;
     /** @deprecated Migrated from remaining-health tracking. */
     health?: number;
+    /** Play phase ids this selection was dismissed from. */
+    removedFromPhases?: string[];
   };
 };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { IOS_NAV_ICON_BUTTON_CLASS } from "@/lib/builderUi";
+import { IOS_NAV_ICON_BUTTON_CLASS, LIBRARY_HEADER_OPTIONS_BUTTON_CLASS } from "@/lib/builderUi";
 
 type Props = {
   label: string;
@@ -16,6 +16,19 @@ export function IosNavAddButton({ label, onClick }: Props) {
       className={IOS_NAV_ICON_BUTTON_CLASS}
     >
       <IosPlusIcon />
+    </button>
+  );
+}
+
+export function IosNavOptionsButton({ label, onClick }: Props) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={label}
+      className={LIBRARY_HEADER_OPTIONS_BUTTON_CLASS}
+    >
+      <IosEllipsisIcon />
     </button>
   );
 }
@@ -58,6 +71,16 @@ function IosPlusIcon() {
         strokeWidth="2.6"
         strokeLinecap="round"
       />
+    </svg>
+  );
+}
+
+function IosEllipsisIcon() {
+  return (
+    <svg viewBox="0 0 20 20" aria-hidden="true" className="h-5 w-5">
+      <circle cx="10" cy="5" r="1.35" fill="currentColor" />
+      <circle cx="10" cy="10" r="1.35" fill="currentColor" />
+      <circle cx="10" cy="15" r="1.35" fill="currentColor" />
     </svg>
   );
 }

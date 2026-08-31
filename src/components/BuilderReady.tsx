@@ -5,6 +5,7 @@ import {
   useEffect,
   useLayoutEffect,
   useMemo,
+  useRef,
   useState,
   useDeferredValue,
 } from "react";
@@ -16,6 +17,7 @@ import {
   enhancementChoiceDetail,
   enhancementLabel,
   formationLabel,
+  getListUnit,
   getUnit,
   listRegimentsOfRenown,
   resolveGeneralRegimentId,
@@ -34,6 +36,7 @@ import {
   patchSelection,
   showsBattleWoundsAndScars,
 } from "@/engine/pathToGlory";
+import { hideSelectionFromPhase, playAfterDamage } from "@/engine/playHide";
 import { summarize } from "@/engine/validate";
 import type {
   ArmyList,
@@ -49,10 +52,7 @@ import {
   BUILDER_ADD_ACTION_CLASS,
   BUILDER_ADD_ACTION_EMPHASIS_CLASS,
   CONFIRM_SHEET_PANEL_CLASS,
-  IOS_LIQUID_CTA_CLASS,
   LIST_ISSUE_BANNER_CLASS,
-  RULE_INFO_BUTTON_CLASS,
-  SHEET_PANEL_COMPACT_CLASS,
   builderPlayTabs,
 } from "@/lib/builderUi";
 import { createId } from "@/lib/id";
@@ -87,9 +87,10 @@ import {
 import { RuleText } from "./RuleText";
 import { SpearheadPicks } from "./SpearheadPicks";
 import { TerrainCard } from "./TerrainCard";
-import { BuildSlotRow, IosInfoIcon } from "./ios/SheetIconButton";
+import { BuildSlotRow } from "./ios/SheetIconButton";
 import { IosSegmentedControl } from "./ios/IosSegmentedControl";
 import { PointsCapField } from "./PointsCapField";
+import { RuleInfoButton } from "./RuleInfoButton";
 import { useListFlowChrome } from "./ListFlowShell";
 
 function enhancementChoices(options: EnhancementOption[]) {
@@ -135,6 +136,10 @@ export function BuilderReady({
   const deferredPicker = useDeferredValue(picker);
   const pickerUnits = pickerUnitsFor(list, faction, deferredPicker);
   const selectedId = selectedRegimentId ?? list.regiments[0]?.id ?? null;
+  const listRef = useRef(list);
+  useEffect(() => {
+    listRef.current = list;
+  }, [list]);
 
   async function commit(next: ArmyList) {
     await saveArmy(next);
@@ -188,27 +193,32 @@ export function BuilderReady({
   }
 
   async function setPlayDamage(selectionId: string, damage: number) {
+    function withDamage(selection: NonNullable<ArmyList["regiments"][0]["hero"]>) {
+      if (selection.id !== selectionId) {
+        return selection;
+      }
+      return {
+        ...selection,
+        play: playAfterDamage(
+          selection,
+          damage,
+          getListUnit(list, faction, selection.unitId),
+        ),
+      };
+    }
+
     await commit({
       ...list,
       regiments: list.regiments.map((regiment) => ({
         ...regiment,
-        hero:
-          regiment.hero?.id === selectionId
-            ? { ...regiment.hero, play: { damage } }
-            : regiment.hero,
-        units: regiment.units.map((slot) =>
-          slot.id === selectionId ? { ...slot, play: { damage } } : slot,
-        ),
+        hero: regiment.hero ? withDamage(regiment.hero) : regiment.hero,
+        units: regiment.units.map((slot) => withDamage(slot)),
       })),
-      auxiliaries: list.auxiliaries.map((slot) =>
-        slot.id === selectionId ? { ...slot, play: { damage } } : slot,
-      ),
+      auxiliaries: list.auxiliaries.map((slot) => withDamage(slot)),
       regimentOfRenown: list.regimentOfRenown
         ? {
             ...list.regimentOfRenown,
-            units: list.regimentOfRenown.units.map((slot) =>
-              slot.id === selectionId ? { ...slot, play: { damage } } : slot,
-            ),
+            units: list.regimentOfRenown.units.map((slot) => withDamage(slot)),
           }
         : null,
     });
@@ -783,6 +793,11 @@ export function BuilderReady({
             list={list}
             faction={faction}
             onOpenSheet={setDatasheet}
+            onRemoveFromPhase={(selectionId, phaseId) => {
+              void commit(
+                hideSelectionFromPhase(listRef.current, selectionId, phaseId),
+              );
+            }}
           />
         ) : forPlayMode && playTab === "magic" && !spearhead ? (
           <PlayMagicBoard
@@ -1581,49 +1596,5 @@ export function BuilderReady({
         </ModalFrame>
       ) : null}
     </div>
-  );
-}
-
-function RuleInfoButton({
-  label,
-  title,
-  text,
-}: {
-  label: string;
-  title: string;
-  text: string;
-}) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className={RULE_INFO_BUTTON_CLASS}
-        aria-label={label}
-      >
-        <IosInfoIcon />
-      </button>
-      {open ? (
-        <ModalFrame
-          label={label}
-          onClose={() => setOpen(false)}
-          panelClassName={`${SHEET_PANEL_COMPACT_CLASS} p-5`}
-        >
-          <h2 className="font-serif text-2xl">{title}</h2>
-          <p className="mt-3 text-base leading-relaxed text-sheet-muted">
-            {text}
-          </p>
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            className={`mt-5 ${IOS_LIQUID_CTA_CLASS}`}
-          >
-            Got it
-          </button>
-        </ModalFrame>
-      ) : null}
-    </>
   );
 }

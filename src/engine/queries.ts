@@ -672,6 +672,13 @@ export function selectionPlayState(
   };
 }
 
+export function selectionIsDestroyed(
+  selection: Selection,
+  unit: CatalogueUnit,
+): boolean {
+  return selectionPlayState(selection, unit).health <= 0;
+}
+
 export function manifestationStatLine(model: {
   stats: { move: string; health: string; save: string; control: string };
   banishment: string;

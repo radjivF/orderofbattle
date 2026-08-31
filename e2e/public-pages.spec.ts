@@ -11,6 +11,7 @@ const pages: Array<{ path: string; heading: string | RegExp }> = [
   { path: "/try", heading: /Free Age of Sigmar 4ed army builder/i },
   { path: "/play", heading: "Age of Sigmar wound tracker: Play mode" },
   { path: "/about", heading: "A free Age of Sigmar hobby helper" },
+  { path: "/updates", heading: "What's new in Order of Battle" },
   {
     path: "/compare",
     heading: "Which Age of Sigmar army builder should you use?",

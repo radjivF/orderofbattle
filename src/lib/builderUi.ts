@@ -132,25 +132,17 @@ export const PLAY_SHEET_LINK_CLASS =
 export const IOS_NAV_ICON_BUTTON_CLASS =
   "ios-liquid-glass pressable inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full text-black";
 
-/** Import / export in the library nav — ink fill, white glyph and ring. */
-export const LIBRARY_NAV_BACKUP_ICON_BUTTON_CLASS =
-  "pressable inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/90 bg-black text-white";
+/** Options over library art — translucent ink disc with a gold rim. */
+export const LIBRARY_HEADER_OPTIONS_BUTTON_CLASS =
+  "pressable inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full border border-sigmarite/70 bg-ink/50 text-parchment shadow-[0_2px_12px_rgba(0,0,0,0.4)] backdrop-blur-sm";
 
-/** Options trigger beside My lists — same ink pill as backup actions. */
-export const LIBRARY_OPTIONS_BUTTON_CLASS =
-  LIBRARY_NAV_BACKUP_ICON_BUTTON_CLASS;
-
-/** Right-side library nav cluster — roomy tap targets. */
-export const LIBRARY_NAV_ACTIONS_CLASS =
-  "ml-auto flex shrink-0 items-center gap-3";
-
-/** Row actions beside the My lists title. */
+/** My lists heading: options leading, New list trailing. */
 export const LIBRARY_TITLE_ROW_CLASS =
   "flex items-center gap-3";
 
 /** Page title over index art — shadow for contrast on busy backdrops. */
 export const LIBRARY_TITLE_CLASS =
-  "font-serif text-3xl font-semibold text-parchment [text-shadow:0_2px_16px_rgba(0,0,0,0.95),0_1px_3px_rgba(0,0,0,1)]";
+  "min-w-0 flex-1 font-serif text-3xl font-semibold text-parchment [text-shadow:0_2px_16px_rgba(0,0,0,0.95),0_1px_3px_rgba(0,0,0,1)]";
 
 export const IOS_NAV_ADD_BUTTON_CLASS = IOS_NAV_ICON_BUTTON_CLASS;
 
@@ -253,9 +245,13 @@ export const LIST_LANDING_CONTENT_VISIBLE_CLASS = "opacity-100";
 
 export const LIST_LANDING_CONTENT_HIDDEN_CLASS = "opacity-0";
 
-/** Sit the cookie banner under the solid header so it is not painted over the bar. */
+/** Under the header (z-60), above list cards and the transformed list track. */
 export const COOKIE_CONSENT_BANNER_CLASS =
-  "pointer-events-none fixed inset-x-0 top-[calc(env(safe-area-inset-top)+3.75rem)] z-40 flex justify-center px-4 pt-2";
+  "pointer-events-none fixed inset-x-0 top-[calc(env(safe-area-inset-top)+3.75rem)] z-50 flex justify-center px-4 pt-2";
+
+/** Bottom toast — same stack as the cookie banner, still under the header. */
+export const WHATS_NEW_BANNER_CLASS =
+  "pointer-events-none fixed inset-x-0 bottom-[calc(env(safe-area-inset-bottom)+1rem)] z-50 flex justify-center px-4 pb-2";
 
 /** Bottom sheet panel — full width on phone, card on sm+. */
 export const SHEET_PANEL_CLASS =
@@ -264,6 +260,10 @@ export const SHEET_PANEL_CLASS =
 /** List options — fixed phone height so Import/Export tabs do not resize the sheet. */
 export const LIBRARY_OPTIONS_SHEET_PANEL_CLASS =
   `${SHEET_PANEL_CLASS} h-[85vh] sm:h-auto sm:min-h-[32rem]`;
+
+/** Rule between sort and Import/Export in list options. */
+export const LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS =
+  "mx-5 border-t border-parchment-ink/20";
 
 export const SHEET_PANEL_COMPACT_CLASS =
   "parchment-card w-full max-w-sm text-parchment-ink sm:rounded-2xl";

@@ -1,6 +1,21 @@
 import { selectionPlayState } from "@/engine/queries";
 import { damageStepperActions } from "@/lib/damageStepper";
 
+function remainingHpLabel(track: ReturnType<typeof selectionPlayState>) {
+  return `${track.health} / ${track.healthMax} hp`;
+}
+
+function modelsLeftLabel(track: ReturnType<typeof selectionPlayState>) {
+  return `${track.models}/${track.modelsMax} models`;
+}
+
+function trackStatusLabel(
+  track: ReturnType<typeof selectionPlayState>,
+  singleModel: boolean,
+) {
+  return singleModel ? remainingHpLabel(track) : modelsLeftLabel(track);
+}
+
 function StepperButton({
   label,
   onClick,
@@ -70,10 +85,7 @@ export function PlayHealthTrack({
               />
             </div>
             <p className="text-xs tabular-nums text-sheet-muted">
-              {track.healthMax} hp
-              {!singleModel
-                ? ` · ${track.models}/${track.modelsMax}`
-                : ""}
+              {trackStatusLabel(track, singleModel)}
             </p>
           </>
         )}
@@ -115,15 +127,8 @@ export function PlayHealthTrack({
             />
           </div>
           <p className="text-xs tabular-nums text-sheet-muted">
-            {track.healthMax} hp
+            {trackStatusLabel(track, singleModel)}
           </p>
-          {!singleModel ? (
-            <p className="text-xs tabular-nums text-sheet-muted">
-              {track.models}
-              <span className="text-sheet-muted">/{track.modelsMax}</span>
-              {" models"}
-            </p>
-          ) : null}
         </>
       )}
     </div>
