@@ -107,6 +107,11 @@ export const HEADER_DROPS_LINE_CLASS = "mt-0.5 text-[11px] text-ink-muted";
 export const LIST_ISSUE_BANNER_CLASS =
   "flex items-center gap-2 rounded-xl bg-illegal/25 px-4 py-2.5 text-sm font-bold text-illegal-lit ring-1 ring-illegal/40";
 
+/** Battle tactic warnings live under Options. Tapping the banner should open that panel. */
+export function listIssueOpensOptions(text: string): boolean {
+  return text.toLowerCase().includes("battle tactic");
+}
+
 /** GHB reminder — auxiliaries are allowed; they affect drops and CP. */
 export const AUXILIARY_RULES_TEXT =
   "Each auxiliary adds an extra drop and reduces your command points.";

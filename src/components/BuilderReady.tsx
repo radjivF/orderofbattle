@@ -47,6 +47,7 @@ import {
   CONFIRM_SHEET_PANEL_CLASS,
   LIST_ISSUE_BANNER_CLASS,
   builderPlayTabs,
+  listIssueOpensOptions,
 } from "@/lib/builderUi";
 import { createId } from "@/lib/id";
 import { appendRegimentWithHero, saveArmy } from "@/lib/storage";
@@ -488,13 +489,21 @@ export function BuilderReady({
           />
         ) : null}
         {!forPlayMode && issue.tone !== "ok" ? (
-          <p
-            className={LIST_ISSUE_BANNER_CLASS}
-            role="status"
-          >
-            <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-illegal" />
-            <span>{issue.text}</span>
-          </p>
+          listIssueOpensOptions(issue.text) ? (
+            <button
+              type="button"
+              className={`${LIST_ISSUE_BANNER_CLASS} pressable w-full cursor-pointer text-left`}
+              onClick={() => setOptionsOpen(true)}
+            >
+              <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-illegal" />
+              <span>{issue.text}</span>
+            </button>
+          ) : (
+            <p className={LIST_ISSUE_BANNER_CLASS} role="status">
+              <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-illegal" />
+              <span>{issue.text}</span>
+            </p>
+          )
         ) : null}
         {!forPlayMode && spearhead ? (
           <SpearheadPicks
