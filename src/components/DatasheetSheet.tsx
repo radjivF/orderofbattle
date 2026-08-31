@@ -172,7 +172,7 @@ function WeaponBlock({
   ranged?: boolean;
 }) {
   return (
-    <section className="mt-6">
+    <section className="mt-4">
       <h3 className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
         {title}
       </h3>

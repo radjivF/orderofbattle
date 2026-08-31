@@ -44,7 +44,7 @@ describe("DatasheetSheet keywords", () => {
     expect(screen.getByText("Move")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Keywords" })).toBeInTheDocument();
 
-    const keywords = screen.getByRole("list", { name: "Keywords" });
+    const keywords = screen.getByRole("heading", { name: "Keywords" }).closest("section");
     expect(keywords).toHaveTextContent("HERO");
     expect(keywords).toHaveTextContent("INFANTRY");
     expect(keywords).toHaveTextContent("CASTELITE");
@@ -60,7 +60,7 @@ describe("DatasheetSheet keywords", () => {
       />,
     );
 
-    const keywords = screen.getByRole("list", { name: "Keywords" });
+    const keywords = screen.getByRole("heading", { name: "Keywords" }).closest("section");
     expect(keywords).toHaveTextContent("WIZARD (1)");
     expect(keywords).toHaveTextContent("CASTELITE");
     expect(keywords).not.toHaveTextContent("WARD");
