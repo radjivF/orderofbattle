@@ -115,21 +115,21 @@ describe("LibraryScreen", () => {
     expect(screen.getByRole("button", { name: "Make your first list" }));
   });
 
-  it("shows a real Old World library and keeps Tabletop Tactics as a placeholder", () => {
+  it("shows a real Old World library and points Battle record elsewhere", () => {
     setActiveMenu("tow");
     render(<LibraryScreen />);
 
     expect(screen.getByRole("heading", { name: "My lists" }));
     expect(screen.getByRole("button", { name: "New list" }));
     expect(screen.getByRole("button", { name: "Make your first list" }));
-    expect(screen.queryByText("Coming on its branch.")).toBeNull();
+    expect(screen.queryByText(/Open Battle record/i)).toBeNull();
 
     cleanup();
     setActiveMenu("tactics");
     render(<LibraryScreen />);
 
-    expect(screen.getByRole("heading", { name: "Tabletop Tactics" }));
-    expect(screen.getByText("Coming on its branch."));
+    expect(screen.getByRole("heading", { name: "Battle record" }));
+    expect(screen.getByText(/Open Battle record from the menu/i));
     expect(screen.queryByRole("button", { name: "New list" })).toBeNull();
     expect(screen.queryByRole("button", { name: "List options" })).toBeNull();
     expect(

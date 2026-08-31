@@ -25,8 +25,8 @@ export const TRACK_GAME_MENU_ROW: {
   brandSubtitle: string;
 } = {
   id: "tactics",
-  label: "Tabletop Tactics",
-  brandSubtitle: "Play companion",
+  label: "Battle record",
+  brandSubtitle: "Score a live game",
 };
 
 export const MENU_ROWS: readonly {
@@ -99,14 +99,8 @@ export function menuPlaceholderCopy(
   if (menuShowsListLibrary(menu)) {
     return null;
   }
-  if (menu === "tow") {
-    return {
-      title: "The Old World",
-      body: "Coming on its branch.",
-    };
-  }
   return {
-    title: "Tabletop Tactics",
-    body: "Coming on its branch.",
+    title: "Battle record",
+    body: "Open Battle record from the menu to score a live game.",
   };
 }

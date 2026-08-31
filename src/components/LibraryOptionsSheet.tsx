@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import type { StoredList } from "@/engine/storedList";
 import type { LibrarySortMode } from "@/lib/librarySort";
 import {
@@ -34,6 +35,7 @@ export function LibraryOptionsSheet({
   onSortModeChange,
   onClose,
 }: Props) {
+  const router = useRouter();
   const {
     importError,
     importDraft,
@@ -86,7 +88,26 @@ export function LibraryOptionsSheet({
             <SheetCloseButton label="Close list options" onClick={onClose} />
           </div>
           <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
-            <div className="shrink-0 px-5 pb-4">
+            <div className="shrink-0 px-5 pb-3">
+              <button
+                type="button"
+                onClick={() => {
+                  onClose();
+                  router.push("/battle-record");
+                }}
+                className="flex min-h-12 w-full items-center justify-between rounded-xl bg-parchment-ink/5 px-3 text-left hover:bg-parchment-ink/[0.08]"
+              >
+                <span className="font-serif text-xl text-parchment-ink">
+                  Battle record
+                </span>
+                <span className="text-sm text-sheet-muted">Games</span>
+              </button>
+            </div>
+            <div
+              role="separator"
+              className={LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS}
+            />
+            <div className="shrink-0 px-5 pb-4 pt-4">
               <p className="pb-2 text-sm font-medium text-sheet-muted">
                 Sort lists by
               </p>

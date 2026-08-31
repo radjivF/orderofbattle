@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
+import { useRouter } from "next/navigation";
 import {
   GAME_MENU_ROWS,
   TRACK_GAME_MENU_ROW,
@@ -132,6 +133,8 @@ function LeftDrawer({
 }
 
 export function AppMenuSheet({ active, onSelect, onClose }: Props) {
+  const router = useRouter();
+
   return (
     <LeftDrawer label="Menu" onClose={onClose}>
       {(close) => (
@@ -164,10 +167,10 @@ export function AppMenuSheet({ active, onSelect, onClose }: Props) {
           <ul className="flex flex-col gap-2 px-3 pb-6">
             <MenuRow
               label={TRACK_GAME_MENU_ROW.label}
-              selected={active === TRACK_GAME_MENU_ROW.id}
+              selected={false}
               onSelect={() => {
-                onSelect(TRACK_GAME_MENU_ROW.id);
                 close();
+                router.push("/battle-record");
               }}
             />
           </ul>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { battleTactics } from "@/engine/data/load";
 import type { ArmyList } from "@/engine/types";
+import { BattleTacticText } from "./BattleTacticText";
 
 export function BattleTacticCardPicker({
   list,
@@ -146,33 +147,32 @@ export function BattleTacticCardPicker({
                   </button>
                 </div>
                 {expanded ? (
-                  <div className="border-t border-parchment/10 px-3 pb-3 pt-2 text-xs leading-relaxed text-parchment/80">
+                  <div className="flex flex-col gap-4 border-t border-parchment/10 px-3 pb-4 pt-3">
                     {card.setup ? (
-                      <p className="text-parchment/70">{card.setup}</p>
+                      <p className="text-xs leading-6 text-parchment/65 sm:text-sm">
+                        {card.setup}
+                      </p>
                     ) : null}
                     {card.affray ? (
-                      <p className={card.setup ? "mt-2" : undefined}>
-                        <span className="font-semibold uppercase text-parchment/55">
-                          Affray ·{" "}
-                        </span>
-                        {card.affray}
-                      </p>
+                      <BattleTacticText
+                        className="text-sm sm:text-base"
+                        stage="Affray"
+                        text={card.affray}
+                      />
                     ) : null}
                     {card.strike ? (
-                      <p className="mt-2">
-                        <span className="font-semibold uppercase text-parchment/55">
-                          Strike ·{" "}
-                        </span>
-                        {card.strike}
-                      </p>
+                      <BattleTacticText
+                        className="text-sm sm:text-base"
+                        stage="Strike"
+                        text={card.strike}
+                      />
                     ) : null}
                     {card.domination ? (
-                      <p className="mt-2">
-                        <span className="font-semibold uppercase text-parchment/55">
-                          Domination ·{" "}
-                        </span>
-                        {card.domination}
-                      </p>
+                      <BattleTacticText
+                        className="text-sm sm:text-base"
+                        stage="Domination"
+                        text={card.domination}
+                      />
                     ) : null}
                   </div>
                 ) : null}

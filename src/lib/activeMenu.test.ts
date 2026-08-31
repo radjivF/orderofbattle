@@ -34,7 +34,7 @@ describe("active menu preference", () => {
     expect(brandSubtitleForMenu("aos")).toBe("Army lists for Age of Sigmar");
   });
 
-  it("persists Old World and Tabletop Tactics", () => {
+  it("persists Old World and Battle record menu ids", () => {
     setActiveMenu("tow");
     expect(getActiveMenuSnapshot()).toBe("tow");
     expect(menuShowsListLibrary("tow")).toBe(true);
@@ -43,7 +43,7 @@ describe("active menu preference", () => {
     setActiveMenu("tactics");
     expect(getActiveMenuSnapshot()).toBe("tactics");
     expect(menuShowsListLibrary("tactics")).toBe(false);
-    expect(menuPlaceholderCopy("tactics")?.title).toBe("Tabletop Tactics");
+    expect(menuPlaceholderCopy("tactics")?.title).toBe("Battle record");
   });
 
   it("treats unknown stored values as Age of Sigmar", () => {
