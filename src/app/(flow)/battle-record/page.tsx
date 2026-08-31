@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { BattleRecordScreen } from "@/components/BattleRecordScreen";
 
 export const metadata: Metadata = {
   title: "Battle record",
@@ -7,6 +6,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/battle-record" },
 };
 
+/** UI lives in LibraryScreen inside ListFlowShell (same shell as My lists). */
 export default function BattleRecordPage() {
-  return <BattleRecordScreen />;
+  return null;
 }

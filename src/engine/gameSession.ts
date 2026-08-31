@@ -8,34 +8,40 @@ export type GameRound = {
   firstPlayer: BattlePlayer | null;
   yourVp: number;
   opponentVp: number;
+  /** Primary mission points claimed this round (ids from missionPrimaryPoints). */
+  primaryClaims: Record<string, { you: boolean; opponent: boolean }>;
+  /** Twist applied this round for the underdog. */
+  twistApplied: boolean;
 };
 
 export type GameSession = {
   id: string;
   yourName: string;
+  yourArmy: string;
   opponentName: string;
+  opponentArmy: string;
+  /** Empty until chosen during the game. */
   battleplanId: string;
   allowDoubleTurn: boolean;
   paintedYou: boolean;
   paintedOpponent: boolean;
-  yourTacticCardIds: [string, string];
-  opponentTacticCardIds: [string, string];
+  yourTacticCardIds: string[];
+  opponentTacticCardIds: string[];
   yourTacticStage: Record<string, BattleTacticStage>;
   opponentTacticStage: Record<string, BattleTacticStage>;
   /** Indexed 0–4 for battle rounds 1–5. */
   rounds: GameRound[];
-  status: "active" | "done";
+  status: "setup" | "active" | "done";
   createdAt: number;
   updatedAt: number;
 };
 
 export type CreateBattleRecordInput = {
   yourName: string;
+  yourArmy: string;
   opponentName: string;
-  battleplanId: string;
+  opponentArmy: string;
   allowDoubleTurn: boolean;
-  yourTacticCardIds: [string, string];
-  opponentTacticCardIds: [string, string];
   paintedYou?: boolean;
   paintedOpponent?: boolean;
 };
@@ -44,14 +50,21 @@ const PAINTED_BONUS = 10;
 const VP_PER_TACTIC_STAGE = 5;
 
 function emptyRound(): GameRound {
-  return { firstPlayer: null, yourVp: 0, opponentVp: 0 };
+  return {
+    firstPlayer: null,
+    yourVp: 0,
+    opponentVp: 0,
+    primaryClaims: {},
+    twistApplied: false,
+  };
 }
 
-function stageMap(cardIds: [string, string]): Record<string, BattleTacticStage> {
-  return {
-    [cardIds[0]]: 0,
-    [cardIds[1]]: 0,
-  };
+function stageMap(cardIds: string[]): Record<string, BattleTacticStage> {
+  const stages: Record<string, BattleTacticStage> = {};
+  for (const id of cardIds) {
+    stages[id] = 0;
+  }
+  return stages;
 }
 
 function touch(session: GameSession): GameSession {
@@ -74,17 +87,19 @@ export function createBattleRecord(
   return {
     id: createId(),
     yourName: input.yourName.trim(),
+    yourArmy: input.yourArmy.trim(),
     opponentName: input.opponentName.trim(),
-    battleplanId: input.battleplanId,
+    opponentArmy: input.opponentArmy.trim(),
+    battleplanId: "",
     allowDoubleTurn: input.allowDoubleTurn,
     paintedYou: Boolean(input.paintedYou),
     paintedOpponent: Boolean(input.paintedOpponent),
-    yourTacticCardIds: input.yourTacticCardIds,
-    opponentTacticCardIds: input.opponentTacticCardIds,
-    yourTacticStage: stageMap(input.yourTacticCardIds),
-    opponentTacticStage: stageMap(input.opponentTacticCardIds),
+    yourTacticCardIds: [],
+    opponentTacticCardIds: [],
+    yourTacticStage: {},
+    opponentTacticStage: {},
     rounds: Array.from({ length: 5 }, emptyRound),
-    status: "active",
+    status: "setup",
     createdAt: now,
     updatedAt: now,
   };
@@ -194,6 +209,71 @@ export function setRoundVp(
   return touch({ ...session, rounds });
 }
 
+function syncRoundVpFromClaims(
+  round: GameRound,
+  points: Array<{ id: string; vp: number }>,
+): GameRound {
+  let yourVp = 0;
+  let opponentVp = 0;
+  for (const point of points) {
+    const claim = round.primaryClaims[point.id];
+    if (claim?.you) yourVp += point.vp;
+    if (claim?.opponent) opponentVp += point.vp;
+  }
+  return { ...round, yourVp, opponentVp };
+}
+
+export function setPrimaryClaim(
+  session: GameSession,
+  roundIndex: number,
+  pointId: string,
+  player: BattlePlayer,
+  claimed: boolean,
+  points: Array<{ id: string; vp: number }>,
+): GameSession {
+  if (roundIndex < 0 || roundIndex >= session.rounds.length) {
+    return session;
+  }
+  const rounds = session.rounds.map((round, index) => {
+    if (index !== roundIndex) return round;
+    const prev = round.primaryClaims[pointId] ?? {
+      you: false,
+      opponent: false,
+    };
+    const nextClaims = {
+      ...round.primaryClaims,
+      [pointId]:
+        player === "you"
+          ? { ...prev, you: claimed }
+          : { ...prev, opponent: claimed },
+    };
+    return syncRoundVpFromClaims(
+      { ...round, primaryClaims: nextClaims },
+      points,
+    );
+  });
+  return touch({ ...session, rounds });
+}
+
+/** Twist belongs to the underdog; only they can mark it applied this turn. */
+export function setTwistApplied(
+  session: GameSession,
+  roundIndex: number,
+  applied: boolean,
+): GameSession {
+  if (roundIndex < 0 || roundIndex >= session.rounds.length) {
+    return session;
+  }
+  const dog = underdog(session);
+  if (applied && !dog) {
+    return session;
+  }
+  const rounds = session.rounds.map((round, index) =>
+    index === roundIndex ? { ...round, twistApplied: applied } : round,
+  );
+  return touch({ ...session, rounds });
+}
+
 export function advanceTacticStage(
   session: GameSession,
   player: BattlePlayer,
@@ -209,4 +289,47 @@ export function advanceTacticStage(
     ...session,
     [key]: { ...session[key], [cardId]: stage },
   });
+}
+
+export function setBattleplan(
+  session: GameSession,
+  battleplanId: string,
+): GameSession {
+  return touch({ ...session, battleplanId });
+}
+
+export function setPlayerTacticCards(
+  session: GameSession,
+  player: BattlePlayer,
+  cardIds: string[],
+): GameSession {
+  const clipped = cardIds.slice(0, 2);
+  if (player === "you") {
+    return touch({
+      ...session,
+      yourTacticCardIds: clipped,
+      yourTacticStage: stageMap(clipped),
+    });
+  }
+  return touch({
+    ...session,
+    opponentTacticCardIds: clipped,
+    opponentTacticStage: stageMap(clipped),
+  });
+}
+
+export function canStartBattle(session: GameSession): boolean {
+  return (
+    session.status === "setup" &&
+    session.battleplanId.length > 0 &&
+    session.yourTacticCardIds.length === 2 &&
+    session.opponentTacticCardIds.length === 2
+  );
+}
+
+export function startBattle(session: GameSession): GameSession {
+  if (!canStartBattle(session)) {
+    return session;
+  }
+  return touch({ ...session, status: "active" });
 }

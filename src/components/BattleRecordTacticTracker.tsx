@@ -31,16 +31,16 @@ export function BattleRecordTacticTracker({
   if (cards.length === 0) return null;
 
   return (
-    <section className="rounded-2xl bg-ink-raised text-sm text-parchment/90 ring-1 ring-parchment/12">
-      <h3 className="px-4 py-3 text-xs font-semibold tracking-wide uppercase text-parchment/60">
+    <section className="parchment-card rounded-2xl text-sm text-parchment-ink">
+      <h3 className="px-4 py-3 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
         {title}
       </h3>
-      <ul className="flex flex-col gap-4 border-t border-parchment/10 px-4 py-3">
+      <ul className="flex flex-col gap-4 border-t border-parchment-ink/10 px-4 py-3">
         {cards.map((card) => {
           const stage = stages[card.id] ?? 0;
           return (
             <li key={card.id} className="flex flex-col gap-2">
-              <p className="font-medium text-parchment">{card.name}</p>
+              <p className="font-medium text-parchment-ink">{card.name}</p>
               <ul className="flex flex-col gap-2">
                 {STAGES.map(({ key, label }) => {
                   const done = stage >= key;
@@ -54,25 +54,29 @@ export function BattleRecordTacticTracker({
                         aria-pressed={done}
                         onClick={() => {
                           if (done && stage === key) {
-                            onStageChange(card.id, (key - 1) as BattleTacticStage);
+                            onStageChange(
+                              card.id,
+                              (key - 1) as BattleTacticStage,
+                            );
                             return;
                           }
                           onStageChange(card.id, key);
                         }}
                         className={`flex w-full flex-col gap-1 rounded-xl px-3 py-2 text-left ring-1 ${
                           done
-                            ? "bg-aether/20 ring-aether/40"
+                            ? "bg-aether/15 ring-aether/35"
                             : next
-                              ? "bg-parchment/5 ring-parchment/20"
+                              ? "bg-parchment-ink/5 ring-parchment-ink/15"
                               : "bg-transparent ring-transparent opacity-45"
                         }`}
                       >
-                        <span className="text-xs font-semibold tracking-wide uppercase text-parchment/55">
+                        <span className="text-xs font-semibold tracking-wide uppercase text-sheet-muted">
                           {label} · +5 VP
                         </span>
                         <BattleTacticText
                           text={stageText(card, key)}
-                          className="text-sm text-parchment/85"
+                          tone="sheet"
+                          className="text-sm"
                         />
                       </button>
                     </li>

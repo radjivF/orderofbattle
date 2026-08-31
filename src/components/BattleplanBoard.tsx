@@ -32,17 +32,17 @@ export function BattleplanBoard({ layout, className }: Props) {
         y={0}
         width={width}
         height={height}
-        className="fill-parchment-ink/[0.04] stroke-parchment-ink/25"
+        className="fill-parchment-ink/[0.06] stroke-parchment-ink/30"
         strokeWidth={0.4}
       />
       <path
         d={pointsToPath(layout.territories.attacker)}
-        className="fill-aether/20 stroke-aether/50"
+        className="fill-aether/25 stroke-aether/60"
         strokeWidth={0.35}
       />
       <path
         d={pointsToPath(layout.territories.defender)}
-        className="fill-sigmarite/20 stroke-sigmarite/50"
+        className="fill-copper/20 stroke-copper/55"
         strokeWidth={0.35}
       />
       {layout.terrain.map((mark) => (
@@ -55,8 +55,8 @@ export function BattleplanBoard({ layout, className }: Props) {
           rx={0.6}
           className={
             mark.kind === "place-of-power"
-              ? "fill-parchment-ink/35"
-              : "fill-parchment-ink/20"
+              ? "fill-parchment-ink/40"
+              : "fill-parchment-ink/25"
           }
         />
       ))}
@@ -66,7 +66,7 @@ export function BattleplanBoard({ layout, className }: Props) {
           cx={objective.x}
           cy={objective.y}
           r={1.6}
-          className="fill-parchment-ink stroke-parchment"
+          className="fill-parchment-ink stroke-[#efe6d2]"
           strokeWidth={0.35}
         />
       ))}

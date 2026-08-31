@@ -11,6 +11,7 @@ const armyStore = vi.hoisted(() => ({ items: [] as StoredList[] }));
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), replace: vi.fn() }),
+  usePathname: () => "/dashboard",
 }));
 
 vi.mock("next/link", () => ({

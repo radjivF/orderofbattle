@@ -2,15 +2,11 @@
 
 import { useMemo, useState } from "react";
 import {
-  battleplanLayouts,
-  getBattleplanLayout,
-} from "@/engine/battleplanLayout";
-import { battleTacticsForRealm } from "@/engine/data/load";
-import {
   createBattleRecord,
   type CreateBattleRecordInput,
   type GameSession,
 } from "@/engine/gameSession";
+import { listFactionsByGrandAlliance } from "@/lib/factionAlliance";
 import {
   IOS_LIQUID_CTA_CLASS,
   MODAL_SHEET_FOOTER_CLASS,
@@ -20,7 +16,6 @@ import {
   SHEET_PANEL_CLASS,
   SHEET_SECONDARY_BUTTON_CLASS,
 } from "@/lib/builderUi";
-import { BattleplanBoard } from "./BattleplanBoard";
 import { ModalFrame } from "./ModalFrame";
 import { SheetCloseButton } from "./ios/SheetIconButton";
 import { IosSegmentedControl } from "./ios/IosSegmentedControl";
@@ -31,25 +26,15 @@ type Props = {
   onCreated: (game: GameSession) => void;
 };
 
-function toggleId(selected: string[], id: string, max: number): string[] {
-  if (selected.includes(id)) {
-    return selected.filter((item) => item !== id);
-  }
-  if (selected.length >= max) {
-    return selected;
-  }
-  return [...selected, id];
-}
+const SELECT_CLASS =
+  "min-h-11 w-full rounded-xl bg-parchment-ink/5 px-3 font-serif text-xl text-parchment-ink outline-none";
 
 export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
-  const aqshyCards = useMemo(() => battleTacticsForRealm("aqshy"), []);
+  const factionGroups = useMemo(() => listFactionsByGrandAlliance(), []);
   const [yourName, setYourName] = useState("");
+  const [yourArmyId, setYourArmyId] = useState("");
   const [opponentName, setOpponentName] = useState("");
-  const [yourCards, setYourCards] = useState<string[]>([]);
-  const [opponentCards, setOpponentCards] = useState<string[]>([]);
-  const [battleplanId, setBattleplanId] = useState(
-    battleplanLayouts[0]?.id ?? "into-the-fire",
-  );
+  const [opponentArmyId, setOpponentArmyId] = useState("");
   const [allowDoubleTurn, setAllowDoubleTurn] = useState(true);
   const [paintedYou, setPaintedYou] = useState(false);
   const [paintedOpponent, setPaintedOpponent] = useState(false);
@@ -58,34 +43,33 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
     return null;
   }
 
-  const layout = getBattleplanLayout(battleplanId);
+  const yourArmyName = factionName(factionGroups, yourArmyId);
+  const opponentArmyName = factionName(factionGroups, opponentArmyId);
+
   const canCreate =
     yourName.trim().length > 0 &&
+    Boolean(yourArmyName) &&
     opponentName.trim().length > 0 &&
-    yourCards.length === 2 &&
-    opponentCards.length === 2 &&
-    Boolean(layout);
+    Boolean(opponentArmyName);
 
   function reset() {
     setYourName("");
+    setYourArmyId("");
     setOpponentName("");
-    setYourCards([]);
-    setOpponentCards([]);
-    setBattleplanId(battleplanLayouts[0]?.id ?? "into-the-fire");
+    setOpponentArmyId("");
     setAllowDoubleTurn(true);
     setPaintedYou(false);
     setPaintedOpponent(false);
   }
 
   function create() {
-    if (!canCreate) return;
+    if (!canCreate || !yourArmyName || !opponentArmyName) return;
     const input: CreateBattleRecordInput = {
       yourName,
+      yourArmy: yourArmyName,
       opponentName,
-      battleplanId,
+      opponentArmy: opponentArmyName,
       allowDoubleTurn,
-      yourTacticCardIds: [yourCards[0]!, yourCards[1]!],
-      opponentTacticCardIds: [opponentCards[0]!, opponentCards[1]!],
       paintedYou,
       paintedOpponent,
     };
@@ -111,54 +95,55 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
             <input
               value={yourName}
               onChange={(event) => setYourName(event.target.value)}
-              className="min-h-11 w-full rounded-xl bg-parchment-ink/5 px-3 font-serif text-xl text-parchment-ink outline-none"
+              className={SELECT_CLASS}
             />
+          </label>
+          <label className="flex flex-col gap-2 text-base text-sheet-muted">
+            Your army
+            <select
+              value={yourArmyId}
+              onChange={(event) => setYourArmyId(event.target.value)}
+              className={SELECT_CLASS}
+            >
+              <option value="">Choose army…</option>
+              {factionGroups.map((group) => (
+                <optgroup key={group.alliance} label={group.label}>
+                  {group.factions.map((faction) => (
+                    <option key={faction.id} value={faction.id}>
+                      {faction.name}
+                    </option>
+                  ))}
+                </optgroup>
+              ))}
+            </select>
           </label>
           <label className="flex flex-col gap-2 text-base text-sheet-muted">
             Opponent name
             <input
               value={opponentName}
               onChange={(event) => setOpponentName(event.target.value)}
-              className="min-h-11 w-full rounded-xl bg-parchment-ink/5 px-3 font-serif text-xl text-parchment-ink outline-none"
+              className={SELECT_CLASS}
             />
           </label>
-
-          <CardPick
-            label="Your battle tactics"
-            selected={yourCards}
-            cards={aqshyCards}
-            onToggle={(id) => setYourCards((cur) => toggleId(cur, id, 2))}
-          />
-          <CardPick
-            label="Opponent battle tactics"
-            selected={opponentCards}
-            cards={aqshyCards}
-            onToggle={(id) => setOpponentCards((cur) => toggleId(cur, id, 2))}
-          />
-
-          <div className="flex flex-col gap-2">
-            <p className="text-base text-sheet-muted">Battleplan</p>
+          <label className="flex flex-col gap-2 text-base text-sheet-muted">
+            Opponent army
             <select
-              value={battleplanId}
-              onChange={(event) => setBattleplanId(event.target.value)}
-              aria-label="Battleplan"
-              className="min-h-11 w-full rounded-xl bg-parchment-ink/5 px-3 font-serif text-lg text-parchment-ink"
+              value={opponentArmyId}
+              onChange={(event) => setOpponentArmyId(event.target.value)}
+              className={SELECT_CLASS}
             >
-              {battleplanLayouts.map((plan) => (
-                <option key={plan.id} value={plan.id}>
-                  Table {plan.table} · {plan.name}
-                </option>
+              <option value="">Choose army…</option>
+              {factionGroups.map((group) => (
+                <optgroup key={group.alliance} label={group.label}>
+                  {group.factions.map((faction) => (
+                    <option key={faction.id} value={faction.id}>
+                      {faction.name}
+                    </option>
+                  ))}
+                </optgroup>
               ))}
             </select>
-            {layout ? (
-              <div className="mt-2 overflow-hidden rounded-xl bg-parchment-ink/5 p-3">
-                <BattleplanBoard layout={layout} />
-                <p className="mt-2 text-xs text-sheet-muted">
-                  Schematic · not official map art
-                </p>
-              </div>
-            ) : null}
-          </div>
+          </label>
 
           <div className="flex flex-col gap-2">
             <p className="text-base text-sheet-muted">Double turn</p>
@@ -174,6 +159,7 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
           </div>
 
           <div className="flex flex-col gap-3 pb-2">
+            <p className="text-base text-sheet-muted">Painted army (+10 VP)</p>
             <label className="flex items-center gap-3 text-base text-parchment-ink">
               <input
                 type="checkbox"
@@ -181,7 +167,7 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
                 onChange={(event) => setPaintedYou(event.target.checked)}
                 className="size-5 accent-aether"
               />
-              Painted army (+10 you)
+              Yours painted
             </label>
             <label className="flex items-center gap-3 text-base text-parchment-ink">
               <input
@@ -190,7 +176,7 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
                 onChange={(event) => setPaintedOpponent(event.target.checked)}
                 className="size-5 accent-aether"
               />
-              Painted army (+10 opponent)
+              Opponent painted
             </label>
           </div>
         </div>
@@ -202,7 +188,7 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
           onClick={create}
           className={IOS_LIQUID_CTA_CLASS}
         >
-          Start battle
+          Continue
         </button>
         <button
           type="button"
@@ -216,48 +202,14 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
   );
 }
 
-function CardPick({
-  label,
-  selected,
-  cards,
-  onToggle,
-}: {
-  label: string;
-  selected: string[];
-  cards: ReturnType<typeof battleTacticsForRealm>;
-  onToggle: (id: string) => void;
-}) {
-  return (
-    <fieldset className="flex flex-col gap-2">
-      <legend className="text-base text-sheet-muted">
-        {label} ({selected.length}/2)
-      </legend>
-      <ul className="flex flex-col gap-2">
-        {cards.map((card) => {
-          const checked = selected.includes(card.id);
-          const disabled = !checked && selected.length >= 2;
-          return (
-            <li key={card.id}>
-              <label
-                className={`flex min-h-11 items-center gap-3 rounded-xl px-3 py-2 ${
-                  checked ? "bg-aether/15" : "bg-parchment-ink/5"
-                } ${disabled ? "opacity-50" : ""}`}
-              >
-                <input
-                  type="checkbox"
-                  checked={checked}
-                  disabled={disabled}
-                  onChange={() => onToggle(card.id)}
-                  className="size-5 accent-aether"
-                />
-                <span className="font-medium text-parchment-ink">
-                  {card.name}
-                </span>
-              </label>
-            </li>
-          );
-        })}
-      </ul>
-    </fieldset>
-  );
+function factionName(
+  groups: ReturnType<typeof listFactionsByGrandAlliance>,
+  factionId: string,
+): string | undefined {
+  if (!factionId) return undefined;
+  for (const group of groups) {
+    const faction = group.factions.find((item) => item.id === factionId);
+    if (faction) return faction.name;
+  }
+  return undefined;
 }

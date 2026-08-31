@@ -2,47 +2,59 @@ import { describe, expect, it } from "vitest";
 import {
   advanceTacticStage,
   canSetFirstPlayer,
+  canStartBattle,
   createBattleRecord,
   isDoubleTurn,
   matchTotal,
   paintedBonus,
   roundVpTotal,
+  setBattleplan,
+  setPlayerTacticCards,
+  setPrimaryClaim,
   setRoundFirstPlayer,
   setRoundVp,
+  setTwistApplied,
+  startBattle,
   underdog,
 } from "./gameSession";
 
-const twoCards = ["card-a", "card-b"] as [string, string];
-const oppCards = ["card-c", "card-d"] as [string, string];
+const twoCards = ["card-a", "card-b"];
+const oppCards = ["card-c", "card-d"];
 
 function fresh() {
-  return createBattleRecord({
+  let game = createBattleRecord({
     yourName: "Rad",
+    yourArmy: "Stormcast",
     opponentName: "Alex",
-    battleplanId: "into-the-fire",
+    opponentArmy: "Khorne",
     allowDoubleTurn: true,
-    yourTacticCardIds: twoCards,
-    opponentTacticCardIds: oppCards,
   });
+  game = setPlayerTacticCards(game, "you", twoCards);
+  game = setPlayerTacticCards(game, "opponent", oppCards);
+  return game;
 }
 
 describe("createBattleRecord", () => {
-  it("stores both names and battleplan", () => {
-    const game = fresh();
+  it("stores both names and armies", () => {
+    const game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+    });
     expect(game.yourName).toBe("Rad");
+    expect(game.yourArmy).toBe("Stormcast");
     expect(game.opponentName).toBe("Alex");
-    expect(game.battleplanId).toBe("into-the-fire");
+    expect(game.opponentArmy).toBe("Khorne");
+    expect(game.battleplanId).toBe("");
+    expect(game.yourTacticCardIds).toEqual([]);
+    expect(game.opponentTacticCardIds).toEqual([]);
   });
 
-  it("stores two tactic cards per side", () => {
+  it("starts in setup with five empty rounds", () => {
     const game = fresh();
-    expect(game.yourTacticCardIds).toEqual(twoCards);
-    expect(game.opponentTacticCardIds).toEqual(oppCards);
-  });
-
-  it("starts active with five empty rounds", () => {
-    const game = fresh();
-    expect(game.status).toBe("active");
+    expect(game.status).toBe("setup");
     expect(game.rounds).toHaveLength(5);
     expect(game.rounds.every((r) => r.yourVp === 0 && r.opponentVp === 0)).toBe(
       true,
@@ -52,11 +64,10 @@ describe("createBattleRecord", () => {
   it("defaults painted off and allowDoubleTurn from input", () => {
     const on = createBattleRecord({
       yourName: "A",
+      yourArmy: "A army",
       opponentName: "B",
-      battleplanId: "warped-ruins",
+      opponentArmy: "B army",
       allowDoubleTurn: false,
-      yourTacticCardIds: twoCards,
-      opponentTacticCardIds: oppCards,
       paintedYou: true,
       paintedOpponent: true,
     });
@@ -81,11 +92,10 @@ describe("VP and match totals", () => {
   it("adds painted bonus into match total", () => {
     let game = createBattleRecord({
       yourName: "A",
+      yourArmy: "A army",
       opponentName: "B",
-      battleplanId: "into-the-fire",
+      opponentArmy: "B army",
       allowDoubleTurn: true,
-      yourTacticCardIds: twoCards,
-      opponentTacticCardIds: oppCards,
       paintedYou: true,
     });
     game = setRoundVp(game, 0, "you", 4);
@@ -142,11 +152,10 @@ describe("double turn", () => {
   it("blocks same first player next round when double turns are off", () => {
     const game = createBattleRecord({
       yourName: "A",
+      yourArmy: "A army",
       opponentName: "B",
-      battleplanId: "into-the-fire",
+      opponentArmy: "B army",
       allowDoubleTurn: false,
-      yourTacticCardIds: twoCards,
-      opponentTacticCardIds: oppCards,
     });
     const after = setRoundFirstPlayer(game, 0, "you");
     expect(canSetFirstPlayer(after, 1, "you")).toBe(false);
@@ -157,5 +166,51 @@ describe("double turn", () => {
     let game = fresh();
     game = setRoundFirstPlayer(game, 0, "opponent");
     expect(canSetFirstPlayer(game, 1, "opponent")).toBe(true);
+  });
+});
+
+describe("mission primary claims", () => {
+  const points = [
+    { id: "primary-0", vp: 1 },
+    { id: "primary-1", vp: 1 },
+  ];
+
+  it("counts primary points one by one into round VP", () => {
+    let game = fresh();
+    game = setPrimaryClaim(game, 0, "primary-0", "you", true, points);
+    expect(game.rounds[0]!.yourVp).toBe(1);
+    expect(game.rounds[0]!.primaryClaims["primary-0"]?.you).toBe(true);
+    game = setPrimaryClaim(game, 0, "primary-1", "opponent", true, points);
+    expect(game.rounds[0]!.opponentVp).toBe(1);
+    expect(matchTotal(game, "you")).toBe(1);
+  });
+
+  it("assigns twist application only when there is an underdog", () => {
+    let game = fresh();
+    expect(setTwistApplied(game, 0, true).rounds[0]!.twistApplied).toBe(false);
+    game = setRoundVp(game, 0, "you", 5);
+    game = setTwistApplied(game, 0, true);
+    expect(game.rounds[0]!.twistApplied).toBe(true);
+    expect(underdog(game)).toBe("opponent");
+  });
+});
+
+describe("setup → start", () => {
+  it("needs battleplan and two tactics per side before start", () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+    });
+    expect(canStartBattle(game)).toBe(false);
+    game = setBattleplan(game, "into-the-fire");
+    expect(canStartBattle(game)).toBe(false);
+    game = setPlayerTacticCards(game, "you", ["card-a", "card-b"]);
+    game = setPlayerTacticCards(game, "opponent", ["card-c", "card-d"]);
+    expect(canStartBattle(game)).toBe(true);
+    game = startBattle(game);
+    expect(game.status).toBe("active");
   });
 });

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState, useSyncExternalStore } from "react";
+import { usePathname } from "next/navigation";
 import type { StoredList } from "@/engine/storedList";
 import { listGame } from "@/engine/storedList";
 import {
@@ -36,12 +37,17 @@ import { LibraryEmptyState, LibraryMenuPlaceholder } from "./LibraryEmptyState";
 import { LibraryCreateFlow } from "./LibraryCreateFlow";
 import { LibraryListCard } from "./LibraryListCard";
 import { LibraryOptionsSheet } from "./LibraryOptionsSheet";
+import {
+  BattleRecordHost,
+  isBattleRecordPath,
+} from "./BattleRecordHost";
 import { ModalFrame } from "./ModalFrame";
 import { ConfirmSheetActions } from "./ConfirmSheetActions";
 import { IosNavAddButton, IosNavOptionsButton } from "./ios/IosNavIconButton";
 import { SiteFooter } from "./SiteFooter";
 
 export function LibraryScreen() {
+  const pathname = usePathname();
   const lists = useSyncExternalStore(
     subscribeArmies,
     getArmiesSnapshot,
@@ -90,6 +96,10 @@ export function LibraryScreen() {
 
   function onSortModeChange(next: string) {
     setLibrarySortMode(next as LibrarySortMode);
+  }
+
+  if (isBattleRecordPath(pathname)) {
+    return <BattleRecordHost />;
   }
 
   return (

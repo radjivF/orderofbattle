@@ -6,6 +6,7 @@ import { getBattleplanLayout } from "@/engine/battleplanLayout";
 import { matchTotal, type GameSession } from "@/engine/gameSession";
 import {
   EMPTY_LIBRARY_CTA_CLASS,
+  LIBRARY_CARD_CLASS,
   LIBRARY_TITLE_CLASS,
   LIBRARY_TITLE_ROW_CLASS,
 } from "@/lib/builderUi";
@@ -16,7 +17,7 @@ import {
   subscribeGames,
 } from "@/lib/gameStorage";
 import { BattleRecordCreateSheet } from "./BattleRecordCreateSheet";
-import { IosNavAddButton, IosNavBackButton } from "./ios/IosNavIconButton";
+import { IosNavAddButton } from "./ios/IosNavIconButton";
 import { SiteFooter } from "./SiteFooter";
 
 export function BattleRecordScreen() {
@@ -35,13 +36,10 @@ export function BattleRecordScreen() {
   }
 
   return (
-    <div className="relative z-10 min-h-full text-parchment">
+    <div className="relative z-10 min-h-full">
       <div className="mx-auto w-full max-w-3xl px-5 pt-2 pb-3 sm:px-6">
         <div className={LIBRARY_TITLE_ROW_CLASS}>
-          <IosNavBackButton
-            label="Back to lists"
-            onClick={() => router.push("/dashboard")}
-          />
+          <span className="w-11" aria-hidden="true" />
           <h1 className={LIBRARY_TITLE_CLASS}>Battle record</h1>
           <IosNavAddButton
             label="New battle record"
@@ -52,13 +50,13 @@ export function BattleRecordScreen() {
 
       <main className="mx-auto w-full max-w-3xl px-5 pb-20 sm:px-6">
         {games === undefined ? (
-          <p className="py-16 text-center text-sm text-parchment/70">
+          <p className="py-16 text-center text-sm text-parchment/80">
             Loading games…
           </p>
         ) : games.length === 0 ? (
-          <div className="flex flex-col items-center py-16 text-center">
+          <div className="parchment-card mx-auto max-w-sm rounded-2xl px-5 py-8 text-center text-parchment-ink">
             <p className="font-serif text-2xl">No games yet</p>
-            <p className="mt-2 max-w-sm text-sm text-parchment/70">
+            <p className="mt-2 text-sm text-sheet-muted">
               Start a battle record to track turns, victory points, and battle
               tactics.
             </p>
@@ -79,15 +77,20 @@ export function BattleRecordScreen() {
                   <button
                     type="button"
                     onClick={() => router.push(`/battle-record/${game.id}`)}
-                    className="pressable flex w-full flex-col gap-1 rounded-2xl bg-ink-raised px-4 py-4 text-left ring-1 ring-parchment/12"
+                    className={`${LIBRARY_CARD_CLASS} pressable flex w-full flex-col gap-1 p-4 text-left sm:p-5`}
                   >
-                    <span className="font-serif text-xl">
+                    <span className="font-serif text-xl text-parchment-ink">
                       {game.yourName} vs {game.opponentName}
                     </span>
-                    <span className="text-sm text-parchment/65">
-                      {plan?.name ?? game.battleplanId} ·{" "}
+                    <span className="text-sm text-sheet-muted">
+                      {game.yourArmy} vs {game.opponentArmy}
+                      {plan ? ` · ${plan.name}` : ""} ·{" "}
                       {matchTotal(game, "you")}–{matchTotal(game, "opponent")} ·{" "}
-                      {game.status === "active" ? "In progress" : "Done"}
+                      {game.status === "setup"
+                        ? "Setup"
+                        : game.status === "active"
+                          ? "In progress"
+                          : "Done"}
                     </span>
                   </button>
                 </li>

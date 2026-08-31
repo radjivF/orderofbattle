@@ -24,7 +24,7 @@ afterEach(() => {
 });
 
 describe("BattleRecordCreateSheet", () => {
-  it("keeps Start battle disabled until the form is complete", () => {
+  it("asks for names, armies, double turn, and painted only", () => {
     render(
       <BattleRecordCreateSheet
         open
@@ -34,24 +34,20 @@ describe("BattleRecordCreateSheet", () => {
     );
 
     const dialog = screen.getByRole("dialog", { name: "New battle record" });
-    expect(
-      within(dialog).getByRole("button", { name: "Start battle" }),
-    ).toBeDisabled();
     expect(within(dialog).getByLabelText("Your name")).toBeTruthy();
+    expect(within(dialog).getByLabelText("Your army").tagName).toBe("SELECT");
     expect(within(dialog).getByLabelText("Opponent name")).toBeTruthy();
-  });
-
-  it("lists Scourge of Aqshy battleplans", () => {
-    render(
-      <BattleRecordCreateSheet
-        open
-        onClose={() => undefined}
-        onCreated={() => undefined}
-      />,
+    expect(within(dialog).getByLabelText("Opponent army").tagName).toBe(
+      "SELECT",
     );
-
-    const dialog = screen.getByRole("dialog", { name: "New battle record" });
-    const select = within(dialog).getByLabelText("Battleplan");
-    expect(select.querySelectorAll("option")).toHaveLength(12);
+    expect(
+      within(dialog).getByRole("group", { name: "Allow double turn" }),
+    ).toBeTruthy();
+    expect(within(dialog).getByText("Yours painted")).toBeTruthy();
+    expect(within(dialog).getByText("Opponent painted")).toBeTruthy();
+    expect(within(dialog).queryByLabelText("Battleplan")).toBeNull();
+    expect(
+      within(dialog).getByRole("button", { name: "Continue" }),
+    ).toBeDisabled();
   });
 });
