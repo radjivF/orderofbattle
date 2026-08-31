@@ -20,7 +20,6 @@ import {
   LIST_PANE_ART_CLASS,
 } from "@/lib/builderUi";
 import {
-  isBackdropArtReady,
   listBackdropArtSrc,
   preloadBackdropArt,
 } from "@/lib/factionArt";
@@ -89,7 +88,6 @@ export function BuilderScreen({ listId }: Props) {
     getListOpenScourgeServerSnapshot,
   );
   const [openingSplash, setOpeningSplash] = useState(false);
-  const [artReady, setArtReady] = useState(true);
   const openedRecorded = useRef<string | null>(null);
   const splashStarted = useRef(0);
   const [skipSplash] = useState(consumeSkipListSplash);
@@ -178,27 +176,14 @@ export function BuilderScreen({ listId }: Props) {
 
   useLayoutEffect(() => {
     if (!backdropSrc) {
-      setArtReady(true);
       return;
     }
-    if (isBackdropArtReady(backdropFactionId, backdropScourgeRealm)) {
-      setArtReady(true);
-      return;
-    }
-    let cancelled = false;
-    setArtReady(false);
-    void preloadBackdropArt(backdropFactionId, backdropScourgeRealm).then(() => {
-      if (!cancelled) {
-        setArtReady(true);
-      }
-    });
-    return () => {
-      cancelled = true;
-    };
+    void preloadBackdropArt(backdropFactionId, backdropScourgeRealm).catch(
+      () => {},
+    );
   }, [backdropFactionId, backdropScourgeRealm, backdropSrc]);
 
-  const showSplash =
-    lists === undefined || openingSplash || !artReady;
+  const showSplash = lists === undefined || openingSplash;
 
   useEffect(() => {
     if (showSplash) {

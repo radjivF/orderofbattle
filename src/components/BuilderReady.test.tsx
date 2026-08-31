@@ -56,6 +56,17 @@ function khorneListWithHero() {
 describe("BuilderReady issue banner", () => {
   beforeEach(() => {
     cleanup();
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: (query: string) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+        dispatchEvent: () => false,
+      }),
+    });
   });
 
   it("opens Options when the battle tactic warning is tapped", async () => {
@@ -76,7 +87,8 @@ describe("BuilderReady issue banner", () => {
     ).toBeInTheDocument();
   });
 
-  it("leaves the empty-list warning as status, not a control", () => {
+  it("opens the hero picker from the empty-list warning, not Options", async () => {
+    const user = userEvent.setup();
     const faction = getFaction("blades-of-khorne");
     expect(faction).toBeTruthy();
     if (!faction) {
@@ -89,9 +101,15 @@ describe("BuilderReady issue banner", () => {
       />,
     );
 
-    expect(screen.getByText("Add a regiment to begin.")).toBeInTheDocument();
+    await user.click(
+      screen.getByRole("button", { name: /Add a regiment to begin/i }),
+    );
+
     expect(
-      screen.queryByRole("button", { name: /Add a regiment to begin/i }),
-    ).toBeNull();
+      screen.getByRole("dialog", { name: "Choose a hero" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /Options/i }),
+    ).toHaveAttribute("aria-expanded", "false");
   });
 });
