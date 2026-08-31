@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { battleTactics } from "@/engine/data/load";
 import type { ArmyList } from "@/engine/types";
+import { BattleTacticText } from "./BattleTacticText";
 
 export function BattleTacticCardPicker({
   list,
@@ -151,28 +152,25 @@ export function BattleTacticCardPicker({
                       <p className="text-parchment/70">{card.setup}</p>
                     ) : null}
                     {card.affray ? (
-                      <p className={card.setup ? "mt-2" : undefined}>
-                        <span className="font-semibold uppercase text-parchment/55">
-                          Affray ·{" "}
-                        </span>
-                        {card.affray}
-                      </p>
+                      <BattleTacticText
+                        className={card.setup ? "mt-2" : undefined}
+                        stage="Affray"
+                        text={card.affray}
+                      />
                     ) : null}
                     {card.strike ? (
-                      <p className="mt-2">
-                        <span className="font-semibold uppercase text-parchment/55">
-                          Strike ·{" "}
-                        </span>
-                        {card.strike}
-                      </p>
+                      <BattleTacticText
+                        className="mt-2"
+                        stage="Strike"
+                        text={card.strike}
+                      />
                     ) : null}
                     {card.domination ? (
-                      <p className="mt-2">
-                        <span className="font-semibold uppercase text-parchment/55">
-                          Domination ·{" "}
-                        </span>
-                        {card.domination}
-                      </p>
+                      <BattleTacticText
+                        className="mt-2"
+                        stage="Domination"
+                        text={card.domination}
+                      />
                     ) : null}
                   </div>
                 ) : null}
