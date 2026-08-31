@@ -7,11 +7,13 @@ import {
   libraryCreatingSplashVisible,
   listFlowHeaderMode,
   listFlowIsHome,
+  listFlowSkipsPostRouteSlide,
   listFlowTrackClass,
   listFlowWindowScrollY,
   listOpenShowsSplash,
   listOpenDisplayNameForHeader,
   listOpenSplashFactionName,
+  listOpenUsesInAppSlide,
   resolveBuilderHeaderDisplay,
 } from "./listFlowNav";
 
@@ -170,6 +172,28 @@ describe("listFlowIsHome", () => {
   });
 });
 
+describe("listOpenUsesInAppSlide", () => {
+  it("starts the slide on a normal press, not a modified click", () => {
+    const tap = {
+      metaKey: false,
+      ctrlKey: false,
+      shiftKey: false,
+      altKey: false,
+      button: 0,
+    };
+    expect(listOpenUsesInAppSlide(tap)).toBe(true);
+    expect(listOpenUsesInAppSlide({ ...tap, metaKey: true })).toBe(false);
+    expect(listOpenUsesInAppSlide({ ...tap, button: 1 })).toBe(false);
+  });
+});
+
+describe("listFlowSkipsPostRouteSlide", () => {
+  it("does not replay the slide after the route catches up", () => {
+    expect(listFlowSkipsPostRouteSlide(true)).toBe(true);
+    expect(listFlowSkipsPostRouteSlide(false)).toBe(false);
+  });
+});
+
 describe("libraryCardPressHoldsOn", () => {
   it("holds the press on list details and releases back on My lists", () => {
     expect(libraryCardPressHoldsOn("/lists/abc")).toBe(true);
@@ -232,6 +256,8 @@ describe("list flow navigation wiring", () => {
     const libraryCard = readSource("components/LibraryListCard.tsx");
     expect(libraryCard).toContain("listOpenDisplayNameForHeader(list)");
     expect(libraryCard).toContain("rememberOpenList(list)");
+    expect(libraryCard).toContain("goForward");
+    expect(libraryCard).toContain("preventDefault");
     expect(library).toContain("rememberListCreate");
     expect(libraryCard).not.toContain("rememberOpenList(list.factionId)");
     expect(libraryCard).not.toContain("rememberListOpen(artId, faction?.name)");
@@ -253,6 +279,9 @@ describe("list flow navigation wiring", () => {
     expect(nav).toContain("listFlowIsHome");
     expect(nav).toContain("listFlowTrackClass");
     expect(nav).toContain("listFlowTrackClass(showDetail, settled)");
+    expect(nav).toContain("goForward");
+    expect(nav).toContain("listFlowSkipsPostRouteSlide");
+    expect(nav).toContain("startForwardSlide");
     expect(nav).toContain("LIST_FLOW_HEADER_OFFSET_CLASS");
     expect(nav).not.toContain(
       "overflow-x-hidden ${listFlowHeaderOffsetClass",

@@ -19,6 +19,28 @@ export function listFlowIsHome(pathname: string): boolean {
   return pathname === "/";
 }
 
+/** Primary in-app tap — not a new-tab / modified click. */
+export function listOpenUsesInAppSlide(event: {
+  metaKey: boolean;
+  ctrlKey: boolean;
+  shiftKey: boolean;
+  altKey: boolean;
+  button: number;
+}): boolean {
+  return (
+    event.button === 0 &&
+    !event.metaKey &&
+    !event.ctrlKey &&
+    !event.shiftKey &&
+    !event.altKey
+  );
+}
+
+/** Skip the post-route slide when the library already started it on press. */
+export function listFlowSkipsPostRouteSlide(pendingForward: boolean): boolean {
+  return pendingForward;
+}
+
 /** Keep the library card pressed only while list details are on screen. */
 export function libraryCardPressHoldsOn(pathname: string): boolean {
   return pathname.startsWith("/lists/");

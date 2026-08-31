@@ -7,10 +7,18 @@ import { LibraryScreen } from "./LibraryScreen";
 
 const armyStore = vi.hoisted(() => ({ items: [] as ArmyList[] }));
 const navigation = vi.hoisted(() => ({ pathname: "/dashboard" }));
+const listNav = vi.hoisted(() => ({
+  goBack: vi.fn(),
+  goForward: vi.fn(),
+}));
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), replace: vi.fn() }),
   usePathname: () => navigation.pathname,
+}));
+
+vi.mock("./IosNavSlide", () => ({
+  useListNav: () => listNav,
 }));
 
 vi.mock("next/link", () => ({
@@ -84,6 +92,7 @@ describe("LibraryScreen", () => {
     cleanup();
     armyStore.items = [];
     navigation.pathname = "/dashboard";
+    listNav.goForward.mockReset();
     Object.defineProperty(window, "matchMedia", {
       writable: true,
       value: (query: string) => ({
@@ -156,6 +165,16 @@ describe("LibraryScreen", () => {
     expect(card).not.toHaveAttribute("data-opening");
     await user.click(open);
     expect(card).toHaveAttribute("data-opening", "true");
+  });
+
+  it("starts the list slide on press instead of waiting for the route", async () => {
+    const list = blankArmy("stormcast-eternals", "Sigmar host");
+    armyStore.items = [list];
+    render(<LibraryScreen />);
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+
+    await user.click(screen.getByRole("link", { name: "Open Sigmar host" }));
+    expect(listNav.goForward).toHaveBeenCalledWith(`/lists/${list.id}`);
   });
 
   it("does not press the card when duplicating", async () => {

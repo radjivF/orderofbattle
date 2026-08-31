@@ -23,6 +23,7 @@ import {
 } from "@/lib/builderUi";
 import {
   listFlowIsHome,
+  listFlowSkipsPostRouteSlide,
   listFlowTrackClass,
   listFlowWindowScrollY,
 } from "@/lib/listFlowNav";
@@ -31,11 +32,18 @@ import {
   clearListOpenSplash,
   clearListCreateSplash,
   peekListNavigationDirection,
+  peekListOpenDisplayName,
+  peekListOpenFactionId,
   rememberListNavigation,
 } from "@/lib/listTransition";
+import { getFaction } from "@/engine/queries";
 import { IndexBackdropLayer } from "./IndexBackdrop";
+import { ListLoadingSplash } from "./ListLoadingSplash";
 
-const ListNavContext = createContext<{ goBack: () => void } | null>(null);
+const ListNavContext = createContext<{
+  goBack: () => void;
+  goForward: (href: string) => void;
+} | null>(null);
 
 export function useListNav() {
   const ctx = useContext(ListNavContext);
@@ -98,6 +106,8 @@ export function ListNavProvider({
   const [cachedBackdrop, setCachedBackdrop] = useState<ReactNode>(null);
   const timers = useRef<number[]>([]);
   const animatingBackRef = useRef(false);
+  const pendingForwardRef = useRef(false);
+  const forwardGenRef = useRef(0);
   const libraryScrollYRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -133,6 +143,36 @@ export function ListNavProvider({
     return id;
   }
 
+  function startForwardSlide() {
+    const gen = ++forwardGenRef.current;
+    libraryScrollYRef.current = window.scrollY;
+    if (prefersReducedMotion()) {
+      publishNavState({ showDetail: true, animatingBack: false, settled: true });
+      scrollToPane(true, libraryScrollYRef);
+      return;
+    }
+    publishNavState({ showDetail: false, animatingBack: false, settled: false });
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        if (gen !== forwardGenRef.current) {
+          return;
+        }
+        scrollToPane(true, libraryScrollYRef);
+        publishNavState({
+          showDetail: true,
+          animatingBack: false,
+          settled: false,
+        });
+      });
+    });
+    schedule(() => {
+      if (gen !== forwardGenRef.current) {
+        return;
+      }
+      publishNavState({ showDetail: true, animatingBack: false, settled: true });
+    }, LIST_FLOW_SLIDE_MS);
+  }
+
   useEffect(() => {
     if (!isBuilder) {
       return;
@@ -142,15 +182,24 @@ export function ListNavProvider({
 
   useLayoutEffect(() => {
     if (isHome) {
+      pendingForwardRef.current = false;
       animatingBackRef.current = false;
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
       return;
     }
     if (!isBuilder) {
+      if (listFlowSkipsPostRouteSlide(pendingForwardRef.current)) {
+        return;
+      }
       animatingBackRef.current = false;
       clearListNavigationDirection();
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
       scrollToPane(false, libraryScrollYRef);
+      return;
+    }
+
+    if (listFlowSkipsPostRouteSlide(pendingForwardRef.current)) {
+      clearListNavigationDirection();
       return;
     }
 
@@ -196,10 +245,22 @@ export function ListNavProvider({
     scrollToPane(true, libraryScrollYRef);
   }, [isBuilder, isHome, pathname, publishNavState]);
 
+  function goForward(href: string) {
+    if (animatingBackRef.current || isBuilder || pendingForwardRef.current) {
+      return;
+    }
+    pendingForwardRef.current = true;
+    rememberListNavigation("forward");
+    startForwardSlide();
+    router.push(href, { scroll: false });
+  }
+
   function goBack() {
     if (animatingBackRef.current || !isBuilder) {
       return;
     }
+    pendingForwardRef.current = false;
+    forwardGenRef.current += 1;
     rememberListNavigation("back");
     clearListOpenSplash();
     clearListCreateSplash();
@@ -223,6 +284,10 @@ export function ListNavProvider({
     }, LIST_FLOW_SLIDE_MS);
   }
 
+  const openFactionId = peekListOpenFactionId();
+  const pendingSplashName = openFactionId
+    ? getFaction(openFactionId)?.name
+    : peekListOpenDisplayName();
   const showFactionBackdrop = isBuilder && Boolean(backdrop);
   const indexBackdropRevealed =
     !showFactionBackdrop || animatingBack || backdropExiting;
@@ -253,7 +318,7 @@ export function ListNavProvider({
   }, [factionBackdropFadingOut, factionBackdropLayer]);
 
   return (
-    <ListNavContext.Provider value={{ goBack }}>
+    <ListNavContext.Provider value={{ goBack, goForward }}>
       <div className="relative min-h-dvh w-full overflow-x-hidden overflow-y-visible">
         <IndexBackdropLayer
           revealed={indexBackdropRevealed}
@@ -290,7 +355,11 @@ export function ListNavProvider({
               aria-hidden={!showDetail && !isBuilder}
             >
               <div className={`relative z-10 ${LIST_FLOW_HEADER_OFFSET_CLASS}`}>
-                {isBuilder ? children : null}
+                {isBuilder ? (
+                  children
+                ) : showDetail ? (
+                  <ListLoadingSplash factionName={pendingSplashName} />
+                ) : null}
               </div>
             </div>
           </div>
