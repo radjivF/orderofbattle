@@ -1,16 +1,16 @@
 "use client";
 
 import { useEffect, useState, useSyncExternalStore } from "react";
+import Link from "next/link";
 import { WHATS_NEW_BANNER_CLASS } from "@/lib/builderUi";
 import {
   getArmiesServerSnapshot,
   getArmiesSnapshot,
   subscribeArmies,
 } from "@/lib/storage";
+import { UPDATES_PATH } from "@/lib/updatesPage";
 import {
   WHATS_NEW_AUTO_DISMISS_MS,
-  WHATS_NEW_EXPANDED_DISMISS_MS,
-  WHATS_NEW_ITEMS,
   getSeenWhatsNewVersion,
   markWhatsNewSeen,
   shouldShowWhatsNew,
@@ -24,7 +24,6 @@ export function WhatsNewNotice() {
   );
   const [seenVersion, setSeenVersion] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
-  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     setSeenVersion(getSeenWhatsNewVersion());
@@ -38,15 +37,12 @@ export function WhatsNewNotice() {
     if (!visible) {
       return;
     }
-    const ms = expanded
-      ? WHATS_NEW_EXPANDED_DISMISS_MS
-      : WHATS_NEW_AUTO_DISMISS_MS;
     const timer = window.setTimeout(() => {
       markWhatsNewSeen();
       setSeenVersion(getSeenWhatsNewVersion());
-    }, ms);
+    }, WHATS_NEW_AUTO_DISMISS_MS);
     return () => window.clearTimeout(timer);
-  }, [visible, expanded]);
+  }, [visible]);
 
   function dismiss() {
     markWhatsNewSeen();
@@ -65,13 +61,6 @@ export function WhatsNewNotice() {
         <p className="text-center text-xs leading-snug text-parchment/80">
           We fixed a few bugs. Want to see?
         </p>
-        {expanded ? (
-          <ul className="list-disc space-y-1 pl-4 text-left text-xs leading-snug text-parchment/80">
-            {WHATS_NEW_ITEMS.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        ) : null}
         <div className="flex items-center justify-center gap-1.5">
           <button
             type="button"
@@ -80,15 +69,13 @@ export function WhatsNewNotice() {
           >
             Dismiss
           </button>
-          {expanded ? null : (
-            <button
-              type="button"
-              onClick={() => setExpanded(true)}
-              className="pressable rounded-md bg-parchment px-3 py-1 text-xs font-medium text-parchment-ink"
-            >
-              See
-            </button>
-          )}
+          <Link
+            href={UPDATES_PATH}
+            onClick={dismiss}
+            className="pressable rounded-md bg-parchment px-3 py-1 text-xs font-medium text-parchment-ink"
+          >
+            See
+          </Link>
         </div>
       </div>
     </div>

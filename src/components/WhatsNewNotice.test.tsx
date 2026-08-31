@@ -1,8 +1,10 @@
+import type { MouseEventHandler, ReactNode } from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { blankArmy } from "@/engine/listFactories";
 import type { ArmyList } from "@/engine/types";
-import { WHATS_NEW_AUTO_DISMISS_MS, WHATS_NEW_ITEMS } from "@/lib/whatsNew";
+import { WHATS_NEW_AUTO_DISMISS_MS } from "@/lib/whatsNew";
+import { UPDATES_PATH } from "@/lib/updatesPage";
 import { act, cleanup, render, screen } from "@/test-utils/render";
 import { WhatsNewNotice } from "./WhatsNewNotice";
 
@@ -17,6 +19,23 @@ vi.mock("@/lib/storage", () => ({
   },
   getArmiesSnapshot: () => armyStore.items,
   getArmiesServerSnapshot: () => undefined,
+}));
+
+vi.mock("next/link", () => ({
+  default: ({
+    children,
+    href,
+    onClick,
+    ...props
+  }: {
+    children: ReactNode;
+    href: string;
+    onClick?: MouseEventHandler<HTMLAnchorElement>;
+  }) => (
+    <a href={href} onClick={onClick} {...props}>
+      {children}
+    </a>
+  ),
 }));
 
 describe("WhatsNewNotice", () => {
@@ -48,18 +67,14 @@ describe("WhatsNewNotice", () => {
     expect(screen.queryByRole("list")).toBeNull();
   });
 
-  it("reveals the fixes without opening a blocking dialog", async () => {
+  it("sends See to the updates page instead of stuffing the list in the toast", () => {
     armyStore.items = [blankArmy("stormcast-eternals", "My army")];
     render(<WhatsNewNotice />);
-    const user = userEvent.setup();
-
-    await user.click(screen.getByRole("button", { name: "See" }));
 
     expect(screen.queryByRole("dialog")).toBeNull();
-    const items = screen.getByRole("list");
-    for (const line of WHATS_NEW_ITEMS) {
-      expect(items).toHaveTextContent(line);
-    }
+    expect(screen.queryByRole("list")).toBeNull();
+    const see = screen.getByRole("link", { name: "See" });
+    expect(see).toHaveAttribute("href", UPDATES_PATH);
   });
 
   it("goes away after Dismiss and stays gone", async () => {

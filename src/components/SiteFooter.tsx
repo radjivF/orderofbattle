@@ -89,6 +89,9 @@ export function SiteFooter() {
         <Link href="/about" className={linkClass}>
           About
         </Link>
+        <Link href="/updates" className={linkClass}>
+          What&apos;s new
+        </Link>
         <a
           href={SITE_GITHUB_URL}
           target="_blank"
