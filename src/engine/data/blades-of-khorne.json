@@ -4594,6 +4594,921 @@
       ],
       "regimentOptions": [],
       "regimentHeroes": []
+    },
+    {
+      "id": "be82-ff39-9365-39b3",
+      "name": "Anvil of Apotheosis: Blades of Khorne Hero",
+      "points": 150,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "CHAOS",
+        "BLADES OF KHORNE"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "5",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Bloodshed Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Blood-hungry, Crit (2 Hits)"
+        },
+        {
+          "name": "Blood-slick Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Blood-hungry"
+        },
+        {
+          "name": "Juggernaut's Brass-shod Hooves",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Great Blood-slick Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Blood-hungry, Crit (2 Hits)"
+        },
+        {
+          "name": "Daemon Rider's Hellblades",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Blood-hungry, Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Red Raider",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to hit rolls for this unit if it charged in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Hunter of Souls",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "You can re-roll run rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Titan Slayer",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot be picked to be the target of Rampage abilities used by enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Devoted Followers",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit is within the combat range of a friendly non-Hero unit, this unit is not visible to enemy units more than 6\" away.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Khorne's Retribution",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "This unit must use this ability.",
+          "effect": "If an enemy unit has not been destroyed by this unit this battle, inflict 1 mortal damage on this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "A True Berserker",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit has a maximum control score of 1 that cannot be modified.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Willing Sacrifice",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot be healed.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Kin-killer",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "This unit must use this ability.",
+          "effect": "Inflict D3 mortal damage on every other friendly unit within 3\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Brass Collar",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from casting rolls for Wizards while they are within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Blood-crazed Stare",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot be picked to be the target of Rampage abilities used by enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Ensorcelled Plate",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from the Rend characteristic of melee weapons used for attacks that target this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Ruthless Savagery",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If an unmodified charge roll for this unit was 8+, it has Strike-first for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Bloody Prophet",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to chanting rolls and banishment rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Blind to All but Hate",
+          "kind": "Activated",
+          "timing": "End of Enemy Turn",
+          "declare": "Pick a visible enemy unit that destroyed a friendly unit this turn and is within 12\" of this unit to be the target.",
+          "effect": "Until the end of your next turn, add 1 to wound rolls for combat attacks that target that enemy unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Pulverising Charge",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "If this unit charged this turn, pick an enemy unit within 1\" of it to be the target.",
+          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Anathemic Runescars",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "The unit has Ward (4+) against damage inflicted by Spell abilities and abilities used by Manifestations.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Eager Killer",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a Charge ability for this Hero",
+          "declare": "",
+          "effect": "Add D3 to the charge roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Anointed with Gore",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "If this unit charged this turn, pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "34e2-3c11-76bc-a2e",
+          "name": "BLADES OF KHORNE"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "9a4a-9555-d827-3700",
+          "name": "Bloodbound Warmonger"
+        }
+      ],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "ec93-2ef7-8ee7-309e",
+          "name": "Bloodbutcher",
+          "points": 150,
+          "destiny": 10
+        },
+        {
+          "id": "bea2-81b9-2faf-3bef",
+          "name": "Gore Chieftain",
+          "points": 250,
+          "destiny": 30
+        },
+        {
+          "id": "dbc8-e223-e6c1-6350",
+          "name": "Brass Overlord",
+          "points": 350,
+          "destiny": 50
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "ac7a-d9ad-8e1c-5300",
+          "name": "Archetype",
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "id": "7810-580d-c5b7-2f3f",
+              "name": "Khornate Warlord",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Blood-slick Weapon",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Blood-hungry"
+                },
+                {
+                  "name": "Great Blood-slick Weapon",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Blood-hungry, Crit (2 Hits)"
+                }
+              ],
+              "stats": {
+                "save": "3+"
+              }
+            },
+            {
+              "id": "b9d2-7734-7a08-f124",
+              "name": "Priest of Khorne",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "0b78-459c-b644-2dac",
+              "name": "Daemon of Fury",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "353c-e908-7839-9082",
+              "name": "Daemon of Violence",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Bloodshed Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Blood-hungry, Crit (2 Hits)"
+                }
+              ]
+            },
+            {
+              "id": "f55e-57e5-853e-ae93",
+              "name": "Locus of Battle",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "stats": {
+                "save": "3+"
+              }
+            }
+          ]
+        },
+        {
+          "id": "af1f-a449-2ec6-f21d",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "e929-c0a5-7403-81da",
+              "name": "Red Raider",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Red Raider",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to hit rolls for this unit if it charged in the same turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "7cd0-724b-64cd-ad84",
+              "name": "Hunter of Souls",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Hunter of Souls",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "You can re-roll run rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "bf2f-c7f7-ff9c-508c",
+              "name": "Titan Slayer",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Titan Slayer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot be picked to be the target of Rampage abilities used by enemy units.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "5504-90b8-8360-a92c",
+              "name": "Devoted Followers",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Devoted Followers",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit is within the combat range of a friendly non-Hero unit, this unit is not visible to enemy units more than 6\" away.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "7a00-5259-cda8-77c0",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "3db9-06c4-a081-384e",
+              "name": "Khorne's Retribution",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Khorne's Retribution",
+                  "kind": "Activated",
+                  "timing": "End of Any Turn",
+                  "declare": "This unit must use this ability.",
+                  "effect": "If an enemy unit has not been destroyed by this unit this battle, inflict 1 mortal damage on this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "b4de-cbc6-a3b0-f870",
+              "name": "A True Berserker",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "A True Berserker",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit has a maximum control score of 1 that cannot be modified.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "91ed-64b5-a282-21ee",
+              "name": "Willing Sacrifice",
+              "destiny": 3,
+              "abilities": [
+                {
+                  "name": "Willing Sacrifice",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot be healed.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "7670-889e-7ed0-6199",
+              "name": "Kin-killer",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Kin-killer",
+                  "kind": "Activated",
+                  "timing": "End of Any Turn",
+                  "declare": "This unit must use this ability.",
+                  "effect": "Inflict D3 mortal damage on every other friendly unit within 3\" of this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "ec8e-26b8-029c-5768",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "0202-9ce6-a9d9-24bb",
+              "name": "Trophy Racks",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "control": 2
+              }
+            },
+            {
+              "id": "10ec-d48c-d24e-008c",
+              "name": "Killer's Heirloom",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Blood-slick Weapon",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Blood-hungry"
+                }
+              ]
+            },
+            {
+              "id": "e04b-17f3-e85a-0437",
+              "name": "Slaughterous Speed",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 1
+              }
+            },
+            {
+              "id": "625d-4fe3-ba0b-0b9e",
+              "name": "Preferred Prey",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "7bd2-40e5-ce09-d6e6",
+              "name": "Brass Collar",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Brass Collar",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 1 from casting rolls for Wizards while they are within 12\" of this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "a393-2c0b-1ab5-c148",
+              "name": "Blood-crazed Stare",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Blood-crazed Stare",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot be picked to be the target of Rampage abilities used by enemy units.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "7faa-421f-d3d5-1bec",
+              "name": "Ensorcelled Plate",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Ensorcelled Plate",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 1 from the Rend characteristic of melee weapons used for attacks that target this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "f8b7-95db-3deb-4377",
+              "name": "Leathery Wings",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "8b06-ac3a-451e-35ce",
+              "name": "Ruthless Savagery",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Ruthless Savagery",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "If an unmodified charge roll for this unit was 8+, it has Strike-first for the rest of the turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "2fc1-c4e6-5a5f-c104",
+              "name": "Bloody Prophet",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Bloody Prophet",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to chanting rolls and banishment rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "7eec-489a-d4ec-aa09",
+              "name": "Blind to All but Hate",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Blind to All but Hate",
+                  "kind": "Activated",
+                  "timing": "End of Enemy Turn",
+                  "declare": "Pick a visible enemy unit that destroyed a friendly unit this turn and is within 12\" of this unit to be the target.",
+                  "effect": "Until the end of your next turn, add 1 to wound rolls for combat attacks that target that enemy unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "ebca-1f31-8763-d009",
+              "name": "Butcher's Brawn",
+              "destiny": -6,
+              "abilities": [],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "b11c-fd48-0a5e-8a3d",
+          "name": "Battle Mounts",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "b257-3fc0-2172-cb6e",
+              "name": "Blood Throne",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Daemon Rider's Hellblades",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "1",
+                  "ability": "Blood-hungry, Companion"
+                }
+              ],
+              "stats": {
+                "health": "10",
+                "move": "8\""
+              }
+            },
+            {
+              "id": "1d95-ecc1-9d29-dfcf",
+              "name": "Juggernaut",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Juggernaut's Brass-shod Hooves",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "2",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "D3",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "8",
+                "move": "10\"",
+                "save": "3+"
+              }
+            }
+          ]
+        },
+        {
+          "id": "d06a-854c-4e2e-e467",
+          "name": "Battle Mount Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "619f-7912-8e4a-9546",
+              "name": "Furious Haste",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 2
+              }
+            },
+            {
+              "id": "2ea1-35db-d763-23bc",
+              "name": "Studded Brass Hide",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "health": 2
+              }
+            },
+            {
+              "id": "9956-7e54-2847-c6fa",
+              "name": "Spikes and Blades",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "ad2e-3f79-d88f-cab1",
+              "name": "Pulverising Charge",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Pulverising Charge",
+                  "kind": "Activated",
+                  "timing": "Any Charge Phase",
+                  "declare": "If this unit charged this turn, pick an enemy unit within 1\" of it to be the target.",
+                  "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "a694-b9cd-63b7-017e",
+              "name": "Anathemic Runescars",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Anathemic Runescars",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The unit has Ward (4+) against damage inflicted by Spell abilities and abilities used by Manifestations.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "da4e-c06a-42d3-3d58",
+              "name": "Eager Killer",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Eager Killer",
+                  "kind": "Activated",
+                  "timing": "Reaction: You declared a Charge ability for this Hero",
+                  "declare": "",
+                  "effect": "Add D3 to the charge roll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "6abe-6177-ecf6-b417",
+              "name": "Anointed with Gore",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Anointed with Gore",
+                  "kind": "Activated",
+                  "timing": "Any Combat Phase",
+                  "declare": "If this unit charged this turn, pick an enemy unit in combat with this unit to be the target.",
+                  "effect": "Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -7,6 +7,8 @@ import {
   unitBaseName,
 } from "@/engine/queries";
 import type { ArmyList, CatalogueUnit, FactionCatalogue } from "@/engine/types";
+import { isPathToGloryList } from "@/engine/pathToGlory/packs";
+import { isAnvilOfApotheosis } from "@/engine/pathToGlory/anvil";
 
 export type ListPicker =
   | { kind: "hero"; regimentId?: string }
@@ -67,9 +69,13 @@ export function availablePickerUnits(
   exceptUnitId?: string,
 ): CatalogueUnit[] {
   const taken = takenUniqueBases(list, faction, exceptUnitId);
-  return units.filter(
-    (unit) => !unit.unique || !taken.has(unitBaseName(unit.name)),
-  );
+  const pathToGlory = isPathToGloryList(list);
+  return units.filter((unit) => {
+    if (isAnvilOfApotheosis(unit) && !pathToGlory) {
+      return false;
+    }
+    return !unit.unique || !taken.has(unitBaseName(unit.name));
+  });
 }
 
 export function pickerUnitsFor(

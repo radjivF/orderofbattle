@@ -20,7 +20,21 @@ import {
   catalogueMatchIds,
 } from "./queries";
 import { isSpearheadList } from "./spearhead";
-import type { ArmyList, EnhancementPick, FactionCatalogue } from "./types";
+import {
+  anvilDestinyRemaining,
+  anvilForgeGroups,
+  anvilPickIds,
+  isAnvilOfApotheosis,
+  isPathToGloryList,
+  pathToGloryManifestationPoints,
+  pathToGlorySpellIds,
+} from "./pathToGlory";
+import type {
+  ArmyList,
+  EnhancementPick,
+  FactionCatalogue,
+  Selection,
+} from "./types";
 
 export type ListIssue = {
   tone: "ok" | "warn" | "bad";
@@ -52,18 +66,14 @@ export function summarize(
   const uniqueSeen = new Set<string>();
   const issues: ListIssue[] = [];
 
-  const addSel = (
-    unitId: string,
-    reinforced: boolean,
-    where: string,
-  ) => {
-    const unit = getUnit(faction, unitId);
+  const addSel = (selection: Selection, where: string) => {
+    const unit = getUnit(faction, selection.unitId);
     if (!unit) {
       issues.push({ tone: "bad", text: `Unknown unit in ${where}.` });
       return;
     }
-    points += selectionPoints(unit, reinforced);
-    if (reinforced && !unit.reinforce) {
+    points += selectionPoints(unit, selection.reinforced, selection);
+    if (selection.reinforced && !unit.reinforce) {
       issues.push({
         tone: "bad",
         text: `${unit.name} cannot be reinforced.`,
@@ -87,7 +97,7 @@ export function summarize(
       continue;
     }
     const hero = getUnit(faction, regiment.hero.unitId);
-    addSel(regiment.hero.unitId, regiment.hero.reinforced, "a regiment");
+    addSel(regiment.hero, "a regiment");
     if (!isSpearheadList(list)) {
       const cap = regimentSlotCap(list, regiment.id);
       if (regiment.units.length > cap) {
@@ -98,7 +108,7 @@ export function summarize(
       }
     }
     for (const slot of regiment.units) {
-      addSel(slot.unitId, slot.reinforced, "a regiment");
+      addSel(slot, "a regiment");
       const companion = getUnit(faction, slot.unitId);
       if (
         !isSpearheadList(list) &&
@@ -115,7 +125,7 @@ export function summarize(
   }
 
   for (const aux of list.auxiliaries) {
-    addSel(aux.unitId, aux.reinforced, "auxiliaries");
+    addSel(aux, "auxiliaries");
   }
 
   const rorPick = list.regimentOfRenown;
@@ -176,7 +186,9 @@ export function summarize(
   const manifestationLore = faction.manifestationLores.find(
     (item) => item.id === list.manifestationLoreId,
   );
-  if (manifestationLore?.points) {
+  if (isPathToGloryList(list)) {
+    points += pathToGloryManifestationPoints(list, faction);
+  } else if (manifestationLore?.points) {
     points += manifestationLore.points;
   }
 
@@ -230,9 +242,19 @@ export function summarize(
   if (
     armyHasKeyword(list, faction, "WIZARD") &&
     faction.spellLores.length > 0 &&
+    !isPathToGloryList(list) &&
     !list.spellLoreId
   ) {
     issues.push({ tone: "warn", text: "Choose a spell lore." });
+  }
+
+  if (
+    isPathToGloryList(list) &&
+    armyHasKeyword(list, faction, "WIZARD") &&
+    faction.spellLores.length > 0 &&
+    pathToGlorySpellIds(list).length === 0
+  ) {
+    issues.push({ tone: "warn", text: "Learn a spell." });
   }
 
   if (
@@ -248,6 +270,7 @@ export function summarize(
   warnMonstrousTrait(list, faction, issues);
   warnVisionOfFate(list, faction, issues);
   warnSpecialEnhancements(list, faction, issues);
+  warnAnvilForge(list, faction, issues);
 
   if ((list.battleTacticCardIds ?? []).length === 0) {
     issues.push({ tone: "warn", text: "Pick up to 2 battle tactic cards." });
@@ -514,6 +537,56 @@ function warnMixedScourgeSheets(
       tone: "bad",
       text: `${base}: cannot mix ${labels.join(" and ")} warscrolls in the same army.`,
     });
+  }
+}
+
+function listSelections(list: ArmyList): Selection[] {
+  const slots: Selection[] = [];
+  for (const regiment of list.regiments) {
+    if (regiment.hero) {
+      slots.push(regiment.hero);
+    }
+    slots.push(...regiment.units);
+  }
+  slots.push(...list.auxiliaries);
+  if (list.regimentOfRenown) {
+    slots.push(...list.regimentOfRenown.units);
+  }
+  return slots;
+}
+
+function warnAnvilForge(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  issues: ListIssue[],
+) {
+  if (!isPathToGloryList(list)) {
+    return;
+  }
+  for (const selection of listSelections(list)) {
+    const unit = getUnit(faction, selection.unitId);
+    if (!unit || !isAnvilOfApotheosis(unit)) {
+      continue;
+    }
+    const picks = new Set(anvilPickIds(selection));
+    for (const group of anvilForgeGroups(unit)) {
+      if (group.min <= 0) {
+        continue;
+      }
+      const taken = group.options.filter((option) => picks.has(option.id)).length;
+      if (taken < group.min) {
+        issues.push({
+          tone: "bad",
+          text: `Pick a ${group.name} for ${unit.name}.`,
+        });
+      }
+    }
+    if (anvilDestinyRemaining(unit, selection) < 0) {
+      issues.push({
+        tone: "bad",
+        text: `${unit.name} is over its destiny point limit.`,
+      });
+    }
   }
 }
 

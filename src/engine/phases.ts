@@ -1,6 +1,6 @@
 import { getListUnit, getRegimentOfRenown, getSelection } from "./queries";
 import { isSpearheadList } from "./spearhead";
-import { findPath, selectionDisplayName } from "./pathToGlory";
+import { findPath, findPathOption, isPathToGloryList, learnedManifestationsForList, resolveAnvilUnit, selectionDisplayName } from "./pathToGlory";
 import { isUniversalCoreAbility, warscrollAbilities } from "./coreRules";
 import type {
   ArmyList,
@@ -81,7 +81,7 @@ export function armyRoster(
     }
     rows.push({
       selectionId: selection.id,
-      unit,
+      unit: resolveAnvilUnit(unit, selection),
       reinforced: selection.reinforced,
     });
   };
@@ -373,7 +373,23 @@ export function buildPhaseBoards(
       }
     }
     const path = findPath(selection?.pathToGlory?.pathId);
-    if (path) {
+    const optionIds = selection?.pathToGlory?.pathOptionIds ?? [];
+    const picked = path
+      ? optionIds
+          .map((optionId) => findPathOption(path, optionId))
+          .filter((option) => option != null)
+      : [];
+    if (picked.length > 0) {
+      for (const option of picked) {
+        for (const phaseId of phasesForAbility(option.ability)) {
+          boards.get(phaseId)?.abilities.push({
+            selectionId: entry.selectionId,
+            unitName,
+            ability: option.ability,
+          });
+        }
+      }
+    } else if (path) {
       boards.get("passive")?.abilities.push({
         selectionId: entry.selectionId,
         unitName,
@@ -428,11 +444,12 @@ export function buildPhaseBoards(
     }
   }
 
-  const lore = faction.manifestationLores.find(
-    (item) => item.id === list.manifestationLoreId,
-  );
-  if (lore) {
-    for (const model of lore.manifestations) {
+  const models = isPathToGloryList(list)
+    ? learnedManifestationsForList(list, faction)
+    : faction.manifestationLores.find(
+        (item) => item.id === list.manifestationLoreId,
+      )?.manifestations ?? [];
+  for (const model of models) {
       const powers = [
         ...(model.summon ? [model.summon] : []),
         ...model.abilities,
@@ -458,7 +475,6 @@ export function buildPhaseBoards(
           weapon,
         });
       }
-    }
   }
 
   return PLAY_PHASES.map((phase) => boards.get(phase.id)!).filter(

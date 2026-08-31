@@ -12,6 +12,7 @@ import type {
   UnitStats,
 } from "./types";
 import { factions, regimentsOfRenown } from "./data/load";
+import { anvilRankForSelection } from "./pathToGlory/anvil";
 
 const byFaction = new Map(factions.map((faction) => [faction.id, faction]));
 const byRenown = new Map(
@@ -304,8 +305,11 @@ export function legalCompanions(
 export function selectionPoints(
   unit: CatalogueUnit,
   reinforced: boolean,
+  selection?: Selection | null,
 ): number {
-  return unit.points * (reinforced ? 2 : 1);
+  const anvil = anvilRankForSelection(unit, selection);
+  const base = anvil?.points ?? unit.points;
+  return base * (reinforced ? 2 : 1);
 }
 
 export function unitHasKeyword(unit: CatalogueUnit, keyword: string): boolean {

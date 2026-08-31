@@ -22,6 +22,7 @@ import {
   SITE_HEADER_BAR_CLASS,
 } from "@/lib/builderUi";
 import {
+  listCreateFactionBackdropStartsRevealed,
   listFlowIsHome,
   listFlowTrackClass,
   listFlowWindowScrollY,
@@ -30,6 +31,7 @@ import {
   clearListNavigationDirection,
   clearListOpenSplash,
   clearListCreateSplash,
+  peekListCreateSplash,
   peekListNavigationDirection,
   rememberListNavigation,
 } from "@/lib/listTransition";
@@ -243,6 +245,10 @@ export function ListNavProvider({
   useLayoutEffect(() => {
     if (!factionBackdropLayer || factionBackdropFadingOut) {
       setFactionBackdropRevealed(false);
+      return;
+    }
+    if (listCreateFactionBackdropStartsRevealed(peekListCreateSplash())) {
+      setFactionBackdropRevealed(true);
       return;
     }
     setFactionBackdropRevealed(false);

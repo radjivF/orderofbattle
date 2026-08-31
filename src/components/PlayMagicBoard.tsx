@@ -14,6 +14,11 @@ import {
 } from "@/engine/magic";
 import { armyRoster } from "@/engine/phases";
 import {
+  isPathToGloryList,
+  learnedManifestationsForList,
+  learnedSpellsForList,
+} from "@/engine/pathToGlory";
+import {
   armyHasKeyword,
   getSelection,
   manifestationStatLine,
@@ -87,7 +92,9 @@ export function PlayMagicBoard({
             </ul>
           ) : (
             <p className="mt-4 text-sm text-sheet-muted">
-              Pick a spell lore in Build.
+              {isPathToGloryList(list)
+                ? "Learn spells in Build."
+                : "Pick a spell lore in Build."}
             </p>
           )}
         </section>
@@ -183,7 +190,9 @@ export function PlayMagicBoard({
             </ul>
           ) : (
             <p className="mt-4 text-sm text-sheet-muted">
-              Pick a manifestation lore in Build.
+              {isPathToGloryList(list)
+                ? "Learn manifestations in Build."
+                : "Pick a manifestation lore in Build."}
             </p>
           )}
         </section>
@@ -424,6 +433,10 @@ function PowerTargetSelect({
 }
 
 function buildMagicBoard(list: ArmyList, faction: FactionCatalogue) {
+  const pathToGlory = isPathToGloryList(list);
+  const learnedSpells = pathToGlory
+    ? learnedSpellsForList(list, faction)
+    : [];
   const spellLore = faction.spellLores.find(
     (lore) => lore.id === list.spellLoreId,
   );
@@ -433,11 +446,19 @@ function buildMagicBoard(list: ArmyList, faction: FactionCatalogue) {
   const manifestationLore = faction.manifestationLores.find(
     (lore) => lore.id === list.manifestationLoreId,
   );
+  const manifestations = pathToGlory
+    ? learnedManifestationsForList(list, faction)
+    : (manifestationLore?.manifestations ?? []);
 
-  const spells: PowerRow[] = (spellLore?.powers ?? []).map((power) => ({
-    source: spellLore?.name ?? "Spell lore",
-    power,
-  }));
+  const spells: PowerRow[] = pathToGlory
+    ? learnedSpells.map((item) => ({
+        source: item.loreName,
+        power: item.power,
+      }))
+    : (spellLore?.powers ?? []).map((power) => ({
+        source: spellLore?.name ?? "Spell lore",
+        power,
+      }));
   const prayers: PowerRow[] = (prayerLore?.powers ?? []).map((power) => ({
     source: prayerLore?.name ?? "Prayer lore",
     power,
@@ -456,16 +477,23 @@ function buildMagicBoard(list: ArmyList, faction: FactionCatalogue) {
   }
 
   return {
-    spellLoreName:
-      spellLore?.name ??
-      namedOption(faction.spellLores, list.spellLoreId)?.name,
+    spellLoreName: pathToGlory
+      ? learnedSpells.length > 0
+        ? `${learnedSpells.length} learned`
+        : "None learned"
+      : (spellLore?.name ??
+        namedOption(faction.spellLores, list.spellLoreId)?.name),
     prayerLoreName:
       prayerLore?.name ??
       namedOption(faction.prayerLores, list.prayerLoreId)?.name,
-    manifestationLoreName: manifestationLore?.name,
+    manifestationLoreName: pathToGlory
+      ? manifestations.length > 0
+        ? `${manifestations.length} learned`
+        : "None learned"
+      : manifestationLore?.name,
     spells,
     prayers,
-    manifestations: manifestationLore?.manifestations ?? [],
+    manifestations,
   };
 }
 

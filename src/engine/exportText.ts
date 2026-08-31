@@ -15,7 +15,7 @@ import type {
   FactionCatalogue,
   Selection,
 } from "./types";
-import { pathToGloryExportBits, selectionDisplayName } from "./pathToGlory";
+import { pathToGloryExportBits, isPathToGloryList, learnedManifestationsForList, learnedSpellsForList, selectionDisplayName } from "./pathToGlory";
 import { summarize } from "./validate";
 
 function selectionLine(
@@ -31,12 +31,12 @@ function selectionLine(
   const display = selectionDisplayName(selection, unit);
   const size = unitSizeLabel(unit, selection.reinforced);
   const reinforced = selection.reinforced ? ", reinforced" : "";
-  const extra = pathToGloryExportBits(selection);
+  const extra = pathToGloryExportBits(selection, unit);
   const extraText = extra.length > 0 ? ` · ${extra.join(" · ")}` : "";
   if (opts?.omitPoints) {
     return `- ${display}${reinforced} · ${size}${extraText}`;
   }
-  const pts = selectionPoints(unit, selection.reinforced);
+  const pts = selectionPoints(unit, selection.reinforced, selection);
   return `- ${display}${reinforced} · ${size} · ${formatPoints(pts)} pts${extraText}`;
 }
 
@@ -122,11 +122,18 @@ export function exportArmyListText(
     );
   }
 
-  const spellLore = faction.spellLores.find(
-    (lore) => lore.id === list.spellLoreId,
-  );
-  if (spellLore) {
-    lines.push(`Spell lore: ${spellLore.name}`);
+  if (isPathToGloryList(list)) {
+    const spells = learnedSpellsForList(list, faction);
+    if (spells.length > 0) {
+      lines.push(`Spells: ${spells.map((item) => item.power.name).join(", ")}`);
+    }
+  } else {
+    const spellLore = faction.spellLores.find(
+      (lore) => lore.id === list.spellLoreId,
+    );
+    if (spellLore) {
+      lines.push(`Spell lore: ${spellLore.name}`);
+    }
   }
 
   const prayerLore = faction.prayerLores.find(
@@ -136,11 +143,20 @@ export function exportArmyListText(
     lines.push(`Prayer lore: ${prayerLore.name}`);
   }
 
-  const manifestationLore = faction.manifestationLores.find(
-    (lore) => lore.id === list.manifestationLoreId,
-  );
-  if (manifestationLore) {
-    lines.push(`Manifestation lore: ${manifestationLore.name}`);
+  if (isPathToGloryList(list)) {
+    const manifestations = learnedManifestationsForList(list, faction);
+    if (manifestations.length > 0) {
+      lines.push(
+        `Manifestations: ${manifestations.map((item) => item.name).join(", ")}`,
+      );
+    }
+  } else {
+    const manifestationLore = faction.manifestationLores.find(
+      (lore) => lore.id === list.manifestationLoreId,
+    );
+    if (manifestationLore) {
+      lines.push(`Manifestation lore: ${manifestationLore.name}`);
+    }
   }
 
   const tacticNames = (list.battleTacticCardIds ?? [])

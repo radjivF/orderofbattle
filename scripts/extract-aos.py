@@ -737,6 +737,224 @@ def entry_points(entry: ET.Element | None) -> int:
     return 0
 
 
+def is_anvil_of_apotheosis(name: str) -> bool:
+    return name.startswith("Anvil of Apotheosis")
+
+
+def extract_anvil_ranks(
+    lib_entry: ET.Element,
+    by_id: dict[str, ET.Element],
+) -> list[dict]:
+    ranks: list[dict] = []
+    seen: set[str] = set()
+    for group in lib_entry.iter():
+        if local(group.tag) != "selectionEntryGroup":
+            continue
+        if named(group) != "Destiny Point Limit":
+            continue
+        for item in leaf_upgrades(group, by_id):
+            oid = item["id"]
+            if not oid or oid in seen:
+                continue
+            seen.add(oid)
+            entry = by_id.get(oid)
+            points = entry_points(entry)
+            if points <= 0:
+                continue
+            ranks.append(
+                {
+                    "id": oid,
+                    "name": item["name"],
+                    "points": points,
+                    "destiny": entry_destiny(entry),
+                }
+            )
+        break
+    return ranks
+
+
+DESTINY_TYPE_ID = "bc33-05f5-8d3f-af43"
+ANVIL_STAT_FIELDS = {
+    "fed0-d1b3-1bb8-c501": "move",
+    "96be-54ae-ce7b-10b7": "health",
+    "1981-ef09-96f6-7aa9": "save",
+    "6c6f-8510-9ce1-fc6e": "control",
+}
+
+
+def entry_destiny(entry: ET.Element | None) -> int:
+    if entry is None:
+        return 0
+    costs = child(entry, "costs")
+    if costs is None:
+        return 0
+    for cost in children(costs, "cost"):
+        name = (cost.attrib.get("name") or "").lower()
+        type_id = cost.attrib.get("typeId") or ""
+        if "destiny" not in name and type_id != DESTINY_TYPE_ID:
+            continue
+        try:
+            return int(float(cost.attrib.get("value") or "0"))
+        except ValueError:
+            return 0
+    return 0
+
+
+def group_limits(group: ET.Element) -> tuple[int, int | None]:
+    min_value = 0
+    max_value: int | None = None
+    constraints = child(group, "constraints")
+    if constraints is None:
+        return 0, None
+    for el in children(constraints, "constraint"):
+        kind = el.attrib.get("type")
+        try:
+            value = int(float(el.attrib.get("value") or "0"))
+        except ValueError:
+            continue
+        if kind == "min":
+            min_value = value
+        if kind == "max":
+            max_value = value
+    return min_value, max_value
+
+
+def option_stat_patches(entry: ET.Element) -> tuple[dict, dict]:
+    sets: dict[str, str] = {}
+    adds: dict[str, int] = {}
+    mods = child(entry, "modifiers")
+    if mods is None:
+        return sets, adds
+    for mod in children(mods, "modifier"):
+        field = ANVIL_STAT_FIELDS.get(mod.attrib.get("field") or "")
+        if not field:
+            continue
+        raw = mod.attrib.get("value") or ""
+        kind = mod.attrib.get("type")
+        if kind == "set":
+            sets[field] = raw
+            continue
+        try:
+            amount = int(float(raw))
+        except ValueError:
+            continue
+        if kind == "increment":
+            adds[field] = adds.get(field, 0) + amount
+        elif kind == "decrement":
+            adds[field] = adds.get(field, 0) - amount
+    return sets, adds
+
+
+def option_rule_text(entry: ET.Element) -> str:
+    texts: list[str] = []
+    for el in entry.iter():
+        tag = local(el.tag)
+        if tag == "description" and (el.text or "").strip():
+            texts.append(el.text or "")
+        if tag == "characteristic" and el.attrib.get("name") == "Effect":
+            if (el.text or "").strip():
+                texts.append(el.text or "")
+    return "\n".join(texts)
+
+
+def option_weapons(
+    entry: ET.Element,
+    parent_weapons: list[dict],
+) -> list[dict]:
+    weapons: list[dict] = []
+    seen: set[str] = set()
+
+    def add(weapon: dict) -> None:
+        name = weapon.get("name") or ""
+        if not name or name in seen:
+            return
+        seen.add(name)
+        weapons.append(weapon)
+
+    for weapon in unit_weapons(entry):
+        add(weapon)
+    blob = option_rule_text(entry)
+    option_name = named(entry)
+    for weapon in parent_weapons:
+        name = weapon.get("name") or ""
+        if name in blob or (option_name and name.startswith(option_name)):
+            add(weapon)
+    return weapons
+
+
+def find_anvil_root(lib_entry: ET.Element) -> ET.Element | None:
+    for group in lib_entry.iter():
+        if local(group.tag) != "selectionEntryGroup":
+            continue
+        if named(group) == "The Anvil of Apotheosis":
+            return group
+    return None
+
+
+def extract_anvil_forge(
+    lib_entry: ET.Element,
+    by_id: dict[str, ET.Element],
+) -> list[dict]:
+    root = find_anvil_root(lib_entry)
+    if root is None:
+        return []
+    parent_weapons = unit_weapons(lib_entry)
+    groups: list[dict] = []
+    nested = child(root, "selectionEntryGroups")
+    if nested is None:
+        return []
+    for group in children(nested, "selectionEntryGroup"):
+        name = named(group)
+        if not name or name == "Destiny Point Limit":
+            continue
+        min_value, max_value = group_limits(group)
+        options: list[dict] = []
+        seen: set[str] = set()
+        entries: list[ET.Element] = []
+        ses = child(group, "selectionEntries")
+        if ses is not None:
+            entries.extend(children(ses, "selectionEntry"))
+        links = child(group, "entryLinks")
+        if links is not None:
+            for link in children(links, "entryLink"):
+                target = by_id.get(link.attrib.get("targetId") or "")
+                if target is not None and local(target.tag) == "selectionEntry":
+                    entries.append(target)
+        for se in entries:
+            if is_hidden(se):
+                continue
+            oid = se.attrib.get("id") or ""
+            oname = named(se)
+            if not oid or not oname or oid in seen:
+                continue
+            seen.add(oid)
+            sets, adds = option_stat_patches(se)
+            option: dict = {
+                "id": oid,
+                "name": oname,
+                "destiny": entry_destiny(se),
+                "abilities": unit_abilities(se),
+                "weapons": option_weapons(se, parent_weapons),
+            }
+            if sets:
+                option["stats"] = sets
+            if adds:
+                option["statAdds"] = adds
+            options.append(option)
+        if not options:
+            continue
+        groups.append(
+            {
+                "id": group.attrib.get("id") or name,
+                "name": name,
+                "min": min_value,
+                "max": max_value,
+                "options": options,
+            }
+        )
+    return groups
+
+
 def extract_enhancements(
     cat: ET.Element,
     by_id: dict[str, ET.Element],
@@ -1085,14 +1303,14 @@ def extract_faction(
         target = el.attrib.get("targetId")
         if not target or target not in library_units:
             continue
-        if el.attrib.get("hidden") == "true":
+        lib_entry = library_units[target]
+        name = el.attrib.get("name") or lib_entry.attrib.get("name") or ""
+        anvil = is_anvil_of_apotheosis(name)
+        if el.attrib.get("hidden") == "true" and not anvil:
             continue
         if target in seen:
             continue
         seen.add(target)
-
-        lib_entry = library_units[target]
-        name = el.attrib.get("name") or lib_entry.attrib.get("name") or ""
         cats = unit_categories(lib_entry)
         extra = child(el, "categoryLinks")
         if extra is not None:
@@ -1147,26 +1365,35 @@ def extract_faction(
         if name == "Lord of Afflictions" and "Rotbringer Lord" not in cats:
             cats.append("Rotbringer Lord")
 
+        anvil_ranks = extract_anvil_ranks(lib_entry, by_id) if anvil else []
+        anvil_forge = extract_anvil_forge(lib_entry, by_id) if anvil else []
         if points <= 0:
-            continue
+            if anvil and anvil_ranks:
+                points = min(rank["points"] for rank in anvil_ranks)
+            else:
+                continue
 
-        units.append(
-            {
-                "id": target,
-                "name": name,
-                "points": points,
-                "hero": "HERO" in cats,
-                "unique": "UNIQUE" in cats,
-                "reinforce": reinforce,
-                "models": unit_models(lib_entry),
-                "categories": cats,
-                "stats": unit_stats(lib_entry),
-                "weapons": unit_weapons(lib_entry),
-                "abilities": unit_abilities(lib_entry),
-                "regimentOptions": options,
-                "regimentHeroes": hero_options,
-            }
-        )
+        unit: dict = {
+            "id": target,
+            "name": name,
+            "points": points,
+            "hero": "HERO" in cats or anvil,
+            "unique": "UNIQUE" in cats or anvil,
+            "reinforce": reinforce,
+            "models": unit_models(lib_entry),
+            "categories": cats,
+            "stats": unit_stats(lib_entry),
+            "weapons": unit_weapons(lib_entry),
+            "abilities": unit_abilities(lib_entry),
+            "regimentOptions": options,
+            "regimentHeroes": hero_options,
+        }
+        if anvil:
+            unit["pathToGloryOnly"] = True
+            unit["anvilRanks"] = anvil_ranks
+            if anvil_forge:
+                unit["anvilForge"] = anvil_forge
+        units.append(unit)
 
     units.sort(key=lambda item: (not item["hero"], item["name"]))
     terrain.sort(key=lambda item: item["name"])
@@ -1550,6 +1777,137 @@ def ident(slug_value: str) -> str:
     return parts[0] + "".join(p.title() for p in parts[1:])
 
 
+def upsert_anvil_units(payload: dict, anvils: list[dict]) -> bool:
+    units = payload.get("units")
+    if not isinstance(units, list):
+        return False
+    by_id = {unit.get("id"): i for i, unit in enumerate(units) if unit.get("id")}
+    changed = False
+    for anvil in anvils:
+        existing = by_id.get(anvil["id"])
+        if existing is None:
+            units.append(anvil)
+            by_id[anvil["id"]] = len(units) - 1
+            changed = True
+            continue
+        if units[existing] != anvil:
+            units[existing] = anvil
+            changed = True
+    for unit in units:
+        if not is_anvil_of_apotheosis(unit.get("name") or ""):
+            continue
+        if not unit.get("pathToGloryOnly"):
+            unit["pathToGloryOnly"] = True
+            changed = True
+    return changed
+
+
+def merge_anvil_units() -> None:
+    if not DATA.exists():
+        raise SystemExit(f"BSData catalogues not found at {DATA}")
+    gst = parse(DATA / "Age of Sigmar 4.0.gst")
+    lores_path = DATA / "Lores.cat"
+    extra_roots = [parse(lores_path)] if lores_path.exists() else []
+    merged = 0
+    for cat_path in sorted(DATA.glob("*.cat")):
+        name = cat_path.stem
+        if " - " in name or "[LEGENDS]" in name:
+            continue
+        if name.lower() in SKIP:
+            continue
+        lib_path = DATA / f"{name} - Library.cat"
+        payload = extract_faction(
+            gst,
+            cat_path,
+            lib_path if lib_path.exists() else None,
+            extra_roots,
+        )
+        if payload is None:
+            continue
+        anvils = [
+            unit for unit in payload["units"] if unit.get("pathToGloryOnly")
+        ]
+        if not anvils:
+            continue
+        out = OUT_DIR / f"{payload['id']}.json"
+        if not out.exists():
+            print(f"skip {payload['name']} (no extracted json)")
+            continue
+        existing = json.loads(out.read_text())
+        if not upsert_anvil_units(existing, anvils):
+            continue
+        out.write_text(json.dumps(existing, indent=2) + "\n")
+        merged += 1
+        names = ", ".join(
+            f"{unit['name']} ({unit['points']} pts)" for unit in anvils
+        )
+        print(f"{payload['name']}: {names}")
+    print(f"merged Anvil into {merged} factions")
+
+
+PATH_PACK_STEMS = {
+    "Path to Glory - Ascension": "ascension",
+    "Path to Glory - Ravaged Coast": "ravaged-coast",
+    "Path to Glory - Blighted Wilds": "blighted-wilds",
+}
+PATH_RANKS = ("Aspiring", "Elite", "Mighty", "Legendary")
+
+
+def extract_path_catalogues() -> None:
+    if not DATA.exists():
+        raise SystemExit(f"BSData catalogues not found at {DATA}")
+    paths: list[dict] = []
+    seen: set[str] = set()
+    for stem, pack in PATH_PACK_STEMS.items():
+        cat_path = DATA / f"{stem}.cat"
+        if not cat_path.exists():
+            print(f"skip {stem} (missing)")
+            continue
+        root = parse(cat_path)
+        for entry in root.iter():
+            if local(entry.tag) != "selectionEntry":
+                continue
+            name = named(entry)
+            if not name.startswith("Path of the"):
+                continue
+            path_id = slug(name)
+            if path_id in seen:
+                continue
+            options: list[dict] = []
+            for group in nested(entry, "selectionEntryGroups", "selectionEntryGroup"):
+                rank = named(group)
+                if rank not in PATH_RANKS:
+                    continue
+                for option in nested(group, "selectionEntries", "selectionEntry"):
+                    oid = option.attrib.get("id") or ""
+                    oname = named(option)
+                    abilities = unit_abilities(option)
+                    if not oid or not oname or not abilities:
+                        continue
+                    options.append(
+                        {
+                            "id": oid,
+                            "name": oname,
+                            "rank": rank.lower(),
+                            "ability": abilities[0],
+                        }
+                    )
+            if not options:
+                continue
+            seen.add(path_id)
+            paths.append(
+                {
+                    "id": path_id,
+                    "name": name,
+                    "pack": pack,
+                    "options": options,
+                }
+            )
+    out = OUT_DIR / "path-to-glory-paths.json"
+    out.write_text(json.dumps(paths, indent=2) + "\n")
+    print(f"Path catalogues: {len(paths)} paths -> {out.name}")
+
+
 def main() -> None:
     gst = parse(DATA / "Age of Sigmar 4.0.gst")
     lores_path = DATA / "Lores.cat"
@@ -1617,7 +1975,11 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] in ("--aor-only", "--armies-of-renown"):
+    if len(sys.argv) > 1 and sys.argv[1] == "--merge-anvil":
+        merge_anvil_units()
+    elif len(sys.argv) > 1 and sys.argv[1] == "--extract-paths":
+        extract_path_catalogues()
+    elif len(sys.argv) > 1 and sys.argv[1] in ("--aor-only", "--armies-of-renown"):
         extract_armies_of_renown()
     else:
         main()

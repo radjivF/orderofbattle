@@ -24,8 +24,9 @@ function emitFactionListeners() {
 export function rememberListCreate(
   factionId: string | null | undefined,
   displayName?: string | null,
+  scourgeRealm?: "aqshy" | "ghyran" | null,
 ) {
-  rememberListOpen(factionId, displayName);
+  rememberListOpen(factionId, displayName, scourgeRealm);
   markListSplashShown();
   if (!canUseStorage()) {
     return;

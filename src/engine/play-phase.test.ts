@@ -2,6 +2,10 @@ import { describe, expect, it } from "vitest";
 import { createId } from "@/lib/id";
 import { blankArmy, blankPathToGlory, blankSpearhead } from "@/lib/storage";
 import {
+  factionManifestationPicks,
+  patchPathToGloryState,
+} from "@/engine/pathToGlory";
+import {
   buildPhaseBoards,
   phasesForAbility,
   regimentPlayGroups,
@@ -230,6 +234,28 @@ describe("manifestation lore points", () => {
 
     expect(withFree).toBe(base);
     expect(withPaid - base).toBe(paidLore.points);
+  });
+
+  it("only puts selected Path to Glory manifestations on phase boards", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const picks = factionManifestationPicks(faction);
+    const picked = picks[0];
+    const skipped = picks[1];
+    expect(picked && skipped).toBeTruthy();
+    if (!picked || !skipped) return;
+
+    const list = patchPathToGloryState(
+      blankPathToGlory(faction.id, "ascension"),
+      { manifestationIds: [picked.model.id] },
+    );
+    const names = buildPhaseBoards(list, faction).flatMap((board) =>
+      board.abilities.map((row) => row.unitName),
+    );
+    expect(names).toContain(picked.model.name);
+    expect(names).not.toContain(skipped.model.name);
   });
 });
 

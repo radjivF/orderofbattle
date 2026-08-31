@@ -4542,6 +4542,901 @@
       ],
       "regimentOptions": [],
       "regimentHeroes": []
+    },
+    {
+      "id": "9f03-3365-5802-14e6",
+      "name": "Anvil of Apotheosis: Maggotkin of Nurgle Hero",
+      "points": 150,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "WARD (6+)",
+        "CHAOS",
+        "MAGGOTKIN OF NURGLE"
+      ],
+      "stats": {
+        "move": "4\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Great Blight Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (Mortal)"
+        },
+        {
+          "name": "Rot Fly's Mouthparts and Sting",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Trio of Death's Heads",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "9",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit (Mortal)"
+        },
+        {
+          "name": "Pox Maggoth's Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Snotshower Sneeze",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "7",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Companion, Crit (2 Hits)"
+        },
+        {
+          "name": "Septic Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": ""
+        },
+        {
+          "name": "Pestilential Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (Mortal)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Pox Maggoth's Claws is 3.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Projectile Vomiter",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Reaction: Opponent declared a Fight ability for a unit in combat with this unit.",
+          "declare": "",
+          "effect": "Subtract 1 from hit rolls and wound rolls for that unit's combat attacks for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Scabrous Second Hide",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from the Rend characteristic of ranged weapons used for shooting attacks that target this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Distended Gut",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 7 to this unit's control score while it is contesting an objective you do not control.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Rooted in Blighted Soil",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit has not been set up this battle round and has not moved this battle round, it has Ward (4+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Slow to React",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit has Strike-last.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Healthy Constitution",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Ward rolls cannot be made for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Boils and Cysts",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from run rolls and charge rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Non-Contagious",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Enemy units in combat with this unit cannot be picked to be the targets of the 'Blessed by the Plaguefather' ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Monstrous Belch",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy Monster in combat with this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, the target cannot use commands for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Bileslime Drool",
+          "kind": "Activated",
+          "timing": "End of Your Turn",
+          "declare": "Pick D3 enemy units in combat with this unit to be the targets. You cannot pick a Manifestation or terrain feature.",
+          "effect": "Roll a dice for each target. On a 4+, the target has the Diseased keyword.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Corrosive to the Touch",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy non-Monster unit in combat with this unit to be the target.",
+          "effect": "Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Infected Discharge",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Ward rolls cannot be made for enemy units while they are in combat with this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Thrice-Blessed",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "Heal (3) this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Master of Vile Magics",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to casting rolls and banishment rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Plague Prophet",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to chanting rolls and banishment rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": [],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "915a-4758-ce46-e6f2",
+          "name": "Blightpest",
+          "points": 150,
+          "destiny": 10
+        },
+        {
+          "id": "b4bd-9ce5-6db5-e05f",
+          "name": "Progenitor of Pollution",
+          "points": 250,
+          "destiny": 30
+        },
+        {
+          "id": "79e2-280e-1f23-638d",
+          "name": "Lord of Decay",
+          "points": 350,
+          "destiny": 50
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "725a-7c83-8d82-b921",
+          "name": "Archetype",
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "id": "fca6-b385-3f72-bae3",
+              "name": "Revolting Acolyte",
+              "destiny": 0,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "4966-510e-ecfd-5127",
+              "name": "Infected Warrior",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Great Blight Weapon",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Crit (Mortal)"
+                }
+              ],
+              "stats": {
+                "save": "3+",
+                "health": "7"
+              }
+            },
+            {
+              "id": "c6a8-5920-dcb2-01bc",
+              "name": "Tainted Mage",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "ba73-5701-8514-050b",
+              "name": "Sorcerer of Sickness",
+              "destiny": -6,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "37fb-4cd9-1713-8e14",
+              "name": "Priest of Corruption",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "0884-897c-77f0-e932",
+              "name": "Plague Daemon",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Pestilential Weapon",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Crit (Mortal)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cc4e-daf9-145a-8916",
+          "name": "Battle Mount",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "47d4-731b-2164-492b",
+              "name": "Rot Fly",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Rot Fly's Mouthparts and Sting",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "6",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "8",
+                "move": "8\""
+              }
+            },
+            {
+              "id": "fae3-f726-bd37-df30",
+              "name": "Pox Maggoth",
+              "destiny": -15,
+              "abilities": [
+                {
+                  "name": "Battle Damaged",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Pox Maggoth's Claws is 3.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Pox Maggoth's Claws",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "3",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "14",
+                "move": "8\"",
+                "control": "5",
+                "save": "4+"
+              }
+            }
+          ]
+        },
+        {
+          "id": "d9be-ee3e-891f-8729",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "c93c-6b17-c171-8947",
+              "name": "Projectile Vomiter",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Projectile Vomiter",
+                  "kind": "Activated",
+                  "timing": "Once Per Battle, Reaction: Opponent declared a Fight ability for a unit in combat with this unit.",
+                  "declare": "",
+                  "effect": "Subtract 1 from hit rolls and wound rolls for that unit's combat attacks for the rest of the turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "68dd-afb0-1058-9997",
+              "name": "Scabrous Second Hide",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Scabrous Second Hide",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 1 from the Rend characteristic of ranged weapons used for shooting attacks that target this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "6a8f-8a4d-1f8c-bbff",
+              "name": "Distended Gut",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Distended Gut",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 7 to this unit's control score while it is contesting an objective you do not control.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "53f2-0a4b-1492-07b6",
+              "name": "Rooted in Blighted Soil",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Rooted in Blighted Soil",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "If this unit has not been set up this battle round and has not moved this battle round, it has Ward (4+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "e84f-d9a8-5fab-a141",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "98fc-e655-25fd-b437",
+              "name": "Slow to React",
+              "destiny": 5,
+              "abilities": [
+                {
+                  "name": "Slow to React",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit has Strike-last.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "c5ea-0e22-aaa4-a55e",
+              "name": "Healthy Constitution",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Healthy Constitution",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Ward rolls cannot be made for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "e85b-03af-d4b6-b125",
+              "name": "Boils and Cysts",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Boils and Cysts",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 1 from run rolls and charge rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "cea5-2353-ff35-c588",
+              "name": "Non-Contagious",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Non-Contagious",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Enemy units in combat with this unit cannot be picked to be the targets of the 'Blessed by the Plaguefather' ability.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "6232-8225-f8f5-4e81",
+          "name": "Battle Mount Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "0550-e0e5-ae45-39c4",
+              "name": "Droning Wings",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 2
+              }
+            },
+            {
+              "id": "14a0-0ed7-9d3f-ab18",
+              "name": "Immense Rot Fly",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 2
+              }
+            },
+            {
+              "id": "4961-5b17-186f-edb9",
+              "name": "Snotshower Sneeze",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Snotshower Sneeze",
+                  "kind": "ranged",
+                  "range": "10\"",
+                  "attacks": "7",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "1",
+                  "ability": "Companion, Crit (2 Hits)"
+                }
+              ]
+            },
+            {
+              "id": "3d1e-a62e-be3f-8a6d",
+              "name": "Monstrous Belch",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Monstrous Belch",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Combat Phase",
+                  "declare": "Pick an enemy Monster in combat with this unit to be the target.",
+                  "effect": "Roll a dice. On a 3+, the target cannot use commands for the rest of the turn.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "6f14-2997-50bc-19fc",
+              "name": "Bileslime Drool",
+              "destiny": -10,
+              "abilities": [
+                {
+                  "name": "Bileslime Drool",
+                  "kind": "Activated",
+                  "timing": "End of Your Turn",
+                  "declare": "Pick D3 enemy units in combat with this unit to be the targets. You cannot pick a Manifestation or terrain feature.",
+                  "effect": "Roll a dice for each target. On a 4+, the target has the Diseased keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "205e-4274-c407-5bc3",
+              "name": "Corrosive to the Touch",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Corrosive to the Touch",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Combat Phase",
+                  "declare": "Pick an enemy non-Monster unit in combat with this unit to be the target.",
+                  "effect": "Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "d1a2-6519-ba1e-bb8b",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "ead0-29e9-9362-97ad",
+              "name": "Bloated Presence",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "control": 1
+              }
+            },
+            {
+              "id": "a20e-e351-2aff-7044",
+              "name": "Blood Poisoning",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Septic Weapon",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "D3",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "e3b7-aa67-8ca7-fa22",
+              "name": "Loathsome and Lumbering",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 1
+              }
+            },
+            {
+              "id": "1f17-7095-4f45-b2df",
+              "name": "Parasitic Infection",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "07d5-0e3b-2c65-b50c",
+              "name": "Trio of Death's Heads",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Trio of Death's Heads",
+                  "kind": "ranged",
+                  "range": "18\"",
+                  "attacks": "9",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "1",
+                  "ability": "Crit (Mortal)"
+                }
+              ]
+            },
+            {
+              "id": "0470-e3db-6584-9d37",
+              "name": "In Foul Health",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "health": 2
+              }
+            },
+            {
+              "id": "3905-5dbf-2818-6ab2",
+              "name": "Corroded Edges",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "10d1-812a-791e-1580",
+              "name": "Fly Wings",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "b1c7-f3a2-1bcc-f5cc",
+              "name": "Infected Discharge",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Infected Discharge",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Ward rolls cannot be made for enemy units while they are in combat with this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "db77-69ce-4dbc-689e",
+              "name": "Thrice-Blessed",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Thrice-Blessed",
+                  "kind": "Activated",
+                  "timing": "End of Any Turn",
+                  "declare": "",
+                  "effect": "Heal (3) this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "88de-158c-5096-dfae",
+              "name": "Master of Vile Magics",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Master of Vile Magics",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to casting rolls and banishment rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "079b-0109-cae5-a131",
+              "name": "Plague Prophet",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Plague Prophet",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to chanting rolls and banishment rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

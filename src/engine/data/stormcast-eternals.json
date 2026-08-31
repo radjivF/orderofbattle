@@ -8366,6 +8366,954 @@
       ],
       "regimentOptions": [],
       "regimentHeroes": []
+    },
+    {
+      "id": "64df-1a09-e8fb-10da",
+      "name": "Anvil of Apotheosis: Stormcast Eternals Hero",
+      "points": 150,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "ORDER",
+        "STORMCAST ETERNALS"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "5",
+        "save": "3+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Warblade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Stormblast",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": "Crit (2 Hits), Companion"
+        },
+        {
+          "name": "Mighty Flying Noble Beast's Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "2",
+          "ability": "Companion"
+        },
+        {
+          "name": "Flying Noble Beast's Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "2",
+          "ability": "Companion"
+        },
+        {
+          "name": "Fiery Breath",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "4",
+          "hit": "2+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "1",
+          "ability": "Shoot in Combat, Companion"
+        },
+        {
+          "name": "Noble Beast's Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Heavy Boltstorm Pistol",
+          "kind": "ranged",
+          "range": "11\"",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Shoot in Combat"
+        },
+        {
+          "name": "Terminus Greatbow",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Mighty Flying Noble Beast's Claws is 4.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Freshly Forged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "When this unit earns the Aspiring rank on its Path, it gets both the abilities for that rank instead of just one of them.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Snatched From the Grave",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Enemy units cannot use the 'Rally' command while they are within 18\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Tribal Warleader",
+          "kind": "Activated",
+          "timing": "Your Charge Phase",
+          "declare": "Pick up to 2 other friendly units wholly within 12\" of this unit to be the targets.",
+          "effect": "For the rest of the turn, add 1 to charge rolls for this unit and the targets.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Redeemed",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "Pick up to 2 other friendly units wholly within 12\" of this unit to be the targets.",
+          "effect": "Heal (D3) this unit and each target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Brash and Impulsive",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot contest objectives.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Unvanquishable Pride",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot use Retreat abilities.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Fractured Soul",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "This unit must use this ability at the end of each turn.",
+          "effect": "Roll a dice. On a 4+, allocate 1 damage point to this unit (a ward roll cannot be made for that damage point).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Fuelled by Hatred",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "In each combat phase, if this unit is in combat and does not have Strike-last, after friendly units with Strike-first have been picked to use a Fight ability, this unit must be the next friendly unit that is picked to use a Fight ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Mighty Roar",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick up to 3 enemy units in combat with this unit to be the targets.",
+          "effect": "Roll a dice for each target. On a 4+, the target cannot use commands for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Titanic Duel",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "",
+          "effect": "Roll a dice. On a 3+, add 1 to the Damage characteristic of this unit's Companion melee weapons for attacks that target enemy Monsters for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Loyal Companion",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit's Loyal Companion is a token. This unit has Ward (5+) while its Loyal Companion is on the battlefield. If you make an unmodified save roll of 1 for this unit, remove its Loyal Companion from the battlefield.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": [],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "1a45-4070-d7f8-8d4c",
+          "name": "Stormcast Eternals Knight",
+          "points": 150,
+          "destiny": 10
+        },
+        {
+          "id": "4ad3-28c0-229b-d37a",
+          "name": "Stormcast Eternals Templar",
+          "points": 250,
+          "destiny": 30
+        },
+        {
+          "id": "9273-b6c5-bc2b-d3e2",
+          "name": "Stormcast Eternals Lord",
+          "points": 350,
+          "destiny": 50
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "cd2b-c2b3-9c02-14f9",
+          "name": "Chamber",
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "id": "783d-05c8-ff24-a5ab",
+              "name": "Warrior Chamber",
+              "destiny": 0,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "f360-fc79-b18c-f75f",
+              "name": "Vanguard Chamber",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "042f-73ed-a4ad-62aa",
+              "name": "Extremis Chamber",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "9ff4-1316-844a-7171",
+              "name": "Ruination Chamber",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "dc1b-1164-9ed3-f792",
+          "name": "Battle Mount",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "c5b7-cafc-c6d3-2de1",
+              "name": "Noble Beast",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Noble Beast's Claws",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "2",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "8",
+                "move": "10\""
+              }
+            },
+            {
+              "id": "08e7-e3d9-5a3d-036f",
+              "name": "Mighty Flying Noble Beast",
+              "destiny": -20,
+              "abilities": [
+                {
+                  "name": "Battle Damaged",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Mighty Flying Noble Beast's Claws is 4.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Mighty Flying Noble Beast's Claws",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "6",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "2",
+                  "ability": "Companion"
+                },
+                {
+                  "name": "Flying Noble Beast's Claws",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "2",
+                  "ability": "Companion"
+                },
+                {
+                  "name": "Noble Beast's Claws",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "2",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "16",
+                "control": "5",
+                "move": "12\""
+              }
+            },
+            {
+              "id": "016a-a366-220b-4933",
+              "name": "Flying Noble Beast",
+              "destiny": -10,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Flying Noble Beast's Claws",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "2",
+                  "ability": "Companion"
+                },
+                {
+                  "name": "Noble Beast's Claws",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "2",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "12",
+                "move": "12\""
+              }
+            }
+          ]
+        },
+        {
+          "id": "6758-1db2-a95f-60af",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "094c-964a-5c48-fbc7",
+              "name": "Freshly Forged",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Freshly Forged",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "When this unit earns the Aspiring rank on its Path, it gets both the abilities for that rank instead of just one of them.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "8bf7-fddf-e721-f7b2",
+              "name": "Snatched From the Grave",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Snatched From the Grave",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Enemy units cannot use the 'Rally' command while they are within 18\" of this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "42c0-79af-9879-c673",
+              "name": "Tribal Warleader",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Tribal Warleader",
+                  "kind": "Activated",
+                  "timing": "Your Charge Phase",
+                  "declare": "Pick up to 2 other friendly units wholly within 12\" of this unit to be the targets.",
+                  "effect": "For the rest of the turn, add 1 to charge rolls for this unit and the targets.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "fdfc-8877-9f4f-b8f3",
+              "name": "Redeemed",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Redeemed",
+                  "kind": "Activated",
+                  "timing": "End of Any Turn",
+                  "declare": "Pick up to 2 other friendly units wholly within 12\" of this unit to be the targets.",
+                  "effect": "Heal (D3) this unit and each target.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "f532-7562-9845-739f",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "670d-09b4-e38c-f7f0",
+              "name": "Brash and Impulsive",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Brash and Impulsive",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot contest objectives.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "c0b2-7732-68f5-f89a",
+              "name": "Unvanquishable Pride",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Unvanquishable Pride",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot use Retreat abilities.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "14bb-b11b-cd1d-783a",
+              "name": "Fractured Soul",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Fractured Soul",
+                  "kind": "Activated",
+                  "timing": "End of Any Turn",
+                  "declare": "This unit must use this ability at the end of each turn.",
+                  "effect": "Roll a dice. On a 4+, allocate 1 damage point to this unit (a ward roll cannot be made for that damage point).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "196b-87bc-abe5-e0a6",
+              "name": "Fuelled by Hatred",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Fuelled by Hatred",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "In each combat phase, if this unit is in combat and does not have Strike-last, after friendly units with Strike-first have been picked to use a Fight ability, this unit must be the next friendly unit that is picked to use a Fight ability.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "cda1-f8ff-6f61-ca2a",
+          "name": "Battle Mount Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "b3b7-4d90-dee3-50fd",
+              "name": "Swift",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 2
+              }
+            },
+            {
+              "id": "afce-a82c-ee94-ac5e",
+              "name": "Stormblast",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Stormblast",
+                  "kind": "ranged",
+                  "range": "10\"",
+                  "attacks": "1",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "2",
+                  "damage": "D3",
+                  "ability": "Crit (2 Hits), Companion"
+                }
+              ]
+            },
+            {
+              "id": "0194-605e-d17f-a283",
+              "name": "Legendary Beast",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "health": 2
+              }
+            },
+            {
+              "id": "2fa1-e4dd-df68-d755",
+              "name": "Fiery Breath",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Fiery Breath",
+                  "kind": "ranged",
+                  "range": "10\"",
+                  "attacks": "4",
+                  "hit": "2+",
+                  "wound": "3+",
+                  "rend": "2",
+                  "damage": "1",
+                  "ability": "Shoot in Combat, Companion"
+                }
+              ]
+            },
+            {
+              "id": "6ca2-2875-08ec-aa51",
+              "name": "Mighty Roar",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Mighty Roar",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Combat Phase",
+                  "declare": "Pick up to 3 enemy units in combat with this unit to be the targets.",
+                  "effect": "Roll a dice for each target. On a 4+, the target cannot use commands for the rest of the turn.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "889a-6c48-61e6-0de1",
+              "name": "Titanic Duel",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Titanic Duel",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Combat Phase",
+                  "declare": "",
+                  "effect": "Roll a dice. On a 3+, add 1 to the Damage characteristic of this unit's Companion melee weapons for attacks that target enemy Monsters for the rest of the turn.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "8e07-4dc5-ffef-d957",
+              "name": "Rending Claws",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Mighty Flying Noble Beast's Claws",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "6",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "2",
+                  "ability": "Companion"
+                },
+                {
+                  "name": "Flying Noble Beast's Claws",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "2",
+                  "ability": "Companion"
+                },
+                {
+                  "name": "Noble Beast's Claws",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "2",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bff8-49a5-9cee-ba3f",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "ffc8-a39c-4319-2e97",
+              "name": "Commanding Presence",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "control": 1
+              }
+            },
+            {
+              "id": "d4f4-1fcc-aac2-ce47",
+              "name": "Fleet of Foot",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 1
+              }
+            },
+            {
+              "id": "49a5-f971-7249-7c0e",
+              "name": "Incredibly Tough",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "health": 1
+              }
+            },
+            {
+              "id": "eeb6-dcaa-b808-3c7c",
+              "name": "Blessed Sigmarite",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "f7fb-2a0e-f218-670e",
+              "name": "Preferred Enemy",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Warblade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "32e6-7a20-8d04-f523",
+              "name": "Masterful Warrior",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Warblade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "45a4-1cba-015c-fe47",
+              "name": "Lancer",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Warblade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "4421-b780-9987-9974",
+              "name": "Heavy Boltstorm Pistol",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Heavy Boltstorm Pistol",
+                  "kind": "ranged",
+                  "range": "11\"",
+                  "attacks": "4",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "1",
+                  "ability": "Shoot in Combat"
+                }
+              ]
+            },
+            {
+              "id": "aa34-e0ac-f780-02e4",
+              "name": "Relic Weapon",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "c250-e8c2-e96f-e91d",
+              "name": "Master of the Magical Arts",
+              "destiny": -6,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "9727-2adc-52b6-7060",
+              "name": "Radiant Wings",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "b859-15a7-85be-9eb5",
+              "name": "Loyal Companion",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Loyal Companion",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit's Loyal Companion is a token. This unit has Ward (5+) while its Loyal Companion is on the battlefield. If you make an unmodified save roll of 1 for this unit, remove its Loyal Companion from the battlefield.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "f8ed-d83a-25cb-eb1b",
+              "name": "Blade Master",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Warblade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "f7bf-4ab7-2e2f-0916",
+              "name": "Warrior-cleric",
+              "destiny": -6,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "89bf-c149-4be5-86c9",
+              "name": "Terminus Greatbow",
+              "destiny": -6,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Terminus Greatbow",
+                  "kind": "ranged",
+                  "range": "18\"",
+                  "attacks": "3",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "2",
+                  "damage": "3",
+                  "ability": "-"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

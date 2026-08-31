@@ -20,7 +20,7 @@ import { PlayBindNotes, PlayHealthTrack, SlotEnhancements, SlotMoreMenu } from "
 import { PathToGloryUnitExtras } from "./PathToGloryUnitExtras";
 import {
   selectionDisplayName,
-  type PathToGloryBattlepackPreset,
+  type PathToGloryPackId,
 } from "@/engine/pathToGlory";
 import { RuleText } from "./RuleText";
 import { BuildSlotRow, PlaySlotRow } from "./ios/SheetIconButton";
@@ -51,7 +51,7 @@ type Props = {
   onRemove: () => void;
   onPlayHealth?: (selectionId: string, damage: number) => void;
   bindNotes?: CombatModifierNote[];
-  pathToGloryPreset?: PathToGloryBattlepackPreset | null;
+  pathToGloryPackIds?: PathToGloryPackId[] | null;
   showBattleWounds?: boolean;
   onPatchSelection?: (selectionId: string, next: Selection) => void;
 };
@@ -82,7 +82,7 @@ export function RegimentOfRenownCard({
   onRemove,
   onPlayHealth,
   bindNotes,
-  pathToGloryPreset = null,
+  pathToGloryPackIds = null,
   showBattleWounds = false,
   onPatchSelection,
 }: Props) {
@@ -137,7 +137,7 @@ export function RegimentOfRenownCard({
               unit={unit}
               canEnhance={template.canTakeEnhancements}
               playMode={playMode}
-              pathToGloryPreset={pathToGloryPreset}
+              pathToGloryPackIds={pathToGloryPackIds}
               showBattleWounds={showBattleWounds}
               onPatchSelection={onPatchSelection}
               artefactBearerId={artefactBearerId}
@@ -179,7 +179,7 @@ function RoRSlotRow({
   unit,
   canEnhance,
   playMode,
-  pathToGloryPreset,
+  pathToGloryPackIds,
   showBattleWounds,
   onPatchSelection,
   artefactBearerId,
@@ -209,7 +209,7 @@ function RoRSlotRow({
   unit: CatalogueUnit;
   canEnhance: boolean;
   playMode: boolean;
-  pathToGloryPreset?: PathToGloryBattlepackPreset | null;
+  pathToGloryPackIds?: PathToGloryPackId[] | null;
   showBattleWounds?: boolean;
   onPatchSelection?: (selectionId: string, next: Selection) => void;
   artefactBearerId?: string | null;
@@ -239,11 +239,14 @@ function RoRSlotRow({
   const warning = battleDamagedWarning(unit, play.damage);
   const displayName = selectionDisplayName(selection, unit);
   const extras =
-    pathToGloryPreset && !playMode && onPatchSelection ? (
+    pathToGloryPackIds &&
+    pathToGloryPackIds.length > 0 &&
+    !playMode &&
+    onPatchSelection ? (
       <PathToGloryUnitExtras
         selection={selection}
-        warscrollName={unit.name}
-        preset={pathToGloryPreset}
+        unit={unit}
+        packIds={pathToGloryPackIds}
         showBattleWounds={Boolean(showBattleWounds)}
         onChange={(next) => onPatchSelection(next.id, next)}
       />

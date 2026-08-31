@@ -28,7 +28,9 @@ import { dropEnhancements, pickerUnitsFor, type ListPicker as Picker } from "@/e
 import { combatModifierNotes } from "@/engine/magic";
 import { isSpearheadList } from "@/engine/spearhead";
 import {
-  pathToGloryPreset,
+  applyPathToGloryPacks,
+  isPathToGloryList,
+  pathToGloryPackIds,
   patchSelection,
   showsBattleWoundsAndScars,
 } from "@/engine/pathToGlory";
@@ -56,10 +58,15 @@ import {
 import { createId } from "@/lib/id";
 import { appendRegimentWithHero, saveArmy } from "@/lib/storage";
 import { BattleTacticCardPicker } from "./BattleTacticCardPicker";
+import { PathToGloryBattlepackPicker } from "./PathToGloryBattlepackPicker";
 import { BattleTacticTracker } from "./BattleTacticTracker";
 import { ConfirmSheetActions } from "./ConfirmSheetActions";
 import { DatasheetSheet } from "./DatasheetSheet";
 import { ManifestationCard } from "./ManifestationCard";
+import {
+  PathToGloryManifestationCard,
+  PathToGlorySpellCard,
+} from "./PathToGloryLearnedCards";
 import { ModalFrame } from "./ModalFrame";
 import { ChoiceSheet, PickerSheet } from "./PickerSheet";
 import { PlayMagicBoard } from "./PlayMagicBoard";
@@ -110,6 +117,7 @@ export function BuilderReady({
   const totals = useMemo(() => summarize(list, faction), [list, faction]);
   const playMode = pane === "play";
   const spearhead = isSpearheadList(list);
+  const pathToGlory = isPathToGloryList(list);
   const bindNotes = useMemo(
     () => (playMode ? combatModifierNotes(list, faction) : []),
     [playMode, list, faction],
@@ -138,9 +146,11 @@ export function BuilderReady({
         ? faction.prayerLores[0].id
         : list.prayerLoreId;
     const nextSpell =
-      !list.spellLoreId && faction.spellLores.length === 1
-        ? faction.spellLores[0].id
-        : list.spellLoreId;
+      pathToGlory
+        ? list.spellLoreId
+        : !list.spellLoreId && faction.spellLores.length === 1
+          ? faction.spellLores[0].id
+          : list.spellLoreId;
     const nextGeneral = resolveGeneralRegimentId(list, faction);
     const nextScourgeRealm = spearhead
       ? list.scourgeRealm
@@ -160,7 +170,7 @@ export function BuilderReady({
       generalRegimentId: nextGeneral,
       scourgeRealm: nextScourgeRealm,
     });
-  }, [list, faction, spearhead]);
+  }, [list, faction, spearhead, pathToGlory]);
 
   useEffect(() => {
     if (spearhead && playTab === "magic") {
@@ -513,7 +523,11 @@ export function BuilderReady({
               <span className="font-medium tracking-wide">Options</span>
               <span className="flex items-center gap-2 text-xs text-ink-muted">
                 {!optionsOpen ? (
-                  <span>Points · Lores · Tactics</span>
+                  <span>
+                    {isPathToGloryList(list)
+                      ? "Points · Battlepacks · Lores · Tactics"
+                      : "Points · Lores · Tactics"}
+                  </span>
                 ) : null}
                 <span
                   aria-hidden="true"
@@ -531,7 +545,17 @@ export function BuilderReady({
                 variant="ink"
               />
 
-              {faction.spellLores.length > 0 ? (
+              {isPathToGloryList(list) ? (
+                <PathToGloryBattlepackPicker
+                  packIds={pathToGloryPackIds(list)}
+                  onChange={(packIds) =>
+                    void commit(applyPathToGloryPacks(list, packIds))
+                  }
+                  variant="ink"
+                />
+              ) : null}
+
+              {faction.spellLores.length > 0 && !pathToGlory ? (
                 <div className="flex flex-col gap-2">
                   <label className="flex flex-col gap-2 text-sm text-parchment/80">
                     Spell lore
@@ -784,7 +808,7 @@ export function BuilderReady({
             selected={selectedId === regiment.id}
             playMode={forPlayMode}
             locked={spearhead}
-            pathToGloryPreset={pathToGloryPreset(list)}
+            pathToGloryPackIds={pathToGloryPackIds(list)}
             showBattleWounds={showsBattleWoundsAndScars(list)}
             onPatchSelection={(selectionId, next) =>
               void commit(patchSelection(list, selectionId, next))
@@ -977,7 +1001,7 @@ export function BuilderReady({
           <RegimentOfRenownCard
             list={list}
             playMode={forPlayMode}
-            pathToGloryPreset={pathToGloryPreset(list)}
+            pathToGloryPackIds={pathToGloryPackIds(list)}
             showBattleWounds={showsBattleWoundsAndScars(list)}
             onPatchSelection={(selectionId, next) =>
               void commit(patchSelection(list, selectionId, next))
@@ -1210,7 +1234,7 @@ export function BuilderReady({
                   <li key={slot.id}>
                     <BuildSlotRow
                       name={unit.name}
-                      subtitle={`${unitSizeLabel(unit, slot.reinforced)} · ${selectionPoints(unit, slot.reinforced)} pts`}
+                      subtitle={`${unitSizeLabel(unit, slot.reinforced)} · ${selectionPoints(unit, slot.reinforced, slot)} pts`}
                       reinforced={slot.reinforced}
                       sheetLabel={`${unit.name} datasheet`}
                       onOpenSheet={() => setDatasheet(unit)}
@@ -1420,16 +1444,35 @@ export function BuilderReady({
           </div>
         ) : null}
 
-        {faction.manifestationLores.length > 0 && !spearhead ? (
-          <ManifestationCard
-            lore={manifestation ?? null}
-            lores={faction.manifestationLores}
+        {faction.spellLores.length > 0 && !spearhead && pathToGlory ? (
+          <PathToGlorySpellCard
+            list={list}
+            faction={faction}
             playMode={forPlayMode}
-            onChangeLore={(loreId) =>
-              void commit({ ...list, manifestationLoreId: loreId })
-            }
-            onOpenSheet={setDatasheet}
+            onChange={(next) => void commit(next)}
           />
+        ) : null}
+
+        {faction.manifestationLores.length > 0 && !spearhead ? (
+          pathToGlory ? (
+            <PathToGloryManifestationCard
+              list={list}
+              faction={faction}
+              playMode={forPlayMode}
+              onChange={(next) => void commit(next)}
+              onOpenSheet={setDatasheet}
+            />
+          ) : (
+            <ManifestationCard
+              lore={manifestation ?? null}
+              lores={faction.manifestationLores}
+              playMode={forPlayMode}
+              onChangeLore={(loreId) =>
+                void commit({ ...list, manifestationLoreId: loreId })
+              }
+              onOpenSheet={setDatasheet}
+            />
+          )
         ) : null}
 
         {faction.terrain.length > 0 && !spearhead ? (

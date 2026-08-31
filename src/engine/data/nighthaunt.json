@@ -4039,6 +4039,939 @@
       ],
       "regimentOptions": [],
       "regimentHeroes": []
+    },
+    {
+      "id": "7f6e-2573-2d85-dc51",
+      "name": "Anvil of Apotheosis: Nighthaunt Hero",
+      "points": 150,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "DEATH",
+        "NIGHTHAUNT",
+        "FLY",
+        "WARD (5+)"
+      ],
+      "stats": {
+        "move": "8\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Malignant Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (Auto-wound)"
+        },
+        {
+          "name": "Balefire-laced Scream",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "D3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": "Shoot in Combat"
+        },
+        {
+          "name": "Ethereal Steed's Ghostly Hooves and Teeth",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit (Auto-wound), Companion"
+        },
+        {
+          "name": "Relic Bearers' Claws and Ethereal Steeds' Hooves",
+          "kind": "melee",
+          "range": "",
+          "attacks": "14",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit (Auto-wound), Companion"
+        },
+        {
+          "name": "Attendants' Deadly Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "2",
+          "damage": "2",
+          "ability": "Crit (Auto-wound), Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Stolen Hours",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time this unit uses a Fight ability, after that Fight ability has been resolved, Heal (X) this unit, where X is the number of damage points allocated to enemy units by combat attacks made as part of that Fight ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Sinister Judgement",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Your Hero Phase",
+          "declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
+          "effect": "Roll a dice. On a 2+, the target is judged for the rest of the turn. While the target is judged, negative modifiers to its control score are doubled.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Fright Train",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "This unit can use this ability if it charged this phase. Pick each enemy unit within 1\" of this unit to be the targets.",
+          "effect": "Roll a dice. On a 2+, ignore positive modifiers to save rolls for the targets for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Cthonic Juggernaut",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "This unit can use this ability if it charged this phase.",
+          "effect": "Roll a D3. On a 2+, add the roll to the Attacks characteristic of this unit's melee weapons for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Eyes Torn Open",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "You can re-roll hit rolls for this unit's combat attacks that target Order units. In addition, you can re-roll wound rolls for this unit's combat attacks that target Stormcast Etetrnals units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Nihilistic Gourmand",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Hero Phase",
+          "declare": "Pick a friendly Nighthaunt unit to be the target.",
+          "effect": "For the rest of the turn, while the target is within this unit's combat range, each time a model in the target unit is slain, Heal (1) this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Awful Resemblance",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, for the rest of the turn: \u2022 This unit cannot be picked to be the target of pile-in moves made by the target. \u2022 Other than the Companion weapon ability, weapon abilities for attacks that target this unit have no effect.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Flaking Soul",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "This unit must use this ability at the end of each turn.",
+          "effect": "Roll a number of dice equal to this unit's Health characteristic. For each 6, allocate 1 damage point to this unit (ward rolls cannot be made for those damage points).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Bringer of False Hope",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Visible friendly Nighthaunt units within 6\" of this unit cannot be healed and slain models cannot be returned to those units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Deluded Worshipper",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Visible friendly Nighthaunt units within 6\" of this unit cannot use commands.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Spectral Blades",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
+          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "The Soul of a Coward",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll a D3. On a 2+, this unit immediately use the 'Retreat' ability without any mortal damage being inflicted on it. Then, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Reckless Reaper",
+          "kind": "Activated",
+          "timing": "Your Charge Phase",
+          "declare": "",
+          "effect": "For the rest of the turn, add 1 to the number of dice rolled when making charge rolls for this unit, to a maximum of 3.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Devour Magic",
+          "kind": "Activated",
+          "timing": "Reaction: Your opponent declared a Spell ability",
+          "declare": "",
+          "effect": "If a friendly Nighthaunt unit wholly within 12\" of rhis unit was picked to be the target of that spell, this unit can use the 'Unbind' ability as if it had Wizard (1). If the spell is unbound, Heal (D3) this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "It Tolls for Thee",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Enemy Movement Phase",
+          "declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
+          "effect": "For the rest of the turn, each time the target is picked to use a Core ability, roll a dice as a reaction. On a 4+, inflict D3 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Eternal Horror",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Other than the Companion weapon ability, weapon abilities for attacks made by enemy units have no effect while they are in combat with this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Chill Aura",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Reaction: Opponent declared a charge ability for a unit within 6\" of this unit",
+          "declare": "",
+          "effect": "Discard the highest dice from that charge roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Dread Harvester",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Ward rolls cannot be made for damage points inflicted by this unit's combat attacks. This also affects Companion weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": [],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "0dcf-c10c-7980-9f52",
+          "name": "Chainrattler",
+          "points": 150,
+          "destiny": 10
+        },
+        {
+          "id": "daf8-9c40-aa98-049f",
+          "name": "Foul Spectre",
+          "points": 250,
+          "destiny": 30
+        },
+        {
+          "id": "8e2d-f654-2479-7b6b",
+          "name": "Lord of Torment",
+          "points": 350,
+          "destiny": 50
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "f52b-3a58-5526-f29a",
+          "name": "Archetype",
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "id": "b49b-2188-71bf-7fba",
+              "name": "Knight of Shrouds",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Stolen Hours",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Each time this unit uses a Fight ability, after that Fight ability has been resolved, Heal (X) this unit, where X is the number of damage points allocated to enemy units by combat attacks made as part of that Fight ability.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Malignant Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Crit (Auto-wound)"
+                }
+              ]
+            },
+            {
+              "id": "e7d9-cd12-5e67-bc59",
+              "name": "Guardian of Souls",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "2619-d36f-7dc6-74c7",
+              "name": "Dark Judge",
+              "destiny": 0,
+              "abilities": [
+                {
+                  "name": "Sinister Judgement",
+                  "kind": "Activated",
+                  "timing": "Once Per Battle (Army), Your Hero Phase",
+                  "declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
+                  "effect": "Roll a dice. On a 2+, the target is judged for the rest of the turn. While the target is judged, negative modifiers to its control score are doubled.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "90aa-265f-93a3-0584",
+              "name": "Baleful Horror",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Balefire-laced Scream",
+                  "kind": "ranged",
+                  "range": "12\"",
+                  "attacks": "D3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "2",
+                  "damage": "D3",
+                  "ability": "Shoot in Combat"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "edb8-4c79-4f14-a06d",
+          "name": "Battle Mounts",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "a5f7-d144-df4c-7570",
+              "name": "Ethereal Steed",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Ethereal Steed's Ghostly Hooves and Teeth",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "5+",
+                  "wound": "3+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Crit (Auto-wound), Companion"
+                }
+              ],
+              "stats": {
+                "health": "7",
+                "move": "12\""
+              }
+            },
+            {
+              "id": "7a9e-78b4-1bf9-c025",
+              "name": "Edifice of the Damned",
+              "destiny": -8,
+              "abilities": [
+                {
+                  "name": "Fright Train",
+                  "kind": "Activated",
+                  "timing": "Any Charge Phase",
+                  "declare": "This unit can use this ability if it charged this phase. Pick each enemy unit within 1\" of this unit to be the targets.",
+                  "effect": "Roll a dice. On a 2+, ignore positive modifiers to save rolls for the targets for the rest of the turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Cthonic Juggernaut",
+                  "kind": "Activated",
+                  "timing": "Any Charge Phase",
+                  "declare": "This unit can use this ability if it charged this phase.",
+                  "effect": "Roll a D3. On a 2+, add the roll to the Attacks characteristic of this unit's melee weapons for the rest of the turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "stats": {
+                "health": "7"
+              }
+            },
+            {
+              "id": "58bc-2d6d-38f3-4765",
+              "name": "Dark Charioteer",
+              "destiny": -16,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Relic Bearers' Claws and Ethereal Steeds' Hooves",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "14",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Crit (Auto-wound), Companion"
+                }
+              ],
+              "stats": {
+                "health": "12",
+                "move": "10\"",
+                "control": "5"
+              }
+            }
+          ]
+        },
+        {
+          "id": "5e01-c170-610c-3465",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "04df-b96b-053c-90d9",
+              "name": "Eyes Torn Open",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Eyes Torn Open",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "You can re-roll hit rolls for this unit's combat attacks that target Order units. In addition, you can re-roll wound rolls for this unit's combat attacks that target Stormcast Etetrnals units.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "fb31-389d-a157-3d26",
+              "name": "Nihilistic Gourmand",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Nihilistic Gourmand",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Hero Phase",
+                  "declare": "Pick a friendly Nighthaunt unit to be the target.",
+                  "effect": "For the rest of the turn, while the target is within this unit's combat range, each time a model in the target unit is slain, Heal (1) this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "45cc-9b9e-7f6d-56c4",
+              "name": "Awful Resemblance",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Awful Resemblance",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Combat Phase",
+                  "declare": "Pick an enemy unit in combat with this unit to be the target.",
+                  "effect": "Roll a dice. On a 3+, for the rest of the turn: \u2022 This unit cannot be picked to be the target of pile-in moves made by the target. \u2022 Other than the Companion weapon ability, weapon abilities for attacks that target this unit have no effect.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "948e-436f-fae3-0b53",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "a512-14e8-43cf-a62c",
+              "name": "Flaking Soul",
+              "destiny": 6,
+              "abilities": [
+                {
+                  "name": "Flaking Soul",
+                  "kind": "Activated",
+                  "timing": "End of Any Turn",
+                  "declare": "This unit must use this ability at the end of each turn.",
+                  "effect": "Roll a number of dice equal to this unit's Health characteristic. For each 6, allocate 1 damage point to this unit (ward rolls cannot be made for those damage points).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "ddea-372f-bc86-505f",
+              "name": "Bringer of False Hope",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Bringer of False Hope",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Visible friendly Nighthaunt units within 6\" of this unit cannot be healed and slain models cannot be returned to those units.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "6fe5-d738-c5da-380e",
+              "name": "Deluded Worshipper",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Deluded Worshipper",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Visible friendly Nighthaunt units within 6\" of this unit cannot use commands.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "131a-fe8e-ab72-21fc",
+          "name": "Battle Mount Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "e936-9748-e0d1-ca45",
+              "name": "Damned Haste",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 2
+              }
+            },
+            {
+              "id": "6b53-2950-05ae-3d6e",
+              "name": "Ethereal Scythes",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Spectral Blades",
+                  "kind": "Activated",
+                  "timing": "Any Charge Phase",
+                  "declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
+                  "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "5773-f6e6-56f5-7c2a",
+              "name": "Desperation's Haste",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "The Soul of a Coward",
+                  "kind": "Activated",
+                  "timing": "Your Movement Phase",
+                  "declare": "Pick an enemy unit in combat with this unit to be the target.",
+                  "effect": "Roll a D3. On a 2+, this unit immediately use the 'Retreat' ability without any mortal damage being inflicted on it. Then, inflict an amount of mortal damage on the target equal to the roll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "93df-24e7-0bc2-d012",
+              "name": "Damned Chargers",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "cb1b-80b3-385f-3d96",
+              "name": "Wailing Attendants",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Attendants' Deadly Weapons",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "2",
+                  "damage": "2",
+                  "ability": "Crit (Auto-wound), Companion"
+                }
+              ]
+            },
+            {
+              "id": "43dd-b3a5-a000-f03a",
+              "name": "Unholy Knight",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Malignant Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Crit (Auto-wound)"
+                }
+              ]
+            },
+            {
+              "id": "338b-a270-eeed-71c2",
+              "name": "On a Pale Horse",
+              "destiny": -6,
+              "abilities": [],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "40c4-679c-8a19-b813",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "df87-4829-5a21-6f29",
+              "name": "Aura of the Damned",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "control": 1
+              }
+            },
+            {
+              "id": "3b67-6ac5-f4bc-2a09",
+              "name": "Insubstantial",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "health": 1
+              }
+            },
+            {
+              "id": "aa44-6bba-b72e-bd46",
+              "name": "Eager for Death",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Malignant Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Crit (Auto-wound)"
+                }
+              ]
+            },
+            {
+              "id": "45c0-e09a-bc81-ce2d",
+              "name": "Malignant Strength",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Malignant Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Crit (Auto-wound)"
+                }
+              ]
+            },
+            {
+              "id": "dfdf-0ead-4133-3de8",
+              "name": "Fearsome Horror",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Malignant Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Crit (Auto-wound)"
+                }
+              ]
+            },
+            {
+              "id": "a4f9-e6e1-2cdc-c631",
+              "name": "Bearer of Dark Flames",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Balefire-laced Scream",
+                  "kind": "ranged",
+                  "range": "12\"",
+                  "attacks": "D3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "2",
+                  "damage": "D3",
+                  "ability": "Shoot in Combat"
+                }
+              ]
+            },
+            {
+              "id": "885b-54c5-4950-57ab",
+              "name": "Malicious Urges",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Reckless Reaper",
+                  "kind": "Activated",
+                  "timing": "Your Charge Phase",
+                  "declare": "",
+                  "effect": "For the rest of the turn, add 1 to the number of dice rolled when making charge rolls for this unit, to a maximum of 3.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "8711-fda5-6e0e-47b5",
+              "name": "Arcane Devourer",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Devour Magic",
+                  "kind": "Activated",
+                  "timing": "Reaction: Your opponent declared a Spell ability",
+                  "declare": "",
+                  "effect": "If a friendly Nighthaunt unit wholly within 12\" of rhis unit was picked to be the target of that spell, this unit can use the 'Unbind' ability as if it had Wizard (1). If the spell is unbound, Heal (D3) this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "6b15-d240-c026-2c8c",
+              "name": "Unrepentant Reaper",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "It Tolls for Thee",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Enemy Movement Phase",
+                  "declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
+                  "effect": "For the rest of the turn, each time the target is picked to use a Core ability, roll a dice as a reaction. On a 4+, inflict D3 mortal damage on the target.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "1f05-11ad-c3b2-54fe",
+              "name": "Eternal Horror",
+              "destiny": -8,
+              "abilities": [
+                {
+                  "name": "Eternal Horror",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Other than the Companion weapon ability, weapon abilities for attacks made by enemy units have no effect while they are in combat with this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "9a8a-361d-ec49-9831",
+              "name": "Chill Aura",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Chill Aura",
+                  "kind": "Activated",
+                  "timing": "Once Per Battle, Reaction: Opponent declared a charge ability for a unit within 6\" of this unit",
+                  "declare": "",
+                  "effect": "Discard the highest dice from that charge roll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "9e70-bd53-6579-8b43",
+              "name": "Dread Harvester",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Dread Harvester",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Ward rolls cannot be made for damage points inflicted by this unit's combat attacks. This also affects Companion weapons.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

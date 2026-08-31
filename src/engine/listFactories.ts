@@ -1,9 +1,10 @@
-import type { ArmyList, PathToGloryBattlepackPreset } from "@/engine/types";
+import type { ArmyList, PathToGloryPackId } from "@/engine/types";
 import { getFaction } from "@/engine/queries";
 import { getSpearhead } from "@/engine/spearhead";
 import { inferScourgeRealm } from "@/engine/scourgeRealm";
 import { pruneOrphanEnhancements } from "@/engine/validate";
 import { createId } from "@/lib/id";
+import { normalizePathToGloryState } from "@/engine/pathToGlory";
 
 const MAX_REGIMENTS = 5;
 
@@ -30,10 +31,7 @@ export function normalizeArmyList(list: ArmyList): ArmyList {
     regimentAbilityId: list.regimentAbilityId ?? null,
     pathToGlory:
       list.kind === "pathToGlory"
-        ? {
-            battlepackPreset:
-              list.pathToGlory?.battlepackPreset ?? "ascension",
-          }
+        ? normalizePathToGloryState(list.pathToGlory)
         : undefined,
   });
 }
@@ -80,14 +78,17 @@ export function blankArmy(
 
 export function blankPathToGlory(
   factionId: string,
-  battlepackPreset: PathToGloryBattlepackPreset,
+  packIds: PathToGloryPackId | PathToGloryPackId[],
   name?: string,
   pointsCap?: number,
 ): ArmyList {
+  const ids = typeof packIds === "string" ? [packIds] : packIds;
   return {
     ...blankArmy(factionId, name, pointsCap ?? 1000),
     kind: "pathToGlory",
-    pathToGlory: { battlepackPreset },
+    spellLoreId: null,
+    manifestationLoreId: null,
+    pathToGlory: normalizePathToGloryState({ packIds: ids }),
   };
 }
 

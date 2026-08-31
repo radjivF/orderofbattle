@@ -10,8 +10,8 @@ import {
   newListArmySelectGroups,
   newListArmySelectHasExtras,
 } from "@/lib/newListArmyOptions";
-import { PATH_TO_GLORY_PRESETS } from "@/engine/pathToGlory";
-import type { PathToGloryBattlepackPreset } from "@/engine/pathToGlory";
+import type { PathToGloryPackId } from "@/engine/pathToGlory";
+import { PathToGloryBattlepackPicker } from "./PathToGloryBattlepackPicker";
 import { SHEET_HEADER_CLASS, SHEET_PANEL_CLASS } from "@/lib/builderUi";
 import { ModalFrame } from "./ModalFrame";
 import { PointsCapField } from "./PointsCapField";
@@ -27,7 +27,7 @@ type Props = {
   draftPoints: number;
   draftMode: "points" | "spearhead" | "pathToGlory";
   draftSpearheadId: string | null;
-  draftBattlepackPreset: PathToGloryBattlepackPreset | null;
+  draftPackIds: PathToGloryPackId[];
   createCounts: { heroes: number; units: number } | null;
   onClose: () => void;
   onCreate: () => void;
@@ -35,7 +35,7 @@ type Props = {
   onDraftPointsChange: (points: number) => void;
   onSelectFaction: (faction: FactionCatalogue) => void;
   onArmyChange: (value: string) => void;
-  onBattlepackChange: (preset: PathToGloryBattlepackPreset) => void;
+  onPackIdsChange: (packIds: PathToGloryPackId[]) => void;
   onBackToFactions: () => void;
 };
 
@@ -48,7 +48,7 @@ export function LibraryCreateSheet({
   draftPoints,
   draftMode,
   draftSpearheadId,
-  draftBattlepackPreset,
+  draftPackIds,
   createCounts,
   onClose,
   onCreate,
@@ -56,7 +56,7 @@ export function LibraryCreateSheet({
   onDraftPointsChange,
   onSelectFaction,
   onArmyChange,
-  onBattlepackChange,
+  onPackIdsChange,
   onBackToFactions,
 }: Props) {
   if (!open) {
@@ -123,34 +123,11 @@ export function LibraryCreateSheet({
             </label>
           ) : null}
           {draftMode === "pathToGlory" ? (
-            <label className="flex flex-col gap-2 text-base text-sheet-muted">
-              Battlepack
-              <select
-                value={draftBattlepackPreset ?? "ascension"}
-                onChange={(event) =>
-                  onBattlepackChange(
-                    event.target.value as PathToGloryBattlepackPreset,
-                  )
-                }
-                className="min-h-11 w-full rounded-xl bg-parchment-ink/5 px-3 font-serif text-xl text-parchment-ink"
-              >
-                {PATH_TO_GLORY_PRESETS.filter(
-                  (preset) => preset.id !== "all",
-                ).map((preset) => (
-                  <option key={preset.id} value={preset.id}>
-                    {preset.label}
-                  </option>
-                ))}
-              </select>
-              <span className="text-sm text-sheet-muted">
-                {
-                  PATH_TO_GLORY_PRESETS.find(
-                    (item) =>
-                      item.id === (draftBattlepackPreset ?? "ascension"),
-                  )?.hint
-                }
-              </span>
-            </label>
+            <PathToGloryBattlepackPicker
+              packIds={draftPackIds}
+              onChange={onPackIdsChange}
+              variant="parchment"
+            />
           ) : null}
           <label className="flex flex-col gap-2 text-base text-sheet-muted">
             List name

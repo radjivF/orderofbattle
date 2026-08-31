@@ -21,7 +21,7 @@ import {
   type PortableFormat,
 } from "@/engine/listPortable";
 import type { ArmyList, FactionCatalogue } from "@/engine/types";
-import type { PathToGloryBattlepackPreset } from "@/engine/pathToGlory";
+import type { PathToGloryPackId } from "@/engine/pathToGlory";
 import { factionPickerCounts } from "@/lib/factionSeo";
 import { downloadTextFile } from "@/lib/downloadFile";
 import {
@@ -41,8 +41,11 @@ import {
   peekListCreateSplash,
   subscribeListOpenFaction,
 } from "@/lib/listTransition";
+import { preloadBackdropArt } from "@/lib/factionArt";
 import {
+  LIST_CREATE_BACKDROP_SCOURGE,
   libraryCreatingSplashVisible,
+  listCreateBackdropFactionId,
 } from "@/lib/listFlowNav";
 import { newListDraftFromSearch } from "@/lib/newListLink";
 import {
@@ -54,6 +57,7 @@ import {
   type LibrarySortMode,
 } from "@/lib/librarySort";
 import {
+  LIST_PANE_ART_CLASS,
   CONFIRM_CANCEL_BUTTON_CLASS,
   CONFIRM_SHEET_ACTIONS_CLASS,
   CONFIRM_SHEET_PANEL_CLASS,
@@ -119,8 +123,9 @@ export function LibraryScreen() {
     "points" | "spearhead" | "pathToGlory"
   >("points");
   const [draftSpearheadId, setDraftSpearheadId] = useState<string | null>(null);
-  const [draftBattlepackPreset, setDraftBattlepackPreset] =
-    useState<PathToGloryBattlepackPreset | null>(null);
+  const [draftPackIds, setDraftPackIds] = useState<PathToGloryPackId[]>([
+    "ascension",
+  ]);
   const [creating, setCreating] = useState(false);
   const [importError, setImportError] = useState<string | null>(null);
   const [importDraft, setImportDraft] = useState("");
@@ -161,23 +166,29 @@ export function LibraryScreen() {
     if (draftMode === "spearhead" && !draftSpearheadId) {
       return;
     }
-    if (draftMode === "pathToGlory" && !draftBattlepackPreset) {
+    if (draftMode === "pathToGlory" && draftPackIds.length === 0) {
       return;
     }
+    const artFactionId = listCreateBackdropFactionId({
+      parentId: draftParent?.id,
+      parentFactionIds: draftFaction.parentFactionIds,
+      factionId: draftFaction.id,
+    });
+    await preloadBackdropArt(artFactionId, LIST_CREATE_BACKDROP_SCOURGE);
+    rememberListCreate(
+      artFactionId,
+      (draftParent ?? draftFaction).name,
+      LIST_CREATE_BACKDROP_SCOURGE,
+    );
     setCreating(true);
-    const artFactionId =
-      draftParent?.id ??
-      draftFaction.parentFactionIds?.[0] ??
-      draftFaction.id;
-    rememberListCreate(artFactionId, (draftParent ?? draftFaction).name);
     try {
       const list =
         draftMode === "spearhead" && draftSpearheadId
           ? blankSpearhead(draftSpearheadId, draftName)
-          : draftMode === "pathToGlory" && draftBattlepackPreset
+          : draftMode === "pathToGlory"
             ? blankPathToGlory(
                 draftFaction.id,
-                draftBattlepackPreset,
+                draftPackIds,
                 draftName,
                 draftPoints,
               )
@@ -380,7 +391,7 @@ export function LibraryScreen() {
     setDraftPoints(2000);
     setDraftMode("points");
     setDraftSpearheadId(null);
-    setDraftBattlepackPreset(null);
+    setDraftPackIds(["ascension"]);
   }
 
   function onDraftArmyChange(value: string) {
@@ -396,7 +407,7 @@ export function LibraryScreen() {
       const box = getSpearhead(parsed.spearheadId);
       setDraftMode("spearhead");
       setDraftSpearheadId(parsed.spearheadId);
-      setDraftBattlepackPreset(null);
+      setDraftPackIds(["ascension"]);
       setDraftFaction(draftParent);
       setDraftName((current) =>
         current === `My ${previousLabel}`
@@ -409,7 +420,9 @@ export function LibraryScreen() {
       const next = getFaction(parsed.factionId) ?? draftFaction ?? draftParent;
       setDraftMode("pathToGlory");
       setDraftSpearheadId(null);
-      setDraftBattlepackPreset((current) => current ?? "ascension");
+      setDraftPackIds((current) =>
+        current.length > 0 ? current : ["ascension"],
+      );
       setDraftFaction(next);
       setDraftPoints((current) => (current === 2000 ? 1000 : current));
       return;
@@ -417,7 +430,7 @@ export function LibraryScreen() {
     const next = getFaction(parsed.factionId) ?? draftParent;
     setDraftMode("points");
     setDraftSpearheadId(null);
-    setDraftBattlepackPreset(null);
+    setDraftPackIds(["ascension"]);
     setDraftFaction(next);
     setDraftName((current) =>
       current === `My ${previousLabel}`
@@ -432,7 +445,7 @@ export function LibraryScreen() {
     setDraftName("");
     setDraftMode("points");
     setDraftSpearheadId(null);
-    setDraftBattlepackPreset(null);
+    setDraftPackIds(["ascension"]);
   }
 
   const { setLibraryChrome } = useListFlowChrome();
@@ -795,7 +808,7 @@ export function LibraryScreen() {
           draftPoints={draftPoints}
           draftMode={draftMode}
           draftSpearheadId={draftSpearheadId}
-          draftBattlepackPreset={draftBattlepackPreset}
+          draftPackIds={draftPackIds}
           createCounts={createCounts}
           onClose={closePicker}
           onCreate={onCreate}
@@ -808,23 +821,24 @@ export function LibraryScreen() {
             setDraftPoints(faction.pointsCapDefault);
             setDraftMode("points");
             setDraftSpearheadId(null);
-            setDraftBattlepackPreset(null);
+            setDraftPackIds(["ascension"]);
           }}
           onArmyChange={onDraftArmyChange}
-          onBattlepackChange={setDraftBattlepackPreset}
+          onPackIdsChange={setDraftPackIds}
           onBackToFactions={backToFactionPicker}
         />
       ) : null}
 
       {libraryCreatingSplashVisible(creating, createSplash) && draftFaction ? (
         <div className="fixed inset-0 z-[60] text-parchment">
-          <div className="absolute inset-0" aria-hidden="true">
+          <div className={LIST_PANE_ART_CLASS} aria-hidden="true">
             <FactionArtLayers
-              factionId={
-                draftParent?.id ??
-                draftFaction.parentFactionIds?.[0] ??
-                draftFaction.id
-              }
+              factionId={listCreateBackdropFactionId({
+                parentId: draftParent?.id,
+                parentFactionIds: draftFaction.parentFactionIds,
+                factionId: draftFaction.id,
+              })}
+              scourgeRealm={LIST_CREATE_BACKDROP_SCOURGE}
               scrim={false}
             />
           </div>

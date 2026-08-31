@@ -2,31 +2,57 @@ import type {
   ArmyList,
   PathToGloryBattlepackPreset,
   PathToGloryPackId,
+  PathToGloryState,
 } from "../types";
 
-export const PATH_TO_GLORY_PRESETS: {
-  id: PathToGloryBattlepackPreset;
+export const PATH_TO_GLORY_PACKS: {
+  id: PathToGloryPackId;
   label: string;
-  hint: string;
 }[] = [
-  { id: "ascension", label: "Ascension", hint: "Core Paths only." },
-  {
-    id: "ravaged-coast",
-    label: "Ravaged Coast",
-    hint: "Includes Ascension.",
-  },
-  {
-    id: "blighted-wilds",
-    label: "Blighted Wilds",
-    hint: "Includes Ascension and Ravaged Coast.",
-  },
-  {
-    id: "all",
-    label: "All together",
-    hint: "Ascension, Ravaged Coast, and Blighted Wilds.",
-  },
+  { id: "ascension", label: "Ascension" },
+  { id: "ravaged-coast", label: "Ravaged Coast" },
+  { id: "blighted-wilds", label: "Blighted Wilds" },
 ];
 
+const PACK_ORDER: PathToGloryPackId[] = PATH_TO_GLORY_PACKS.map(
+  (pack) => pack.id,
+);
+
+export type LegacyPathToGloryState = {
+  packIds?: PathToGloryPackId[];
+  battlepackPreset?: PathToGloryBattlepackPreset;
+  spellIds?: string[];
+  manifestationIds?: string[];
+};
+
+export function isPathToGloryPackId(
+  value: string,
+): value is PathToGloryPackId {
+  return PACK_ORDER.includes(value as PathToGloryPackId);
+}
+
+export function normalizePackIds(
+  ids: readonly string[] | undefined,
+): PathToGloryPackId[] {
+  const picked = new Set(ids?.filter(isPathToGloryPackId));
+  const next = PACK_ORDER.filter((id) => picked.has(id));
+  return next.length > 0 ? next : ["ascension"];
+}
+
+export function togglePathToGloryPack(
+  ids: PathToGloryPackId[],
+  id: PathToGloryPackId,
+): PathToGloryPackId[] {
+  const picked = new Set(normalizePackIds(ids));
+  if (picked.has(id)) {
+    picked.delete(id);
+  } else {
+    picked.add(id);
+  }
+  return normalizePackIds([...picked]);
+}
+
+/** Old nested presets → pack ids. New lists store packs independently. */
 export function resolveBattlepacks(
   preset: PathToGloryBattlepackPreset,
 ): PathToGloryPackId[] {
@@ -39,29 +65,67 @@ export function resolveBattlepacks(
   return ["ascension", "ravaged-coast", "blighted-wilds"];
 }
 
+export function packIdsFromState(
+  state: LegacyPathToGloryState | undefined,
+): PathToGloryPackId[] {
+  if (state?.packIds && state.packIds.length > 0) {
+    return normalizePackIds(state.packIds);
+  }
+  if (state?.battlepackPreset) {
+    return resolveBattlepacks(state.battlepackPreset);
+  }
+  return ["ascension"];
+}
+
+export function uniqueLearnedIds(ids: readonly string[] | undefined): string[] {
+  const seen = new Set<string>();
+  const next: string[] = [];
+  for (const id of ids ?? []) {
+    if (!id || seen.has(id)) {
+      continue;
+    }
+    seen.add(id);
+    next.push(id);
+  }
+  return next;
+}
+
+export function toggleLearnedId(ids: string[], id: string): string[] {
+  if (ids.includes(id)) {
+    return ids.filter((item) => item !== id);
+  }
+  return [...ids, id];
+}
+
+export function normalizePathToGloryState(
+  state: LegacyPathToGloryState | undefined,
+): PathToGloryState {
+  return {
+    packIds: packIdsFromState(state),
+    spellIds: uniqueLearnedIds(state?.spellIds),
+    manifestationIds: uniqueLearnedIds(state?.manifestationIds),
+  };
+}
+
 export function isPathToGloryList(list: ArmyList): boolean {
   return list.kind === "pathToGlory";
 }
 
-export function pathToGloryPreset(
-  list: ArmyList,
-): PathToGloryBattlepackPreset | null {
+export function pathToGloryPackIds(list: ArmyList): PathToGloryPackId[] {
   if (!isPathToGloryList(list)) {
-    return null;
+    return [];
   }
-  return list.pathToGlory?.battlepackPreset ?? "ascension";
+  return packIdsFromState(list.pathToGlory);
 }
 
 export function showsBattleWoundsAndScars(list: ArmyList): boolean {
-  const preset = pathToGloryPreset(list);
-  if (!preset) {
-    return false;
-  }
-  return resolveBattlepacks(preset).includes("ravaged-coast");
+  return pathToGloryPackIds(list).includes("ravaged-coast");
 }
 
-export function battlepackPresetLabel(
-  preset: PathToGloryBattlepackPreset,
-): string {
-  return PATH_TO_GLORY_PRESETS.find((item) => item.id === preset)?.label ?? preset;
+export function packLabel(id: PathToGloryPackId): string {
+  return PATH_TO_GLORY_PACKS.find((pack) => pack.id === id)?.label ?? id;
+}
+
+export function pathToGloryPacksLabel(packIds: PathToGloryPackId[]): string {
+  return normalizePackIds(packIds).map(packLabel).join(" · ");
 }

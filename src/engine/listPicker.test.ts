@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { createId } from "@/lib/id";
-import { blankArmy } from "./listFactories";
+import { blankArmy, blankPathToGlory } from "./listFactories";
 import { dropEnhancements, pickerUnitsFor, takenUniqueBases } from "./listPicker";
 import { getFaction } from "./queries";
 
@@ -53,5 +53,27 @@ describe("listPicker", () => {
       kind: "hero",
     });
     expect(units?.length).toBeGreaterThan(0);
+    expect(
+      units?.some((unit) => unit.name.startsWith("Anvil of Apotheosis")),
+    ).toBe(false);
+  });
+
+  it("shows Anvil of Apotheosis only on Path to Glory lists", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const anvil = faction.units.find((unit) =>
+      unit.name.startsWith("Anvil of Apotheosis"),
+    );
+    expect(anvil).toBeTruthy();
+    expect(anvil?.pathToGloryOnly).toBe(true);
+    expect(anvil?.anvilRanks?.length).toBeGreaterThanOrEqual(3);
+
+    const list = blankPathToGlory(faction.id, "ascension");
+    const units = pickerUnitsFor(list, faction, { kind: "hero" });
+    expect(
+      units?.some((unit) => unit.id === anvil?.id),
+    ).toBe(true);
   });
 });

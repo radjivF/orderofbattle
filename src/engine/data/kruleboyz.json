@@ -3370,6 +3370,844 @@
       ],
       "regimentOptions": [],
       "regimentHeroes": []
+    },
+    {
+      "id": "8424-e118-74ee-f976",
+      "name": "Anvil of Apotheosis: Kruleboyz Hero",
+      "points": 150,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "DESTRUCTION",
+        "KRULEBOYZ"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "6",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Hacka",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Sludgeraker's Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        },
+        {
+          "name": "Vulcha's Talons and Beak",
+          "kind": "melee",
+          "range": "",
+          "attacks": "7",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Out of the Mists",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from hit rolls and wound rolls for ranged attacks that target friendly Kruleboyz units while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Only Da Best",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 3\" to the Range characteristic of ranged weapons used by friendly Kruleboyz units. In addition, you can re-roll 1 hit roll per turn for shooting attacks made by each friendly Kruleboyz unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Super Kreepy",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Charge Phase",
+          "declare": "",
+          "effect": "Subtract 1 from the Attacks characteristic of melee weapons for attacks that target this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Extremely Loud",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Enemy Heroes cannot use commands while they are in combat with this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "A Knack for Killin'",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Ward rolls cannot be made for damage points inflicted by this unit's combat attacks.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Monsta-killa",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Your Combat Phase",
+          "declare": "Pick an enemy Monster in combat with this unit to be the target.",
+          "effect": "Roll a dice. On a 1, nothing happens. On a 2-5, inflict D6 mortal damage on the target. On a 6, inflict 2D6 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Obsessed With Violence",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to hit rolls for this unit's attacks while it is in combat. Add 1 to this unit's Move characteristic while it is not in combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Pig-headed",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot use Retreat abilities.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Clumsy Rider",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from the Attacks characteristic of this unit's Companion melee weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Roaring Bully",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot contest objectives that are being contested by enemy Unique Heroes.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Far Too Eager",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "In your charge phase, if this unit is not in combat and there are any enemy units within 12\" of this unit, this unit must use the 'Charge' ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Scarred 'Un",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points:",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Mean 'Un",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Charge Phase",
+          "declare": "If this unit charged this phase, pick an enemy Infantry unit within 1\" of it to be the target.",
+          "effect": "Roll a dice. On a 3+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Loud 'Un",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Reaction: Opponent declared a command for a unit within 12\" of this unit",
+          "declare": "",
+          "effect": "Roll a dice. On a 4+, unless your opponent spends 1 additional command point to use that command, the command has no effect, it still counts as having been used and the command points spent to use the command are still lost.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Weird 'Un",
+          "kind": "Activated",
+          "timing": "Reaction: Opponent declared a Spell ability",
+          "declare": "",
+          "effect": "If this unit was picked to be the target of that spell, roll a dice. On a 4+, ignore the effect of that spell on this unit. This unit can use this ability more than once per phase but only once per Spell ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Smelly 'Un",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from hit rolls for combat attacks that target this unit if it has not charged this turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Touched by da Waaagh!",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to casting rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": [],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "755c-ca21-4754-2cf2",
+          "name": "Yoof",
+          "points": 150,
+          "destiny": 10
+        },
+        {
+          "id": "2f54-c16d-feee-aa77",
+          "name": "Boss",
+          "points": 250,
+          "destiny": 30
+        },
+        {
+          "id": "87c4-06f1-f63a-41f9",
+          "name": "Megaboss",
+          "points": 350,
+          "destiny": 50
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "5af2-0334-95b2-1d75",
+          "name": "Warclan",
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "id": "e79f-c80e-8c14-caac",
+              "name": "Grinnin' Blades",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Out of the Mists",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 1 from hit rolls and wound rolls for ranged attacks that target friendly Kruleboyz units while they are wholly within 12\" of this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "7b66-56cd-d332-daca",
+              "name": "Big Yellers",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Only Da Best",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 3\" to the Range characteristic of ranged weapons used by friendly Kruleboyz units. In addition, you can re-roll 1 hit roll per turn for shooting attacks made by each friendly Kruleboyz unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "5a3f-480a-00fe-52fb",
+              "name": "Skulbugz",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Super Kreepy",
+                  "kind": "Activated",
+                  "timing": "Once Per Battle, Any Charge Phase",
+                  "declare": "",
+                  "effect": "Subtract 1 from the Attacks characteristic of melee weapons for attacks that target this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "163e-e926-d623-e903",
+          "name": "Battle Mounts",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "edb3-c15c-0334-34ff",
+              "name": "Sludgeraker Beast",
+              "destiny": -12,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Sludgeraker's Talons",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "6",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "14",
+                "move": "8\"",
+                "control": "5"
+              }
+            },
+            {
+              "id": "3dfe-6b32-6c2e-94d1",
+              "name": "Corpse-rippa Vulcha",
+              "destiny": -20,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Vulcha's Talons and Beak",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "7",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "14",
+                "move": "12\"",
+                "control": "5"
+              }
+            }
+          ]
+        },
+        {
+          "id": "7578-033a-56f7-d144",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "faf6-f9ae-2beb-25b1",
+              "name": "Extremely Loud",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Extremely Loud",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Enemy Heroes cannot use commands while they are in combat with this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "ac59-0098-d362-43db",
+              "name": "A Knack for Killin'",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "A Knack for Killin'",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Ward rolls cannot be made for damage points inflicted by this unit's combat attacks.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "1948-93b9-7481-bcbd",
+              "name": "Monsta-killa",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Monsta-killa",
+                  "kind": "Activated",
+                  "timing": "Once Per Battle (Army), Your Combat Phase",
+                  "declare": "Pick an enemy Monster in combat with this unit to be the target.",
+                  "effect": "Roll a dice. On a 1, nothing happens. On a 2-5, inflict D6 mortal damage on the target. On a 6, inflict 2D6 mortal damage on the target.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "c9de-e5ed-3ef8-e68b",
+              "name": "Obsessed With Violence",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Obsessed With Violence",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to hit rolls for this unit's attacks while it is in combat. Add 1 to this unit's Move characteristic while it is not in combat.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "6cc7-9a56-995a-b11a",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "0fc9-6727-e0dc-7d70",
+              "name": "Pig-headed",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Pig-headed",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot use Retreat abilities.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "df43-bc06-43f3-cdfd",
+              "name": "Clumsy Rider",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Clumsy Rider",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 1 from the Attacks characteristic of this unit's Companion melee weapons.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "371f-e337-376c-c25b",
+              "name": "Roaring Bully",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Roaring Bully",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot contest objectives that are being contested by enemy Unique Heroes.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "4d12-4723-271d-bde5",
+              "name": "Far Too Eager",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Far Too Eager",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "In your charge phase, if this unit is not in combat and there are any enemy units within 12\" of this unit, this unit must use the 'Charge' ability.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "f3bb-b8db-fba7-5c40",
+          "name": "Battle Mount Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "81c9-700d-2112-6c17",
+              "name": "Scarred 'Un",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Scarred 'Un",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit has 10 or more damage points:",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "0ba0-cd81-9837-7f2e",
+              "name": "Mean 'Un",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Mean 'Un",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Charge Phase",
+                  "declare": "If this unit charged this phase, pick an enemy Infantry unit within 1\" of it to be the target.",
+                  "effect": "Roll a dice. On a 3+, inflict an amount of mortal damage on the target equal to the roll.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "d196-fb4b-ab3d-50fd",
+              "name": "Fast 'Un",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 3
+              }
+            },
+            {
+              "id": "5337-af64-a076-a6ef",
+              "name": "Loud 'Un",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Loud 'Un",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn, Reaction: Opponent declared a command for a unit within 12\" of this unit",
+                  "declare": "",
+                  "effect": "Roll a dice. On a 4+, unless your opponent spends 1 additional command point to use that command, the command has no effect, it still counts as having been used and the command points spent to use the command are still lost.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "691f-44c3-d2f2-7f96",
+              "name": "Weird 'Un",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Weird 'Un",
+                  "kind": "Activated",
+                  "timing": "Reaction: Opponent declared a Spell ability",
+                  "declare": "",
+                  "effect": "If this unit was picked to be the target of that spell, roll a dice. On a 4+, ignore the effect of that spell on this unit. This unit can use this ability more than once per phase but only once per Spell ability.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "d72d-7639-9c75-631f",
+              "name": "Smelly 'Un",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Smelly 'Un",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 1 from hit rolls for combat attacks that target this unit if it has not charged this turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "8006-c76c-e235-e209",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "dc32-724d-93c8-7e19",
+              "name": "Towering Ego",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "control": 1
+              }
+            },
+            {
+              "id": "a860-2b88-611c-87ef",
+              "name": "Eager to Fight",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 1
+              }
+            },
+            {
+              "id": "b2e3-885b-ea75-43a5",
+              "name": "Gnarled Flesh",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "health": 1
+              }
+            },
+            {
+              "id": "c9ff-37cd-ff88-fb66",
+              "name": "Mork's Own Luck",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "d0c3-392f-ae72-082b",
+              "name": "Warlike Grudge",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Hacka",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "542e-cd2e-d820-b9ea",
+              "name": "Gork's Strength",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Hacka",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "927c-f4cc-2e32-80ea",
+              "name": "Underhanded",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Hacka",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "4bb3-8045-5c1f-538a",
+              "name": "Rider-boss",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Hacka",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "97cf-29f4-3263-979e",
+              "name": "Extra Stabby Bitz",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Hacka",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "16a9-7f02-ad43-3470",
+              "name": "Prophet of Gorkamorka",
+              "destiny": -6,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "41c5-795f-5566-28ca",
+              "name": "Touched by da Waaagh!",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Touched by da Waaagh!",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to casting rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

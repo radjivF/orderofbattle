@@ -76,8 +76,14 @@ describe("faction art LCP", () => {
       "utf8",
     );
     expect(library).toContain("scrim={false}");
+    expect(library).toContain("LIST_PANE_ART_CLASS");
+    expect(library).toContain("preloadBackdropArt");
+    expect(library).toContain("scourgeRealm={LIST_CREATE_BACKDROP_SCOURGE}");
     expect(library).not.toMatch(
       /libraryCreatingSplashVisible[\s\S]*bg-ink/,
+    );
+    expect(library).not.toMatch(
+      /libraryCreatingSplashVisible[\s\S]*className="absolute inset-0"/,
     );
 
     const factions = readFileSync(

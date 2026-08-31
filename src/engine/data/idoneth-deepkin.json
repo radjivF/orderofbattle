@@ -3453,6 +3453,965 @@
       ],
       "regimentOptions": [],
       "regimentHeroes": []
+    },
+    {
+      "id": "c503-9c05-6feb-29c6",
+      "name": "Anvil of Apotheosis: Idoneth Deepkin Hero",
+      "points": 150,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "ORDER",
+        "IDONETH DEEPKIN",
+        "AELF"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Thassalic Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Shoal of Zephyrfish",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "8",
+          "hit": "4+",
+          "wound": "5+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Shoot in Combat, Companion"
+        },
+        {
+          "name": "Allopex's Ferocious Bite",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "2",
+          "ability": "Anti-Monster (+1 Rend), Companion"
+        },
+        {
+          "name": "Sea-steed's Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        },
+        {
+          "name": "Mighty Sea-beast's Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Deep-sea Companion's Bite",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Razorshell Harpoon Launchers",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "Anti-Monster (+1 Rend)"
+        },
+        {
+          "name": "Crew's Spears and Harpoons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Mighty Sea-beast's Jaws is 3.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Bloodthirsty Predators",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Attacks characteristic of this unit's Allopex's Ferocious Bite while it is within 6\" of any damaged enemy units or while it is within 6\" of any enemy units that had any models slain in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Swift as the Great Current",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "",
+          "effect": "Roll a dice. Add 2 to the roll if this unit is Infantry. On a 4+, this unit has Strike-first for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Prodigy of the Asydrazor",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit is Akhelian, add a number equal to the number of ranks this unit has earned on its Path to the Attacks characteristic of its Thalassic Weapon. *For example, if this unit has earned the Legendary rank on its Path, add 4 to the Attacks characteristic of its Thalassic Weapon.*",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Royal Lineage",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the control scores of friendly Idoneth Deepkin units while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Prodigy of the T\u00farscoll",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Reaction: You declared a Spell ability for this unit",
+          "declare": "",
+          "effect": "If this unit is Isharann, re-roll 1 of the dice in the casting roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Isolationist",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot be set up within 9\" of any friendly units. In addition, friendly units cannot be set up within 9\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Overly Cautious",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time this unit is targeted by an attack, if you have any command points and a friendly unit has not already used the 'All-out Defence' command this phase, this unit must use the 'All-out Defence' command.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Legacy of Slaanesh",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "This unit must use this ability at the end of each turn.",
+          "effect": "Roll a dice. On a 4+, allocate 1 damage point to this unit (a ward roll cannot be made for that damage point).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Pride and Arrogance",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit is in combat with any enemy Heroes, all of its combat attacks must target an enemy Hero.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Mighty Biovoltaic Blast",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
+          "effect": "Roll a dice. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Clamping Bite",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy Monster within 1\" of this unit to be the target.",
+          "effect": "Roll a dice. On a 4+, inflict 3 mortal damage on the target. In addition, on a 6, the target has Strike-last for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Deep-sea Aid",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "You can reroll 1 hit roll, 1 wound roll, 1 save roll, 1 casting roll, or 1 unbinding roll for this unit. After you have done so, remove this unit's Sea-beast Familiar from the battlefield.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Sea-beast Familiar",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit's Sea-beast Familiar is a token. If it is removed from the battlefield, this unit cannot use the 'Deep-sea Aid' ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Abyssal Cephalopod",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit's Abyssal Cephalopod is a token. If it is removed from the battlefield, this unit cannot use the 'Pelagic Defender' ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Pelagic Defender",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "",
+          "effect": "Pick 1 of the following effects: \u2022 Pick an enemy unit in combat with this unit to be the target, then roll 8 dice. For each 5+, inflict 1 mortal damage on the target. \u2022 This unit has Ward (5+) for the rest of the turn. After resolving either effect, remove this unit's Abyssal Cephalopod from the battlefield.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": [],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "f422-f7b4-bf40-7a60",
+          "name": "Young Noble",
+          "points": 150,
+          "destiny": 10
+        },
+        {
+          "id": "2e73-e666-62b8-4aec",
+          "name": "Lord of the Enclave",
+          "points": 250,
+          "destiny": 30
+        },
+        {
+          "id": "7c25-001c-8a3f-891f",
+          "name": "Ethersea Regent",
+          "points": 350,
+          "destiny": 50
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "018c-3dff-e55e-7247",
+          "name": "Archetype",
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "id": "1713-ff4f-5820-34cf",
+              "name": "Akhelian",
+              "destiny": 0,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "0b93-b1a8-ed56-a9f5",
+              "name": "Isharann",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "305c-b514-f3f0-f279",
+          "name": "Battle Mount",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "9326-3558-8545-7de3",
+              "name": "Sea-steed",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Sea-steed's Fangs",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "7",
+                "move": "12\"",
+                "save": "4+"
+              }
+            },
+            {
+              "id": "6d71-b7d5-eacc-49d8",
+              "name": "Mighty Sea-beast",
+              "destiny": -25,
+              "abilities": [
+                {
+                  "name": "Battle Damaged",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Mighty Sea-beast's Jaws is 3.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Mighty Sea-beast's Jaws",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "6",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "3",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "16",
+                "control": "5",
+                "move": "10\"",
+                "save": "3+"
+              }
+            },
+            {
+              "id": "c807-02a4-2eae-f64d",
+              "name": "Allopex",
+              "destiny": -8,
+              "abilities": [
+                {
+                  "name": "Bloodthirsty Predators",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the Attacks characteristic of this unit's Allopex's Ferocious Bite while it is within 6\" of any damaged enemy units or while it is within 6\" of any enemy units that had any models slain in the same turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Allopex's Ferocious Bite",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "2",
+                  "ability": "Anti-Monster (+1 Rend), Companion"
+                }
+              ],
+              "stats": {
+                "health": "10",
+                "move": "12\"",
+                "save": "4+"
+              }
+            }
+          ]
+        },
+        {
+          "id": "e152-d868-e95a-0bbd",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "8915-7ee5-954e-64f3",
+              "name": "Swift as the Great Current",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Swift as the Great Current",
+                  "kind": "Activated",
+                  "timing": "Any Combat Phase",
+                  "declare": "",
+                  "effect": "Roll a dice. Add 2 to the roll if this unit is Infantry. On a 4+, this unit has Strike-first for the rest of the turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "8ba3-a93f-4c55-f322",
+              "name": "Prodigy of the Asydrazor",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Prodigy of the Asydrazor",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "If this unit is Akhelian, add a number equal to the number of ranks this unit has earned on its Path to the Attacks characteristic of its Thalassic Weapon. *For example, if this unit has earned the Legendary rank on its Path, add 4 to the Attacks characteristic of its Thalassic Weapon.*",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "db44-cfa5-b900-e0c5",
+              "name": "Royal Lineage",
+              "destiny": -1,
+              "abilities": [
+                {
+                  "name": "Royal Lineage",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the control scores of friendly Idoneth Deepkin units while they are wholly within 12\" of this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "ce63-9e53-4e8e-62ad",
+              "name": "Prodigy of the T\u00farscoll",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Prodigy of the T\u00farscoll",
+                  "kind": "Activated",
+                  "timing": "Once Per Battle, Reaction: You declared a Spell ability for this unit",
+                  "declare": "",
+                  "effect": "If this unit is Isharann, re-roll 1 of the dice in the casting roll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "471f-74ad-ff2b-8528",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "1d63-2fff-30fa-5486",
+              "name": "Isolationist",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Isolationist",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot be set up within 9\" of any friendly units. In addition, friendly units cannot be set up within 9\" of this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "eb5b-9b54-7bff-9ae3",
+              "name": "Overly Cautious",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Overly Cautious",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Each time this unit is targeted by an attack, if you have any command points and a friendly unit has not already used the 'All-out Defence' command this phase, this unit must use the 'All-out Defence' command.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "e873-8762-d5f2-41e5",
+              "name": "Legacy of Slaanesh",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Legacy of Slaanesh",
+                  "kind": "Activated",
+                  "timing": "End of Any Turn",
+                  "declare": "This unit must use this ability at the end of each turn.",
+                  "effect": "Roll a dice. On a 4+, allocate 1 damage point to this unit (a ward roll cannot be made for that damage point).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "80f0-7cc5-ba8c-f23c",
+              "name": "Pride and Arrogance",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Pride and Arrogance",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit is in combat with any enemy Heroes, all of its combat attacks must target an enemy Hero.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "5d21-cd1d-d3bc-a908",
+          "name": "Battle Mount Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "c03a-5629-19a8-5231",
+              "name": "Formidable Bulk",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "health": 1
+              }
+            },
+            {
+              "id": "fd89-ccc7-66bb-568d",
+              "name": "Rapid Striker",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 2
+              }
+            },
+            {
+              "id": "dd5e-e10e-478b-9a82",
+              "name": "Mighty Biovoltaic Blast",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Mighty Biovoltaic Blast",
+                  "kind": "Activated",
+                  "timing": "Any Charge Phase",
+                  "declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
+                  "effect": "Roll a dice. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "0f9b-d23d-d877-9add",
+              "name": "Void Drummer",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "ea90-85b0-7732-2947",
+              "name": "Clamping Bite",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Clamping Bite",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Combat Phase",
+                  "declare": "Pick an enemy Monster within 1\" of this unit to be the target.",
+                  "effect": "Roll a dice. On a 4+, inflict 3 mortal damage on the target. In addition, on a 6, the target has Strike-last for the rest of the turn.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "7d7c-0a13-356c-6b18",
+              "name": "Mounted Crew",
+              "destiny": -10,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Razorshell Harpoon Launchers",
+                  "kind": "ranged",
+                  "range": "18\"",
+                  "attacks": "4",
+                  "hit": "3+",
+                  "wound": "2+",
+                  "rend": "1",
+                  "damage": "3",
+                  "ability": "Anti-Monster (+1 Rend)"
+                },
+                {
+                  "name": "Crew's Spears and Harpoons",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "1",
+                  "ability": "-"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "b63b-9dfc-7890-0c44",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "0190-0a2b-0f47-3408",
+              "name": "Tactical Acumen",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "control": 1
+              }
+            },
+            {
+              "id": "9e8e-1ab5-9b5a-c845",
+              "name": "Martial Grace",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 1
+              }
+            },
+            {
+              "id": "7eca-9602-effe-4402",
+              "name": "Grim Resolve",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "health": 1
+              }
+            },
+            {
+              "id": "8a4b-8c6c-a9f0-52fa",
+              "name": "Warding Currents",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "5ae1-2150-da0c-8c69",
+              "name": "Focused Hunter",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "f07c-4954-5569-e220",
+              "name": "Duellist",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "425b-a4f6-9808-da78",
+              "name": "Ornate Armour",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [],
+              "stats": {
+                "save": "3+"
+              }
+            },
+            {
+              "id": "54b7-e93e-8376-1552",
+              "name": "Shining Blade",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "897f-c620-8169-6a8d",
+              "name": "Deep-sea Companion",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Deep-sea Companion's Bite",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "2",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ]
+            },
+            {
+              "id": "7143-2714-3c54-438d",
+              "name": "Serrated Bill",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Deep-sea Companion's Bite",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "2",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ]
+            },
+            {
+              "id": "6b23-1868-7186-6194",
+              "name": "Flurry of Attacks",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Deep-sea Companion's Bite",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "2",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ]
+            },
+            {
+              "id": "1960-22a0-d7e0-01da",
+              "name": "Vicious Bite",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Deep-sea Companion's Bite",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "2",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ]
+            },
+            {
+              "id": "bead-8153-e95c-55ed",
+              "name": "Oracle of the Enclave",
+              "destiny": -8,
+              "abilities": [],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "6fd3-1035-2f0d-203d",
+          "name": "Companion",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "7a5f-345e-58ba-8b7c",
+              "name": "Sea-beast Familiar",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Deep-sea Aid",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "You can reroll 1 hit roll, 1 wound roll, 1 save roll, 1 casting roll, or 1 unbinding roll for this unit. After you have done so, remove this unit's Sea-beast Familiar from the battlefield.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Sea-beast Familiar",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit's Sea-beast Familiar is a token. If it is removed from the battlefield, this unit cannot use the 'Deep-sea Aid' ability.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "5cab-fff8-7971-244f",
+              "name": "Abyssal Cephalopod",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Abyssal Cephalopod",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit's Abyssal Cephalopod is a token. If it is removed from the battlefield, this unit cannot use the 'Pelagic Defender' ability.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Pelagic Defender",
+                  "kind": "Activated",
+                  "timing": "Once Per Battle, Any Combat Phase",
+                  "declare": "",
+                  "effect": "Pick 1 of the following effects: \u2022 Pick an enemy unit in combat with this unit to be the target, then roll 8 dice. For each 5+, inflict 1 mortal damage on the target. \u2022 This unit has Ward (5+) for the rest of the turn. After resolving either effect, remove this unit's Abyssal Cephalopod from the battlefield.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "ada1-f365-83c7-a16d",
+              "name": "Shoal of Zephyrfish",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Shoal of Zephyrfish",
+                  "kind": "ranged",
+                  "range": "10\"",
+                  "attacks": "8",
+                  "hit": "4+",
+                  "wound": "5+",
+                  "rend": "1",
+                  "damage": "1",
+                  "ability": "Shoot in Combat, Companion"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

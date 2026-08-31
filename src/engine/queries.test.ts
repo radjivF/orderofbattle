@@ -38,6 +38,39 @@ describe("selectionPoints", () => {
     expect(selectionPoints(unit, false)).toBe(unit.points);
     expect(selectionPoints(unit, true)).toBe(unit.points * 2);
   });
+
+  it("uses Anvil of Apotheosis destiny ranks for points", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const anvil = faction.units.find((item) =>
+      item.name.startsWith("Anvil of Apotheosis"),
+    );
+    expect(anvil).toBeTruthy();
+    if (!anvil) return;
+
+    const knight = anvil.anvilRanks?.[0];
+    const templar = anvil.anvilRanks?.[1];
+    expect(knight?.points).toBe(150);
+    expect(templar?.points).toBe(250);
+    expect(selectionPoints(anvil, false)).toBe(150);
+    expect(
+      selectionPoints(anvil, false, {
+        id: "sel",
+        unitId: anvil.id,
+        reinforced: false,
+        pathToGlory: {
+          renown: 0,
+          pathId: null,
+          pathOptionIds: [],
+          battleWoundId: null,
+          scarId: null,
+          anvilRankId: templar?.id,
+        },
+      }),
+    ).toBe(250);
+  });
 });
 
 describe("canJoinRegiment", () => {

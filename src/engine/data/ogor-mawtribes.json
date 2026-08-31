@@ -4965,6 +4965,951 @@
       ],
       "regimentOptions": [],
       "regimentHeroes": []
+    },
+    {
+      "id": "9136-f12b-c77c-922a",
+      "name": "Anvil of Apotheosis: Ogor Mawtribes Hero",
+      "points": 150,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "DESTRUCTION",
+        "OGOR MAWTRIBES",
+        "OGOR"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "8",
+        "save": "5+",
+        "control": "3"
+      },
+      "weapons": [
+        {
+          "name": "Innard-ripper",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Crit (Mortal)"
+        },
+        {
+          "name": "Horns, Teeth and Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Charge (+1 Damage), Companion"
+        },
+        {
+          "name": "Massive Tusks",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "5",
+          "ability": "Companion"
+        },
+        {
+          "name": "Huge Horns",
+          "kind": "melee",
+          "range": "",
+          "attacks": "7",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Charge (+1 Damage), Companion"
+        },
+        {
+          "name": "Plundered Cannon",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "3",
+          "damage": "5",
+          "ability": "Companion"
+        },
+        {
+          "name": "Ogor Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Frostblast",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "D3+2",
+          "ability": "Companion"
+        },
+        {
+          "name": "Chaintrap, Harpoon Launcher or Blood Vulture",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "-"
+        },
+        {
+          "name": "Massive Crossbow",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Huge Horns is 4.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Savage Privilege",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Ignore negative modifiers to save rolls for shooting attacks that target this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Once Ate an Endless Spell Whole",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a Spell or Prayer ability for an Ogor Mawtribes unit wholly within 6\" of this unit.",
+          "declare": "",
+          "effect": "Re-roll 1 dice in that casting roll or chanting roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Pit Brawler",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "Pick each enemy unit in combat with this unit to be the targets.",
+          "effect": "Roll a dice for each target. On a 2+, inflict 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Nomadic Warrior",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "",
+          "effect": "If this unit charged in the previous turn, for the rest of the turn, add 1 to the number of dice rolled when making charge rolls for this unit, to a maximum of 3.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Lumbering Titan",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot use Run or Retreat abilities.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Terrible Table Manners",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit is in combat, friendly units within this unit's combat range cannot use the 'All-out Attack' or 'All-out Defence' commands.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Empty Belly Curse",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot be healed.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Self-Preserver",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit has Strike-last while it is in combat with an enemy Monster.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Overbearing Bulk",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 3 from the control scores of enemy units while they are in combat with this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Stone-hard Skeleton",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Ignore the first damage point that would be allocated to this unit in each phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Extremely Ornery",
+          "kind": "Activated",
+          "timing": "Enemy Shooting Phase",
+          "declare": "",
+          "effect": "If any visible friendly units had any damage points allocated to them this turn, roll a dice. Add 1 to the roll if any damage points were allocated to this unit this phase. On a 4+, this unit can move up to 2D6\". It can move through the combat ranges of enemy units but cannot end that move in combat.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Force of Nature",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "",
+          "effect": "This unit has Fly for the rest of the phase. Each time this unit ends a move this phase, inflict 1 mortal damage on each enemy non-Monster unit it passed over.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Loves a Good Fight",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit is in combat with an enemy unit that charged this turn, this unit has charged this turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Jocular Disposition",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Movement Phase",
+          "declare": "Pick up to D3 visible friendly non-Monster Ogor units wholly within 12\" of this unit to be the targets.",
+          "effect": "Return 1 slain model to each target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Holy Ogor",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to chanting rolls, chanting rolls and banishment rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [
+        {
+          "type": "category",
+          "id": "743-1bd8-e3d-ced2",
+          "name": "OGOR MAWTRIBES"
+        }
+      ],
+      "regimentHeroes": [
+        {
+          "type": "category",
+          "id": "bf4e-4b1b-7055-2ec8",
+          "name": "Maw Nomad"
+        }
+      ],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "8e32-b3f4-cd30-02d7",
+          "name": "Gutbelly",
+          "points": 150,
+          "destiny": 10
+        },
+        {
+          "id": "05d7-8ae1-8f7d-a85c",
+          "name": "Gutmaster",
+          "points": 250,
+          "destiny": 30
+        },
+        {
+          "id": "0edc-2316-f131-d7c1",
+          "name": "Gutlord",
+          "points": 350,
+          "destiny": 50
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "1bfe-e29b-da30-6d3a",
+          "name": "Archetype",
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "id": "2c2f-475b-2cd2-c0de",
+              "name": "Gutbuster Warlord",
+              "destiny": 0,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "82b5-db9c-fa22-814a",
+              "name": "Gastromancer",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "04da-12c7-4b72-ac5d",
+              "name": "Apex Hunter",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "5bc4-598b-e6af-32e4",
+              "name": "Overtyrant",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Innard-ripper",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "3",
+                  "ability": "Crit (Mortal)"
+                }
+              ]
+            },
+            {
+              "id": "8e47-08db-4585-5866",
+              "name": "Winter-touched Elder",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "3835-c6b2-2984-482d",
+          "name": "Battle Mount",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "cf85-e160-d0d8-fcaa",
+              "name": "Hinterlands Beast",
+              "destiny": -10,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Horns, Teeth and Claws",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Charge (+1 Damage), Companion"
+                }
+              ],
+              "stats": {
+                "health": "10",
+                "move": "10\"",
+                "save": "4+"
+              }
+            },
+            {
+              "id": "f445-d676-e26a-2032",
+              "name": "Primeval Monster",
+              "destiny": -20,
+              "abilities": [
+                {
+                  "name": "Battle Damaged",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Huge Horns is 4.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Huge Horns",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "7",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "3",
+                  "ability": "Charge (+1 Damage), Companion"
+                }
+              ],
+              "stats": {
+                "health": "16",
+                "move": "10\"",
+                "save": "3+"
+              }
+            }
+          ]
+        },
+        {
+          "id": "4f0e-d11c-309f-45e6",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "2449-00a1-da60-a817",
+              "name": "Savage Privilege",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Savage Privilege",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Ignore negative modifiers to save rolls for shooting attacks that target this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "38f6-faae-1aaf-47a7",
+              "name": "Once Ate an Endless Spell Whole",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Once Ate an Endless Spell Whole",
+                  "kind": "Activated",
+                  "timing": "Reaction: You declared a Spell or Prayer ability for an Ogor Mawtribes unit wholly within 6\" of this unit.",
+                  "declare": "",
+                  "effect": "Re-roll 1 dice in that casting roll or chanting roll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "c3f0-ca47-042e-0d29",
+              "name": "Pit Brawler",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Pit Brawler",
+                  "kind": "Activated",
+                  "timing": "End of Any Turn",
+                  "declare": "Pick each enemy unit in combat with this unit to be the targets.",
+                  "effect": "Roll a dice for each target. On a 2+, inflict 1 mortal damage on the target.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "8f1c-cb65-d2f2-f581",
+              "name": "Nomadic Warrior",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Nomadic Warrior",
+                  "kind": "Activated",
+                  "timing": "Any Charge Phase",
+                  "declare": "",
+                  "effect": "If this unit charged in the previous turn, for the rest of the turn, add 1 to the number of dice rolled when making charge rolls for this unit, to a maximum of 3.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "9660-2c05-7cfa-03d6",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "7281-f41a-29ce-b6a3",
+              "name": "Lumbering Titan",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Lumbering Titan",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot use Run or Retreat abilities.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "53d9-3b20-c472-dd0a",
+              "name": "Terrible Table Manners",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Terrible Table Manners",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit is in combat, friendly units within this unit's combat range cannot use the 'All-out Attack' or 'All-out Defence' commands.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "91c7-fb0d-e735-4248",
+              "name": "Empty Belly Curse",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Empty Belly Curse",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot be healed.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "6e19-8c7a-0ae0-38ab",
+              "name": "Self-Preserver",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Self-Preserver",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit has Strike-last while it is in combat with an enemy Monster.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "1643-f7a9-41cf-5b83",
+          "name": "Battle Mount Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "55d5-43e5-a4ad-ab5f",
+              "name": "Overbearing Bulk",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Overbearing Bulk",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 3 from the control scores of enemy units while they are in combat with this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "eda1-80d8-1bad-b653",
+              "name": "Strider",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 2
+              }
+            },
+            {
+              "id": "8768-90ec-adee-18a8",
+              "name": "Massive Tusks",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Massive Tusks",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "1",
+                  "damage": "5",
+                  "ability": "Companion"
+                }
+              ]
+            },
+            {
+              "id": "88b5-d31f-a535-7838",
+              "name": "Frostblast",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Frostblast",
+                  "kind": "ranged",
+                  "range": "12\"",
+                  "attacks": "1",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "1",
+                  "damage": "D3+2",
+                  "ability": "Companion"
+                }
+              ]
+            },
+            {
+              "id": "2d59-dca2-d647-49a5",
+              "name": "Stone-hard Skeleton",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Stone-hard Skeleton",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Ignore the first damage point that would be allocated to this unit in each phase.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "1ec5-ce09-39fa-50c2",
+              "name": "Specific Tastes",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "3ef0-9d04-46ed-bba7",
+              "name": "Extremely Ornery",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Extremely Ornery",
+                  "kind": "Activated",
+                  "timing": "Enemy Shooting Phase",
+                  "declare": "",
+                  "effect": "If any visible friendly units had any damage points allocated to them this turn, roll a dice. Add 1 to the roll if any damage points were allocated to this unit this phase. On a 4+, this unit can move up to 2D6\". It can move through the combat ranges of enemy units but cannot end that move in combat.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "f251-fad6-0e53-deb0",
+              "name": "Force of Nature",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Force of Nature",
+                  "kind": "Activated",
+                  "timing": "Any Charge Phase",
+                  "declare": "",
+                  "effect": "This unit has Fly for the rest of the phase. Each time this unit ends a move this phase, inflict 1 mortal damage on each enemy non-Monster unit it passed over.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "daed-7fa2-a2a0-4343",
+              "name": "Plundered Cannon",
+              "destiny": -7,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Plundered Cannon",
+                  "kind": "ranged",
+                  "range": "18\"",
+                  "attacks": "2",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "3",
+                  "damage": "5",
+                  "ability": "Companion"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "8e80-bf02-8882-4630",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "33ed-2470-c38b-b373",
+              "name": "Needs A Bigger Gutplate",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "control": 1
+              }
+            },
+            {
+              "id": "5875-6284-4b27-a3f6",
+              "name": "Slicer and Dicer",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "9b73-2e5d-6fc1-2f0c",
+              "name": "Bigger than Most",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "health": 2
+              }
+            },
+            {
+              "id": "26d2-c24e-915a-dcaa",
+              "name": "Chaintrap, Harpoon Launcher or Blood Vulture",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Chaintrap, Harpoon Launcher or Blood Vulture",
+                  "kind": "ranged",
+                  "range": "15\"",
+                  "attacks": "1",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "3",
+                  "ability": "-"
+                }
+              ]
+            },
+            {
+              "id": "134f-d8ec-aed8-1399",
+              "name": "Barrels Through",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "f891-e399-ece1-2dd4",
+              "name": "Bludgeoner",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "5a23-be13-3e64-6aca",
+              "name": "Loves a Good Fight",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Loves a Good Fight",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit is in combat with an enemy unit that charged this turn, this unit has charged this turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "7f5b-f917-389b-f174",
+              "name": "Uncanny Fortune",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "f12c-90c7-36ee-d40e",
+              "name": "Trampler",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "4132-5f30-7300-aa81",
+              "name": "Massive Crossbow",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Massive Crossbow",
+                  "kind": "ranged",
+                  "range": "15\"",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "-"
+                }
+              ]
+            },
+            {
+              "id": "a2ed-7adc-eb4c-f367",
+              "name": "Jocular Disposition",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Jocular Disposition",
+                  "kind": "Activated",
+                  "timing": "Once Per Battle, Your Movement Phase",
+                  "declare": "Pick up to D3 visible friendly non-Monster Ogor units wholly within 12\" of this unit to be the targets.",
+                  "effect": "Return 1 slain model to each target.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "79c9-7024-e902-4454",
+              "name": "Holy Ogor",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Holy Ogor",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to chanting rolls, chanting rolls and banishment rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

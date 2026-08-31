@@ -5826,6 +5826,999 @@
       ],
       "regimentOptions": [],
       "regimentHeroes": []
+    },
+    {
+      "id": "1456-49e7-220b-2813",
+      "name": "Anvil of Apotheosis: Soulblight Gravelords Hero",
+      "points": 150,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "DEATH",
+        "SOULBLIGHT GRAVELORDS",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "5",
+        "save": "6+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Grave Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Mighty Grave Beast's Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "7",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "2",
+          "ability": "Companion"
+        },
+        {
+          "name": "Spectral Host's Blades",
+          "kind": "melee",
+          "range": "",
+          "attacks": "10",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Necrotic Breath",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "D6",
+          "hit": "2+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Shoot in Combat, Companion"
+        },
+        {
+          "name": "Undead Steed's Hooves",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Undead Minions",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit is within the combat range of a friendly Deathrattle or Deadwalkers unit: \u2022 This unit has Ward (4+). \u2022 Each time you make a successful ward roll for this unit, allocate 1 damage point to a friendly Deathrattle or Deadwalkers unit within this unit's combat range after the damage sequence for this unit has been resolved (ward rolls cannot be made for those damage points).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Dark Intrigue",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
+          "effect": "Until the start of your next turn, each time the target uses a command, you receive 1 command point.",
+          "keywords": "Spell",
+          "castingValue": "5",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Immortal Retainers",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a Fight ability for this unit",
+          "declare": "",
+          "effect": "Pick a friendly Deathrattle Cavalry or Infantry unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight** ability used by this unit has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Mighty Grave Beast's Talons is 4.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Beast Form",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "",
+          "effect": "Pick 1 of the following units to be this unit's beast form: \u2022 A Dire Wolves unit with 1 model. \u2022 A Fell Bats unit with 1 model. Set up the beast form unit within 1\" of this unit, then remove this unit from the battlefield. The Beast Form unit can use Move and Core abilities in your next movement phase. If the beast form is destroyed, before it is removed from play, set up this unit on the battlefield once more within 1\" of it. In addition, in any combat phase before Fight abilities are used, or at the end of any turn, you can have the beast form unit transform back into this unit. If you do so, set up this unit within 1\" of the beast form unit and remove the beast form unit from the battlefield. This ability can only be used by an Infantry hero.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Acolyte of Necros",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time this unit successfully casts a spell in your hero phase and the casting roll was an unmodified 10+, add 1 to this unit's power level until the start of your next turn",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Fabled Heirlooms",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "When this unit is added to your Order of Battle, you can immediately give it 1 artefact of power",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Picky Eater",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot be picked as a target for the 'The Hunger' ability unless your opponent's gneral has the Order keyword. This flaw can only be picked for a Vampire hero.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Fractured Mind",
+          "kind": "Activated",
+          "timing": "Start of Battle Round",
+          "declare": "",
+          "effect": "Roll a dice. On a 1-3, for the rest of the battle round, this unit cannot use commands and any heroic trait they have has no effect.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Repulsed by the Sacred",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "You cannot make ward rolls for this unit while it is within 12\" of an enemy Priest or for damage inflicted on it by a Prayer ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Tenuous Grip on Undeath",
+          "kind": "Activated",
+          "timing": "End of Your Turn",
+          "declare": "This unit must use this ability if no enemy models were slain by it this turn.",
+          "effect": "Allocate 1 damage point to this unit (a ward roll cannot be made for that damage point).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Crushing Stomp",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick a non-Monster enemy unit n combat with this unit to be the target.",
+          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Feed on Sorcery",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, for the rest of the turn, ward rolls cannot be made for the target and add 1 to the Damage characteristic of this unit's Companion melee weapons.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Wails of the Damned",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 3 from the control scores of enemy units while they are within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Become the Swarm",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "When this unit is destroyed, roll a D3 for each enemy unit in combat with it. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Undying Companion",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit's Undying Companion is a token. This unit has Ward (5+) while its Undying Companion is on the battlefield. If you make an unmodified ward roll of 1 for this unit, remove its Undying Companion from the battlefield.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Master of Dark Magics",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit is not in combat, add 1 to casting rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": [],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "9951-fe26-21d1-83dd",
+          "name": "Grave Lord",
+          "points": 150,
+          "destiny": 15
+        },
+        {
+          "id": "dd7b-be1c-dff8-08b5",
+          "name": "Grave Prince",
+          "points": 250,
+          "destiny": 35
+        },
+        {
+          "id": "5d14-15bd-9c33-6410",
+          "name": "Grave King",
+          "points": 350,
+          "destiny": 55
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "c282-27f7-91a3-998d",
+          "name": "Archetype",
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "id": "03ba-0e15-59b5-7e5a",
+              "name": "Martial Vampire",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Grave Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ],
+              "stats": {
+                "move": "6\""
+              }
+            },
+            {
+              "id": "289a-4012-3e99-425e",
+              "name": "Necromancer",
+              "destiny": 0,
+              "abilities": [
+                {
+                  "name": "Undead Minions",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit is within the combat range of a friendly Deathrattle or Deadwalkers unit: \u2022 This unit has Ward (4+). \u2022 Each time you make a successful ward roll for this unit, allocate 1 damage point to a friendly Deathrattle or Deadwalkers unit within this unit's combat range after the damage sequence for this unit has been resolved (ward rolls cannot be made for those damage points).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "6dd4-fd58-564c-a698",
+              "name": "Arcane Vampire",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Dark Intrigue",
+                  "kind": "Spell",
+                  "timing": "Your Hero Phase",
+                  "declare": "Pick a visible enemy unit within 18\" of this unit to be the target, then make a casting roll of 2D6.",
+                  "effect": "Until the start of your next turn, each time the target uses a command, you receive 1 command point.",
+                  "keywords": "Spell",
+                  "castingValue": "5",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "stats": {
+                "move": "6\""
+              }
+            },
+            {
+              "id": "b79f-bf43-5508-35c4",
+              "name": "Wight King",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Immortal Retainers",
+                  "kind": "Activated",
+                  "timing": "Reaction: You declared a Fight ability for this unit",
+                  "declare": "",
+                  "effect": "Pick a friendly Deathrattle Cavalry or Infantry unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight** ability used by this unit has been resolved.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Grave Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ],
+              "stats": {
+                "move": "4\""
+              }
+            }
+          ]
+        },
+        {
+          "id": "df8d-ff18-7344-eb91",
+          "name": "Battle Mount",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "314e-d87b-263d-f26a",
+              "name": "Undead Steed",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Undead Steed's Hooves",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "5+",
+                  "wound": "3+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "8",
+                "move": "10\"",
+                "save": "5+"
+              }
+            },
+            {
+              "id": "d0d8-8d7c-6235-92cb",
+              "name": "Mighty Grave Beast",
+              "destiny": -20,
+              "abilities": [
+                {
+                  "name": "Battle Damaged",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Mighty Grave Beast's Talons is 4.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Mighty Grave Beast's Talons",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "7",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "2",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "16",
+                "control": "5",
+                "move": "12\"",
+                "save": "4+"
+              }
+            },
+            {
+              "id": "9815-44c8-7bdf-655d",
+              "name": "Spectral Palanquin",
+              "destiny": -10,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Spectral Host's Blades",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "10",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "12",
+                "move": "10\"",
+                "control": "5",
+                "save": "4+"
+              }
+            }
+          ]
+        },
+        {
+          "id": "b9ab-f9fa-ac5d-91ce",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "30bb-7ec0-6846-462a",
+              "name": "Beast Form",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Beast Form",
+                  "kind": "Activated",
+                  "timing": "Your Hero Phase",
+                  "declare": "",
+                  "effect": "Pick 1 of the following units to be this unit's beast form: \u2022 A Dire Wolves unit with 1 model. \u2022 A Fell Bats unit with 1 model. Set up the beast form unit within 1\" of this unit, then remove this unit from the battlefield. The Beast Form unit can use Move and Core abilities in your next movement phase. If the beast form is destroyed, before it is removed from play, set up this unit on the battlefield once more within 1\" of it. In addition, in any combat phase before Fight abilities are used, or at the end of any turn, you can have the beast form unit transform back into this unit. If you do so, set up this unit within 1\" of the beast form unit and remove the beast form unit from the battlefield. This ability can only be used by an Infantry hero.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "b33b-0601-6f29-c0c0",
+              "name": "Acolyte of Necros",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Acolyte of Necros",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Each time this unit successfully casts a spell in your hero phase and the casting roll was an unmodified 10+, add 1 to this unit's power level until the start of your next turn",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "e7ac-fc17-7fc8-a5f2",
+              "name": "Fabled Heirlooms",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Fabled Heirlooms",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "When this unit is added to your Order of Battle, you can immediately give it 1 artefact of power",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "a89b-87c3-8e9e-6bd3",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "42fc-7256-4337-8f9c",
+              "name": "Picky Eater",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Picky Eater",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot be picked as a target for the 'The Hunger' ability unless your opponent's gneral has the Order keyword. This flaw can only be picked for a Vampire hero.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "e89d-1290-b7c3-d103",
+              "name": "Fractured Mind",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Fractured Mind",
+                  "kind": "Activated",
+                  "timing": "Start of Battle Round",
+                  "declare": "",
+                  "effect": "Roll a dice. On a 1-3, for the rest of the battle round, this unit cannot use commands and any heroic trait they have has no effect.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "29c3-4ee6-2212-52a2",
+              "name": "Repulsed by the Sacred",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Repulsed by the Sacred",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "You cannot make ward rolls for this unit while it is within 12\" of an enemy Priest or for damage inflicted on it by a Prayer ability.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "7838-d9fd-8a4d-f5a0",
+              "name": "Tenuous Grip on Undeath",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Tenuous Grip on Undeath",
+                  "kind": "Activated",
+                  "timing": "End of Your Turn",
+                  "declare": "This unit must use this ability if no enemy models were slain by it this turn.",
+                  "effect": "Allocate 1 damage point to this unit (a ward roll cannot be made for that damage point).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "29f7-f38a-7572-59c9",
+          "name": "Battle Mount Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "fc8f-ee6c-09e6-de79",
+              "name": "Swift",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 2
+              }
+            },
+            {
+              "id": "bf04-60b1-4337-c80c",
+              "name": "Legendary Beast",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "health": 2
+              }
+            },
+            {
+              "id": "fbca-2474-8ba6-e11d",
+              "name": "Rending Claws",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Mighty Grave Beast's Talons",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "7",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "2",
+                  "ability": "Companion"
+                }
+              ]
+            },
+            {
+              "id": "c939-d674-0a88-ab26",
+              "name": "Crushing Stomp",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Crushing Stomp",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Combat Phase",
+                  "declare": "Pick a non-Monster enemy unit n combat with this unit to be the target.",
+                  "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "2b0b-49af-0288-adbd",
+              "name": "Feed on Sorcery",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Feed on Sorcery",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Combat Phase",
+                  "declare": "Pick an enemy unit in combat with this unit to be the target.",
+                  "effect": "Roll a dice. On a 3+, for the rest of the turn, ward rolls cannot be made for the target and add 1 to the Damage characteristic of this unit's Companion melee weapons.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "3eb2-bd44-5cdf-3f46",
+              "name": "Wailing Gheists",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Wails of the Damned",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 3 from the control scores of enemy units while they are within 12\" of this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "e5f2-1e9f-b178-3ae2",
+              "name": "Necrotic Breath",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Necrotic Breath",
+                  "kind": "ranged",
+                  "range": "10\"",
+                  "attacks": "D6",
+                  "hit": "2+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Shoot in Combat, Companion"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ecf2-4307-3126-e40d",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "6415-d853-2024-bf11",
+              "name": "Commanding Presence",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "control": 1
+              }
+            },
+            {
+              "id": "6ac8-e39c-5242-fdc5",
+              "name": "Swiftblood",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 1
+              }
+            },
+            {
+              "id": "7020-36b1-1961-0713",
+              "name": "Dark Fortitude",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "health": 1
+              }
+            },
+            {
+              "id": "40a2-090a-c018-1a2e",
+              "name": "Dynastic Finery",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [],
+              "stats": {
+                "save": "4+"
+              }
+            },
+            {
+              "id": "914e-86e9-6a4b-de5d",
+              "name": "Unholy Strength",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Grave Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "2b6e-d3d3-0f24-b810",
+              "name": "Ancient Skill",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Grave Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "4e52-f652-bdd6-6773",
+              "name": "Grave Lancer",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Grave Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "b3e3-213d-3654-6886",
+              "name": "Deathless Hunter",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Grave Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "17af-10c1-ab4f-dbc5",
+              "name": "Cursed Weapon",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Grave Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "1d71-98b1-8c6c-21f4",
+              "name": "Become the Swarm",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Become the Swarm",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "When this unit is destroyed, roll a D3 for each enemy unit in combat with it. On a 2+, inflict an amount of mortal damage on that enemy unit equal to the roll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "1cf7-ad08-2469-27d5",
+              "name": "Macabre Panoply",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [],
+              "stats": {
+                "save": "3+"
+              }
+            },
+            {
+              "id": "bab2-5e9b-943d-5f67",
+              "name": "Blade Master",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Grave Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "6520-4bc2-756f-dedf",
+              "name": "Undying Companion",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Undying Companion",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit's Undying Companion is a token. This unit has Ward (5+) while its Undying Companion is on the battlefield. If you make an unmodified ward roll of 1 for this unit, remove its Undying Companion from the battlefield.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "e5df-0ade-44c0-9a3e",
+              "name": "Master of Dark Magics",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Master of Dark Magics",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit is not in combat, add 1 to casting rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

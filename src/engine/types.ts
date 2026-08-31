@@ -53,6 +53,38 @@ export type EnhancementOption = NamedOption & {
   pack?: string;
 };
 
+export type AnvilRank = {
+  id: string;
+  name: string;
+  points: number;
+  destiny: number;
+};
+
+export type AnvilStatPatch = {
+  move?: string;
+  health?: string;
+  save?: string;
+  control?: string;
+};
+
+export type AnvilForgeOption = {
+  id: string;
+  name: string;
+  destiny: number;
+  abilities: UnitAbility[];
+  weapons: UnitWeapon[];
+  stats?: AnvilStatPatch;
+  statAdds?: { move?: number; health?: number; control?: number };
+};
+
+export type AnvilForgeGroup = {
+  id: string;
+  name: string;
+  min: number;
+  max: number | null;
+  options: AnvilForgeOption[];
+};
+
 export type CatalogueUnit = {
   id: string;
   name: string;
@@ -70,6 +102,12 @@ export type CatalogueUnit = {
   regimentOptions: RegimentOption[];
   /** Other heroes that may join this hero's regiment. */
   regimentHeroes: RegimentOption[];
+  /** Hidden Anvil of Apotheosis warscrolls — Path to Glory lists only. */
+  pathToGloryOnly?: boolean;
+  /** Destiny Point Limit ranks (Knight / Templar / Lord). */
+  anvilRanks?: AnvilRank[];
+  /** Named Anvil of Apotheosis picks (chamber, origin, mount, …). */
+  anvilForge?: AnvilForgeGroup[];
 };
 
 export type ManifestationModel = {
@@ -205,7 +243,11 @@ export type PathToGloryPackId =
 export type PathToGloryScarSeverity = "critical" | "serious" | "severe";
 
 export type PathToGloryState = {
-  battlepackPreset: PathToGloryBattlepackPreset;
+  packIds: PathToGloryPackId[];
+  /** Spells learned in campaign — `loreId::name`, not a whole lore. */
+  spellIds: string[];
+  /** Manifestations learned in campaign — model ids, not a whole lore. */
+  manifestationIds: string[];
 };
 
 export type PathToGlorySelectionState = {
@@ -214,6 +256,10 @@ export type PathToGlorySelectionState = {
   pathOptionIds: string[];
   battleWoundId: string | null;
   scarId: string | null;
+  /** Destiny Point Limit rank on an Anvil of Apotheosis hero. */
+  anvilRankId?: string | null;
+  /** Picked Anvil of Apotheosis option ids (chamber, origin, mount, …). */
+  anvilPickIds?: string[];
 };
 
 export type FactionCatalogue = {

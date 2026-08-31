@@ -3704,6 +3704,1005 @@
       ],
       "regimentOptions": [],
       "regimentHeroes": []
+    },
+    {
+      "id": "5128-cd56-10de-68c9",
+      "name": "Anvil of Apotheosis: Daughters of Khaine Hero",
+      "points": 150,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "WARD (6+)",
+        "ORDER",
+        "DAUGHTERS OF KHAINE"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Dark Steed's Hooves and Teeth",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Avatar's Sword",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Guardians' Blades",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "-"
+        },
+        {
+          "name": "Bloodwrack Stare",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Crit (2 Hits), Shoot in Combat"
+        },
+        {
+          "name": "Cult Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Word of Khaine",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "1",
+          "hit": "2+",
+          "wound": "2+",
+          "rend": "3",
+          "damage": "6",
+          "ability": "Shoot in Combat"
+        },
+        {
+          "name": "Torrent of Burning Blood",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "12",
+          "hit": "2+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "1",
+          "ability": "Shoot in Combat"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Peerless Agility",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "When using a Charge ability, this unit has Fly.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Bloodwrack Stare",
+          "kind": "Activated",
+          "timing": "Your Shooting Phase",
+          "declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, roll a number of dice equal to the target's Health characteristic. Subtract 1 from each roll if the target is a Monster. For each 5+, inflict 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Fist of the Sc\u00e1thborn",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly Daughters of Khaine unit wholly within 12\" of this unit to be the target.",
+          "effect": "Roll a dice. On a 3+: \u2022 Add 1 to charge rolls for the target. \u2022 Add 1 to the Attacks characteristic of the target's weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Invoke Murder",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit counts as a Bloodwrack Shrine for the purposes of the 'Born of Slaughter' ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Murderous Paragon",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit's Cult Blade has Crit (Auto-wound).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Shadowed Cultist",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "No mortal damage is inflicted on this unit by Retreat abilities.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Beloved of the Crowd",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 10 to this unit's control score while it is in combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Divine Favour",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "Pick a friendly non-Hero Daughters of Khaine Infantry unit in this unit's regiment to be the target.",
+          "effect": "For the rest of the battle, each time the target uses the 'All-out Attack command while it is wholly within 12\" of this unit, no command points are spent.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Heretical Beliefs",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Exalted abilities have no effect on this unit and this unit cannot use Exalted abilities.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Whispering Voices",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit has a maximum control score of 1.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Sc\u00e1th-cursed",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Ignore the effect of the 'Cover' ability on this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Bitter Rival",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot use commands while it is within 12\" of another friendly Hero,",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Brand of Khaine",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "",
+          "effect": "If this unit is in combat, roll a dice. On a 3+, for the rest of the turn: \u2022 Add the roll to the Attacks characteristic of this unit's Companion weapons. \u2022 Add 1 to the Rend characteristic of this unit's Companion weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Born of Slaughter",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "If there are fewer friendly Avatars of Khaine on the battlefield than there are friendly Bloodwrack Shrines on the battlefield, make a casting roll of 2D6.",
+          "effect": "Set up an Avatar of Khaine wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+          "keywords": "Spell, Summon",
+          "castingValue": "6",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Masterful Executioner",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick a damaged enemy unit in combat with this unit to be the target.",
+          "effect": "Roll a dice. If the roll is less than the number of damage points the target has, inflict an amount of mortal damage equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Shadowmeld",
+          "kind": "Activated",
+          "timing": "Enemy Combat Phase",
+          "declare": "",
+          "effect": "If this unit is in combat, roll a dice. On a 3+, this unit can immediately use the 'Retreat' ability as if it were your movement phase without any mortal damage being inflicted on it.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": [],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "cb7b-a7fa-d18b-714e",
+          "name": "Cult Leader",
+          "points": 150,
+          "destiny": 10
+        },
+        {
+          "id": "05e5-8459-3368-49dc",
+          "name": "Cult Demagogue",
+          "points": 250,
+          "destiny": 30
+        },
+        {
+          "id": "7ef9-7b8b-94b5-0773",
+          "name": "Cult Queen",
+          "points": 350,
+          "destiny": 50
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "c5a9-ff40-2f5e-1968",
+          "name": "Archetype",
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "id": "38cc-9acd-e2bf-069b",
+              "name": "Champion of the Arena",
+              "destiny": 0,
+              "abilities": [
+                {
+                  "name": "Peerless Agility",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "When using a Charge ability, this unit has Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "22dc-880d-2069-bc59",
+              "name": "Priestess of Khaine",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "b53c-cb96-8042-053c",
+              "name": "Khinerai Skyhunter",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "stats": {
+                "move": "12\""
+              }
+            },
+            {
+              "id": "fd8c-b436-da2b-ace1",
+              "name": "Bloodwrack Sorceress",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Bloodwrack Stare",
+                  "kind": "Activated",
+                  "timing": "Your Shooting Phase",
+                  "declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
+                  "effect": "Roll a dice. On a 3+, roll a number of dice equal to the target's Health characteristic. Subtract 1 from each roll if the target is a Monster. For each 5+, inflict 1 mortal damage on the target.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Bloodwrack Stare",
+                  "kind": "ranged",
+                  "range": "15\"",
+                  "attacks": "4",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "2",
+                  "damage": "3",
+                  "ability": "Crit (2 Hits), Shoot in Combat"
+                }
+              ],
+              "stats": {
+                "move": "8\"",
+                "health": "8",
+                "save": "5+"
+              }
+            },
+            {
+              "id": "fc4f-a225-cca9-1598",
+              "name": "Ironscale Commander",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Fist of the Sc\u00e1thborn",
+                  "kind": "Activated",
+                  "timing": "Your Hero Phase",
+                  "declare": "Pick a visible friendly Daughters of Khaine unit wholly within 12\" of this unit to be the target.",
+                  "effect": "Roll a dice. On a 3+: \u2022 Add 1 to charge rolls for the target. \u2022 Add 1 to the Attacks characteristic of the target's weapons.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "stats": {
+                "move": "8\"",
+                "health": "8",
+                "save": "5+"
+              }
+            }
+          ]
+        },
+        {
+          "id": "462e-5a4c-e9cc-e2d8",
+          "name": "Battle Mount",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "a80c-4a9b-b4c5-fa26",
+              "name": "Dark Steed",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Dark Steed's Hooves and Teeth",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "2",
+                  "hit": "5+",
+                  "wound": "3+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "7",
+                "move": "14\""
+              }
+            },
+            {
+              "id": "eac5-9688-035d-474d",
+              "name": "Khainite Shrine",
+              "destiny": -12,
+              "abilities": [
+                {
+                  "name": "Invoke Murder",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit counts as a Bloodwrack Shrine for the purposes of the 'Born of Slaughter' ability.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Guardians' Blades",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "-"
+                },
+                {
+                  "name": "Bloodwrack Stare",
+                  "kind": "ranged",
+                  "range": "15\"",
+                  "attacks": "4",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "2",
+                  "damage": "3",
+                  "ability": "Crit (2 Hits), Shoot in Combat"
+                }
+              ],
+              "stats": {
+                "save": "4+",
+                "health": "12",
+                "control": "5"
+              }
+            },
+            {
+              "id": "ad73-fdda-eb16-4bef",
+              "name": "Cauldron of Blood",
+              "destiny": -8,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Avatar's Sword",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "2",
+                  "damage": "3",
+                  "ability": "Companion"
+                },
+                {
+                  "name": "Guardians' Blades",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "-"
+                }
+              ],
+              "stats": {
+                "health": "12",
+                "control": "5",
+                "save": "4+"
+              }
+            }
+          ]
+        },
+        {
+          "id": "48ad-359d-e6d5-df0c",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "42dd-c236-c1ff-fd90",
+              "name": "Murderous Paragon",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Murderous Paragon",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit's Cult Blade has Crit (Auto-wound).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Cult Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "2845-512b-0162-2574",
+              "name": "Shadowed Cultist",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Shadowed Cultist",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "No mortal damage is inflicted on this unit by Retreat abilities.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "8f2b-72bc-17d7-d7e9",
+              "name": "Beloved of the Crowd",
+              "destiny": -1,
+              "abilities": [
+                {
+                  "name": "Beloved of the Crowd",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 10 to this unit's control score while it is in combat.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "2cc3-a39c-ae79-7a21",
+              "name": "Divine Favour",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Divine Favour",
+                  "kind": "Activated",
+                  "timing": "Deployment Phase",
+                  "declare": "Pick a friendly non-Hero Daughters of Khaine Infantry unit in this unit's regiment to be the target.",
+                  "effect": "For the rest of the battle, each time the target uses the 'All-out Attack command while it is wholly within 12\" of this unit, no command points are spent.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "094a-8666-c9bc-51f0",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "c3d8-3288-2150-f490",
+              "name": "Heretical Beliefs",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Heretical Beliefs",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Exalted abilities have no effect on this unit and this unit cannot use Exalted abilities.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "5513-0a23-dd88-1ce8",
+              "name": "Whispering Voices",
+              "destiny": 3,
+              "abilities": [
+                {
+                  "name": "Whispering Voices",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit has a maximum control score of 1.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "7ed4-3029-3fe1-d3c8",
+              "name": "Sc\u00e1th-cursed",
+              "destiny": 1,
+              "abilities": [
+                {
+                  "name": "Sc\u00e1th-cursed",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Ignore the effect of the 'Cover' ability on this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "8837-3d8b-1b6f-a0be",
+              "name": "Bitter Rival",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Bitter Rival",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot use commands while it is within 12\" of another friendly Hero,",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "e5da-3cbe-9757-6d8a",
+          "name": "Battle Mount Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "fae5-2843-d783-dda0",
+              "name": "Swift",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 2
+              }
+            },
+            {
+              "id": "03a4-839e-b576-1cf5",
+              "name": "Barding",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "stats": {
+                "save": "5+"
+              }
+            },
+            {
+              "id": "207f-ee81-0dd9-0499",
+              "name": "Dark Pegasus",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "e15a-fb98-4b84-e69e",
+              "name": "Steed of Dark Flames",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "bebf-d1a6-f245-38d0",
+              "name": "Iron-bound",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "health": 2
+              }
+            },
+            {
+              "id": "9576-74e6-28aa-d88a",
+              "name": "Fanatical Guardians",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "cedb-ef9e-0fec-5178",
+              "name": "Brand of Khaine",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Brand of Khaine",
+                  "kind": "Activated",
+                  "timing": "Any Combat Phase",
+                  "declare": "",
+                  "effect": "If this unit is in combat, roll a dice. On a 3+, for the rest of the turn: \u2022 Add the roll to the Attacks characteristic of this unit's Companion weapons. \u2022 Add 1 to the Rend characteristic of this unit's Companion weapons.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "9d60-f6ab-d89e-d5b1",
+              "name": "Torrent of Burning Blood",
+              "destiny": -6,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Torrent of Burning Blood",
+                  "kind": "ranged",
+                  "range": "10\"",
+                  "attacks": "12",
+                  "hit": "2+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "1",
+                  "ability": "Shoot in Combat"
+                }
+              ]
+            },
+            {
+              "id": "2c7e-b2c8-8f8c-2caf",
+              "name": "Born of Slaughter",
+              "destiny": -8,
+              "abilities": [
+                {
+                  "name": "Born of Slaughter",
+                  "kind": "Spell",
+                  "timing": "Your Hero Phase",
+                  "declare": "If there are fewer friendly Avatars of Khaine on the battlefield than there are friendly Bloodwrack Shrines on the battlefield, make a casting roll of 2D6.",
+                  "effect": "Set up an Avatar of Khaine wholly within 12\" of the caster, visible to them and more than 9\" from all enemy units.",
+                  "keywords": "Spell, Summon",
+                  "castingValue": "6",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "d638-e395-da8e-0976",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "2b19-bd79-12e1-5882",
+              "name": "Aelven Grace",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 1
+              }
+            },
+            {
+              "id": "b46e-2741-fa1f-e534",
+              "name": "Ulguan Heritage",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "health": 1
+              }
+            },
+            {
+              "id": "3e4e-0796-c189-88bb",
+              "name": "Gift of Khaine",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "8e90-ea29-3e15-d1bd",
+              "name": "Perfect Accuracy",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Cult Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "09de-1bf7-401f-1265",
+              "name": "Word of Khaine",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Word of Khaine",
+                  "kind": "ranged",
+                  "range": "10\"",
+                  "attacks": "1",
+                  "hit": "2+",
+                  "wound": "2+",
+                  "rend": "3",
+                  "damage": "6",
+                  "ability": "Shoot in Combat"
+                }
+              ]
+            },
+            {
+              "id": "99c7-7a8a-630f-1192",
+              "name": "Killing Grace",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Cult Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "fe1e-d7ac-9789-79a4",
+              "name": "Ferocious Cultist",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Cult Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "05ff-f613-28aa-ea62",
+              "name": "Master of Poisons",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Cult Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "5b13-5e16-f881-a95d",
+              "name": "Masterful Executioner",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Masterful Executioner",
+                  "kind": "Activated",
+                  "timing": "Any Combat Phase",
+                  "declare": "Pick a damaged enemy unit in combat with this unit to be the target.",
+                  "effect": "Roll a dice. If the roll is less than the number of damage points the target has, inflict an amount of mortal damage equal to the roll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "1b0b-d48a-7b4b-605f",
+              "name": "Blistering Speed",
+              "destiny": -6,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "66a1-0156-1e79-5b66",
+              "name": "Shadowmeld",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Shadowmeld",
+                  "kind": "Activated",
+                  "timing": "Enemy Combat Phase",
+                  "declare": "",
+                  "effect": "If this unit is in combat, roll a dice. On a 3+, this unit can immediately use the 'Retreat' ability as if it were your movement phase without any mortal damage being inflicted on it.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "af4d-f872-a710-6236",
+              "name": "Cult Fanatic",
+              "destiny": -6,
+              "abilities": [],
+              "weapons": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

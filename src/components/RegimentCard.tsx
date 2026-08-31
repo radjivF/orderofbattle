@@ -14,7 +14,7 @@ import type {
 import { IosTrashIcon } from "./ios/SheetIconButton";
 import { SlotEnhancements, SlotLine } from "./RegimentCardSlots";
 import { PathToGloryUnitExtras } from "./PathToGloryUnitExtras";
-import type { PathToGloryBattlepackPreset } from "@/engine/pathToGlory";
+import type { PathToGloryPackId } from "@/engine/pathToGlory";
 import { selectionDisplayName } from "@/engine/pathToGlory";
 
 export { PlayHealthTrack } from "./PlayHealthTrack";
@@ -59,7 +59,7 @@ type Props = {
   onPlayHealth?: (selectionId: string, damage: number) => void;
   bindNotes?: CombatModifierNote[];
   locked?: boolean;
-  pathToGloryPreset?: PathToGloryBattlepackPreset | null;
+  pathToGloryPackIds?: PathToGloryPackId[] | null;
   showBattleWounds?: boolean;
   onPatchSelection?: (selectionId: string, next: Selection) => void;
   /** Spearhead generals take an enhancement even when the warscroll is unique. */
@@ -106,7 +106,7 @@ export function RegimentCard({
   onPlayHealth,
   bindNotes,
   locked = false,
-  pathToGloryPreset = null,
+  pathToGloryPackIds = null,
   showBattleWounds = false,
   onPatchSelection,
   allowUniqueHeroTrait = false,
@@ -176,7 +176,7 @@ export function RegimentCard({
           <SlotLine
             unit={hero}
             selection={regiment.hero}
-            points={selectionPoints(hero, false)}
+            points={selectionPoints(hero, false, regiment.hero)}
             playMode={playMode}
             hidePoints={locked}
             bindNotes={bindNotes}
@@ -184,15 +184,16 @@ export function RegimentCard({
             onOpenDatasheet={() => onOpenDatasheet(hero)}
             onPlayHealth={onPlayHealth}
           />
-          {pathToGloryPreset &&
+          {pathToGloryPackIds &&
+          pathToGloryPackIds.length > 0 &&
           selected &&
           !playMode &&
           regiment.hero &&
           onPatchSelection ? (
             <PathToGloryUnitExtras
               selection={regiment.hero}
-              warscrollName={hero.name}
-              preset={pathToGloryPreset}
+              unit={hero}
+              packIds={pathToGloryPackIds}
               showBattleWounds={showBattleWounds}
               onChange={(next) => onPatchSelection(next.id, next)}
             />
@@ -256,7 +257,7 @@ export function RegimentCard({
               <SlotLine
                 unit={unit}
                 selection={slot}
-                points={selectionPoints(unit, slot.reinforced)}
+                points={selectionPoints(unit, slot.reinforced, slot)}
                 reinforced={slot.reinforced}
                 canReinforce={unit.reinforce}
                 playMode={playMode}
@@ -274,11 +275,15 @@ export function RegimentCard({
                 onOpenDatasheet={() => onOpenDatasheet(unit)}
                 onPlayHealth={onPlayHealth}
               />
-              {pathToGloryPreset && selected && !playMode && onPatchSelection ? (
+              {pathToGloryPackIds &&
+              pathToGloryPackIds.length > 0 &&
+              selected &&
+              !playMode &&
+              onPatchSelection ? (
                 <PathToGloryUnitExtras
                   selection={slot}
-                  warscrollName={unit.name}
-                  preset={pathToGloryPreset}
+                  unit={unit}
+                  packIds={pathToGloryPackIds}
                   showBattleWounds={showBattleWounds}
                   onChange={(next) => onPatchSelection(next.id, next)}
                 />

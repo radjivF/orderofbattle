@@ -4116,6 +4116,1022 @@
       ],
       "regimentOptions": [],
       "regimentHeroes": []
+    },
+    {
+      "id": "4ce0-9985-aee1-116d",
+      "name": "Anvil of Apotheosis: Lumineth Hero",
+      "points": 150,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "LUMINETH REALM-LORDS",
+        "ORDER",
+        "AELF"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Hyshian Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Aelementor Colossal Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "4",
+          "ability": "-"
+        },
+        {
+          "name": "Awakened Realm Spirits",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "10",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit (Mortal)"
+        },
+        {
+          "name": "Eclipsian Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "2",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Lightcourser's Horns and Claws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Aelementor Ranged Weapon",
+          "kind": "ranged",
+          "range": "15\"",
+          "attacks": "4",
+          "hit": "2+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": "Anti-Monster (+1 Rend), Shoot in Combat"
+        },
+        {
+          "name": "Swirling Debris",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "2+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit (Mortal)"
+        },
+        {
+          "name": "Silver Bow",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "9",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit (Auto-wound)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Immovable Defenders",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If you depicted Alaithi, Rune of the Mountain this battle round, add 3 to the control scores of friendly Alarith units while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Gale-force Arrows",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If you depicted Oreali, Rune of the Wind this battle round, ranged weapons used by friendly Hurakan units have Crit (Auto-wound) while they are wholly within 12\" Of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Flow with the Current",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "If you depicted Ydriliqi, Rune of the River this battle round, pick a friendly Ydrilan unit wholly within 12\" of this unit to be the target.",
+          "effect": "The target can immediately use the 'Normal Move' or 'Retreat' ability as if it were your movement phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Shining Blades",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly Lumineth Realm-lords unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
+          "effect": "Add 1 to the Rend characteristic of the target's melee weapons for the rest of the turn.",
+          "keywords": "Spell",
+          "castingValue": "7",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Aelementor Colossal Weapon is 3.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Magical Aptitude",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to casting rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Defensive Exemplar",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "",
+          "effect": "For the rest of the turn: \u2022 This unit has Strike-last. \u2022 If the unmodified hit roll for an attack that targets this unit is 1-4, the attack fails and the attack sequence ends.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Elemental Focus",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Reaction: You declared the 'Depict Rune' ability",
+          "declare": "",
+          "effect": "If this unit is Alarith, replace each rune on your battle scripture with Alaithi, Rune of the Mountain. If this unit is Hurakan, replace each rune on your battle scripture with Oreali, Rune of the Wind. If this unit is Ydrilan, replace each rune on your battle scripture with Ydriliqi, Rune of the River. If this unit is Scinari or Vanari, pick 1 of the runes above and replace each rune on your battle scripture with that rune.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Wealth of the Land",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Hero Phase",
+          "declare": "",
+          "effect": "Add 1 to this unit's power level for the rest of the phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Flighty",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Other friendly units cannot use the 'Redeploy' command while this unit is within 9\" of any enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Aloof",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Roll a dice each time you declare a command for another friendly unit within 6\" of this unit. On a 4+, unless you spend 1 additional command point to use that command, the command has no effect, it still counts as having been used and the command points spent to use the command are still lost.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Intransigent Pride",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot use Retreat abilities.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Arcane Sensitivity",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Unmodified casting rolls for friendly Lumineth Realm-lords units wholly within 12\" Of this unit that contain 2 or more rolls of 1 or 2 are miscast. This unit cannot end a move within 5\" of a Manfestation.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Blasted by the Elements",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy unit n combat with this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, the target has Strike-last for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Realms Manifest",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "",
+          "effect": "Pick 1 of the following runes: \u2022 Ydriliqi, Rune of the River \u2022 Alaithi, Rune of the Mountain \u2022 Oreali, Rune of the Wind For the rest of the battle, while a visible friendly unit is wholly within 12\" of this unit: \u2022 You are treated as having 1 additional instance of that rune depicted on your battle scripture for the purposes of the abilities on that unit's warscroll. \u2022 If that unit is picked to be the target of the 'Depict Rune' ability, you can apply the enhanced effects of that ability to that unit as if you had an instance of that rune on your battle scripture.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Momentous Charge",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "If this unit charged this phase, pick an enemy unit in combat with it to be the target.",
+          "effect": "Roll a number of dice equal to the unmodified charge roll. For each 4+, inflict 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Magical Form",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Ignore modifiers to save rolls for this unit (positive and negative).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "One with the Realms",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Movement Phase",
+          "declare": "",
+          "effect": "Remove this unit from the battlefield and set it up again anywhere on the battlefield more than 9\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Arcane Mastery",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to casting rolls and banishment rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": [],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "7e95-407e-d7db-29df",
+          "name": "Champion of Hysh",
+          "points": 150,
+          "destiny": 10
+        },
+        {
+          "id": "a665-54cc-893a-8f22",
+          "name": "Aelven Lord",
+          "points": 250,
+          "destiny": 30
+        },
+        {
+          "id": "ece6-5039-7a08-9036",
+          "name": "Guardian of the Realms",
+          "points": 350,
+          "destiny": 50
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "bfe2-354f-8662-1523",
+          "name": "Archetype",
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "id": "e40a-a702-c3f2-fbd8",
+              "name": "Vanari Commander",
+              "destiny": 0,
+              "abilities": [],
+              "weapons": [],
+              "stats": {
+                "save": "4+"
+              }
+            },
+            {
+              "id": "9cdd-45d5-c72a-0a1d",
+              "name": "Eclipsian Warsage",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Hyshian Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                },
+                {
+                  "name": "Eclipsian Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "2",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ],
+              "stats": {
+                "save": "4+"
+              }
+            },
+            {
+              "id": "f311-688d-7f10-df49",
+              "name": "Alarith Mountain Keeper",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Immovable Defenders",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "If you depicted Alaithi, Rune of the Mountain this battle round, add 3 to the control scores of friendly Alarith units while they are wholly within 12\" of this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "b2cd-e165-9487-2c60",
+              "name": "Hurakan Wind Charmer",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Gale-force Arrows",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "If you depicted Oreali, Rune of the Wind this battle round, ranged weapons used by friendly Hurakan units have Crit (Auto-wound) while they are wholly within 12\" Of this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "1b3f-c7c6-8fba-b3ff",
+              "name": "Ydrilan River Shaper",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Flow with the Current",
+                  "kind": "Activated",
+                  "timing": "End of Any Turn",
+                  "declare": "If you depicted Ydriliqi, Rune of the River this battle round, pick a friendly Ydrilan unit wholly within 12\" of this unit to be the target.",
+                  "effect": "The target can immediately use the 'Normal Move' or 'Retreat' ability as if it were your movement phase.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "e3cb-bbc5-feec-e913",
+              "name": "Scinari Mage",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Shining Blades",
+                  "kind": "Spell",
+                  "timing": "Your Hero Phase",
+                  "declare": "Pick a visible friendly Lumineth Realm-lords unit wholly within 12\" of this unit to be the target, then make a casting roll of 2D6.",
+                  "effect": "Add 1 to the Rend characteristic of the target's melee weapons for the rest of the turn.",
+                  "keywords": "Spell",
+                  "castingValue": "7",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "84a3-e4b1-f437-777b",
+          "name": "Battle Mount or Aelementor Type",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "dc60-43e2-7a2e-4bf4",
+              "name": "Lightcourser",
+              "destiny": -6,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Lightcourser's Horns and Claws",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "7",
+                "move": "14\""
+              }
+            },
+            {
+              "id": "197c-cb27-0ec7-e630",
+              "name": "Unyielding Realm Spirit",
+              "destiny": -15,
+              "abilities": [
+                {
+                  "name": "Battle Damaged",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Aelementor Colossal Weapon is 3.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Aelementor Colossal Weapon",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "4",
+                  "ability": "-"
+                }
+              ],
+              "stats": {
+                "health": "14",
+                "control": "5",
+                "save": "3+"
+              }
+            },
+            {
+              "id": "c3c7-7f0c-dcaf-fe3e",
+              "name": "Swift Realm Spirit",
+              "destiny": -10,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Aelementor Ranged Weapon",
+                  "kind": "ranged",
+                  "range": "15\"",
+                  "attacks": "4",
+                  "hit": "2+",
+                  "wound": "3+",
+                  "rend": "2",
+                  "damage": "D3",
+                  "ability": "Anti-Monster (+1 Rend), Shoot in Combat"
+                },
+                {
+                  "name": "Swirling Debris",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "6",
+                  "hit": "2+",
+                  "wound": "4+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Crit (Mortal)"
+                }
+              ],
+              "stats": {
+                "health": "8",
+                "move": "14\"",
+                "control": "5"
+              }
+            }
+          ]
+        },
+        {
+          "id": "ff09-6eaa-a35a-0a8e",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "5df8-2433-9299-dbc0",
+              "name": "Magical Aptitude",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Magical Aptitude",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to casting rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "16c2-c543-fb23-f086",
+              "name": "Defensive Exemplar",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Defensive Exemplar",
+                  "kind": "Activated",
+                  "timing": "Any Combat Phase",
+                  "declare": "",
+                  "effect": "For the rest of the turn: \u2022 This unit has Strike-last. \u2022 If the unmodified hit roll for an attack that targets this unit is 1-4, the attack fails and the attack sequence ends.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "61af-9f78-2f17-8289",
+              "name": "Elemental Focus",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Elemental Focus",
+                  "kind": "Activated",
+                  "timing": "Once Per Battle, Reaction: You declared the 'Depict Rune' ability",
+                  "declare": "",
+                  "effect": "If this unit is Alarith, replace each rune on your battle scripture with Alaithi, Rune of the Mountain. If this unit is Hurakan, replace each rune on your battle scripture with Oreali, Rune of the Wind. If this unit is Ydrilan, replace each rune on your battle scripture with Ydriliqi, Rune of the River. If this unit is Scinari or Vanari, pick 1 of the runes above and replace each rune on your battle scripture with that rune.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "31d4-e9d9-9c79-01c7",
+              "name": "Wealth of the Land",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Wealth of the Land",
+                  "kind": "Activated",
+                  "timing": "Once Per Battle, Your Hero Phase",
+                  "declare": "",
+                  "effect": "Add 1 to this unit's power level for the rest of the phase.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "6293-e788-c797-84c0",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "bec1-6b77-06ed-569e",
+              "name": "Flighty",
+              "destiny": 6,
+              "abilities": [
+                {
+                  "name": "Flighty",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Other friendly units cannot use the 'Redeploy' command while this unit is within 9\" of any enemy units.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "0f92-e066-75a3-b800",
+              "name": "Aloof",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Aloof",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Roll a dice each time you declare a command for another friendly unit within 6\" of this unit. On a 4+, unless you spend 1 additional command point to use that command, the command has no effect, it still counts as having been used and the command points spent to use the command are still lost.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "1ed1-f809-97f1-90df",
+              "name": "Intransigent Pride",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Intransigent Pride",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot use Retreat abilities.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "a042-fe30-b90a-3519",
+              "name": "Arcane Sensitivity",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Arcane Sensitivity",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Unmodified casting rolls for friendly Lumineth Realm-lords units wholly within 12\" Of this unit that contain 2 or more rolls of 1 or 2 are miscast. This unit cannot end a move within 5\" of a Manfestation.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "2d15-5dde-ce4c-ab40",
+          "name": "Battle Mount or Aelementor Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "32e9-2600-7568-8e26",
+              "name": "Alpha Lightcourser",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "d6e1-8779-5bc3-b70e",
+              "name": "Symbiotic Protectors",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Hyshian Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "7990-3db5-97fd-01f7",
+              "name": "Swarm of Lesser Spirits",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Awakened Realm Spirits",
+                  "kind": "ranged",
+                  "range": "10\"",
+                  "attacks": "10",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Crit (Mortal)"
+                }
+              ]
+            },
+            {
+              "id": "0a24-fb7c-51be-a42b",
+              "name": "Blasted by the Elements",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Blasted by the Elements",
+                  "kind": "Activated",
+                  "timing": "Any Combat Phase",
+                  "declare": "Pick an enemy unit n combat with this unit to be the target.",
+                  "effect": "Roll a dice. On a 3+, the target has Strike-last for the rest of the turn.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "803c-313c-82b9-9938",
+              "name": "Realms Manifest",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Realms Manifest",
+                  "kind": "Activated",
+                  "timing": "Deployment Phase",
+                  "declare": "",
+                  "effect": "Pick 1 of the following runes: \u2022 Ydriliqi, Rune of the River \u2022 Alaithi, Rune of the Mountain \u2022 Oreali, Rune of the Wind For the rest of the battle, while a visible friendly unit is wholly within 12\" of this unit: \u2022 You are treated as having 1 additional instance of that rune depicted on your battle scripture for the purposes of the abilities on that unit's warscroll. \u2022 If that unit is picked to be the target of the 'Depict Rune' ability, you can apply the enhanced effects of that ability to that unit as if you had an instance of that rune on your battle scripture.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "0012-3938-39ef-3e90",
+              "name": "Momentous Charge",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Momentous Charge",
+                  "kind": "Activated",
+                  "timing": "Any Charge Phase",
+                  "declare": "If this unit charged this phase, pick an enemy unit in combat with it to be the target.",
+                  "effect": "Roll a number of dice equal to the unmodified charge roll. For each 4+, inflict 1 mortal damage on the target.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "4dbd-c5c2-59c1-0ae8",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "03f9-981d-7072-7349",
+              "name": "Fly the Standard",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "control": 1
+              }
+            },
+            {
+              "id": "6418-f03a-c46e-2ab2",
+              "name": "Sharpened by Light",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Hyshian Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "2c2b-3a22-0fe9-5f37",
+              "name": "Shining Armour",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "stats": {
+                "save": "3+"
+              }
+            },
+            {
+              "id": "f414-f87c-3b96-45fb",
+              "name": "Skillfully Trained",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "0baf-4fc6-e486-3082",
+              "name": "Silver Bow",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Silver Bow",
+                  "kind": "ranged",
+                  "range": "18\"",
+                  "attacks": "9",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "1",
+                  "ability": "Crit (Auto-wound)"
+                }
+              ]
+            },
+            {
+              "id": "bac0-19c4-fafa-c4bb",
+              "name": "Arcane Protection",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "9fa5-48f1-29b1-b419",
+              "name": "Forged in Sunmetal",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "ea38-a8d1-1740-928b",
+              "name": "Lifted by Nature",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 2
+              }
+            },
+            {
+              "id": "bae3-4c4f-928e-862e",
+              "name": "Magical Form",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Magical Form",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Ignore modifiers to save rolls for this unit (positive and negative).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "f222-0362-6867-2b8c",
+              "name": "Magical Brilliance",
+              "destiny": -8,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "36e5-a227-55a1-6674",
+              "name": "One with the Realms",
+              "destiny": -8,
+              "abilities": [
+                {
+                  "name": "One with the Realms",
+                  "kind": "Activated",
+                  "timing": "Once Per Battle, Your Movement Phase",
+                  "declare": "",
+                  "effect": "Remove this unit from the battlefield and set it up again anywhere on the battlefield more than 9\" from all enemy units.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "fec5-d635-186e-7096",
+              "name": "Master of Aelven Sorcery",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Arcane Mastery",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to casting rolls and banishment rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

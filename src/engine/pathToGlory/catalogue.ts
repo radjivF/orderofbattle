@@ -1,11 +1,25 @@
-import type { PathToGloryPackId, PathToGloryScarSeverity } from "../types";
-import { resolveBattlepacks } from "./packs";
-import type { PathToGloryBattlepackPreset } from "../types";
+import type {
+  PathToGloryBattlepackPreset,
+  PathToGloryPackId,
+  PathToGloryScarSeverity,
+  UnitAbility,
+} from "../types";
+import extractedPaths from "../data/path-to-glory-paths.json";
+import { normalizePackIds, resolveBattlepacks } from "./packs";
+import type { PathAbilityRank } from "./ranks";
+
+export type PathToGloryPathOption = {
+  id: string;
+  name: string;
+  rank: PathAbilityRank;
+  ability: UnitAbility;
+};
 
 export type PathToGloryPath = {
   id: string;
   name: string;
   pack: PathToGloryPackId;
+  options: PathToGloryPathOption[];
 };
 
 export type PathToGloryWound = {
@@ -19,46 +33,9 @@ export type PathToGloryScar = {
   severity: PathToGloryScarSeverity;
 };
 
-function slug(name: string): string {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-}
-
-function paths(
-  pack: PathToGloryPackId,
-  names: string[],
-): PathToGloryPath[] {
-  return names.map((name) => ({ id: slug(name), name, pack }));
-}
-
-/** Names from BSData / New Recruit Path to Glory catalogues. No ability text. */
-export const PATH_TO_GLORY_PATHS: PathToGloryPath[] = [
-  ...paths("ascension", [
-    "Path of the Attacker",
-    "Path of the Defender",
-    "Path of the Devout",
-    "Path of the Leader",
-    "Path of the Mage",
-    "Path of the Warrior",
-  ]),
-  ...paths("ravaged-coast", [
-    "Path of the Artillerist",
-    "Path of the Behemoth",
-    "Path of the Brawler",
-    "Path of the Bulwark",
-    "Path of the Cavalier",
-    "Path of the Colossus",
-    "Path of the Conjurer",
-    "Path of the Dragoon",
-    "Path of the Duellist",
-    "Path of the Guardian",
-    "Path of the Invoker",
-    "Path of the Pack",
-    "Path of the Ruler",
-    "Path of the Sorcerer",
-    "Path of the Warmonger",
-    "Path of the Zealot",
-  ]),
-];
+/** Names and ability profiles from BSData Path to Glory catalogues. */
+export const PATH_TO_GLORY_PATHS: PathToGloryPath[] =
+  extractedPaths as PathToGloryPath[];
 
 export const PATH_TO_GLORY_WOUNDS: PathToGloryWound[] = [
   { id: "drained", name: "Drained" },
@@ -78,11 +55,17 @@ export const PATH_TO_GLORY_SCARS: PathToGloryScar[] = [
   },
 ];
 
+export function pathsForPacks(
+  packIds: PathToGloryPackId[],
+): PathToGloryPath[] {
+  const packs = new Set(normalizePackIds(packIds));
+  return PATH_TO_GLORY_PATHS.filter((path) => packs.has(path.pack));
+}
+
 export function pathsForPreset(
   preset: PathToGloryBattlepackPreset,
 ): PathToGloryPath[] {
-  const packs = new Set(resolveBattlepacks(preset));
-  return PATH_TO_GLORY_PATHS.filter((path) => packs.has(path.pack));
+  return pathsForPacks(resolveBattlepacks(preset));
 }
 
 export function findPath(pathId: string | null | undefined) {
@@ -90,6 +73,16 @@ export function findPath(pathId: string | null | undefined) {
     return undefined;
   }
   return PATH_TO_GLORY_PATHS.find((path) => path.id === pathId);
+}
+
+export function findPathOption(
+  path: PathToGloryPath | undefined,
+  optionId: string | null | undefined,
+) {
+  if (!path || !optionId) {
+    return undefined;
+  }
+  return path.options.find((option) => option.id === optionId);
 }
 
 export function findWound(woundId: string | null | undefined) {

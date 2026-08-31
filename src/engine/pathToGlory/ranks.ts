@@ -5,6 +5,15 @@ export type PathToGloryRank =
   | "mighty"
   | "legendary";
 
+export const PATH_ABILITY_RANKS = [
+  "aspiring",
+  "elite",
+  "mighty",
+  "legendary",
+] as const;
+
+export type PathAbilityRank = (typeof PATH_ABILITY_RANKS)[number];
+
 export function rankForRenown(renown: number): PathToGloryRank {
   if (renown >= 45) {
     return "legendary";
@@ -35,6 +44,26 @@ export function rankLabel(rank: PathToGloryRank): string {
     return "Mighty";
   }
   return "Legendary";
+}
+
+export function renownToUnlockRank(rank: PathAbilityRank): number {
+  if (rank === "aspiring") {
+    return 5;
+  }
+  if (rank === "elite") {
+    return 15;
+  }
+  if (rank === "mighty") {
+    return 30;
+  }
+  return 45;
+}
+
+export function rankAbilityUnlocked(
+  renown: number,
+  rank: PathAbilityRank,
+): boolean {
+  return renown >= renownToUnlockRank(rank);
 }
 
 export function clampRenown(value: number): number {

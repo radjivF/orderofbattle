@@ -5994,6 +5994,915 @@
       ],
       "regimentOptions": [],
       "regimentHeroes": []
+    },
+    {
+      "id": "0ed5-d41f-e776-045e",
+      "name": "Anvil of Apotheosis: Slaves to Darkness Hero",
+      "points": 150,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "CHAOS",
+        "SLAVES TO DARKNESS"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "5",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Chaos Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Daemonic Steed's Mighty Hooves",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Chaos Steeds' Trampling Hooves",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Mighty Chaotic Beast's Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        },
+        {
+          "name": "Gorebeast's Crushing Fists",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "2",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Oath of Supremacy",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Charge Phase",
+          "declare": "",
+          "effect": "If this unit is wholly within enemy territory and charged this phase, for the rest of the battle, add 1 to hit rolls for combat attacks made by friendly Darkoath units while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Myrmidon Rage",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit is damaged, add 2 to the Attacks characteristic of its melee weapons.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Mighty Chaotic Beast's Talons is 4.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "The Bringer of Fire",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "Pick a terrain feature that has not yet been set ablaze within this Hero's combat range to be the target.",
+          "effect": "That terrain feature is now set ablaze. Add 1 to this unit's control score for the rest of the battle (this effect is cumulative). In addition, for the rest of the battle, each time a unit (friend or enemy) ends a move within 3\" of a terrain feature that has been set ablaze, roll a D3. On a 2+, inflict an amount of mortal damage on that unit equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Victor of 100 Duels",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy Hero in combat with this unit to be the target.",
+          "effect": "Your opponent must decide whether the target will accept or refuse this unit's challenge: *Accept:* For the rest of the phase, when this unit and the target are picked to use a Fight ability, all of their attacks must target the other unit. In addition, for the rest of the phase, you can re-roll hit rolls for this unit's combat attacks. *Refuse:* The target cannot use Fight abilities for the rest of the phase. In addition, you gain 1 command point.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Betrayed by the False God",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "You can re-roll hit rolls for this unit's combat attacks that target enemy Order units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Rampant Mutation",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "",
+          "effect": "This unit must use this ability in each of your hero phases. Roll a dice and apply the corresponding effect until the start of your next turn: **1 *Rotting Skin:* Inflict 1 mortal damage on this unit. Subtract 1 from the control scores of enemy units while they are within 12\" of this unit. 2 *Brittle Scales:* Add 1 to the Rend characteristic of combat attacks that target this unit. 3 *Bestial Tongue:* You lose 1 command point. This unit cannot use commands. 4 *Sprouting Tentacles:* This unit's Move characteristic is 2D6\". 5 *Extra Eyeball:* Add 1 to hit rolls for this unit's combat attacks. 6 *Erupting Spikes:*** Each time this unit finishes a pile-in move, pick an enemy unit within 1\" of this unit to be the target. Inflict D3 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Reckless Arrogance",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot use the 'All-out Defence' command.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Spurned by the Gods",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot be picked as a target for the 'Eye of the Gods' ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Blood of Molten Varanite",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Roll a dice each time a damage point inflicted by a combat attack is allocated to this unit. On a 4+, inflict 1 mortal damage on the attacking unit after the Fight ability has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Carve a Bloody Path",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Any Turn",
+          "declare": "Pick a terrain feature that has not yet been set ablaze within this Hero's combat range to be the target.",
+          "effect": "When this unit uses the 'Power Through' command, inflict an additional D3+ 1 mortal damage on the target and add 3\" to the distance this unit can move as part of that ability.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Blood-fuelled Menace",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Any Combat Phase",
+          "declare": "",
+          "effect": "This unit can use 2 Fight abilities this phase. After the first is used, however, this unit has Strike-last for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Glimpse the Future",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "",
+          "effect": "Roll a dice. On a 1-4, the result corresponds to the battle round in which this unit will be inspired. On a 5+, pick a number. The number you picked corresponds to the battle round in which this unit will be inspired. While this unit is inspired, it has Strike-first.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "The Grandfather's Blessing",
+          "kind": "Activated",
+          "timing": "Start of Any Turn",
+          "declare": "",
+          "effect": "Heal (D3) this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "The Thrill of Battle",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time you make a charge roll for this unit, for each dice that was an unmodified 6, add 1 to the Attacks characteristic of this unit's melee weapons for the rest of the battle. Units can be affected by this ability multiple times and the effects are cumulative.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": [],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "62fa-d6fc-bf7f-a717",
+          "name": "Aspiring Champion",
+          "points": 150,
+          "destiny": 15
+        },
+        {
+          "id": "86a1-e8f2-0d22-3431",
+          "name": "Aspiring Lord",
+          "points": 250,
+          "destiny": 35
+        },
+        {
+          "id": "9896-d0c9-3b8a-77dc",
+          "name": "Exalted Lord",
+          "points": 350,
+          "destiny": 55
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "96c5-0e3c-436f-8e20",
+          "name": "Archetype",
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "id": "95ab-8669-84f6-5903",
+              "name": "Chaos Lord",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Chaos Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ],
+              "stats": {
+                "save": "3+"
+              }
+            },
+            {
+              "id": "935d-f945-4543-dcd1",
+              "name": "Chaos Sorcerer Lord",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "bde1-a57b-82ad-5d31",
+              "name": "Darkoath Warleader",
+              "destiny": 0,
+              "abilities": [
+                {
+                  "name": "Oath of Supremacy",
+                  "kind": "Activated",
+                  "timing": "Once Per Battle, Any Charge Phase",
+                  "declare": "",
+                  "effect": "If this unit is wholly within enemy territory and charged this phase, for the rest of the battle, add 1 to hit rolls for combat attacks made by friendly Darkoath units while they are wholly within 12\" of this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "281c-662c-2abf-fa3c",
+              "name": "Ogroid Brute",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Myrmidon Rage",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit is damaged, add 2 to the Attacks characteristic of its melee weapons.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "stats": {
+                "move": "6\"",
+                "health": "8"
+              }
+            }
+          ]
+        },
+        {
+          "id": "9bc0-309d-c6e1-7784",
+          "name": "Battle Mounts",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "c33d-51ec-9a21-70c2",
+              "name": "Daemonic Steed",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Daemonic Steed's Mighty Hooves",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "5+",
+                  "wound": "3+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "8",
+                "move": "10\""
+              }
+            },
+            {
+              "id": "6c31-dd25-6517-18a2",
+              "name": "Chaos Chariot",
+              "destiny": -10,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Chaos Steeds' Trampling Hooves",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "5+",
+                  "wound": "3+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "10",
+                "move": "10\""
+              }
+            },
+            {
+              "id": "aca5-5ff6-112b-a65c",
+              "name": "Mighty Chaotic Beast",
+              "destiny": -20,
+              "abilities": [
+                {
+                  "name": "Battle Damaged",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Mighty Chaotic Beast's Talons is 4.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Mighty Chaotic Beast's Talons",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "6",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "14",
+                "move": "10\"",
+                "control": "5"
+              }
+            }
+          ]
+        },
+        {
+          "id": "2d7b-77b4-45e3-a7a9",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "99b3-a55b-686d-54dd",
+              "name": "The Bringer of Fire",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "The Bringer of Fire",
+                  "kind": "Activated",
+                  "timing": "Your Movement Phase",
+                  "declare": "Pick a terrain feature that has not yet been set ablaze within this Hero's combat range to be the target.",
+                  "effect": "That terrain feature is now set ablaze. Add 1 to this unit's control score for the rest of the battle (this effect is cumulative). In addition, for the rest of the battle, each time a unit (friend or enemy) ends a move within 3\" of a terrain feature that has been set ablaze, roll a D3. On a 2+, inflict an amount of mortal damage on that unit equal to the roll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "af56-f0ec-9950-0a2c",
+              "name": "Victor of 100 Duels",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Victor of 100 Duels",
+                  "kind": "Activated",
+                  "timing": "Any Combat Phase",
+                  "declare": "Pick an enemy Hero in combat with this unit to be the target.",
+                  "effect": "Your opponent must decide whether the target will accept or refuse this unit's challenge: *Accept:* For the rest of the phase, when this unit and the target are picked to use a Fight ability, all of their attacks must target the other unit. In addition, for the rest of the phase, you can re-roll hit rolls for this unit's combat attacks. *Refuse:* The target cannot use Fight abilities for the rest of the phase. In addition, you gain 1 command point.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "506b-dfff-87a9-75f0",
+              "name": "Betrayed by the False God",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Betrayed by the False God",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "You can re-roll hit rolls for this unit's combat attacks that target enemy Order units.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "c156-df12-cd8b-16cc",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "2243-fc2e-b7cb-0cfd",
+              "name": "Rampant Mutation",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Rampant Mutation",
+                  "kind": "Activated",
+                  "timing": "Your Hero Phase",
+                  "declare": "",
+                  "effect": "This unit must use this ability in each of your hero phases. Roll a dice and apply the corresponding effect until the start of your next turn: **1 *Rotting Skin:* Inflict 1 mortal damage on this unit. Subtract 1 from the control scores of enemy units while they are within 12\" of this unit. 2 *Brittle Scales:* Add 1 to the Rend characteristic of combat attacks that target this unit. 3 *Bestial Tongue:* You lose 1 command point. This unit cannot use commands. 4 *Sprouting Tentacles:* This unit's Move characteristic is 2D6\". 5 *Extra Eyeball:* Add 1 to hit rolls for this unit's combat attacks. 6 *Erupting Spikes:*** Each time this unit finishes a pile-in move, pick an enemy unit within 1\" of this unit to be the target. Inflict D3 mortal damage on the target.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "7646-2218-fc73-d70b",
+              "name": "Reckless Arrogance",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Reckless Arrogance",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot use the 'All-out Defence' command.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "5e69-c420-d3d5-a7c4",
+              "name": "Spurned by the Gods",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Spurned by the Gods",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot be picked as a target for the 'Eye of the Gods' ability.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "e3ee-4472-6bb9-d329",
+          "name": "Battle Mount Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "6894-f3e6-f3a5-b7d3",
+              "name": "Daemonic Speed",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 2
+              }
+            },
+            {
+              "id": "7540-bed7-f072-7c5a",
+              "name": "Winged Beast",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "5336-a529-acdd-3705",
+              "name": "Stubborn Beast",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "health": 2
+              }
+            },
+            {
+              "id": "0ea7-fef2-3cc1-bc6c",
+              "name": "Razor-like Talons",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Mighty Chaotic Beast's Talons",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "6",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Companion"
+                }
+              ]
+            },
+            {
+              "id": "e215-c921-4217-4434",
+              "name": "Gorebeast Chariot",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Chaos Steeds' Trampling Hooves",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "5+",
+                  "wound": "3+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Companion"
+                },
+                {
+                  "name": "Gorebeast's Crushing Fists",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "-",
+                  "damage": "2",
+                  "ability": "Companion"
+                }
+              ]
+            },
+            {
+              "id": "466f-14b6-5541-0e78",
+              "name": "Blood of Molten Varanite",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Blood of Molten Varanite",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Roll a dice each time a damage point inflicted by a combat attack is allocated to this unit. On a 4+, inflict 1 mortal damage on the attacking unit after the Fight ability has been resolved.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "0c23-8368-b159-8ab3",
+              "name": "Carve a Bloody Path",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Carve a Bloody Path",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), End of Any Turn",
+                  "declare": "Pick a terrain feature that has not yet been set ablaze within this Hero's combat range to be the target.",
+                  "effect": "When this unit uses the 'Power Through' command, inflict an additional D3+ 1 mortal damage on the target and add 3\" to the distance this unit can move as part of that ability.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "5798-467c-9965-1b90",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "c9f4-4031-010f-b1d8",
+              "name": "Dominating Presence",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "control": 1
+              }
+            },
+            {
+              "id": "7eea-5a7e-3351-38de",
+              "name": "Blastphemous Fortitude",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "health": 1
+              }
+            },
+            {
+              "id": "5b3b-7a70-10f4-6594",
+              "name": "Weapon Master",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Chaos Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "874e-8d7c-0564-2535",
+              "name": "Diabolic Strength",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Chaos Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "4a52-ddfa-5b12-47a8",
+              "name": "Fearsome Charger",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Chaos Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "b8a2-8ec7-e723-ca9d",
+              "name": "Favoured Foe",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Chaos Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "023a-e58e-6484-1af9",
+              "name": "Battle Ferocity",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Chaos Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "fc58-d9db-138c-f851",
+              "name": "Daemon-bound Blade",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Chaos Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "f2a0-2ccf-c8a9-2e6d",
+              "name": "Blood-fuelled Menace",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Blood-fuelled Menace",
+                  "kind": "Activated",
+                  "timing": "Once Per Battle, Any Combat Phase",
+                  "declare": "",
+                  "effect": "This unit can use 2 Fight abilities this phase. After the first is used, however, this unit has Strike-last for the rest of the turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "1af5-1a74-c132-84e4",
+              "name": "Glimpse the Future",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Glimpse the Future",
+                  "kind": "Activated",
+                  "timing": "Deployment Phase",
+                  "declare": "",
+                  "effect": "Roll a dice. On a 1-4, the result corresponds to the battle round in which this unit will be inspired. On a 5+, pick a number. The number you picked corresponds to the battle round in which this unit will be inspired. While this unit is inspired, it has Strike-first.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "4efd-a827-d44a-c573",
+              "name": "The Grandfather's Blessing",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "The Grandfather's Blessing",
+                  "kind": "Activated",
+                  "timing": "Start of Any Turn",
+                  "declare": "",
+                  "effect": "Heal (D3) this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "c182-e925-1c72-adc9",
+              "name": "The Thrill of Battle",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "The Thrill of Battle",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Each time you make a charge roll for this unit, for each dice that was an unmodified 6, add 1 to the Attacks characteristic of this unit's melee weapons for the rest of the battle. Units can be affected by this ability multiple times and the effects are cumulative.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

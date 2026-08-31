@@ -4597,6 +4597,929 @@
       ],
       "regimentOptions": [],
       "regimentHeroes": []
+    },
+    {
+      "id": "8457-5a8f-ceaa-7bd8",
+      "name": "Anvil of Apotheosis: Hedonites of Slaanesh Hero",
+      "points": 150,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "CHAOS",
+        "HEDONITES OF SLAANESH"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Weapon of Seduction",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (2 Hits)"
+        },
+        {
+          "name": "Slaaneshi Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Steed's Poisoned Tongue",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Blissbarb Bow",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "-"
+        },
+        {
+          "name": "Exalted Steed's Poisoned Tongue",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Slickblade Glaive",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (2 Hits)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Swagger of a Champion",
+          "kind": "Activated",
+          "timing": "Enemy Shooting Phase",
+          "declare": "",
+          "effect": "This unit can move D6\" but must end that move no further from the closest visible enemy unit than it was at the start of the move. If equidistant to 2 units, pick either.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Theatrical Nature",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit has Ward (5+) if it charged in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Daemonic Paramour",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "When making run rolls for this unit, add 1 to the number of dice rolled, then remove 1 dice of your choice and use the remaining dice as the run roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Devotee of Flesh",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to hit rolls for this unit's attacks while it is damaged.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Jealous Patron",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from ward rolls for other friendly units that are visible to this unit and within its combat range.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Melodramatic Masochist",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot use the 'Rally' or 'All-out Defence' commands.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Foremost an Artist",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Other than the Companion ability, weapon abilities for this unit's attacks have no effect.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Creeping Ennui",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot be picked to be a Paragon.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Warrior-sadist",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "Inflict 1 mortal damage on each unit (friendly and enemy) within 3\" of and visible to this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Blessed by the Prince",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from casting rolls and chanting rolls for visible enemy units while they are within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Reveller in Agony",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "For the rest of the turn, when determining the target's control score, add the number of damage points it has to the total.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Serpentine Evasion",
+          "kind": "Activated",
+          "timing": "Reaction: This unit was picked as a target of an Attack ability",
+          "declare": "",
+          "effect": "For the rest of the turn, subtract 1 from hit rolls for attacks that target this unit and subtract 1 from hit rolls for this unit's attacks.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Sage of Sin",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Wizard only. Add 1 to casting rolls and banishment rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Captivating Musk",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from the control scores of enemy units while they are in combat with this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Imperious Gait",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit can use the 'Power Through' command even if the target has a higher Health characteristic than this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Above Natural Law",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit can pass through enemy models and their combat ranges as if it had Fly.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Animal Ecstasy",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "You can re-roll charge rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Tongue-bind",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy non-Monster Hero in combat with this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, for the rest of the turn, while this unit has not used a Fight ability, the target has Strike-last.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Adrenaline Fiend",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "",
+          "effect": "This unit can use the 'Normal Move' ability as if it were your movement phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": [],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "30c6-1b18-0169-d674",
+          "name": "Degenerate Soul",
+          "points": 150,
+          "destiny": 10
+        },
+        {
+          "id": "d412-0207-c6fb-ef40",
+          "name": "Narcissistic Reprobate",
+          "points": 250,
+          "destiny": 30
+        },
+        {
+          "id": "3fd8-567e-46a1-ce58",
+          "name": "Champion of Excess",
+          "points": 350,
+          "destiny": 50
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "d940-d982-6d2b-331d",
+          "name": "Archetype",
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "id": "e9ce-afb4-6932-4711",
+              "name": "Sybarite Warlord",
+              "destiny": 0,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "ecb6-b24a-75f0-288a",
+              "name": "Sybarite Sorcerer",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "4f2e-6ce0-7eaa-de7e",
+              "name": "Sinful Exemplar",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Weapon of Seduction",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Crit (2 Hits)"
+                }
+              ]
+            },
+            {
+              "id": "dafb-0780-23cd-6d4c",
+              "name": "Herald of the Dark Prince",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "7797-3d1d-9f81-8a69",
+              "name": "Master of Seduction",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "cb87-a518-2099-9538",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "22cd-c7ec-58e0-543c",
+              "name": "Swagger of a Champion",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Swagger of a Champion",
+                  "kind": "Activated",
+                  "timing": "Enemy Shooting Phase",
+                  "declare": "",
+                  "effect": "This unit can move D6\" but must end that move no further from the closest visible enemy unit than it was at the start of the move. If equidistant to 2 units, pick either.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "106a-980d-4468-3bfd",
+              "name": "Theatrical Nature",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Theatrical Nature",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit has Ward (5+) if it charged in the same turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "f652-40ac-2b33-e5ac",
+              "name": "Daemonic Paramour",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Daemonic Paramour",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "When making run rolls for this unit, add 1 to the number of dice rolled, then remove 1 dice of your choice and use the remaining dice as the run roll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "9953-2d18-14fd-10cb",
+              "name": "Devotee of Flesh",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Devotee of Flesh",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to hit rolls for this unit's attacks while it is damaged.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "ad41-4534-6648-bc40",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "c960-5712-c4e4-2fea",
+              "name": "Jealous Patron",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Jealous Patron",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 1 from ward rolls for other friendly units that are visible to this unit and within its combat range.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "265a-80dc-cde3-2236",
+              "name": "Melodramatic Masochist",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Melodramatic Masochist",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot use the 'Rally' or 'All-out Defence' commands.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "b04f-bbe1-2ed6-b91b",
+              "name": "Foremost an Artist",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Foremost an Artist",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Other than the Companion ability, weapon abilities for this unit's attacks have no effect.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "f241-14fe-2348-b6b4",
+              "name": "Creeping Ennui",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Creeping Ennui",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot be picked to be a Paragon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "95ba-7801-78f6-d915",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "c962-e0da-c815-bd7d",
+              "name": "Conceited Individual",
+              "destiny": -1,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "control": 1
+              }
+            },
+            {
+              "id": "8331-6051-3294-8160",
+              "name": "Warrior-sadist",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Warrior-sadist",
+                  "kind": "Activated",
+                  "timing": "End of Any Turn",
+                  "declare": "",
+                  "effect": "Inflict 1 mortal damage on each unit (friendly and enemy) within 3\" of and visible to this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "d836-b04b-bbf2-9802",
+              "name": "Gluttonous Girth",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "health": 2
+              }
+            },
+            {
+              "id": "e795-4a9e-36e3-a110",
+              "name": "Blissbarb Bow",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Blissbarb Bow",
+                  "kind": "ranged",
+                  "range": "12\"",
+                  "attacks": "3",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "1",
+                  "ability": "-"
+                }
+              ]
+            },
+            {
+              "id": "f02f-3a56-1731-14b3",
+              "name": "Blessed by the Prince",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Blessed by the Prince",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 1 from casting rolls and chanting rolls for visible enemy units while they are within 12\" of this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "bd4e-facf-e170-ad2f",
+              "name": "Reveller in Agony",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Reveller in Agony",
+                  "kind": "Activated",
+                  "timing": "End of Any Turn",
+                  "declare": "",
+                  "effect": "For the rest of the turn, when determining the target's control score, add the number of damage points it has to the total.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "6d09-eb9d-7a85-ce43",
+              "name": "Finely Cured Leathers",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "save": 1
+              }
+            },
+            {
+              "id": "8e3e-f0fc-9cad-91de",
+              "name": "Serpentine Evasion",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Serpentine Evasion",
+                  "kind": "Activated",
+                  "timing": "Reaction: This unit was picked as a target of an Attack ability",
+                  "declare": "",
+                  "effect": "For the rest of the turn, subtract 1 from hit rolls for attacks that target this unit and subtract 1 from hit rolls for this unit's attacks.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "e812-f47c-96e3-a783",
+              "name": "Slickblade Glaive",
+              "destiny": -4,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Slickblade Glaive",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "6",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Crit (2 Hits)"
+                }
+              ]
+            },
+            {
+              "id": "3a96-6ecf-cfea-c2ce",
+              "name": "Sage of Sin",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Sage of Sin",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Wizard only. Add 1 to casting rolls and banishment rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "a43d-2860-e890-bd0c",
+          "name": "Battle Mounts",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "58e3-6cd8-d2c8-f67d",
+              "name": "Steed of Slaanesh",
+              "destiny": -5,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Steed's Poisoned Tongue",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "2",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "7",
+                "move": "14\""
+              }
+            },
+            {
+              "id": "a1a8-2f39-c875-d9b8",
+              "name": "Exalted Steed",
+              "destiny": -7,
+              "abilities": [],
+              "weapons": [
+                {
+                  "name": "Steed's Poisoned Tongue",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "2",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Companion"
+                },
+                {
+                  "name": "Exalted Steed's Poisoned Tongue",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "8",
+                "move": "14\""
+              }
+            }
+          ]
+        },
+        {
+          "id": "f001-3411-dd8c-ab68",
+          "name": "Battle Mount Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "d877-bd93-f042-11f0",
+              "name": "Captivating Musk",
+              "destiny": -1,
+              "abilities": [
+                {
+                  "name": "Captivating Musk",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 1 from the control scores of enemy units while they are in combat with this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "e59b-2673-3544-43ab",
+              "name": "Imperious Gait",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Imperious Gait",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit can use the 'Power Through' command even if the target has a higher Health characteristic than this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "e6d7-c5c6-bef8-5f36",
+              "name": "Impossibly Fleet",
+              "destiny": -2,
+              "abilities": [],
+              "weapons": [],
+              "statAdds": {
+                "move": 2
+              }
+            },
+            {
+              "id": "88cb-5dc8-fe44-f325",
+              "name": "Above Natural Law",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Above Natural Law",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit can pass through enemy models and their combat ranges as if it had Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "8fd3-9e3a-dc40-fc27",
+              "name": "Tailored Toxins",
+              "destiny": -3,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "197d-cee1-e432-87b9",
+              "name": "Animal Ecstasy",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Animal Ecstasy",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "You can re-roll charge rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "8ea0-4cce-8c86-e4f9",
+              "name": "Tongue-bind",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Tongue-bind",
+                  "kind": "Activated",
+                  "timing": "Any Combat Phase",
+                  "declare": "Pick an enemy non-Monster Hero in combat with this unit to be the target.",
+                  "effect": "Roll a dice. On a 3+, for the rest of the turn, while this unit has not used a Fight ability, the target has Strike-last.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "bd92-ab52-3db4-9b08",
+              "name": "Adrenaline Fiend",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Adrenaline Fiend",
+                  "kind": "Activated",
+                  "timing": "Deployment Phase",
+                  "declare": "",
+                  "effect": "This unit can use the 'Normal Move' ability as if it were your movement phase.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }
