@@ -14,12 +14,11 @@ import type {
 } from "@/engine/types";
 import { IosTrashIcon } from "./ios/SheetIconButton";
 import { SlotEnhancements, SlotLine } from "./RegimentCardSlots";
-import { PathToGloryUnitExtras } from "./PathToGloryUnitExtras";
-import type { PathToGloryPackId } from "@/engine/pathToGlory";
+import { PathToGlorySlot } from "./PathToGloryUnitExtras";
 import {
-  isAnvilOfApotheosis,
-  resolveAnvilUnit,
+  resolvePathToGloryUnit,
   selectionDisplayName,
+  type PathToGloryPackId,
 } from "@/engine/pathToGlory";
 
 export { PlayHealthTrack } from "./PlayHealthTrack";
@@ -123,6 +122,13 @@ export function RegimentCard({
     ? getUnit(faction, regiment.hero.unitId)
     : undefined;
   const openSlots = slotCap - regiment.units.length;
+  const campaignEnabled = Boolean(
+    pathToGloryPackIds &&
+      pathToGloryPackIds.length > 0 &&
+      selected &&
+      !playMode &&
+      onPatchSelection,
+  );
   const listGear = {
     artefactBearerId,
     artefactLabel,
@@ -188,38 +194,34 @@ export function RegimentCard({
 
       {hero && regiment.hero ? (
         <>
-          <SlotLine
-            unit={hero}
+          <PathToGlorySlot
+            enabled={campaignEnabled}
             selection={regiment.hero}
-            points={selectionPoints(hero, false, regiment.hero)}
-            playMode={playMode}
-            hidePoints={locked}
-            bindNotes={bindNotes}
-            onReplace={locked ? undefined : onPickHero}
-            onOpenDatasheet={() =>
-              onOpenDatasheet(
-                isAnvilOfApotheosis(hero)
-                  ? resolveAnvilUnit(hero, regiment.hero)
-                  : hero,
-              )
-            }
-            onPlayHealth={onPlayHealth}
-          />
-          {pathToGloryPackIds &&
-          pathToGloryPackIds.length > 0 &&
-          selected &&
-          !playMode &&
-          regiment.hero &&
-          onPatchSelection ? (
-            <PathToGloryUnitExtras
-              selection={regiment.hero}
-              unit={hero}
-              packIds={pathToGloryPackIds}
-              showBattleWounds={showBattleWounds}
-              onChange={(next) => onPatchSelection(next.id, next)}
-              onOpenDatasheet={onOpenDatasheet}
-            />
-          ) : null}
+            unit={hero}
+            packIds={pathToGloryPackIds ?? []}
+            showBattleWounds={showBattleWounds}
+            onChange={(next) => onPatchSelection?.(next.id, next)}
+            onOpenDatasheet={onOpenDatasheet}
+          >
+            {(toggle) => (
+              <SlotLine
+                unit={hero}
+                selection={regiment.hero}
+                points={selectionPoints(hero, false, regiment.hero)}
+                playMode={playMode}
+                hidePoints={locked}
+                bindNotes={bindNotes}
+                onReplace={locked ? undefined : onPickHero}
+                onOpenDatasheet={() =>
+                  onOpenDatasheet(
+                    resolvePathToGloryUnit(hero, regiment.hero),
+                  )
+                }
+                onPlayHealth={onPlayHealth}
+                extraTrailing={toggle}
+              />
+            )}
+          </PathToGlorySlot>
           <SlotEnhancements
             selectionId={regiment.hero.id}
             unit={hero}
@@ -271,41 +273,42 @@ export function RegimentCard({
           }
           return (
             <li key={slot.id}>
-              <SlotLine
-                unit={unit}
+              <PathToGlorySlot
+                enabled={campaignEnabled}
                 selection={slot}
-                points={selectionPoints(unit, slot.reinforced, slot)}
-                reinforced={slot.reinforced}
-                canReinforce={unit.reinforce}
-                playMode={playMode}
-                hidePoints={locked}
-                bindNotes={bindNotes}
-                onToggleReinforce={
-                  locked ? undefined : () => onToggleReinforce(slot.id)
-                }
-                onDuplicate={
-                  locked || unit.unique || openSlots <= 0
-                    ? undefined
-                    : () => onDuplicateUnit(slot.id)
-                }
-                onRemove={locked ? undefined : () => onRemoveUnit(slot.id)}
-                onOpenDatasheet={() => onOpenDatasheet(unit)}
-                onPlayHealth={onPlayHealth}
-              />
-              {pathToGloryPackIds &&
-              pathToGloryPackIds.length > 0 &&
-              selected &&
-              !playMode &&
-              onPatchSelection ? (
-                <PathToGloryUnitExtras
-                  selection={slot}
-                  unit={unit}
-                  packIds={pathToGloryPackIds}
-                  showBattleWounds={showBattleWounds}
-                  onChange={(next) => onPatchSelection(next.id, next)}
-                  onOpenDatasheet={onOpenDatasheet}
-                />
-              ) : null}
+                unit={unit}
+                packIds={pathToGloryPackIds ?? []}
+                showBattleWounds={showBattleWounds}
+                onChange={(next) => onPatchSelection?.(next.id, next)}
+                onOpenDatasheet={onOpenDatasheet}
+              >
+                {(toggle) => (
+                  <SlotLine
+                    unit={unit}
+                    selection={slot}
+                    points={selectionPoints(unit, slot.reinforced, slot)}
+                    reinforced={slot.reinforced}
+                    canReinforce={unit.reinforce}
+                    playMode={playMode}
+                    hidePoints={locked}
+                    bindNotes={bindNotes}
+                    onToggleReinforce={
+                      locked ? undefined : () => onToggleReinforce(slot.id)
+                    }
+                    onDuplicate={
+                      locked || unit.unique || openSlots <= 0
+                        ? undefined
+                        : () => onDuplicateUnit(slot.id)
+                    }
+                    onRemove={locked ? undefined : () => onRemoveUnit(slot.id)}
+                    onOpenDatasheet={() =>
+                      onOpenDatasheet(resolvePathToGloryUnit(unit, slot))
+                    }
+                    onPlayHealth={onPlayHealth}
+                    extraTrailing={toggle}
+                  />
+                )}
+              </PathToGlorySlot>
               <SlotEnhancements
                 selectionId={slot.id}
                 unit={unit}

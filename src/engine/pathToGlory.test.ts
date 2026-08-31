@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { blankArmy, blankPathToGlory, normalizeArmyList } from "@/engine/listFactories";
 import { createId } from "@/lib/id";
 import { getFaction, unitHasKeyword } from "@/engine/queries";
-import type { ArmyList } from "@/engine/types";
+import type { ArmyList, Selection } from "@/engine/types";
 import { summarize } from "@/engine/validate";
 import {
   applyPathToGloryPacks,
@@ -32,6 +32,8 @@ import {
   togglePathToGloryPack,
   uniqueKeywordBlocksEnhancements,
   assignPathToGloryHeroEnhancement,
+  resolveAnvilUnit,
+  resolvePathToGloryUnit,
 } from "@/engine/pathToGlory";
 
 describe("resolveBattlepacks", () => {
@@ -439,5 +441,86 @@ describe("Path to Glory hero gear", () => {
       artefactB.id,
     );
     expect(withBoth.artefact).toBeNull();
+  });
+});
+
+describe("resolvePathToGloryUnit", () => {
+  const attackerPathId = "path-of-the-attacker";
+  const fullOnAttackId = "4564-988b-2147-1ba8";
+
+  function festusWithPath(pathOptionIds: string[]): {
+    unit: NonNullable<ReturnType<typeof getFaction>>["units"][number];
+    selection: Selection;
+  } {
+    const faction = getFaction("maggotkin-of-nurgle");
+    const unit = faction?.units.find((item) => item.name === "Doktor Festus");
+    if (!faction || !unit) {
+      throw new Error("missing Doktor Festus");
+    }
+    const selection = {
+      id: "festus-1",
+      unitId: unit.id,
+      reinforced: false,
+      pathToGlory: {
+        ...emptyPathToGlorySelection(),
+        renown: 5,
+        pathId: attackerPathId,
+        pathOptionIds,
+      },
+    };
+    return { unit, selection };
+  }
+
+  it("adds picked Path abilities onto the warscroll", () => {
+    const { unit, selection } = festusWithPath([fullOnAttackId]);
+    const resolved = resolvePathToGloryUnit(unit, selection);
+    const ability = resolved.abilities.find((item) => item.name === "Full-On Attack");
+    expect(ability).toBeTruthy();
+    expect(ability?.effect).toMatch(/add 1 to hit rolls/i);
+    expect(unit.abilities.some((item) => item.name === "Full-On Attack")).toBe(
+      false,
+    );
+  });
+
+  it("leaves the warscroll unchanged when no Path ability is picked", () => {
+    const { unit, selection } = festusWithPath([]);
+    expect(resolvePathToGloryUnit(unit, selection).abilities).toEqual(
+      unit.abilities,
+    );
+  });
+
+  it("still applies Anvil picks", () => {
+    const faction = getFaction("stormcast-eternals");
+    const anvil = faction?.units.find((item) =>
+      item.name.startsWith("Anvil of Apotheosis"),
+    );
+    expect(anvil).toBeTruthy();
+    if (!anvil) return;
+    const chamber = anvil.anvilForge
+      ?.find((group) => group.name === "Chamber")
+      ?.options.find((option) => option.name === "Vanguard Chamber");
+    expect(chamber).toBeTruthy();
+    if (!chamber) return;
+    const selection = {
+      id: "anvil-1",
+      unitId: anvil.id,
+      reinforced: false,
+      pathToGlory: {
+        ...emptyPathToGlorySelection(),
+        anvilPickIds: [chamber.id],
+        pathId: attackerPathId,
+        pathOptionIds: [fullOnAttackId],
+        renown: 5,
+      },
+    };
+    const anvilOnly = resolveAnvilUnit(anvil, selection);
+    const resolved = resolvePathToGloryUnit(anvil, selection);
+    expect(resolved.stats).toEqual(anvilOnly.stats);
+    expect(resolved.abilities.map((item) => item.name)).toEqual(
+      expect.arrayContaining([
+        ...anvilOnly.abilities.map((item) => item.name),
+        "Full-On Attack",
+      ]),
+    );
   });
 });

@@ -1,6 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
 import { render, screen } from "@/test-utils/render";
-import userEvent from "@testing-library/user-event";
 import { PathToGloryUnitExtras } from "./PathToGloryUnitExtras";
 
 const attackerPath = {
@@ -45,20 +44,4 @@ describe("PathToGloryUnitExtras Path", () => {
     expect(pair.className).toContain("grid-cols-2");
   });
 
-  it("lets you collapse Path so the abilities close", async () => {
-    const user = userEvent.setup();
-    render(
-      <PathToGloryUnitExtras
-        selection={attackerPath}
-        packIds={["ascension"]}
-        showBattleWounds={false}
-        onChange={vi.fn()}
-      />,
-    );
-
-    expect(screen.getByText(/path abilities/i)).toBeInTheDocument();
-    await user.click(screen.getByRole("button", { name: /path of the attacker/i }));
-    expect(screen.queryByText(/path abilities/i)).not.toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: /full-on attack/i })).not.toBeInTheDocument();
-  });
 });

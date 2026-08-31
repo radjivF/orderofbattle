@@ -67,6 +67,7 @@ export {
   uniqueKeywordBlocksEnhancements,
   visibleAnvilForgeGroups,
 } from "./anvil";
+export { resolvePathToGloryUnit } from "./unit";
 export {
   selectionArtefactOptionId,
   selectionHeroicTraitOptionId,

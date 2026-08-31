@@ -16,7 +16,7 @@ import {
   anvilRankForSelection,
   isAnvilOfApotheosis,
   pickAnvilOption,
-  resolveAnvilUnit,
+  resolvePathToGloryUnit,
   visibleAnvilForgeGroups,
 } from "@/engine/pathToGlory";
 import {
@@ -95,7 +95,7 @@ export function PathToGloryAnvilForge({
               <SheetLinkButton
                 label={`${unit.name} datasheet`}
                 onClick={() =>
-                  onOpenDatasheet(resolveAnvilUnit(unit, selection))
+                  onOpenDatasheet(resolvePathToGloryUnit(unit, selection))
                 }
               />
             ) : null}

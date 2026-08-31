@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { CatalogueUnit } from "@/engine/types";
-import { listRegimentsOfRenown } from "@/engine/queries";
+import { getFaction, listRegimentsOfRenown } from "@/engine/queries";
+import { resolvePathToGloryUnit } from "@/engine/pathToGlory";
 import { cleanup, render, screen } from "@/test-utils/render";
 import { DatasheetSheet } from "./DatasheetSheet";
 
@@ -103,5 +104,51 @@ describe("DatasheetSheet Regiment of Renown", () => {
     expect(screen.getByText(abilityName ?? "")).toBeInTheDocument();
     expect(screen.queryByText("Move")).toBeNull();
     expect(screen.queryByText("Health")).toBeNull();
+  });
+});
+
+describe("DatasheetSheet Path to Glory", () => {
+  beforeEach(() => {
+    cleanup();
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: (query: string) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+        dispatchEvent: () => false,
+      }),
+    });
+  });
+
+  it("shows picked Path abilities on Doktor Festus", () => {
+    const faction = getFaction("maggotkin-of-nurgle");
+    const festus = faction?.units.find((item) => item.name === "Doktor Festus");
+    expect(festus).toBeTruthy();
+    if (!festus) return;
+
+    const sheet = resolvePathToGloryUnit(festus, {
+      id: "festus-1",
+      unitId: festus.id,
+      reinforced: false,
+      pathToGlory: {
+        renown: 5,
+        pathId: "path-of-the-attacker",
+        pathOptionIds: ["4564-988b-2147-1ba8"],
+        battleWoundId: null,
+        scarId: null,
+        anvilRankId: null,
+        anvilPickIds: [],
+      },
+    });
+
+    render(<DatasheetSheet sheet={sheet} onClose={vi.fn()} />);
+
+    expect(screen.getByText("Full-On Attack")).toBeInTheDocument();
+    expect(
+      screen.getByText(/add 1 to hit rolls for attacks made by units this phase/i),
+    ).toBeInTheDocument();
   });
 });

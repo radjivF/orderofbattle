@@ -18,8 +18,9 @@ import type {
   UnitAbility,
 } from "@/engine/types";
 import { PlayBindNotes, PlayHealthTrack, SlotEnhancements, SlotMoreMenu } from "./RegimentCard";
-import { PathToGloryUnitExtras } from "./PathToGloryUnitExtras";
+import { PathToGlorySlot } from "./PathToGloryUnitExtras";
 import {
+  resolvePathToGloryUnit,
   selectionDisplayName,
   type PathToGloryPackId,
 } from "@/engine/pathToGlory";
@@ -226,20 +227,12 @@ function RoRSlotRow({
   const play = selectionPlayState(selection, unit);
   const warning = battleDamagedWarning(unit, play.damage);
   const displayName = selectionDisplayName(selection, unit);
-  const extras =
+  const campaignEnabled = Boolean(
     pathToGloryPackIds &&
-    pathToGloryPackIds.length > 0 &&
-    !playMode &&
-    onPatchSelection ? (
-      <PathToGloryUnitExtras
-        selection={selection}
-        unit={unit}
-        packIds={pathToGloryPackIds}
-        showBattleWounds={Boolean(showBattleWounds)}
-        onChange={(next) => onPatchSelection(next.id, next)}
-        onOpenDatasheet={onOpenDatasheet}
-      />
-    ) : null;
+      pathToGloryPackIds.length > 0 &&
+      !playMode &&
+      onPatchSelection,
+  );
   const enhancements = (
     <SlotEnhancements
       selectionId={selection.id}
@@ -279,7 +272,9 @@ function RoRSlotRow({
             name={displayName}
             subtitle={battleStatLine(unit)}
             sheetLabel={`${unit.name} datasheet`}
-            onOpenSheet={() => onOpenDatasheet(unit)}
+            onOpenSheet={() =>
+              onOpenDatasheet(resolvePathToGloryUnit(unit, selection))
+            }
             trailing={
               onPlayHealth ? (
                 <PlayHealthTrack
@@ -300,13 +295,27 @@ function RoRSlotRow({
         </>
       ) : (
         <>
-          <BuildSlotRow
-            name={displayName}
-            subtitle={battleStatLine(unit)}
-            sheetLabel={`${unit.name} datasheet`}
-            onOpenSheet={() => onOpenDatasheet(unit)}
-          />
-          {extras}
+          <PathToGlorySlot
+            enabled={campaignEnabled}
+            selection={selection}
+            unit={unit}
+            packIds={pathToGloryPackIds ?? []}
+            showBattleWounds={Boolean(showBattleWounds)}
+            onChange={(next) => onPatchSelection?.(next.id, next)}
+            onOpenDatasheet={onOpenDatasheet}
+          >
+            {(toggle) => (
+              <BuildSlotRow
+                name={displayName}
+                subtitle={battleStatLine(unit)}
+                sheetLabel={`${unit.name} datasheet`}
+                onOpenSheet={() =>
+                  onOpenDatasheet(resolvePathToGloryUnit(unit, selection))
+                }
+                trailing={toggle}
+              />
+            )}
+          </PathToGlorySlot>
           {enhancements}
         </>
       )}

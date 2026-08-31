@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import {
   battleDamagedWarning,
   battleStatLine,
@@ -382,6 +382,7 @@ export function SlotLine({
   onRemove,
   onOpenDatasheet,
   onPlayHealth,
+  extraTrailing,
 }: {
   unit: CatalogueUnit;
   selection?: Selection;
@@ -397,6 +398,7 @@ export function SlotLine({
   onRemove?: () => void;
   onOpenDatasheet: () => void;
   onPlayHealth?: (selectionId: string, damage: number) => void;
+  extraTrailing?: ReactNode;
 }) {
   const stats = battleStatLine(unit);
   const track =
@@ -450,6 +452,7 @@ export function SlotLine({
       onOpenSheet={onOpenDatasheet}
       trailing={
         <>
+          {extraTrailing}
           {onReplace ? (
             <EditLinkButton
               label={`Change ${unit.name}`}
