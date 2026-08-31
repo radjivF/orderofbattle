@@ -15,7 +15,9 @@ export {
 
 const DB_NAME = "orderofbattle";
 const STORE = "lists";
-const VERSION = 1;
+export const GAMES_STORE = "games";
+/** Bumped for Battle record `games` object store. */
+const VERSION = 2;
 const READY_KEY = "orderofbattle:idb-ready";
 
 /** Legacy browser keys from the pre-rename project; keep for one-time migration. */
@@ -47,6 +49,10 @@ function sortLists(lists: ArmyList[]) {
   return [...lists].sort((a, b) => listRecency(b) - listRecency(a));
 }
 
+export function openOrderOfBattleDb(): Promise<IDBDatabase> {
+  return openDb(DB_NAME, VERSION);
+}
+
 function openDb(name: string, version: number): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open(name, version);
@@ -54,6 +60,9 @@ function openDb(name: string, version: number): Promise<IDBDatabase> {
       const db = request.result;
       if (!db.objectStoreNames.contains(STORE)) {
         db.createObjectStore(STORE, { keyPath: "id" });
+      }
+      if (name === DB_NAME && !db.objectStoreNames.contains(GAMES_STORE)) {
+        db.createObjectStore(GAMES_STORE, { keyPath: "id" });
       }
     };
     request.onsuccess = () => resolve(request.result);
