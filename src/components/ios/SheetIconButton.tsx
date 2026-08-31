@@ -70,7 +70,6 @@ function OpenSheetButton({
   name,
   subtitle,
   subtitleBeside = false,
-  tags,
   sheetLabel,
   onOpenSheet,
   reinforced,
@@ -81,7 +80,6 @@ function OpenSheetButton({
   name: string;
   subtitle?: string;
   subtitleBeside?: boolean;
-  tags?: ReactNode;
   sheetLabel: string;
   onOpenSheet: (event: MouseEvent<HTMLButtonElement>) => void;
   reinforced?: boolean;
@@ -114,7 +112,6 @@ function OpenSheetButton({
             </span>
           ) : null}
         </p>
-        {tags}
         {subtitle ? (
           <p
             className={
@@ -134,7 +131,6 @@ export function PlaySlotRow({
   name,
   subtitle,
   subtitleBeside = false,
-  tags,
   sheetLabel,
   onOpenSheet,
   trailing,
@@ -143,7 +139,6 @@ export function PlaySlotRow({
   name: string;
   subtitle?: string;
   subtitleBeside?: boolean;
-  tags?: ReactNode;
   sheetLabel: string;
   onOpenSheet: () => void;
   trailing?: ReactNode;
@@ -160,7 +155,6 @@ export function PlaySlotRow({
         name={name}
         subtitle={subtitle}
         subtitleBeside={subtitleBeside}
-        tags={tags}
         sheetLabel={sheetLabel}
         onOpenSheet={openSheet}
         reinforced={reinforced}
@@ -187,7 +181,6 @@ export function PlaySlotRow({
 export function BuildSlotRow({
   name,
   subtitle,
-  tags,
   sheetLabel,
   onOpenSheet,
   trailing,
@@ -195,7 +188,6 @@ export function BuildSlotRow({
 }: {
   name: string;
   subtitle?: string;
-  tags?: ReactNode;
   sheetLabel: string;
   onOpenSheet: () => void;
   trailing?: ReactNode;
@@ -211,7 +203,6 @@ export function BuildSlotRow({
       <OpenSheetButton
         name={name}
         subtitle={subtitle}
-        tags={tags}
         sheetLabel={sheetLabel}
         onOpenSheet={openSheet}
         reinforced={reinforced}

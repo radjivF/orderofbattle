@@ -25,7 +25,7 @@ function unit(overrides: Partial<CatalogueUnit> = {}): CatalogueUnit {
 describe("SlotLine keyword chips", () => {
   afterEach(() => cleanup());
 
-  it("shows coded keywords under the name and hides the faction", () => {
+  it("does not show keywords on the list row", () => {
     render(
       <SlotLine
         unit={unit()}
@@ -35,25 +35,10 @@ describe("SlotLine keyword chips", () => {
       />,
     );
 
-    expect(screen.getByText("HERO")).toBeInTheDocument();
-    expect(screen.getByText("INFANTRY")).toBeInTheDocument();
-    expect(screen.getByText("WIZARD")).toBeInTheDocument();
-    expect(screen.getByText("FLY")).toBeInTheDocument();
-    expect(screen.queryByText("CASTELITE")).toBeNull();
-  });
-
-  it("hides chips when the unit has no coded keywords", () => {
-    render(
-      <SlotLine
-        unit={unit({ categories: ["CASTELITE"] })}
-        points={110}
-        playMode={false}
-        onOpenDatasheet={vi.fn()}
-      />,
-    );
-
     expect(screen.queryByText("HERO")).toBeNull();
     expect(screen.queryByText("INFANTRY")).toBeNull();
-    expect(screen.queryByText("CASTELITE")).toBeNull();
+    expect(screen.queryByText("WIZARD")).toBeNull();
+    expect(screen.queryByText("FLY")).toBeNull();
+    expect(screen.getByText("Liberator-Prime")).toBeInTheDocument();
   });
 });

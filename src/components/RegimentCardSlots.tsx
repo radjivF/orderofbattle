@@ -26,7 +26,6 @@ import {
   PlaySlotRow,
 } from "./ios/SheetIconButton";
 import { ExpandableRuleCard } from "./ExpandableRuleCard";
-import { CodedKeywordChips } from "./KeywordChip";
 import { PlayHealthTrack } from "./PlayHealthTrack";
 
 export function SlotEnhancements({
@@ -383,7 +382,6 @@ export function SlotLine({
   onPlayHealth?: (selectionId: string, damage: number) => void;
 }) {
   const stats = battleStatLine(unit);
-  const tags = <CodedKeywordChips categories={unit.categories} />;
   const track =
     playMode && selection
       ? selectionPlayState(selection, unit)
@@ -397,7 +395,6 @@ export function SlotLine({
         <PlaySlotRow
           name={unit.name}
           subtitle={stats || undefined}
-          tags={tags}
           reinforced={reinforced}
           sheetLabel={`${unit.name} datasheet`}
           onOpenSheet={onOpenDatasheet}
@@ -431,7 +428,6 @@ export function SlotLine({
           ? unitSizeLabel(unit, Boolean(reinforced))
           : `${unitSizeLabel(unit, Boolean(reinforced))} · ${points} pts`
       }
-      tags={tags}
       reinforced={reinforced}
       sheetLabel={`${unit.name} datasheet`}
       onOpenSheet={onOpenDatasheet}
