@@ -1,10 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import type {
+  ArmyList,
+  DatasheetSubject,
+  FactionCatalogue,
+  UnitWeapon,
+} from "@/engine/types";
 import {
   commandAbilityCost,
   coreCommandsForPhase,
-  isCommandAbility,
   type CoreCommand,
   UNIVERSAL_COMMAND_RULES,
 } from "@/engine/commands";
@@ -12,11 +17,14 @@ import { combatModifierNotes } from "@/engine/magic";
 import {
   defenceStatLine,
   getListUnit,
+  getSelection,
   moveStatLine,
   selectionDamage,
+  selectionIsDestroyed,
   weaponAttacksForDamage,
 } from "@/engine/queries";
 import { IOS_LIQUID_CTA_CLASS, RULE_INFO_BUTTON_CLASS, SHEET_PANEL_COMPACT_CLASS, playPhaseShowsCommandTab, playPhaseShowsCoreRulesTab } from "@/lib/builderUi";
+import { playPhasePanelAbilities, playPhasePanelCommands } from "@/lib/playPhasePanel";
 import { castValueLabel, chantValueLabel } from "@/lib/abilityUi";
 import { isSpearheadList } from "@/engine/spearhead";
 import { coreRulesForPhase } from "@/engine/coreRules";
@@ -28,16 +36,15 @@ import {
   type PhaseWeaponRow,
   type PlayPhaseId,
 } from "@/engine/phases";
-import type {
-  ArmyList,
-  DatasheetSubject,
-  FactionCatalogue,
-  UnitWeapon,
-} from "@/engine/types";
+import {
+  addHiddenPhaseSelection,
+  hiddenSelectionIdsForPhase,
+  pruneHiddenPhaseSelections,
+} from "@/engine/playHide";
 import { ModalFrame } from "./ModalFrame";
 import { ExpandableRuleCard } from "./ExpandableRuleCard";
 import { IosUnderlineTabs } from "./ios/IosUnderlineTabs";
-import { IosInfoIcon } from "./ios/SheetIconButton";
+import { IosInfoIcon, PlaySlotRow } from "./ios/SheetIconButton";
 
 type PhaseSubTab = "abilities" | "weapons" | "command" | "units" | "rules";
 
@@ -45,9 +52,15 @@ type Props = {
   list: ArmyList;
   faction: FactionCatalogue;
   onOpenSheet: (sheet: DatasheetSubject) => void;
+  onRemoveFromPhase?: (selectionId: string, phaseId: PlayPhaseId) => void;
 };
 
-export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
+export function PlayPhaseBoard({
+  list,
+  faction,
+  onOpenSheet,
+  onRemoveFromPhase,
+}: Props) {
   const boards = useMemo(() => buildPhaseBoards(list, faction), [list, faction]);
   const modifiers = useMemo(
     () => combatModifierNotes(list, faction),
@@ -57,6 +70,10 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
   const [subTabByPhase, setSubTabByPhase] = useState<
     Partial<Record<PlayPhaseId, PhaseSubTab>>
   >({});
+  const [removedByPhase, setRemovedByPhase] = useState<
+    Partial<Record<PlayPhaseId, string[]>>
+  >({});
+  const hiddenRef = useRef<Partial<Record<string, string[]>>>({});
   const [commandRulesOpen, setCommandRulesOpen] = useState(false);
   const active =
     boards.find((board) => board.phase.id === phaseId) ?? boards[0] ?? null;
@@ -68,22 +85,68 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
     () => regimentPlayGroups(list, faction),
     [list, faction],
   );
+  function isDestroyed(selectionId: string) {
+    const selection = getSelection(list, selectionId);
+    if (!selection) {
+      return false;
+    }
+    const unit = getListUnit(list, faction, selection.unitId);
+    return Boolean(unit && selectionIsDestroyed(selection, unit));
+  }
+
+  const removedIds = new Set(
+    [
+      ...hiddenSelectionIdsForPhase(list, phaseId),
+      ...(removedByPhase[phaseId] ?? []),
+    ].filter((id) => isDestroyed(id)),
+  );
+
+  useEffect(() => {
+    const next = pruneHiddenPhaseSelections(removedByPhase, list, faction);
+    if (next === removedByPhase) {
+      return;
+    }
+    hiddenRef.current = next;
+    setRemovedByPhase(next);
+  }, [list, faction, removedByPhase]);
+
+  const visibleRegimentGroups = regimentGroups
+    .map((group) => ({
+      ...group,
+      entries: group.entries.filter(
+        (entry) => !removedIds.has(entry.selectionId),
+      ),
+    }))
+    .filter((group) => group.entries.length > 0);
+  const visibleWeapons = (active?.weapons ?? []).filter(
+    (row) => !removedIds.has(row.selectionId),
+  );
+
+  function removeFromPhase(selectionId: string) {
+    const next = addHiddenPhaseSelection(
+      hiddenRef.current,
+      phaseId,
+      selectionId,
+    );
+    hiddenRef.current = next;
+    setRemovedByPhase(next);
+    onRemoveFromPhase?.(selectionId, phaseId);
+  }
+
   const isMovementPhase = active?.phase.id === "movement";
   const rosterAbilityRows =
     active?.abilities.filter((row) => rosterIds.has(row.selectionId)) ?? [];
-  const armyAbilityRows =
-    active?.abilities.filter((row) => !rosterIds.has(row.selectionId)) ?? [];
-
-  const armyPhaseAbilities =
-    armyAbilityRows.filter((row) => !isCommandAbility(row.ability.kind)) ?? [];
-  const rosterPhaseAbilities =
-    rosterAbilityRows.filter((row) => !isCommandAbility(row.ability.kind)) ?? [];
-  const phaseAbilities =
-    active?.phase.id === "passive"
-      ? [...armyPhaseAbilities, ...rosterPhaseAbilities]
-      : armyPhaseAbilities;
-  const armyCommands =
-    armyAbilityRows.filter((row) => isCommandAbility(row.ability.kind)) ?? [];
+  const phaseAbilities = playPhasePanelAbilities(
+    active?.phase.id ?? "passive",
+    active?.abilities ?? [],
+    rosterIds,
+  );
+  const visibleAbilities = phaseAbilities.filter(
+    (row) => !removedIds.has(row.selectionId),
+  );
+  const armyCommands = playPhasePanelCommands(active?.abilities ?? []).filter(
+    (row) => !removedIds.has(row.selectionId),
+  );
   const coreCommands = active
     ? coreCommandsForPhase(active.phase.id)
     : [];
@@ -93,13 +156,13 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
   const phaseCoreRules = active
     ? coreRulesForPhase(active.phase.id)
     : [];
-  const hasAbilities = phaseAbilities.length > 0;
-  const hasWeapons = (active?.weapons.length ?? 0) > 0;
+  const hasAbilities = visibleAbilities.length > 0;
+  const hasWeapons = visibleWeapons.length > 0;
   const hasCommands =
     showCommandTab && (coreCommands.length > 0 || armyCommands.length > 0);
   const hasArmyCommands = showCommandTab && armyCommands.length > 0;
   const hasCoreRules = showCoreRulesTab && phaseCoreRules.length > 0;
-  const hasUnits = isMovementPhase && regimentGroups.length > 0;
+  const hasUnits = isMovementPhase && visibleRegimentGroups.length > 0;
   const defaultSubTab = defaultPhaseSubTab(
     active?.phase.id ?? "passive",
     hasAbilities,
@@ -191,7 +254,7 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
               <div role="tabpanel" className="mt-4">
                 {subTab === "units" ? (
                   <ul className="flex flex-col gap-4">
-                    {regimentGroups.map((group) => (
+                    {visibleRegimentGroups.map((group) => (
                       <li key={group.id}>
                         <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
                           {group.subtitle ? (
@@ -214,9 +277,13 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
                                 key={entry.selectionId}
                                 className="rounded-xl bg-parchment-ink/5 px-3 py-3"
                               >
-                                <button
-                                  type="button"
-                                  onClick={() => {
+                                <PlaySlotRow
+                                  name={entry.unit.name}
+                                  subtitle={move || undefined}
+                                  subtitleBeside
+                                  reinforced={entry.reinforced}
+                                  sheetLabel={`${entry.unit.name} datasheet`}
+                                  onOpenSheet={() => {
                                     const sheet = findSheet(
                                       list,
                                       faction,
@@ -226,24 +293,17 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
                                       onOpenSheet(sheet);
                                     }
                                   }}
-                                  className="w-fit max-w-full text-left"
-                                >
-                                  <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
-                                    <p className="font-serif text-lg leading-tight">
-                                      {entry.unit.name}
-                                      {entry.reinforced ? (
-                                        <span className="ml-2 font-sans text-xs text-sheet-muted">
-                                          reinforced
-                                        </span>
-                                      ) : null}
-                                    </p>
-                                    {move ? (
-                                      <p className="text-sm font-medium text-parchment-ink">
-                                        {move}
-                                      </p>
-                                    ) : null}
-                                  </div>
-                                </button>
+                                  trailing={
+                                    isDestroyed(entry.selectionId) ? (
+                                      <RemoveFromPhaseButton
+                                        name={entry.unit.name}
+                                        onRemove={() =>
+                                          removeFromPhase(entry.selectionId)
+                                        }
+                                      />
+                                    ) : undefined
+                                  }
+                                />
                                 {unitRows.length > 0 ? (
                                   <ul className="mt-3 flex flex-col gap-2 border-t border-parchment-ink/10 pt-3">
                                     {unitRows.map((row) => (
@@ -267,7 +327,7 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
 
                 {subTab === "abilities" ? (
                   <ul className="flex flex-col gap-3">
-                    {phaseAbilities.map((row) => (
+                    {visibleAbilities.map((row) => (
                       <AbilityCard
                         key={`${row.selectionId}-${row.ability.name}`}
                         row={row}
@@ -278,7 +338,7 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
 
                 {subTab === "weapons" ? (
                   <ul className="flex flex-col gap-3">
-                    {groupWeapons(active.weapons).map((group) => {
+                    {groupWeapons(visibleWeapons).map((group) => {
                       const unit = getListUnit(
                         list,
                         faction,
@@ -308,9 +368,12 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
                       return (
                         <li key={group.selectionId}>
                           <div className="rounded-xl bg-parchment-ink/5 px-3 py-3">
-                            <button
-                              type="button"
-                              onClick={() => {
+                            <PlaySlotRow
+                              name={group.unitName}
+                              subtitle={defence || undefined}
+                              subtitleBeside
+                              sheetLabel={`${group.unitName} datasheet`}
+                              onOpenSheet={() => {
                                 const sheet = findSheet(
                                   list,
                                   faction,
@@ -320,19 +383,17 @@ export function PlayPhaseBoard({ list, faction, onOpenSheet }: Props) {
                                   onOpenSheet(sheet);
                                 }
                               }}
-                              className="w-fit max-w-full text-left"
-                            >
-                              <div className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
-                                <p className="font-serif text-lg leading-tight">
-                                  {group.unitName}
-                                </p>
-                                {defence ? (
-                                  <p className="text-sm font-medium text-parchment-ink">
-                                    {defence}
-                                  </p>
-                                ) : null}
-                              </div>
-                            </button>
+                              trailing={
+                                isDestroyed(group.selectionId) ? (
+                                  <RemoveFromPhaseButton
+                                    name={group.unitName}
+                                    onRemove={() =>
+                                      removeFromPhase(group.selectionId)
+                                    }
+                                  />
+                                ) : undefined
+                              }
+                            />
                             {unitMods.length > 0 ? (
                               <ul className="mt-2 flex flex-col gap-1">
                                 {unitMods.map((note) => (
@@ -575,6 +636,28 @@ function WeaponStatLine({
         </span>
       ))}
     </span>
+  );
+}
+
+function RemoveFromPhaseButton({
+  name,
+  onRemove,
+}: {
+  name: string;
+  onRemove: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      aria-label={`Remove ${name} from this phase`}
+      onClick={(event) => {
+        event.stopPropagation();
+        onRemove();
+      }}
+      className="rounded-md bg-illegal/15 px-2 py-1 text-xs tracking-wide uppercase text-illegal"
+    >
+      Remove
+    </button>
   );
 }
 

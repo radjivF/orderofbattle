@@ -79,6 +79,9 @@ export function ContentDoc({
           <Link href="/about" className={linkClass}>
             About
           </Link>
+          <Link href="/updates" className={linkClass}>
+            What&apos;s new
+          </Link>
           <Link href="/" className={linkClass}>
             Home
           </Link>

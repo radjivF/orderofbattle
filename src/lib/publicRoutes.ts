@@ -8,6 +8,7 @@ export type PublicRoute = {
 export const STATIC_PUBLIC_ROUTES: PublicRoute[] = [
   { path: "/", title: "Home" },
   { path: "/about", title: "About" },
+  { path: "/updates", title: "What's new" },
   { path: "/faq", title: "FAQ" },
   { path: "/guides", title: "Guides" },
   {

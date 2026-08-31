@@ -64,11 +64,12 @@ export function SheetLinkIcon({ className = "h-4 w-4" }: { className?: string })
 }
 
 const OPEN_SHEET_BUTTON_CLASS =
-  "flex w-fit max-w-full min-w-0 items-start gap-0 text-left active:opacity-60";
+  "flex max-w-full min-w-0 items-start gap-0 text-left active:opacity-60";
 
 function OpenSheetButton({
   name,
   subtitle,
+  subtitleBeside = false,
   sheetLabel,
   onOpenSheet,
   reinforced,
@@ -78,6 +79,7 @@ function OpenSheetButton({
 }: {
   name: string;
   subtitle?: string;
+  subtitleBeside?: boolean;
   sheetLabel: string;
   onOpenSheet: (event: MouseEvent<HTMLButtonElement>) => void;
   reinforced?: boolean;
@@ -90,12 +92,18 @@ function OpenSheetButton({
       type="button"
       aria-label={sheetLabel}
       onClick={onOpenSheet}
-      className={OPEN_SHEET_BUTTON_CLASS}
+      className={`${OPEN_SHEET_BUTTON_CLASS} ${subtitleBeside ? "w-full" : "w-fit"}`}
     >
       <span className={iconClassName}>
         <IosDatasheetIcon />
       </span>
-      <span className="min-w-0 py-2 pr-2">
+      <span
+        className={
+          subtitleBeside
+            ? "flex min-w-0 flex-1 flex-wrap items-baseline justify-between gap-x-2 py-2 pr-2"
+            : "min-w-0 py-2 pr-2"
+        }
+      >
         <p className={nameClassName}>
           {name}
           {reinforced ? (
@@ -122,6 +130,7 @@ function OpenSheetButton({
 export function PlaySlotRow({
   name,
   subtitle,
+  subtitleBeside = false,
   sheetLabel,
   onOpenSheet,
   trailing,
@@ -129,6 +138,7 @@ export function PlaySlotRow({
 }: {
   name: string;
   subtitle?: string;
+  subtitleBeside?: boolean;
   sheetLabel: string;
   onOpenSheet: () => void;
   trailing?: ReactNode;
@@ -144,12 +154,21 @@ export function PlaySlotRow({
       <OpenSheetButton
         name={name}
         subtitle={subtitle}
+        subtitleBeside={subtitleBeside}
         sheetLabel={sheetLabel}
         onOpenSheet={openSheet}
         reinforced={reinforced}
         iconClassName={`${SHEET_LINK_ICON_WRAP_CLASS} h-10 w-10 sm:h-11 sm:w-11`}
-        nameClassName="font-serif text-base leading-snug sm:text-lg sm:leading-tight"
-        subtitleClassName="mt-1 text-xs leading-relaxed text-sheet-muted sm:mt-0.5 sm:text-sm"
+        nameClassName={
+          subtitleBeside
+            ? "min-w-0 font-serif text-base leading-snug sm:text-lg sm:leading-tight"
+            : "font-serif text-base leading-snug sm:text-lg sm:leading-tight"
+        }
+        subtitleClassName={
+          subtitleBeside
+            ? "shrink-0 text-sm font-medium text-parchment-ink"
+            : "mt-1 text-xs leading-relaxed text-sheet-muted sm:mt-0.5 sm:text-sm"
+        }
       />
       {trailing ? (
         <div className="w-full shrink-0 sm:ml-auto sm:w-auto">{trailing}</div>
