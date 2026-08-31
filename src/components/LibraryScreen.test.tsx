@@ -142,4 +142,28 @@ describe("LibraryScreen", () => {
     await user.click(screen.getByRole("button", { name: "Continue" }));
     expect(screen.getByRole("heading", { name: "Export list" }));
   });
+
+  it("presses the list card when opening list details", async () => {
+    armyStore.items = [blankArmy("stormcast-eternals", "Sigmar host")];
+    render(<LibraryScreen />);
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    const open = screen.getByRole("link", { name: "Open Sigmar host" });
+    const card = open.closest("article");
+
+    expect(card).not.toHaveAttribute("data-opening");
+    await user.click(open);
+    expect(card).toHaveAttribute("data-opening", "true");
+  });
+
+  it("does not press the card when duplicating", async () => {
+    armyStore.items = [blankArmy("stormcast-eternals", "Sigmar host")];
+    render(<LibraryScreen />);
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    const card = screen
+      .getByRole("link", { name: "Open Sigmar host" })
+      .closest("article");
+
+    await user.click(screen.getByRole("button", { name: "Duplicate" }));
+    expect(card).not.toHaveAttribute("data-opening");
+  });
 });

@@ -587,6 +587,8 @@ describe("iOS polish contracts", () => {
     expect(css).toContain(".pressable:active");
     expect(css).toContain("cursor: pointer");
     expect(css).toContain("transform: scale(0.97)");
+    expect(css).toContain(".library-card:has(.library-card-open:active)");
+    expect(css).toContain('.library-card[data-opening="true"]');
   });
 
   it("defines bottom sheet animation and grabber", () => {
@@ -651,6 +653,7 @@ describe("iOS polish contracts", () => {
   });
 
   it("uses pressable library cards and rounded-xl points cap", () => {
+    expect(LIBRARY_CARD_CLASS).toContain("library-card");
     expect(LIBRARY_CARD_CLASS).toContain("cursor-pointer");
     expect(LIBRARY_CARD_CLASS).toContain("rounded-2xl");
     expect(LIBRARY_CARD_CLASS).not.toContain("pressable");
@@ -666,8 +669,9 @@ describe("iOS polish contracts", () => {
       ),
       "utf8",
     );
-    expect(libraryCard).toContain("absolute inset-0 z-[1]");
+    expect(libraryCard).toContain("library-card-open absolute inset-0 z-[1]");
     expect(libraryCard).toContain("LIBRARY_CARD_LIST_NAME_INPUT_CLASS");
+    expect(libraryCard).toContain('data-opening={opening ? "true" : undefined}');
     expect(libraryCard).not.toContain('sr-only">Open list');
   });
 
