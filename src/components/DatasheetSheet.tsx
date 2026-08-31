@@ -16,7 +16,7 @@ import {
   SHEET_HEADER_START_CLASS,
 } from "@/lib/builderUi";
 import { AbilityMeta } from "./AbilityMeta";
-import { UnitTypeChips } from "./KeywordChip";
+import { KeywordChips } from "./KeywordChip";
 import { ModalFrame } from "./ModalFrame";
 import { RuleText } from "./RuleText";
 import { SheetCloseButton } from "./ios/SheetIconButton";
@@ -88,7 +88,7 @@ export function DatasheetSheet({ sheet, hidePoints, onClose }: Props) {
             {banishment ? <Stat label="Banish" value={banishment} /> : null}
             {ward ? <Stat label="Ward" value={ward} /> : null}
           </dl>
-          <UnitTypeChips categories={sheet.categories} />
+          <KeywordChips categories={sheet.categories} />
 
           {ranged.length > 0 ? (
             <WeaponBlock title="Ranged weapons" weapons={ranged} ranged />

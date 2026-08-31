@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { codedKeywords, keywordChipClass } from "./keywordChip";
+import { datasheetKeywords, keywordChipClass } from "./keywordChip";
 
 describe("keywordChipClass", () => {
   it("gives each coded keyword a distinct token", () => {
@@ -62,45 +62,45 @@ describe("keywordChipClass", () => {
   });
 });
 
-describe("codedKeywords", () => {
-  it("keeps coded keywords and drops faction names", () => {
+describe("datasheetKeywords", () => {
+  it("keeps every keyword in original order, including faction names", () => {
     expect(
-      codedKeywords([
+      datasheetKeywords([
         "FLY",
         "CASTELITE",
-        "WIZARD",
+        "WIZARD (1)",
         "INFANTRY",
         "HERO",
-        "PRIEST",
+        "PRIEST (1)",
       ]),
-    ).toEqual(["HERO", "INFANTRY", "WIZARD", "PRIEST", "FLY"]);
+    ).toEqual([
+      "FLY",
+      "CASTELITE",
+      "WIZARD (1)",
+      "INFANTRY",
+      "HERO",
+      "PRIEST (1)",
+    ]);
   });
 
   it("includes Beast and War Machine", () => {
-    expect(codedKeywords(["CASTELITE", "WAR MACHINE", "BEAST"])).toEqual([
-      "BEAST",
+    expect(datasheetKeywords(["CASTELITE", "WAR MACHINE", "BEAST"])).toEqual([
+      "CASTELITE",
       "WAR MACHINE",
+      "BEAST",
     ]);
   });
 
-  it("returns nothing when there are no coded keywords", () => {
-    expect(codedKeywords([])).toEqual([]);
-    expect(codedKeywords(["CASTELITE", "WARD (6+)"])).toEqual([]);
+  it("drops Ward because it is already a stat", () => {
+    expect(datasheetKeywords([])).toEqual([]);
+    expect(datasheetKeywords(["CASTELITE", "WARD (6+)"])).toEqual(["CASTELITE"]);
+    expect(datasheetKeywords(["WARD (6+)"])).toEqual([]);
   });
 
-  it("is case-insensitive and normalizes to uppercase", () => {
-    expect(codedKeywords(["hero", "infantry", "fly"])).toEqual([
-      "HERO",
-      "INFANTRY",
-      "FLY",
-    ]);
-  });
-
-  it("treats Wizard and Priest ranks as the coded keyword", () => {
-    expect(codedKeywords(["WIZARD (2)", "PRIEST (1)", "WARD (6+)"])).toEqual([
-      "WIZARD",
-      "PRIEST",
-    ]);
+  it("keeps Wizard and Priest ranks as written", () => {
+    expect(
+      datasheetKeywords(["WIZARD (2)", "PRIEST (1)", "WARD (6+)"]),
+    ).toEqual(["WIZARD (2)", "PRIEST (1)"]);
     expect(keywordChipClass("PRIEST (1)")).toContain("sigmarite");
     expect(keywordChipClass("WIZARD (2)")).toContain("arcane");
   });

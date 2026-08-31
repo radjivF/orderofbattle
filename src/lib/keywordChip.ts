@@ -48,14 +48,11 @@ export function keywordChipClass(keyword: string): string {
   return `${PILL_CLASS} ${color}`;
 }
 
-/** Battlefield roles plus Fly / Wizard / Priest, in display order. */
-export function codedKeywords(categories: string[]): string[] {
-  const present = new Set(
-    categories
-      .map(codedKey)
-      .filter((keyword): keyword is (typeof CODED_ORDER)[number] =>
-        Boolean(keyword),
-      ),
-  );
-  return CODED_ORDER.filter((keyword) => present.has(keyword));
+function isWardKeyword(keyword: string): boolean {
+  return /^WARD(\s*\(.+\))?$/i.test(keyword.trim());
+}
+
+/** Datasheet keyword pills: original labels, minus Ward (already a stat). */
+export function datasheetKeywords(categories: string[]): string[] {
+  return categories.filter((keyword) => !isWardKeyword(keyword));
 }

@@ -22,7 +22,7 @@ function unit(overrides: Partial<CatalogueUnit> = {}): CatalogueUnit {
   };
 }
 
-describe("DatasheetSheet unit type", () => {
+describe("DatasheetSheet keywords", () => {
   beforeEach(() => {
     cleanup();
     Object.defineProperty(window, "matchMedia", {
@@ -38,25 +38,31 @@ describe("DatasheetSheet unit type", () => {
     });
   });
 
-  it("shows type chips below the stats card, with no Keywords heading", () => {
+  it("shows every keyword as a pill below the stats card, including faction names", () => {
     render(<DatasheetSheet sheet={unit()} onClose={vi.fn()} />);
 
     expect(screen.getByText("Move")).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Keywords" })).toBeNull();
-    expect(screen.queryByText("Keywords")).toBeNull();
 
-    const types = screen.getByRole("list", { name: "Unit type" });
-    expect(types).toHaveTextContent("HERO");
-    expect(types).toHaveTextContent("INFANTRY");
-    expect(screen.queryByText("CASTELITE")).toBeNull();
+    const keywords = screen.getByRole("list", { name: "Keywords" });
+    expect(keywords).toHaveTextContent("HERO");
+    expect(keywords).toHaveTextContent("INFANTRY");
+    expect(keywords).toHaveTextContent("CASTELITE");
   });
 
-  it("hides type chips when there are no battlefield types", () => {
+  it("keeps Wizard rank and hides Ward", () => {
     render(
-      <DatasheetSheet sheet={unit({ categories: ["CASTELITE"] })} onClose={vi.fn()} />,
+      <DatasheetSheet
+        sheet={unit({
+          categories: ["HERO", "WIZARD (1)", "WARD (6+)", "CASTELITE"],
+        })}
+        onClose={vi.fn()}
+      />,
     );
 
-    expect(screen.queryByRole("list", { name: "Unit type" })).toBeNull();
-    expect(screen.queryByRole("heading", { name: "Keywords" })).toBeNull();
+    const keywords = screen.getByRole("list", { name: "Keywords" });
+    expect(keywords).toHaveTextContent("WIZARD (1)");
+    expect(keywords).toHaveTextContent("CASTELITE");
+    expect(keywords).not.toHaveTextContent("WARD");
   });
 });
