@@ -22,7 +22,7 @@ function unit(overrides: Partial<CatalogueUnit> = {}): CatalogueUnit {
   };
 }
 
-describe("DatasheetSheet keywords", () => {
+describe("DatasheetSheet unit type", () => {
   beforeEach(() => {
     cleanup();
     Object.defineProperty(window, "matchMedia", {
@@ -38,23 +38,25 @@ describe("DatasheetSheet keywords", () => {
     });
   });
 
-  it("shows each keyword as its own tag, not a comma list", () => {
+  it("shows type chips with the stats, not a Keywords heading", () => {
     render(<DatasheetSheet sheet={unit()} onClose={vi.fn()} />);
 
-    const keywords = screen.getByRole("list", { name: "Keywords" });
-    expect(keywords).toHaveTextContent("HERO");
-    expect(keywords).toHaveTextContent("INFANTRY");
-    expect(keywords).toHaveTextContent("CASTELITE");
-    expect(screen.queryByText("HERO, INFANTRY, CASTELITE")).toBeNull();
-    expect(screen.getAllByRole("listitem")).toHaveLength(3);
+    expect(screen.getByText("Move")).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Keywords" })).toBeNull();
+    expect(screen.queryByText("Keywords")).toBeNull();
+
+    const types = screen.getByRole("list", { name: "Unit type" });
+    expect(types).toHaveTextContent("HERO");
+    expect(types).toHaveTextContent("INFANTRY");
+    expect(screen.queryByText("CASTELITE")).toBeNull();
   });
 
-  it("hides the keywords block when there are none", () => {
+  it("hides type chips when there are no battlefield types", () => {
     render(
-      <DatasheetSheet sheet={unit({ categories: [] })} onClose={vi.fn()} />,
+      <DatasheetSheet sheet={unit({ categories: ["CASTELITE"] })} onClose={vi.fn()} />,
     );
 
+    expect(screen.queryByRole("list", { name: "Unit type" })).toBeNull();
     expect(screen.queryByRole("heading", { name: "Keywords" })).toBeNull();
-    expect(screen.queryByRole("list", { name: "Keywords" })).toBeNull();
   });
 });

@@ -16,7 +16,7 @@ import {
   SHEET_HEADER_START_CLASS,
 } from "@/lib/builderUi";
 import { AbilityMeta } from "./AbilityMeta";
-import { KeywordChip } from "./KeywordChip";
+import { UnitTypeChips } from "./KeywordChip";
 import { ModalFrame } from "./ModalFrame";
 import { RuleText } from "./RuleText";
 import { SheetCloseButton } from "./ios/SheetIconButton";
@@ -76,36 +76,21 @@ export function DatasheetSheet({ sheet, hidePoints, onClose }: Props) {
         </div>
 
         <div className="modal-sheet-scroll overflow-y-auto px-5 pb-8">
-          <dl
-            className={`grid gap-2 rounded-xl bg-parchment-ink/5 px-3 py-3 text-center ${
-              statCount >= 5 ? "grid-cols-5" : "grid-cols-4"
-            }`}
-          >
-            <Stat label="Move" value={stats.move} />
-            <Stat label="Health" value={stats.health} />
-            <Stat label="Save" value={stats.save} />
-            {stats.control ? <Stat label="Control" value={stats.control} /> : null}
-            {banishment ? <Stat label="Banish" value={banishment} /> : null}
-            {ward ? <Stat label="Ward" value={ward} /> : null}
-          </dl>
-
-          {sheet.categories.length > 0 ? (
-            <section className="mt-5">
-              <h3 className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-                Keywords
-              </h3>
-              <ul
-                aria-label="Keywords"
-                className="mt-2 flex flex-wrap gap-1.5"
-              >
-                {sheet.categories.map((keyword) => (
-                  <li key={keyword}>
-                    <KeywordChip keyword={keyword} />
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ) : null}
+          <div className="rounded-xl bg-parchment-ink/5 px-3 py-3">
+            <dl
+              className={`grid gap-2 text-center ${
+                statCount >= 5 ? "grid-cols-5" : "grid-cols-4"
+              }`}
+            >
+              <Stat label="Move" value={stats.move} />
+              <Stat label="Health" value={stats.health} />
+              <Stat label="Save" value={stats.save} />
+              {stats.control ? <Stat label="Control" value={stats.control} /> : null}
+              {banishment ? <Stat label="Banish" value={banishment} /> : null}
+              {ward ? <Stat label="Ward" value={ward} /> : null}
+            </dl>
+            <UnitTypeChips categories={sheet.categories} />
+          </div>
 
           {ranged.length > 0 ? (
             <WeaponBlock title="Ranged weapons" weapons={ranged} ranged />
