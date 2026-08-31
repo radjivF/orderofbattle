@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { blankArmy, blankPathToGlory, normalizeArmyList } from "@/engine/listFactories";
 import { createId } from "@/lib/id";
 import { getFaction, unitHasKeyword } from "@/engine/queries";
+import type { ArmyList } from "@/engine/types";
 import { summarize } from "@/engine/validate";
 import {
   applyPathToGloryPacks,
@@ -145,7 +146,7 @@ describe("normalizeArmyList", () => {
       ...blankArmy("stormcast-eternals"),
       kind: "pathToGlory",
       pathToGlory: { battlepackPreset: "ravaged-coast" },
-    } as ArmyList);
+    } as unknown as ArmyList);
     expect(list.pathToGlory?.packIds).toEqual(["ascension", "ravaged-coast"]);
   });
 });
