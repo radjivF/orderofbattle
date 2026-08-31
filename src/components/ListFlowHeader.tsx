@@ -106,16 +106,19 @@ function BuilderHeaderRow({
   );
   const storedList = listId ? lists?.find((item) => item.id === listId) : undefined;
   const towStored = storedList && isTowList(storedList) ? storedList : undefined;
-  const storedCatalogue =
-    storedList && !towStored ? getFaction(storedList.factionId) : undefined;
+  const aosStored =
+    storedList && !isTowList(storedList) ? storedList : undefined;
+  const storedCatalogue = aosStored
+    ? getFaction(aosStored.factionId)
+    : undefined;
   const storedTotals = towStored
     ? {
         points: towSummarize(towStored).points,
         pointsCap: towStored.pointsCap,
         drops: 0,
       }
-    : storedList && storedCatalogue
-      ? summarize(storedList, storedCatalogue)
+    : aosStored && storedCatalogue
+      ? summarize(aosStored, storedCatalogue)
       : null;
 
   const headerDisplay = resolveBuilderHeaderDisplay({
