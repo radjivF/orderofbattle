@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import type {
   CatalogueUnit,
   PathToGlorySelectionState,
@@ -35,6 +36,7 @@ type Props = {
   packIds: PathToGloryPackId[];
   showBattleWounds: boolean;
   onChange: (next: Selection) => void;
+  onOpenDatasheet?: (unit: CatalogueUnit) => void;
 };
 
 export function PathToGloryUnitExtras({
@@ -43,15 +45,13 @@ export function PathToGloryUnitExtras({
   packIds,
   showBattleWounds,
   onChange,
+  onOpenDatasheet,
 }: Props) {
   const state = selection.pathToGlory;
   const paths = pathsForPacks(packIds);
   const rank = rankLabel(rankForRenown(state?.renown ?? 0));
-  const anvilRanks = unit?.anvilRanks ?? [];
-  const showAnvilRank = Boolean(
-    unit && isAnvilOfApotheosis(unit) && anvilRanks.length,
-  );
   const path = findPath(state?.pathId);
+  const [pathOpen, setPathOpen] = useState(true);
   const optionIds = prunePathOptionIds(
     path,
     state?.pathOptionIds,
@@ -67,51 +67,125 @@ export function PathToGloryUnitExtras({
       className="mt-2 flex flex-col gap-2 rounded-xl bg-parchment-ink/5 px-3 py-2.5"
       onClick={(event) => event.stopPropagation()}
     >
-      {showAnvilRank ? (
-        <label className="flex flex-col gap-1 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
-          Hero rank
-          <select
-            value={state?.anvilRankId ?? anvilRanks[0]?.id ?? ""}
-            onChange={(event) =>
-              patchPath({ anvilRankId: event.target.value || null })
-            }
-            className={fieldClass}
-          >
-            {anvilRanks.map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.name} · {item.points} pts
-              </option>
-            ))}
-          </select>
-        </label>
-      ) : null}
       {unit && isAnvilOfApotheosis(unit) ? (
         <PathToGloryAnvilForge
           selection={selection}
           unit={unit}
-          onPicks={(anvilPickIds) => patchPath({ anvilPickIds })}
+          onPatch={patchPath}
+          onOpenDatasheet={onOpenDatasheet}
         />
       ) : null}
-      <label className="flex flex-col gap-1 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
-        Path
-        <select
-          value={state?.pathId ?? ""}
-          onChange={(event) =>
-            patchPath({
-              pathId: event.target.value || null,
-              pathOptionIds: [],
-            })
-          }
-          className={fieldClass}
+      <div className="flex flex-col gap-2">
+        <button
+          type="button"
+          aria-expanded={pathOpen}
+          aria-label={path ? `Path: ${path.name}` : "Path"}
+          onClick={() => setPathOpen((open) => !open)}
+          className="flex min-h-10 w-full items-center justify-between gap-2 text-left text-xs font-semibold tracking-wide uppercase text-sheet-muted"
         >
-          <option value="">None</option>
-          {paths.map((item) => (
-            <option key={item.id} value={item.id}>
-              {item.name}
-            </option>
-          ))}
-        </select>
-      </label>
+          <span>Path</span>
+          <span className="flex min-w-0 items-center gap-2 font-sans font-normal normal-case tracking-normal">
+            {path ? (
+              <span className="truncate text-sm text-parchment-ink">
+                {path.name}
+              </span>
+            ) : null}
+            <span
+              aria-hidden="true"
+              className={`shrink-0 transition ${pathOpen ? "rotate-180" : ""}`}
+            >
+              ▾
+            </span>
+          </span>
+        </button>
+        {pathOpen ? (
+          <>
+            <select
+              aria-label="Choose Path"
+              value={state?.pathId ?? ""}
+              onChange={(event) =>
+                patchPath({
+                  pathId: event.target.value || null,
+                  pathOptionIds: [],
+                })
+              }
+              className={fieldClass}
+            >
+              <option value="">None</option>
+              {paths.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
+            {path ? (
+              <div className="flex flex-col gap-2">
+                <p className="text-xs font-semibold tracking-wide uppercase text-sheet-muted">
+                  Path abilities
+                </p>
+                {PATH_ABILITY_RANKS.map((abilityRank) => {
+                  const options = pathOptionsForRank(path, abilityRank);
+                  if (options.length === 0) {
+                    return null;
+                  }
+                  const unlocked = rankAbilityUnlocked(
+                    state?.renown ?? 0,
+                    abilityRank,
+                  );
+                  const heading = unlocked
+                    ? `${rankLabel(abilityRank)} · pick 1`
+                    : `${rankLabel(abilityRank)} · ${renownToUnlockRank(abilityRank)} renown`;
+                  return (
+                    <div key={abilityRank} className="flex flex-col gap-1.5">
+                      <p className="text-[11px] font-semibold tracking-wide uppercase text-sheet-muted">
+                        {heading}
+                      </p>
+                      <div
+                        role="group"
+                        aria-label={heading}
+                        className="grid grid-cols-2 gap-1.5"
+                      >
+                        {options.map((option) => {
+                          const checked = optionIds.includes(option.id);
+                          return (
+                            <button
+                              key={option.id}
+                              type="button"
+                              aria-pressed={checked}
+                              disabled={!unlocked}
+                              onClick={() =>
+                                patchPath({
+                                  pathOptionIds: pickPathOption(
+                                    path,
+                                    optionIds,
+                                    option.id,
+                                    state?.renown ?? 0,
+                                  ),
+                                })
+                              }
+                              className={`rounded-lg px-2 py-2 text-left text-sm font-sans font-normal normal-case tracking-normal ${
+                                unlocked
+                                  ? "cursor-pointer"
+                                  : "cursor-not-allowed opacity-50"
+                              } ${
+                                checked
+                                  ? "bg-aether/15 text-parchment-ink ring-1 ring-aether/40"
+                                  : "bg-parchment-ink/5 text-parchment-ink"
+                              }`}
+                            >
+                              {option.name}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : null}
+          </>
+        ) : null}
+      </div>
       <label className="flex flex-col gap-1 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
         Renown
         <span className="flex items-center gap-2 font-sans font-normal normal-case tracking-normal">
@@ -136,74 +210,6 @@ export function PathToGloryUnitExtras({
           <span className="text-sm text-sheet-muted">{rank}</span>
         </span>
       </label>
-      {path ? (
-        <div className="flex flex-col gap-2">
-          <p className="text-xs font-semibold tracking-wide uppercase text-sheet-muted">
-            Path abilities
-          </p>
-          {PATH_ABILITY_RANKS.map((abilityRank) => {
-            const options = pathOptionsForRank(path, abilityRank);
-            if (options.length === 0) {
-              return null;
-            }
-            const unlocked = rankAbilityUnlocked(
-              state?.renown ?? 0,
-              abilityRank,
-            );
-            return (
-              <div key={abilityRank} className="flex flex-col gap-1.5">
-                <p className="text-[11px] font-semibold tracking-wide uppercase text-sheet-muted">
-                  {rankLabel(abilityRank)}
-                  {unlocked
-                    ? " · pick 1"
-                    : ` · ${renownToUnlockRank(abilityRank)} renown`}
-                </p>
-                {options.map((option) => {
-                  const checked = optionIds.includes(option.id);
-                  return (
-                    <label
-                      key={option.id}
-                      className={`flex items-start gap-2 rounded-lg px-2 py-2 text-sm font-sans font-normal normal-case tracking-normal ${
-                        unlocked
-                          ? "cursor-pointer"
-                          : "cursor-not-allowed opacity-50"
-                      }`}
-                    >
-                      <input
-                        type="checkbox"
-                        checked={checked}
-                        disabled={!unlocked}
-                        onChange={() =>
-                          patchPath({
-                            pathOptionIds: pickPathOption(
-                              path,
-                              optionIds,
-                              option.id,
-                              state?.renown ?? 0,
-                            ),
-                          })
-                        }
-                        aria-label={option.name}
-                        className="mt-0.5 size-4 shrink-0 accent-aether"
-                      />
-                      <span className="min-w-0">
-                        <span className="block text-parchment-ink">
-                          {option.name}
-                        </span>
-                        {option.ability.timing ? (
-                          <span className="block text-xs text-sheet-muted">
-                            {option.ability.timing}
-                          </span>
-                        ) : null}
-                      </span>
-                    </label>
-                  );
-                })}
-              </div>
-            );
-          })}
-        </div>
-      ) : null}
       {showBattleWounds ? (
         <>
           <label className="flex flex-col gap-1 text-xs font-semibold tracking-wide uppercase text-sheet-muted">

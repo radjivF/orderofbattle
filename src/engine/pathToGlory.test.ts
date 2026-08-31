@@ -82,6 +82,8 @@ describe("blankPathToGlory", () => {
     expect(list.pathToGlory?.manifestationIds).toEqual([]);
     expect(list.spellLoreId).toBeNull();
     expect(list.manifestationLoreId).toBeNull();
+    expect(list.scourgeRealm).toBeNull();
+    expect(list.battleTacticCardIds).toEqual([]);
     expect(list.regimentOfRenown).toBeNull();
     expect(showsBattleWoundsAndScars(list)).toBe(true);
     expect(isPathToGloryList(blankArmy("stormcast-eternals"))).toBe(false);
@@ -141,6 +143,16 @@ describe("Path abilities", () => {
 });
 
 describe("normalizeArmyList", () => {
+  it("strips Scourge season and battle tactics from Path to Glory lists", () => {
+    const list = normalizeArmyList({
+      ...blankPathToGlory("stormcast-eternals", "ascension"),
+      scourgeRealm: "aqshy",
+      battleTacticCardIds: ["tactic-1"],
+    } as unknown as ArmyList);
+    expect(list.scourgeRealm).toBeNull();
+    expect(list.battleTacticCardIds).toEqual([]);
+  });
+
   it("migrates a saved battlepackPreset into independent pack ids", () => {
     const list = normalizeArmyList({
       ...blankArmy("stormcast-eternals"),

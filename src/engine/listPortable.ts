@@ -279,7 +279,10 @@ function parseListBlock(block: string): ArmyList | null {
     specialEnhancements: [],
     battleTacticCardIds: [],
     battleTacticStage: {},
-    scourgeRealm: catalogue.kind === "spearhead" ? null : "aqshy",
+    scourgeRealm:
+      catalogue.kind === "spearhead" || catalogue.kind === "pathToGlory"
+        ? null
+        : "aqshy",
     generalRegimentId: null,
     regiments: [],
     auxiliaries: [],

@@ -98,7 +98,7 @@ export function exportArmyListText(
   lines.push("");
   lines.push(list.name.trim() || "Untitled list");
   lines.push(faction.name);
-  if (list.scourgeRealm) {
+  if (list.scourgeRealm && !isPathToGloryList(list)) {
     lines.push(
       list.scourgeRealm === "aqshy"
         ? "Scourge of Aqshy"
@@ -159,9 +159,11 @@ export function exportArmyListText(
     }
   }
 
-  const tacticNames = (list.battleTacticCardIds ?? [])
-    .map((id) => battleTactics.find((card) => card.id === id)?.name)
-    .filter((name): name is string => Boolean(name));
+  const tacticNames = isPathToGloryList(list)
+    ? []
+    : (list.battleTacticCardIds ?? [])
+        .map((id) => battleTactics.find((card) => card.id === id)?.name)
+        .filter((name): name is string => Boolean(name));
   if (tacticNames.length > 0) {
     lines.push(`Battle tactic cards: ${tacticNames.join(", ")}`);
   }

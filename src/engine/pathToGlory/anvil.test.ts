@@ -14,6 +14,7 @@ import {
   anvilRankForSelection,
   pickAnvilOption,
   resolveAnvilUnit,
+  visibleAnvilForgeGroups,
 } from "./anvil";
 
 const passive = (name: string): UnitAbility => ({
@@ -272,6 +273,25 @@ describe("Anvil forge catalogue", () => {
       "Battle Mount Upgrades",
       "Upgrades",
     ]));
+  });
+
+  it("hides Battle Mount Upgrades until a mount is picked", () => {
+    const faction = getFaction("stormcast-eternals");
+    const anvil = faction?.units.find(
+      (unit) => unit.name === "Anvil of Apotheosis: Stormcast Eternals Hero",
+    );
+    expect(anvil).toBeTruthy();
+    if (!anvil) {
+      return;
+    }
+    const names = (ids: string[]) =>
+      visibleAnvilForgeGroups(anvil, ids).map((group) => group.name);
+    expect(names([])).not.toContain("Battle Mount Upgrades");
+    const beast = anvil.anvilForge
+      ?.find((group) => group.name === "Battle Mount")
+      ?.options[0];
+    expect(beast).toBeTruthy();
+    expect(names([beast!.id])).toContain("Battle Mount Upgrades");
   });
 });
 

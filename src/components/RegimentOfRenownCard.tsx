@@ -249,6 +249,7 @@ function RoRSlotRow({
         packIds={pathToGloryPackIds}
         showBattleWounds={Boolean(showBattleWounds)}
         onChange={(next) => onPatchSelection(next.id, next)}
+        onOpenDatasheet={onOpenDatasheet}
       />
     ) : null;
   const enhancements = (

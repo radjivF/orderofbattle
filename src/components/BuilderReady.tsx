@@ -154,7 +154,9 @@ export function BuilderReady({
     const nextGeneral = resolveGeneralRegimentId(list, faction);
     const nextScourgeRealm = spearhead
       ? list.scourgeRealm
-      : (list.scourgeRealm ?? "aqshy");
+      : pathToGlory
+        ? null
+        : (list.scourgeRealm ?? "aqshy");
     if (
       nextPrayer === list.prayerLoreId &&
       nextSpell === list.spellLoreId &&
@@ -525,7 +527,7 @@ export function BuilderReady({
                 {!optionsOpen ? (
                   <span>
                     {isPathToGloryList(list)
-                      ? "Points · Battlepacks · Lores · Tactics"
+                      ? "Points · Battlepacks · Lores"
                       : "Points · Lores · Tactics"}
                   </span>
                 ) : null}
@@ -658,6 +660,8 @@ export function BuilderReady({
                 </label>
               ) : null}
 
+              {!pathToGlory ? (
+                <>
               <label className="flex flex-col gap-2 text-sm text-parchment/80">
                 Scourge season
                 <select
@@ -691,6 +695,8 @@ export function BuilderReady({
                   onCommit={(next) => void commit(next)}
                 />
               </div>
+                </>
+              ) : null}
             </div>
             ) : null}
           </section>
@@ -757,7 +763,7 @@ export function BuilderReady({
           <PlaySummary list={list} faction={faction} />
         ) : null}
 
-        {forPlayMode && playTab === "phases" && !spearhead ? (
+        {forPlayMode && playTab === "phases" && !spearhead && !pathToGlory ? (
           <BattleTacticTracker
             list={list}
             onStageChange={(cardId, stage) =>

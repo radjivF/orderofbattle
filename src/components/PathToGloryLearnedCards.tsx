@@ -1,6 +1,12 @@
 "use client";
 
-import type { ArmyList, FactionCatalogue, ManifestationModel } from "@/engine/types";
+import { useState } from "react";
+import type {
+  ArmyList,
+  FactionCatalogue,
+  ManifestationModel,
+  UnitAbility,
+} from "@/engine/types";
 import {
   factionManifestationPicks,
   factionSpellPicks,
@@ -14,7 +20,7 @@ import {
 import { manifestationStatLine } from "@/engine/queries";
 import { castValueLabel } from "@/lib/abilityUi";
 import { RuleText } from "./RuleText";
-import { PlaySlotRow } from "./ios/SheetIconButton";
+import { PlaySlotRow, SheetLinkButton } from "./ios/SheetIconButton";
 
 type SpellProps = {
   list: ArmyList;
@@ -59,19 +65,7 @@ export function PathToGlorySpellCard({
         <ul className="flex flex-col gap-3">
           {learned.map((item) => (
             <li key={item.key}>
-              <p className="font-serif text-lg leading-tight">
-                {item.power.name}
-              </p>
-              <p className="mt-0.5 text-xs tracking-wide uppercase text-aether">
-                {item.loreName}
-              </p>
-              {item.power.effect ? (
-                <RuleText
-                  text={item.power.effect}
-                  label="Effect · "
-                  className="mt-2 text-sm"
-                />
-              ) : null}
+              <SpellRules power={item.power} loreName={item.loreName} />
             </li>
           ))}
         </ul>
@@ -85,6 +79,7 @@ export function PathToGlorySpellCard({
               subtitle: item.power.castingValue
                 ? castValueLabel(item.power.castingValue)
                 : "",
+              power: item.power,
             })),
           )}
           selectedIds={selected}
@@ -177,6 +172,7 @@ export function PathToGloryManifestationCard({
               ]
                 .filter(Boolean)
                 .join(" · "),
+              onOpenSheet: () => onOpenSheet(item.model),
             })),
           )}
           selectedIds={selected}
@@ -198,6 +194,8 @@ type PickRow = {
   loreName: string;
   name: string;
   subtitle: string;
+  power?: UnitAbility;
+  onOpenSheet?: () => void;
 };
 
 function groupByLore(rows: PickRow[]): { loreName: string; items: PickRow[] }[] {
@@ -223,48 +221,181 @@ function LearnedGroups({
   onToggle: (id: string) => void;
 }) {
   return (
-    <ul className="flex flex-col gap-4">
+    <ul className="flex flex-col gap-2">
       {groups.map((group) => (
         <li key={group.loreName}>
-          <p className="mb-2 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
-            {group.loreName}
-          </p>
-          <ul className="flex flex-col gap-2">
-            {group.items.map((item) => {
-              const checked = selectedIds.includes(item.id);
-              return (
-                <li key={item.id}>
-                  <label
-                    className={`flex cursor-pointer items-start gap-3 rounded-xl px-3 py-3 ring-1 transition ${
-                      checked
-                        ? "bg-aether/15 ring-aether/40"
-                        : "bg-parchment-ink/5 ring-parchment-ink/10"
-                    }`}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      onChange={() => onToggle(item.id)}
-                      aria-label={item.name}
-                      className="mt-0.5 size-5 shrink-0 accent-aether"
-                    />
-                    <span className="min-w-0 flex-1">
-                      <span className="block font-serif text-lg leading-tight text-parchment-ink">
-                        {item.name}
-                      </span>
-                      {item.subtitle ? (
-                        <span className="mt-0.5 block text-sm text-sheet-muted">
-                          {item.subtitle}
-                        </span>
-                      ) : null}
-                    </span>
-                  </label>
-                </li>
-              );
-            })}
-          </ul>
+          <LoreGroup
+            group={group}
+            selectedIds={selectedIds}
+            onToggle={onToggle}
+          />
         </li>
       ))}
     </ul>
+  );
+}
+
+function LoreGroup({
+  group,
+  selectedIds,
+  onToggle,
+}: {
+  group: { loreName: string; items: PickRow[] };
+  selectedIds: string[];
+  onToggle: (id: string) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const learned = group.items.filter((item) =>
+    selectedIds.includes(item.id),
+  ).length;
+
+  return (
+    <div className="rounded-xl bg-parchment-ink/5">
+      <button
+        type="button"
+        aria-expanded={open}
+        onClick={() => setOpen((value) => !value)}
+        className="flex min-h-11 w-full items-center justify-between gap-2 px-3 py-2 text-left text-xs font-semibold tracking-wide uppercase text-sheet-muted"
+      >
+        <span className="min-w-0 truncate">{group.loreName}</span>
+        <span className="flex shrink-0 items-center gap-2 font-sans font-normal normal-case tracking-normal">
+          {learned > 0 ? (
+            <span className="text-sm text-parchment-ink">{learned} learned</span>
+          ) : null}
+          <span
+            aria-hidden="true"
+            className={`transition ${open ? "rotate-180" : ""}`}
+          >
+            ▾
+          </span>
+        </span>
+      </button>
+      {open ? (
+        <ul className="flex flex-col gap-2 border-t border-parchment-ink/10 px-2 pb-2 pt-2">
+          {group.items.map((item) => (
+            <li key={item.id}>
+              <LearnedPick
+                item={item}
+                checked={selectedIds.includes(item.id)}
+                onToggle={() => onToggle(item.id)}
+              />
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
+
+function LearnedPick({
+  item,
+  checked,
+  onToggle,
+}: {
+  item: PickRow;
+  checked: boolean;
+  onToggle: () => void;
+}) {
+  const [rulesOpen, setRulesOpen] = useState(false);
+  const expandable = Boolean(
+    item.power?.timing || item.power?.declare || item.power?.effect,
+  );
+
+  return (
+    <div
+      className={`rounded-xl ring-1 ${
+        checked
+          ? "bg-aether/15 ring-aether/40"
+          : "bg-parchment-ink/5 ring-parchment-ink/10"
+      }`}
+    >
+      <div className="flex items-start gap-2 px-2 py-1">
+        <label className="flex min-h-11 min-w-0 flex-1 cursor-pointer items-start gap-2 py-2">
+          <input
+            type="checkbox"
+            checked={checked}
+            onChange={onToggle}
+            aria-label={item.name}
+            className="mt-1 size-5 shrink-0 accent-aether"
+          />
+          <span className="min-w-0">
+            <span className="block font-serif text-lg leading-tight text-parchment-ink">
+              {item.name}
+            </span>
+            {item.subtitle ? (
+              <span className="mt-0.5 block text-sm text-sheet-muted">
+                {item.subtitle}
+              </span>
+            ) : null}
+          </span>
+        </label>
+        {item.onOpenSheet ? (
+          <SheetLinkButton
+            label={`${item.name} datasheet`}
+            onClick={(event) => {
+              event.stopPropagation();
+              item.onOpenSheet?.();
+            }}
+          />
+        ) : null}
+      </div>
+      {expandable && item.power ? (
+        <div className="border-t border-parchment-ink/10">
+          <button
+            type="button"
+            aria-expanded={rulesOpen}
+            onClick={() => setRulesOpen((value) => !value)}
+            className="flex w-full items-center justify-between gap-2 px-3 py-2 text-left text-xs font-semibold tracking-wide uppercase text-sheet-muted"
+          >
+            What it does
+            <span
+              aria-hidden="true"
+              className={`transition ${rulesOpen ? "rotate-180" : ""}`}
+            >
+              ▾
+            </span>
+          </button>
+          {rulesOpen ? (
+            <div className="px-3 pb-3">
+              <SpellRules power={item.power} />
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function SpellRules({
+  power,
+  loreName,
+}: {
+  power: UnitAbility;
+  loreName?: string;
+}) {
+  return (
+    <div>
+      <p className="font-serif text-lg leading-tight">{power.name}</p>
+      {loreName ? (
+        <p className="mt-0.5 text-xs tracking-wide uppercase text-aether">
+          {loreName}
+        </p>
+      ) : null}
+      {power.timing ? (
+        <p className="mt-1 font-serif text-base leading-snug text-parchment-ink/80">
+          {power.timing}
+        </p>
+      ) : null}
+      {power.declare ? (
+        <RuleText text={power.declare} label="Declare · " className="mt-2 text-sm" />
+      ) : null}
+      {power.effect ? (
+        <RuleText
+          text={power.effect}
+          label="Effect · "
+          className={power.declare ? "mt-1 text-sm" : "mt-2 text-sm"}
+        />
+      ) : null}
+    </div>
   );
 }

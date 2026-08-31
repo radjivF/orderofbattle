@@ -10,6 +10,7 @@ import {
 } from "./queries";
 import {
   blankArmy,
+  blankPathToGlory,
   duplicateArmy,
   appendRegimentWithHero,
   prepareImportedArmy,
@@ -129,6 +130,45 @@ describe("battle tactic cards", () => {
     );
     expect(
       totals.issues.some((issue) => issue.text.includes("battle tactic")),
+    ).toBe(false);
+  });
+
+  it("does not ask Path to Glory lists for Scourge season or tactics", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const totals = summarize(blankPathToGlory(faction.id, "ascension"), faction);
+    expect(
+      totals.issues.some((issue) => issue.text.includes("battle tactic")),
+    ).toBe(false);
+    expect(
+      totals.issues.some((issue) => issue.text.includes("Scourge")),
+    ).toBe(false);
+  });
+
+  it("does not require a Scourge season when a Path to Glory list has a scourge warscroll", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const scourgeHero = unitsForPicker(faction).find(
+      (unit) => unit.hero && unit.name.includes("Scourge of Aqshy"),
+    );
+    expect(scourgeHero).toBeTruthy();
+    if (!scourgeHero) return;
+
+    const list = appendRegimentWithHero(
+      blankPathToGlory(faction.id, "ascension"),
+      scourgeHero.id,
+      { regimentId: createId(), heroSelectionId: createId() },
+    );
+    expect(list).toBeTruthy();
+    if (!list) return;
+
+    const totals = summarize(list, faction);
+    expect(
+      totals.issues.some((issue) => issue.text.includes("Scourge")),
     ).toBe(false);
   });
 

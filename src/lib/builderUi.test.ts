@@ -174,8 +174,10 @@ describe("builder play tabs", () => {
     );
     expect(builder).toContain("builderPlayTabs(spearhead)");
     expect(builder).toContain(
-      'forPlayMode && playTab === "phases" && !spearhead',
+      'forPlayMode && playTab === "phases" && !spearhead && !pathToGlory',
     );
+    expect(builder).toContain("Points · Battlepacks · Lores");
+    expect(builder).not.toContain("Points · Battlepacks · Lores · Tactics");
     expect(builder).toContain(
       'forPlayMode && playTab === "magic" && !spearhead',
     );

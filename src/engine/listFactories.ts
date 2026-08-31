@@ -9,7 +9,8 @@ import { normalizePathToGloryState } from "@/engine/pathToGlory";
 const MAX_REGIMENTS = 5;
 
 export function normalizeArmyList(list: ArmyList): ArmyList {
-  const scourgeRealm = inferScourgeRealm(list);
+  const pathToGlory = list.kind === "pathToGlory";
+  const scourgeRealm = pathToGlory ? null : inferScourgeRealm(list);
   return pruneOrphanEnhancements({
     ...list,
     regimentOfRenown: list.regimentOfRenown ?? null,
@@ -17,8 +18,8 @@ export function normalizeArmyList(list: ArmyList): ArmyList {
     monstrousTrait: list.monstrousTrait ?? null,
     visionOfFate: list.visionOfFate ?? null,
     specialEnhancements: list.specialEnhancements ?? [],
-    battleTacticCardIds: list.battleTacticCardIds ?? [],
-    battleTacticStage: list.battleTacticStage ?? {},
+    battleTacticCardIds: pathToGlory ? [] : (list.battleTacticCardIds ?? []),
+    battleTacticStage: pathToGlory ? {} : (list.battleTacticStage ?? {}),
     scourgeRealm,
     lastOpenedAt: list.lastOpenedAt ?? list.updatedAt,
     kind:
@@ -88,6 +89,9 @@ export function blankPathToGlory(
     kind: "pathToGlory",
     spellLoreId: null,
     manifestationLoreId: null,
+    scourgeRealm: null,
+    battleTacticCardIds: [],
+    battleTacticStage: {},
     pathToGlory: normalizePathToGloryState({ packIds: ids }),
   };
 }

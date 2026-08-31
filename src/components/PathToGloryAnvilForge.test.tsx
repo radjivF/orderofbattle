@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import { PathToGloryUnitExtras } from "./PathToGloryUnitExtras";
 
 describe("PathToGloryUnitExtras Anvil forge", () => {
-  it("lets you pick Chamber, origin, flaw, and mount on an Anvil hero", async () => {
+  it("opens a forge sheet to pick Chamber, origin, flaw, and mount", async () => {
     const user = userEvent.setup();
     const faction = getFaction("stormcast-eternals");
     const anvil = faction?.units.find(
@@ -36,9 +36,14 @@ describe("PathToGloryUnitExtras Anvil forge", () => {
         packIds={["ascension"]}
         showBattleWounds={false}
         onChange={onChange}
+        onOpenDatasheet={vi.fn()}
       />,
     );
 
+    expect(screen.queryByLabelText(/^chamber$/i)).not.toBeInTheDocument();
+    await user.click(
+      screen.getByRole("button", { name: /forge anvil of apotheosis/i }),
+    );
     expect(screen.getByLabelText(/hero rank/i)).toBeInTheDocument();
     const chamber = screen.getByLabelText(/^chamber$/i);
     expect(chamber).toBeInTheDocument();
@@ -46,6 +51,14 @@ describe("PathToGloryUnitExtras Anvil forge", () => {
     expect(screen.getByLabelText(/^flaws$/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/battle mount/i)).toBeInTheDocument();
     expect(screen.getByText(/destiny/i)).toBeInTheDocument();
+    expect(
+      screen.queryByText(/battle mount upgrades/i),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("button", {
+        name: /anvil of apotheosis: stormcast eternals hero datasheet/i,
+      }),
+    ).toBeInTheDocument();
 
     const vanguard = anvil.anvilForge
       ?.find((group) => group.name === "Chamber")

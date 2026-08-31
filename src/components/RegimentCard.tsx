@@ -15,7 +15,11 @@ import { IosTrashIcon } from "./ios/SheetIconButton";
 import { SlotEnhancements, SlotLine } from "./RegimentCardSlots";
 import { PathToGloryUnitExtras } from "./PathToGloryUnitExtras";
 import type { PathToGloryPackId } from "@/engine/pathToGlory";
-import { selectionDisplayName } from "@/engine/pathToGlory";
+import {
+  isAnvilOfApotheosis,
+  resolveAnvilUnit,
+  selectionDisplayName,
+} from "@/engine/pathToGlory";
 
 export { PlayHealthTrack } from "./PlayHealthTrack";
 export { PlayBindNotes, SlotEnhancements, SlotMoreMenu } from "./RegimentCardSlots";
@@ -181,7 +185,13 @@ export function RegimentCard({
             hidePoints={locked}
             bindNotes={bindNotes}
             onReplace={locked ? undefined : onPickHero}
-            onOpenDatasheet={() => onOpenDatasheet(hero)}
+            onOpenDatasheet={() =>
+              onOpenDatasheet(
+                isAnvilOfApotheosis(hero)
+                  ? resolveAnvilUnit(hero, regiment.hero)
+                  : hero,
+              )
+            }
             onPlayHealth={onPlayHealth}
           />
           {pathToGloryPackIds &&
@@ -196,6 +206,7 @@ export function RegimentCard({
               packIds={pathToGloryPackIds}
               showBattleWounds={showBattleWounds}
               onChange={(next) => onPatchSelection(next.id, next)}
+              onOpenDatasheet={onOpenDatasheet}
             />
           ) : null}
           <SlotEnhancements
@@ -286,6 +297,7 @@ export function RegimentCard({
                   packIds={pathToGloryPackIds}
                   showBattleWounds={showBattleWounds}
                   onChange={(next) => onPatchSelection(next.id, next)}
+                  onOpenDatasheet={onOpenDatasheet}
                 />
               ) : null}
               <SlotEnhancements

@@ -1,14 +1,31 @@
 "use client";
 
-import type { CatalogueUnit, Selection } from "@/engine/types";
+import { useState } from "react";
+import type {
+  AnvilForgeGroup,
+  AnvilForgeOption,
+  CatalogueUnit,
+  PathToGlorySelectionState,
+  Selection,
+} from "@/engine/types";
 import {
   anvilDestinyBudget,
   anvilDestinyRemaining,
-  anvilForgeGroups,
+  anvilForgeSummary,
   anvilPickIds,
+  anvilRankForSelection,
   isAnvilOfApotheosis,
   pickAnvilOption,
+  resolveAnvilUnit,
+  visibleAnvilForgeGroups,
 } from "@/engine/pathToGlory";
+import {
+  SHEET_HEADER_START_CLASS,
+  SHEET_PANEL_CLASS,
+} from "@/lib/builderUi";
+import { ModalFrame } from "./ModalFrame";
+import { RuleText } from "./RuleText";
+import { SheetCloseButton, SheetLinkButton } from "./ios/SheetIconButton";
 
 const fieldClass =
   "min-h-10 w-full rounded-lg bg-parchment-ink/5 px-2.5 text-sm text-parchment-ink";
@@ -16,7 +33,8 @@ const fieldClass =
 type Props = {
   selection: Selection;
   unit: CatalogueUnit;
-  onPicks: (anvilPickIds: string[]) => void;
+  onPatch: (patch: Partial<PathToGlorySelectionState>) => void;
+  onOpenDatasheet?: (unit: CatalogueUnit) => void;
 };
 
 function destinyLabel(optionDestiny: number): string {
@@ -29,93 +47,319 @@ function destinyLabel(optionDestiny: number): string {
   return "";
 }
 
-export function PathToGloryAnvilForge({ selection, unit, onPicks }: Props) {
-  const groups = anvilForgeGroups(unit);
-  if (!isAnvilOfApotheosis(unit) || groups.length === 0) {
+export function PathToGloryAnvilForge({
+  selection,
+  unit,
+  onPatch,
+  onOpenDatasheet,
+}: Props) {
+  const [open, setOpen] = useState(false);
+  if (!isAnvilOfApotheosis(unit) || !unit.anvilForge?.length) {
     return null;
   }
   const pickIds = anvilPickIds(selection);
-  const picked = new Set(pickIds);
-  const budget = anvilDestinyBudget(unit, selection);
   const remaining = anvilDestinyRemaining(unit, selection);
+  const budget = anvilDestinyBudget(unit, selection);
 
   return (
     <>
-      <p
-        className={`text-xs font-semibold tracking-wide uppercase ${
-          remaining < 0 ? "text-red-800" : "text-sheet-muted"
-        }`}
+      <button
+        type="button"
+        aria-label="Forge Anvil of Apotheosis"
+        onClick={() => setOpen(true)}
+        className="flex min-h-10 w-full items-center justify-between gap-2 text-left text-xs font-semibold tracking-wide uppercase text-sheet-muted"
       >
-        Destiny {remaining} / {budget}
-      </p>
-      {groups.map((group) => {
-        const selectedId =
-          group.options.find((option) => picked.has(option.id))?.id ?? "";
-        if (group.max === 1) {
-          return (
-            <label
-              key={group.id}
-              className="flex flex-col gap-1 text-xs font-semibold tracking-wide uppercase text-sheet-muted"
+        <span>Forge</span>
+        <span className="truncate font-sans font-normal normal-case tracking-normal text-sm text-parchment-ink">
+          {anvilForgeSummary(unit, selection)}
+        </span>
+      </button>
+      {open ? (
+        <ModalFrame
+          label="Anvil of Apotheosis"
+          onClose={() => setOpen(false)}
+          panelClassName={`${SHEET_PANEL_CLASS} bg-parchment shadow-2xl`}
+        >
+          <div className={SHEET_HEADER_START_CLASS}>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
+                Anvil of Apotheosis
+              </p>
+              <h2 className="font-serif text-2xl leading-tight">Forge</h2>
+            </div>
+            {onOpenDatasheet ? (
+              <SheetLinkButton
+                label={`${unit.name} datasheet`}
+                onClick={() =>
+                  onOpenDatasheet(resolveAnvilUnit(unit, selection))
+                }
+              />
+            ) : null}
+            <SheetCloseButton onClick={() => setOpen(false)} />
+          </div>
+          <div className="modal-sheet-scroll overflow-y-auto px-5 pb-8">
+            <p
+              className={`sticky top-0 z-10 -mx-5 mb-3 border-b border-parchment-ink/10 bg-parchment px-5 py-2 text-sm font-semibold ${
+                remaining < 0 ? "text-red-800" : "text-parchment-ink"
+              }`}
             >
-              {group.name}
-              <select
-                value={selectedId}
-                onChange={(event) => {
-                  const nextId = event.target.value;
-                  if (!nextId) {
-                    onPicks(
-                      pickIds.filter(
-                        (id) =>
-                          !group.options.some((option) => option.id === id),
-                      ),
-                    );
-                    return;
-                  }
-                  onPicks(pickAnvilOption(unit, pickIds, group.id, nextId));
-                }}
-                className={fieldClass}
-              >
-                {group.min < 1 ? <option value="">None</option> : (
-                  <option value="">Pick</option>
-                )}
-                {group.options.map((option) => (
-                  <option key={option.id} value={option.id}>
-                    {option.name}
-                    {destinyLabel(option.destiny)}
-                  </option>
-                ))}
-              </select>
-            </label>
-          );
-        }
-        return (
-          <div key={group.id} className="flex flex-col gap-1.5">
-            <p className="text-xs font-semibold tracking-wide uppercase text-sheet-muted">
-              {group.name}
+              {anvilRankForSelection(unit, selection)?.points ?? unit.points} pts
+              {" · "}
+              Destiny {remaining} / {budget}
             </p>
-            {group.options.map((option) => (
-              <label
-                key={option.id}
-                className="flex items-start gap-2 rounded-lg px-2 py-2 text-sm font-sans font-normal normal-case tracking-normal"
-              >
-                <input
-                  type="checkbox"
-                  checked={picked.has(option.id)}
-                  onChange={() =>
-                    onPicks(pickAnvilOption(unit, pickIds, group.id, option.id))
-                  }
-                  aria-label={option.name}
-                  className="mt-0.5 size-4 shrink-0 accent-aether"
-                />
-                <span className="min-w-0 text-parchment-ink">
+            <ForgeFields
+              selection={selection}
+              unit={unit}
+              pickIds={pickIds}
+              onPatch={onPatch}
+            />
+          </div>
+        </ModalFrame>
+      ) : null}
+    </>
+  );
+}
+
+function ForgeFields({
+  selection,
+  unit,
+  pickIds,
+  onPatch,
+}: {
+  selection: Selection;
+  unit: CatalogueUnit;
+  pickIds: string[];
+  onPatch: (patch: Partial<PathToGlorySelectionState>) => void;
+}) {
+  const ranks = unit.anvilRanks ?? [];
+  const rankId = selection.pathToGlory?.anvilRankId ?? ranks[0]?.id ?? "";
+  const groups = visibleAnvilForgeGroups(unit, pickIds);
+  const picked = new Set(pickIds);
+
+  return (
+    <div className="flex flex-col gap-2">
+      {ranks.length ? (
+        <label className="flex flex-col gap-1 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
+          Hero rank
+          <select
+            value={rankId}
+            onChange={(event) =>
+              onPatch({ anvilRankId: event.target.value || null })
+            }
+            className={fieldClass}
+          >
+            {ranks.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.name} · {item.points} pts
+              </option>
+            ))}
+          </select>
+        </label>
+      ) : null}
+      {groups.map((group) => (
+        <ForgeGroup
+          key={group.id}
+          group={group}
+          picked={picked}
+          pickIds={pickIds}
+          unit={unit}
+          onPicks={(anvilPickIds) => onPatch({ anvilPickIds })}
+        />
+      ))}
+    </div>
+  );
+}
+
+function ForgeGroup({
+  group,
+  picked,
+  pickIds,
+  unit,
+  onPicks,
+}: {
+  group: AnvilForgeGroup;
+  picked: Set<string>;
+  pickIds: string[];
+  unit: CatalogueUnit;
+  onPicks: (ids: string[]) => void;
+}) {
+  const selected = group.options.filter((option) => picked.has(option.id));
+  const selectedId = selected[0]?.id ?? "";
+  const summary =
+    group.max === 1
+      ? selected[0]?.name ?? (group.min < 1 ? "None" : "Pick")
+      : selected.length
+        ? `${selected.length} picked`
+        : "None";
+
+  return (
+    <details className="group rounded-xl bg-parchment-ink/5">
+      <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-2 px-3 py-2 text-left text-xs font-semibold tracking-wide uppercase text-sheet-muted [&::-webkit-details-marker]:hidden">
+        <span>{group.name}</span>
+        <span className="flex min-w-0 items-center gap-2 font-sans font-normal normal-case tracking-normal">
+          <span className="truncate text-sm text-parchment-ink">{summary}</span>
+          <span aria-hidden="true" className="transition group-open:rotate-180">
+            ▾
+          </span>
+        </span>
+      </summary>
+      <div className="flex flex-col gap-2 border-t border-parchment-ink/10 px-2 pb-2 pt-2">
+        {group.max === 1 ? (
+          <label className="flex flex-col gap-1 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
+            {group.name}
+            <select
+              value={selectedId}
+              onChange={(event) => {
+                const nextId = event.target.value;
+                if (!nextId) {
+                  onPicks(
+                    pickIds.filter(
+                      (id) =>
+                        !group.options.some((option) => option.id === id),
+                    ),
+                  );
+                  return;
+                }
+                onPicks(pickAnvilOption(unit, pickIds, group.id, nextId));
+              }}
+              className={fieldClass}
+            >
+              {group.min < 1 ? <option value="">None</option> : (
+                <option value="">Pick</option>
+              )}
+              {group.options.map((option) => (
+                <option key={option.id} value={option.id}>
                   {option.name}
                   {destinyLabel(option.destiny)}
-                </span>
-              </label>
-            ))}
+                </option>
+              ))}
+            </select>
+          </label>
+        ) : (
+          group.options.map((option) => (
+            <ForgeOption
+              key={option.id}
+              option={option}
+              checked={picked.has(option.id)}
+              onToggle={() =>
+                onPicks(pickAnvilOption(unit, pickIds, group.id, option.id))
+              }
+            />
+          ))
+        )}
+        {group.max === 1 && selected[0] ? (
+          <OptionRules option={selected[0]} />
+        ) : null}
+      </div>
+    </details>
+  );
+}
+
+function ForgeOption({
+  option,
+  checked,
+  onToggle,
+}: {
+  option: AnvilForgeOption;
+  checked: boolean;
+  onToggle: () => void;
+}) {
+  const hasRules = optionHasRules(option);
+  return (
+    <div className="rounded-lg bg-parchment-ink/5">
+      <label className="flex cursor-pointer items-start gap-2 px-2 py-2 text-sm font-sans font-normal normal-case tracking-normal">
+        <input
+          type="checkbox"
+          checked={checked}
+          onChange={onToggle}
+          aria-label={option.name}
+          className="mt-0.5 size-4 shrink-0 accent-aether"
+        />
+        <span className="min-w-0 text-parchment-ink">
+          {option.name}
+          {destinyLabel(option.destiny)}
+        </span>
+      </label>
+      {hasRules ? (
+        <details className="group border-t border-parchment-ink/10">
+          <summary className="cursor-pointer list-none px-2 py-1.5 text-[11px] font-semibold tracking-wide uppercase text-sheet-muted [&::-webkit-details-marker]:hidden">
+            <span className="flex items-center justify-between gap-2">
+              What it does
+              <span
+                aria-hidden="true"
+                className="transition group-open:rotate-180"
+              >
+                ▾
+              </span>
+            </span>
+          </summary>
+          <div className="px-2 pb-2">
+            <OptionRules option={option} />
           </div>
-        );
-      })}
-    </>
+        </details>
+      ) : null}
+    </div>
+  );
+}
+
+function optionHasRules(option: AnvilForgeOption): boolean {
+  return Boolean(
+    option.abilities.some(
+      (ability) => ability.effect || ability.declare || ability.timing,
+    ) ||
+      option.weapons.length ||
+      option.stats ||
+      option.statAdds,
+  );
+}
+
+function OptionRules({ option }: { option: AnvilForgeOption }) {
+  const adds = option.statAdds;
+  const stats = option.stats;
+  const bits = [
+    stats?.move ? `Move ${stats.move}` : "",
+    stats?.health ? `Health ${stats.health}` : "",
+    stats?.save ? `Save ${stats.save}` : "",
+    adds?.move ? `+${adds.move} Move` : "",
+    adds?.health ? `+${adds.health} Health` : "",
+    adds?.control ? `+${adds.control} Control` : "",
+  ].filter(Boolean);
+
+  return (
+    <div className="flex flex-col gap-2 text-sm">
+      {bits.length ? (
+        <p className="text-sheet-muted">{bits.join(" · ")}</p>
+      ) : null}
+      {option.weapons.map((weapon) => (
+        <p key={weapon.name} className="text-sheet-muted">
+          {weapon.kind === "ranged" ? "Shoot" : "Melee"} · {weapon.name}
+          {weapon.range ? ` · ${weapon.range}` : ""}
+          {weapon.ability ? ` · ${weapon.ability}` : ""}
+        </p>
+      ))}
+      {option.abilities.map((ability) => (
+        <div key={ability.name}>
+          {ability.timing ? (
+            <p className="font-serif text-base leading-snug text-parchment-ink/80">
+              {ability.timing}
+            </p>
+          ) : null}
+          {ability.declare ? (
+            <RuleText
+              text={ability.declare}
+              label="Declare · "
+              className="mt-1 text-sm"
+            />
+          ) : null}
+          {ability.effect ? (
+            <RuleText
+              text={ability.effect}
+              label="Effect · "
+              className="mt-1 text-sm"
+            />
+          ) : null}
+        </div>
+      ))}
+    </div>
   );
 }

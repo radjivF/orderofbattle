@@ -166,7 +166,9 @@ export function summarize(
   }
 
   warnMixedScourgeSheets(list, faction, issues);
-  warnScourgeSeason(list, faction, issues);
+  if (!isPathToGloryList(list)) {
+    warnScourgeSeason(list, faction, issues);
+  }
 
   points += pickedEnhancementPoints(list.artefact, faction.artefacts);
   points += pickedEnhancementPoints(list.heroicTrait, faction.heroicTraits);
@@ -272,9 +274,15 @@ export function summarize(
   warnSpecialEnhancements(list, faction, issues);
   warnAnvilForge(list, faction, issues);
 
-  if ((list.battleTacticCardIds ?? []).length === 0) {
+  if (
+    !isPathToGloryList(list) &&
+    (list.battleTacticCardIds ?? []).length === 0
+  ) {
     issues.push({ tone: "warn", text: "Pick up to 2 battle tactic cards." });
-  } else if ((list.battleTacticCardIds ?? []).length > 2) {
+  } else if (
+    !isPathToGloryList(list) &&
+    (list.battleTacticCardIds ?? []).length > 2
+  ) {
     issues.push({ tone: "bad", text: "Maximum two battle tactic cards." });
   }
 

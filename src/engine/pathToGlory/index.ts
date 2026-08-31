@@ -57,11 +57,13 @@ export {
   anvilDestinyBudget,
   anvilDestinyRemaining,
   anvilForgeGroups,
+  anvilForgeSummary,
   anvilPickIds,
   anvilRankForSelection,
   isAnvilOfApotheosis,
   pickAnvilOption,
   resolveAnvilUnit,
+  visibleAnvilForgeGroups,
 } from "./anvil";
 export {
   applyPathToGloryPacks,

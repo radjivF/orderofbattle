@@ -39,6 +39,45 @@ export function anvilPickIds(selection?: Selection | null): string[] {
   return selection?.pathToGlory?.anvilPickIds ?? [];
 }
 
+export function isBattleMountGroup(group: AnvilForgeGroup): boolean {
+  return /^battle mount$/i.test(group.name.trim());
+}
+
+export function isBattleMountUpgradeGroup(group: AnvilForgeGroup): boolean {
+  return /mount upgrade/i.test(group.name);
+}
+
+export function visibleAnvilForgeGroups(
+  unit: CatalogueUnit,
+  pickIds: readonly string[],
+): AnvilForgeGroup[] {
+  const groups = anvilForgeGroups(unit);
+  const mountGroup = groups.find(isBattleMountGroup);
+  if (!mountGroup) {
+    return groups;
+  }
+  const hasMount = mountGroup.options.some((option) =>
+    pickIds.includes(option.id),
+  );
+  if (hasMount) {
+    return groups;
+  }
+  return groups.filter((group) => !isBattleMountUpgradeGroup(group));
+}
+
+export function anvilForgeSummary(
+  unit: CatalogueUnit,
+  selection?: Selection | null,
+): string {
+  const rank = anvilRankForSelection(unit, selection);
+  const remaining = anvilDestinyRemaining(unit, selection);
+  const budget = anvilDestinyBudget(unit, selection);
+  const rankBit = rank
+    ? `${rank.name} · ${rank.points} pts`
+    : `${unit.points} pts`;
+  return `${rankBit} · ${remaining} / ${budget} dest`;
+}
+
 export function anvilDestinyBudget(
   unit: CatalogueUnit,
   selection?: Selection | null,
