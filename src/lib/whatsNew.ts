@@ -1,8 +1,9 @@
 const SEEN_KEY = "oob-whats-new";
 
-export const WHATS_NEW_VERSION = "2026-08-31-play-fixes";
+export const WHATS_NEW_VERSION = "2026-08-31-play-abilities";
 
 export const WHATS_NEW_ITEMS = [
+  "Play shows each unit's abilities on the phase they happen — Hero, Combat, End of turn — not only army traits.",
   "Dead units stay on the board until you remove them from that phase.",
   "Export Continue tells you to pick a list.",
   "Play health shows remaining wounds, not just damage taken.",

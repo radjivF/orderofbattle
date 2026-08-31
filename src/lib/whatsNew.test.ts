@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { afterEach, describe, expect, it } from "vitest";
 import {
+  WHATS_NEW_ITEMS,
   WHATS_NEW_VERSION,
   getSeenWhatsNewVersion,
   markWhatsNewSeen,
@@ -41,6 +42,12 @@ describe("shouldShowWhatsNew", () => {
         version: "newer-notes",
       }),
     ).toBe(true);
+  });
+});
+
+describe("WHATS_NEW_ITEMS", () => {
+  it("lists this release's play-mode ability fix", () => {
+    expect(WHATS_NEW_ITEMS.some((item) => /abilit/i.test(item))).toBe(true);
   });
 });
 
