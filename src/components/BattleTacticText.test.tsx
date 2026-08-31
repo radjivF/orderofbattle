@@ -17,6 +17,7 @@ describe("BattleTacticText", () => {
 
     const name = screen.getByRole("strong");
     expect(name).toHaveTextContent("Master of Arms");
+    expect(name.closest("p")).not.toHaveTextContent("You complete");
     expect(screen.getByText(/Affray/)).toBeInTheDocument();
     expect(
       screen.getByText(/You complete this battle tactic at the end of your turn/),
