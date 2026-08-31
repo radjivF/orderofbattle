@@ -149,7 +149,9 @@ export function BattleTacticCardPicker({
                 {expanded ? (
                   <div className="border-t border-parchment/10 px-3 pb-3 pt-2 text-xs leading-relaxed text-parchment/80">
                     {card.setup ? (
-                      <p className="text-parchment/70">{card.setup}</p>
+                      <p className="text-sm leading-relaxed text-parchment/70 sm:text-base">
+                        {card.setup}
+                      </p>
                     ) : null}
                     {card.affray ? (
                       <BattleTacticText

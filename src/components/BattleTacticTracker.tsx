@@ -68,7 +68,7 @@ export function BattleTacticTracker({ list, onStageChange }: Props) {
               <li key={card.id} className="flex flex-col gap-2">
                 <p className="font-medium text-parchment">{card.name}</p>
                 {card.setup ? (
-                  <p className="text-xs leading-relaxed text-parchment/65">
+                  <p className="text-sm leading-relaxed text-parchment/65 sm:text-base">
                     {card.setup}
                   </p>
                 ) : null}
