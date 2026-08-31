@@ -76,21 +76,19 @@ export function DatasheetSheet({ sheet, hidePoints, onClose }: Props) {
         </div>
 
         <div className="modal-sheet-scroll overflow-y-auto px-5 pb-8">
-          <div className="rounded-xl bg-parchment-ink/5 px-3 py-3">
-            <dl
-              className={`grid gap-2 text-center ${
-                statCount >= 5 ? "grid-cols-5" : "grid-cols-4"
-              }`}
-            >
-              <Stat label="Move" value={stats.move} />
-              <Stat label="Health" value={stats.health} />
-              <Stat label="Save" value={stats.save} />
-              {stats.control ? <Stat label="Control" value={stats.control} /> : null}
-              {banishment ? <Stat label="Banish" value={banishment} /> : null}
-              {ward ? <Stat label="Ward" value={ward} /> : null}
-            </dl>
-            <UnitTypeChips categories={sheet.categories} />
-          </div>
+          <dl
+            className={`grid gap-2 rounded-xl bg-parchment-ink/5 px-3 py-3 text-center ${
+              statCount >= 5 ? "grid-cols-5" : "grid-cols-4"
+            }`}
+          >
+            <Stat label="Move" value={stats.move} />
+            <Stat label="Health" value={stats.health} />
+            <Stat label="Save" value={stats.save} />
+            {stats.control ? <Stat label="Control" value={stats.control} /> : null}
+            {banishment ? <Stat label="Banish" value={banishment} /> : null}
+            {ward ? <Stat label="Ward" value={ward} /> : null}
+          </dl>
+          <UnitTypeChips categories={sheet.categories} />
 
           {ranged.length > 0 ? (
             <WeaponBlock title="Ranged weapons" weapons={ranged} ranged />

@@ -38,7 +38,7 @@ describe("DatasheetSheet unit type", () => {
     });
   });
 
-  it("shows type chips with the stats, not a Keywords heading", () => {
+  it("shows type chips below the stats card, with no Keywords heading", () => {
     render(<DatasheetSheet sheet={unit()} onClose={vi.fn()} />);
 
     expect(screen.getByText("Move")).toBeInTheDocument();

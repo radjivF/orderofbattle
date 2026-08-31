@@ -12,7 +12,7 @@ export function UnitTypeChips({ categories }: { categories: string[] }) {
   return (
     <ul
       aria-label="Unit type"
-      className="mt-3 flex flex-wrap justify-center gap-1.5"
+      className="mt-5 flex flex-wrap gap-1.5"
     >
       {types.map((keyword) => (
         <li key={keyword}>
