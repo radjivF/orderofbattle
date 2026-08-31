@@ -1,6 +1,6 @@
 # Order of Battle
 
-> Order of Battle is a free unofficial Age of Sigmar 4th edition army builder and table companion. Build lists with regiments and Regiments of Renown, then track wounds, spells, and phase abilities at the table. No account; lists stay on your device.
+> Order of Battle is a free unofficial Age of Sigmar 4th edition army builder. You put a list together by regiment, add a Regiment of Renown when the army allows it, then keep wounds, spells, and phase abilities in front of you during the game. You don't sign up; the lists live on the device.
 
 ## About
 
@@ -15,16 +15,16 @@ Order of Battle is a browser hobby helper for Warhammer Age of Sigmar (4th editi
 
 ## Product
 
-- [Order of Battle](/): Free Age of Sigmar army builder and table companion
+- [Order of Battle](/): Free Age of Sigmar army builder
 - [Open the builder](/dashboard): Create and play lists in the browser (lists stay on the device; this route is a client app)
 
 ## Key information
 
-- [FAQ](/faq): Account, privacy, official status, factions, and Play mode
+- [FAQ](/faq): Account, privacy, official status, factions, and Play
 - [How to build an Age of Sigmar army list](/guides/how-to-build-an-age-of-sigmar-army-list): 4th edition list construction
 - [Free Age of Sigmar army builder](/guides/free-age-of-sigmar-army-builder): What the app does next to other tools
 - [Compare Age of Sigmar army builders](/compare): Order of Battle, New Recruit, Listbot, and the official app
-- [Age of Sigmar wound tracker](/play): Play mode tracks wounds, marks lasting spells, filters abilities by phase
+- [Play](/play): Wounds, lasting spells, abilities by phase
 - [Factions](/factions): Age of Sigmar 4th edition armies you can build
 - [About](/about): Fan project, data source, and legal status
 - [Privacy policy](/privacy): Lists stay on the device

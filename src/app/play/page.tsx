@@ -7,7 +7,7 @@ import { sitePath } from "@/lib/site";
 
 const title = "Age of Sigmar wound tracker: Play mode";
 const description =
-  "Play mode tracks wounds on every unit, marks lasting spells and prayers, and filters abilities by phase in Age of Sigmar. Free browser tool. No account. On your phone at the table.";
+  "Play is the table half of Order of Battle: wounds on each unit, lasting spells and prayers, abilities for the phase you are in. Free. No account.";
 
 export const metadata: Metadata = {
   title,
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "Age of Sigmar wound tracker",
     "track wounds AoS",
     "Age of Sigmar Play mode",
-    "AoS table companion",
+    "AoS wounds during a game",
   ],
   alternates: { canonical: "/play" },
   openGraph: { title, description, type: "article" },
@@ -46,43 +46,48 @@ export default function PlayPage() {
         ]}
       >
         <p>
-          Play mode is an Age of Sigmar wound tracker and table companion in Order of Battle. Build a list in the browser, then open Play at the table. Play mode tracks wounds on every unit (health, models, battle damage). It marks lasting spells and prayers on affected units. It filters abilities by phase: hero, movement, shooting, charge, combat, end of turn. You see only what applies in the current phase. No account. Lists stay on your device in IndexedDB. Play mode reads from your device and updates locally. On your phone in real time. No flipping warscrolls. If you clear the browser, lists vanish. Export if you care about a list.
+          Play is the table half of Order of Battle. You build the list in the
+          browser, then open it during the game and mark wounds as they happen.
+          Lasting spells and prayers sit on the unit they affect. Abilities are
+          grouped by phase, so you are looking at hero, movement, shooting,
+          charge, combat, or end of turn, not the whole warscroll pile at once.
+        </p>
+        <p>
+          Nothing to sign in for. Lists stay in the browser on this device.
+          Clearing site data can wipe them, so export anything you would miss.
         </p>
 
-        <h2>How does Age of Sigmar wound tracking work in Play mode?</h2>
+        <h2>Wound tracking</h2>
         <p className="mt-3">
-          Adjust health on every unit mid-game. Models, damage, battle damage appear
-          on the screen. Mid-game, you know which hero took 3 wounds and which
-          regiment is down to 6 models. No guessing. Age of Sigmar units take many
-          wounds. Tracking on paper or in your head gets messy. Play mode shows
-          health for every unit in one place.
+          Each unit shows health, leftover models, and battle damage. When a
+          hero is on 3 wounds and a regiment is down to 6 models, you can see
+          it without a scrap of paper. Age of Sigmar units take a lot of
+          wounds; counting them in your head gets messy by turn three.
         </p>
 
-        <h2>What are lasting spells and prayers in Age of Sigmar?</h2>
+        <h2>Lasting spells and prayers</h2>
         <p className="mt-3">
-          Some spells and prayers last until your next hero phase or end of turn.
-          Easy to forget which unit has the buff. Play mode marks the unit. When
-          combat starts, you see the buff on that unit.
+          Some spells and prayers hang around until the next hero phase or the
+          end of the turn. Easy to forget whose buff that was. Play marks the
+          unit, so when combat starts you still see it.
         </p>
 
-        <h2>How do you filter abilities by phase in Age of Sigmar?</h2>
+        <h2>Abilities by phase</h2>
         <p className="mt-3">
-          Age of Sigmar armies have abilities for different phases. Play mode
-          filters them. Tap Hero to see hero phase abilities. Tap Charge to see
-          charge abilities. Tap Combat to see combat abilities. Only what applies in
-          the current phase. No scrolling through every ability.
+          Armies have a lot of phase-specific rules. Tap the phase you are in
+          and you get the abilities that apply now, not a scroll through
+          everything on the warscroll.
         </p>
 
-        <h2>Does Age of Sigmar Play mode need an account?</h2>
+        <h2>Do you need an account?</h2>
         <p className="mt-3">
-          No. Order of Battle does not upload lists. Everything stays in your
-          browser (IndexedDB). Play mode reads from your device and updates locally.
-          No login. If you clear the browser, lists vanish. Export anything you care
-          about.
+          No. Order of Battle does not upload lists. Play reads from this
+          device and updates locally. If you clear the browser, lists vanish.
+          Export anything you care about.
         </p>
 
-        <h2>How do you start using Age of Sigmar Play mode?</h2>
-        <p className="mt-3">Play mode needs a saved list. Build one first:</p>
+        <h2>How to start</h2>
+        <p className="mt-3">Play needs a saved list. Build one first:</p>
         <ol>
           <li>
             Open <Link href="/dashboard">My lists</Link>.
@@ -104,11 +109,10 @@ export default function PlayPage() {
           .
         </p>
 
-        <h2>Why Order of Battle</h2>
+        <h2>Why this exists</h2>
         <p className="mt-3">
-          Most Age of Sigmar builders stop at the list. Order of Battle continues
-          into the game. Wound tracking, lasting buffs, phase filtering. Build the
-          list. Play the battle.
+          Most Age of Sigmar builders stop once the points add up. This one
+          keeps going into the game: wounds, lasting buffs, phase filtering.
         </p>
         <p>
           Compare:{" "}

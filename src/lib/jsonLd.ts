@@ -55,7 +55,7 @@ export function softwareApplicationNode() {
       "Age of Sigmar 4th edition army lists",
       "Regiments and Regiments of Renown",
       "Play mode: wounds, spells, phase abilities",
-      "No account; lists stored on device",
+      "No account; lists stay on the device",
     ],
     publisher: { "@id": `${sitePath("/")}/#organization` },
   };

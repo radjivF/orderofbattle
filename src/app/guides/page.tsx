@@ -7,7 +7,7 @@ import { sitePath } from "@/lib/site";
 
 const title = "Age of Sigmar army builder guides";
 const description =
-  "Guides for Order of Battle: how to build a free Age of Sigmar 4th edition army list, and what the unofficial builder and Play companion actually do.";
+  "Guides for Order of Battle: how to build a free Age of Sigmar 4th edition army list, and what this unofficial builder actually does.";
 
 export const metadata: Metadata = {
   title,
@@ -20,12 +20,12 @@ const guides = [
   {
     href: "/guides/how-to-build-an-age-of-sigmar-army-list",
     title: "How to build an Age of Sigmar army list",
-    body: "Faction, points, formation, regiments, then Play on your phone.",
+    body: "Faction, points, formation, regiments, then Play during the game.",
   },
   {
     href: "/guides/free-age-of-sigmar-army-builder",
     title: "Free Age of Sigmar army builder",
-    body: "Free local builder plus table companion, and how that differs from other AoS tools.",
+    body: "Free local builder plus Play during the game, and how that differs from other AoS tools.",
   },
 ] as const;
 

@@ -1,21 +1,21 @@
 # Order of Battle
 
-> Order of Battle is a free unofficial Age of Sigmar 4th edition army builder and table companion. Build lists with regiments and Regiments of Renown, then track wounds, spells, and phase abilities at the table. No account; lists stay on your device.
+> Order of Battle is a free unofficial Age of Sigmar 4th edition army builder. You put a list together by regiment, add a Regiment of Renown when the army allows it, then keep wounds, spells, and phase abilities in front of you during the game. You don't sign up; the lists live on the device.
 
 ## The app
 
 Order of Battle is a browser app for Warhammer Age of Sigmar 4th edition. You can:
 
 1. Build army lists by regiment: heroes, units, reinforcements, battle formations, lores, artefacts, heroic traits, and optional Regiments of Renown.
-2. Play from a phone: track wounds, lasting spells and prayers, and abilities filtered by phase.
+2. Open Play during the game: track wounds, lasting spells and prayers, and abilities grouped by phase.
 
-It is free. There is no account. Lists sit in the browser on the player's device (IndexedDB). They are not uploaded to Order of Battle servers.
+It is free. There is no account. Lists sit in the browser on the player's device. They are not uploaded to Order of Battle servers.
 
 Not affiliated with Games Workshop. Catalogue data comes from the community BSData Age of Sigmar 4th edition project on GitHub. Confirm points and rules with official Games Workshop publications.
 
 ## When it fits
 
-Players who want a free Age of Sigmar list builder without signing up, and who want that list as a table companion during the game.
+Players who want a free Age of Sigmar list builder without signing up, and who want that list next to them during the game.
 
 ## Supported factions
 
@@ -30,17 +30,17 @@ Each faction has a page at /factions/{id} (for example /factions/stormcast-etern
 3. Set a points limit (2,000 is the usual matched-play default).
 4. Choose a battle formation.
 5. Add a general and regiments. Optionally add a Regiment of Renown.
-6. Open Play mode at the table to track wounds, magic, and phase abilities.
+6. Open Play on the saved list to track wounds, magic, and phase abilities.
 
 Full steps: /guides/how-to-build-an-age-of-sigmar-army-list
 
-## Play mode (table companion)
+## Play
 
-Play mode tracks wounds on every unit, marks lasting spells and prayers, and filters abilities by phase. On your phone at the table. No flipping warscrolls. Details: /play
+Play tracks wounds on every unit, marks lasting spells and prayers, and groups abilities by phase. Details: /play
 
 ## Other tools
 
-- Order of Battle: free, no account, lists on device, builder plus Play companion, unofficial, BSData catalogues.
+- Order of Battle: free, no account, lists on device, builder plus Play, unofficial, BSData catalogues.
 - Other community builders (for example New Recruit, Listbot) and the official Warhammer Age of Sigmar app also exist. Wahapedia is a rules reference, not a list builder.
 - Comparison: /compare
 
