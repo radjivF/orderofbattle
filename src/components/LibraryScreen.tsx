@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState, useSyncExternalStore } from "react";
-import { usePathname } from "next/navigation";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import type { StoredList } from "@/engine/storedList";
 import { listGame } from "@/engine/storedList";
 import {
@@ -48,6 +48,7 @@ import { SiteFooter } from "./SiteFooter";
 
 export function LibraryScreen() {
   const pathname = usePathname();
+  const router = useRouter();
   const lists = useSyncExternalStore(
     subscribeArmies,
     getArmiesSnapshot,
@@ -72,6 +73,12 @@ export function LibraryScreen() {
   }, [activeMenu, lists, sortMode]);
   const menuPlaceholder = menuPlaceholderCopy(activeMenu);
   const showListLibrary = menuShowsListLibrary(activeMenu);
+
+  useEffect(() => {
+    if (!isBattleRecordPath(pathname) && activeMenu === "tactics") {
+      router.replace("/battle-record");
+    }
+  }, [activeMenu, pathname, router]);
 
   async function onDuplicate(list: StoredList) {
     await saveArmy(duplicateArmy(list));

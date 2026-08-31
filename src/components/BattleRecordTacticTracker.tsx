@@ -51,18 +51,19 @@ export function BattleRecordTacticTracker({
                       <button
                         type="button"
                         disabled={disabled}
-                        aria-pressed={done}
                         onClick={() => {
-                          if (done && stage === key) {
+                          if (done) {
                             onStageChange(
                               card.id,
                               (key - 1) as BattleTacticStage,
                             );
                             return;
                           }
-                          onStageChange(card.id, key);
+                          if (next) {
+                            onStageChange(card.id, key);
+                          }
                         }}
-                        className={`flex w-full flex-col gap-1 rounded-xl px-3 py-2 text-left ring-1 ${
+                        className={`w-full rounded-xl px-3 py-2.5 text-left ring-1 transition-colors disabled:cursor-default ${
                           done
                             ? "bg-aether/15 ring-aether/35"
                             : next
@@ -70,13 +71,29 @@ export function BattleRecordTacticTracker({
                               : "bg-transparent ring-transparent opacity-45"
                         }`}
                       >
-                        <span className="text-xs font-semibold tracking-wide uppercase text-sheet-muted">
-                          {label} · +5 VP
-                        </span>
+                        <div className="flex items-start justify-between gap-3">
+                          <p className="text-xs font-semibold tracking-wide uppercase text-sheet-muted">
+                            {label} · +5 VP
+                            {done ? (
+                              <span className="ml-1.5 text-aether">✓</span>
+                            ) : null}
+                          </p>
+                          <span
+                            className={`min-h-8 shrink-0 rounded-lg px-2.5 py-1 text-xs ${
+                              done
+                                ? "bg-aether/20 text-aether"
+                                : next
+                                  ? "bg-parchment-ink/10 text-parchment-ink"
+                                  : "bg-parchment-ink/5 text-sheet-muted"
+                            }`}
+                          >
+                            {done ? "Undo" : next ? "Done" : "—"}
+                          </span>
+                        </div>
                         <BattleTacticText
                           text={stageText(card, key)}
                           tone="sheet"
-                          className="text-sm"
+                          className="mt-2 text-sm"
                         />
                       </button>
                     </li>

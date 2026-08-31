@@ -56,4 +56,17 @@ describe("Scourge of Aqshy battleplan layouts", () => {
       ].sort(),
     );
   });
+
+  it("exposes full victory-point and twist text for each battleplan", () => {
+    for (const layout of battleplanLayouts) {
+      expect(layout.primaryScoring.length).toBeGreaterThanOrEqual(2);
+      for (const line of layout.primaryScoring) {
+        expect(line.toLowerCase()).toMatch(/victory points|score /);
+      }
+      expect(layout.twistEffect.length).toBeGreaterThan(40);
+      expect(layout.twistEffect).not.toMatch(
+        /Follow the battleplan twist rules/,
+      );
+    }
+  });
 });

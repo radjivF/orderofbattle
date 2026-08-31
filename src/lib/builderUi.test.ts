@@ -20,6 +20,8 @@ import {
   LIBRARY_HEADER_OPTIONS_BUTTON_CLASS,
   LIBRARY_TITLE_CLASS,
   SHEET_CHECKLIST_ITEM_CLASS,
+  SHEET_CHECKLIST_ITEM_IDLE_CLASS,
+  SHEET_CHECKLIST_ITEM_SELECTED_CLASS,
   LIBRARY_CARD_CLASS,
   LIBRARY_CARD_LIST_NAME_INPUT_CLASS,
   LIST_FLOW_HEADER_OFFSET_CLASS,
@@ -485,7 +487,10 @@ describe("empty library CTA", () => {
     expect(EMPTY_LIBRARY_CTA_CLASS).not.toContain("gold-plate");
     expect(EMPTY_LIBRARY_SECONDARY_CLASS).toContain("rounded-full");
     expect(EMPTY_LIBRARY_SECONDARY_CLASS).toContain("ring-1");
-    expect(SHEET_CHECKLIST_ITEM_CLASS).toContain("ring-parchment-ink/10");
+    expect(SHEET_CHECKLIST_ITEM_CLASS).toContain("ring-1");
+    expect(SHEET_CHECKLIST_ITEM_CLASS).not.toContain("ring-parchment-ink/10");
+    expect(SHEET_CHECKLIST_ITEM_IDLE_CLASS).toContain("ring-parchment-ink/10");
+    expect(SHEET_CHECKLIST_ITEM_SELECTED_CLASS).toContain("ring-aether/35");
     expect(SHEET_FOOTER_ACTIONS_CLASS).toContain("px-5");
     expect(SHEET_SECONDARY_BUTTON_CLASS).toContain("ring-1");
     expect(SHEET_SECONDARY_BUTTON_CLASS).toContain("rounded-xl");

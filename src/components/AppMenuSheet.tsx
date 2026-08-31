@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import {
   GAME_MENU_ROWS,
   TRACK_GAME_MENU_ROW,
@@ -13,6 +14,7 @@ import {
   APP_MENU_DRAWER_PANEL_CLASS,
   LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS,
   SHEET_CHECKLIST_ITEM_CLASS,
+  SHEET_CHECKLIST_ITEM_IDLE_CLASS,
   SHEET_CHECKLIST_ITEM_SELECTED_CLASS,
   SHEET_HEADER_CLASS,
 } from "@/lib/builderUi";
@@ -21,6 +23,7 @@ import {
   isTopModal,
   releaseModalLayer,
 } from "@/lib/modalLock";
+import { isBattleRecordPath } from "./BattleRecordHost";
 import { SheetCloseButton } from "./ios/SheetIconButton";
 
 type Props = {
@@ -103,7 +106,7 @@ function LeftDrawer({
     >
       <div
         aria-hidden="true"
-        className="modal-scrim absolute inset-0 bg-ink/70"
+        className="modal-scrim absolute inset-0 bg-ink"
         onPointerDown={(event) => {
           event.preventDefault();
         }}
@@ -133,7 +136,10 @@ function LeftDrawer({
 }
 
 export function AppMenuSheet({ active, onSelect, onClose }: Props) {
+  const pathname = usePathname();
   const router = useRouter();
+  const onBattleRecord = isBattleRecordPath(pathname);
+  const selected = onBattleRecord ? "tactics" : active;
 
   return (
     <LeftDrawer label="Menu" onClose={onClose}>
@@ -149,9 +155,14 @@ export function AppMenuSheet({ active, onSelect, onClose }: Props) {
               <MenuRow
                 key={row.id}
                 label={row.label}
-                selected={active === row.id}
+                selected={selected === row.id}
                 onSelect={() => {
                   onSelect(row.id);
+                  if (onBattleRecord) {
+                    // Swap under the open drawer/scrim, then slide the menu out.
+                    // Instant close flashes the page; leave-then-nav remounts the drawer.
+                    router.push("/dashboard", { scroll: false });
+                  }
                   close();
                 }}
               />
@@ -165,18 +176,47 @@ export function AppMenuSheet({ active, onSelect, onClose }: Props) {
             Track a game
           </h3>
           <ul className="flex flex-col gap-2 px-3 pb-6">
-            <MenuRow
+            <MenuLinkRow
+              href="/battle-record"
               label={TRACK_GAME_MENU_ROW.label}
-              selected={false}
+              selected={selected === "tactics"}
               onSelect={() => {
+                onSelect("tactics");
                 close();
-                router.push("/battle-record");
               }}
             />
           </ul>
         </>
       )}
     </LeftDrawer>
+  );
+}
+
+function rowClassName(selected: boolean) {
+  return `${SHEET_CHECKLIST_ITEM_CLASS} pressable w-full items-center text-left ${
+    selected
+      ? SHEET_CHECKLIST_ITEM_SELECTED_CLASS
+      : SHEET_CHECKLIST_ITEM_IDLE_CLASS
+  }`;
+}
+
+function MenuCheck({ selected }: { selected: boolean }) {
+  if (!selected) {
+    return null;
+  }
+  return (
+    <svg
+      viewBox="0 0 12 12"
+      aria-hidden="true"
+      className="size-4 shrink-0 fill-none stroke-aether"
+    >
+      <path
+        d="M2.5 6.2 4.8 8.5 9.5 3.5"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
 
@@ -195,28 +235,45 @@ function MenuRow({
         type="button"
         aria-pressed={selected}
         onClick={onSelect}
-        className={`${SHEET_CHECKLIST_ITEM_CLASS} w-full items-center text-left ${
-          selected ? SHEET_CHECKLIST_ITEM_SELECTED_CLASS : ""
-        }`}
+        className={rowClassName(selected)}
       >
-        <span className={`min-w-0 flex-1 font-medium ${selected ? "text-aether" : ""}`}>
+        <span
+          className={`min-w-0 flex-1 font-medium ${selected ? "text-aether" : ""}`}
+        >
           {label}
         </span>
-        {selected ? (
-          <svg
-            viewBox="0 0 12 12"
-            aria-hidden="true"
-            className="size-4 shrink-0 fill-none stroke-aether"
-          >
-            <path
-              d="M2.5 6.2 4.8 8.5 9.5 3.5"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        ) : null}
+        <MenuCheck selected={selected} />
       </button>
+    </li>
+  );
+}
+
+function MenuLinkRow({
+  href,
+  label,
+  selected,
+  onSelect,
+}: {
+  href: string;
+  label: string;
+  selected: boolean;
+  onSelect: () => void;
+}) {
+  return (
+    <li>
+      <Link
+        href={href}
+        aria-current={selected ? "page" : undefined}
+        onClick={onSelect}
+        className={rowClassName(selected)}
+      >
+        <span
+          className={`min-w-0 flex-1 font-medium ${selected ? "text-aether" : ""}`}
+        >
+          {label}
+        </span>
+        <MenuCheck selected={selected} />
+      </Link>
     </li>
   );
 }

@@ -10,8 +10,10 @@ import { battleTactics } from "@/engine/data/load";
 import {
   advanceTacticStage,
   canSetFirstPlayer,
+  finishBattle,
   isDoubleTurn,
   matchTotal,
+  reopenBattle,
   setPrimaryClaim,
   setRoundFirstPlayer,
   setTwistApplied,
@@ -20,16 +22,17 @@ import {
   type GameSession,
 } from "@/engine/gameSession";
 import {
+  IOS_LIQUID_CTA_CLASS,
   LIBRARY_TITLE_CLASS,
   LIBRARY_TITLE_ROW_CLASS,
   SHEET_SECONDARY_BUTTON_CLASS,
 } from "@/lib/builderUi";
 import { deleteGame, getGame, saveGame } from "@/lib/gameStorage";
 import { BattleplanBoard } from "./BattleplanBoard";
+import { BattleRecordRecapScreen } from "./BattleRecordRecapScreen";
 import { BattleRecordSetupScreen } from "./BattleRecordSetupScreen";
 import { BattleRecordTacticTracker } from "./BattleRecordTacticTracker";
 import { IosNavBackButton } from "./ios/IosNavIconButton";
-import { IosSegmentedControl } from "./ios/IosSegmentedControl";
 import { SiteFooter } from "./SiteFooter";
 
 type Props = { gameId: string };
@@ -40,6 +43,7 @@ export function BattleRecordGameScreen({ gameId }: Props) {
   const router = useRouter();
   const [game, setGame] = useState<GameSession | null | undefined>(undefined);
   const [roundIndex, setRoundIndex] = useState(0);
+  const [editingSetup, setEditingSetup] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -75,9 +79,17 @@ export function BattleRecordGameScreen({ gameId }: Props) {
       .filter((card): card is NonNullable<typeof card> => Boolean(card));
   }, [game]);
 
-  async function commit(next: GameSession) {
-    setGame(next);
-    await saveGame(next);
+  async function commit(
+    next: GameSession | ((prev: GameSession) => GameSession),
+  ) {
+    setGame((prev) => {
+      if (prev == null) {
+        return prev;
+      }
+      const resolved = typeof next === "function" ? next(prev) : next;
+      void saveGame(resolved);
+      return resolved;
+    });
   }
 
   if (game === undefined) {
@@ -103,12 +115,29 @@ export function BattleRecordGameScreen({ gameId }: Props) {
     );
   }
 
-  if (game.status === "setup") {
+  if (game.status === "setup" || editingSetup) {
     return (
       <BattleRecordSetupScreen
         game={game}
+        editing={editingSetup}
         onChange={(next) => void commit(next)}
+        onBack={() => {
+          if (editingSetup) {
+            setEditingSetup(false);
+            return;
+          }
+          router.push("/battle-record");
+        }}
+      />
+    );
+  }
+
+  if (game.status === "done") {
+    return (
+      <BattleRecordRecapScreen
+        game={game}
         onBack={() => router.push("/battle-record")}
+        onEdit={() => void commit((prev) => reopenBattle(prev))}
       />
     );
   }
@@ -122,6 +151,7 @@ export function BattleRecordGameScreen({ gameId }: Props) {
       : dog === "opponent"
         ? game.opponentName
         : null;
+  const trackPriority = game.allowDoubleTurn;
 
   return (
     <div className="relative z-10 min-h-full">
@@ -156,54 +186,95 @@ export function BattleRecordGameScreen({ gameId }: Props) {
               align="right"
             />
           </div>
+          <button
+            type="button"
+            onClick={() => setEditingSetup(true)}
+            className={`${SHEET_SECONDARY_BUTTON_CLASS} mt-3`}
+          >
+            Edit setup
+          </button>
         </section>
 
-        <div className="parchment-card rounded-2xl p-2">
-          <IosSegmentedControl
-            ariaLabel="Battle round"
-            value={String(roundIndex)}
-            onChange={(next) => setRoundIndex(Number(next))}
-            options={[0, 1, 2, 3, 4].map((index) => ({
-              value: String(index),
-              label: `T${index + 1}`,
-            }))}
-          />
-        </div>
+        <nav
+          aria-label="Battle timeline"
+          className="parchment-card rounded-2xl px-3 py-3"
+        >
+          <ol className="flex items-center gap-1 sm:gap-2">
+            {[0, 1, 2, 3, 4].map((index) => {
+              const selected = roundIndex === index;
+              return (
+                <li key={index} className="flex min-w-0 flex-1 items-center">
+                  <button
+                    type="button"
+                    aria-current={selected ? "step" : undefined}
+                    onClick={() => setRoundIndex(index)}
+                    className={`min-h-10 w-full rounded-full px-1 text-sm font-semibold tabular-nums transition ${
+                      selected
+                        ? "bg-[#efe6d2] text-parchment-ink shadow-sm ring-1 ring-parchment-ink/20"
+                        : "text-sheet-muted hover:text-parchment-ink"
+                    }`}
+                  >
+                    T{index + 1}
+                  </button>
+                  <span
+                    aria-hidden="true"
+                    className="mx-0.5 hidden h-px flex-1 bg-parchment-ink/20 sm:block"
+                  />
+                </li>
+              );
+            })}
+            <li className="shrink-0 pl-1">
+              <button
+                type="button"
+                onClick={() => void commit((prev) => finishBattle(prev))}
+                className={`${IOS_LIQUID_CTA_CLASS} !min-h-10 !w-auto !rounded-full !px-4 !text-sm`}
+              >
+                Done
+              </button>
+            </li>
+          </ol>
+        </nav>
 
         <section className={PANEL}>
           <div className="flex items-center justify-between gap-3">
             <h2 className="font-serif text-xl">Turn {roundIndex + 1}</h2>
-            {double ? (
+            {trackPriority && double ? (
               <span className="rounded-full bg-aether/15 px-3 py-1 text-xs font-semibold tracking-wide uppercase text-aether ring-1 ring-aether/30">
                 Double turn
               </span>
             ) : null}
           </div>
 
-          <p className="mt-3 text-sm text-sheet-muted">Who went first</p>
-          <div className="mt-2 flex gap-2">
-            {(["you", "opponent"] as BattlePlayer[]).map((player) => {
-              const allowed = canSetFirstPlayer(game, roundIndex, player);
-              const selected = round.firstPlayer === player;
-              return (
-                <button
-                  key={player}
-                  type="button"
-                  disabled={!allowed && !selected}
-                  onClick={() =>
-                    void commit(setRoundFirstPlayer(game, roundIndex, player))
-                  }
-                  className={`min-h-11 flex-1 rounded-xl px-3 text-sm font-medium ring-1 ${
-                    selected
-                      ? "bg-aether/15 ring-aether/40 text-parchment-ink"
-                      : "bg-parchment-ink/5 ring-parchment-ink/12 text-parchment-ink"
-                  } ${!allowed && !selected ? "opacity-40" : ""}`}
-                >
-                  {player === "you" ? game.yourName : game.opponentName}
-                </button>
-              );
-            })}
-          </div>
+          {trackPriority ? (
+            <>
+              <p className="mt-3 text-sm text-sheet-muted">Who went first</p>
+              <div className="mt-2 flex gap-2">
+                {(["you", "opponent"] as BattlePlayer[]).map((player) => {
+                  const allowed = canSetFirstPlayer(game, roundIndex, player);
+                  const selected = round.firstPlayer === player;
+                  return (
+                    <button
+                      key={player}
+                      type="button"
+                      disabled={!allowed && !selected}
+                      onClick={() =>
+                        void commit(
+                          setRoundFirstPlayer(game, roundIndex, player),
+                        )
+                      }
+                      className={`min-h-11 flex-1 rounded-xl px-3 text-sm font-medium ring-1 ${
+                        selected
+                          ? "bg-aether/15 ring-aether/40 text-parchment-ink"
+                          : "bg-parchment-ink/5 ring-parchment-ink/12 text-parchment-ink"
+                      } ${!allowed && !selected ? "opacity-40" : ""}`}
+                    >
+                      {player === "you" ? game.yourName : game.opponentName}
+                    </button>
+                  );
+                })}
+              </div>
+            </>
+          ) : null}
 
           <p className="mt-4 text-sm tabular-nums text-sheet-muted">
             Turn score · {game.yourName} {round.yourVp} · {game.opponentName}{" "}
@@ -280,8 +351,7 @@ export function BattleRecordGameScreen({ gameId }: Props) {
             <p className="text-xs font-semibold tracking-wide uppercase text-sheet-muted">
               Twist · underdog
             </p>
-            <h2 className="mt-1 font-serif text-xl">{layout.twistTitle}</h2>
-            <p className="mt-2 text-sm leading-relaxed text-parchment-ink/85">
+            <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-parchment-ink/85">
               {layout.twistEffect}
             </p>
             <p className="mt-3 text-sm text-sheet-muted">
@@ -331,9 +401,9 @@ export function BattleRecordGameScreen({ gameId }: Props) {
         {layout ? (
           <details className={PANEL}>
             <summary className="cursor-pointer font-serif text-lg">
-              Board schematic
+              Battleplan map
             </summary>
-            <div className="mt-3 overflow-hidden rounded-xl bg-parchment-ink/5 p-3">
+            <div className="mt-3 overflow-hidden rounded-xl bg-parchment-ink/5 p-2">
               <BattleplanBoard layout={layout} />
             </div>
           </details>

@@ -1,12 +1,13 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import {
   battleplanLayouts,
   getBattleplanLayout,
 } from "@/engine/battleplanLayout";
 import { battleTacticsForRealm } from "@/engine/data/load";
 import {
+  battleSetupGaps,
   canStartBattle,
   setBattleplan,
   setPlayerTacticCards,
@@ -20,17 +21,20 @@ import {
   SHEET_SECONDARY_BUTTON_CLASS,
 } from "@/lib/builderUi";
 import { BattleplanBoard } from "./BattleplanBoard";
-import { ExpandableRuleCard } from "./ExpandableRuleCard";
+import { BattleTacticText } from "./BattleTacticText";
 import { IosNavBackButton } from "./ios/IosNavIconButton";
-import { SiteFooter } from "./SiteFooter";
 
 type Props = {
   game: GameSession;
-  onChange: (next: GameSession) => void;
+  onChange: (next: GameSession | ((prev: GameSession) => GameSession)) => void;
   onBack: () => void;
+  /** When true, return to the live game instead of starting it. */
+  editing?: boolean;
 };
 
 const PANEL = "parchment-card rounded-2xl px-4 py-4 text-parchment-ink";
+const SELECT_CLASS =
+  "min-h-11 w-full rounded-xl bg-parchment-ink/5 px-3 font-serif text-xl text-parchment-ink outline-none";
 
 function toggleCard(selected: string[], id: string): string[] {
   if (selected.includes(id)) {
@@ -42,23 +46,37 @@ function toggleCard(selected: string[], id: string): string[] {
   return [...selected, id];
 }
 
-export function BattleRecordSetupScreen({ game, onChange, onBack }: Props) {
+function pickRandomBattleplanId(): string {
+  const index = Math.floor(Math.random() * battleplanLayouts.length);
+  return battleplanLayouts[index]!.id;
+}
+
+export function BattleRecordSetupScreen({
+  game,
+  onChange,
+  onBack,
+  editing = false,
+}: Props) {
   const aqshyCards = useMemo(() => battleTacticsForRealm("aqshy"), []);
   const layout = getBattleplanLayout(game.battleplanId);
   const ready = canStartBattle(game);
+  const gaps = battleSetupGaps(game);
 
   return (
     <div className="relative z-10 min-h-full">
       <div className="mx-auto w-full max-w-3xl px-5 pt-2 pb-3 sm:px-6">
         <div className={LIBRARY_TITLE_ROW_CLASS}>
-          <IosNavBackButton label="Back to Battle record" onClick={onBack} />
+          <IosNavBackButton
+            label={editing ? "Close setup" : "Back to Battle record"}
+            onClick={onBack}
+          />
           <h1 className={LIBRARY_TITLE_CLASS}>Set up battle</h1>
           <span className="w-10" aria-hidden="true" />
         </div>
       </div>
 
-      <main className="mx-auto flex w-full max-w-3xl flex-col gap-4 px-5 pb-32 sm:px-6">
-        <p className="text-sm text-parchment/85 [text-shadow:0_1px_8px_rgba(0,0,0,0.85)]">
+      <main className="mx-auto flex w-full max-w-3xl flex-col gap-4 px-5 pb-20 sm:px-6">
+        <p className="rounded-xl bg-[#efe6d2]/95 px-4 py-2.5 text-sm font-medium text-parchment-ink shadow-[0_1px_8px_rgba(0,0,0,0.35)]">
           {game.yourName} ({game.yourArmy}) vs {game.opponentName} (
           {game.opponentArmy})
         </p>
@@ -68,57 +86,84 @@ export function BattleRecordSetupScreen({ game, onChange, onBack }: Props) {
           <p className="mt-1 text-sm text-sheet-muted">
             Scourge of Aqshy · GHB 2026–27
           </p>
-          <ul className="mt-3 flex flex-col gap-2">
-            {battleplanLayouts.map((plan) => {
-              const selected = game.battleplanId === plan.id;
-              return (
-                <li key={plan.id}>
-                  <button
-                    type="button"
-                    aria-pressed={selected}
-                    onClick={() => onChange(setBattleplan(game, plan.id))}
-                    className={`flex min-h-12 w-full items-center justify-between rounded-xl px-3 text-left ring-1 ${
-                      selected
-                        ? "bg-aether/15 ring-aether/40"
-                        : "bg-parchment-ink/5 ring-parchment-ink/10"
-                    }`}
-                  >
-                    <span className="font-medium text-parchment-ink">
+          <label className="mt-3 flex flex-col gap-2 text-base text-sheet-muted">
+            Choose battleplan
+            <select
+              value={game.battleplanId}
+              onChange={(event) => {
+                const id = event.target.value;
+                onChange((prev) => setBattleplan(prev, id));
+              }}
+              className={SELECT_CLASS}
+            >
+              <option value="">Choose battleplan…</option>
+              <optgroup label="Table 1">
+                {battleplanLayouts
+                  .filter((plan) => plan.table === 1)
+                  .map((plan) => (
+                    <option key={plan.id} value={plan.id}>
                       {plan.name}
-                    </span>
-                    <span className="text-xs text-sheet-muted">
-                      Table {plan.table}
-                    </span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
+                    </option>
+                  ))}
+              </optgroup>
+              <optgroup label="Table 2">
+                {battleplanLayouts
+                  .filter((plan) => plan.table === 2)
+                  .map((plan) => (
+                    <option key={plan.id} value={plan.id}>
+                      {plan.name}
+                    </option>
+                  ))}
+              </optgroup>
+            </select>
+          </label>
+          <button
+            type="button"
+            onClick={() =>
+              onChange((prev) => setBattleplan(prev, pickRandomBattleplanId()))
+            }
+            className={`${SHEET_SECONDARY_BUTTON_CLASS} mt-3`}
+          >
+            Choose random
+          </button>
         </section>
 
         {layout ? (
           <section className={PANEL}>
             <h2 className="font-serif text-xl">{layout.name}</h2>
             <p className="mt-1 text-xs text-sheet-muted">
-              Map schematic · not official art
+              Temporary map reference — replace with generated art later
             </p>
-            <div className="mt-3 overflow-hidden rounded-xl bg-parchment-ink/5 p-3">
+            <div className="mt-3 overflow-hidden rounded-xl bg-parchment-ink/5 p-2">
               <BattleplanBoard layout={layout} />
             </div>
-            <div className="mt-3 flex flex-col gap-2">
-              <ExpandableRuleCard
-                kicker="Twist · underdog"
-                title={layout.twistTitle}
-                effect={layout.twistEffect}
-              />
-              {layout.primaryScoring.map((line, index) => (
-                <ExpandableRuleCard
-                  key={line}
-                  kicker={`Primary point ${index + 1}`}
-                  title={line}
-                  nested
-                />
-              ))}
+            <div className="mt-3 flex flex-col gap-4">
+              <div className="rounded-lg bg-parchment-ink/5 px-3 py-3">
+                <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
+                  Victory points
+                </p>
+                <p className="mt-1 text-xs text-sheet-muted">
+                  Score at the end of each of your turns
+                </p>
+                <ol className="mt-2 list-decimal space-y-2 pl-5">
+                  {layout.primaryScoring.map((line) => (
+                    <li
+                      key={line}
+                      className="font-serif text-base leading-snug text-parchment-ink"
+                    >
+                      {line}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+              <div className="rounded-lg bg-parchment-ink/5 px-3 py-3">
+                <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
+                  Twist
+                </p>
+                <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-parchment-ink">
+                  {layout.twistEffect}
+                </p>
+              </div>
             </div>
           </section>
         ) : null}
@@ -128,11 +173,11 @@ export function BattleRecordSetupScreen({ game, onChange, onBack }: Props) {
           selected={game.yourTacticCardIds}
           cards={aqshyCards}
           onToggle={(id) =>
-            onChange(
+            onChange((prev) =>
               setPlayerTacticCards(
-                game,
+                prev,
                 "you",
-                toggleCard(game.yourTacticCardIds, id),
+                toggleCard(prev.yourTacticCardIds, id),
               ),
             )
           }
@@ -142,42 +187,51 @@ export function BattleRecordSetupScreen({ game, onChange, onBack }: Props) {
           selected={game.opponentTacticCardIds}
           cards={aqshyCards}
           onToggle={(id) =>
-            onChange(
+            onChange((prev) =>
               setPlayerTacticCards(
-                game,
+                prev,
                 "opponent",
-                toggleCard(game.opponentTacticCardIds, id),
+                toggleCard(prev.opponentTacticCardIds, id),
               ),
             )
           }
         />
-      </main>
 
-      <div className="fixed inset-x-0 bottom-0 z-20 border-t border-parchment-ink/15 bg-[#efe6d2]/95 px-5 py-3 backdrop-blur-md">
-        <div className="mx-auto flex max-w-3xl flex-col gap-2 sm:px-1">
-          {!ready ? (
-            <p className="text-center text-xs text-sheet-muted">
-              Pick a battleplan and 2 tactics each to start
-            </p>
-          ) : null}
-          <button
-            type="button"
-            disabled={!ready}
-            onClick={() => onChange(startBattle(game))}
-            className={IOS_LIQUID_CTA_CLASS}
-          >
-            Start game
-          </button>
-          <button
-            type="button"
-            onClick={onBack}
-            className={SHEET_SECONDARY_BUTTON_CLASS}
-          >
-            Cancel
-          </button>
+        <div className="mx-auto flex w-full max-w-md flex-col items-center gap-2 pt-2">
+          {editing ? (
+            <button
+              type="button"
+              onClick={onBack}
+              className={`${IOS_LIQUID_CTA_CLASS} w-full`}
+            >
+              Back to battle
+            </button>
+          ) : (
+            <>
+              {!ready ? (
+                <p className="text-center text-xs text-parchment [text-shadow:0_1px_8px_rgba(0,0,0,0.85)]">
+                  Still need {gaps.join(", ")}
+                </p>
+              ) : null}
+              <button
+                type="button"
+                disabled={!ready}
+                onClick={() => onChange((prev) => startBattle(prev))}
+                className={`${IOS_LIQUID_CTA_CLASS} w-full disabled:cursor-not-allowed disabled:opacity-40`}
+              >
+                Start game
+              </button>
+              <button
+                type="button"
+                onClick={onBack}
+                className={`${SHEET_SECONDARY_BUTTON_CLASS} w-full`}
+              >
+                Cancel
+              </button>
+            </>
+          )}
         </div>
-      </div>
-      <SiteFooter showPitch={false} />
+      </main>
     </div>
   );
 }
@@ -193,6 +247,20 @@ function TacticPick({
   cards: ReturnType<typeof battleTacticsForRealm>;
   onToggle: (id: string) => void;
 }) {
+  const [expandedIds, setExpandedIds] = useState<Set<string>>(() => new Set());
+
+  function toggleExpanded(cardId: string) {
+    setExpandedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(cardId)) {
+        next.delete(cardId);
+      } else {
+        next.add(cardId);
+      }
+      return next;
+    });
+  }
+
   return (
     <section className={PANEL}>
       <h2 className="font-serif text-xl">
@@ -201,34 +269,113 @@ function TacticPick({
           ({selected.length}/2)
         </span>
       </h2>
+      <p className="mt-1 text-xs text-sheet-muted">
+        Optional — pick up to 2, or none. Use the arrow to read details.
+      </p>
       <ul className="mt-3 flex flex-col gap-2">
         {cards.map((card) => {
           const checked = selected.includes(card.id);
           const disabled = !checked && selected.length >= 2;
+          const expanded = expandedIds.has(card.id);
           return (
             <li key={card.id}>
-              <label
-                className={`flex min-h-11 items-center gap-3 rounded-xl px-3 py-2 ring-1 ${
+              <article
+                className={`rounded-xl ring-1 ${
                   checked
                     ? "bg-aether/15 ring-aether/35"
                     : "bg-parchment-ink/5 ring-parchment-ink/10"
                 } ${disabled ? "opacity-45" : ""}`}
               >
-                <input
-                  type="checkbox"
-                  checked={checked}
-                  disabled={disabled}
-                  onChange={() => onToggle(card.id)}
-                  className="size-5 accent-aether"
-                />
-                <span className="font-medium text-parchment-ink">
-                  {card.name}
-                </span>
-              </label>
+                <div className="flex items-center gap-2 px-3 py-2">
+                  <label
+                    className={`flex min-h-11 min-w-0 flex-1 items-center gap-3 ${
+                      disabled ? "cursor-not-allowed" : "cursor-pointer"
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      disabled={disabled}
+                      onChange={() => onToggle(card.id)}
+                      className="size-5 shrink-0 accent-aether"
+                    />
+                    <span className="font-medium text-parchment-ink">
+                      {card.name}
+                    </span>
+                  </label>
+                  <button
+                    type="button"
+                    aria-expanded={expanded}
+                    aria-label={
+                      expanded
+                        ? `Hide ${card.name} details`
+                        : `Show ${card.name} details`
+                    }
+                    onClick={() => toggleExpanded(card.id)}
+                    className="pressable shrink-0 rounded-lg p-1.5 text-sheet-muted hover:bg-parchment-ink/10 hover:text-parchment-ink"
+                  >
+                    <CollapseChevron open={expanded} />
+                  </button>
+                </div>
+                {expanded ? (
+                  <div className="flex flex-col gap-3 border-t border-parchment-ink/10 px-3 pb-3 pt-3">
+                    {card.setup ? (
+                      <p className="text-sm leading-relaxed text-parchment-ink/80">
+                        {card.setup}
+                      </p>
+                    ) : null}
+                    {card.affray ? (
+                      <BattleTacticText
+                        tone="sheet"
+                        className="text-sm"
+                        stage="Affray"
+                        text={card.affray}
+                      />
+                    ) : null}
+                    {card.strike ? (
+                      <BattleTacticText
+                        tone="sheet"
+                        className="text-sm"
+                        stage="Strike"
+                        text={card.strike}
+                      />
+                    ) : null}
+                    {card.domination ? (
+                      <BattleTacticText
+                        tone="sheet"
+                        className="text-sm"
+                        stage="Domination"
+                        text={card.domination}
+                      />
+                    ) : null}
+                  </div>
+                ) : null}
+              </article>
             </li>
           );
         })}
       </ul>
     </section>
+  );
+}
+
+function CollapseChevron({ open }: { open: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+      className={`h-4 w-4 transition-transform duration-200 ${
+        open ? "rotate-180" : ""
+      }`}
+    >
+      <path
+        d="M5 8l5 5 5-5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }

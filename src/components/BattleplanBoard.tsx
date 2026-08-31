@@ -1,75 +1,28 @@
 "use client";
 
+import Image from "next/image";
 import type { BattleplanLayout } from "@/engine/battleplanLayout";
+import { battleplanArtSrc } from "@/lib/battleplanArt";
 
 type Props = {
   layout: BattleplanLayout;
   className?: string;
 };
 
-function pointsToPath(points: { x: number; y: number }[]): string {
-  if (points.length === 0) return "";
-  const [first, ...rest] = points;
-  return (
-    `M ${first.x} ${first.y} ` +
-    rest.map((point) => `L ${point.x} ${point.y}`).join(" ") +
-    " Z"
-  );
-}
-
-/** Schematic only — not Games Workshop / Wahapedia map art. */
+/** Temporary reference map art — replace with generated maps later. */
 export function BattleplanBoard({ layout, className }: Props) {
-  const { width, height } = layout.board;
+  const src = battleplanArtSrc(layout.id);
   return (
-    <svg
-      viewBox={`0 0 ${width} ${height}`}
-      role="img"
-      aria-label={`${layout.name} battleplan schematic`}
-      className={className ?? "h-auto w-full"}
-    >
-      <rect
-        x={0}
-        y={0}
-        width={width}
-        height={height}
-        className="fill-parchment-ink/[0.06] stroke-parchment-ink/30"
-        strokeWidth={0.4}
+    <div className={className ?? "relative w-full overflow-hidden rounded-lg"}>
+      <Image
+        src={src}
+        alt={`${layout.name} battleplan map`}
+        width={1200}
+        height={1600}
+        className="h-auto w-full"
+        sizes="(max-width: 768px) 100vw, 720px"
+        priority={false}
       />
-      <path
-        d={pointsToPath(layout.territories.attacker)}
-        className="fill-aether/25 stroke-aether/60"
-        strokeWidth={0.35}
-      />
-      <path
-        d={pointsToPath(layout.territories.defender)}
-        className="fill-copper/20 stroke-copper/55"
-        strokeWidth={0.35}
-      />
-      {layout.terrain.map((mark) => (
-        <rect
-          key={mark.id}
-          x={mark.x - 2}
-          y={mark.y - 2}
-          width={4}
-          height={4}
-          rx={0.6}
-          className={
-            mark.kind === "place-of-power"
-              ? "fill-parchment-ink/40"
-              : "fill-parchment-ink/25"
-          }
-        />
-      ))}
-      {layout.objectives.map((objective) => (
-        <circle
-          key={objective.id}
-          cx={objective.x}
-          cy={objective.y}
-          r={1.6}
-          className="fill-parchment-ink stroke-[#efe6d2]"
-          strokeWidth={0.35}
-        />
-      ))}
-    </svg>
+    </div>
   );
 }

@@ -364,8 +364,12 @@ export const EMPTY_LIBRARY_CTA_CLASS = `mt-5 ${IOS_LIQUID_CTA_CLASS}`;
 export const EMPTY_LIBRARY_SECONDARY_CLASS =
   "pressable mt-3 inline-flex min-h-11 w-full cursor-pointer items-center justify-center rounded-full bg-ink-raised/90 px-4 text-base font-semibold text-parchment ring-1 ring-parchment/20 backdrop-blur-sm";
 
+/** Shared shape only — pair with idle or selected so ring/bg never stack. */
 export const SHEET_CHECKLIST_ITEM_CLASS =
-  "flex cursor-pointer items-start gap-3 rounded-xl px-3 py-3 ring-1 ring-parchment-ink/10 bg-parchment-ink/5 transition hover:bg-parchment-ink/8";
+  "flex cursor-pointer items-start gap-3 rounded-xl px-3 py-3 ring-1 transition";
+
+export const SHEET_CHECKLIST_ITEM_IDLE_CLASS =
+  "ring-parchment-ink/10 bg-parchment-ink/5 hover:bg-parchment-ink/8";
 
 export const SHEET_CHECKLIST_ITEM_SELECTED_CLASS =
   "ring-aether/35 bg-aether/10";

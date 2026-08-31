@@ -1,12 +1,15 @@
 import { describe, expect, it } from "vitest";
 import {
   advanceTacticStage,
+  battleSetupGaps,
   canSetFirstPlayer,
   canStartBattle,
   createBattleRecord,
+  finishBattle,
   isDoubleTurn,
   matchTotal,
   paintedBonus,
+  reopenBattle,
   roundVpTotal,
   setBattleplan,
   setPlayerTacticCards,
@@ -50,6 +53,22 @@ describe("createBattleRecord", () => {
     expect(game.battleplanId).toBe("");
     expect(game.yourTacticCardIds).toEqual([]);
     expect(game.opponentTacticCardIds).toEqual([]);
+  });
+
+  it("preloads tactic cards from the create input", () => {
+    const game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "My Sylvaneth",
+      opponentName: "Alex",
+      opponentArmy: "Stormcast",
+      allowDoubleTurn: true,
+      yourTacticCardIds: ["card-a", "card-b", "card-extra"],
+      opponentTacticCardIds: ["card-c"],
+    });
+    expect(game.yourTacticCardIds).toEqual(["card-a", "card-b"]);
+    expect(game.opponentTacticCardIds).toEqual(["card-c"]);
+    expect(game.yourTacticStage).toEqual({ "card-a": 0, "card-b": 0 });
+    expect(game.opponentTacticStage).toEqual({ "card-c": 0 });
   });
 
   it("starts in setup with five empty rounds", () => {
@@ -132,12 +151,12 @@ describe("battle tactics Affray / Strike / Domination", () => {
     expect(matchTotal(game, "you")).toBe(15);
   });
 
-  it("does not let a card drop below its current stage", () => {
+  it("lets Undo drop a card back one stage", () => {
     let game = fresh();
     game = advanceTacticStage(game, "you", "card-a", 2);
     game = advanceTacticStage(game, "you", "card-a", 1);
-    expect(game.yourTacticStage["card-a"]).toBe(2);
-    expect(matchTotal(game, "you")).toBe(10);
+    expect(game.yourTacticStage["card-a"]).toBe(1);
+    expect(matchTotal(game, "you")).toBe(5);
   });
 });
 
@@ -149,7 +168,7 @@ describe("double turn", () => {
     expect(isDoubleTurn(game, 1)).toBe(true);
   });
 
-  it("blocks same first player next round when double turns are off", () => {
+  it("skips priority entirely when double turns are off", () => {
     const game = createBattleRecord({
       yourName: "A",
       yourArmy: "A army",
@@ -157,9 +176,12 @@ describe("double turn", () => {
       opponentArmy: "B army",
       allowDoubleTurn: false,
     });
-    const after = setRoundFirstPlayer(game, 0, "you");
-    expect(canSetFirstPlayer(after, 1, "you")).toBe(false);
-    expect(canSetFirstPlayer(after, 1, "opponent")).toBe(true);
+    expect(canSetFirstPlayer(game, 0, "you")).toBe(false);
+    expect(canSetFirstPlayer(game, 1, "opponent")).toBe(false);
+    expect(setRoundFirstPlayer(game, 0, "you").rounds[0]!.firstPlayer).toBe(
+      null,
+    );
+    expect(isDoubleTurn(setRoundFirstPlayer(game, 0, "you"), 1)).toBe(false);
   });
 
   it("allows same first player when double turns are on", () => {
@@ -196,7 +218,7 @@ describe("mission primary claims", () => {
 });
 
 describe("setup → start", () => {
-  it("needs battleplan and two tactics per side before start", () => {
+  it("needs only a battleplan before start; tactics are optional", () => {
     let game = createBattleRecord({
       yourName: "Rad",
       yourArmy: "Stormcast",
@@ -205,12 +227,46 @@ describe("setup → start", () => {
       allowDoubleTurn: true,
     });
     expect(canStartBattle(game)).toBe(false);
+    expect(battleSetupGaps(game)).toEqual(["a battleplan"]);
     game = setBattleplan(game, "into-the-fire");
-    expect(canStartBattle(game)).toBe(false);
+    expect(canStartBattle(game)).toBe(true);
+    expect(battleSetupGaps(game)).toEqual([]);
+    game = startBattle(game);
+    expect(game.status).toBe("active");
+  });
+
+  it("still starts when tactics are chosen", () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+    });
+    game = setBattleplan(game, "into-the-fire");
     game = setPlayerTacticCards(game, "you", ["card-a", "card-b"]);
     game = setPlayerTacticCards(game, "opponent", ["card-c", "card-d"]);
     expect(canStartBattle(game)).toBe(true);
     game = startBattle(game);
     expect(game.status).toBe("active");
+  });
+});
+
+describe("reopenBattle", () => {
+  it("moves a finished battle back to active", () => {
+    let game = setBattleplan(fresh(), "into-the-fire");
+    game = startBattle(game);
+    game = finishBattle(game);
+    expect(game.status).toBe("done");
+
+    game = reopenBattle(game);
+    expect(game.status).toBe("active");
+  });
+
+  it("does nothing when the battle is not done", () => {
+    let game = setBattleplan(fresh(), "into-the-fire");
+    expect(reopenBattle(game).status).toBe("setup");
+    game = startBattle(game);
+    expect(reopenBattle(game).status).toBe("active");
   });
 });

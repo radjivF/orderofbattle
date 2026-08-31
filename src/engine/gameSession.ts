@@ -44,6 +44,8 @@ export type CreateBattleRecordInput = {
   allowDoubleTurn: boolean;
   paintedYou?: boolean;
   paintedOpponent?: boolean;
+  yourTacticCardIds?: string[];
+  opponentTacticCardIds?: string[];
 };
 
 const PAINTED_BONUS = 10;
@@ -84,6 +86,8 @@ export function createBattleRecord(
   input: CreateBattleRecordInput,
 ): GameSession {
   const now = Date.now();
+  const yourTacticCardIds = (input.yourTacticCardIds ?? []).slice(0, 2);
+  const opponentTacticCardIds = (input.opponentTacticCardIds ?? []).slice(0, 2);
   return {
     id: createId(),
     yourName: input.yourName.trim(),
@@ -94,10 +98,10 @@ export function createBattleRecord(
     allowDoubleTurn: input.allowDoubleTurn,
     paintedYou: Boolean(input.paintedYou),
     paintedOpponent: Boolean(input.paintedOpponent),
-    yourTacticCardIds: [],
-    opponentTacticCardIds: [],
-    yourTacticStage: {},
-    opponentTacticStage: {},
+    yourTacticCardIds,
+    opponentTacticCardIds,
+    yourTacticStage: stageMap(yourTacticCardIds),
+    opponentTacticStage: stageMap(opponentTacticCardIds),
     rounds: Array.from({ length: 5 }, emptyRound),
     status: "setup",
     createdAt: now,
@@ -158,6 +162,7 @@ export function isDoubleTurn(
   session: GameSession,
   roundIndex: number,
 ): boolean {
+  if (!session.allowDoubleTurn) return false;
   if (roundIndex < 1 || roundIndex >= session.rounds.length) return false;
   const prev = session.rounds[roundIndex - 1]?.firstPlayer;
   const current = session.rounds[roundIndex]?.firstPlayer;
@@ -169,11 +174,10 @@ export function canSetFirstPlayer(
   roundIndex: number,
   firstPlayer: BattlePlayer,
 ): boolean {
+  void firstPlayer;
+  if (!session.allowDoubleTurn) return false;
   if (roundIndex < 0 || roundIndex >= session.rounds.length) return false;
-  if (session.allowDoubleTurn || roundIndex === 0) return true;
-  const prev = session.rounds[roundIndex - 1]?.firstPlayer;
-  if (!prev) return true;
-  return prev !== firstPlayer;
+  return true;
 }
 
 export function setRoundFirstPlayer(
@@ -281,10 +285,6 @@ export function advanceTacticStage(
   stage: BattleTacticStage,
 ): GameSession {
   const key = player === "you" ? "yourTacticStage" : "opponentTacticStage";
-  const current = session[key][cardId] ?? 0;
-  if (stage < current) {
-    return session;
-  }
   return touch({
     ...session,
     [key]: { ...session[key], [cardId]: stage },
@@ -319,16 +319,34 @@ export function setPlayerTacticCards(
 }
 
 export function canStartBattle(session: GameSession): boolean {
-  return (
-    session.status === "setup" &&
-    session.battleplanId.length > 0 &&
-    session.yourTacticCardIds.length === 2 &&
-    session.opponentTacticCardIds.length === 2
-  );
+  return session.status === "setup" && session.battleplanId.length > 0;
+}
+
+/** What still blocks Start game — for setup UI copy. */
+export function battleSetupGaps(session: GameSession): string[] {
+  const gaps: string[] = [];
+  if (session.battleplanId.length === 0) {
+    gaps.push("a battleplan");
+  }
+  return gaps;
 }
 
 export function startBattle(session: GameSession): GameSession {
   if (!canStartBattle(session)) {
+    return session;
+  }
+  return touch({ ...session, status: "active" });
+}
+
+export function finishBattle(session: GameSession): GameSession {
+  if (session.status !== "active") {
+    return session;
+  }
+  return touch({ ...session, status: "done" });
+}
+
+export function reopenBattle(session: GameSession): GameSession {
+  if (session.status !== "done") {
     return session;
   }
   return touch({ ...session, status: "active" });

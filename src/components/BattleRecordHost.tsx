@@ -17,7 +17,10 @@ export function BattleRecordHost() {
   return <BattleRecordScreen />;
 }
 
-export function isBattleRecordPath(pathname: string): boolean {
+export function isBattleRecordPath(pathname: string | null | undefined): boolean {
+  if (!pathname) {
+    return false;
+  }
   return (
     pathname === "/battle-record" || pathname.startsWith("/battle-record/")
   );

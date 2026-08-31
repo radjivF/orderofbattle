@@ -1,7 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import type { StoredList } from "@/engine/storedList";
+import { setActiveMenu } from "@/lib/activeMenu";
 import type { LibrarySortMode } from "@/lib/librarySort";
 import {
   LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS,
@@ -35,7 +36,6 @@ export function LibraryOptionsSheet({
   onSortModeChange,
   onClose,
 }: Props) {
-  const router = useRouter();
   const {
     importError,
     importDraft,
@@ -89,11 +89,11 @@ export function LibraryOptionsSheet({
           </div>
           <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
             <div className="shrink-0 px-5 pb-3">
-              <button
-                type="button"
+              <Link
+                href="/battle-record"
                 onClick={() => {
+                  setActiveMenu("tactics");
                   onClose();
-                  router.push("/battle-record");
                 }}
                 className="flex min-h-12 w-full items-center justify-between rounded-xl bg-parchment-ink/5 px-3 text-left hover:bg-parchment-ink/[0.08]"
               >
@@ -101,7 +101,7 @@ export function LibraryOptionsSheet({
                   Battle record
                 </span>
                 <span className="text-sm text-sheet-muted">Games</span>
-              </button>
+              </Link>
             </div>
             <div
               role="separator"

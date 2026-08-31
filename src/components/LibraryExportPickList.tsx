@@ -11,6 +11,7 @@ import { summarize } from "@/engine/validate";
 import {
   libraryListExportSubtitle,
   SHEET_CHECKLIST_ITEM_CLASS,
+  SHEET_CHECKLIST_ITEM_IDLE_CLASS,
   SHEET_CHECKLIST_ITEM_SELECTED_CLASS,
 } from "@/lib/builderUi";
 
@@ -51,7 +52,9 @@ export function LibraryExportPickList({
           <li key={list.id}>
             <label
               className={`${SHEET_CHECKLIST_ITEM_CLASS} ${
-                checked ? SHEET_CHECKLIST_ITEM_SELECTED_CLASS : ""
+                checked
+                  ? SHEET_CHECKLIST_ITEM_SELECTED_CLASS
+                  : SHEET_CHECKLIST_ITEM_IDLE_CLASS
               }`}
             >
               <input

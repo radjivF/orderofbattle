@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useSyncExternalStore } from "react";
+import { usePathname } from "next/navigation";
 import { getFaction } from "@/engine/queries";
 import { formatPoints } from "@/engine/pointsCap";
 import { isTowList } from "@/engine/storedList";
@@ -37,17 +38,20 @@ import {
 } from "@/lib/storage";
 import type { BuilderChromeValue } from "./BuilderChrome";
 import type { LibraryChromeValue } from "./LibraryChrome";
+import { isBattleRecordPath } from "./BattleRecordHost";
 import { useListNav } from "./IosNavSlide";
 import { IosNavBackButton, IosNavMenuButton } from "./ios/IosNavIconButton";
 import { SiteBrandLockup } from "./BrandMark";
 import { AppMenuSheet } from "./AppMenuSheet";
 
 function LibraryHeaderRow() {
-  const menu = useSyncExternalStore(
+  const pathname = usePathname();
+  const storedMenu = useSyncExternalStore(
     subscribeActiveMenu,
     getActiveMenuSnapshot,
     getActiveMenuServerSnapshot,
   );
+  const menu = isBattleRecordPath(pathname) ? "tactics" : storedMenu;
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (

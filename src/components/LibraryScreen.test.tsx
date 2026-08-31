@@ -8,9 +8,13 @@ import { LibraryScreen } from "./LibraryScreen";
 import { setActiveMenu } from "@/lib/activeMenu";
 
 const armyStore = vi.hoisted(() => ({ items: [] as StoredList[] }));
+const navigation = vi.hoisted(() => ({
+  push: vi.fn(),
+  replace: vi.fn(),
+}));
 
 vi.mock("next/navigation", () => ({
-  useRouter: () => ({ push: vi.fn(), replace: vi.fn() }),
+  useRouter: () => navigation,
   usePathname: () => "/dashboard",
 }));
 
@@ -116,7 +120,7 @@ describe("LibraryScreen", () => {
     expect(screen.getByRole("button", { name: "Make your first list" }));
   });
 
-  it("shows a real Old World library and points Battle record elsewhere", () => {
+  it("shows a real Old World library and sends Battle record to its route", () => {
     setActiveMenu("tow");
     render(<LibraryScreen />);
 
@@ -126,9 +130,11 @@ describe("LibraryScreen", () => {
     expect(screen.queryByText(/Open Battle record/i)).toBeNull();
 
     cleanup();
+    navigation.replace.mockClear();
     setActiveMenu("tactics");
     render(<LibraryScreen />);
 
+    expect(navigation.replace).toHaveBeenCalledWith("/battle-record");
     expect(screen.getByRole("heading", { name: "Battle record" }));
     expect(screen.getByText(/Open Battle record from the menu/i));
     expect(screen.queryByRole("button", { name: "New list" })).toBeNull();

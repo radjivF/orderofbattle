@@ -1,3 +1,5 @@
+import battleplanMissions from "./data/battleplan-missions.json";
+
 export type BattleplanPoint = { x: number; y: number };
 
 export type BattleplanLayout = {
@@ -22,8 +24,9 @@ export type BattleplanLayout = {
     kind: "obscuring" | "place-of-power" | "area";
   }>;
   twistTitle: string;
-  /** Short twist rule text shown on the score screen. */
+  /** Full battleplan twist text for setup and score. */
   twistEffect: string;
+  /** Victory-point lines scored at the end of each of your turns. */
   primaryScoring: string[];
 };
 
@@ -125,7 +128,9 @@ function terrainMarks(
 }
 
 /** Author schematics for Scourge of Aqshy / GHB 2026–27 — not GW art. */
-export const battleplanLayouts: BattleplanLayout[] = [
+type BattleplanSchematic = Omit<BattleplanLayout, "twistEffect" | "primaryScoring">;
+
+const battleplanSchematics: BattleplanSchematic[] = [
   {
     id: "into-the-fire",
     name: "Into the Fire",
@@ -142,11 +147,6 @@ export const battleplanLayouts: BattleplanLayout[] = [
       { id: "t2", x: 38, y: 30 },
     ]),
     twistTitle: "Into the Fire",
-    twistEffect: "The underdog benefits from Into the Fire. Follow the battleplan twist rules.",
-    primaryScoring: [
-      "Score for objectives you control at the end of your turn.",
-      "Control of the centre objective is worth more in later battle rounds.",
-    ],
   },
   {
     id: "bloodstained-coasts",
@@ -164,11 +164,6 @@ export const battleplanLayouts: BattleplanLayout[] = [
       { id: "t1", x: 30, y: 22, kind: "area" },
     ]),
     twistTitle: "Bloodstained Coasts",
-    twistEffect: "The underdog benefits from Bloodstained Coasts. Follow the battleplan twist rules.",
-    primaryScoring: [
-      "Score for coastal objectives you control.",
-      "Objectives nearer the shore change value as the tide turns.",
-    ],
   },
   {
     id: "avalanche-of-ash",
@@ -186,11 +181,6 @@ export const battleplanLayouts: BattleplanLayout[] = [
       { id: "t1", x: 30, y: 22, kind: "place-of-power" },
     ]),
     twistTitle: "Avalanche of Ash",
-    twistEffect: "The underdog benefits from Avalanche of Ash. Follow the battleplan twist rules.",
-    primaryScoring: [
-      "Score for objectives outside the ashfall.",
-      "Ash may deny control of marked areas in later rounds.",
-    ],
   },
   {
     id: "caverns-of-slaughter",
@@ -210,11 +200,6 @@ export const battleplanLayouts: BattleplanLayout[] = [
       { id: "t2", x: 36, y: 28 },
     ]),
     twistTitle: "Caverns of Slaughter",
-    twistEffect: "The underdog benefits from Caverns of Slaughter. Follow the battleplan twist rules.",
-    primaryScoring: [
-      "Score for objectives in the cavern network you control.",
-      "Controlling linked chambers scores additional victory points.",
-    ],
   },
   {
     id: "whats-yours-is-ours",
@@ -231,11 +216,6 @@ export const battleplanLayouts: BattleplanLayout[] = [
     ]),
     terrain: terrainMarks([{ id: "t1", x: 30, y: 8 }]),
     twistTitle: "What’s Yours Is Ours",
-    twistEffect: "The underdog benefits from What’s Yours Is Ours. Follow the battleplan twist rules.",
-    primaryScoring: [
-      "Score for enemy objectives you seize.",
-      "Holding an objective previously controlled by the foe scores more.",
-    ],
   },
   {
     id: "hidden-under-ash-clouds",
@@ -255,11 +235,6 @@ export const battleplanLayouts: BattleplanLayout[] = [
       { id: "t3", x: 48, y: 22, kind: "obscuring" },
     ]),
     twistTitle: "Hidden Under Ash-Clouds",
-    twistEffect: "The underdog benefits from Hidden Under Ash-Clouds. Follow the battleplan twist rules.",
-    primaryScoring: [
-      "Score for objectives revealed from the ash-cloud.",
-      "Visibility and cover change as clouds drift each battle round.",
-    ],
   },
   {
     id: "warped-ruins",
@@ -279,11 +254,6 @@ export const battleplanLayouts: BattleplanLayout[] = [
       { id: "t3", x: 45, y: 22, kind: "area" },
     ]),
     twistTitle: "Warped Ruins",
-    twistEffect: "The underdog benefits from Warped Ruins. Follow the battleplan twist rules.",
-    primaryScoring: [
-      "Score for ruin objectives you control.",
-      "Warped terrain may grant or deny control in later rounds.",
-    ],
   },
   {
     id: "curse-of-the-gnaw",
@@ -300,11 +270,6 @@ export const battleplanLayouts: BattleplanLayout[] = [
     ]),
     terrain: terrainMarks([{ id: "t1", x: 30, y: 22, kind: "area" }]),
     twistTitle: "Curse of the Gnaw",
-    twistEffect: "The underdog benefits from Curse of the Gnaw. Follow the battleplan twist rules.",
-    primaryScoring: [
-      "Score for objectives free of the Gnaw’s curse.",
-      "Cursed objectives may score for the underdog instead.",
-    ],
   },
   {
     id: "seize-the-embers",
@@ -322,11 +287,6 @@ export const battleplanLayouts: BattleplanLayout[] = [
       { id: "t1", x: 30, y: 22, kind: "place-of-power" },
     ]),
     twistTitle: "Seize the Embers",
-    twistEffect: "The underdog benefits from Seize the Embers. Follow the battleplan twist rules.",
-    primaryScoring: [
-      "Score for ember objectives you control.",
-      "Carrying or contesting the central ember scores additional points.",
-    ],
   },
   {
     id: "treacherous-ground",
@@ -345,11 +305,6 @@ export const battleplanLayouts: BattleplanLayout[] = [
       { id: "t2", x: 38, y: 22, kind: "area" },
     ]),
     twistTitle: "Treacherous Ground",
-    twistEffect: "The underdog benefits from Treacherous Ground. Follow the battleplan twist rules.",
-    primaryScoring: [
-      "Score for stable ground objectives you control.",
-      "Hazardous areas may force units off objectives.",
-    ],
   },
   {
     id: "escape-from-the-coast",
@@ -365,11 +320,6 @@ export const battleplanLayouts: BattleplanLayout[] = [
     ]),
     terrain: terrainMarks([{ id: "t1", x: 30, y: 12 }, { id: "t2", x: 30, y: 32 }]),
     twistTitle: "Escape from the Coast",
-    twistEffect: "The underdog benefits from Escape from the Coast. Follow the battleplan twist rules.",
-    primaryScoring: [
-      "Score for escape-route objectives toward the board edge.",
-      "Objectives nearer the exit score more in later battle rounds.",
-    ],
   },
   {
     id: "power-of-the-realms",
@@ -388,13 +338,23 @@ export const battleplanLayouts: BattleplanLayout[] = [
       { id: "t1", x: 30, y: 22, kind: "place-of-power" },
     ]),
     twistTitle: "Power of the Realms",
-    twistEffect: "The underdog benefits from Power of the Realms. Follow the battleplan twist rules.",
-    primaryScoring: [
-      "Score for realmstone objectives you control.",
-      "The central place of power scores additional victory points.",
-    ],
   },
 ];
+
+export const battleplanLayouts: BattleplanLayout[] = battleplanSchematics.map(
+  (schematic) => {
+    const mission =
+      battleplanMissions[schematic.id as keyof typeof battleplanMissions];
+    if (!mission) {
+      throw new Error(`Missing mission text for battleplan ${schematic.id}`);
+    }
+    return {
+      ...schematic,
+      twistEffect: mission.twistEffect,
+      primaryScoring: mission.primaryScoring,
+    };
+  },
+);
 
 export function getBattleplanLayout(id: string): BattleplanLayout | undefined {
   return battleplanLayouts.find((plan) => plan.id === id);
