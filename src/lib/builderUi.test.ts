@@ -608,8 +608,8 @@ describe("iOS polish contracts", () => {
     expect(css).toContain(".pressable:active");
     expect(css).toContain("cursor: pointer");
     expect(css).toContain("transform: scale(0.97)");
-    expect(css).toContain(".library-card:has(.library-card-open:active)");
-    expect(css).toContain('.library-card[data-opening="true"]');
+    expect(css).toContain(".library-card:has(.library-card-open:active)::after");
+    expect(css).toContain('.library-card[data-opening="true"]::after');
   });
 
   it("defines bottom sheet animation and grabber", () => {

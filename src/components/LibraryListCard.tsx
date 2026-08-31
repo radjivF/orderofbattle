@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { getFaction } from "@/engine/queries";
 import { catalogueForList, isSpearheadList } from "@/engine/spearhead";
 import { formatPoints } from "@/engine/pointsCap";
@@ -13,7 +14,7 @@ import {
   rememberListNavigation,
   rememberListOpen,
 } from "@/lib/listTransition";
-import { listOpenDisplayNameForHeader } from "@/lib/listFlowNav";
+import { libraryCardPressHoldsOn, listOpenDisplayNameForHeader, listOpenUsesInAppSlide } from "@/lib/listFlowNav";
 import {
   LIBRARY_CARD_ACTION_BUTTON_CLASS,
   LIBRARY_CARD_ACTIONS_CLASS,
@@ -21,6 +22,7 @@ import {
   LIBRARY_CARD_DELETE_BUTTON_CLASS,
   LIBRARY_CARD_LIST_NAME_INPUT_CLASS,
 } from "@/lib/builderUi";
+import { useListNav } from "./IosNavSlide";
 
 function rememberOpenList(list: ArmyList) {
   const faction = getFaction(list.factionId);
@@ -54,7 +56,15 @@ export function LibraryListCard({
   );
   const spearhead = isSpearheadList(list);
   const artSrc = catalogueArtSrc(faction);
+  const pathname = usePathname();
+  const { goForward } = useListNav();
   const [opening, setOpening] = useState(false);
+
+  useEffect(() => {
+    if (!libraryCardPressHoldsOn(pathname)) {
+      setOpening(false);
+    }
+  }, [pathname]);
 
   return (
     <article
@@ -65,9 +75,22 @@ export function LibraryListCard({
         href={`/lists/${list.id}`}
         scroll={false}
         aria-label={`Open ${list.name}`}
-        onClick={() => {
+        onClick={(event) => {
+          if (
+            !listOpenUsesInAppSlide({
+              metaKey: event.metaKey,
+              ctrlKey: event.ctrlKey,
+              shiftKey: event.shiftKey,
+              altKey: event.altKey,
+              button: event.button,
+            })
+          ) {
+            return;
+          }
+          event.preventDefault();
           setOpening(true);
           rememberOpenList(list);
+          goForward(`/lists/${list.id}`);
         }}
         className="library-card-open absolute inset-0 z-[1]"
       />

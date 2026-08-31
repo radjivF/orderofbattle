@@ -6,9 +6,19 @@ import { cleanup, render, screen } from "@/test-utils/render";
 import { LibraryScreen } from "./LibraryScreen";
 
 const armyStore = vi.hoisted(() => ({ items: [] as ArmyList[] }));
+const navigation = vi.hoisted(() => ({ pathname: "/dashboard" }));
+const listNav = vi.hoisted(() => ({
+  goBack: vi.fn(),
+  goForward: vi.fn(),
+}));
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), replace: vi.fn() }),
+  usePathname: () => navigation.pathname,
+}));
+
+vi.mock("./IosNavSlide", () => ({
+  useListNav: () => listNav,
 }));
 
 vi.mock("next/link", () => ({
@@ -81,6 +91,8 @@ describe("LibraryScreen", () => {
   beforeEach(() => {
     cleanup();
     armyStore.items = [];
+    navigation.pathname = "/dashboard";
+    listNav.goForward.mockReset();
     Object.defineProperty(window, "matchMedia", {
       writable: true,
       value: (query: string) => ({
@@ -155,6 +167,16 @@ describe("LibraryScreen", () => {
     expect(card).toHaveAttribute("data-opening", "true");
   });
 
+  it("starts the list slide on press instead of waiting for the route", async () => {
+    const list = blankArmy("stormcast-eternals", "Sigmar host");
+    armyStore.items = [list];
+    render(<LibraryScreen />);
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+
+    await user.click(screen.getByRole("link", { name: "Open Sigmar host" }));
+    expect(listNav.goForward).toHaveBeenCalledWith(`/lists/${list.id}`);
+  });
+
   it("does not press the card when duplicating", async () => {
     armyStore.items = [blankArmy("stormcast-eternals", "Sigmar host")];
     render(<LibraryScreen />);
@@ -164,6 +186,27 @@ describe("LibraryScreen", () => {
       .closest("article");
 
     await user.click(screen.getByRole("button", { name: "Duplicate" }));
+    expect(card).not.toHaveAttribute("data-opening");
+  });
+
+  it("releases the press when returning to My lists", async () => {
+    const list = blankArmy("stormcast-eternals", "Sigmar host");
+    armyStore.items = [list];
+    const { rerender } = render(<LibraryScreen />);
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    const card = screen
+      .getByRole("link", { name: "Open Sigmar host" })
+      .closest("article");
+
+    await user.click(screen.getByRole("link", { name: "Open Sigmar host" }));
+    expect(card).toHaveAttribute("data-opening", "true");
+
+    navigation.pathname = `/lists/${list.id}`;
+    rerender(<LibraryScreen />);
+    expect(card).toHaveAttribute("data-opening", "true");
+
+    navigation.pathname = "/dashboard";
+    rerender(<LibraryScreen />);
     expect(card).not.toHaveAttribute("data-opening");
   });
 });
