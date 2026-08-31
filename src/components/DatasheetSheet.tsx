@@ -16,6 +16,7 @@ import {
   SHEET_HEADER_START_CLASS,
 } from "@/lib/builderUi";
 import { AbilityMeta } from "./AbilityMeta";
+import { KeywordChip } from "./KeywordChip";
 import { ModalFrame } from "./ModalFrame";
 import { RuleText } from "./RuleText";
 import { SheetCloseButton } from "./ios/SheetIconButton";
@@ -93,9 +94,16 @@ export function DatasheetSheet({ sheet, hidePoints, onClose }: Props) {
               <h3 className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
                 Keywords
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-parchment-ink/80">
-                {sheet.categories.join(", ")}
-              </p>
+              <ul
+                aria-label="Keywords"
+                className="mt-2 flex flex-wrap gap-1.5"
+              >
+                {sheet.categories.map((keyword) => (
+                  <li key={keyword}>
+                    <KeywordChip keyword={keyword} />
+                  </li>
+                ))}
+              </ul>
             </section>
           ) : null}
 

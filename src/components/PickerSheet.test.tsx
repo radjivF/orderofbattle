@@ -59,4 +59,40 @@ describe("PickerSheet", () => {
         Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
   });
+
+  it("shows Infantry and Wizard chips, not the faction keyword", () => {
+    render(
+      <PickerSheet
+        title="Choose a unit"
+        units={[
+          unit({
+            categories: ["INFANTRY", "WIZARD", "CASTELITE"],
+          }),
+        ]}
+        onPick={vi.fn()}
+        onOpenDatasheet={vi.fn()}
+        onClose={vi.fn()}
+      />,
+    );
+
+    expect(screen.getByText("INFANTRY")).toBeInTheDocument();
+    expect(screen.getByText("WIZARD")).toBeInTheDocument();
+    expect(screen.queryByText("CASTELITE")).toBeNull();
+  });
+
+  it("hides chips when the unit has no coded keywords", () => {
+    render(
+      <PickerSheet
+        title="Choose a unit"
+        units={[unit({ categories: ["CASTELITE"] })]}
+        onPick={vi.fn()}
+        onOpenDatasheet={vi.fn()}
+        onClose={vi.fn()}
+      />,
+    );
+
+    expect(screen.queryByText("INFANTRY")).toBeNull();
+    expect(screen.queryByText("HERO")).toBeNull();
+    expect(screen.queryByText("CASTELITE")).toBeNull();
+  });
 });

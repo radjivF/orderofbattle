@@ -17,6 +17,7 @@ import type {
   UnitAbility,
 } from "@/engine/types";
 import { PlayBindNotes, PlayHealthTrack, SlotEnhancements, SlotMoreMenu } from "./RegimentCard";
+import { CodedKeywordChips } from "./KeywordChip";
 import { RuleText } from "./RuleText";
 import { BuildSlotRow, PlaySlotRow } from "./ios/SheetIconButton";
 
@@ -217,6 +218,7 @@ function RoRSlotRow({
 }) {
   const play = selectionPlayState(selection, unit);
   const warning = battleDamagedWarning(unit, play.damage);
+  const tags = <CodedKeywordChips categories={unit.categories} />;
   const enhancements = (
     <SlotEnhancements
       selectionId={selection.id}
@@ -255,6 +257,7 @@ function RoRSlotRow({
           <PlaySlotRow
             name={unit.name}
             subtitle={battleStatLine(unit)}
+            tags={tags}
             sheetLabel={`${unit.name} datasheet`}
             onOpenSheet={() => onOpenDatasheet(unit)}
             trailing={
@@ -280,6 +283,7 @@ function RoRSlotRow({
           <BuildSlotRow
             name={unit.name}
             subtitle={battleStatLine(unit)}
+            tags={tags}
             sheetLabel={`${unit.name} datasheet`}
             onOpenSheet={() => onOpenDatasheet(unit)}
           />

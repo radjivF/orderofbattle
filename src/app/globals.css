@@ -18,6 +18,9 @@
   --legal: #4a7c59;
   --illegal: #8b2e2e;
   --illegal-lit: #e8b4b4;
+  --slate: #536b86;
+  --sky: #4a7c96;
+  --arcane: #6b5a8a;
 }
 
 @theme inline {
@@ -36,6 +39,9 @@
   --color-legal: var(--legal);
   --color-illegal: var(--illegal);
   --color-illegal-lit: var(--illegal-lit);
+  --color-slate: var(--slate);
+  --color-sky: var(--sky);
+  --color-arcane: var(--arcane);
   --font-sans: var(--font-instrument);
   --font-serif: var(--font-cinzel);
 }

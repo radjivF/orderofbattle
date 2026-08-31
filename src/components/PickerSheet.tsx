@@ -11,6 +11,7 @@ import {
   PICKER_SHEET_HEADER_CLASS,
 } from "@/lib/pickerUi";
 import { ModalFrame } from "./ModalFrame";
+import { CodedKeywordChips } from "./KeywordChip";
 import { RuleText } from "./RuleText";
 import {
   IosSearchIcon,
@@ -171,6 +172,7 @@ function PickerRow({
           <span className="block font-serif text-lg leading-tight">
             {unit.name}
           </span>
+          <CodedKeywordChips categories={unit.categories} />
           <span className="mt-0.5 block text-xs text-sheet-muted">
             {unitSizeLabel(unit)}
             {unit.unique ? " · Unique" : ""}
