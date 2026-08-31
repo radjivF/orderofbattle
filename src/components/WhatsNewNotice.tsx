@@ -8,6 +8,8 @@ import {
   subscribeArmies,
 } from "@/lib/storage";
 import {
+  WHATS_NEW_AUTO_DISMISS_MS,
+  WHATS_NEW_EXPANDED_DISMISS_MS,
   WHATS_NEW_ITEMS,
   getSeenWhatsNewVersion,
   markWhatsNewSeen,
@@ -29,13 +31,29 @@ export function WhatsNewNotice() {
     setReady(true);
   }, []);
 
-  if (!ready) return null;
-  if (!shouldShowWhatsNew({ lists, seenVersion })) return null;
+  const visible =
+    ready && shouldShowWhatsNew({ lists, seenVersion });
 
-  const dismiss = () => {
+  useEffect(() => {
+    if (!visible) {
+      return;
+    }
+    const ms = expanded
+      ? WHATS_NEW_EXPANDED_DISMISS_MS
+      : WHATS_NEW_AUTO_DISMISS_MS;
+    const timer = window.setTimeout(() => {
+      markWhatsNewSeen();
+      setSeenVersion(getSeenWhatsNewVersion());
+    }, ms);
+    return () => window.clearTimeout(timer);
+  }, [visible, expanded]);
+
+  function dismiss() {
     markWhatsNewSeen();
     setSeenVersion(getSeenWhatsNewVersion());
-  };
+  }
+
+  if (!visible) return null;
 
   return (
     <div

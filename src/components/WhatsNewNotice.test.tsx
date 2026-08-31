@@ -2,8 +2,8 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { blankArmy } from "@/engine/listFactories";
 import type { ArmyList } from "@/engine/types";
-import { WHATS_NEW_ITEMS } from "@/lib/whatsNew";
-import { cleanup, render, screen } from "@/test-utils/render";
+import { WHATS_NEW_AUTO_DISMISS_MS, WHATS_NEW_ITEMS } from "@/lib/whatsNew";
+import { act, cleanup, render, screen } from "@/test-utils/render";
 import { WhatsNewNotice } from "./WhatsNewNotice";
 
 const armyStore = vi.hoisted(() => ({
@@ -24,6 +24,7 @@ describe("WhatsNewNotice", () => {
     cleanup();
     localStorage.clear();
     armyStore.items = undefined;
+    vi.useRealTimers();
   });
 
   it("does not show while lists are loading", () => {
@@ -67,6 +68,26 @@ describe("WhatsNewNotice", () => {
     const { unmount } = render(<WhatsNewNotice />);
 
     await user.click(screen.getByRole("button", { name: "Dismiss" }));
+    expect(screen.queryByRole("status", { name: "What's new" })).toBeNull();
+
+    unmount();
+    render(<WhatsNewNotice />);
+    expect(screen.queryByRole("status", { name: "What's new" })).toBeNull();
+  });
+
+  it("disappears by itself after a few seconds and stays gone", async () => {
+    vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout"] });
+    armyStore.items = [blankArmy("stormcast-eternals", "My army")];
+    const { unmount } = render(<WhatsNewNotice />);
+
+    expect(screen.getByRole("status", { name: "What's new" }));
+    await act(async () => {
+      vi.advanceTimersByTime(WHATS_NEW_AUTO_DISMISS_MS - 1);
+    });
+    expect(screen.getByRole("status", { name: "What's new" }));
+    await act(async () => {
+      vi.advanceTimersByTime(1);
+    });
     expect(screen.queryByRole("status", { name: "What's new" })).toBeNull();
 
     unmount();

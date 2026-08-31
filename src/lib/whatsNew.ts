@@ -2,6 +2,10 @@ const SEEN_KEY = "oob-whats-new";
 
 export const WHATS_NEW_VERSION = "2026-08-31-play-abilities";
 
+/** Collapsed toast hides itself after this. Expanded list gets longer. */
+export const WHATS_NEW_AUTO_DISMISS_MS = 8_000;
+export const WHATS_NEW_EXPANDED_DISMISS_MS = 14_000;
+
 export const WHATS_NEW_ITEMS = [
   "Play shows each unit's abilities on the phase they happen — Hero, Combat, End of turn — not only army traits.",
   "Dead units stay on the board until you remove them from that phase.",
