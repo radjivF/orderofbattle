@@ -245,13 +245,13 @@ export const LIST_LANDING_CONTENT_VISIBLE_CLASS = "opacity-100";
 
 export const LIST_LANDING_CONTENT_HIDDEN_CLASS = "opacity-0";
 
-/** Sit the cookie banner under the solid header so it is not painted over the bar. */
+/** Under the header (z-60), above list cards and the transformed list track. */
 export const COOKIE_CONSENT_BANNER_CLASS =
-  "pointer-events-none fixed inset-x-0 top-[calc(env(safe-area-inset-top)+3.75rem)] z-40 flex justify-center px-4 pt-2";
+  "pointer-events-none fixed inset-x-0 top-[calc(env(safe-area-inset-top)+3.75rem)] z-50 flex justify-center px-4 pt-2";
 
-/** Bottom toast — does not cover the header or cookie banner. */
+/** Bottom toast — same stack as the cookie banner, still under the header. */
 export const WHATS_NEW_BANNER_CLASS =
-  "pointer-events-none fixed inset-x-0 bottom-[calc(env(safe-area-inset-bottom)+1rem)] z-40 flex justify-center px-4 pb-2";
+  "pointer-events-none fixed inset-x-0 bottom-[calc(env(safe-area-inset-bottom)+1rem)] z-50 flex justify-center px-4 pb-2";
 
 /** Bottom sheet panel — full width on phone, card on sm+. */
 export const SHEET_PANEL_CLASS =

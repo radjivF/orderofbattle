@@ -106,10 +106,10 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-full font-sans" suppressHydrationWarning>
         <AnalyticsScripts consentRequired={consentRequired} />
-        <CookieConsent consentRequired={consentRequired} />
-        <WhatsNewNotice />
         <JsonLd data={graph([softwareApplicationNode()])} />
         {children}
+        <CookieConsent consentRequired={consentRequired} />
+        <WhatsNewNotice />
       </body>
     </html>
   );

@@ -342,7 +342,8 @@ describe("iOS nav controls", () => {
       "top-[calc(env(safe-area-inset-top)+3.75rem)]",
     );
     expect(COOKIE_CONSENT_BANNER_CLASS).not.toContain("top-0");
-    expect(COOKIE_CONSENT_BANNER_CLASS).toContain("z-40");
+    expect(COOKIE_CONSENT_BANNER_CLASS).toContain("z-50");
+    expect(COOKIE_CONSENT_BANNER_CLASS).not.toContain("z-40");
 
     const cookie = readFileSync(
       path.resolve(
@@ -353,6 +354,17 @@ describe("iOS nav controls", () => {
     );
     expect(cookie).toContain("COOKIE_CONSENT_BANNER_CLASS");
     expect(cookie).not.toContain("z-50");
+
+    const layout = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../app/layout.tsx",
+      ),
+      "utf8",
+    );
+    expect(layout.indexOf("{children}")).toBeLessThan(
+      layout.indexOf("<CookieConsent"),
+    );
 
     const header = readFileSync(
       path.resolve(

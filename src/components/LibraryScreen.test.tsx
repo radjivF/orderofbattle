@@ -110,6 +110,13 @@ describe("LibraryScreen", () => {
     expect(screen.getByRole("button", { name: "Make your first list" }));
   });
 
+  it("does not show the free-app pitch on My lists", () => {
+    render(<LibraryScreen />);
+    expect(
+      screen.queryByRole("heading", { name: "This app is free. It stays free." }),
+    ).toBeNull();
+  });
+
   it("tells you to pick a list when Continue is pressed with none selected", async () => {
     armyStore.items = [blankArmy("stormcast-eternals", "Test list")];
     render(<LibraryScreen />);

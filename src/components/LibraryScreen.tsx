@@ -492,7 +492,7 @@ export function LibraryScreen() {
           </ul>
         )}
       </main>
-      <SiteFooter />
+      <SiteFooter showPitch={false} />
 
       {librarySheetOpen ? (
         <ModalFrame
