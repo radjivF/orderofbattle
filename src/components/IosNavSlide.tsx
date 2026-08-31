@@ -14,13 +14,16 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   LIST_FLOW_HEADER_OFFSET_CLASS,
   LIST_FLOW_SLIDE_MS,
+  LIST_LANDING_CONTENT_HIDDEN_CLASS,
+  LIST_LANDING_CONTENT_VISIBLE_CLASS,
   SITE_HEADER_BAR_CLASS,
 } from "@/lib/builderUi";
 import {
-  listFlowFactionBackdropOnScreen,
+  listFlowFactionBackdropFaded,
   listFlowIndexBackdropRevealed,
   listFlowIsHome,
   listFlowPendingRouteSplash,
+  listFlowShowsFactionBackdrop,
   listFlowSkipsPostRouteSlide,
   listFlowTrackClass,
   listFlowWindowScrollY,
@@ -99,11 +102,18 @@ export function ListNavProvider({
   const [showDetail, setShowDetailState] = useState(false);
   const [settled, setSettled] = useState(true);
   const [animatingBack, setAnimatingBack] = useState(false);
+  const [cachedBackdrop, setCachedBackdrop] = useState<ReactNode>(null);
   const timers = useRef<number[]>([]);
   const animatingBackRef = useRef(false);
   const pendingForwardRef = useRef(false);
   const forwardGenRef = useRef(0);
   const libraryScrollYRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (backdrop) {
+      setCachedBackdrop(backdrop);
+    }
+  }, [backdrop]);
 
   const publishNavState = useCallback(
     (next: {
@@ -266,8 +276,6 @@ export function ListNavProvider({
     schedule(() => {
       clearListNavigationDirection();
       router.push("/dashboard", { scroll: false });
-      animatingBackRef.current = false;
-      publishNavState({ showDetail: false, animatingBack: false, settled: true });
     }, LIST_FLOW_SLIDE_MS);
   }
 
@@ -275,20 +283,19 @@ export function ListNavProvider({
   const pendingSplashName = openFactionId
     ? getFaction(openFactionId)?.name
     : peekListOpenDisplayName();
-  const factionOnScreen = listFlowFactionBackdropOnScreen({
-    hasBackdrop: Boolean(backdrop),
+  const factionLayer = backdrop ?? cachedBackdrop;
+  const factionOnScreen = listFlowShowsFactionBackdrop({
+    hasBackdrop: Boolean(factionLayer),
+    isBuilder,
     returningToLibrary: animatingBack,
   });
-  const indexBackdropRevealed = listFlowIndexBackdropRevealed({
-    factionBackdropOnScreen: factionOnScreen,
-    returningToLibrary: animatingBack,
-  });
+  const factionFaded = listFlowFactionBackdropFaded(animatingBack);
   const pendingRouteSplash = listFlowPendingRouteSplash(showDetail, isBuilder);
 
   return (
     <ListNavContext.Provider value={{ goBack, goForward }}>
       <div className="relative min-h-dvh w-full overflow-x-hidden overflow-y-visible">
-        <IndexBackdropLayer revealed={indexBackdropRevealed} transitionClass="" />
+        <IndexBackdropLayer revealed={listFlowIndexBackdropRevealed()} />
         {header ? (
           <header
             className={`${SITE_HEADER_BAR_CLASS} pointer-events-auto fixed inset-x-0 top-0 z-[60] pt-[env(safe-area-inset-top)]`}
@@ -297,7 +304,15 @@ export function ListNavProvider({
           </header>
         ) : null}
         {factionOnScreen ? (
-          <div className="pointer-events-none fixed inset-0 z-[1]">{backdrop}</div>
+          <div
+            className={`pointer-events-none fixed inset-0 z-[1] transition-opacity duration-[320ms] ease-out ${
+              factionFaded
+                ? LIST_LANDING_CONTENT_HIDDEN_CLASS
+                : LIST_LANDING_CONTENT_VISIBLE_CLASS
+            }`}
+          >
+            {factionLayer}
+          </div>
         ) : null}
         {pendingRouteSplash ? (
           <div className="pointer-events-none fixed inset-0 z-[30]">

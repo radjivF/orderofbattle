@@ -10,7 +10,8 @@ import {
   listFlowSkipsPostRouteSlide,
   listFlowTrackClass,
   listFlowWindowScrollY,
-  listFlowFactionBackdropOnScreen,
+  listFlowShowsFactionBackdrop,
+  listFlowFactionBackdropFaded,
   listFlowIndexBackdropRevealed,
   listFlowPendingRouteSplash,
   listOpenNeedsSplash,
@@ -239,43 +240,49 @@ describe("listFlowPendingRouteSplash", () => {
   });
 });
 
-describe("listFlowFactionBackdropOnScreen", () => {
-  it("does not keep faction art on screen while returning to My lists", () => {
+describe("listFlowShowsFactionBackdrop", () => {
+  it("keeps list art mounted while sliding back so it can fade", () => {
     expect(
-      listFlowFactionBackdropOnScreen({
+      listFlowShowsFactionBackdrop({
         hasBackdrop: true,
+        isBuilder: true,
         returningToLibrary: false,
       }),
     ).toBe(true);
     expect(
-      listFlowFactionBackdropOnScreen({
+      listFlowShowsFactionBackdrop({
         hasBackdrop: true,
+        isBuilder: true,
         returningToLibrary: true,
+      }),
+    ).toBe(true);
+    expect(
+      listFlowShowsFactionBackdrop({
+        hasBackdrop: true,
+        isBuilder: false,
+        returningToLibrary: true,
+      }),
+    ).toBe(true);
+    expect(
+      listFlowShowsFactionBackdrop({
+        hasBackdrop: true,
+        isBuilder: false,
+        returningToLibrary: false,
       }),
     ).toBe(false);
   });
 });
 
+describe("listFlowFactionBackdropFaded", () => {
+  it("fades list art out while returning to My lists", () => {
+    expect(listFlowFactionBackdropFaded(false)).toBe(false);
+    expect(listFlowFactionBackdropFaded(true)).toBe(true);
+  });
+});
+
 describe("listFlowIndexBackdropRevealed", () => {
-  it("keeps library art visible until list art is actually showing", () => {
-    expect(
-      listFlowIndexBackdropRevealed({
-        factionBackdropOnScreen: false,
-        returningToLibrary: false,
-      }),
-    ).toBe(true);
-    expect(
-      listFlowIndexBackdropRevealed({
-        factionBackdropOnScreen: true,
-        returningToLibrary: false,
-      }),
-    ).toBe(false);
-    expect(
-      listFlowIndexBackdropRevealed({
-        factionBackdropOnScreen: true,
-        returningToLibrary: true,
-      }),
-    ).toBe(true);
+  it("keeps library art painted so going back does not flash ink", () => {
+    expect(listFlowIndexBackdropRevealed()).toBe(true);
   });
 });
 
@@ -347,7 +354,8 @@ describe("list flow navigation wiring", () => {
     );
     expect(nav).not.toContain("headerMode");
     expect(nav).not.toContain("setShowDetail(false);");
-    expect(nav).toContain("listFlowFactionBackdropOnScreen");
+    expect(nav).toContain("listFlowShowsFactionBackdrop");
+    expect(nav).toContain("listFlowFactionBackdropFaded");
     expect(nav).toContain("listFlowIndexBackdropRevealed");
     expect(nav).toContain("listFlowPendingRouteSplash");
     expect(nav).not.toContain("optimisticBackdrop");
@@ -372,17 +380,22 @@ describe("list flow navigation wiring", () => {
     expect(nav).not.toContain("optimisticBackdrop");
     expect(nav).not.toContain("FactionArtLayers");
     expect(nav).toContain("listFlowPendingRouteSplash");
-    expect(nav).toContain("listFlowFactionBackdropOnScreen");
-    expect(nav).toContain("indexBackdropRevealed");
+    expect(nav).toContain("listFlowShowsFactionBackdrop");
+    expect(nav).toContain("listFlowFactionBackdropFaded");
+    expect(nav).toContain("cachedBackdrop");
     expect(nav).not.toContain("LIST_BACKDROP_RETURN_MS");
     expect(nav).not.toContain("factionBackdropRevealed");
-    expect(nav).toContain("revealed={indexBackdropRevealed}");
+    expect(nav).toContain("revealed={listFlowIndexBackdropRevealed()}");
     expect(nav).not.toMatch(/list-flow-pane[\s\S]*\{backdrop\}/);
     expect(nav).toContain("listFlowWindowScrollY");
     expect(nav).toContain("scrollToPane");
     expect(nav).not.toContain("lockPageScroll");
     expect(nav).toMatch(
       /settled: false[\s\S]*requestAnimationFrame[\s\S]*scrollToPane\(true/,
+    );
+    expect(nav).toContain('router.push("/dashboard", { scroll: false });');
+    expect(nav).not.toContain(
+      'router.push("/dashboard", { scroll: false });\n      animatingBackRef.current = false;',
     );
   });
 

@@ -74,20 +74,23 @@ export function listFlowPendingRouteSplash(
   return showDetail && !isBuilder;
 }
 
-/** List art sits behind the list. Drop it as soon as we return to My lists. */
-export function listFlowFactionBackdropOnScreen(input: {
+/** Keep list art mounted while sliding back so it can fade instead of cutting to ink. */
+export function listFlowShowsFactionBackdrop(input: {
   hasBackdrop: boolean;
+  isBuilder: boolean;
   returningToLibrary: boolean;
 }): boolean {
-  return input.hasBackdrop && !input.returningToLibrary;
+  return input.hasBackdrop && (input.isBuilder || input.returningToLibrary);
 }
 
-/** Keep library art up until list art is actually showing — no dark gap. */
-export function listFlowIndexBackdropRevealed(input: {
-  factionBackdropOnScreen: boolean;
-  returningToLibrary: boolean;
-}): boolean {
-  return input.returningToLibrary || !input.factionBackdropOnScreen;
+/** Fade list art out with the back slide — library art is already painted underneath. */
+export function listFlowFactionBackdropFaded(returningToLibrary: boolean): boolean {
+  return returningToLibrary;
+}
+
+/** Library art stays painted under the list so going back does not flash ink. */
+export function listFlowIndexBackdropRevealed(): boolean {
+  return true;
 }
 
 /** Opening splash covers the incoming list; never show it while sliding back. */
