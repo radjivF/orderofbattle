@@ -1,11 +1,13 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { blankArmy } from "@/engine/listFactories";
-import type { ArmyList } from "@/engine/types";
+import { blankTowArmy } from "@/engine/tow/listFactories";
+import type { StoredList } from "@/engine/storedList";
 import { cleanup, render, screen } from "@/test-utils/render";
 import { LibraryScreen } from "./LibraryScreen";
+import { setActiveMenu } from "@/lib/activeMenu";
 
-const armyStore = vi.hoisted(() => ({ items: [] as ArmyList[] }));
+const armyStore = vi.hoisted(() => ({ items: [] as StoredList[] }));
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), replace: vi.fn() }),
@@ -42,6 +44,7 @@ vi.mock("@/lib/storage", () => ({
   getArmiesServerSnapshot: () => armyStore.items,
   blankArmy: vi.fn(),
   blankSpearhead: vi.fn(),
+  blankTowArmy: vi.fn(),
   deleteArmy: vi.fn(),
   duplicateArmy: vi.fn(),
   importArmies: vi.fn(),
@@ -81,6 +84,8 @@ describe("LibraryScreen", () => {
   beforeEach(() => {
     cleanup();
     armyStore.items = [];
+    localStorage.clear();
+    setActiveMenu("aos");
     Object.defineProperty(window, "matchMedia", {
       writable: true,
       value: (query: string) => ({
@@ -108,6 +113,46 @@ describe("LibraryScreen", () => {
       Node.DOCUMENT_POSITION_FOLLOWING,
     );
     expect(screen.getByRole("button", { name: "Make your first list" }));
+  });
+
+  it("shows a real Old World library and keeps Tabletop Tactics as a placeholder", () => {
+    setActiveMenu("tow");
+    render(<LibraryScreen />);
+
+    expect(screen.getByRole("heading", { name: "My lists" }));
+    expect(screen.getByRole("button", { name: "New list" }));
+    expect(screen.getByRole("button", { name: "Make your first list" }));
+    expect(screen.queryByText("Coming on its branch.")).toBeNull();
+
+    cleanup();
+    setActiveMenu("tactics");
+    render(<LibraryScreen />);
+
+    expect(screen.getByRole("heading", { name: "Tabletop Tactics" }));
+    expect(screen.getByText("Coming on its branch."));
+    expect(screen.queryByRole("button", { name: "New list" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "List options" })).toBeNull();
+    expect(
+      screen.queryByRole("button", { name: "Make your first list" }),
+    ).toBeNull();
+  });
+
+  it("hides Age of Sigmar lists when Old World is selected", () => {
+    armyStore.items = [blankArmy("stormcast-eternals", "Sigmar host")];
+    setActiveMenu("tow");
+    render(<LibraryScreen />);
+
+    expect(screen.queryByRole("link", { name: "Open Sigmar host" })).toBeNull();
+    expect(screen.getByRole("button", { name: "Make your first list" }));
+  });
+
+  it("lists Empire armies on the Old World library", () => {
+    armyStore.items = [blankTowArmy("the-empire-of-man", "Altdorf")];
+    setActiveMenu("tow");
+    render(<LibraryScreen />);
+
+    expect(screen.getByRole("link", { name: "Open Altdorf" }));
+    expect(screen.getByText("The Empire of Man"));
   });
 
   it("does not show the free-app pitch on My lists", () => {

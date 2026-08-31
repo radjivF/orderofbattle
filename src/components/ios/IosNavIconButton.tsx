@@ -1,6 +1,6 @@
 "use client";
 
-import { IOS_NAV_ICON_BUTTON_CLASS, LIBRARY_HEADER_OPTIONS_BUTTON_CLASS } from "@/lib/builderUi";
+import { IOS_NAV_ICON_BUTTON_CLASS, IOS_NAV_MENU_BUTTON_CLASS, IOS_NAV_MENU_ICON_CLASS, LIBRARY_HEADER_OPTIONS_BUTTON_CLASS } from "@/lib/builderUi";
 
 type Props = {
   label: string;
@@ -46,6 +46,19 @@ export function IosNavBackButton({ label, onClick }: Props) {
   );
 }
 
+export function IosNavMenuButton({ label, onClick }: Props) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={label}
+      className={IOS_NAV_MENU_BUTTON_CLASS}
+    >
+      <IosMenuIcon />
+    </button>
+  );
+}
+
 function IosChevronLeftIcon() {
   return (
     <svg viewBox="0 0 20 20" aria-hidden="true" className="h-5 w-5">
@@ -81,6 +94,20 @@ function IosEllipsisIcon() {
       <circle cx="10" cy="5" r="1.35" fill="currentColor" />
       <circle cx="10" cy="10" r="1.35" fill="currentColor" />
       <circle cx="10" cy="15" r="1.35" fill="currentColor" />
+    </svg>
+  );
+}
+
+function IosMenuIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={IOS_NAV_MENU_ICON_CLASS}>
+      <path
+        d="M4 7h16M4 12h16M4 17h16"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }

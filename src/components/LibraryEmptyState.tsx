@@ -10,6 +10,15 @@ type Props = {
   onImport: () => void;
 };
 
+export function LibraryMenuPlaceholder({ body }: { body: string }) {
+  return (
+    <div className={EMPTY_LIBRARY_PANEL_CLASS}>
+      <BrandMark size={40} className="mx-auto mb-4 h-10 w-auto opacity-40" />
+      <p className="text-sm leading-relaxed text-parchment/80">{body}</p>
+    </div>
+  );
+}
+
 export function LibraryEmptyState({ onCreate, onImport }: Props) {
   return (
     <div className={EMPTY_LIBRARY_PANEL_CLASS}>

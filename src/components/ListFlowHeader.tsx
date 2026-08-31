@@ -1,14 +1,24 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { getFaction } from "@/engine/queries";
 import { formatPoints } from "@/engine/pointsCap";
+import { isTowList } from "@/engine/storedList";
+import { towSummarize } from "@/engine/tow/validate";
 import { summarize } from "@/engine/validate";
+import {
+  brandSubtitleForMenu,
+  getActiveMenuServerSnapshot,
+  getActiveMenuSnapshot,
+  setActiveMenu,
+  subscribeActiveMenu,
+} from "@/lib/activeMenu";
 import {
   BUILDER_LIST_NAME_INPUT_CLASS,
   HEADER_DROPS_LINE_CLASS,
   HEADER_STATS_STACK_CLASS,
   IOS_NAV_PLAY_BUTTON_CLASS,
+  LIBRARY_BRAND_HEADER_ROW_CLASS,
   SITE_HEADER_ROW_CLASS,
   builderHeaderShowsPlayButton,
   builderHeaderShowsIssueDot,
@@ -28,13 +38,34 @@ import {
 import type { BuilderChromeValue } from "./BuilderChrome";
 import type { LibraryChromeValue } from "./LibraryChrome";
 import { useListNav } from "./IosNavSlide";
-import { IosNavBackButton } from "./ios/IosNavIconButton";
+import { IosNavBackButton, IosNavMenuButton } from "./ios/IosNavIconButton";
 import { SiteBrandLockup } from "./BrandMark";
+import { AppMenuSheet } from "./AppMenuSheet";
 
 function LibraryHeaderRow() {
+  const menu = useSyncExternalStore(
+    subscribeActiveMenu,
+    getActiveMenuSnapshot,
+    getActiveMenuServerSnapshot,
+  );
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className={SITE_HEADER_ROW_CLASS}>
-      <SiteBrandLockup />
+      <div className={LIBRARY_BRAND_HEADER_ROW_CLASS}>
+        <IosNavMenuButton
+          label="Open menu"
+          onClick={() => setMenuOpen(true)}
+        />
+        <SiteBrandLockup subtitle={brandSubtitleForMenu(menu)} />
+      </div>
+      {menuOpen ? (
+        <AppMenuSheet
+          active={menu}
+          onSelect={setActiveMenu}
+          onClose={() => setMenuOpen(false)}
+        />
+      ) : null}
     </div>
   );
 }
@@ -70,9 +101,16 @@ function BuilderHeaderRow({
     getListOpenDisplayNameServerSnapshot,
   );
   const storedList = listId ? lists?.find((item) => item.id === listId) : undefined;
-  const storedCatalogue = storedList ? getFaction(storedList.factionId) : undefined;
-  const storedTotals =
-    storedList && storedCatalogue
+  const towStored = storedList && isTowList(storedList) ? storedList : undefined;
+  const storedCatalogue =
+    storedList && !towStored ? getFaction(storedList.factionId) : undefined;
+  const storedTotals = towStored
+    ? {
+        points: towSummarize(towStored).points,
+        pointsCap: towStored.pointsCap,
+        drops: 0,
+      }
+    : storedList && storedCatalogue
       ? summarize(storedList, storedCatalogue)
       : null;
 
@@ -102,6 +140,7 @@ function BuilderHeaderRow({
   const pointsCap = headerDisplay.pointsCap;
   const drops = headerDisplay.drops;
   const spearhead = chrome?.spearhead ?? false;
+  const hideDrops = chrome?.hideDrops ?? Boolean(towStored);
   const showIssueDot = chrome
     ? builderHeaderShowsIssueDot(spearhead, chrome.issue.tone)
     : false;
@@ -144,7 +183,7 @@ function BuilderHeaderRow({
               </>
             )}
           </p>
-          {spearhead ? null : (
+          {spearhead || hideDrops ? null : (
             <p className={HEADER_DROPS_LINE_CLASS}>{dropCountLabel(drops)}</p>
           )}
         </div>

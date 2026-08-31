@@ -1,6 +1,7 @@
 /** Header / builder chrome presentation used by ListFlowHeader and related UI. */
 
 import { formatPoints } from "@/engine/pointsCap";
+import type { ListIssueTarget } from "@/engine/validate";
 
 export function dropCountLabel(drops: number): string {
   return `${drops} ${drops === 1 ? "drop" : "drops"}`;
@@ -107,6 +108,39 @@ export const HEADER_DROPS_LINE_CLASS = "mt-0.5 text-[11px] text-ink-muted";
 export const LIST_ISSUE_BANNER_CLASS =
   "flex items-center gap-2 rounded-xl bg-illegal/25 px-4 py-2.5 text-sm font-bold text-illegal-lit ring-1 ring-illegal/40";
 
+export const LIST_ISSUE_HIGHLIGHT_CLASS =
+  "scroll-mt-28 bg-illegal/25 ring-2 ring-illegal ring-offset-2 ring-offset-ink";
+
+export function listIssueAnchorId(target: ListIssueTarget): string {
+  if (target.area === "add-regiment") {
+    return "list-issue-add-regiment";
+  }
+  if (target.area === "add-hero") {
+    return `list-issue-regiment-${target.regimentId}-hero`;
+  }
+  if (target.area === "regiment") {
+    return `list-issue-regiment-${target.regimentId}`;
+  }
+  if (target.area === "unit") {
+    return `list-issue-unit-${target.selectionId}`;
+  }
+  if (target.area === "add-ror") {
+    return "list-issue-add-ror";
+  }
+  return `list-issue-${target.field}`;
+}
+
+export function listIssueOpensOptions(target: ListIssueTarget): boolean {
+  return target.area === "options";
+}
+
+export function listIssueHighlightClass(
+  anchorId: string,
+  highlightedId: string | null,
+): string {
+  return highlightedId === anchorId ? LIST_ISSUE_HIGHLIGHT_CLASS : "";
+}
+
 /** GHB reminder — auxiliaries are allowed; they affect drops and CP. */
 export const AUXILIARY_RULES_TEXT =
   "Each auxiliary adds an extra drop and reduces your command points.";
@@ -131,6 +165,20 @@ export const PLAY_SHEET_LINK_CLASS =
 /** Parchment frosted lens, dark glyph — add and back. */
 export const IOS_NAV_ICON_BUTTON_CLASS =
   "ios-liquid-glass pressable inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full text-black";
+
+/** Bare parchment glyph — library hamburger only, not the liquid-glass add/back discs. */
+export const IOS_NAV_MENU_ICON_CLASS = "h-8 w-8 text-parchment";
+
+export const IOS_NAV_MENU_BUTTON_CLASS =
+  "pressable inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center text-parchment";
+
+export const LIBRARY_BRAND_HEADER_ROW_CLASS =
+  "flex min-w-0 flex-1 items-center gap-0.5";
+
+export const APP_MENU_DRAWER_MS = 280;
+
+export const APP_MENU_DRAWER_PANEL_CLASS =
+  "flex h-full w-[min(20rem,88vw)] flex-col bg-parchment text-parchment-ink shadow-[8px_0_32px_rgba(0,0,0,0.35)]";
 
 /** Options over library art — translucent ink disc with a gold rim. */
 export const LIBRARY_HEADER_OPTIONS_BUTTON_CLASS =
@@ -191,6 +239,13 @@ export const BUILDER_ADD_ACTION_CLASS =
 export const BUILDER_ADD_ACTION_EMPHASIS_CLASS =
   "pressable min-h-11 cursor-pointer px-2 text-sm text-sigmarite";
 
+/** Category label over list art — iOS dark material so serif type stays readable. */
+export const TOW_CATEGORY_ROW_CLASS =
+  "flex items-center justify-between gap-3 rounded-xl bg-ink/90 px-3 py-1.5 backdrop-blur-md ring-1 ring-parchment/15";
+
+export const TOW_CATEGORY_HEADING_CLASS =
+  "font-serif text-xl text-parchment";
+
 /** Primary + quiet secondary actions in form sheets (Create / Back, etc.). */
 export const SHEET_FORM_ACTIONS_CLASS =
   "mt-2 flex shrink-0 flex-col gap-3 pt-2";
@@ -202,9 +257,13 @@ export const HOME_CTA_CLASS =
 export const HOME_CTA_QUIET_CLASS =
   "home-cta-quiet pressable inline-flex min-h-11 items-center justify-center rounded-xl px-6 text-sm font-semibold";
 
+/** Shared page column — keep in sync with the site header so library chrome lines up with the menu. */
+export const SITE_COLUMN_CLASS =
+  "mx-auto w-full max-w-3xl px-3 sm:px-4";
+
 /** Shared inner row for library, builder, home, and content headers. */
 export const SITE_HEADER_ROW_CLASS =
-  "mx-auto flex min-h-[3.5rem] w-full max-w-3xl items-center gap-2 px-3 py-1.5 sm:min-h-[3.75rem] sm:px-4";
+  `${SITE_COLUMN_CLASS} flex min-h-[3.5rem] items-center gap-2 py-1.5 sm:min-h-[3.75rem]`;
 
 /** Full-width bar behind every site header — solid ink, no art showing through. */
 export const SITE_HEADER_BAR_CLASS = "ios-nav-bar";

@@ -1,172 +1,73 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useLayoutEffect, useEffect, useCallback, useMemo, useRef, useState, useSyncExternalStore, type ChangeEvent } from "react";
-import { getFaction, armyOfRenownName } from "@/engine/queries";
+import { useMemo, useState, useSyncExternalStore } from "react";
+import type { StoredList } from "@/engine/storedList";
+import { listGame } from "@/engine/storedList";
 import {
-  catalogueForList,
-  getSpearhead,
-  isSpearheadList,
-} from "@/engine/spearhead";
-import { parseNewListArmyValue } from "@/lib/newListArmyOptions";
-import { summarize } from "@/engine/validate";
+  getActiveMenuServerSnapshot,
+  getActiveMenuSnapshot,
+  menuPlaceholderCopy,
+  menuShowsListLibrary,
+  subscribeActiveMenu,
+} from "@/lib/activeMenu";
 import {
-  LIST_IMPORT_HELP,
-  parsePortableLists,
-  partitionPortableLists,
-  portableAllListsFileName,
-  portableListFileName,
-  portableMimeType,
-  serializeListsForFormat,
-  type PortableFormat,
-} from "@/engine/listPortable";
-import type { ArmyList, FactionCatalogue } from "@/engine/types";
-import { factionPickerCounts } from "@/lib/factionSeo";
-import { downloadTextFile } from "@/lib/downloadFile";
+  CONFIRM_SHEET_PANEL_CLASS,
+  LIBRARY_TITLE_CLASS,
+  LIBRARY_TITLE_ROW_CLASS,
+  SITE_COLUMN_CLASS,
+} from "@/lib/builderUi";
 import {
-  blankArmy,
-  blankSpearhead,
   deleteArmy,
   duplicateArmy,
   getArmiesServerSnapshot,
   getArmiesSnapshot,
-  importArmies,
   saveArmy,
   subscribeArmies,
 } from "@/lib/storage";
-import {
-  rememberListCreate,
-  peekListCreateSplash,
-  subscribeListOpenFaction,
-} from "@/lib/listTransition";
-import {
-  libraryCreatingSplashVisible,
-} from "@/lib/listFlowNav";
-import { newListDraftFromSearch } from "@/lib/newListLink";
 import {
   getLibrarySortServerSnapshot,
   getLibrarySortSnapshot,
   setLibrarySortMode,
   sortLibraryLists,
-  subscribeLibrarySort,
   type LibrarySortMode,
+  subscribeLibrarySort,
 } from "@/lib/librarySort";
-import {
-  CONFIRM_CANCEL_BUTTON_CLASS,
-  CONFIRM_SHEET_ACTIONS_CLASS,
-  CONFIRM_SHEET_PANEL_CLASS,
-  IOS_LIQUID_CTA_CLASS,
-  LIST_ISSUE_BANNER_CLASS,
-  LIBRARY_TITLE_CLASS,
-  LIBRARY_TITLE_ROW_CLASS,
-  SHEET_CHECKLIST_ITEM_CLASS,
-  SHEET_CHECKLIST_ITEM_SELECTED_CLASS,
-  MODAL_SHEET_SCROLL_CLASS,
-  MODAL_SHEET_SCROLL_HOST_CLASS,
-  MODAL_SHEET_FOOTER_CLASS,
-  SHEET_INLINE_LINK_CLASS,
-  SHEET_SECONDARY_BUTTON_CLASS,
-  SHEET_HEADER_CLASS,
-  LIBRARY_OPTIONS_SHEET_PANEL_CLASS,
-  LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS,
-  libraryListExportSubtitle,
-} from "@/lib/builderUi";
-import { FactionArtLayers } from "./FactionArtBackground";
-import { LibraryEmptyState } from "./LibraryEmptyState";
-import { LibraryCreateSheet } from "./LibraryCreateSheet";
-import { LibraryImportConfirm } from "./LibraryImportConfirm";
+import { LibraryEmptyState, LibraryMenuPlaceholder } from "./LibraryEmptyState";
+import { LibraryCreateFlow } from "./LibraryCreateFlow";
 import { LibraryListCard } from "./LibraryListCard";
-import { SheetCloseButton } from "./ios/SheetIconButton";
-import { ListLoadingSplash } from "./ListLoadingSplash";
+import { LibraryOptionsSheet } from "./LibraryOptionsSheet";
 import { ModalFrame } from "./ModalFrame";
 import { ConfirmSheetActions } from "./ConfirmSheetActions";
-import { IosSegmentedControl } from "./ios/IosSegmentedControl";
 import { IosNavAddButton, IosNavOptionsButton } from "./ios/IosNavIconButton";
 import { SiteFooter } from "./SiteFooter";
 
-type LibrarySheetTab = "import" | "export";
-type ExportPhase = "pick" | "preview";
-
 export function LibraryScreen() {
-  const router = useRouter();
   const lists = useSyncExternalStore(
     subscribeArmies,
     getArmiesSnapshot,
     getArmiesServerSnapshot,
   );
-  const [deleteTarget, setDeleteTarget] = useState<ArmyList | null>(null);
-  const [picking, setPicking] = useState(false);
-  const [draftFaction, setDraftFaction] = useState<FactionCatalogue | null>(
-    null,
+  const activeMenu = useSyncExternalStore(
+    subscribeActiveMenu,
+    getActiveMenuSnapshot,
+    getActiveMenuServerSnapshot,
   );
-  const [draftParent, setDraftParent] = useState<FactionCatalogue | null>(
-    null,
-  );
-  const [draftName, setDraftName] = useState("");
-  const [draftPoints, setDraftPoints] = useState(2000);
-  const [draftMode, setDraftMode] = useState<"points" | "spearhead">("points");
-  const [draftSpearheadId, setDraftSpearheadId] = useState<string | null>(null);
-  const [creating, setCreating] = useState(false);
-  const [importError, setImportError] = useState<string | null>(null);
-  const [importDraft, setImportDraft] = useState("");
-  const [importConfirm, setImportConfirm] = useState<{
-    novel: ArmyList[];
-    skipped: number;
-  } | null>(null);
-  const [librarySheetOpen, setLibrarySheetOpen] = useState(false);
-  const [librarySheetTab, setLibrarySheetTab] =
-    useState<LibrarySheetTab>("import");
-  const [exportPhase, setExportPhase] = useState<ExportPhase>("pick");
-  const [exportSelectedIds, setExportSelectedIds] = useState<string[]>([]);
-  const [exportPickError, setExportPickError] = useState<string | null>(null);
-  const [exportFormat, setExportFormat] = useState<PortableFormat>("text");
-  const [exportCopied, setExportCopied] = useState(false);
-  const importInputRef = useRef<HTMLInputElement>(null);
   const sortMode = useSyncExternalStore(
     subscribeLibrarySort,
     getLibrarySortSnapshot,
     getLibrarySortServerSnapshot,
   );
-  const displayedLists = useMemo(
-    () => (lists ? sortLibraryLists(lists, sortMode) : []),
-    [lists, sortMode],
-  );
-  const createSplash = useSyncExternalStore(
-    subscribeListOpenFaction,
-    peekListCreateSplash,
-    () => false,
-  );
-  const createCounts = draftFaction
-    ? factionPickerCounts(draftFaction)
-    : null;
+  const [deleteTarget, setDeleteTarget] = useState<StoredList | null>(null);
+  const [picking, setPicking] = useState(false);
+  const [librarySheetOpen, setLibrarySheetOpen] = useState(false);
+  const displayedLists = useMemo(() => {
+    const scoped = (lists ?? []).filter((list) => listGame(list) === activeMenu);
+    return sortLibraryLists(scoped, sortMode);
+  }, [activeMenu, lists, sortMode]);
+  const menuPlaceholder = menuPlaceholderCopy(activeMenu);
+  const showListLibrary = menuShowsListLibrary(activeMenu);
 
-  async function onCreate() {
-    if (!draftFaction || creating) {
-      return;
-    }
-    if (draftMode === "spearhead" && !draftSpearheadId) {
-      return;
-    }
-    setCreating(true);
-    const artFactionId =
-      draftParent?.id ??
-      draftFaction.parentFactionIds?.[0] ??
-      draftFaction.id;
-    rememberListCreate(artFactionId, (draftParent ?? draftFaction).name);
-    try {
-      const list =
-        draftMode === "spearhead" && draftSpearheadId
-          ? blankSpearhead(draftSpearheadId, draftName)
-          : blankArmy(draftFaction.id, draftName, draftPoints);
-      await saveArmy(list);
-      setPicking(false);
-      router.push(`/lists/${list.id}`);
-    } catch {
-      setCreating(false);
-    }
-  }
-
-  async function onDuplicate(list: ArmyList) {
+  async function onDuplicate(list: StoredList) {
     await saveArmy(duplicateArmy(list));
   }
 
@@ -179,7 +80,7 @@ export function LibraryScreen() {
     await deleteArmy(id);
   }
 
-  async function onRename(list: ArmyList, name: string) {
+  async function onRename(list: StoredList, name: string) {
     const next = name.trim();
     if (!next || next === list.name) {
       return;
@@ -187,275 +88,36 @@ export function LibraryScreen() {
     await saveArmy({ ...list, name: next });
   }
 
-  const exportLists = useMemo(() => {
-    if (
-      !lists ||
-      !librarySheetOpen ||
-      librarySheetTab !== "export" ||
-      exportPhase !== "preview"
-    ) {
-      return [];
-    }
-    const selected = new Set(exportSelectedIds);
-    return lists.filter((list) => selected.has(list.id));
-  }, [
-    exportPhase,
-    exportSelectedIds,
-    librarySheetOpen,
-    librarySheetTab,
-    lists,
-  ]);
-
-  const exportContent = useMemo(() => {
-    if (exportLists.length === 0) {
-      return "";
-    }
-    return serializeListsForFormat(exportLists, exportFormat);
-  }, [exportLists, exportFormat]);
-
-  function resetExportState() {
-    setExportPhase("pick");
-    setExportSelectedIds([]);
-    setExportPickError(null);
-    setExportFormat("text");
-    setExportCopied(false);
-  }
-
-  function openLibrarySheet(tab: LibrarySheetTab = "import") {
-    setLibrarySheetTab(tab);
-    setImportDraft("");
-    resetExportState();
-    setLibrarySheetOpen(true);
-  }
-
-  function closeLibrarySheet() {
-    setLibrarySheetOpen(false);
-    setImportDraft("");
-    resetExportState();
-  }
-
-  const openLibraryOptions = useCallback(() => {
-    setLibrarySheetTab("import");
-    setImportDraft("");
-    setExportPhase("pick");
-    setExportSelectedIds([]);
-    setExportPickError(null);
-    setExportFormat("text");
-    setExportCopied(false);
-    setLibrarySheetOpen(true);
-  }, []);
-
-  function onLibrarySheetTabChange(next: string) {
-    const tab = next as LibrarySheetTab;
-    if (tab === librarySheetTab) {
-      return;
-    }
-    setLibrarySheetTab(tab);
-    if (tab === "import") {
-      resetExportState();
-    } else {
-      setImportDraft("");
-      resetExportState();
-    }
-  }
-
   function onSortModeChange(next: string) {
     setLibrarySortMode(next as LibrarySortMode);
   }
 
-  function toggleExportList(listId: string) {
-    setExportPickError(null);
-    setExportSelectedIds((current) =>
-      current.includes(listId)
-        ? current.filter((id) => id !== listId)
-        : [...current, listId],
-    );
-  }
-
-  function selectAllForExport() {
-    setExportPickError(null);
-    setExportSelectedIds(lists?.map((list) => list.id) ?? []);
-  }
-
-  function confirmExportSelection() {
-    if (!lists || exportSelectedIds.length === 0) {
-      setExportPickError("Select a list to export it.");
-      return;
-    }
-    setExportPickError(null);
-    setExportFormat("text");
-    setExportCopied(false);
-    setExportPhase("preview");
-  }
-
-  function backToExportPicker() {
-    setExportFormat("text");
-    setExportCopied(false);
-    setExportPhase("pick");
-  }
-
-  async function copyExport() {
-    if (!exportContent) {
-      return;
-    }
-    await navigator.clipboard.writeText(exportContent);
-    setExportCopied(true);
-  }
-
-  function downloadExport() {
-    if (exportLists.length === 0 || !exportContent) {
-      return;
-    }
-    const filename =
-      exportLists.length === 1
-        ? portableListFileName(exportLists[0]!.name, exportFormat)
-        : portableAllListsFileName(exportFormat);
-    downloadTextFile(filename, exportContent, portableMimeType(exportFormat));
-  }
-
-  function openImportPicker() {
-    openLibrarySheet("import");
-  }
-
-  function beginImport(raw: string) {
-    const trimmed = raw.trim();
-    if (!trimmed) {
-      return;
-    }
-    closeLibrarySheet();
-    const parsed = parsePortableLists(trimmed);
-    if (!parsed.ok) {
-      setImportError(parsed.error);
-      return;
-    }
-    setImportConfirm(partitionPortableLists(parsed.lists, lists ?? []));
-  }
-
-  function importFromDraft() {
-    beginImport(importDraft);
-  }
-
-  function chooseImportFile() {
-    importInputRef.current?.click();
-  }
-
-  async function onImportFile(event: ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
-    event.target.value = "";
-    if (!file) {
-      return;
-    }
-    beginImport(await file.text());
-  }
-
-  async function confirmImport() {
-    if (!importConfirm || importConfirm.novel.length === 0) {
-      setImportConfirm(null);
-      return;
-    }
-    await importArmies(importConfirm.novel);
-    setImportConfirm(null);
-  }
-
-  function closePicker() {
-    if (creating) {
-      return;
-    }
-    setPicking(false);
-    setDraftFaction(null);
-    setDraftParent(null);
-    setDraftName("");
-    setDraftPoints(2000);
-    setDraftMode("points");
-    setDraftSpearheadId(null);
-  }
-
-  function onDraftArmyChange(value: string) {
-    if (!draftParent) {
-      return;
-    }
-    const parsed = parseNewListArmyValue(value);
-    const previousLabel =
-      draftMode === "spearhead" && draftSpearheadId
-        ? (getSpearhead(draftSpearheadId)?.name ?? draftParent.name)
-        : armyOfRenownName(draftFaction ?? draftParent);
-    if (parsed.kind === "spearhead") {
-      const box = getSpearhead(parsed.spearheadId);
-      setDraftMode("spearhead");
-      setDraftSpearheadId(parsed.spearheadId);
-      setDraftFaction(draftParent);
-      setDraftName((current) =>
-        current === `My ${previousLabel}`
-          ? `My ${box?.name ?? draftParent.name}`
-          : current,
-      );
-      return;
-    }
-    const next = getFaction(parsed.factionId) ?? draftParent;
-    setDraftMode("points");
-    setDraftSpearheadId(null);
-    setDraftFaction(next);
-    setDraftName((current) =>
-      current === `My ${previousLabel}`
-        ? `My ${armyOfRenownName(next)}`
-        : current,
-    );
-  }
-
-  function backToFactionPicker() {
-    setDraftFaction(null);
-    setDraftParent(null);
-    setDraftName("");
-    setDraftMode("points");
-    setDraftSpearheadId(null);
-  }
-
-  useEffect(() => {
-    if (!createSplash && creating) {
-      setCreating(false);
-    }
-  }, [createSplash, creating]);
-
-  useLayoutEffect(() => {
-    const draft = newListDraftFromSearch(
-      new URLSearchParams(window.location.search),
-    );
-    if (!draft) {
-      return;
-    }
-    setPicking(true);
-    setDraftFaction(draft.faction);
-    setDraftParent(draft.parent);
-    setDraftName(draft.name);
-    setDraftPoints(draft.points);
-    router.replace("/dashboard", { scroll: false });
-  }, [router]);
-
   return (
     <div className="relative z-10 min-h-full text-parchment">
-      <div className="mx-auto w-full max-w-3xl px-5 pt-2 pb-3 sm:px-6 lg:max-w-5xl">
+      <div className={`${SITE_COLUMN_CLASS} pt-2 pb-3`}>
         <div className={LIBRARY_TITLE_ROW_CLASS}>
-          <IosNavOptionsButton
-            label="List options"
-            onClick={openLibraryOptions}
-          />
-          <h1 className={LIBRARY_TITLE_CLASS}>My lists</h1>
-          <IosNavAddButton
-            label="New list"
-            onClick={() => setPicking(true)}
-          />
+          {showListLibrary ? (
+            <IosNavOptionsButton
+              label="List options"
+              onClick={() => setLibrarySheetOpen(true)}
+            />
+          ) : (
+            <span className="inline-flex h-11 w-11 shrink-0" aria-hidden="true" />
+          )}
+          <h1 className={LIBRARY_TITLE_CLASS}>
+            {menuPlaceholder?.title ?? "My lists"}
+          </h1>
+          {showListLibrary ? (
+            <IosNavAddButton
+              label="New list"
+              onClick={() => setPicking(true)}
+            />
+          ) : (
+            <span className="inline-flex h-11 w-11 shrink-0" aria-hidden="true" />
+          )}
         </div>
       </div>
-      <input
-        ref={importInputRef}
-        type="file"
-        accept=".txt,.json,text/plain,application/json"
-        className="hidden"
-        aria-hidden="true"
-        tabIndex={-1}
-        onChange={(event) => void onImportFile(event)}
-      />
-      <main className="mx-auto w-full max-w-3xl px-5 pb-20 sm:px-6 lg:max-w-5xl">
+      <main className={`${SITE_COLUMN_CLASS} pb-20`}>
         {lists === undefined ? (
           <div
             className="flex flex-col items-center py-16"
@@ -471,10 +133,12 @@ export function LibraryScreen() {
               Loading your lists
             </p>
           </div>
-        ) : lists.length === 0 ? (
+        ) : menuPlaceholder ? (
+          <LibraryMenuPlaceholder body={menuPlaceholder.body} />
+        ) : displayedLists.length === 0 ? (
           <LibraryEmptyState
             onCreate={() => setPicking(true)}
-            onImport={openImportPicker}
+            onImport={() => setLibrarySheetOpen(true)}
           />
         ) : (
           <ul className="grid grid-cols-1 gap-4 pt-2 lg:grid-cols-2 lg:gap-5">
@@ -494,253 +158,13 @@ export function LibraryScreen() {
       </main>
       <SiteFooter showPitch={false} />
 
-      {librarySheetOpen ? (
-        <ModalFrame
-          label="List options"
-          onClose={closeLibrarySheet}
-          panelClassName={LIBRARY_OPTIONS_SHEET_PANEL_CLASS}
-        >
-          <div className={SHEET_HEADER_CLASS}>
-            <h2 className="font-serif text-2xl">List options</h2>
-            <SheetCloseButton
-              label="Close list options"
-              onClick={closeLibrarySheet}
-            />
-          </div>
-          <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
-            <div className="shrink-0 px-5 pb-4">
-              <p className="pb-2 text-sm font-medium text-sheet-muted">
-                Sort lists by
-              </p>
-              <IosSegmentedControl
-                ariaLabel="Sort lists"
-                value={sortMode}
-                onChange={onSortModeChange}
-                options={[
-                  { value: "recent", label: "Recent" },
-                  { value: "alphabetic", label: "A–Z" },
-                ]}
-              />
-            </div>
-            <div
-              role="separator"
-              className={LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS}
-            />
-            <div className="shrink-0 px-5 pb-4 pt-4">
-              <IosSegmentedControl
-                ariaLabel="Import or export lists"
-                value={librarySheetTab}
-                onChange={onLibrarySheetTabChange}
-                options={[
-                  { value: "import", label: "Import" },
-                  { value: "export", label: "Export" },
-                ]}
-              />
-            </div>
-            <div className={MODAL_SHEET_SCROLL_HOST_CLASS}>
-              <div className={MODAL_SHEET_SCROLL_CLASS}>
-                {librarySheetTab === "import" ? (
-                  <>
-                    <p className="px-5 pb-3 text-sm leading-relaxed text-sheet-muted">
-                      {LIST_IMPORT_HELP}
-                    </p>
-                    <textarea
-                      value={importDraft}
-                      onChange={(event) => setImportDraft(event.target.value)}
-                      placeholder="Paste a Warhammer App, New Recruit, or Order of Battle list…"
-                      aria-label="List to import"
-                      className="mx-5 mb-4 block min-h-[16rem] w-[calc(100%-2.5rem)] resize-none rounded-xl bg-parchment-ink/5 px-3 py-3 font-mono text-xs leading-relaxed text-parchment-ink outline-none ring-1 ring-parchment-ink/10 placeholder:text-sheet-muted/70"
-                    />
-                  </>
-                ) : exportPhase === "pick" ? (
-                  <>
-                    <p className="px-5 pb-3 text-sm leading-relaxed text-sheet-muted">
-                      Choose one or more lists to export.
-                    </p>
-                    {lists && lists.length > 1 ? (
-                      <div className="px-5 pb-2">
-                        <button
-                          type="button"
-                          onClick={selectAllForExport}
-                          className={SHEET_INLINE_LINK_CLASS}
-                        >
-                          Select all
-                        </button>
-                      </div>
-                    ) : null}
-                    {lists && lists.length > 0 ? (
-                      <ul className="flex flex-col gap-2 px-3 pb-4">
-                        {lists.map((list) => {
-                          const faction = getFaction(list.factionId);
-                          const playCatalogue = catalogueForList(list);
-                          const totals = playCatalogue
-                            ? summarize(list, playCatalogue)
-                            : null;
-                          const spearhead = isSpearheadList(list);
-                          const checked = exportSelectedIds.includes(list.id);
-                          return (
-                            <li key={list.id}>
-                              <label
-                                className={`${SHEET_CHECKLIST_ITEM_CLASS} ${
-                                  checked
-                                    ? SHEET_CHECKLIST_ITEM_SELECTED_CLASS
-                                    : ""
-                                }`}
-                              >
-                                <input
-                                  type="checkbox"
-                                  checked={checked}
-                                  onChange={() => toggleExportList(list.id)}
-                                  aria-label={`Export ${list.name}`}
-                                  className="mt-0.5 size-5 shrink-0 accent-aether"
-                                />
-                                <span className="min-w-0">
-                                  <span className="block font-medium text-parchment-ink">
-                                    {list.name}
-                                  </span>
-                                  <span className="block text-sm text-sheet-muted">
-                                    {libraryListExportSubtitle({
-                                      factionName:
-                                        faction?.name ?? "Unknown faction",
-                                      spearhead,
-                                      pointsCap: list.pointsCap,
-                                      spearheadBoxName: playCatalogue?.name,
-                                      drops: totals?.drops,
-                                    })}
-                                  </span>
-                                </span>
-                              </label>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    ) : (
-                      <p className="px-5 pb-4 text-sm text-sheet-muted">
-                        No lists to export yet.
-                      </p>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <h3 className="px-5 pb-3 font-serif text-xl text-parchment-ink">
-                      {exportLists.length === 1
-                        ? "Export list"
-                        : `Export ${exportLists.length} lists`}
-                    </h3>
-                    <div className="px-5 pb-3">
-                      <IosSegmentedControl
-                        ariaLabel="Export format"
-                        value={exportFormat}
-                        onChange={(next) => {
-                          setExportFormat(next as PortableFormat);
-                          setExportCopied(false);
-                        }}
-                        options={[
-                          { value: "text", label: "Text" },
-                          { value: "json", label: "JSON" },
-                        ]}
-                      />
-                    </div>
-                    <textarea
-                      readOnly
-                      value={exportContent}
-                      aria-label="Exported list"
-                      className="mx-5 mb-4 block min-h-[16rem] w-[calc(100%-2.5rem)] resize-none rounded-xl bg-parchment-ink/5 px-3 py-3 font-mono text-xs leading-relaxed text-parchment-ink outline-none ring-1 ring-parchment-ink/10"
-                    />
-                  </>
-                )}
-              </div>
-            </div>
-            {librarySheetTab === "import" ? (
-              <div className={MODAL_SHEET_FOOTER_CLASS}>
-                <button
-                  type="button"
-                  disabled={importDraft.trim().length === 0}
-                  onClick={importFromDraft}
-                  className={IOS_LIQUID_CTA_CLASS}
-                >
-                  Import
-                </button>
-                <button
-                  type="button"
-                  onClick={chooseImportFile}
-                  className={SHEET_SECONDARY_BUTTON_CLASS}
-                >
-                  Choose file
-                </button>
-              </div>
-            ) : exportPhase === "pick" ? (
-              <div className={MODAL_SHEET_FOOTER_CLASS}>
-                {exportPickError ? (
-                  <p role="alert" className={LIST_ISSUE_BANNER_CLASS}>
-                    {exportPickError}
-                  </p>
-                ) : null}
-                <button
-                  type="button"
-                  onClick={confirmExportSelection}
-                  className={IOS_LIQUID_CTA_CLASS}
-                >
-                  Continue
-                </button>
-              </div>
-            ) : (
-              <div className={MODAL_SHEET_FOOTER_CLASS}>
-                <button
-                  type="button"
-                  onClick={() => void copyExport()}
-                  className={IOS_LIQUID_CTA_CLASS}
-                >
-                  {exportCopied ? "Copied" : "Copy"}
-                </button>
-                <button
-                  type="button"
-                  onClick={downloadExport}
-                  className={SHEET_SECONDARY_BUTTON_CLASS}
-                >
-                  {exportFormat === "json" ? "Download .json" : "Download .txt"}
-                </button>
-                <button
-                  type="button"
-                  onClick={backToExportPicker}
-                  className={CONFIRM_CANCEL_BUTTON_CLASS}
-                >
-                  Back
-                </button>
-              </div>
-            )}
-          </div>
-        </ModalFrame>
-      ) : null}
-
-      {importConfirm ? (
-        <LibraryImportConfirm
-          importConfirm={importConfirm}
-          onClose={() => setImportConfirm(null)}
-          onConfirm={() => void confirmImport()}
-        />
-      ) : null}
-
-      {importError ? (
-        <ModalFrame
-          label="Import failed"
-          onClose={() => setImportError(null)}
-          panelClassName={CONFIRM_SHEET_PANEL_CLASS}
-        >
-          <p className="px-2 pb-2 text-center text-sm leading-relaxed text-sheet-muted">
-            {importError}
-          </p>
-          <div className={CONFIRM_SHEET_ACTIONS_CLASS}>
-            <button
-              type="button"
-              onClick={() => setImportError(null)}
-              className={IOS_LIQUID_CTA_CLASS}
-            >
-              OK
-            </button>
-          </div>
-        </ModalFrame>
-      ) : null}
+      <LibraryOptionsSheet
+        open={librarySheetOpen}
+        lists={displayedLists}
+        sortMode={sortMode}
+        onSortModeChange={onSortModeChange}
+        onClose={() => setLibrarySheetOpen(false)}
+      />
 
       {deleteTarget ? (
         <ModalFrame
@@ -761,50 +185,7 @@ export function LibraryScreen() {
         </ModalFrame>
       ) : null}
 
-      {picking && !creating ? (
-        <LibraryCreateSheet
-          open
-          creating={creating}
-          draftFaction={draftFaction}
-          draftParent={draftParent}
-          draftName={draftName}
-          draftPoints={draftPoints}
-          draftMode={draftMode}
-          draftSpearheadId={draftSpearheadId}
-          createCounts={createCounts}
-          onClose={closePicker}
-          onCreate={onCreate}
-          onDraftNameChange={setDraftName}
-          onDraftPointsChange={setDraftPoints}
-          onSelectFaction={(faction) => {
-            setDraftParent(faction);
-            setDraftFaction(faction);
-            setDraftName(`My ${faction.name}`);
-            setDraftPoints(faction.pointsCapDefault);
-          }}
-          onArmyChange={onDraftArmyChange}
-          onBackToFactions={backToFactionPicker}
-        />
-      ) : null}
-
-      {libraryCreatingSplashVisible(creating, createSplash) && draftFaction ? (
-        <div className="fixed inset-0 z-[60] text-parchment">
-          <div className="absolute inset-0" aria-hidden="true">
-            <FactionArtLayers
-              factionId={
-                draftParent?.id ??
-                draftFaction.parentFactionIds?.[0] ??
-                draftFaction.id
-              }
-              scrim={false}
-            />
-          </div>
-          <ListLoadingSplash
-            factionName={(draftParent ?? draftFaction).name}
-            label="Creating your list"
-          />
-        </div>
-      ) : null}
+      <LibraryCreateFlow open={picking} onOpenChange={setPicking} />
     </div>
   );
 }

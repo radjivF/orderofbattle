@@ -1,0 +1,38 @@
+name: Sentry production watch
+
+on:
+  schedule:
+    - cron: "20 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+concurrency:
+  group: sentry-prod-watch
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - name: Fetch production Sentry issues
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: zheat
+          SENTRY_PROJECT: orderofbattle
+          SENTRY_REGION: us
+        run: yarn sentry:prod-watch --json watch.json --md watch.md
+      - name: Sync GitHub issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/sentry-prod-watch-github.sh

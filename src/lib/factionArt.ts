@@ -57,15 +57,50 @@ const FACTION_ART = new Set([
   "sylvaneth",
 ]);
 
+/** Map The Old World army ids onto existing AoS backdrop art. */
+const TOW_ART_FALLBACK: Record<string, string> = {
+  "beastmen-brayherds": "slaves-to-darkness",
+  "chaos-dwarfs": "helsmiths-of-hashut",
+  "daemons-of-chaos": "slaves-to-darkness",
+  "dark-elves": "daughters-of-khaine",
+  "dwarfen-mountain-holds": "fyreslayers",
+  "grand-cathay": "cities-of-sigmar",
+  "high-elf-realms": "lumineth-realm-lords",
+  "kingdom-of-bretonnia": "cities-of-sigmar",
+  lizardmen: "seraphon",
+  "ogre-kingdoms": "ogor-mawtribes",
+  "orc-and-goblin-tribes": "ironjawz",
+  skaven: "skaven",
+  "the-empire-of-man": "cities-of-sigmar",
+  "tomb-kings-of-khemri": "ossiarch-bonereapers",
+  "vampire-counts": "soulblight-gravelords",
+  "warriors-of-chaos": "slaves-to-darkness",
+  "wood-elf-realms": "sylvaneth",
+};
+
 const SCOURGE_REALM_ART = new Set(["scourge-aqshy", "scourge-ghyran"]);
 
 export type ScourgeRealmBackdrop = "aqshy" | "ghyran" | null | undefined;
 
 export function factionArtSrc(factionId: string | null | undefined): string | null {
-  if (!factionId || !FACTION_ART.has(factionId)) return null;
-  const rev = ART_REV[factionId];
-  const path = `/factions/${factionId}.webp`;
+  if (!factionId) return null;
+  const mapped = TOW_ART_FALLBACK[factionId] ?? factionId;
+  if (!FACTION_ART.has(mapped)) return null;
+  const rev = ART_REV[mapped];
+  const path = `/factions/${mapped}.webp`;
   return rev ? `${path}?v=${rev}` : path;
+}
+
+/** Resolve TOW / journal ids to an art catalogue id for backdrop preload. */
+export function towBackdropFactionId(
+  factionId: string | null | undefined,
+): string | null {
+  if (!factionId) return null;
+  if (TOW_ART_FALLBACK[factionId]) return TOW_ART_FALLBACK[factionId];
+  for (const [towId, artId] of Object.entries(TOW_ART_FALLBACK)) {
+    if (factionId.startsWith(`${towId}-`)) return artId;
+  }
+  return factionArtSrc(factionId) ? factionId : null;
 }
 
 function scourgeRealmArtSrc(realm: "aqshy" | "ghyran"): string | null {

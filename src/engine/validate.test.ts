@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { createId } from "@/lib/id";
 import { blankArmy } from "@/lib/storage";
-import { getFaction } from "./queries";
+import { canJoinRegiment, getFaction } from "./queries";
 import { pruneOrphanEnhancements, regimentSlotCap, summarize } from "./validate";
 
 describe("regimentSlotCap", () => {
@@ -25,9 +25,111 @@ describe("summarize", () => {
       regiments: [{ id: "r1", hero: null, units: [] }],
     };
     const totals = summarize(list, faction);
-    expect(totals.issues.some((issue) => issue.text.includes("needs a hero"))).toBe(
-      true,
+    const issue = totals.issues.find((item) => item.text.includes("needs a hero"));
+    expect(issue?.target).toEqual({ area: "add-hero", regimentId: "r1" });
+  });
+
+  it("points empty lists at the add-regiment action", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const totals = summarize(blankArmy(faction.id), faction);
+    const issue = totals.issues.find((item) =>
+      item.text.includes("Add a regiment"),
     );
+    expect(issue?.target).toEqual({ area: "add-regiment" });
+  });
+
+  it("points missing battle tactics at Options", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const hero = faction.units.find((unit) => unit.hero && !unit.unique);
+    expect(hero).toBeTruthy();
+    if (!hero) return;
+
+    const totals = summarize(
+      {
+        ...blankArmy(faction.id),
+        generalRegimentId: "r1",
+        regiments: [
+          {
+            id: "r1",
+            hero: { id: createId(), unitId: hero.id, reinforced: false },
+            units: [],
+          },
+        ],
+      },
+      faction,
+    );
+    const issue = totals.issues.find((item) =>
+      item.text.includes("battle tactic"),
+    );
+    expect(issue?.target).toEqual({ area: "options", field: "tactics" });
+  });
+
+  it("points over-cap lists at the points field", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const hero = faction.units.find((unit) => unit.hero && !unit.unique);
+    expect(hero).toBeTruthy();
+    if (!hero) return;
+
+    const totals = summarize(
+      {
+        ...blankArmy(faction.id),
+        pointsCap: 1,
+        generalRegimentId: "r1",
+        regiments: [
+          {
+            id: "r1",
+            hero: { id: createId(), unitId: hero.id, reinforced: false },
+            units: [],
+          },
+        ],
+      },
+      faction,
+    );
+    const issue = totals.issues.find((item) => item.text.includes("points over"));
+    expect(issue?.target).toEqual({ area: "options", field: "points" });
+  });
+
+  it("points illegal companions at the unit row", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const hero = faction.units.find((unit) => unit.hero && !unit.unique);
+    expect(hero).toBeTruthy();
+    if (!hero) return;
+
+    const companion = faction.units.find(
+      (unit) => !unit.hero && !canJoinRegiment(hero, unit, faction),
+    );
+    expect(companion).toBeTruthy();
+    if (!companion) return;
+
+    const companionId = createId();
+    const totals = summarize(
+      {
+        ...blankArmy(faction.id),
+        generalRegimentId: "r1",
+        regiments: [
+          {
+            id: "r1",
+            hero: { id: createId(), unitId: hero.id, reinforced: false },
+            units: [{ id: companionId, unitId: companion.id, reinforced: false }],
+          },
+        ],
+      },
+      faction,
+    );
+    const issue = totals.issues.find((item) => item.text.includes("cannot join"));
+    expect(issue?.target).toEqual({ area: "unit", selectionId: companionId });
   });
 
   it("flags duplicate unique units", () => {

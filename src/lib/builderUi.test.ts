@@ -25,13 +25,19 @@ import {
   LIST_FLOW_HEADER_OFFSET_CLASS,
   LIST_FLOW_SLIDE_MS,
   LIST_ISSUE_BANNER_CLASS,
+  LIST_ISSUE_HIGHLIGHT_CLASS,
+  listIssueAnchorId,
+  listIssueOpensOptions,
   LIST_OPEN_LANDING_MS,
   LIST_BACKDROP_RETURN_MS,
   LIST_DETAIL_BACKDROP_MS,
   LIST_OPEN_SPLASH_MS,
   LIST_PANE_ART_CLASS,
+  SITE_COLUMN_CLASS,
   SITE_HEADER_BAR_CLASS,
   SITE_HEADER_ROW_CLASS,
+  TOW_CATEGORY_HEADING_CLASS,
+  TOW_CATEGORY_ROW_CLASS,
   COOKIE_CONSENT_BANNER_CLASS,
   PLAY_SHEET_LINK_CLASS,
   PLAY_UNIT_NAME_ROW_CLASS,
@@ -263,6 +269,35 @@ describe("list issue banner", () => {
     expect(LIST_ISSUE_BANNER_CLASS).not.toContain("font-medium");
     expect(LIST_ISSUE_BANNER_CLASS).not.toMatch(/(?:^|\s)text-illegal(?:\s|$)/);
   });
+
+  it("maps issue targets to stable anchors", () => {
+    expect(listIssueAnchorId({ area: "add-regiment" })).toBe(
+      "list-issue-add-regiment",
+    );
+    expect(
+      listIssueAnchorId({ area: "add-hero", regimentId: "r1" }),
+    ).toBe("list-issue-regiment-r1-hero");
+    expect(
+      listIssueAnchorId({ area: "unit", selectionId: "u1" }),
+    ).toBe("list-issue-unit-u1");
+    expect(
+      listIssueAnchorId({ area: "options", field: "tactics" }),
+    ).toBe("list-issue-tactics");
+  });
+
+  it("opens Options only for Options-field issues", () => {
+    expect(listIssueOpensOptions({ area: "options", field: "tactics" })).toBe(
+      true,
+    );
+    expect(listIssueOpensOptions({ area: "add-regiment" })).toBe(false);
+    expect(
+      listIssueOpensOptions({ area: "add-hero", regimentId: "r1" }),
+    ).toBe(false);
+  });
+
+  it("highlights the broken control with an illegal ring", () => {
+    expect(LIST_ISSUE_HIGHLIGHT_CLASS).toContain("ring-illegal");
+  });
 });
 
 describe("play-mode sheet link", () => {
@@ -326,6 +361,8 @@ describe("iOS nav controls", () => {
     expect(SITE_HEADER_ROW_CLASS).toContain("min-h-[3.5rem]");
     expect(SITE_HEADER_ROW_CLASS).toContain("max-w-3xl");
     expect(SITE_HEADER_ROW_CLASS).toContain("gap-2");
+    expect(SITE_HEADER_ROW_CLASS).toContain("px-3");
+    expect(SITE_HEADER_ROW_CLASS).toContain("sm:px-4");
     expect(SITE_HEADER_BAR_CLASS).toBe("ios-nav-bar");
     expect(LIST_FLOW_HEADER_OFFSET_CLASS).toContain(
       "pt-[calc(env(safe-area-inset-top)+3.75rem)]",
@@ -374,6 +411,7 @@ describe("iOS nav controls", () => {
       "utf8",
     );
     expect(header).toContain("SITE_HEADER_ROW_CLASS");
+    expect(header).toContain("IosNavMenuButton");
     expect(header).toContain("SiteBrandLockup");
     expect(header).not.toContain("IosNavOptionsButton");
     expect(header).not.toContain("IosNavAddButton");
@@ -479,27 +517,73 @@ describe("empty library CTA", () => {
     );
     expect(screen).toContain("LibraryEmptyState");
     expect(screen).toContain("List options");
-    expect(screen).toContain("openLibraryOptions");
+    expect(screen).toContain("LibraryOptionsSheet");
     expect(screen).toContain("IosNavOptionsButton");
     expect(screen).toContain("LIBRARY_TITLE_CLASS");
     expect(screen).toContain("LIBRARY_TITLE_ROW_CLASS");
+    expect(screen).toContain("SITE_COLUMN_CLASS");
+    expect(screen).not.toContain("lg:max-w-5xl");
+    expect(screen).not.toContain("px-5");
+    expect(SITE_COLUMN_CLASS).toContain("px-3");
+    expect(SITE_COLUMN_CLASS).toContain("sm:px-4");
+    expect(SITE_COLUMN_CLASS).toContain("max-w-3xl");
+    expect(SITE_HEADER_ROW_CLASS).toContain(SITE_COLUMN_CLASS);
     expect(screen).toContain("IosNavAddButton");
     expect(LIBRARY_TITLE_CLASS).toContain("text-shadow");
     expect(screen).toContain("sortLibraryLists");
-    expect(screen).toContain("Sort lists by");
-    expect(screen).toContain("LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS");
-    expect(screen).toContain("Paste a Warhammer App, New Recruit, or Order of Battle list");
-    expect(screen).toContain("Export");
-    expect(screen).not.toContain("Export all");
-    expect(screen).toContain("Export format");
-    expect(screen).toContain("SHEET_CHECKLIST_ITEM_CLASS");
-    expect(screen).toContain("MODAL_SHEET_FOOTER_CLASS");
-    expect(screen).toContain("MODAL_SHEET_SCROLL_HOST_CLASS");
-    expect(screen).toContain("SHEET_SECONDARY_BUTTON_CLASS");
-    expect(screen).toContain("libraryListExportSubtitle");
-    expect(screen).toContain("text-parchment-ink");
-    expect(screen).toContain("Choose one or more lists to export.");
     expect(screen).not.toContain("No armies yet. Make your first list.");
+
+    const options = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/LibraryOptionsSheet.tsx",
+      ),
+      "utf8",
+    );
+    expect(options).toContain("Sort lists by");
+    expect(options).toContain("LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS");
+    expect(options).toContain("Export");
+
+    const importPanel = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/LibraryImportPanel.tsx",
+      ),
+      "utf8",
+    );
+    expect(importPanel).toContain("Paste a Warhammer App, New Recruit, or Order of Battle list");
+
+    const exportPanel = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/LibraryExportPanel.tsx",
+      ),
+      "utf8",
+    );
+    expect(exportPanel).not.toContain("Export all");
+    expect(exportPanel).toContain("Export format");
+    expect(exportPanel).toContain("Choose one or more lists to export.");
+
+    const pickList = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/LibraryExportPickList.tsx",
+      ),
+      "utf8",
+    );
+    expect(pickList).toContain("SHEET_CHECKLIST_ITEM_CLASS");
+    expect(pickList).toContain("libraryListExportSubtitle");
+    expect(pickList).toContain("text-parchment-ink");
+
+    const footer = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/LibraryOptionsFooter.tsx",
+      ),
+      "utf8",
+    );
+    expect(footer).toContain("MODAL_SHEET_FOOTER_CLASS");
+    expect(footer).toContain("SHEET_SECONDARY_BUTTON_CLASS");
     const createSheet = readFileSync(
       path.resolve(
         path.dirname(fileURLToPath(import.meta.url)),
@@ -623,9 +707,24 @@ describe("iOS polish contracts", () => {
       ),
       "utf8",
     );
-    expect(library).toContain("LIBRARY_OPTIONS_SHEET_PANEL_CLASS");
-    expect(library).toContain("MODAL_SHEET_SCROLL_CLASS");
-    expect(library).toContain("MODAL_SHEET_FOOTER_CLASS");
+    const options = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/LibraryOptionsSheet.tsx",
+      ),
+      "utf8",
+    );
+    expect(options).toContain("LIBRARY_OPTIONS_SHEET_PANEL_CLASS");
+    expect(options).toContain("MODAL_SHEET_SCROLL_CLASS");
+    expect(options).toContain("MODAL_SHEET_SCROLL_HOST_CLASS");
+    const footer = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/LibraryOptionsFooter.tsx",
+      ),
+      "utf8",
+    );
+    expect(footer).toContain("MODAL_SHEET_FOOTER_CLASS");
     expect(library).toContain("CONFIRM_SHEET_PANEL_CLASS");
     expect(library).toContain("ConfirmSheetActions");
   });
@@ -675,6 +774,9 @@ describe("iOS polish contracts", () => {
     expect(BUILDER_ADD_ACTION_CLASS).toContain("cursor-pointer");
     expect(BUILDER_ADD_ACTION_EMPHASIS_CLASS).toContain("cursor-pointer");
     expect(BUILDER_ADD_ACTION_EMPHASIS_CLASS).toContain("text-sigmarite");
+    expect(TOW_CATEGORY_ROW_CLASS).toContain("bg-ink/90");
+    expect(TOW_CATEGORY_ROW_CLASS).toContain("backdrop-blur-md");
+    expect(TOW_CATEGORY_HEADING_CLASS).toContain("text-parchment");
 
     const builder = readFileSync(
       path.resolve(

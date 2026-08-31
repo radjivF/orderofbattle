@@ -1,38 +1,49 @@
-import { describe, expect, it, vi } from "vitest";
-import { render, screen } from "@/test-utils/render";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import userEvent from "@testing-library/user-event";
+import { cleanup, render, screen } from "@/test-utils/render";
+import { LIST_ISSUE_HIGHLIGHT_CLASS } from "@/lib/builderUi";
 import { BuilderScreen } from "./BuilderScreen";
 
-const { list } = vi.hoisted(() => {
+const { list, noHeroList } = vi.hoisted(() => {
   const now = Date.now();
+  const shared = {
+    name: "Test list",
+    factionId: "stormcast-eternals",
+    pointsCap: 2000,
+    formationId: null,
+    spellLoreId: null,
+    prayerLoreId: null,
+    manifestationLoreId: null,
+    artefact: null,
+    heroicTrait: null,
+    monstrousTrait: null,
+    visionOfFate: null,
+    specialEnhancements: [],
+    battleTacticCardIds: [],
+    battleTacticStage: {},
+    scourgeRealm: "aqshy" as const,
+    auxiliaries: [],
+    regimentOfRenown: null,
+    powerBinds: {},
+    kind: "matched" as const,
+    spearheadId: null,
+    regimentAbilityId: null,
+    createdAt: now,
+    updatedAt: now,
+    lastOpenedAt: now,
+  };
   return {
     list: {
+      ...shared,
       id: "builder-test-list",
-      name: "Test list",
-      factionId: "stormcast-eternals",
-      pointsCap: 2000,
-      formationId: null,
-      spellLoreId: null,
-      prayerLoreId: null,
-      manifestationLoreId: null,
-      artefact: null,
-      heroicTrait: null,
-      monstrousTrait: null,
-      visionOfFate: null,
-      specialEnhancements: [],
-      battleTacticCardIds: [],
-      battleTacticStage: {},
-      scourgeRealm: "aqshy",
       generalRegimentId: null,
       regiments: [],
-      auxiliaries: [],
-      regimentOfRenown: null,
-      powerBinds: {},
-      kind: "matched" as const,
-      spearheadId: null,
-      regimentAbilityId: null,
-      createdAt: now,
-      updatedAt: now,
-      lastOpenedAt: now,
+    },
+    noHeroList: {
+      ...shared,
+      id: "builder-no-hero",
+      generalRegimentId: "r1",
+      regiments: [{ id: "r1", hero: null, units: [] }],
     },
   };
 });
@@ -56,7 +67,7 @@ vi.mock("next/link", () => ({
   ),
 }));
 
-const mockLists = [list];
+const mockLists = [list, noHeroList];
 
 vi.mock("@/lib/storage", () => ({
   subscribeArmies: () => () => {},
@@ -99,9 +110,63 @@ vi.mock("@/lib/factionArt", () => ({
 }));
 
 describe("BuilderScreen", () => {
+  beforeEach(() => {
+    cleanup();
+    HTMLElement.prototype.scrollIntoView = vi.fn();
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: (query: string) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+        dispatchEvent: () => false,
+      }),
+    });
+  });
+
   it("renders build pane for an existing list", () => {
     render(<BuilderScreen listId={list.id} />);
     expect(screen.getByText("Battle formation")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "+ Regiment" })).toBeInTheDocument();
+  });
+
+  it("opens the hero picker when Add a regiment to begin is tapped", async () => {
+    const user = userEvent.setup();
+
+    render(<BuilderScreen listId={list.id} />);
+    await user.click(
+      screen.getAllByRole("button", { name: /Add a regiment to begin/i })[0],
+    );
+
+    expect(
+      screen.getByRole("dialog", { name: "Choose a hero" }),
+    ).toBeInTheDocument();
+  });
+
+  it("still opens the hero picker from + Regiment", async () => {
+    const user = userEvent.setup();
+
+    render(<BuilderScreen listId={list.id} />);
+    await user.click(screen.getAllByRole("button", { name: "+ Regiment" })[0]);
+
+    expect(
+      screen.getByRole("dialog", { name: "Choose a hero" }),
+    ).toBeInTheDocument();
+  });
+
+  it("highlights Choose a hero when a regiment is missing one", async () => {
+    const user = userEvent.setup();
+    HTMLElement.prototype.scrollIntoView = vi.fn();
+
+    render(<BuilderScreen listId={noHeroList.id} />);
+    await user.click(
+      screen.getAllByRole("button", { name: /A regiment needs a hero/i })[0],
+    );
+
+    expect(
+      screen.getAllByRole("button", { name: "Choose a hero" })[0],
+    ).toHaveClass(...LIST_ISSUE_HIGHLIGHT_CLASS.split(" "));
   });
 });

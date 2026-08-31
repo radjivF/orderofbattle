@@ -1,0 +1,2707 @@
+{
+  "id": "lizardmen",
+  "name": "Lizardmen",
+  "game": "The Old World",
+  "source": "https://github.com/vflam/Warhammer-The-Old-World",
+  "pointsCapDefault": 2000,
+  "journal": false,
+  "units": [
+    {
+      "id": "slann-mage-priests",
+      "name": "Slann Mage-Priests",
+      "category": "characters",
+      "pointsPerModel": 285,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous creature",
+      "magicItems": true,
+      "command": [
+        {
+          "id": "battle-standard-bearer",
+          "name": "Battle Standard Bearer",
+          "points": 25
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-4",
+              "name": "Wizard Level 4",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            },
+            {
+              "id": "elementalism",
+              "name": "Elementalism",
+              "points": 0
+            },
+            {
+              "id": "high-magic",
+              "name": "High Magic",
+              "points": 0
+            },
+            {
+              "id": "illusion",
+              "name": "Illusion",
+              "points": 0
+            },
+            {
+              "id": "necromancy",
+              "name": "Necromancy",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "disciplines-of-the-old-ones",
+          "name": "Disciplines Of The Old Ones",
+          "options": [
+            {
+              "id": "soul-of-stone",
+              "name": "Soul of Stone",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Soul Of Stone",
+                  "text": "When rolling on the Miscast table, this character can modify the result by -1 (to a minimum of 2), or by +1 (to a maximum of 12)."
+                }
+              ]
+            },
+            {
+              "id": "becalming-cogitation",
+              "name": "Becalming Cogitation",
+              "points": 50,
+              "specialRules": [
+                {
+                  "name": "Becalming Cogitation",
+                  "text": "Once per turn, the Slann Mage-Priest may re-roll one of the D6 when making a Wizardly dispel attempt. In addition, this character increases their Dispel range by 3\"."
+                }
+              ]
+            },
+            {
+              "id": "wandering-deliberations",
+              "name": "Wandering Deliberations",
+              "points": 40,
+              "specialRules": [
+                {
+                  "name": "Wandering Deliberations",
+                  "text": "Instead of generating spells normally, this character knows four signature spells, chosen from the following Lores of Magic: Battle Magic, Daemonology, Dark Magic, Elementalism, High Magic, Illusion and Necromancy. The character may discard one of these signature spells in favour of a spell from the Lore of Lustria (see page 21)."
+                }
+              ]
+            },
+            {
+              "id": "transcendent-healing",
+              "name": "Transcendent Healing",
+              "points": 35,
+              "specialRules": [
+                {
+                  "name": "Transcendent Healing",
+                  "text": "This character gains the Regeneration (5+) special rule."
+                }
+              ]
+            },
+            {
+              "id": "sorcerous-void",
+              "name": "Sorcerous Void",
+              "points": 30,
+              "specialRules": [
+                {
+                  "name": "Sorcerous Void",
+                  "text": "This character gains the Magic Resistance (-D3) special rule.\n\n Roll the D3 before armies are deployed."
+                }
+              ]
+            },
+            {
+              "id": "harrowing-scrutiny",
+              "name": "Harrowing Scrutiny",
+              "points": 20,
+              "specialRules": [
+                {
+                  "name": "Harrowing Scrutiny",
+                  "text": "This character gains the Terror special rule."
+                }
+              ]
+            },
+            {
+              "id": "higher-state-of-mind",
+              "name": "Higher State Of Mind",
+              "points": 60,
+              "specialRules": [
+                {
+                  "name": "Higher State Of Mind",
+                  "text": "This character gains the Ethereal special rule."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Arcane Shield",
+          "text": "Pure magic shimmers about the Slann, shielding it from the blows of the enemy.\n\nThis character has a 5+ Ward save against any wounds suffered"
+        },
+        {
+          "name": "Cold Blooded",
+          "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Large Target",
+          "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+        },
+        {
+          "name": "Lore Of Lustria",
+          "text": "A Wizard with the \u2018Lore of Lustria\u2019 special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below:\n\n\u2022 Apotheosis \n\u2022 Monsoon"
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Palanquin",
+          "text": "This character may join a unit with the Guardians special rule despite having the Fly special rule. As long as the front rank has a minimum of 4 models they may be placed in the second rank. However, they continue to confer benefits to the unit in the form of Leadership and Special Rules. As long as this model is not in the fighting rank, they may cast and dispel as normal, even if its unit is engaged in Combat, but may not cast Assailment spells. For the purpose of shooting and casting spells, this model has a 360\u00b0 vision arc and ignores models in the unit for drawing line of sight."
+        },
+        {
+          "name": "Wisdom of the Old Ones",
+          "text": "Once per turn, the Slaan Mage-Priest may re-roll one of the D6 when making a Casting Roll. In addition, it knows one more spell (chosen in the usual way) than is normal for their Level of Wizardy"
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "2",
+        "WS": "2",
+        "BS": "3",
+        "S": "3",
+        "T": "4",
+        "W": "5",
+        "I": "2",
+        "A": "1",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "saurus-scar-veteran",
+      "name": "Saurus Scar-Veteran",
+      "category": "characters",
+      "pointsPerModel": 90,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Heavy infantry",
+      "magicItems": true,
+      "command": [
+        {
+          "id": "battle-standard-bearer",
+          "name": "Battle Standard Bearer",
+          "points": 25
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "cavalry-spear",
+              "name": "Cavalry Spear",
+              "points": 4
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            },
+            {
+              "id": "halberd",
+              "name": "Halberd",
+              "points": 3
+            }
+          ]
+        },
+        {
+          "id": "mount",
+          "name": "Mount",
+          "options": [
+            {
+              "id": "cold-one",
+              "name": "Cold One",
+              "points": 18,
+              "stats": {
+                "M": "7",
+                "WS": "3",
+                "BS": "-",
+                "S": "4",
+                "T": "-",
+                "W": "-",
+                "I": "2",
+                "A": "2",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armour Bane",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+                },
+                {
+                  "name": "Armoured Hide",
+                  "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Stupidity",
+                  "text": "Unless it is fleeing or engaged in combat, a unit with this\u00a0special rule must test for Stupidity by making a Leadership test\u00a0during the Start of Turn sub-phase of each of its turns. If this test is failed, the unit succumbs to Stupidity until its next Start of Turn sub-phase. A unit that has succumbed to Stupidity:\n- Cannot move (except to flee).\n- Cannot shoot or cast spells.\n- Cannot attempt a Wizardly dispel.\n- Must \"Hold\" if charged by an enemy.\n\nA unit or mount that does not have this special rule becomes subject to it when joined or ridden by a character that does (Stupidity is contagious)."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "carnosaur",
+              "name": "Carnosaur",
+              "points": 170,
+              "stats": {
+                "M": "7",
+                "WS": "3",
+                "BS": "0",
+                "S": "7",
+                "T": "1",
+                "W": "4",
+                "I": "2",
+                "A": "4",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Blood Frenzy",
+                  "text": "When this model (but not its rider) inflicts an unsaved wound upon an enemy model, it becomes subject to the Frenzy special rule. A model with this special rule may become Frenzied in this way even if it has lost Frenzy earlier in the game.\n\nNote that this model\u2019s rider does not gain a +1 modifier to their Attacks characteristic.\n\nCharacter Mount: A Carnosaur may only be included in your army as a character\u2019s mount. Its points are added to that of its rider."
+                },
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Cold Blooded",
+                  "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                }
+              ]
+            },
+            {
+              "id": "terradon",
+              "name": "Terradon",
+              "points": 30,
+              "stats": {
+                "M": "2",
+                "WS": "3",
+                "BS": "-",
+                "S": "4",
+                "T": "1",
+                "W": "1",
+                "I": "2",
+                "A": "1",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armoured Hide",
+                  "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+                },
+                {
+                  "name": "Drop Rocks",
+                  "text": "Skinks train Terradons to glide over the battlefield clutching great rocks in their talons.\n\nOnce per game, a unit with this special rule may perform a \u2018Drop Rocks\u2019 attack against a single enemy unit that is not engaged in combat. To do so, this unit must move (by flying) over the unit it wishes to attack during the Remaining Moves sub-phase. Once this unit\u2019s movement is complete, the enemy unit suffers D3 Strength 4 hits, each with an AP of -, for each model in this unit that moved over it."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Fly",
+                  "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "ripperdactyl",
+              "name": "Ripperdactyl",
+              "points": 35,
+              "stats": {
+                "M": "2",
+                "WS": "3",
+                "BS": "-",
+                "S": "4",
+                "T": "1",
+                "W": "1",
+                "I": "2",
+                "A": "2",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armoured Hide",
+                  "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+                },
+                {
+                  "name": "Cleaving Blow",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound for an attack made in combat, it has struck a \u2018Cleaving Blow\u2019. Enemy models whose troop type is \u2018regular infantry\u2019, \u2018heavy infantry\u2019, \u2018light cavalry\u2019, \u2018heavy cavalry\u2019 or \u2018war beasts\u2019 are not permitted an armour or Regeneration save against a Cleaving Blow (Ward saves can be attempted"
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Fly",
+                  "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Furious Charge",
+                  "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Attacks characteristic."
+                },
+                {
+                  "name": "Impetuous",
+                  "text": "If during the Declare Charges & Charge Reactions sub-phase of its turn, a unit that includes one or more Impetuous models is able to declare a charge, it must make a Leadership test. If this test is failed, the unit must declare a charge. If this test is passed, the unit may act as normal."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                },
+                {
+                  "name": "Toad Rage",
+                  "text": "Before the game starts, but after Scouts have been deployed, you may place one Lustrian blot toad marker for each unit of Ripperdactyl Riders in your army (counting only units, not including characters mounted on Ripperdactyls). A single blot toad marker can be placed on any enemy unit on the battlefield, this marker remains throughout the battle.\n\nWhen engaged in combat with an enemy unit with a blot toad marker, Ripperdactyls (but not their riders) gain the Extra Attacks (1) special rule, and may re-roll any roll To Hit of a natural 1."
+                }
+              ]
+            },
+            {
+              "id": "stegadon",
+              "name": "Stegadon",
+              "points": 215,
+              "stats": {
+                "M": "6",
+                "WS": "3",
+                "BS": "-",
+                "S": "5",
+                "T": "6",
+                "W": "5",
+                "I": "2",
+                "A": "4",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Cold Blooded",
+                  "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+                },
+                {
+                  "name": "Immune To Psychology",
+                  "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Poisoned Attacks",
+                  "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Stubborn",
+                  "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                },
+                {
+                  "name": "Howdah (Lizardmen)",
+                  "text": "To represent its howdah and crew, a behemoth with this special rule has a split profile and follows both the \u2018Split Profile (Chariots)\u2019 and \u2018Firing Platform\u2019 rules (see page 194).\n*Note that, because it has the Howdah special rule, a Stegadon or Ancient Stegadon is considered to be a chariot mount, rather than a ridden monster.*"
+                }
+              ]
+            },
+            {
+              "id": "ancient-stegadon",
+              "name": "Ancient Stegadon",
+              "points": 230,
+              "stats": {
+                "M": "6",
+                "WS": "4",
+                "BS": "-",
+                "S": "6",
+                "T": "6",
+                "W": "5",
+                "I": "1",
+                "A": "3",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Cold Blooded",
+                  "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+                },
+                {
+                  "name": "Immune To Psychology",
+                  "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Poisoned Attacks",
+                  "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Stubborn",
+                  "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                },
+                {
+                  "name": "Howdah (Lizardmen)",
+                  "text": "To represent its howdah and crew, a behemoth with this special rule has a split profile and follows both the \u2018Split Profile (Chariots)\u2019 and \u2018Firing Platform\u2019 rules (see page 194).\n*Note that, because it has the Howdah special rule, a Stegadon or Ancient Stegadon is considered to be a chariot mount, rather than a ridden monster.*"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 2
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Cold Blooded",
+          "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+        },
+        {
+          "name": "Furious Charge",
+          "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Attacks characteristic."
+        },
+        {
+          "name": "Obsidian Blades",
+          "text": "Lizardmen favour weapons studded with shards of razor sharp volcanic glass that cut through flesh and armour with ease.\n\nA hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -1.\n\nNote that this special rule only applies to a single, non-magical hand weapon and does not apply to a model\u2019s mount (should it have one). If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply."
+        },
+        {
+          "name": "Rallying Cry",
+          "text": "During the Command sub-phase of their turn, if they are not engaged in combat, this character may nominate a single fleeing friendly unit that is within their Command range. The nominated unit immediately makes a Rally test. If this test is failed, the unit may attempt to rally again as normal during the Rally sub-phase."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Cavalry Spear",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1",
+          "specialRules": "Fight in Extra Rank"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        },
+        {
+          "name": "Halberd",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1 (-2)",
+          "specialRules": "Armour Bane (1), Requires Two Hands"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "5",
+        "BS": "0",
+        "S": "5",
+        "T": "5",
+        "W": "2",
+        "I": "3",
+        "A": "4",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "skink-chief",
+      "name": "Skink Chief",
+      "category": "characters",
+      "pointsPerModel": 45,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry",
+      "magicItems": true,
+      "command": [
+        {
+          "id": "battle-standard-bearer",
+          "name": "Battle Standard Bearer",
+          "points": 25
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "cavalry-spear",
+              "name": "Cavalry Spear",
+              "points": 4
+            },
+            {
+              "id": "blowpipe",
+              "name": "Blowpipe",
+              "points": 4
+            },
+            {
+              "id": "javelin",
+              "name": "Javelin",
+              "points": 3
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "mount",
+          "name": "Mount",
+          "options": [
+            {
+              "id": "cold-one",
+              "name": "Cold One",
+              "points": 18,
+              "stats": {
+                "M": "7",
+                "WS": "3",
+                "BS": "-",
+                "S": "4",
+                "T": "-",
+                "W": "-",
+                "I": "2",
+                "A": "2",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armour Bane",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+                },
+                {
+                  "name": "Armoured Hide",
+                  "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Stupidity",
+                  "text": "Unless it is fleeing or engaged in combat, a unit with this\u00a0special rule must test for Stupidity by making a Leadership test\u00a0during the Start of Turn sub-phase of each of its turns. If this test is failed, the unit succumbs to Stupidity until its next Start of Turn sub-phase. A unit that has succumbed to Stupidity:\n- Cannot move (except to flee).\n- Cannot shoot or cast spells.\n- Cannot attempt a Wizardly dispel.\n- Must \"Hold\" if charged by an enemy.\n\nA unit or mount that does not have this special rule becomes subject to it when joined or ridden by a character that does (Stupidity is contagious)."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "carnosaur",
+              "name": "Carnosaur",
+              "points": 170,
+              "stats": {
+                "M": "7",
+                "WS": "3",
+                "BS": "0",
+                "S": "7",
+                "T": "1",
+                "W": "4",
+                "I": "2",
+                "A": "4",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Blood Frenzy",
+                  "text": "When this model (but not its rider) inflicts an unsaved wound upon an enemy model, it becomes subject to the Frenzy special rule. A model with this special rule may become Frenzied in this way even if it has lost Frenzy earlier in the game.\n\nNote that this model\u2019s rider does not gain a +1 modifier to their Attacks characteristic.\n\nCharacter Mount: A Carnosaur may only be included in your army as a character\u2019s mount. Its points are added to that of its rider."
+                },
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Cold Blooded",
+                  "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                }
+              ]
+            },
+            {
+              "id": "terradon",
+              "name": "Terradon",
+              "points": 30,
+              "stats": {
+                "M": "2",
+                "WS": "3",
+                "BS": "-",
+                "S": "4",
+                "T": "1",
+                "W": "1",
+                "I": "2",
+                "A": "1",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armoured Hide",
+                  "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+                },
+                {
+                  "name": "Drop Rocks",
+                  "text": "Skinks train Terradons to glide over the battlefield clutching great rocks in their talons.\n\nOnce per game, a unit with this special rule may perform a \u2018Drop Rocks\u2019 attack against a single enemy unit that is not engaged in combat. To do so, this unit must move (by flying) over the unit it wishes to attack during the Remaining Moves sub-phase. Once this unit\u2019s movement is complete, the enemy unit suffers D3 Strength 4 hits, each with an AP of -, for each model in this unit that moved over it."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Fly",
+                  "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "ripperdactyl",
+              "name": "Ripperdactyl",
+              "points": 35,
+              "stats": {
+                "M": "2",
+                "WS": "3",
+                "BS": "-",
+                "S": "4",
+                "T": "1",
+                "W": "1",
+                "I": "2",
+                "A": "2",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armoured Hide",
+                  "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+                },
+                {
+                  "name": "Cleaving Blow",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound for an attack made in combat, it has struck a \u2018Cleaving Blow\u2019. Enemy models whose troop type is \u2018regular infantry\u2019, \u2018heavy infantry\u2019, \u2018light cavalry\u2019, \u2018heavy cavalry\u2019 or \u2018war beasts\u2019 are not permitted an armour or Regeneration save against a Cleaving Blow (Ward saves can be attempted"
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Fly",
+                  "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Furious Charge",
+                  "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Attacks characteristic."
+                },
+                {
+                  "name": "Impetuous",
+                  "text": "If during the Declare Charges & Charge Reactions sub-phase of its turn, a unit that includes one or more Impetuous models is able to declare a charge, it must make a Leadership test. If this test is failed, the unit must declare a charge. If this test is passed, the unit may act as normal."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                },
+                {
+                  "name": "Toad Rage",
+                  "text": "Before the game starts, but after Scouts have been deployed, you may place one Lustrian blot toad marker for each unit of Ripperdactyl Riders in your army (counting only units, not including characters mounted on Ripperdactyls). A single blot toad marker can be placed on any enemy unit on the battlefield, this marker remains throughout the battle.\n\nWhen engaged in combat with an enemy unit with a blot toad marker, Ripperdactyls (but not their riders) gain the Extra Attacks (1) special rule, and may re-roll any roll To Hit of a natural 1."
+                }
+              ]
+            },
+            {
+              "id": "stegadon",
+              "name": "Stegadon",
+              "points": 215,
+              "stats": {
+                "M": "6",
+                "WS": "3",
+                "BS": "-",
+                "S": "5",
+                "T": "6",
+                "W": "5",
+                "I": "2",
+                "A": "4",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Cold Blooded",
+                  "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+                },
+                {
+                  "name": "Immune To Psychology",
+                  "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Poisoned Attacks",
+                  "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Stubborn",
+                  "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                },
+                {
+                  "name": "Howdah (Lizardmen)",
+                  "text": "To represent its howdah and crew, a behemoth with this special rule has a split profile and follows both the \u2018Split Profile (Chariots)\u2019 and \u2018Firing Platform\u2019 rules (see page 194).\n*Note that, because it has the Howdah special rule, a Stegadon or Ancient Stegadon is considered to be a chariot mount, rather than a ridden monster.*"
+                }
+              ]
+            },
+            {
+              "id": "ancient-stegadon",
+              "name": "Ancient Stegadon",
+              "points": 230,
+              "stats": {
+                "M": "6",
+                "WS": "4",
+                "BS": "-",
+                "S": "6",
+                "T": "6",
+                "W": "5",
+                "I": "1",
+                "A": "3",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Cold Blooded",
+                  "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+                },
+                {
+                  "name": "Immune To Psychology",
+                  "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Poisoned Attacks",
+                  "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Stubborn",
+                  "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                },
+                {
+                  "name": "Howdah (Lizardmen)",
+                  "text": "To represent its howdah and crew, a behemoth with this special rule has a split profile and follows both the \u2018Split Profile (Chariots)\u2019 and \u2018Firing Platform\u2019 rules (see page 194).\n*Note that, because it has the Howdah special rule, a Stegadon or Ancient Stegadon is considered to be a chariot mount, rather than a ridden monster.*"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Aquatic",
+          "text": "Many of Lustria\u2019s denizens have an affinity for water, moving with equal ease through swamp and river as they do over land.\n\nModels with this special rule do not suffer any modifiers to their Movement characteristic when moving through any difficult or dangerous terrain feature which has been designated a \u2018water feature\u2019. This might include shallow streams or fords, swampy ground, fast flowing rivers, ponds or lakes, and players should agree prior to the game if any terrain is a water feature."
+        },
+        {
+          "name": "Cold Blooded",
+          "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+        },
+        {
+          "name": "Poisoned Attacks",
+          "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Cavalry Spear",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1",
+          "specialRules": "Fight in Extra Rank"
+        },
+        {
+          "name": "Blowpipe",
+          "range": "12\"",
+          "strength": "3",
+          "ap": "-",
+          "specialRules": "Multiple Shots (2), Poisoned Attacks"
+        },
+        {
+          "name": "Javelin",
+          "range": "12\"",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Move & Shoot, Quick Shot"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "4",
+        "BS": "5",
+        "S": "4",
+        "T": "3",
+        "W": "2",
+        "I": "6",
+        "A": "3",
+        "Ld": "6"
+      }
+    },
+    {
+      "id": "temple-guard",
+      "name": "Temple Guard",
+      "category": "core",
+      "pointsPerModel": 16,
+      "minModels": 10,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Heavy infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "revered-guardian",
+          "name": "Revered Guardian",
+          "points": 7
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 7
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 7
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Cold Blooded",
+          "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+        },
+        {
+          "name": "Guardians",
+          "text": "Should a friendly Slann Mage-Priest model that is within 3\" of this unit suffer a hit during the Shooting phase, roll a D6. On a roll of 2+, you may choose to transfer that hit and all of its effects onto this unit. In addition, any model in a unit of Temple Guard that is within the Command range of a Slann Mage-Priest can issue and accept challenges in the same manner as a character."
+        },
+        {
+          "name": "Obsidian Blades",
+          "text": "Lizardmen favour weapons studded with shards of razor sharp volcanic glass that cut through flesh and armour with ease.\n\nA hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -1.\n\nNote that this special rule only applies to a single, non-magical hand weapon and does not apply to a model\u2019s mount (should it have one). If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply."
+        },
+        {
+          "name": "Shieldwall",
+          "text": "Once per game, during a turn in which it was charged, a unit with this special rule that is arrayed in a Close Order formation, and that is equipped with and chooses to use shields, may Give Ground rather than Fall Back in Good Order."
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "4",
+        "BS": "0",
+        "S": "4",
+        "T": "4",
+        "W": "1",
+        "I": "1",
+        "A": "2",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "saurus-warriors",
+      "name": "Saurus Warriors",
+      "category": "core",
+      "pointsPerModel": 14,
+      "minModels": 10,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Heavy infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "spawn-leader",
+          "name": "Spawn Leader",
+          "points": 7
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 7
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 7
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "thrusting-spear",
+              "name": "Thrusting Spear",
+              "points": 1
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Cold Blooded",
+          "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+        },
+        {
+          "name": "Obsidian Blades",
+          "text": "Lizardmen favour weapons studded with shards of razor sharp volcanic glass that cut through flesh and armour with ease.\n\nA hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -1.\n\nNote that this special rule only applies to a single, non-magical hand weapon and does not apply to a model\u2019s mount (should it have one). If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "3",
+        "BS": "0",
+        "S": "4",
+        "T": "4",
+        "W": "1",
+        "I": "1",
+        "A": "2",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "skink-skirmishers",
+      "name": "Skink Skirmishers",
+      "category": "core",
+      "pointsPerModel": 5,
+      "minModels": 10,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "patrol-leader",
+          "name": "Patrol Leader",
+          "points": 5
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "javelins-and-shields",
+              "name": "Javelins and Shields",
+              "points": 0
+            },
+            {
+              "id": "blowpipe",
+              "name": "Blowpipe",
+              "points": 1
+            }
+          ]
+        },
+        {
+          "id": "special-rules",
+          "name": "Special Rules",
+          "options": [
+            {
+              "id": "scouts",
+              "name": "Scouts",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Scouts",
+                  "text": "Units with this special rule may be deployed after all other units from both armies. They can be deployed anywhere on the battlefield that is more than 12\" away from an enemy model. If deployed in this way, Scouts cannot declare a charge during their first turn.\n\n If both armies contain Scouts, a roll-off should determine which player deploys Scouts first. The players then alternate deploying their scouting units one at a time, starting with the player who won the roll-off."
+                }
+              ]
+            },
+            {
+              "id": "vanguard",
+              "name": "Vanguard",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Vanguard",
+                  "text": "After deployment, units with this special rule may make a Vanguard move. A unit making a Vanguard move moves as described in the Basic Movement rules. It may manoeuvre normally but cannot march.\n\nIf both armies contain Vanguard units, a roll-off determines who moves first. The players then alternate moving their Vanguard units one at a time, starting with the player who won the roll-off. Units that make a Vanguard move cannot declare a charge during their first turn."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Cold Blooded",
+          "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Poisoned Attacks",
+          "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Javelin",
+          "range": "12\"",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Move & Shoot, Quick Shot"
+        },
+        {
+          "name": "Blowpipe",
+          "range": "12\"",
+          "strength": "3",
+          "ap": "-",
+          "specialRules": "Multiple Shots (2), Poisoned Attacks"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "2",
+        "BS": "3",
+        "S": "3",
+        "T": "2",
+        "W": "1",
+        "I": "4",
+        "A": "1",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "chameleon-skinks",
+      "name": "Chameleon Skinks",
+      "category": "special",
+      "pointsPerModel": 11,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "patrol-leader",
+          "name": "Patrol Leader",
+          "points": 6
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Cold Blooded",
+          "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+        },
+        {
+          "name": "Evasive",
+          "text": "Once per turn, when a unit in which the majority of models have this special rule is declared the target during the enemy Shooting phase, it may choose to Fall Back in Good Order, fleeing directly away from the enemy unit shooting at it. Once this unit has completed its move, the enemy unit may continue with its shooting as declared."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Scouts",
+          "text": "Units with this special rule may be deployed after all other units from both armies. They can be deployed anywhere on the battlefield that is more than 12\" away from an enemy model. If deployed in this way, Scouts cannot declare a charge during their first turn.\n\n If both armies contain Scouts, a roll-off should determine which player deploys Scouts first. The players then alternate deploying their scouting units one at a time, starting with the player who won the roll-off."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "2",
+        "BS": "4",
+        "S": "3",
+        "T": "2",
+        "W": "1",
+        "I": "4",
+        "A": "1",
+        "Ld": "6"
+      }
+    },
+    {
+      "id": "kroxigor",
+      "name": "Kroxigor",
+      "category": "special",
+      "pointsPerModel": 49,
+      "minModels": 3,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "ancient",
+          "name": "Ancient",
+          "points": 7
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Aquatic",
+          "text": "Many of Lustria\u2019s denizens have an affinity for water, moving with equal ease through swamp and river as they do over land.\n\nModels with this special rule do not suffer any modifiers to their Movement characteristic when moving through any difficult or dangerous terrain feature which has been designated a \u2018water feature\u2019. This might include shallow streams or fords, swampy ground, fast flowing rivers, ponds or lakes, and players should agree prior to the game if any terrain is a water feature."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Cold Blooded",
+          "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Skirmish Screen",
+          "text": "A unit with this special rule can draw a line of sight over or through friendly units of Skink Skirmishers and can move through friendly units of Skink Skirmishers that are in Skirmish formation. If this unit\u2019s move would result in it ending up \u2018on top\u2019 of a friendly Skink Skirmisher, simply nudge that model aside, by the smallest amount possible, to make space for this unit. Whilst in Skirmish formation units of Skink Skirmishers can treat friendly models with this special rule that are within 1\" of one or more of the unit\u2019s models as a part of the unit for the purposes of unit coherency"
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "3",
+        "BS": "0",
+        "S": "5",
+        "T": "4",
+        "W": "3",
+        "I": "3",
+        "A": "3",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "jungle-swarms",
+      "name": "Jungle Swarms",
+      "category": "core",
+      "pointsPerModel": 40,
+      "minModels": 3,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Swarms",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Cold Blooded",
+          "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+        },
+        {
+          "name": "Immune To Psychology",
+          "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+        },
+        {
+          "name": "Loner",
+          "text": "A character with this special rule cannot be your General and cannot join a unit without this special rule. A unit with this special rule cannot be joined by a character without this special rule."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Poisoned Attacks",
+          "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Unbreakable",
+          "text": "If a unit with this special rule loses a round of combat, it is not required to make a Break test. Instead, it will automatically Give Ground as it is pushed back by the enemy. Characters that are not Unbreakable cannot join units that are, and vice versa."
+        },
+        {
+          "name": "Vanguard",
+          "text": "After deployment, units with this special rule may make a Vanguard move. A unit making a Vanguard move moves as described in the Basic Movement rules. It may manoeuvre normally but cannot march.\n\nIf both armies contain Vanguard units, a roll-off determines who moves first. The players then alternate moving their Vanguard units one at a time, starting with the player who won the roll-off. Units that make a Vanguard move cannot declare a charge during their first turn."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "3",
+        "BS": "0",
+        "S": "2",
+        "T": "2",
+        "W": "5",
+        "I": "1",
+        "A": "5",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "salamander-packs",
+      "name": "Salamander Packs",
+      "category": "rare",
+      "pointsPerModel": 5,
+      "minModels": 3,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry (Skink handlers), War beasts (Salamanders)",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Aquatic",
+          "text": "Many of Lustria\u2019s denizens have an affinity for water, moving with equal ease through swamp and river as they do over land.\n\nModels with this special rule do not suffer any modifiers to their Movement characteristic when moving through any difficult or dangerous terrain feature which has been designated a \u2018water feature\u2019. This might include shallow streams or fords, swampy ground, fast flowing rivers, ponds or lakes, and players should agree prior to the game if any terrain is a water feature."
+        },
+        {
+          "name": "Beast Handlers",
+          "text": "Salamanders and Razordons are wild creatures that are often herded into battle by teams of fearless Skink Handlers.\n\nWhen an enemy unit shoots at a Salamander or Razordon Pack that contains one or more Skink Handlers, the enemy player must roll a D6 for each successful roll To Hit before making any rolls To Wound. On a roll of 1-4, the hit is inflicted upon a Salamander or Razordon. On a roll of 5+, the hit is inflicted upon a Skink Handler. In combat, enemy models must allocate their attacks against a model they are in base contact with (or against the closest model if they are within the fighting rank but not in base contact) before rolling To Hit."
+        },
+        {
+          "name": "Cold Blooded",
+          "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "2",
+        "BS": "3",
+        "S": "3",
+        "T": "2",
+        "W": "1",
+        "I": "4",
+        "A": "1",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "razordon-packs",
+      "name": "Razordon Packs",
+      "category": "rare",
+      "pointsPerModel": 5,
+      "minModels": 3,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry (Skink handlers), War beasts (Razordons)",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Aquatic",
+          "text": "Many of Lustria\u2019s denizens have an affinity for water, moving with equal ease through swamp and river as they do over land.\n\nModels with this special rule do not suffer any modifiers to their Movement characteristic when moving through any difficult or dangerous terrain feature which has been designated a \u2018water feature\u2019. This might include shallow streams or fords, swampy ground, fast flowing rivers, ponds or lakes, and players should agree prior to the game if any terrain is a water feature."
+        },
+        {
+          "name": "Beast Handlers",
+          "text": "Salamanders and Razordons are wild creatures that are often herded into battle by teams of fearless Skink Handlers.\n\nWhen an enemy unit shoots at a Salamander or Razordon Pack that contains one or more Skink Handlers, the enemy player must roll a D6 for each successful roll To Hit before making any rolls To Wound. On a roll of 1-4, the hit is inflicted upon a Salamander or Razordon. On a roll of 5+, the hit is inflicted upon a Skink Handler. In combat, enemy models must allocate their attacks against a model they are in base contact with (or against the closest model if they are within the fighting rank but not in base contact) before rolling To Hit."
+        },
+        {
+          "name": "Cold Blooded",
+          "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "2",
+        "BS": "3",
+        "S": "3",
+        "T": "2",
+        "W": "1",
+        "I": "4",
+        "A": "1",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "cold-one-riders",
+      "name": "Cold One Riders",
+      "category": "special",
+      "pointsPerModel": 34,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Heavy cavalry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "pack-leader",
+          "name": "Pack Leader",
+          "points": 7
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 7
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 7
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "cavalry-spear",
+              "name": "Cavalry Spear",
+              "points": 1
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armour Bane",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+        },
+        {
+          "name": "Armoured Hide",
+          "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Cold Blooded",
+          "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Obsidian Blades",
+          "text": "Lizardmen favour weapons studded with shards of razor sharp volcanic glass that cut through flesh and armour with ease.\n\nA hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -1.\n\nNote that this special rule only applies to a single, non-magical hand weapon and does not apply to a model\u2019s mount (should it have one). If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply."
+        },
+        {
+          "name": "Stupidity",
+          "text": "Unless it is fleeing or engaged in combat, a unit with this\u00a0special rule must test for Stupidity by making a Leadership test\u00a0during the Start of Turn sub-phase of each of its turns. If this test is failed, the unit succumbs to Stupidity until its next Start of Turn sub-phase. A unit that has succumbed to Stupidity:\n- Cannot move (except to flee).\n- Cannot shoot or cast spells.\n- Cannot attempt a Wizardly dispel.\n- Must \"Hold\" if charged by an enemy.\n\nA unit or mount that does not have this special rule becomes subject to it when joined or ridden by a character that does (Stupidity is contagious)."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "4",
+        "BS": "0",
+        "S": "4",
+        "T": "4",
+        "W": "1",
+        "I": "2",
+        "A": "2",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "terradon-riders",
+      "name": "Terradon Riders",
+      "category": "special",
+      "pointsPerModel": 32,
+      "minModels": 3,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous cavalry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "sky-leader",
+          "name": "Sky Leader",
+          "points": 6
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "javelin",
+              "name": "Javelin",
+              "points": 0
+            },
+            {
+              "id": "fireleech-bolas",
+              "name": "Fireleech bolas",
+              "points": 1
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armoured Hide",
+          "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+        },
+        {
+          "name": "Cold Blooded",
+          "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+        },
+        {
+          "name": "Drop Rocks",
+          "text": "Skinks train Terradons to glide over the battlefield clutching great rocks in their talons.\n\nOnce per game, a unit with this special rule may perform a \u2018Drop Rocks\u2019 attack against a single enemy unit that is not engaged in combat. To do so, this unit must move (by flying) over the unit it wishes to attack during the Remaining Moves sub-phase. Once this unit\u2019s movement is complete, the enemy unit suffers D3 Strength 4 hits, each with an AP of -, for each model in this unit that moved over it."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Poisoned Attacks",
+          "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Javelin",
+          "range": "12\"",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Move & Shoot, Quick Shot"
+        },
+        {
+          "name": "Fireleech bolas",
+          "range": "6\"",
+          "strength": "S+1",
+          "ap": "-",
+          "specialRules": "Flaming Attacks, Move & Shoot, Quick Shot"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "2",
+        "BS": "3",
+        "S": "3",
+        "T": "3",
+        "W": "2",
+        "I": "4",
+        "A": "1",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "ripperdactyl-riders",
+      "name": "Ripperdactyl Riders",
+      "category": "special",
+      "pointsPerModel": 40,
+      "minModels": 3,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous cavalry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "ripperdactyl-champion",
+          "name": "Ripperdactyl Champion",
+          "points": 6
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Armoured Hide",
+          "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+        },
+        {
+          "name": "Cleaving Blow",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound for an attack made in combat, it has struck a \u2018Cleaving Blow\u2019. Enemy models whose troop type is \u2018regular infantry\u2019, \u2018heavy infantry\u2019, \u2018light cavalry\u2019, \u2018heavy cavalry\u2019 or \u2018war beasts\u2019 are not permitted an armour or Regeneration save against a Cleaving Blow (Ward saves can be attempted"
+        },
+        {
+          "name": "Cold Blooded",
+          "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Furious Charge",
+          "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Attacks characteristic."
+        },
+        {
+          "name": "Impetuous",
+          "text": "If during the Declare Charges & Charge Reactions sub-phase of its turn, a unit that includes one or more Impetuous models is able to declare a charge, it must make a Leadership test. If this test is failed, the unit must declare a charge. If this test is passed, the unit may act as normal."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Toad Rage",
+          "text": "Before the game starts, but after Scouts have been deployed, you may place one Lustrian blot toad marker for each unit of Ripperdactyl Riders in your army (counting only units, not including characters mounted on Ripperdactyls). A single blot toad marker can be placed on any enemy unit on the battlefield, this marker remains throughout the battle.\n\nWhen engaged in combat with an enemy unit with a blot toad marker, Ripperdactyls (but not their riders) gain the Extra Attacks (1) special rule, and may re-roll any roll To Hit of a natural 1."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "2",
+        "BS": "3",
+        "S": "3",
+        "T": "3",
+        "W": "2",
+        "I": "4",
+        "A": "1",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "saurus-oldblood",
+      "name": "Saurus Oldblood",
+      "category": "characters",
+      "pointsPerModel": 140,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Heavy infantry",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "cavalry-spear",
+              "name": "Cavalry Spear",
+              "points": 4
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            },
+            {
+              "id": "halberd",
+              "name": "Halberd",
+              "points": 3
+            }
+          ]
+        },
+        {
+          "id": "mount",
+          "name": "Mount",
+          "options": [
+            {
+              "id": "cold-one",
+              "name": "Cold One",
+              "points": 18,
+              "stats": {
+                "M": "7",
+                "WS": "3",
+                "BS": "-",
+                "S": "4",
+                "T": "-",
+                "W": "-",
+                "I": "2",
+                "A": "2",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armour Bane",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+                },
+                {
+                  "name": "Armoured Hide",
+                  "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Stupidity",
+                  "text": "Unless it is fleeing or engaged in combat, a unit with this\u00a0special rule must test for Stupidity by making a Leadership test\u00a0during the Start of Turn sub-phase of each of its turns. If this test is failed, the unit succumbs to Stupidity until its next Start of Turn sub-phase. A unit that has succumbed to Stupidity:\n- Cannot move (except to flee).\n- Cannot shoot or cast spells.\n- Cannot attempt a Wizardly dispel.\n- Must \"Hold\" if charged by an enemy.\n\nA unit or mount that does not have this special rule becomes subject to it when joined or ridden by a character that does (Stupidity is contagious)."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "carnosaur",
+              "name": "Carnosaur",
+              "points": 170,
+              "stats": {
+                "M": "7",
+                "WS": "3",
+                "BS": "0",
+                "S": "7",
+                "T": "1",
+                "W": "4",
+                "I": "2",
+                "A": "4",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Blood Frenzy",
+                  "text": "When this model (but not its rider) inflicts an unsaved wound upon an enemy model, it becomes subject to the Frenzy special rule. A model with this special rule may become Frenzied in this way even if it has lost Frenzy earlier in the game.\n\nNote that this model\u2019s rider does not gain a +1 modifier to their Attacks characteristic.\n\nCharacter Mount: A Carnosaur may only be included in your army as a character\u2019s mount. Its points are added to that of its rider."
+                },
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Cold Blooded",
+                  "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                }
+              ]
+            },
+            {
+              "id": "terradon",
+              "name": "Terradon",
+              "points": 30,
+              "stats": {
+                "M": "2",
+                "WS": "3",
+                "BS": "-",
+                "S": "4",
+                "T": "1",
+                "W": "1",
+                "I": "2",
+                "A": "1",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armoured Hide",
+                  "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+                },
+                {
+                  "name": "Drop Rocks",
+                  "text": "Skinks train Terradons to glide over the battlefield clutching great rocks in their talons.\n\nOnce per game, a unit with this special rule may perform a \u2018Drop Rocks\u2019 attack against a single enemy unit that is not engaged in combat. To do so, this unit must move (by flying) over the unit it wishes to attack during the Remaining Moves sub-phase. Once this unit\u2019s movement is complete, the enemy unit suffers D3 Strength 4 hits, each with an AP of -, for each model in this unit that moved over it."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Fly",
+                  "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "ripperdactyl",
+              "name": "Ripperdactyl",
+              "points": 35,
+              "stats": {
+                "M": "2",
+                "WS": "3",
+                "BS": "-",
+                "S": "4",
+                "T": "1",
+                "W": "1",
+                "I": "2",
+                "A": "2",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armoured Hide",
+                  "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+                },
+                {
+                  "name": "Cleaving Blow",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound for an attack made in combat, it has struck a \u2018Cleaving Blow\u2019. Enemy models whose troop type is \u2018regular infantry\u2019, \u2018heavy infantry\u2019, \u2018light cavalry\u2019, \u2018heavy cavalry\u2019 or \u2018war beasts\u2019 are not permitted an armour or Regeneration save against a Cleaving Blow (Ward saves can be attempted"
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Fly",
+                  "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Furious Charge",
+                  "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Attacks characteristic."
+                },
+                {
+                  "name": "Impetuous",
+                  "text": "If during the Declare Charges & Charge Reactions sub-phase of its turn, a unit that includes one or more Impetuous models is able to declare a charge, it must make a Leadership test. If this test is failed, the unit must declare a charge. If this test is passed, the unit may act as normal."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                },
+                {
+                  "name": "Toad Rage",
+                  "text": "Before the game starts, but after Scouts have been deployed, you may place one Lustrian blot toad marker for each unit of Ripperdactyl Riders in your army (counting only units, not including characters mounted on Ripperdactyls). A single blot toad marker can be placed on any enemy unit on the battlefield, this marker remains throughout the battle.\n\nWhen engaged in combat with an enemy unit with a blot toad marker, Ripperdactyls (but not their riders) gain the Extra Attacks (1) special rule, and may re-roll any roll To Hit of a natural 1."
+                }
+              ]
+            },
+            {
+              "id": "stegadon",
+              "name": "Stegadon",
+              "points": 215,
+              "stats": {
+                "M": "6",
+                "WS": "3",
+                "BS": "-",
+                "S": "5",
+                "T": "6",
+                "W": "5",
+                "I": "2",
+                "A": "4",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Cold Blooded",
+                  "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+                },
+                {
+                  "name": "Immune To Psychology",
+                  "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Poisoned Attacks",
+                  "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Stubborn",
+                  "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                },
+                {
+                  "name": "Howdah (Lizardmen)",
+                  "text": "To represent its howdah and crew, a behemoth with this special rule has a split profile and follows both the \u2018Split Profile (Chariots)\u2019 and \u2018Firing Platform\u2019 rules (see page 194).\n*Note that, because it has the Howdah special rule, a Stegadon or Ancient Stegadon is considered to be a chariot mount, rather than a ridden monster.*"
+                }
+              ]
+            },
+            {
+              "id": "ancient-stegadon",
+              "name": "Ancient Stegadon",
+              "points": 230,
+              "stats": {
+                "M": "6",
+                "WS": "4",
+                "BS": "-",
+                "S": "6",
+                "T": "6",
+                "W": "5",
+                "I": "1",
+                "A": "3",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Cold Blooded",
+                  "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+                },
+                {
+                  "name": "Immune To Psychology",
+                  "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Poisoned Attacks",
+                  "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Stubborn",
+                  "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                },
+                {
+                  "name": "Howdah (Lizardmen)",
+                  "text": "To represent its howdah and crew, a behemoth with this special rule has a split profile and follows both the \u2018Split Profile (Chariots)\u2019 and \u2018Firing Platform\u2019 rules (see page 194).\n*Note that, because it has the Howdah special rule, a Stegadon or Ancient Stegadon is considered to be a chariot mount, rather than a ridden monster.*"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 2
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Cold Blooded",
+          "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+        },
+        {
+          "name": "Furious Charge",
+          "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Attacks characteristic."
+        },
+        {
+          "name": "Obsidian Blades",
+          "text": "Lizardmen favour weapons studded with shards of razor sharp volcanic glass that cut through flesh and armour with ease.\n\nA hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -1.\n\nNote that this special rule only applies to a single, non-magical hand weapon and does not apply to a model\u2019s mount (should it have one). If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply."
+        },
+        {
+          "name": "Rallying Cry",
+          "text": "During the Command sub-phase of their turn, if they are not engaged in combat, this character may nominate a single fleeing friendly unit that is within their Command range. The nominated unit immediately makes a Rally test. If this test is failed, the unit may attempt to rally again as normal during the Rally sub-phase."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Cavalry Spear",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1",
+          "specialRules": "Fight in Extra Rank"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        },
+        {
+          "name": "Halberd",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1 (-2)",
+          "specialRules": "Armour Bane (1), Requires Two Hands"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "6",
+        "BS": "0",
+        "S": "5",
+        "T": "5",
+        "W": "3",
+        "I": "3",
+        "A": "5",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "skink-priest",
+      "name": "Skink Priest",
+      "category": "characters",
+      "pointsPerModel": 60,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-1",
+              "name": "Wizard Level 1",
+              "points": 0
+            },
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 30
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            },
+            {
+              "id": "elementalism",
+              "name": "Elementalism",
+              "points": 0
+            },
+            {
+              "id": "illusion",
+              "name": "Illusion",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "mount",
+          "name": "Mount",
+          "options": [
+            {
+              "id": "cold-one",
+              "name": "Cold One",
+              "points": 18,
+              "stats": {
+                "M": "7",
+                "WS": "3",
+                "BS": "-",
+                "S": "4",
+                "T": "-",
+                "W": "-",
+                "I": "2",
+                "A": "2",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armour Bane",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+                },
+                {
+                  "name": "Armoured Hide",
+                  "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Stupidity",
+                  "text": "Unless it is fleeing or engaged in combat, a unit with this\u00a0special rule must test for Stupidity by making a Leadership test\u00a0during the Start of Turn sub-phase of each of its turns. If this test is failed, the unit succumbs to Stupidity until its next Start of Turn sub-phase. A unit that has succumbed to Stupidity:\n- Cannot move (except to flee).\n- Cannot shoot or cast spells.\n- Cannot attempt a Wizardly dispel.\n- Must \"Hold\" if charged by an enemy.\n\nA unit or mount that does not have this special rule becomes subject to it when joined or ridden by a character that does (Stupidity is contagious)."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "carnosaur",
+              "name": "Carnosaur",
+              "points": 170,
+              "stats": {
+                "M": "7",
+                "WS": "3",
+                "BS": "0",
+                "S": "7",
+                "T": "1",
+                "W": "4",
+                "I": "2",
+                "A": "4",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Blood Frenzy",
+                  "text": "When this model (but not its rider) inflicts an unsaved wound upon an enemy model, it becomes subject to the Frenzy special rule. A model with this special rule may become Frenzied in this way even if it has lost Frenzy earlier in the game.\n\nNote that this model\u2019s rider does not gain a +1 modifier to their Attacks characteristic.\n\nCharacter Mount: A Carnosaur may only be included in your army as a character\u2019s mount. Its points are added to that of its rider."
+                },
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Cold Blooded",
+                  "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                }
+              ]
+            },
+            {
+              "id": "terradon",
+              "name": "Terradon",
+              "points": 30,
+              "stats": {
+                "M": "2",
+                "WS": "3",
+                "BS": "-",
+                "S": "4",
+                "T": "1",
+                "W": "1",
+                "I": "2",
+                "A": "1",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armoured Hide",
+                  "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+                },
+                {
+                  "name": "Drop Rocks",
+                  "text": "Skinks train Terradons to glide over the battlefield clutching great rocks in their talons.\n\nOnce per game, a unit with this special rule may perform a \u2018Drop Rocks\u2019 attack against a single enemy unit that is not engaged in combat. To do so, this unit must move (by flying) over the unit it wishes to attack during the Remaining Moves sub-phase. Once this unit\u2019s movement is complete, the enemy unit suffers D3 Strength 4 hits, each with an AP of -, for each model in this unit that moved over it."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Fly",
+                  "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "ripperdactyl",
+              "name": "Ripperdactyl",
+              "points": 35,
+              "stats": {
+                "M": "2",
+                "WS": "3",
+                "BS": "-",
+                "S": "4",
+                "T": "1",
+                "W": "1",
+                "I": "2",
+                "A": "2",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armoured Hide",
+                  "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+                },
+                {
+                  "name": "Cleaving Blow",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound for an attack made in combat, it has struck a \u2018Cleaving Blow\u2019. Enemy models whose troop type is \u2018regular infantry\u2019, \u2018heavy infantry\u2019, \u2018light cavalry\u2019, \u2018heavy cavalry\u2019 or \u2018war beasts\u2019 are not permitted an armour or Regeneration save against a Cleaving Blow (Ward saves can be attempted"
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Fly",
+                  "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Furious Charge",
+                  "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Attacks characteristic."
+                },
+                {
+                  "name": "Impetuous",
+                  "text": "If during the Declare Charges & Charge Reactions sub-phase of its turn, a unit that includes one or more Impetuous models is able to declare a charge, it must make a Leadership test. If this test is failed, the unit must declare a charge. If this test is passed, the unit may act as normal."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                },
+                {
+                  "name": "Toad Rage",
+                  "text": "Before the game starts, but after Scouts have been deployed, you may place one Lustrian blot toad marker for each unit of Ripperdactyl Riders in your army (counting only units, not including characters mounted on Ripperdactyls). A single blot toad marker can be placed on any enemy unit on the battlefield, this marker remains throughout the battle.\n\nWhen engaged in combat with an enemy unit with a blot toad marker, Ripperdactyls (but not their riders) gain the Extra Attacks (1) special rule, and may re-roll any roll To Hit of a natural 1."
+                }
+              ]
+            },
+            {
+              "id": "stegadon",
+              "name": "Stegadon",
+              "points": 215,
+              "stats": {
+                "M": "6",
+                "WS": "3",
+                "BS": "-",
+                "S": "5",
+                "T": "6",
+                "W": "5",
+                "I": "2",
+                "A": "4",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Cold Blooded",
+                  "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+                },
+                {
+                  "name": "Immune To Psychology",
+                  "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Poisoned Attacks",
+                  "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Stubborn",
+                  "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                },
+                {
+                  "name": "Howdah (Lizardmen)",
+                  "text": "To represent its howdah and crew, a behemoth with this special rule has a split profile and follows both the \u2018Split Profile (Chariots)\u2019 and \u2018Firing Platform\u2019 rules (see page 194).\n*Note that, because it has the Howdah special rule, a Stegadon or Ancient Stegadon is considered to be a chariot mount, rather than a ridden monster.*"
+                }
+              ]
+            },
+            {
+              "id": "ancient-stegadon",
+              "name": "Ancient Stegadon",
+              "points": 230,
+              "stats": {
+                "M": "6",
+                "WS": "4",
+                "BS": "-",
+                "S": "6",
+                "T": "6",
+                "W": "5",
+                "I": "1",
+                "A": "3",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Cold Blooded",
+                  "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+                },
+                {
+                  "name": "Immune To Psychology",
+                  "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Poisoned Attacks",
+                  "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Stubborn",
+                  "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                },
+                {
+                  "name": "Howdah (Lizardmen)",
+                  "text": "To represent its howdah and crew, a behemoth with this special rule has a split profile and follows both the \u2018Split Profile (Chariots)\u2019 and \u2018Firing Platform\u2019 rules (see page 194).\n*Note that, because it has the Howdah special rule, a Stegadon or Ancient Stegadon is considered to be a chariot mount, rather than a ridden monster.*"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Arcane Vassal",
+          "text": "Once per turn, unless this model is fleeing or engaged in combat, a single friendly Slann Mage-Priest that is within 12\" of this model may \u2018channel\u2019 a spell through this model.\n\nIf they do, the range, targeting restrictions and all effects of the spell are measured from this model, rather than from the caster. If the spell requires a line of sight, it is determined from this model.\n\nNote that spells with a range of \u201cSelf\u201d cannot be channelled in this way."
+        },
+        {
+          "name": "Aquatic",
+          "text": "Many of Lustria\u2019s denizens have an affinity for water, moving with equal ease through swamp and river as they do over land.\n\nModels with this special rule do not suffer any modifiers to their Movement characteristic when moving through any difficult or dangerous terrain feature which has been designated a \u2018water feature\u2019. This might include shallow streams or fords, swampy ground, fast flowing rivers, ponds or lakes, and players should agree prior to the game if any terrain is a water feature."
+        },
+        {
+          "name": "Cold Blooded",
+          "text": "To other races, the cold blooded Lizardmen seem incapable of emotion.\n\nWhen required to make a Fear, Panic or Terror test, models with this special rule may roll an extra D6 and discard the highest result."
+        },
+        {
+          "name": "Lore Of Lustria",
+          "text": "A Wizard with the \u2018Lore of Lustria\u2019 special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below:\n\n\u2022 Apotheosis \n\u2022 Monsoon"
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "2",
+        "BS": "3",
+        "S": "3",
+        "T": "2",
+        "W": "2",
+        "I": "4",
+        "A": "1",
+        "Ld": "6"
+      }
+    }
+  ]
+}

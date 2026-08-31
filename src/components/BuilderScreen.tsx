@@ -11,6 +11,7 @@ import {
 import { getFaction } from "@/engine/queries";
 import { catalogueForList } from "@/engine/spearhead";
 import type { ArmyList } from "@/engine/types";
+import { isTowList } from "@/engine/storedList";
 import {
   LIST_LANDING_CONTENT_CLASS,
   LIST_LANDING_CONTENT_HIDDEN_CLASS,
@@ -73,7 +74,8 @@ export function BuilderScreen({ listId }: Props) {
     getListOpenFactionSnapshot,
     getListOpenFactionServerSnapshot,
   );
-  const list = lists?.find((item) => item.id === listId);
+  const stored = lists?.find((item) => item.id === listId);
+  const list = stored && !isTowList(stored) ? stored : undefined;
   const faction = list ? catalogueForList(list) : undefined;
   const artFactionId =
     (faction ? faction.parentFactionIds?.[0] ?? faction.id : null) ??

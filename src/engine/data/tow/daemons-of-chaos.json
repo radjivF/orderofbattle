@@ -1,0 +1,4057 @@
+{
+  "id": "daemons-of-chaos",
+  "name": "Daemons of Chaos",
+  "game": "The Old World",
+  "source": "https://github.com/vflam/Warhammer-The-Old-World",
+  "pointsCapDefault": 2000,
+  "journal": false,
+  "units": [
+    {
+      "id": "bloodthirster",
+      "name": "Bloodthirster",
+      "category": "characters",
+      "pointsPerModel": 355,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Behemoth (character)",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "bloodflail",
+              "name": "Bloodflail",
+              "points": 25
+            },
+            {
+              "id": "great-axe",
+              "name": "Great axe",
+              "points": 35
+            },
+            {
+              "id": "lash-of-khorne",
+              "name": "Lash of Khorne",
+              "points": 15
+            }
+          ]
+        },
+        {
+          "id": "daemonic-gifts",
+          "name": "Daemonic Gifts",
+          "options": [
+            {
+              "id": "ther-blade",
+              "name": "\u00c6ther Blade",
+              "points": 55
+            },
+            {
+              "id": "many-arms",
+              "name": "Many Arms",
+              "points": 55
+            },
+            {
+              "id": "winged-horror",
+              "name": "Winged Horror",
+              "points": 45
+            },
+            {
+              "id": "daemonic-robes",
+              "name": "Daemonic Robes",
+              "points": 35
+            },
+            {
+              "id": "spell-eater",
+              "name": "Spell Eater",
+              "points": 50
+            },
+            {
+              "id": "axe-of-khorne",
+              "name": "Axe Of Khorne",
+              "points": 35
+            },
+            {
+              "id": "might-of-khorne",
+              "name": "Might Of Khorne",
+              "points": 25
+            },
+            {
+              "id": "armour-of-khorne",
+              "name": "Armour Of Khorne",
+              "points": 40
+            },
+            {
+              "id": "collar-of-khorne",
+              "name": "Collar Of Khorne",
+              "points": 25
+            },
+            {
+              "id": "nurgling-infestation",
+              "name": "Nurgling Infestation",
+              "points": 45
+            },
+            {
+              "id": "sloppity-bilepiper",
+              "name": "Sloppity Bilepiper",
+              "points": 35
+            },
+            {
+              "id": "trappings-of-nurgle",
+              "name": "Trappings Of Nurgle",
+              "points": 30
+            },
+            {
+              "id": "stream-of-contagion",
+              "name": "Stream Of Contagion",
+              "points": 25
+            },
+            {
+              "id": "spoilpox-scrivener",
+              "name": "Spoilpox Scrivener",
+              "points": 30
+            },
+            {
+              "id": "infernal-enrapturess",
+              "name": "Infernal Enrapturess",
+              "points": 50
+            },
+            {
+              "id": "allure-of-slaanesh",
+              "name": "Allure Of Slaanesh",
+              "points": 35
+            },
+            {
+              "id": "siren-song",
+              "name": "Siren Song",
+              "points": 30
+            },
+            {
+              "id": "soporific-musk",
+              "name": "Soporific Musk",
+              "points": 30
+            },
+            {
+              "id": "enrapturing-gaze",
+              "name": "Enrapturing Gaze",
+              "points": 20
+            },
+            {
+              "id": "staff-of-change",
+              "name": "Staff Of Change",
+              "points": 65
+            },
+            {
+              "id": "will-of-tzeentch",
+              "name": "Will Of Tzeentch",
+              "points": 55
+            },
+            {
+              "id": "twin-heads",
+              "name": "Twin Heads",
+              "points": 20
+            },
+            {
+              "id": "iridescent-corona",
+              "name": "Iridescent Corona",
+              "points": 30
+            },
+            {
+              "id": "power-vortex",
+              "name": "Power Vortex",
+              "points": 35
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemonic Charge",
+          "text": "Impact Hits caused by this model have an Armour Piercing characteristic of -2."
+        },
+        {
+          "name": "Daemon of Khorne",
+          "text": "Daemons of Khorne have the Hatred (Daemons of Slaanesh) special rule.\nIn addition, during a turn in which it made a charge move, a Daemon of Khorne (but not its mount) gains a +1 modifier to its Strength characteristic."
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Furious Charge",
+          "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Attacks characteristic."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Impetuous",
+          "text": "If during the Declare Charges & Charge Reactions sub-phase of its turn, a unit that includes one or more Impetuous models is able to declare a charge, it must make a Leadership test. If this test is failed, the unit must declare a charge. If this test is passed, the unit may act as normal."
+        },
+        {
+          "name": "Infernal Favour",
+          "text": "A unit with this special rule reduces the number of wounds suffered due to the Daemonic Instability special rule by the number shown in brackets.\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest value for the entire unit."
+        },
+        {
+          "name": "Large Target",
+          "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Terror",
+          "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Bloodflail",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Multiple Wounds (D3)"
+        },
+        {
+          "name": "Great axe",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-3",
+          "specialRules": "Armour Bane (2), Monster Slayer, Requires Two Hands, Strike Last"
+        },
+        {
+          "name": "Lash of Khorne",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Strike First"
+        }
+      ],
+      "stats": {
+        "M": "8",
+        "WS": "10",
+        "BS": "5",
+        "S": "6",
+        "T": "6",
+        "W": "6",
+        "I": "7",
+        "A": "6",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "herald-of-khorne",
+      "name": "Herald of Khorne",
+      "category": "characters",
+      "pointsPerModel": 80,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Heavy infantry (character)",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "daemonic-locus",
+          "name": "Daemonic Locus",
+          "points": 25
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "mount",
+          "name": "Mount",
+          "options": [
+            {
+              "id": "juggernaut-of-khorne",
+              "name": "Juggernaut Of Khorne",
+              "points": 50,
+              "stats": {
+                "M": "7",
+                "WS": "4",
+                "BS": "-",
+                "S": "5",
+                "T": "1",
+                "W": "1",
+                "I": "2",
+                "A": "2",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armoured Hide",
+                  "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+                },
+                {
+                  "name": "Daemonic",
+                  "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Daemon of Khorne",
+                  "text": "Daemons of Khorne have the Hatred (Daemons of Slaanesh) special rule.\nIn addition, during a turn in which it made a charge move, a Daemon of Khorne (but not its mount) gains a +1 modifier to its Strength characteristic."
+                },
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "blood-throne-of-khorne",
+              "name": "Blood Throne Of Khorne",
+              "points": 160,
+              "stats": {
+                "M": "7",
+                "WS": "5",
+                "BS": "-",
+                "S": "5",
+                "T": "5",
+                "W": "4",
+                "I": "2",
+                "A": "3",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Daemonic",
+                  "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Daemon of Khorne",
+                  "text": "Daemons of Khorne have the Hatred (Daemons of Slaanesh) special rule.\nIn addition, during a turn in which it made a charge move, a Daemon of Khorne (but not its mount) gains a +1 modifier to its Strength characteristic."
+                },
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Gorefeast",
+                  "text": "For each Wound an enemy unit loses as a result of an Impact Hit caused by this model, roll a D6. For each roll of 6, this model immediately recovers a single lost Wound."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Impetuous",
+                  "text": "If during the Declare Charges & Charge Reactions sub-phase of its turn, a unit that includes one or more Impetuous models is able to declare a charge, it must make a Leadership test. If this test is failed, the unit must declare a charge. If this test is passed, the unit may act as normal."
+                },
+                {
+                  "name": "Totem Of Endless Bloodletting",
+                  "text": "Friendly Daemons of Khorne that are within this model\u2019s Command range and that made a Charge move this turn may re-roll any rolls To Hit of a natural 1 made during the Combat phase."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "daemonic-gifts",
+          "name": "Daemonic Gifts",
+          "options": [
+            {
+              "id": "ther-blade",
+              "name": "\u00c6ther Blade",
+              "points": 55
+            },
+            {
+              "id": "many-arms",
+              "name": "Many Arms",
+              "points": 55
+            },
+            {
+              "id": "winged-horror",
+              "name": "Winged Horror",
+              "points": 45
+            },
+            {
+              "id": "daemonic-robes",
+              "name": "Daemonic Robes",
+              "points": 35
+            },
+            {
+              "id": "spell-eater",
+              "name": "Spell Eater",
+              "points": 50
+            },
+            {
+              "id": "axe-of-khorne",
+              "name": "Axe Of Khorne",
+              "points": 35
+            },
+            {
+              "id": "might-of-khorne",
+              "name": "Might Of Khorne",
+              "points": 25
+            },
+            {
+              "id": "armour-of-khorne",
+              "name": "Armour Of Khorne",
+              "points": 40
+            },
+            {
+              "id": "collar-of-khorne",
+              "name": "Collar Of Khorne",
+              "points": 25
+            },
+            {
+              "id": "nurgling-infestation",
+              "name": "Nurgling Infestation",
+              "points": 45
+            },
+            {
+              "id": "sloppity-bilepiper",
+              "name": "Sloppity Bilepiper",
+              "points": 35
+            },
+            {
+              "id": "trappings-of-nurgle",
+              "name": "Trappings Of Nurgle",
+              "points": 30
+            },
+            {
+              "id": "stream-of-contagion",
+              "name": "Stream Of Contagion",
+              "points": 25
+            },
+            {
+              "id": "spoilpox-scrivener",
+              "name": "Spoilpox Scrivener",
+              "points": 30
+            },
+            {
+              "id": "infernal-enrapturess",
+              "name": "Infernal Enrapturess",
+              "points": 50
+            },
+            {
+              "id": "allure-of-slaanesh",
+              "name": "Allure Of Slaanesh",
+              "points": 35
+            },
+            {
+              "id": "siren-song",
+              "name": "Siren Song",
+              "points": 30
+            },
+            {
+              "id": "soporific-musk",
+              "name": "Soporific Musk",
+              "points": 30
+            },
+            {
+              "id": "enrapturing-gaze",
+              "name": "Enrapturing Gaze",
+              "points": 20
+            },
+            {
+              "id": "staff-of-change",
+              "name": "Staff Of Change",
+              "points": 65
+            },
+            {
+              "id": "will-of-tzeentch",
+              "name": "Will Of Tzeentch",
+              "points": 55
+            },
+            {
+              "id": "twin-heads",
+              "name": "Twin Heads",
+              "points": 20
+            },
+            {
+              "id": "iridescent-corona",
+              "name": "Iridescent Corona",
+              "points": 30
+            },
+            {
+              "id": "power-vortex",
+              "name": "Power Vortex",
+              "points": 35
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Khorne",
+          "text": "Daemons of Khorne have the Hatred (Daemons of Slaanesh) special rule.\nIn addition, during a turn in which it made a charge move, a Daemon of Khorne (but not its mount) gains a +1 modifier to its Strength characteristic."
+        },
+        {
+          "name": "Furious Charge",
+          "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Attacks characteristic."
+        },
+        {
+          "name": "Impetuous",
+          "text": "If during the Declare Charges & Charge Reactions sub-phase of its turn, a unit that includes one or more Impetuous models is able to declare a charge, it must make a Leadership test. If this test is failed, the unit must declare a charge. If this test is passed, the unit may act as normal."
+        },
+        {
+          "name": "Infernal Favour",
+          "text": "A unit with this special rule reduces the number of wounds suffered due to the Daemonic Instability special rule by the number shown in brackets.\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest value for the entire unit."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "7",
+        "BS": "4",
+        "S": "5",
+        "T": "4",
+        "W": "2",
+        "I": "6",
+        "A": "3",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "bloodletters-of-khorne",
+      "name": "Bloodletters Of Khorne",
+      "category": "core",
+      "pointsPerModel": 14,
+      "minModels": 8,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Heavy infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "bloodreaper",
+          "name": "Bloodreaper",
+          "points": 7
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 7
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 7
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Khorne",
+          "text": "Daemons of Khorne have the Hatred (Daemons of Slaanesh) special rule.\nIn addition, during a turn in which it made a charge move, a Daemon of Khorne (but not its mount) gains a +1 modifier to its Strength characteristic."
+        },
+        {
+          "name": "Impetuous",
+          "text": "If during the Declare Charges & Charge Reactions sub-phase of its turn, a unit that includes one or more Impetuous models is able to declare a charge, it must make a Leadership test. If this test is failed, the unit must declare a charge. If this test is passed, the unit may act as normal."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "5",
+        "BS": "3",
+        "S": "4",
+        "T": "3",
+        "W": "1",
+        "I": "4",
+        "A": "1",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "flesh-hounds-of-khorne",
+      "name": "Flesh Hounds Of Khorne",
+      "category": "special",
+      "pointsPerModel": 32,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Heavy cavalry",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "special-rules",
+          "name": "Special Rules",
+          "options": [
+            {
+              "id": "ambushers",
+              "name": "Ambushers",
+              "points": 3,
+              "specialRules": [
+                {
+                  "name": "Ambushers",
+                  "text": "A unit with this special rule may be held in reserve rather than be deployed at the start of the game. From the beginning of round two onwards, roll a D6 during each of your Start of Turn sub-phases for each unit of Ambushers in your army that is held in reserve.\n\n On a roll of 1-3, the unit is delayed until your next turn at least.\u00a0 On a roll of 4+, the unit arrives, entering the battle as reinforcements during the Compulsory Moves sub-phase. The unit may be placed on any edge of the battlefield, chosen by its controlling player, but cannot be placed within 8\" of an enemy model. If any Ambushers are still held in reserve by the start of round five, they arrive automatically."
+                }
+              ]
+            },
+            {
+              "id": "vanguard",
+              "name": "Vanguard",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Vanguard",
+                  "text": "After deployment, units with this special rule may make a Vanguard move. A unit making a Vanguard move moves as described in the Basic Movement rules. It may manoeuvre normally but cannot march.\n\nIf both armies contain Vanguard units, a roll-off determines who moves first. The players then alternate moving their Vanguard units one at a time, starting with the player who won the roll-off. Units that make a Vanguard move cannot declare a charge during their first turn."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armour Bane",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Counter Charge",
+          "text": "This special rule can only be used by units that consist entirely of models with this special rule. When a unit with this special rule is charged in its front arc by an enemy unit whose troop type is \u2018cavalry,\u2019 \u2018chariot\u2019 or \u2018monster\u2019, it may declare a \u2018Counter Charge\u2019 charge reaction:\n\n Counter Charge: The unit surges forward to meet the enemy charge. Measure the distance between the two units. If the distance is less than the Movement characteristic of the charging unit, the charged unit has not enough time to meet the enemy charge and must either Hold or Flee instead.\n\n Otherwise, pivot the unit about its centre so that it is facing directly towards the centre of the charging enemy unit. After pivoting, the unit moves D3+1\" directly towards the enemy unit. Both units are considered to have charged during this turn.\n\n Fleeing units and units already engaged in combat when charged cannot Counter Charge. A unit can only Counter Charge in response to one charge per turn, even if charged by multiple units. Once all charges have been declared, the inactive player can choose which charging unit to Counter Charge. The unit will then Hold against the other charging units."
+        },
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Khorne",
+          "text": "Daemons of Khorne have the Hatred (Daemons of Slaanesh) special rule.\nIn addition, during a turn in which it made a charge move, a Daemon of Khorne (but not its mount) gains a +1 modifier to its Strength characteristic."
+        },
+        {
+          "name": "Impetuous",
+          "text": "If during the Declare Charges & Charge Reactions sub-phase of its turn, a unit that includes one or more Impetuous models is able to declare a charge, it must make a Leadership test. If this test is failed, the unit must declare a charge. If this test is passed, the unit may act as normal."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "8",
+        "WS": "5",
+        "BS": "0",
+        "S": "4",
+        "T": "4",
+        "W": "2",
+        "I": "4",
+        "A": "2",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "bloodcrushers-of-khorne",
+      "name": "Bloodcrushers Of Khorne",
+      "category": "rare",
+      "pointsPerModel": 65,
+      "minModels": 3,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous cavalry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "bloodreaper",
+          "name": "Bloodreaper",
+          "points": 7
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 7
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 7
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "juggernaut-of-khorne",
+              "name": "Juggernaut Of Khorne",
+              "points": 0
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armoured Hide",
+          "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Khorne",
+          "text": "Daemons of Khorne have the Hatred (Daemons of Slaanesh) special rule.\nIn addition, during a turn in which it made a charge move, a Daemon of Khorne (but not its mount) gains a +1 modifier to its Strength characteristic."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Impetuous",
+          "text": "If during the Declare Charges & Charge Reactions sub-phase of its turn, a unit that includes one or more Impetuous models is able to declare a charge, it must make a Leadership test. If this test is failed, the unit must declare a charge. If this test is passed, the unit may act as normal."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "5",
+        "BS": "3",
+        "S": "4",
+        "T": "4",
+        "W": "3",
+        "I": "4",
+        "A": "1",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "great-unclean-one",
+      "name": "Great Unclean One",
+      "category": "characters",
+      "pointsPerModel": 330,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Behemoth (character)",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-1",
+              "name": "Wizard Level 1",
+              "points": 0
+            },
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 30
+            },
+            {
+              "id": "wizard-level-3",
+              "name": "Wizard Level 3",
+              "points": 60
+            },
+            {
+              "id": "wizard-level-4",
+              "name": "Wizard Level 4",
+              "points": 90
+            }
+          ]
+        },
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 6
+            },
+            {
+              "id": "bilesword",
+              "name": "Bilesword",
+              "points": 10
+            },
+            {
+              "id": "plagueflail",
+              "name": "Plagueflail",
+              "points": 25
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            },
+            {
+              "id": "daemonology",
+              "name": "Daemonology",
+              "points": 0
+            },
+            {
+              "id": "dark-magic",
+              "name": "Dark Magic",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "daemonic-gifts",
+          "name": "Daemonic Gifts",
+          "options": [
+            {
+              "id": "ther-blade",
+              "name": "\u00c6ther Blade",
+              "points": 55
+            },
+            {
+              "id": "many-arms",
+              "name": "Many Arms",
+              "points": 55
+            },
+            {
+              "id": "winged-horror",
+              "name": "Winged Horror",
+              "points": 45
+            },
+            {
+              "id": "daemonic-robes",
+              "name": "Daemonic Robes",
+              "points": 35
+            },
+            {
+              "id": "spell-eater",
+              "name": "Spell Eater",
+              "points": 50
+            },
+            {
+              "id": "axe-of-khorne",
+              "name": "Axe Of Khorne",
+              "points": 35
+            },
+            {
+              "id": "might-of-khorne",
+              "name": "Might Of Khorne",
+              "points": 25
+            },
+            {
+              "id": "armour-of-khorne",
+              "name": "Armour Of Khorne",
+              "points": 40
+            },
+            {
+              "id": "collar-of-khorne",
+              "name": "Collar Of Khorne",
+              "points": 25
+            },
+            {
+              "id": "nurgling-infestation",
+              "name": "Nurgling Infestation",
+              "points": 45
+            },
+            {
+              "id": "sloppity-bilepiper",
+              "name": "Sloppity Bilepiper",
+              "points": 35
+            },
+            {
+              "id": "trappings-of-nurgle",
+              "name": "Trappings Of Nurgle",
+              "points": 30
+            },
+            {
+              "id": "stream-of-contagion",
+              "name": "Stream Of Contagion",
+              "points": 25
+            },
+            {
+              "id": "spoilpox-scrivener",
+              "name": "Spoilpox Scrivener",
+              "points": 30
+            },
+            {
+              "id": "infernal-enrapturess",
+              "name": "Infernal Enrapturess",
+              "points": 50
+            },
+            {
+              "id": "allure-of-slaanesh",
+              "name": "Allure Of Slaanesh",
+              "points": 35
+            },
+            {
+              "id": "siren-song",
+              "name": "Siren Song",
+              "points": 30
+            },
+            {
+              "id": "soporific-musk",
+              "name": "Soporific Musk",
+              "points": 30
+            },
+            {
+              "id": "enrapturing-gaze",
+              "name": "Enrapturing Gaze",
+              "points": 20
+            },
+            {
+              "id": "staff-of-change",
+              "name": "Staff Of Change",
+              "points": 65
+            },
+            {
+              "id": "will-of-tzeentch",
+              "name": "Will Of Tzeentch",
+              "points": 55
+            },
+            {
+              "id": "twin-heads",
+              "name": "Twin Heads",
+              "points": 20
+            },
+            {
+              "id": "iridescent-corona",
+              "name": "Iridescent Corona",
+              "points": 30
+            },
+            {
+              "id": "power-vortex",
+              "name": "Power Vortex",
+              "points": 35
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Nurgle",
+          "text": "Daemons of Nurgle have the Hatred (Daemons of Tzeentch) special rule.\nIn addition, any enemy model that directs its attacks against a Daemon of Nurgle during the Combat phase must re-roll any rolls To Hit of a natural 6"
+        },
+        {
+          "name": "Infernal Favour",
+          "text": "A unit with this special rule reduces the number of wounds suffered due to the Daemonic Instability special rule by the number shown in brackets.\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest value for the entire unit."
+        },
+        {
+          "name": "Large Target",
+          "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+        },
+        {
+          "name": "Lore Of Daemons",
+          "text": "A Wizard with \u2018Lore of Daemons\u2019 special rule may discard one of their randomly generated spells as normal.\nWhen they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells that corresponds to their Daemonic Alignment listed below:\n\u2022 Plague Wind (Daemons Of Nurgle)\n\u2022 Pink Fire (Daemons Of Tzeentch)\n\u2022 Cacophonic Hymn (Daemons Of Slaanesh)\n\u2022 Gift Of Mutation (Daemons Of Tzeentch)"
+        },
+        {
+          "name": "Poisoned Attacks",
+          "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+        },
+        {
+          "name": "Regeneration",
+          "text": "Immediately after a Wound is lost, but before models with zero Wounds remaining are removed from play, a model with this special rule may make a \"Regeneration save\" roll by rolling a D6 and comparing the result to its \"Regeneration value\", shown in brackets after the name of this special rule (shown here as \"X+\"). If the Regeneration save roll equals or exceeds the model\u2019s Regeneration value, the lost Wound is recovered, but is still counted for the purposes of calculating the combat result. Rules that affect armour values do not affect Regeneration values unless stated otherwise."
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Terror",
+          "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Bilesword",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Strike Last"
+        },
+        {
+          "name": "Plagueflail",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-3",
+          "specialRules": "Multiple Wounds (D3)"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "6",
+        "BS": "3",
+        "S": "6",
+        "T": "7",
+        "W": "7",
+        "I": "4",
+        "A": "5",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "herald-of-nurgle",
+      "name": "Herald of Nurgle",
+      "category": "characters",
+      "pointsPerModel": 95,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry (character)",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "daemonic-locus",
+          "name": "Daemonic Locus",
+          "points": 25
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "death-s-heads",
+              "name": "Death\u2019s Heads",
+              "points": 10
+            }
+          ]
+        },
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-1",
+              "name": "Wizard Level 1",
+              "points": 30
+            },
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 60
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            },
+            {
+              "id": "daemonology",
+              "name": "Daemonology",
+              "points": 0
+            },
+            {
+              "id": "dark-magic",
+              "name": "Dark Magic",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "mount",
+          "name": "Mount",
+          "options": [
+            {
+              "id": "palanquin-of-nurgle",
+              "name": "Palanquin Of Nurgle",
+              "points": 40,
+              "stats": {
+                "M": "4",
+                "WS": "3",
+                "BS": "-",
+                "S": "3",
+                "T": "-",
+                "W": "4",
+                "I": "3",
+                "A": "D6+1",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Daemonic",
+                  "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Daemon of Nurgle",
+                  "text": "Daemons of Nurgle have the Hatred (Daemons of Tzeentch) special rule.\nIn addition, any enemy model that directs its attacks against a Daemon of Nurgle during the Combat phase must re-roll any rolls To Hit of a natural 6"
+                },
+                {
+                  "name": "Poisoned Attacks",
+                  "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+                },
+                {
+                  "name": "Random Attacks",
+                  "text": "Models with this special rule do not have a normal Attacks characteristic. Instead, a dice roll is given (D3+1, for example). Each time a model with this special rule attacks in combat, roll the dice to determine the number of attacks it will make, then roll To Hit as normal. If a fighting rank contains more than one model with this special rule, roll separately for each, unless specified otherwise."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "daemonic-gifts",
+          "name": "Daemonic Gifts",
+          "options": [
+            {
+              "id": "ther-blade",
+              "name": "\u00c6ther Blade",
+              "points": 55
+            },
+            {
+              "id": "many-arms",
+              "name": "Many Arms",
+              "points": 55
+            },
+            {
+              "id": "winged-horror",
+              "name": "Winged Horror",
+              "points": 45
+            },
+            {
+              "id": "daemonic-robes",
+              "name": "Daemonic Robes",
+              "points": 35
+            },
+            {
+              "id": "spell-eater",
+              "name": "Spell Eater",
+              "points": 50
+            },
+            {
+              "id": "axe-of-khorne",
+              "name": "Axe Of Khorne",
+              "points": 35
+            },
+            {
+              "id": "might-of-khorne",
+              "name": "Might Of Khorne",
+              "points": 25
+            },
+            {
+              "id": "armour-of-khorne",
+              "name": "Armour Of Khorne",
+              "points": 40
+            },
+            {
+              "id": "collar-of-khorne",
+              "name": "Collar Of Khorne",
+              "points": 25
+            },
+            {
+              "id": "nurgling-infestation",
+              "name": "Nurgling Infestation",
+              "points": 45
+            },
+            {
+              "id": "sloppity-bilepiper",
+              "name": "Sloppity Bilepiper",
+              "points": 35
+            },
+            {
+              "id": "trappings-of-nurgle",
+              "name": "Trappings Of Nurgle",
+              "points": 30
+            },
+            {
+              "id": "stream-of-contagion",
+              "name": "Stream Of Contagion",
+              "points": 25
+            },
+            {
+              "id": "spoilpox-scrivener",
+              "name": "Spoilpox Scrivener",
+              "points": 30
+            },
+            {
+              "id": "infernal-enrapturess",
+              "name": "Infernal Enrapturess",
+              "points": 50
+            },
+            {
+              "id": "allure-of-slaanesh",
+              "name": "Allure Of Slaanesh",
+              "points": 35
+            },
+            {
+              "id": "siren-song",
+              "name": "Siren Song",
+              "points": 30
+            },
+            {
+              "id": "soporific-musk",
+              "name": "Soporific Musk",
+              "points": 30
+            },
+            {
+              "id": "enrapturing-gaze",
+              "name": "Enrapturing Gaze",
+              "points": 20
+            },
+            {
+              "id": "staff-of-change",
+              "name": "Staff Of Change",
+              "points": 65
+            },
+            {
+              "id": "will-of-tzeentch",
+              "name": "Will Of Tzeentch",
+              "points": 55
+            },
+            {
+              "id": "twin-heads",
+              "name": "Twin Heads",
+              "points": 20
+            },
+            {
+              "id": "iridescent-corona",
+              "name": "Iridescent Corona",
+              "points": 30
+            },
+            {
+              "id": "power-vortex",
+              "name": "Power Vortex",
+              "points": 35
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Nurgle",
+          "text": "Daemons of Nurgle have the Hatred (Daemons of Tzeentch) special rule.\nIn addition, any enemy model that directs its attacks against a Daemon of Nurgle during the Combat phase must re-roll any rolls To Hit of a natural 6"
+        },
+        {
+          "name": "Infernal Favour",
+          "text": "A unit with this special rule reduces the number of wounds suffered due to the Daemonic Instability special rule by the number shown in brackets.\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest value for the entire unit."
+        },
+        {
+          "name": "Lore Of Daemons",
+          "text": "A Wizard with \u2018Lore of Daemons\u2019 special rule may discard one of their randomly generated spells as normal.\nWhen they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells that corresponds to their Daemonic Alignment listed below:\n\u2022 Plague Wind (Daemons Of Nurgle)\n\u2022 Pink Fire (Daemons Of Tzeentch)\n\u2022 Cacophonic Hymn (Daemons Of Slaanesh)\n\u2022 Gift Of Mutation (Daemons Of Tzeentch)"
+        },
+        {
+          "name": "Poisoned Attacks",
+          "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+        },
+        {
+          "name": "Regeneration",
+          "text": "Immediately after a Wound is lost, but before models with zero Wounds remaining are removed from play, a model with this special rule may make a \"Regeneration save\" roll by rolling a D6 and comparing the result to its \"Regeneration value\", shown in brackets after the name of this special rule (shown here as \"X+\"). If the Regeneration save roll equals or exceeds the model\u2019s Regeneration value, the lost Wound is recovered, but is still counted for the purposes of calculating the combat result. Rules that affect armour values do not affect Regeneration values unless stated otherwise."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Death\u2019s Heads",
+          "range": "12\"",
+          "strength": "S+1",
+          "ap": "-1",
+          "specialRules": "Move & Shoot, Multiple Wounds (D3)"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "5",
+        "BS": "5",
+        "S": "5",
+        "T": "5",
+        "W": "2",
+        "I": "4",
+        "A": "3",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "plaguebearers-of-nurgle",
+      "name": "Plaguebearers Of Nurgle",
+      "category": "core",
+      "pointsPerModel": 13,
+      "minModels": 7,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "plagueridden",
+          "name": "Plagueridden",
+          "points": 6
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Nurgle",
+          "text": "Daemons of Nurgle have the Hatred (Daemons of Tzeentch) special rule.\nIn addition, any enemy model that directs its attacks against a Daemon of Nurgle during the Combat phase must re-roll any rolls To Hit of a natural 6"
+        },
+        {
+          "name": "Poisoned Attacks",
+          "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+        },
+        {
+          "name": "Regeneration",
+          "text": "Immediately after a Wound is lost, but before models with zero Wounds remaining are removed from play, a model with this special rule may make a \"Regeneration save\" roll by rolling a D6 and comparing the result to its \"Regeneration value\", shown in brackets after the name of this special rule (shown here as \"X+\"). If the Regeneration save roll equals or exceeds the model\u2019s Regeneration value, the lost Wound is recovered, but is still counted for the purposes of calculating the combat result. Rules that affect armour values do not affect Regeneration values unless stated otherwise."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "3",
+        "BS": "3",
+        "S": "4",
+        "T": "4",
+        "W": "1",
+        "I": "2",
+        "A": "1",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "beasts-of-nurgle",
+      "name": "Beasts Of Nurgle",
+      "category": "special",
+      "pointsPerModel": 62,
+      "minModels": 2,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous infantry",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Attention Seeker",
+          "text": "Every model in a unit of Beasts of Nurgle can issue and accept challenges in the same manner as a character."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Nurgle",
+          "text": "Daemons of Nurgle have the Hatred (Daemons of Tzeentch) special rule.\nIn addition, any enemy model that directs its attacks against a Daemon of Nurgle during the Combat phase must re-roll any rolls To Hit of a natural 6"
+        },
+        {
+          "name": "Impetuous",
+          "text": "If during the Declare Charges & Charge Reactions sub-phase of its turn, a unit that includes one or more Impetuous models is able to declare a charge, it must make a Leadership test. If this test is failed, the unit must declare a charge. If this test is passed, the unit may act as normal."
+        },
+        {
+          "name": "Infernal Favour",
+          "text": "A unit with this special rule reduces the number of wounds suffered due to the Daemonic Instability special rule by the number shown in brackets.\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest value for the entire unit."
+        },
+        {
+          "name": "Loner",
+          "text": "A character with this special rule cannot be your General and cannot join a unit without this special rule. A unit with this special rule cannot be joined by a character without this special rule."
+        },
+        {
+          "name": "Poisoned Attacks",
+          "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+        },
+        {
+          "name": "Random Attacks",
+          "text": "Models with this special rule do not have a normal Attacks characteristic. Instead, a dice roll is given (D3+1, for example). Each time a model with this special rule attacks in combat, roll the dice to determine the number of attacks it will make, then roll To Hit as normal. If a fighting rank contains more than one model with this special rule, roll separately for each, unless specified otherwise."
+        },
+        {
+          "name": "Regeneration",
+          "text": "Immediately after a Wound is lost, but before models with zero Wounds remaining are removed from play, a model with this special rule may make a \"Regeneration save\" roll by rolling a D6 and comparing the result to its \"Regeneration value\", shown in brackets after the name of this special rule (shown here as \"X+\"). If the Regeneration save roll equals or exceeds the model\u2019s Regeneration value, the lost Wound is recovered, but is still counted for the purposes of calculating the combat result. Rules that affect armour values do not affect Regeneration values unless stated otherwise."
+        },
+        {
+          "name": "Slime Trail",
+          "text": "Enemy units cannot claim any bonus combat result points for being engaged within this unit\u2019s flank or rear arc."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "3",
+        "BS": "0",
+        "S": "4",
+        "T": "5",
+        "W": "4",
+        "I": "2",
+        "A": "D6+1",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "nurglings",
+      "name": "Nurglings",
+      "category": "core",
+      "pointsPerModel": 45,
+      "minModels": 3,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Swarms",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Nurgle",
+          "text": "Daemons of Nurgle have the Hatred (Daemons of Tzeentch) special rule.\nIn addition, any enemy model that directs its attacks against a Daemon of Nurgle during the Combat phase must re-roll any rolls To Hit of a natural 6"
+        },
+        {
+          "name": "Loner",
+          "text": "A character with this special rule cannot be your General and cannot join a unit without this special rule. A unit with this special rule cannot be joined by a character without this special rule."
+        },
+        {
+          "name": "Poisoned Attacks",
+          "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+        },
+        {
+          "name": "Random Attacks",
+          "text": "Models with this special rule do not have a normal Attacks characteristic. Instead, a dice roll is given (D3+1, for example). Each time a model with this special rule attacks in combat, roll the dice to determine the number of attacks it will make, then roll To Hit as normal. If a fighting rank contains more than one model with this special rule, roll separately for each, unless specified otherwise."
+        },
+        {
+          "name": "Regeneration",
+          "text": "Immediately after a Wound is lost, but before models with zero Wounds remaining are removed from play, a model with this special rule may make a \"Regeneration save\" roll by rolling a D6 and comparing the result to its \"Regeneration value\", shown in brackets after the name of this special rule (shown here as \"X+\"). If the Regeneration save roll equals or exceeds the model\u2019s Regeneration value, the lost Wound is recovered, but is still counted for the purposes of calculating the combat result. Rules that affect armour values do not affect Regeneration values unless stated otherwise."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Scouts",
+          "text": "Units with this special rule may be deployed after all other units from both armies. They can be deployed anywhere on the battlefield that is more than 12\" away from an enemy model. If deployed in this way, Scouts cannot declare a charge during their first turn.\n\n If both armies contain Scouts, a roll-off should determine which player deploys Scouts first. The players then alternate deploying their scouting units one at a time, starting with the player who won the roll-off."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "2",
+        "BS": "0",
+        "S": "2",
+        "T": "3",
+        "W": "7",
+        "I": "2",
+        "A": "D3+1",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "plague-drones-of-nurgle",
+      "name": "Plague Drones Of Nurgle",
+      "category": "special",
+      "pointsPerModel": 63,
+      "minModels": 3,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous cavalry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "plagueridden",
+          "name": "Plagueridden",
+          "points": 7
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 7
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 7
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Armour Bane",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+        },
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Nurgle",
+          "text": "Daemons of Nurgle have the Hatred (Daemons of Tzeentch) special rule.\nIn addition, any enemy model that directs its attacks against a Daemon of Nurgle during the Combat phase must re-roll any rolls To Hit of a natural 6"
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Poisoned Attacks",
+          "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+        },
+        {
+          "name": "Regeneration",
+          "text": "Immediately after a Wound is lost, but before models with zero Wounds remaining are removed from play, a model with this special rule may make a \"Regeneration save\" roll by rolling a D6 and comparing the result to its \"Regeneration value\", shown in brackets after the name of this special rule (shown here as \"X+\"). If the Regeneration save roll equals or exceeds the model\u2019s Regeneration value, the lost Wound is recovered, but is still counted for the purposes of calculating the combat result. Rules that affect armour values do not affect Regeneration values unless stated otherwise."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "3",
+        "BS": "3",
+        "S": "4",
+        "T": "5",
+        "W": "3",
+        "I": "2",
+        "A": "1",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "keeper-of-secrets",
+      "name": "Keeper of Secrets",
+      "category": "characters",
+      "pointsPerModel": 330,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Behemoth (character)",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-1",
+              "name": "Wizard Level 1",
+              "points": 0
+            },
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 30
+            },
+            {
+              "id": "wizard-level-3",
+              "name": "Wizard Level 3",
+              "points": 60
+            },
+            {
+              "id": "wizard-level-4",
+              "name": "Wizard Level 4",
+              "points": 90
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "daemonology",
+              "name": "Daemonology",
+              "points": 0
+            },
+            {
+              "id": "dark-magic",
+              "name": "Dark Magic",
+              "points": 0
+            },
+            {
+              "id": "illusion",
+              "name": "Illusion",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "daemonic-gifts",
+          "name": "Daemonic Gifts",
+          "options": [
+            {
+              "id": "ther-blade",
+              "name": "\u00c6ther Blade",
+              "points": 55
+            },
+            {
+              "id": "many-arms",
+              "name": "Many Arms",
+              "points": 55
+            },
+            {
+              "id": "winged-horror",
+              "name": "Winged Horror",
+              "points": 45
+            },
+            {
+              "id": "daemonic-robes",
+              "name": "Daemonic Robes",
+              "points": 35
+            },
+            {
+              "id": "spell-eater",
+              "name": "Spell Eater",
+              "points": 50
+            },
+            {
+              "id": "axe-of-khorne",
+              "name": "Axe Of Khorne",
+              "points": 35
+            },
+            {
+              "id": "might-of-khorne",
+              "name": "Might Of Khorne",
+              "points": 25
+            },
+            {
+              "id": "armour-of-khorne",
+              "name": "Armour Of Khorne",
+              "points": 40
+            },
+            {
+              "id": "collar-of-khorne",
+              "name": "Collar Of Khorne",
+              "points": 25
+            },
+            {
+              "id": "nurgling-infestation",
+              "name": "Nurgling Infestation",
+              "points": 45
+            },
+            {
+              "id": "sloppity-bilepiper",
+              "name": "Sloppity Bilepiper",
+              "points": 35
+            },
+            {
+              "id": "trappings-of-nurgle",
+              "name": "Trappings Of Nurgle",
+              "points": 30
+            },
+            {
+              "id": "stream-of-contagion",
+              "name": "Stream Of Contagion",
+              "points": 25
+            },
+            {
+              "id": "spoilpox-scrivener",
+              "name": "Spoilpox Scrivener",
+              "points": 30
+            },
+            {
+              "id": "infernal-enrapturess",
+              "name": "Infernal Enrapturess",
+              "points": 50
+            },
+            {
+              "id": "allure-of-slaanesh",
+              "name": "Allure Of Slaanesh",
+              "points": 35
+            },
+            {
+              "id": "siren-song",
+              "name": "Siren Song",
+              "points": 30
+            },
+            {
+              "id": "soporific-musk",
+              "name": "Soporific Musk",
+              "points": 30
+            },
+            {
+              "id": "enrapturing-gaze",
+              "name": "Enrapturing Gaze",
+              "points": 20
+            },
+            {
+              "id": "staff-of-change",
+              "name": "Staff Of Change",
+              "points": 65
+            },
+            {
+              "id": "will-of-tzeentch",
+              "name": "Will Of Tzeentch",
+              "points": 55
+            },
+            {
+              "id": "twin-heads",
+              "name": "Twin Heads",
+              "points": 20
+            },
+            {
+              "id": "iridescent-corona",
+              "name": "Iridescent Corona",
+              "points": 30
+            },
+            {
+              "id": "power-vortex",
+              "name": "Power Vortex",
+              "points": 35
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Slaanesh",
+          "text": "Daemons of Slaanesh have the Hatred (Daemons of Khorne) special rule.\nIn addition, Daemons of Slaanesh increase their maximum possible charge range by 1\" and have a +1 modifier to the result of any Charge or Pursuit roll they make"
+        },
+        {
+          "name": "Infernal Favour",
+          "text": "A unit with this special rule reduces the number of wounds suffered due to the Daemonic Instability special rule by the number shown in brackets.\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest value for the entire unit."
+        },
+        {
+          "name": "Large Target",
+          "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+        },
+        {
+          "name": "Lore Of Daemons",
+          "text": "A Wizard with \u2018Lore of Daemons\u2019 special rule may discard one of their randomly generated spells as normal.\nWhen they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells that corresponds to their Daemonic Alignment listed below:\n\u2022 Plague Wind (Daemons Of Nurgle)\n\u2022 Pink Fire (Daemons Of Tzeentch)\n\u2022 Cacophonic Hymn (Daemons Of Slaanesh)\n\u2022 Gift Of Mutation (Daemons Of Tzeentch)"
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Terror",
+          "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "8",
+        "WS": "7",
+        "BS": "6",
+        "S": "6",
+        "T": "6",
+        "W": "6",
+        "I": "7",
+        "A": "6",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "herald-of-slaanesh",
+      "name": "Herald of Slaanesh",
+      "category": "characters",
+      "pointsPerModel": 85,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry (character)",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "daemonic-locus",
+          "name": "Daemonic Locus",
+          "points": 25
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "mount",
+          "name": "Mount",
+          "options": [
+            {
+              "id": "steed-of-slaanesh",
+              "name": "Steed Of Slaanesh",
+              "points": 16,
+              "stats": {
+                "M": "9",
+                "WS": "3",
+                "BS": "-",
+                "S": "3",
+                "T": "-",
+                "W": "-",
+                "I": "5",
+                "A": "1",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armour Bane",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+                },
+                {
+                  "name": "Counter Charge",
+                  "text": "This special rule can only be used by units that consist entirely of models with this special rule. When a unit with this special rule is charged in its front arc by an enemy unit whose troop type is \u2018cavalry,\u2019 \u2018chariot\u2019 or \u2018monster\u2019, it may declare a \u2018Counter Charge\u2019 charge reaction:\n\n Counter Charge: The unit surges forward to meet the enemy charge. Measure the distance between the two units. If the distance is less than the Movement characteristic of the charging unit, the charged unit has not enough time to meet the enemy charge and must either Hold or Flee instead.\n\n Otherwise, pivot the unit about its centre so that it is facing directly towards the centre of the charging enemy unit. After pivoting, the unit moves D3+1\" directly towards the enemy unit. Both units are considered to have charged during this turn.\n\n Fleeing units and units already engaged in combat when charged cannot Counter Charge. A unit can only Counter Charge in response to one charge per turn, even if charged by multiple units. Once all charges have been declared, the inactive player can choose which charging unit to Counter Charge. The unit will then Hold against the other charging units."
+                },
+                {
+                  "name": "Daemonic",
+                  "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Daemon of Slaanesh",
+                  "text": "Daemons of Slaanesh have the Hatred (Daemons of Khorne) special rule.\nIn addition, Daemons of Slaanesh increase their maximum possible charge range by 1\" and have a +1 modifier to the result of any Charge or Pursuit roll they make"
+                },
+                {
+                  "name": "Fast Cavalry",
+                  "text": "If all of the models (including characters) within a unit arrayed in an Open Order formation have this special rule, the unit may perform its Quick Turn (see page 183) even if it marched."
+                },
+                {
+                  "name": "Poisoned Attacks",
+                  "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "seeker-chariot-of-slaanesh",
+              "name": "Seeker Chariot Of Slaanesh",
+              "points": 100,
+              "stats": {
+                "M": "-",
+                "WS": "-",
+                "BS": "-",
+                "S": "4",
+                "T": "4",
+                "W": "4",
+                "I": "-",
+                "A": "-",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armour Bane",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+                },
+                {
+                  "name": "Counter Charge",
+                  "text": "This special rule can only be used by units that consist entirely of models with this special rule. When a unit with this special rule is charged in its front arc by an enemy unit whose troop type is \u2018cavalry,\u2019 \u2018chariot\u2019 or \u2018monster\u2019, it may declare a \u2018Counter Charge\u2019 charge reaction:\n\n Counter Charge: The unit surges forward to meet the enemy charge. Measure the distance between the two units. If the distance is less than the Movement characteristic of the charging unit, the charged unit has not enough time to meet the enemy charge and must either Hold or Flee instead.\n\n Otherwise, pivot the unit about its centre so that it is facing directly towards the centre of the charging enemy unit. After pivoting, the unit moves D3+1\" directly towards the enemy unit. Both units are considered to have charged during this turn.\n\n Fleeing units and units already engaged in combat when charged cannot Counter Charge. A unit can only Counter Charge in response to one charge per turn, even if charged by multiple units. Once all charges have been declared, the inactive player can choose which charging unit to Counter Charge. The unit will then Hold against the other charging units."
+                },
+                {
+                  "name": "Daemonic",
+                  "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Daemon of Slaanesh",
+                  "text": "Daemons of Slaanesh have the Hatred (Daemons of Khorne) special rule.\nIn addition, Daemons of Slaanesh increase their maximum possible charge range by 1\" and have a +1 modifier to the result of any Charge or Pursuit roll they make"
+                },
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Open Order",
+                  "text": "A unit consisting of models with this special rule may adopt an Open Order formation."
+                },
+                {
+                  "name": "Poisoned Attacks",
+                  "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                }
+              ]
+            },
+            {
+              "id": "exalted-seeker-chariot-of-slaanesh",
+              "name": "Exalted Seeker Chariot Of Slaanesh",
+              "points": 185,
+              "stats": {
+                "M": "-",
+                "WS": "-",
+                "BS": "-",
+                "S": "4",
+                "T": "4",
+                "W": "6",
+                "I": "-",
+                "A": "-",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armour Bane",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+                },
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Daemonic",
+                  "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Daemon of Slaanesh",
+                  "text": "Daemons of Slaanesh have the Hatred (Daemons of Khorne) special rule.\nIn addition, Daemons of Slaanesh increase their maximum possible charge range by 1\" and have a +1 modifier to the result of any Charge or Pursuit roll they make"
+                },
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Poisoned Attacks",
+                  "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-1",
+              "name": "Wizard Level 1",
+              "points": 30
+            },
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 60
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "daemonology",
+              "name": "Daemonology",
+              "points": 0
+            },
+            {
+              "id": "dark-magic",
+              "name": "Dark Magic",
+              "points": 0
+            },
+            {
+              "id": "illusion",
+              "name": "Illusion",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "daemonic-gifts",
+          "name": "Daemonic Gifts",
+          "options": [
+            {
+              "id": "ther-blade",
+              "name": "\u00c6ther Blade",
+              "points": 55
+            },
+            {
+              "id": "many-arms",
+              "name": "Many Arms",
+              "points": 55
+            },
+            {
+              "id": "winged-horror",
+              "name": "Winged Horror",
+              "points": 45
+            },
+            {
+              "id": "daemonic-robes",
+              "name": "Daemonic Robes",
+              "points": 35
+            },
+            {
+              "id": "spell-eater",
+              "name": "Spell Eater",
+              "points": 50
+            },
+            {
+              "id": "axe-of-khorne",
+              "name": "Axe Of Khorne",
+              "points": 35
+            },
+            {
+              "id": "might-of-khorne",
+              "name": "Might Of Khorne",
+              "points": 25
+            },
+            {
+              "id": "armour-of-khorne",
+              "name": "Armour Of Khorne",
+              "points": 40
+            },
+            {
+              "id": "collar-of-khorne",
+              "name": "Collar Of Khorne",
+              "points": 25
+            },
+            {
+              "id": "nurgling-infestation",
+              "name": "Nurgling Infestation",
+              "points": 45
+            },
+            {
+              "id": "sloppity-bilepiper",
+              "name": "Sloppity Bilepiper",
+              "points": 35
+            },
+            {
+              "id": "trappings-of-nurgle",
+              "name": "Trappings Of Nurgle",
+              "points": 30
+            },
+            {
+              "id": "stream-of-contagion",
+              "name": "Stream Of Contagion",
+              "points": 25
+            },
+            {
+              "id": "spoilpox-scrivener",
+              "name": "Spoilpox Scrivener",
+              "points": 30
+            },
+            {
+              "id": "infernal-enrapturess",
+              "name": "Infernal Enrapturess",
+              "points": 50
+            },
+            {
+              "id": "allure-of-slaanesh",
+              "name": "Allure Of Slaanesh",
+              "points": 35
+            },
+            {
+              "id": "siren-song",
+              "name": "Siren Song",
+              "points": 30
+            },
+            {
+              "id": "soporific-musk",
+              "name": "Soporific Musk",
+              "points": 30
+            },
+            {
+              "id": "enrapturing-gaze",
+              "name": "Enrapturing Gaze",
+              "points": 20
+            },
+            {
+              "id": "staff-of-change",
+              "name": "Staff Of Change",
+              "points": 65
+            },
+            {
+              "id": "will-of-tzeentch",
+              "name": "Will Of Tzeentch",
+              "points": 55
+            },
+            {
+              "id": "twin-heads",
+              "name": "Twin Heads",
+              "points": 20
+            },
+            {
+              "id": "iridescent-corona",
+              "name": "Iridescent Corona",
+              "points": 30
+            },
+            {
+              "id": "power-vortex",
+              "name": "Power Vortex",
+              "points": 35
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Slaanesh",
+          "text": "Daemons of Slaanesh have the Hatred (Daemons of Khorne) special rule.\nIn addition, Daemons of Slaanesh increase their maximum possible charge range by 1\" and have a +1 modifier to the result of any Charge or Pursuit roll they make"
+        },
+        {
+          "name": "Infernal Favour",
+          "text": "A unit with this special rule reduces the number of wounds suffered due to the Daemonic Instability special rule by the number shown in brackets.\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest value for the entire unit."
+        },
+        {
+          "name": "Lore Of Daemons",
+          "text": "A Wizard with \u2018Lore of Daemons\u2019 special rule may discard one of their randomly generated spells as normal.\nWhen they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells that corresponds to their Daemonic Alignment listed below:\n\u2022 Plague Wind (Daemons Of Nurgle)\n\u2022 Pink Fire (Daemons Of Tzeentch)\n\u2022 Cacophonic Hymn (Daemons Of Slaanesh)\n\u2022 Gift Of Mutation (Daemons Of Tzeentch)"
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "6",
+        "BS": "4",
+        "S": "4",
+        "T": "3",
+        "W": "2",
+        "I": "6",
+        "A": "3",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "daemonettes-of-slaanesh",
+      "name": "Daemonettes Of Slaanesh",
+      "category": "core",
+      "pointsPerModel": 11,
+      "minModels": 6,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "alluress",
+          "name": "Alluress",
+          "points": 6
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Slaanesh",
+          "text": "Daemons of Slaanesh have the Hatred (Daemons of Khorne) special rule.\nIn addition, Daemons of Slaanesh increase their maximum possible charge range by 1\" and have a +1 modifier to the result of any Charge or Pursuit roll they make"
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "4",
+        "BS": "3",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "5",
+        "A": "1",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "seekers-of-slaanesh",
+      "name": "Seekers Of Slaanesh",
+      "category": "special",
+      "pointsPerModel": 21,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Light cavalry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "heartseeker",
+          "name": "Heartseeker",
+          "points": 6
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Armour Bane",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+        },
+        {
+          "name": "Counter Charge",
+          "text": "This special rule can only be used by units that consist entirely of models with this special rule. When a unit with this special rule is charged in its front arc by an enemy unit whose troop type is \u2018cavalry,\u2019 \u2018chariot\u2019 or \u2018monster\u2019, it may declare a \u2018Counter Charge\u2019 charge reaction:\n\n Counter Charge: The unit surges forward to meet the enemy charge. Measure the distance between the two units. If the distance is less than the Movement characteristic of the charging unit, the charged unit has not enough time to meet the enemy charge and must either Hold or Flee instead.\n\n Otherwise, pivot the unit about its centre so that it is facing directly towards the centre of the charging enemy unit. After pivoting, the unit moves D3+1\" directly towards the enemy unit. Both units are considered to have charged during this turn.\n\n Fleeing units and units already engaged in combat when charged cannot Counter Charge. A unit can only Counter Charge in response to one charge per turn, even if charged by multiple units. Once all charges have been declared, the inactive player can choose which charging unit to Counter Charge. The unit will then Hold against the other charging units."
+        },
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Slaanesh",
+          "text": "Daemons of Slaanesh have the Hatred (Daemons of Khorne) special rule.\nIn addition, Daemons of Slaanesh increase their maximum possible charge range by 1\" and have a +1 modifier to the result of any Charge or Pursuit roll they make"
+        },
+        {
+          "name": "Fast Cavalry",
+          "text": "If all of the models (including characters) within a unit arrayed in an Open Order formation have this special rule, the unit may perform its Quick Turn (see page 183) even if it marched."
+        },
+        {
+          "name": "Open Order",
+          "text": "A unit consisting of models with this special rule may adopt an Open Order formation."
+        },
+        {
+          "name": "Poisoned Attacks",
+          "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "4",
+        "BS": "3",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "5",
+        "A": "1",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "fiends-of-slaanesh",
+      "name": "Fiends Of Slaanesh",
+      "category": "special",
+      "pointsPerModel": 66,
+      "minModels": 3,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous cavalry",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Slaanesh",
+          "text": "Daemons of Slaanesh have the Hatred (Daemons of Khorne) special rule.\nIn addition, Daemons of Slaanesh increase their maximum possible charge range by 1\" and have a +1 modifier to the result of any Charge or Pursuit roll they make"
+        },
+        {
+          "name": "Soporific Musk",
+          "text": "Enemy models engaged in combat with a model with this special rule cannot use the Strike First special rule. Enemy models that do not have the Strike First special rule become subject to the Strike Last special rule instead."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "8",
+        "WS": "4",
+        "BS": "0",
+        "S": "4",
+        "T": "4",
+        "W": "3",
+        "I": "6",
+        "A": "3",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "lord-of-change",
+      "name": "Lord of Change",
+      "category": "characters",
+      "pointsPerModel": 310,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Behemoth (character)",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 0
+            },
+            {
+              "id": "wizard-level-3",
+              "name": "Wizard Level 3",
+              "points": 30
+            },
+            {
+              "id": "wizard-level-4",
+              "name": "Wizard Level 4",
+              "points": 60
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            },
+            {
+              "id": "daemonology",
+              "name": "Daemonology",
+              "points": 0
+            },
+            {
+              "id": "dark-magic",
+              "name": "Dark Magic",
+              "points": 0
+            },
+            {
+              "id": "elementalism",
+              "name": "Elementalism",
+              "points": 0
+            },
+            {
+              "id": "illusion",
+              "name": "Illusion",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "daemonic-gifts",
+          "name": "Daemonic Gifts",
+          "options": [
+            {
+              "id": "ther-blade",
+              "name": "\u00c6ther Blade",
+              "points": 55
+            },
+            {
+              "id": "many-arms",
+              "name": "Many Arms",
+              "points": 55
+            },
+            {
+              "id": "winged-horror",
+              "name": "Winged Horror",
+              "points": 45
+            },
+            {
+              "id": "daemonic-robes",
+              "name": "Daemonic Robes",
+              "points": 35
+            },
+            {
+              "id": "spell-eater",
+              "name": "Spell Eater",
+              "points": 50
+            },
+            {
+              "id": "axe-of-khorne",
+              "name": "Axe Of Khorne",
+              "points": 35
+            },
+            {
+              "id": "might-of-khorne",
+              "name": "Might Of Khorne",
+              "points": 25
+            },
+            {
+              "id": "armour-of-khorne",
+              "name": "Armour Of Khorne",
+              "points": 40
+            },
+            {
+              "id": "collar-of-khorne",
+              "name": "Collar Of Khorne",
+              "points": 25
+            },
+            {
+              "id": "nurgling-infestation",
+              "name": "Nurgling Infestation",
+              "points": 45
+            },
+            {
+              "id": "sloppity-bilepiper",
+              "name": "Sloppity Bilepiper",
+              "points": 35
+            },
+            {
+              "id": "trappings-of-nurgle",
+              "name": "Trappings Of Nurgle",
+              "points": 30
+            },
+            {
+              "id": "stream-of-contagion",
+              "name": "Stream Of Contagion",
+              "points": 25
+            },
+            {
+              "id": "spoilpox-scrivener",
+              "name": "Spoilpox Scrivener",
+              "points": 30
+            },
+            {
+              "id": "infernal-enrapturess",
+              "name": "Infernal Enrapturess",
+              "points": 50
+            },
+            {
+              "id": "allure-of-slaanesh",
+              "name": "Allure Of Slaanesh",
+              "points": 35
+            },
+            {
+              "id": "siren-song",
+              "name": "Siren Song",
+              "points": 30
+            },
+            {
+              "id": "soporific-musk",
+              "name": "Soporific Musk",
+              "points": 30
+            },
+            {
+              "id": "enrapturing-gaze",
+              "name": "Enrapturing Gaze",
+              "points": 20
+            },
+            {
+              "id": "staff-of-change",
+              "name": "Staff Of Change",
+              "points": 65
+            },
+            {
+              "id": "will-of-tzeentch",
+              "name": "Will Of Tzeentch",
+              "points": 55
+            },
+            {
+              "id": "twin-heads",
+              "name": "Twin Heads",
+              "points": 20
+            },
+            {
+              "id": "iridescent-corona",
+              "name": "Iridescent Corona",
+              "points": 30
+            },
+            {
+              "id": "power-vortex",
+              "name": "Power Vortex",
+              "points": 35
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "tzeentchian-wand",
+              "name": "Tzeentchian Wand",
+              "points": 20
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Tzeentch",
+          "text": "Daemons of Tzeentch have the Hatred (Daemons of Nurgle) special rule.\nIn addition, a Daemon of Tzeentch that is also a Wizard may apply a +1 modifier to any Casting roll they make.\n*Note that this is a modifier to the result of a roll- it does not\u00a0negate a roll of a natural double 1.*"
+        },
+        {
+          "name": "Flaming Attacks",
+          "text": "Any attack made or hits caused by a model with this special rule, or made using a weapon or spell with this special rule, is a \u2018Flaming\u2019 attack. In addition, a model with this special rule causes Fear in models whose troop type is \u2018war beasts\u2019 or \u2018swarms\u2019.\n\n Unless otherwise stated, a model with this special rule makes Flaming attacks both when shooting and in combat (though any spells cast by the model are unaffected, as are any attacks made with magic weapons they might be wielding)."
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Infernal Favour",
+          "text": "A unit with this special rule reduces the number of wounds suffered due to the Daemonic Instability special rule by the number shown in brackets.\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest value for the entire unit."
+        },
+        {
+          "name": "Large Target",
+          "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+        },
+        {
+          "name": "Lore Of Daemons",
+          "text": "A Wizard with \u2018Lore of Daemons\u2019 special rule may discard one of their randomly generated spells as normal.\nWhen they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells that corresponds to their Daemonic Alignment listed below:\n\u2022 Plague Wind (Daemons Of Nurgle)\n\u2022 Pink Fire (Daemons Of Tzeentch)\n\u2022 Cacophonic Hymn (Daemons Of Slaanesh)\n\u2022 Gift Of Mutation (Daemons Of Tzeentch)"
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Terror",
+          "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "6",
+        "BS": "6",
+        "S": "6",
+        "T": "6",
+        "W": "6",
+        "I": "6",
+        "A": "4",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "herald-of-tzeentch",
+      "name": "Herald of Tzeentch",
+      "category": "characters",
+      "pointsPerModel": 90,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry (character)",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "daemonic-locus",
+          "name": "Daemonic Locus",
+          "points": 25
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-1",
+              "name": "Wizard Level 1",
+              "points": 0
+            },
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 30
+            },
+            {
+              "id": "wizard-level-3",
+              "name": "Wizard Level 3",
+              "points": 60
+            }
+          ]
+        },
+        {
+          "id": "mount",
+          "name": "Mount",
+          "options": [
+            {
+              "id": "disc-of-tzeentch",
+              "name": "Disc Of Tzeentch",
+              "points": 20,
+              "stats": {
+                "M": "1",
+                "WS": "3",
+                "BS": "-",
+                "S": "4",
+                "T": "-",
+                "W": "-",
+                "I": "4",
+                "A": "3",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Daemonic",
+                  "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Daemon of Tzeentch",
+                  "text": "Daemons of Tzeentch have the Hatred (Daemons of Nurgle) special rule.\nIn addition, a Daemon of Tzeentch that is also a Wizard may apply a +1 modifier to any Casting roll they make.\n*Note that this is a modifier to the result of a roll- it does not\u00a0negate a roll of a natural double 1.*"
+                },
+                {
+                  "name": "Fly",
+                  "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "chariot-of-tzeentch",
+              "name": "Chariot Of Tzeentch",
+              "points": 90,
+              "stats": {
+                "M": "-",
+                "WS": "-",
+                "BS": "-",
+                "S": "4",
+                "T": "4",
+                "W": "4",
+                "I": "-",
+                "A": "-",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Daemonic",
+                  "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Daemon of Tzeentch",
+                  "text": "Daemons of Tzeentch have the Hatred (Daemons of Nurgle) special rule.\nIn addition, a Daemon of Tzeentch that is also a Wizard may apply a +1 modifier to any Casting roll they make.\n*Note that this is a modifier to the result of a roll- it does not\u00a0negate a roll of a natural double 1.*"
+                },
+                {
+                  "name": "Fly",
+                  "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Slashing Attack",
+                  "text": "Screamers\u2019 slashing blades tear through the foe as they dive close and pass quickly by.\nA unit with this special rule may perform a \u2018Slashing Attack\u2019 against a single enemy unit that is not engaged in combat. To do so, this unit must move (by flying) over the unit it wishes to attack during the Remaining Moves sub-phase. Once this unit\u2019s movement is complete, the enemy unit suffers D3 Strength 4 hits, each with an AP of -, for each model in this unit that moved over it."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                }
+              ]
+            },
+            {
+              "id": "burning-chariot-of-tzeentch",
+              "name": "Burning Chariot Of Tzeentch",
+              "points": 190,
+              "stats": {
+                "M": "-",
+                "WS": "-",
+                "BS": "-",
+                "S": "4",
+                "T": "4",
+                "W": "4",
+                "I": "-",
+                "A": "-",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Daemonic",
+                  "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Daemon of Tzeentch",
+                  "text": "Daemons of Tzeentch have the Hatred (Daemons of Nurgle) special rule.\nIn addition, a Daemon of Tzeentch that is also a Wizard may apply a +1 modifier to any Casting roll they make.\n*Note that this is a modifier to the result of a roll- it does not\u00a0negate a roll of a natural double 1.*"
+                },
+                {
+                  "name": "Fly",
+                  "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Lore Of Daemons",
+                  "text": "A Wizard with \u2018Lore of Daemons\u2019 special rule may discard one of their randomly generated spells as normal.\nWhen they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells that corresponds to their Daemonic Alignment listed below:\n\u2022 Plague Wind (Daemons Of Nurgle)\n\u2022 Pink Fire (Daemons Of Tzeentch)\n\u2022 Cacophonic Hymn (Daemons Of Slaanesh)\n\u2022 Gift Of Mutation (Daemons Of Tzeentch)"
+                },
+                {
+                  "name": "Slashing Attack",
+                  "text": "Screamers\u2019 slashing blades tear through the foe as they dive close and pass quickly by.\nA unit with this special rule may perform a \u2018Slashing Attack\u2019 against a single enemy unit that is not engaged in combat. To do so, this unit must move (by flying) over the unit it wishes to attack during the Remaining Moves sub-phase. Once this unit\u2019s movement is complete, the enemy unit suffers D3 Strength 4 hits, each with an AP of -, for each model in this unit that moved over it."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            },
+            {
+              "id": "daemonology",
+              "name": "Daemonology",
+              "points": 0
+            },
+            {
+              "id": "dark-magic",
+              "name": "Dark Magic",
+              "points": 0
+            },
+            {
+              "id": "elementalism",
+              "name": "Elementalism",
+              "points": 0
+            },
+            {
+              "id": "illusion",
+              "name": "Illusion",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "daemonic-gifts",
+          "name": "Daemonic Gifts",
+          "options": [
+            {
+              "id": "ther-blade",
+              "name": "\u00c6ther Blade",
+              "points": 55
+            },
+            {
+              "id": "many-arms",
+              "name": "Many Arms",
+              "points": 55
+            },
+            {
+              "id": "winged-horror",
+              "name": "Winged Horror",
+              "points": 45
+            },
+            {
+              "id": "daemonic-robes",
+              "name": "Daemonic Robes",
+              "points": 35
+            },
+            {
+              "id": "spell-eater",
+              "name": "Spell Eater",
+              "points": 50
+            },
+            {
+              "id": "axe-of-khorne",
+              "name": "Axe Of Khorne",
+              "points": 35
+            },
+            {
+              "id": "might-of-khorne",
+              "name": "Might Of Khorne",
+              "points": 25
+            },
+            {
+              "id": "armour-of-khorne",
+              "name": "Armour Of Khorne",
+              "points": 40
+            },
+            {
+              "id": "collar-of-khorne",
+              "name": "Collar Of Khorne",
+              "points": 25
+            },
+            {
+              "id": "nurgling-infestation",
+              "name": "Nurgling Infestation",
+              "points": 45
+            },
+            {
+              "id": "sloppity-bilepiper",
+              "name": "Sloppity Bilepiper",
+              "points": 35
+            },
+            {
+              "id": "trappings-of-nurgle",
+              "name": "Trappings Of Nurgle",
+              "points": 30
+            },
+            {
+              "id": "stream-of-contagion",
+              "name": "Stream Of Contagion",
+              "points": 25
+            },
+            {
+              "id": "spoilpox-scrivener",
+              "name": "Spoilpox Scrivener",
+              "points": 30
+            },
+            {
+              "id": "infernal-enrapturess",
+              "name": "Infernal Enrapturess",
+              "points": 50
+            },
+            {
+              "id": "allure-of-slaanesh",
+              "name": "Allure Of Slaanesh",
+              "points": 35
+            },
+            {
+              "id": "siren-song",
+              "name": "Siren Song",
+              "points": 30
+            },
+            {
+              "id": "soporific-musk",
+              "name": "Soporific Musk",
+              "points": 30
+            },
+            {
+              "id": "enrapturing-gaze",
+              "name": "Enrapturing Gaze",
+              "points": 20
+            },
+            {
+              "id": "staff-of-change",
+              "name": "Staff Of Change",
+              "points": 65
+            },
+            {
+              "id": "will-of-tzeentch",
+              "name": "Will Of Tzeentch",
+              "points": 55
+            },
+            {
+              "id": "twin-heads",
+              "name": "Twin Heads",
+              "points": 20
+            },
+            {
+              "id": "iridescent-corona",
+              "name": "Iridescent Corona",
+              "points": 30
+            },
+            {
+              "id": "power-vortex",
+              "name": "Power Vortex",
+              "points": 35
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Tzeentch",
+          "text": "Daemons of Tzeentch have the Hatred (Daemons of Nurgle) special rule.\nIn addition, a Daemon of Tzeentch that is also a Wizard may apply a +1 modifier to any Casting roll they make.\n*Note that this is a modifier to the result of a roll- it does not\u00a0negate a roll of a natural double 1.*"
+        },
+        {
+          "name": "Infernal Favour",
+          "text": "A unit with this special rule reduces the number of wounds suffered due to the Daemonic Instability special rule by the number shown in brackets.\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest value for the entire unit."
+        },
+        {
+          "name": "Lore Of Daemons",
+          "text": "A Wizard with \u2018Lore of Daemons\u2019 special rule may discard one of their randomly generated spells as normal.\nWhen they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells that corresponds to their Daemonic Alignment listed below:\n\u2022 Plague Wind (Daemons Of Nurgle)\n\u2022 Pink Fire (Daemons Of Tzeentch)\n\u2022 Cacophonic Hymn (Daemons Of Slaanesh)\n\u2022 Gift Of Mutation (Daemons Of Tzeentch)"
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "3",
+        "BS": "4",
+        "S": "3",
+        "T": "3",
+        "W": "2",
+        "I": "3",
+        "A": "2",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "pink-horrors-of-tzeentch",
+      "name": "Pink Horrors Of Tzeentch",
+      "category": "core",
+      "pointsPerModel": 12,
+      "minModels": 9,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "iridescent-horror",
+          "name": "Iridescent Horror",
+          "points": 6
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Tzeentch",
+          "text": "Daemons of Tzeentch have the Hatred (Daemons of Nurgle) special rule.\nIn addition, a Daemon of Tzeentch that is also a Wizard may apply a +1 modifier to any Casting roll they make.\n*Note that this is a modifier to the result of a roll- it does not\u00a0negate a roll of a natural double 1.*"
+        },
+        {
+          "name": "Scintillating Sorcery",
+          "text": "A unit of Pink Horrors knows one of the spells that corresponds to their Daemonic Alignment (chosen by their controlling player before armies are deployed). The unit may cast this spell as a Bound spell, with a Power Level equal to the unit\u2019s current Rank Bonus."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "3",
+        "BS": "3",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "3",
+        "A": "1",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "blue-horrors-of-tzeentch",
+      "name": "Blue Horrors Of Tzeentch",
+      "category": "special",
+      "pointsPerModel": 9,
+      "minModels": 9,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "ectoplasmic-horror",
+          "name": "Ectoplasmic Horror",
+          "points": 6
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Tzeentch",
+          "text": "Daemons of Tzeentch have the Hatred (Daemons of Nurgle) special rule.\nIn addition, a Daemon of Tzeentch that is also a Wizard may apply a +1 modifier to any Casting roll they make.\n*Note that this is a modifier to the result of a roll- it does not\u00a0negate a roll of a natural double 1.*"
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Open Order",
+          "text": "A unit consisting of models with this special rule may adopt an Open Order formation."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "2",
+        "BS": "3",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "3",
+        "A": "1",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "flamers-of-tzeentch",
+      "name": "Flamers Of Tzeentch",
+      "category": "special",
+      "pointsPerModel": 40,
+      "minModels": 3,
+      "maxModels": 6,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "exalted-flamer",
+          "name": "Exalted Flamer",
+          "points": 47
+        },
+        {
+          "id": "pyroclaster",
+          "name": "Pyroclaster",
+          "points": 7
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Tzeentch",
+          "text": "Daemons of Tzeentch have the Hatred (Daemons of Nurgle) special rule.\nIn addition, a Daemon of Tzeentch that is also a Wizard may apply a +1 modifier to any Casting roll they make.\n*Note that this is a modifier to the result of a roll- it does not\u00a0negate a roll of a natural double 1.*"
+        },
+        {
+          "name": "Flaming Attacks",
+          "text": "Any attack made or hits caused by a model with this special rule, or made using a weapon or spell with this special rule, is a \u2018Flaming\u2019 attack. In addition, a model with this special rule causes Fear in models whose troop type is \u2018war beasts\u2019 or \u2018swarms\u2019.\n\n Unless otherwise stated, a model with this special rule makes Flaming attacks both when shooting and in combat (though any spells cast by the model are unaffected, as are any attacks made with magic weapons they might be wielding)."
+        },
+        {
+          "name": "Infernal Favour",
+          "text": "A unit with this special rule reduces the number of wounds suffered due to the Daemonic Instability special rule by the number shown in brackets.\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest value for the entire unit."
+        },
+        {
+          "name": "Lore Of Daemons",
+          "text": "A Wizard with \u2018Lore of Daemons\u2019 special rule may discard one of their randomly generated spells as normal.\nWhen they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells that corresponds to their Daemonic Alignment listed below:\n\u2022 Plague Wind (Daemons Of Nurgle)\n\u2022 Pink Fire (Daemons Of Tzeentch)\n\u2022 Cacophonic Hymn (Daemons Of Slaanesh)\n\u2022 Gift Of Mutation (Daemons Of Tzeentch)"
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "2",
+        "BS": "4",
+        "S": "4",
+        "T": "4",
+        "W": "2",
+        "I": "4",
+        "A": "2",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "brimstone-horrors-of-tzeentch",
+      "name": "Brimstone Horrors Of Tzeentch",
+      "category": "special",
+      "pointsPerModel": 38,
+      "minModels": 2,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Swarms",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Tzeentch",
+          "text": "Daemons of Tzeentch have the Hatred (Daemons of Nurgle) special rule.\nIn addition, a Daemon of Tzeentch that is also a Wizard may apply a +1 modifier to any Casting roll they make.\n*Note that this is a modifier to the result of a roll- it does not\u00a0negate a roll of a natural double 1.*"
+        },
+        {
+          "name": "Flaming Attacks",
+          "text": "Any attack made or hits caused by a model with this special rule, or made using a weapon or spell with this special rule, is a \u2018Flaming\u2019 attack. In addition, a model with this special rule causes Fear in models whose troop type is \u2018war beasts\u2019 or \u2018swarms\u2019.\n\n Unless otherwise stated, a model with this special rule makes Flaming attacks both when shooting and in combat (though any spells cast by the model are unaffected, as are any attacks made with magic weapons they might be wielding)."
+        },
+        {
+          "name": "Loner",
+          "text": "A character with this special rule cannot be your General and cannot join a unit without this special rule. A unit with this special rule cannot be joined by a character without this special rule."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "2",
+        "BS": "2",
+        "S": "2",
+        "T": "3",
+        "W": "6",
+        "I": "2",
+        "A": "4",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "screamers-of-tzeentch",
+      "name": "Screamers Of Tzeentch",
+      "category": "special",
+      "pointsPerModel": 44,
+      "minModels": 3,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "War beasts",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Daemon of Tzeentch",
+          "text": "Daemons of Tzeentch have the Hatred (Daemons of Nurgle) special rule.\nIn addition, a Daemon of Tzeentch that is also a Wizard may apply a +1 modifier to any Casting roll they make.\n*Note that this is a modifier to the result of a roll- it does not\u00a0negate a roll of a natural double 1.*"
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Loner",
+          "text": "A character with this special rule cannot be your General and cannot join a unit without this special rule. A unit with this special rule cannot be joined by a character without this special rule."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Slashing Attack",
+          "text": "Screamers\u2019 slashing blades tear through the foe as they dive close and pass quickly by.\nA unit with this special rule may perform a \u2018Slashing Attack\u2019 against a single enemy unit that is not engaged in combat. To do so, this unit must move (by flying) over the unit it wishes to attack during the Remaining Moves sub-phase. Once this unit\u2019s movement is complete, the enemy unit suffers D3 Strength 4 hits, each with an AP of -, for each model in this unit that moved over it."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "1",
+        "WS": "3",
+        "BS": "0",
+        "S": "4",
+        "T": "4",
+        "W": "2",
+        "I": "4",
+        "A": "2",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "daemon-prince",
+      "name": "Daemon Prince",
+      "category": "characters",
+      "pointsPerModel": 210,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Monstrous infantry (character)",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "armour",
+          "name": "Armour",
+          "options": [
+            {
+              "id": "light-armour",
+              "name": "Light Armour",
+              "points": 0
+            },
+            {
+              "id": "heavy-armour",
+              "name": "Heavy Armour",
+              "points": 6
+            }
+          ]
+        },
+        {
+          "id": "daemonic-alignment",
+          "name": "Daemonic Alignment",
+          "options": [
+            {
+              "id": "daemon-of-khorne",
+              "name": "Daemon of Khorne",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Daemon of Khorne",
+                  "text": "Daemons of Khorne have the Hatred (Daemons of Slaanesh) special rule.\nIn addition, during a turn in which it made a charge move, a Daemon of Khorne (but not its mount) gains a +1 modifier to its Strength characteristic."
+                }
+              ]
+            },
+            {
+              "id": "daemon-of-nurgle",
+              "name": "Daemon of Nurgle",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Daemon of Nurgle",
+                  "text": "Daemons of Nurgle have the Hatred (Daemons of Tzeentch) special rule.\nIn addition, any enemy model that directs its attacks against a Daemon of Nurgle during the Combat phase must re-roll any rolls To Hit of a natural 6"
+                }
+              ]
+            },
+            {
+              "id": "daemon-of-slaanesh",
+              "name": "Daemon of Slaanesh",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Daemon of Slaanesh",
+                  "text": "Daemons of Slaanesh have the Hatred (Daemons of Khorne) special rule.\nIn addition, Daemons of Slaanesh increase their maximum possible charge range by 1\" and have a +1 modifier to the result of any Charge or Pursuit roll they make"
+                }
+              ]
+            },
+            {
+              "id": "daemon-of-tzeentch",
+              "name": "Daemon of Tzeentch",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Daemon of Tzeentch",
+                  "text": "Daemons of Tzeentch have the Hatred (Daemons of Nurgle) special rule.\nIn addition, a Daemon of Tzeentch that is also a Wizard may apply a +1 modifier to any Casting roll they make.\n*Note that this is a modifier to the result of a roll- it does not\u00a0negate a roll of a natural double 1.*"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-1",
+              "name": "Wizard Level 1",
+              "points": 25
+            },
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 50
+            },
+            {
+              "id": "wizard-level-3",
+              "name": "Wizard Level 3",
+              "points": 75
+            },
+            {
+              "id": "wizard-level-4",
+              "name": "Wizard Level 4",
+              "points": 100
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            },
+            {
+              "id": "daemonology",
+              "name": "Daemonology",
+              "points": 0
+            },
+            {
+              "id": "dark-magic",
+              "name": "Dark Magic",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "daemonic-gifts",
+          "name": "Daemonic Gifts",
+          "options": [
+            {
+              "id": "ther-blade",
+              "name": "\u00c6ther Blade",
+              "points": 55
+            },
+            {
+              "id": "many-arms",
+              "name": "Many Arms",
+              "points": 55
+            },
+            {
+              "id": "winged-horror",
+              "name": "Winged Horror",
+              "points": 45
+            },
+            {
+              "id": "daemonic-robes",
+              "name": "Daemonic Robes",
+              "points": 35
+            },
+            {
+              "id": "spell-eater",
+              "name": "Spell Eater",
+              "points": 50
+            },
+            {
+              "id": "axe-of-khorne",
+              "name": "Axe Of Khorne",
+              "points": 35
+            },
+            {
+              "id": "might-of-khorne",
+              "name": "Might Of Khorne",
+              "points": 25
+            },
+            {
+              "id": "armour-of-khorne",
+              "name": "Armour Of Khorne",
+              "points": 40
+            },
+            {
+              "id": "collar-of-khorne",
+              "name": "Collar Of Khorne",
+              "points": 25
+            },
+            {
+              "id": "nurgling-infestation",
+              "name": "Nurgling Infestation",
+              "points": 45
+            },
+            {
+              "id": "sloppity-bilepiper",
+              "name": "Sloppity Bilepiper",
+              "points": 35
+            },
+            {
+              "id": "trappings-of-nurgle",
+              "name": "Trappings Of Nurgle",
+              "points": 30
+            },
+            {
+              "id": "stream-of-contagion",
+              "name": "Stream Of Contagion",
+              "points": 25
+            },
+            {
+              "id": "spoilpox-scrivener",
+              "name": "Spoilpox Scrivener",
+              "points": 30
+            },
+            {
+              "id": "infernal-enrapturess",
+              "name": "Infernal Enrapturess",
+              "points": 50
+            },
+            {
+              "id": "allure-of-slaanesh",
+              "name": "Allure Of Slaanesh",
+              "points": 35
+            },
+            {
+              "id": "siren-song",
+              "name": "Siren Song",
+              "points": 30
+            },
+            {
+              "id": "soporific-musk",
+              "name": "Soporific Musk",
+              "points": 30
+            },
+            {
+              "id": "enrapturing-gaze",
+              "name": "Enrapturing Gaze",
+              "points": 20
+            },
+            {
+              "id": "staff-of-change",
+              "name": "Staff Of Change",
+              "points": 65
+            },
+            {
+              "id": "will-of-tzeentch",
+              "name": "Will Of Tzeentch",
+              "points": 55
+            },
+            {
+              "id": "twin-heads",
+              "name": "Twin Heads",
+              "points": 20
+            },
+            {
+              "id": "iridescent-corona",
+              "name": "Iridescent Corona",
+              "points": 30
+            },
+            {
+              "id": "power-vortex",
+              "name": "Power Vortex",
+              "points": 35
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Chaos Armour",
+          "text": "This model has a 4+ Ward save against any wounds suffered. In addition, a Wizard with this special rule may wear armour without penalty."
+        },
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Infernal Favour",
+          "text": "A unit with this special rule reduces the number of wounds suffered due to the Daemonic Instability special rule by the number shown in brackets.\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest value for the entire unit."
+        },
+        {
+          "name": "Lore Of Daemons",
+          "text": "A Wizard with \u2018Lore of Daemons\u2019 special rule may discard one of their randomly generated spells as normal.\nWhen they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells that corresponds to their Daemonic Alignment listed below:\n\u2022 Plague Wind (Daemons Of Nurgle)\n\u2022 Pink Fire (Daemons Of Tzeentch)\n\u2022 Cacophonic Hymn (Daemons Of Slaanesh)\n\u2022 Gift Of Mutation (Daemons Of Tzeentch)"
+        },
+        {
+          "name": "Regeneration",
+          "text": "Immediately after a Wound is lost, but before models with zero Wounds remaining are removed from play, a model with this special rule may make a \"Regeneration save\" roll by rolling a D6 and comparing the result to its \"Regeneration value\", shown in brackets after the name of this special rule (shown here as \"X+\"). If the Regeneration save roll equals or exceeds the model\u2019s Regeneration value, the lost Wound is recovered, but is still counted for the purposes of calculating the combat result. Rules that affect armour values do not affect Regeneration values unless stated otherwise."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "7",
+        "BS": "5",
+        "S": "6",
+        "T": "5",
+        "W": "4",
+        "I": "7",
+        "A": "5",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "chaos-furies",
+      "name": "Chaos Furies",
+      "category": "core",
+      "pointsPerModel": 12,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "daemonic-alignment",
+          "name": "Daemonic Alignment",
+          "options": [
+            {
+              "id": "daemons-of-khorne",
+              "name": "Daemons of Khorne",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Daemon of Khorne",
+                  "text": "Daemons of Khorne have the Hatred (Daemons of Slaanesh) special rule.\nIn addition, during a turn in which it made a charge move, a Daemon of Khorne (but not its mount) gains a +1 modifier to its Strength characteristic."
+                }
+              ]
+            },
+            {
+              "id": "daemons-of-nurgle",
+              "name": "Daemons of Nurgle",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Daemon of Nurgle",
+                  "text": "Daemons of Nurgle have the Hatred (Daemons of Tzeentch) special rule.\nIn addition, any enemy model that directs its attacks against a Daemon of Nurgle during the Combat phase must re-roll any rolls To Hit of a natural 6"
+                }
+              ]
+            },
+            {
+              "id": "daemons-of-slaanesh",
+              "name": "Daemons of Slaanesh",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Daemon of Slaanesh",
+                  "text": "Daemons of Slaanesh have the Hatred (Daemons of Khorne) special rule.\nIn addition, Daemons of Slaanesh increase their maximum possible charge range by 1\" and have a +1 modifier to the result of any Charge or Pursuit roll they make"
+                }
+              ]
+            },
+            {
+              "id": "daemons-of-tzeentch",
+              "name": "Daemons of Tzeentch",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Daemon of Tzeentch",
+                  "text": "Daemons of Tzeentch have the Hatred (Daemons of Nurgle) special rule.\nIn addition, a Daemon of Tzeentch that is also a Wizard may apply a +1 modifier to any Casting roll they make.\n*Note that this is a modifier to the result of a roll- it does not\u00a0negate a roll of a natural double 1.*"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Furious Charge",
+          "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Attacks characteristic."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Vanguard",
+          "text": "After deployment, units with this special rule may make a Vanguard move. A unit making a Vanguard move moves as described in the Basic Movement rules. It may manoeuvre normally but cannot march.\n\nIf both armies contain Vanguard units, a roll-off determines who moves first. The players then alternate moving their Vanguard units one at a time, starting with the player who won the roll-off. Units that make a Vanguard move cannot declare a charge during their first turn."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "3",
+        "BS": "0",
+        "S": "4",
+        "T": "3",
+        "W": "1",
+        "I": "4",
+        "A": "1",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "soul-grinder",
+      "name": "Soul Grinder",
+      "category": "rare",
+      "pointsPerModel": 255,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Behemoth",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "baleful-torrent",
+              "name": "Baleful torrent",
+              "points": 25
+            },
+            {
+              "id": "warp-gaze",
+              "name": "Warp gaze",
+              "points": 30
+            }
+          ]
+        },
+        {
+          "id": "daemonic-alignment",
+          "name": "Daemonic Alignment",
+          "options": [
+            {
+              "id": "daemon-of-khorne",
+              "name": "Daemon of Khorne",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Daemon of Khorne",
+                  "text": "Daemons of Khorne have the Hatred (Daemons of Slaanesh) special rule.\nIn addition, during a turn in which it made a charge move, a Daemon of Khorne (but not its mount) gains a +1 modifier to its Strength characteristic."
+                }
+              ]
+            },
+            {
+              "id": "daemon-of-nurgle",
+              "name": "Daemon of Nurgle",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Daemon of Nurgle",
+                  "text": "Daemons of Nurgle have the Hatred (Daemons of Tzeentch) special rule.\nIn addition, any enemy model that directs its attacks against a Daemon of Nurgle during the Combat phase must re-roll any rolls To Hit of a natural 6"
+                }
+              ]
+            },
+            {
+              "id": "daemon-of-slaanesh",
+              "name": "Daemon of Slaanesh",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Daemon of Slaanesh",
+                  "text": "Daemons of Slaanesh have the Hatred (Daemons of Khorne) special rule.\nIn addition, Daemons of Slaanesh increase their maximum possible charge range by 1\" and have a +1 modifier to the result of any Charge or Pursuit roll they make"
+                }
+              ]
+            },
+            {
+              "id": "daemon-of-tzeentch",
+              "name": "Daemon of Tzeentch",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Daemon of Tzeentch",
+                  "text": "Daemons of Tzeentch have the Hatred (Daemons of Nurgle) special rule.\nIn addition, a Daemon of Tzeentch that is also a Wizard may apply a +1 modifier to any Casting roll they make.\n*Note that this is a modifier to the result of a roll- it does not\u00a0negate a roll of a natural double 1.*"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Daemonic",
+          "text": "Models with this special rule are \u2018Daemonic\u2019.\nAll Daemonic models have a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack.\nIn addition, all Daemonic models have the following universal special rules:\n\u2022 Daemonic Instability\n\u2022 Fear\n\u2022 Immune to Psychology\n\u2022 Magical Attacks\n\u2022 Unbreakable\n\u2022 Warp-spawned\nA character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Furious Charge",
+          "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Attacks characteristic."
+        },
+        {
+          "name": "Large Target",
+          "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+        },
+        {
+          "name": "Reserve Move",
+          "text": "Unless it charged, marched or fled during the Movement phase, a unit in which the majority of the models have this special rule may make a Reserve move at the end of the Shooting phase of its turn, after all shooting has been resolved. A unit making a Reserve move moves as described in the Basic Movement rules. It may manoeuvre normally, but cannot march."
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Terror",
+          "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Baleful torrent",
+          "range": "12\"",
+          "strength": "5",
+          "ap": "-1",
+          "specialRules": "Column of Fire, Cumbersome"
+        },
+        {
+          "name": "Warp gaze",
+          "range": "48\"",
+          "strength": "6",
+          "ap": "-3",
+          "specialRules": "Cumbersome, Multiple Wounds (2),Through & Through"
+        }
+      ],
+      "stats": {
+        "M": "8",
+        "WS": "3",
+        "BS": "3",
+        "S": "6",
+        "T": "6",
+        "W": "6",
+        "I": "3",
+        "A": "4",
+        "Ld": "7"
+      }
+    }
+  ]
+}

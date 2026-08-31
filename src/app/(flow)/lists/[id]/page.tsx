@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BuilderScreen } from "@/components/BuilderScreen";
+import { ListScreen } from "@/components/ListScreen";
 
 export async function generateMetadata({
   params,
@@ -16,5 +16,5 @@ export default async function ListPage({
   params,
 }: PageProps<"/lists/[id]">) {
   const { id } = await params;
-  return <BuilderScreen listId={id} />;
+  return <ListScreen listId={id} />;
 }
