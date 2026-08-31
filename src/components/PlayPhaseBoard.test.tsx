@@ -1,8 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { createId } from "@/lib/id";
-import { blankArmy } from "@/lib/storage";
+import { blankArmy, blankSpearhead } from "@/lib/storage";
 import { getFaction } from "@/engine/queries";
+import { getSpearhead, spearheadAsFaction } from "@/engine/spearhead";
 import { cleanup, render, screen, within } from "@/test-utils/render";
 import { PlayPhaseBoard } from "./PlayPhaseBoard";
 
@@ -348,5 +349,65 @@ describe("PlayPhaseBoard", () => {
     expect(move.className).not.toContain("mt-1");
     expect(move.parentElement?.className).toContain("items-baseline");
     expect(move.parentElement?.className).toContain("justify-between");
+  });
+
+  it("shows Vampire Lord Sanguine Blur on Hero", async () => {
+    const user = userEvent.setup();
+    const { faction, list } = listWithNamedHero(
+      "soulblight-gravelords",
+      "Vampire Lord",
+    );
+    render(
+      <PlayPhaseBoard list={list} faction={faction} onOpenSheet={vi.fn()} />,
+    );
+
+    await openPhase(user, "Hero");
+    expect(screen.getByText("Sanguine Blur"));
+  });
+
+  it("shows Zombie Dragon Bloodthirsty Dominance and The Hunger on End of turn", async () => {
+    const user = userEvent.setup();
+    const { faction, list } = listWithNamedHero(
+      "soulblight-gravelords",
+      "Vampire Lord on Zombie Dragon",
+    );
+    render(
+      <PlayPhaseBoard list={list} faction={faction} onOpenSheet={vi.fn()} />,
+    );
+
+    await openPhase(user, "End of turn");
+    expect(screen.getByText("Bloodthirsty Dominance"));
+    expect(screen.getByText("The Hunger"));
+  });
+
+  it("shows Swampcalla Foul Elixirs on Hero", async () => {
+    const user = userEvent.setup();
+    const { faction, list } = listWithNamedHero(
+      "kruleboyz",
+      "Swampcalla Shaman with Pot-grot",
+    );
+    render(
+      <PlayPhaseBoard list={list} faction={faction} onOpenSheet={vi.fn()} />,
+    );
+
+    await openPhase(user, "Hero");
+    expect(screen.getByText("Foul Elixirs"));
+  });
+
+  it("shows Trailblazers Endrinmaster Extraordinaire on Hero", async () => {
+    const user = userEvent.setup();
+    const box = getSpearhead("kharadron-overlords-grundstok-trailblazers");
+    expect(box).toBeTruthy();
+    if (!box) {
+      throw new Error("missing Trailblazers spearhead");
+    }
+    const faction = spearheadAsFaction(box);
+    const list = blankSpearhead(box.id);
+    render(
+      <PlayPhaseBoard list={list} faction={faction} onOpenSheet={vi.fn()} />,
+    );
+
+    await openPhase(user, "Hero");
+    expect(screen.getByText("ENDRINMASTER EXTRAORDINAIRE"));
   });
 });

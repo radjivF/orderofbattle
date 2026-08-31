@@ -10,7 +10,6 @@ import type {
 import {
   commandAbilityCost,
   coreCommandsForPhase,
-  isCommandAbility,
   type CoreCommand,
   UNIVERSAL_COMMAND_RULES,
 } from "@/engine/commands";
@@ -25,6 +24,7 @@ import {
   weaponAttacksForDamage,
 } from "@/engine/queries";
 import { IOS_LIQUID_CTA_CLASS, RULE_INFO_BUTTON_CLASS, SHEET_PANEL_COMPACT_CLASS, playPhaseShowsCommandTab, playPhaseShowsCoreRulesTab } from "@/lib/builderUi";
+import { playPhasePanelAbilities, playPhasePanelCommands } from "@/lib/playPhasePanel";
 import { castValueLabel, chantValueLabel } from "@/lib/abilityUi";
 import { isSpearheadList } from "@/engine/spearhead";
 import { coreRulesForPhase } from "@/engine/coreRules";
@@ -136,22 +136,17 @@ export function PlayPhaseBoard({
   const isMovementPhase = active?.phase.id === "movement";
   const rosterAbilityRows =
     active?.abilities.filter((row) => rosterIds.has(row.selectionId)) ?? [];
-  const armyAbilityRows =
-    active?.abilities.filter((row) => !rosterIds.has(row.selectionId)) ?? [];
-
-  const armyPhaseAbilities =
-    armyAbilityRows.filter((row) => !isCommandAbility(row.ability.kind)) ?? [];
-  const rosterPhaseAbilities =
-    rosterAbilityRows.filter((row) => !isCommandAbility(row.ability.kind)) ?? [];
-  const phaseAbilities =
-    active?.phase.id === "passive"
-      ? [...armyPhaseAbilities, ...rosterPhaseAbilities]
-      : armyPhaseAbilities;
+  const phaseAbilities = playPhasePanelAbilities(
+    active?.phase.id ?? "passive",
+    active?.abilities ?? [],
+    rosterIds,
+  );
   const visibleAbilities = phaseAbilities.filter(
     (row) => !removedIds.has(row.selectionId),
   );
-  const armyCommands =
-    armyAbilityRows.filter((row) => isCommandAbility(row.ability.kind)) ?? [];
+  const armyCommands = playPhasePanelCommands(active?.abilities ?? []).filter(
+    (row) => !removedIds.has(row.selectionId),
+  );
   const coreCommands = active
     ? coreCommandsForPhase(active.phase.id)
     : [];
