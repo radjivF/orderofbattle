@@ -18,9 +18,10 @@
   --legal: #4a7c59;
   --illegal: #8b2e2e;
   --illegal-lit: #e8b4b4;
-  --slate: #536b86;
-  --sky: #4a7c96;
+  --olive: #5e6b2e;
+  --sky: #2b6aa3;
   --arcane: #6b5a8a;
+  --copper: #a0562a;
 }
 
 @theme inline {
@@ -39,9 +40,10 @@
   --color-legal: var(--legal);
   --color-illegal: var(--illegal);
   --color-illegal-lit: var(--illegal-lit);
-  --color-slate: var(--slate);
+  --color-olive: var(--olive);
   --color-sky: var(--sky);
   --color-arcane: var(--arcane);
+  --color-copper: var(--copper);
   --font-sans: var(--font-instrument);
   --font-serif: var(--font-cinzel);
 }

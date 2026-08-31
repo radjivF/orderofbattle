@@ -14,10 +14,10 @@ describe("keywordChipClass", () => {
     const faction = keywordChipClass("CASTELITE");
 
     expect(hero).toContain("gold-deep");
-    expect(infantry).toContain("slate");
+    expect(infantry).toContain("olive");
     expect(cavalry).toContain("aether");
     expect(monster).toContain("illegal");
-    expect(warMachine).toContain("steel");
+    expect(warMachine).toContain("copper");
     expect(fly).toContain("sky");
     expect(wizard).toContain("arcane");
     expect(priest).toContain("sigmarite");
@@ -37,10 +37,15 @@ describe("keywordChipClass", () => {
     expect(new Set(colors).size).toBe(colors.length);
   });
 
-  it("does not paint infantry or war machines as dead grey-on-living or hero gold", () => {
+  it("keeps infantry, fly, and war machine on different hues, not grey-blue", () => {
+    expect(keywordChipClass("INFANTRY")).toContain("olive");
+    expect(keywordChipClass("FLY")).toContain("sky");
+    expect(keywordChipClass("WAR MACHINE")).toContain("copper");
+    expect(keywordChipClass("INFANTRY")).not.toContain("sky");
     expect(keywordChipClass("INFANTRY")).not.toContain("steel");
     expect(keywordChipClass("INFANTRY")).not.toContain("gold-deep");
     expect(keywordChipClass("WAR MACHINE")).not.toContain("gold-deep");
+    expect(keywordChipClass("WAR MACHINE")).not.toContain("steel");
     expect(keywordChipClass("WAR MACHINE")).not.toContain("parchment-ink");
   });
 

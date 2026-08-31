@@ -14,15 +14,15 @@ const CODED_ORDER = [
 ] as const;
 
 const COLOR_CLASS: Record<(typeof CODED_ORDER)[number], string> = {
-  HERO: "border-gold-deep/20 bg-gold-deep/10 text-gold-deep",
-  INFANTRY: "border-slate/25 bg-slate/12 text-slate",
-  CAVALRY: "border-aether/20 bg-aether/10 text-aether",
-  MONSTER: "border-illegal/20 bg-illegal/10 text-illegal",
-  BEAST: "border-legal/20 bg-legal/10 text-legal",
-  "WAR MACHINE": "border-steel/30 bg-steel/15 text-steel",
-  WIZARD: "border-arcane/25 bg-arcane/12 text-arcane",
-  PRIEST: "border-sigmarite/35 bg-sigmarite/15 text-gold-deep",
-  FLY: "border-sky/25 bg-sky/12 text-sky",
+  HERO: "border-gold-deep/35 bg-gold-deep/18 text-gold-deep",
+  INFANTRY: "border-olive/40 bg-olive/20 text-olive",
+  CAVALRY: "border-aether/35 bg-aether/18 text-aether",
+  MONSTER: "border-illegal/35 bg-illegal/18 text-illegal",
+  BEAST: "border-legal/35 bg-legal/18 text-legal",
+  "WAR MACHINE": "border-copper/40 bg-copper/20 text-copper",
+  WIZARD: "border-arcane/40 bg-arcane/20 text-arcane",
+  PRIEST: "border-sigmarite/45 bg-sigmarite/25 text-gold-deep",
+  FLY: "border-sky/40 bg-sky/20 text-sky",
 };
 
 const DEFAULT_CLASS =
