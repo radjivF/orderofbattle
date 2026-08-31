@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { Cinzel, Instrument_Sans } from "next/font/google";
 import { AnalyticsScripts } from "@/components/AnalyticsScripts";
 import { CookieConsent } from "@/components/CookieConsent";
+import { WhatsNewNotice } from "@/components/WhatsNewNotice";
 import { JsonLd } from "@/components/JsonLd";
 import { countryFromRequestHeaders, requiresCookieConsent } from "@/lib/consentRegion";
 import { graph, softwareApplicationNode } from "@/lib/jsonLd";
@@ -105,9 +106,10 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-full font-sans" suppressHydrationWarning>
         <AnalyticsScripts consentRequired={consentRequired} />
-        <CookieConsent consentRequired={consentRequired} />
         <JsonLd data={graph([softwareApplicationNode()])} />
         {children}
+        <CookieConsent consentRequired={consentRequired} />
+        <WhatsNewNotice />
       </body>
     </html>
   );

@@ -5,6 +5,7 @@ import {
   useEffect,
   useLayoutEffect,
   useMemo,
+  useRef,
   useState,
   useDeferredValue,
 } from "react";
@@ -16,6 +17,7 @@ import {
   enhancementChoiceDetail,
   enhancementLabel,
   formationLabel,
+  getListUnit,
   getUnit,
   listRegimentsOfRenown,
   resolveGeneralRegimentId,
@@ -27,6 +29,7 @@ import { battleTacticsForRealm } from "@/engine/data/load";
 import { dropEnhancements, pickerUnitsFor, type ListPicker as Picker } from "@/engine/listPicker";
 import { combatModifierNotes } from "@/engine/magic";
 import { isSpearheadList } from "@/engine/spearhead";
+import { hideSelectionFromPhase, playAfterDamage } from "@/engine/playHide";
 import { summarize } from "@/engine/validate";
 import type {
   ArmyList,
@@ -72,10 +75,10 @@ import {
 import { RuleText } from "./RuleText";
 import { SpearheadPicks } from "./SpearheadPicks";
 import { TerrainCard } from "./TerrainCard";
-import { RuleInfoButton } from "./RuleInfoButton";
 import { BuildSlotRow } from "./ios/SheetIconButton";
 import { IosSegmentedControl } from "./ios/IosSegmentedControl";
 import { PointsCapField } from "./PointsCapField";
+import { RuleInfoButton } from "./RuleInfoButton";
 import { useListFlowChrome } from "./ListFlowShell";
 
 function enhancementChoices(options: EnhancementOption[]) {
@@ -120,6 +123,10 @@ export function BuilderReady({
   const deferredPicker = useDeferredValue(picker);
   const pickerUnits = pickerUnitsFor(list, faction, deferredPicker);
   const selectedId = selectedRegimentId ?? list.regiments[0]?.id ?? null;
+  const listRef = useRef(list);
+  useEffect(() => {
+    listRef.current = list;
+  }, [list]);
 
   async function commit(next: ArmyList) {
     await saveArmy(next);
@@ -169,27 +176,32 @@ export function BuilderReady({
   }
 
   async function setPlayDamage(selectionId: string, damage: number) {
+    function withDamage(selection: NonNullable<ArmyList["regiments"][0]["hero"]>) {
+      if (selection.id !== selectionId) {
+        return selection;
+      }
+      return {
+        ...selection,
+        play: playAfterDamage(
+          selection,
+          damage,
+          getListUnit(list, faction, selection.unitId),
+        ),
+      };
+    }
+
     await commit({
       ...list,
       regiments: list.regiments.map((regiment) => ({
         ...regiment,
-        hero:
-          regiment.hero?.id === selectionId
-            ? { ...regiment.hero, play: { damage } }
-            : regiment.hero,
-        units: regiment.units.map((slot) =>
-          slot.id === selectionId ? { ...slot, play: { damage } } : slot,
-        ),
+        hero: regiment.hero ? withDamage(regiment.hero) : regiment.hero,
+        units: regiment.units.map((slot) => withDamage(slot)),
       })),
-      auxiliaries: list.auxiliaries.map((slot) =>
-        slot.id === selectionId ? { ...slot, play: { damage } } : slot,
-      ),
+      auxiliaries: list.auxiliaries.map((slot) => withDamage(slot)),
       regimentOfRenown: list.regimentOfRenown
         ? {
             ...list.regimentOfRenown,
-            units: list.regimentOfRenown.units.map((slot) =>
-              slot.id === selectionId ? { ...slot, play: { damage } } : slot,
-            ),
+            units: list.regimentOfRenown.units.map((slot) => withDamage(slot)),
           }
         : null,
     });
@@ -746,6 +758,11 @@ export function BuilderReady({
             list={list}
             faction={faction}
             onOpenSheet={setDatasheet}
+            onRemoveFromPhase={(selectionId, phaseId) => {
+              void commit(
+                hideSelectionFromPhase(listRef.current, selectionId, phaseId),
+              );
+            }}
           />
         ) : forPlayMode && playTab === "magic" && !spearhead ? (
           <PlayMagicBoard

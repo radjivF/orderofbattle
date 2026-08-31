@@ -27,6 +27,7 @@ Order of Battle is a browser hobby helper for Warhammer Age of Sigmar (4th editi
 - [Age of Sigmar wound tracker](/play): Play mode tracks wounds, marks lasting spells, filters abilities by phase
 - [Factions](/factions): Age of Sigmar 4th edition armies you can build
 - [About](/about): Fan project, data source, and legal status
+- [What's new](/updates): Bug fixes in this Age of Sigmar army builder release
 - [Privacy policy](/privacy): Lists stay on the device
 - [Terms of use](/terms): Unofficial helper; not a Games Workshop product
 

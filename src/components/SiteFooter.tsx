@@ -7,10 +7,10 @@ const linkClass =
 
 const mailHref = `mailto:${SITE_CONTACT_EMAIL}?subject=Commission%20list%20builder`;
 
-export function SiteFooter({ showFreePitch = false }: { showFreePitch?: boolean }) {
+export function SiteFooter({ showPitch = true }: { showPitch?: boolean }) {
   return (
     <footer className="px-5 pb-12 text-center text-xs leading-relaxed font-medium text-parchment/70 sm:px-6">
-      {showFreePitch ? (
+      {showPitch ? (
         <div className="gilded-card mx-auto mb-8 max-w-3xl rounded-2xl p-5 text-left sm:p-8">
           <h2 className="gold-text font-serif text-xl sm:text-2xl">
             This app is free. It stays free.
@@ -88,6 +88,9 @@ export function SiteFooter({ showFreePitch = false }: { showFreePitch?: boolean 
         </Link>
         <Link href="/about" className={linkClass}>
           About
+        </Link>
+        <Link href="/updates" className={linkClass}>
+          What&apos;s new
         </Link>
         <a
           href={SITE_GITHUB_URL}

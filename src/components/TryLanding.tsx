@@ -42,15 +42,6 @@ export function TryLanding() {
         <header className={`${SITE_HEADER_BAR_CLASS} relative z-20 pt-[env(safe-area-inset-top)]`}>
           <div className={`${SITE_HEADER_ROW_CLASS} lg:max-w-5xl`}>
             <SiteBrandLockup />
-            <div className="flex shrink-0 items-center gap-3 sm:gap-4">
-            <a
-              href={SITE_GITHUB_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden min-h-11 items-center text-sm font-medium text-parchment/85 underline decoration-parchment/40 underline-offset-2 transition-colors hover:text-sigmarite hover:decoration-sigmarite/50 sm:inline-flex"
-            >
-              GitHub
-            </a>
             <Link
               href="/dashboard"
               className={`${HOME_CTA_CLASS} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sigmarite`}
@@ -71,7 +62,6 @@ export function TryLanding() {
                 />
               </svg>
             </Link>
-            </div>
           </div>
         </header>
 
@@ -354,7 +344,7 @@ export function TryLanding() {
           </section>
         </main>
 
-        <SiteFooter showFreePitch />
+        <SiteFooter />
       </IndexBackdrop>
     </LandingMotion>
   );

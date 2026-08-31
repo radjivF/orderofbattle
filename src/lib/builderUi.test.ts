@@ -17,8 +17,7 @@ import {
   IOS_NAV_ADD_BUTTON_CLASS,
   IOS_NAV_BACK_BUTTON_CLASS,
   IOS_NAV_PLAY_BUTTON_CLASS,
-  LIBRARY_NAV_ACTIONS_CLASS,
-  LIBRARY_NAV_BACKUP_ICON_BUTTON_CLASS,
+  LIBRARY_HEADER_OPTIONS_BUTTON_CLASS,
   LIBRARY_TITLE_CLASS,
   SHEET_CHECKLIST_ITEM_CLASS,
   LIBRARY_CARD_CLASS,
@@ -39,6 +38,7 @@ import {
   CONFIRM_CANCEL_BUTTON_CLASS,
   CONFIRM_SHEET_PANEL_CLASS,
   LIBRARY_OPTIONS_SHEET_PANEL_CLASS,
+  LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS,
   SHEET_FOOTER_ACTIONS_CLASS,
   SHEET_PANEL_CLASS,
   SHEET_SECONDARY_BUTTON_CLASS,
@@ -309,7 +309,8 @@ describe("iOS nav controls", () => {
       "utf8",
     );
     expect(header).toContain("builderHeaderShowsIssueDot");
-    expect(header).toContain('label="New list"');
+    expect(header).not.toContain('label="List options"');
+    expect(header).not.toContain('label="New list"');
     expect(header).not.toContain("IosNavImportButton");
     expect(header).not.toContain("IosNavExportButton");
     expect(header).toContain('label={playMode ? "Build" : "Lists"}');
@@ -341,7 +342,8 @@ describe("iOS nav controls", () => {
       "top-[calc(env(safe-area-inset-top)+3.75rem)]",
     );
     expect(COOKIE_CONSENT_BANNER_CLASS).not.toContain("top-0");
-    expect(COOKIE_CONSENT_BANNER_CLASS).toContain("z-40");
+    expect(COOKIE_CONSENT_BANNER_CLASS).toContain("z-50");
+    expect(COOKIE_CONSENT_BANNER_CLASS).not.toContain("z-40");
 
     const cookie = readFileSync(
       path.resolve(
@@ -353,6 +355,17 @@ describe("iOS nav controls", () => {
     expect(cookie).toContain("COOKIE_CONSENT_BANNER_CLASS");
     expect(cookie).not.toContain("z-50");
 
+    const layout = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../app/layout.tsx",
+      ),
+      "utf8",
+    );
+    expect(layout.indexOf("{children}")).toBeLessThan(
+      layout.indexOf("<CookieConsent"),
+    );
+
     const header = readFileSync(
       path.resolve(
         path.dirname(fileURLToPath(import.meta.url)),
@@ -362,7 +375,19 @@ describe("iOS nav controls", () => {
     );
     expect(header).toContain("SITE_HEADER_ROW_CLASS");
     expect(header).toContain("SiteBrandLockup");
+    expect(header).not.toContain("IosNavOptionsButton");
+    expect(header).not.toContain("IosNavAddButton");
+    expect(header).not.toContain("LIBRARY_HEADER_TITLE_CLASS");
+    expect(header).not.toContain("LIBRARY_HEADER_TITLE_CLUSTER_CLASS");
     expect(header).not.toContain("LIST_FLOW_HEADER_ROW_LIBRARY");
+    expect(LIBRARY_HEADER_OPTIONS_BUTTON_CLASS).not.toContain("ios-liquid-glass");
+    expect(LIBRARY_HEADER_OPTIONS_BUTTON_CLASS).toContain("rounded-full");
+    expect(LIBRARY_HEADER_OPTIONS_BUTTON_CLASS).toContain("bg-ink/50");
+    expect(LIBRARY_HEADER_OPTIONS_BUTTON_CLASS).toContain("border-sigmarite/70");
+    expect(LIBRARY_HEADER_OPTIONS_BUTTON_CLASS).toContain("text-parchment");
+    expect(LIBRARY_HEADER_OPTIONS_BUTTON_CLASS).not.toContain("bg-black");
+    expect(LIBRARY_HEADER_OPTIONS_BUTTON_CLASS).not.toContain("gold-plate");
+    expect(LIBRARY_HEADER_OPTIONS_BUTTON_CLASS).not.toContain("text-parchment/65");
 
     const content = readFileSync(
       path.resolve(
@@ -422,10 +447,6 @@ describe("empty library CTA", () => {
     expect(EMPTY_LIBRARY_CTA_CLASS).not.toContain("gold-plate");
     expect(EMPTY_LIBRARY_SECONDARY_CLASS).toContain("rounded-full");
     expect(EMPTY_LIBRARY_SECONDARY_CLASS).toContain("ring-1");
-    expect(LIBRARY_NAV_BACKUP_ICON_BUTTON_CLASS).toContain("bg-black");
-    expect(LIBRARY_NAV_BACKUP_ICON_BUTTON_CLASS).toContain("text-white");
-    expect(LIBRARY_NAV_BACKUP_ICON_BUTTON_CLASS).toContain("border-white");
-    expect(LIBRARY_NAV_ACTIONS_CLASS).toContain("gap-3");
     expect(SHEET_CHECKLIST_ITEM_CLASS).toContain("ring-parchment-ink/10");
     expect(SHEET_FOOTER_ACTIONS_CLASS).toContain("px-5");
     expect(SHEET_SECONDARY_BUTTON_CLASS).toContain("ring-1");
@@ -458,10 +479,15 @@ describe("empty library CTA", () => {
     );
     expect(screen).toContain("LibraryEmptyState");
     expect(screen).toContain("List options");
+    expect(screen).toContain("openLibraryOptions");
+    expect(screen).toContain("IosNavOptionsButton");
     expect(screen).toContain("LIBRARY_TITLE_CLASS");
+    expect(screen).toContain("LIBRARY_TITLE_ROW_CLASS");
+    expect(screen).toContain("IosNavAddButton");
     expect(LIBRARY_TITLE_CLASS).toContain("text-shadow");
     expect(screen).toContain("sortLibraryLists");
     expect(screen).toContain("Sort lists by");
+    expect(screen).toContain("LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS");
     expect(screen).toContain("Paste a Warhammer App, New Recruit, or Order of Battle list");
     expect(screen).toContain("Export");
     expect(screen).not.toContain("Export all");
@@ -586,6 +612,7 @@ describe("iOS polish contracts", () => {
     expect(SHEET_PANEL_CLASS).toContain("sm:rounded-2xl");
     expect(LIBRARY_OPTIONS_SHEET_PANEL_CLASS).toContain("h-[85vh]");
     expect(LIBRARY_OPTIONS_SHEET_PANEL_CLASS).toContain("sm:min-h-[32rem]");
+    expect(LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS).toContain("border-t");
     expect(CONFIRM_SHEET_PANEL_CLASS).toContain("pt-4");
     expect(CONFIRM_SHEET_PANEL_CLASS).toContain("sm:pt-5");
 
@@ -638,7 +665,8 @@ describe("iOS polish contracts", () => {
       ),
       "utf8",
     );
-    expect(sheet).toContain("w-fit max-w-full");
+    expect(sheet).toContain("w-fit");
+    expect(sheet).toContain("max-w-full");
     expect(sheet).not.toContain("min-w-0 flex-1 py-2 pr-2 text-left");
     expect(sheet).not.toContain("min-w-0 flex-1 text-left active:opacity-60");
   });
