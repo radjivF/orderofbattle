@@ -56,6 +56,7 @@ describe("faction art LCP", () => {
       "utf8",
     );
     expect(backdrop).toContain('decoding="sync"');
+    expect(backdrop).toContain('loading="eager"');
     expect(backdrop).toContain('fetchPriority="high"');
     expect(backdrop).not.toContain("scale-[1.03]");
     expect(backdrop).toContain("LIST_DETAIL_BACKDROP_TRANSITION_CLASS");
