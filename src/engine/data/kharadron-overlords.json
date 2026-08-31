@@ -3783,14 +3783,38 @@
               "id": "0e2a-a5d5-9398-7cf9",
               "name": "Risen Through Arkanaut Ranks",
               "destiny": 0,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Risen Through Arkanaut Ranks",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the following regiment options: Any Kharadron Overlords units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "8742-d350-177a-50d9",
               "name": "Scholar of the Aether-Khemists Guild",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Scholar of the Aether-Khemists Guild",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the following regiment options: Any Kharadron Overlords units In addition, replace your hero's Kharadron Pistol with a Kharadron Anatomiser.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Kharadron Pistol",
@@ -3809,7 +3833,19 @@
               "id": "bab5-41c5-2a91-17df",
               "name": "Endrineers Guild Mechanist",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Endrineers Guild Mechanist",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains Fly, the Dirgible Suit Tools weapon and the following regiment options: Any Kharadron Overlords units In addition, change your hero's Move characteristic to 12\".",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "stats": {
                 "move": "12\""
@@ -3826,6 +3862,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "This unit can use Unbind abilities as if it has Wizard (1).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Nav-league Sky-analyst",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the 'Spellbreaker' ability and the following regiment options: Any Kharadron Overlords units",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -3857,6 +3904,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Aerostabilisers",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the 'Backup Thruster-endrins' ability to your Flagship's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -3865,14 +3923,38 @@
               "id": "fea8-4267-db0b-c02b",
               "name": "Oversized Propellers",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Oversized Propellers",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2\" to your Flagship's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "cb73-badc-26b6-4197",
               "name": "Reinforced Hull",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Reinforced Hull",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your Flagship's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -3898,7 +3980,19 @@
               "id": "c991-b5b8-b616-7683",
               "name": "Grapeshot Batteries",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Grapeshot Batteries",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the 'Grapeshot Batteries' weapon to your Flagship's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Grapeshot Batteries",
@@ -3924,6 +4018,17 @@
                   "timing": "End of Your Turn",
                   "declare": "",
                   "effect": "This unit can move a distance up to its Move characteristic. It can pass through the combat ranges of enemy units that were in combat with it at the start of the move, but not those of other enemy units. It cannot end the move in combat.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Full Power, Helmsman!",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the 'Custom Aetherburner' ability to your Flagship's warscroll.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -4112,7 +4217,19 @@
               "id": "e431-99ec-b9a3-3ee6",
               "name": "Resolute Explorer",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Resolute Explorer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -4122,7 +4239,19 @@
               "id": "71e8-09f9-6cf5-5e75",
               "name": "Forgeborn",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Forgeborn",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Wound characteristic of your hero's Steamforged Weapon is 2.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Steamforged Weapon",
@@ -4141,14 +4270,38 @@
               "id": "abb2-b2f4-7ae6-4030",
               "name": "Mastercrafted Skysuit",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Mastercrafted Skysuit",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (6+)..",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "2e8b-0f7e-1cfa-7962",
               "name": "Quickshot",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Quickshot",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the Attacks characteristic of your hero's Kharadron Pistol.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Kharadron Pistol",
@@ -4186,7 +4339,19 @@
               "id": "05c6-a61f-ee8e-1c4f",
               "name": "Tough as Old Boots",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Tough as Old Boots",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 2
@@ -4196,7 +4361,19 @@
               "id": "f29d-c991-cd4e-db83",
               "name": "Sawtoothed Weapons",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Sawtoothed Weapons",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's melee weapons have Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -4241,7 +4418,19 @@
               "id": "0c0a-68a8-2879-f1ea",
               "name": "Gift from the Grundcorps",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Gift from the Grundcorps",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Replace your hero's ranged weapon with the Gift from the Grundcorps weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Gift from the Grundcorps",

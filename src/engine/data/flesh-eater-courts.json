@@ -4430,14 +4430,38 @@
               "id": "d206-b866-67d2-8aa2",
               "name": "Landed Noble",
               "destiny": 0,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Landed Noble",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Noble keyword and the following regiment options: Any Serfs or Knights units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "ebc1-8fc3-1d16-af60",
               "name": "Blooded Royalty",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Blooded Royalty",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Wizard (1) and Abhorrant keywords and the following regiment options: Any Flesh-eater Courts units In addition, replace your hero's melee weapon with Sharpened Talons and Fangs.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Sharpened Talons and Fangs",
@@ -4456,7 +4480,19 @@
               "id": "915d-14d2-cefe-7d03",
               "name": "Ushorite Cleric",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Ushorite Cleric",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Priest (1) and Abhorrant keywords and the following regiment options: Any Flesh-eater Courts units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             }
           ]
@@ -4471,7 +4507,19 @@
               "id": "f3fe-f906-30cc-9b1a",
               "name": "Nightshrieker",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Nightshrieker",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Nightshrieker's Claws and Teeth weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 8. \u2022 Replace the Infantry keyword with the following keywords: Cavalry, Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Nightshrieker's Claws and Teeth",
@@ -4501,6 +4549,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Corpse-beast's Talons is 5.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Royal Winged Abomination",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Diseased Breath, Corpse-beast's Maw and Corpse-beast's Talons weapons and the 'Battle Damaged' ability to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 16. \u2022 Change the Control characteristic to 5. \u2022 Change the Save characteristic to 4+. \u2022 Replace the Infantry keyword with the Monster keyword.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -4560,6 +4619,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Winged Abomination's Talons is 4.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Royal Winged Abomination",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Fearsome Scream, Winged Abomination's Maw and Winged Abominations Talons weapons and the 'Battle Damaged' ability to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 16. \u2022 Change the Control characteristic to 5. \u2022 Change the Save characteristic to 4+. \u2022 Replace the Infantry keyword with the following keywords: Monster, Fly",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -4807,7 +4877,19 @@
               "id": "1c8f-d214-2a5a-b568",
               "name": "Speed of Undeath",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Speed of Undeath",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 2
@@ -4817,7 +4899,19 @@
               "id": "372c-7873-e61e-016b",
               "name": "Vile Exhalation",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Vile Exhalation",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Add the 'Vile Exhalation' weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Vile Exhalation",
@@ -4836,7 +4930,19 @@
               "id": "2574-5ce3-257d-8016",
               "name": "Preferred Prey",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Preferred Prey",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Your hero's Companion melee weapons have Anti-X (+1 Rend), where X is a faction keyword or one of the following keywords: Infantry, Cavalry, Monster, War Machine, Hero, Wizard, Priest.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -4927,7 +5033,19 @@
               "id": "2f8e-d7f4-de46-35a8",
               "name": "Imposing Ruler",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Imposing Ruler",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -4937,7 +5055,19 @@
               "id": "4740-3ed6-4dac-eb9f",
               "name": "Elongated Talons",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Elongated Talons",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Rend characteristic of your hero's Tainted Talons and Fangs or Sharpened Talons and Fangs is 2.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Sharpened Talons and Fangs",
@@ -4967,7 +5097,19 @@
               "id": "ab88-f737-2774-0744",
               "name": "Hulking Corpus",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Hulking Corpus",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 2
@@ -4977,14 +5119,38 @@
               "id": "88a0-22b8-27c8-d202",
               "name": "Filth-caked Claws",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Filth-caked Claws",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's non-Companion melee weapons have Crit (Auto-wound).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "3865-e92b-c39b-7060",
               "name": "Colony of Bats",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Colony of Bats",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add the 'Colony of Bats' weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Colony of Bats",
@@ -5003,21 +5169,57 @@
               "id": "1da3-089e-7953-b1fa",
               "name": "Court Champion",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Court Champion",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 3 to the Attacks characteristic of your hero's melee weapons.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "b742-a569-d133-09df",
               "name": "Knight of the Realm",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Knight of the Realm",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's non-Companion melee weapons have Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "10e9-5a72-1ecc-0a7a",
               "name": "Leathery Wings",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Leathery Wings",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Your hero has Fly. Change your hero's Move characteristic to 12\".",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "stats": {
                 "move": "12"

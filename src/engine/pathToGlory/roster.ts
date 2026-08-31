@@ -119,6 +119,50 @@ export function applyPathToGloryPacks(
   };
 }
 
+export function assignPathToGloryHeroEnhancement(
+  list: ArmyList,
+  selectionId: string,
+  kind: "artefact" | "heroicTrait",
+  optionId: string | null,
+): ArmyList {
+  if (!isPathToGloryList(list)) {
+    return list;
+  }
+  const field = kind === "artefact" ? "artefactId" : "heroicTraitId";
+  const update = (slot: Selection | null): Selection | null => {
+    if (!slot || slot.id !== selectionId) {
+      return slot;
+    }
+    return mergePathToGlory(slot, { [field]: optionId });
+  };
+  return {
+    ...list,
+    artefact:
+      kind === "artefact" && list.artefact?.heroSelectionId === selectionId
+        ? null
+        : list.artefact,
+    heroicTrait:
+      kind === "heroicTrait" &&
+      list.heroicTrait?.heroSelectionId === selectionId
+        ? null
+        : list.heroicTrait,
+    regiments: list.regiments.map((regiment) => ({
+      ...regiment,
+      hero: update(regiment.hero),
+      units: regiment.units.map((slot) => update(slot) ?? slot),
+    })),
+    auxiliaries: list.auxiliaries.map((slot) => update(slot) ?? slot),
+    regimentOfRenown: list.regimentOfRenown
+      ? {
+          ...list.regimentOfRenown,
+          units: list.regimentOfRenown.units.map(
+            (slot) => update(slot) ?? slot,
+          ),
+        }
+      : null,
+  };
+}
+
 export function patchSelection(
   list: ArmyList,
   selectionId: string,

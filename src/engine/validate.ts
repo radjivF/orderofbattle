@@ -3,10 +3,13 @@ import { listUsesScourgeContent } from "./scourgeRealm";
 import {
   getUnit,
   getListUnit,
+  getFaction,
   getRegimentOfRenown,
   canJoinRegiment,
   canTakeMonstrousTrait,
+  canTakeSpecialEnhancement,
   canTakeVisionOfFate,
+  specialEnhancementTablesForList,
   selectionPoints,
   pickedEnhancementPoints,
   armyHasKeyword,
@@ -28,6 +31,7 @@ import {
   isPathToGloryList,
   pathToGloryManifestationPoints,
   pathToGlorySpellIds,
+  uniqueKeywordBlocksEnhancements,
 } from "./pathToGlory";
 import type {
   ArmyList,
@@ -269,6 +273,7 @@ export function summarize(
 
   warnUniqueEnhancement(list, faction, list.artefact, "artefact", issues);
   warnUniqueEnhancement(list, faction, list.heroicTrait, "heroic trait", issues);
+  warnPathToGloryUnitEnhancements(list, faction, issues);
   warnMonstrousTrait(list, faction, issues);
   warnVisionOfFate(list, faction, issues);
   warnSpecialEnhancements(list, faction, issues);
@@ -368,9 +373,33 @@ export function pruneOrphanEnhancements(list: ArmyList): ArmyList {
     list.visionOfFate && ids.has(list.visionOfFate.heroSelectionId)
       ? list.visionOfFate
       : null;
-  const specialEnhancements = (list.specialEnhancements ?? []).filter((pick) =>
-    ids.has(pick.heroSelectionId),
-  );
+  const faction = getFaction(list.factionId);
+  const visibleTables = faction
+    ? specialEnhancementTablesForList(faction, list)
+    : [];
+  const specialEnhancements = (list.specialEnhancements ?? []).filter((pick) => {
+    if (!ids.has(pick.heroSelectionId)) {
+      return false;
+    }
+    if (!faction) {
+      return true;
+    }
+    const table = visibleTables.find((item) => item.id === pick.tableId);
+    if (!table) {
+      return false;
+    }
+    const selection = rosterSelection(list, pick.heroSelectionId);
+    if (!selection) {
+      return false;
+    }
+    const unit = unitForSelection(
+      list,
+      faction,
+      selection.unitId,
+      pick.heroSelectionId,
+    );
+    return !unit || canTakeSpecialEnhancement(unit, table);
+  });
 
   if (
     artefact === list.artefact &&
@@ -413,6 +442,19 @@ function rosterSelection(list: ArmyList, selectionId: string) {
     }
   }
   return null;
+}
+
+function rosterSelections(list: ArmyList): Selection[] {
+  const selections: Selection[] = [];
+  for (const regiment of list.regiments) {
+    if (regiment.hero) {
+      selections.push(regiment.hero);
+    }
+    selections.push(...regiment.units);
+  }
+  selections.push(...list.auxiliaries);
+  selections.push(...(list.regimentOfRenown?.units ?? []));
+  return selections;
 }
 
 function scourgeRealmLabel(realm: "core" | "aqshy" | "ghyran"): string {
@@ -624,7 +666,7 @@ function warnUniqueEnhancement(
     }
   } else {
     const unit = getUnit(faction, selection.unitId);
-    if (unit?.unique) {
+    if (unit && uniqueKeywordBlocksEnhancements(unit)) {
       issues.push({
         tone: "warn",
         text: `Unique heroes cannot take ${article.toLowerCase()} ${label}.`,
@@ -639,6 +681,50 @@ function warnUniqueEnhancement(
       tone: "warn",
       text: `Unknown ${label}.`,
     });
+  }
+}
+
+function warnPathToGloryUnitEnhancements(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  issues: ListIssue[],
+) {
+  if (!isPathToGloryList(list)) {
+    return;
+  }
+  for (const selection of rosterSelections(list)) {
+    const artefactId = selection.pathToGlory?.artefactId;
+    if (
+      artefactId &&
+      !(
+        list.artefact?.heroSelectionId === selection.id &&
+        list.artefact.optionId === artefactId
+      )
+    ) {
+      warnUniqueEnhancement(
+        list,
+        faction,
+        { heroSelectionId: selection.id, optionId: artefactId },
+        "artefact",
+        issues,
+      );
+    }
+    const traitId = selection.pathToGlory?.heroicTraitId;
+    if (
+      traitId &&
+      !(
+        list.heroicTrait?.heroSelectionId === selection.id &&
+        list.heroicTrait.optionId === traitId
+      )
+    ) {
+      warnUniqueEnhancement(
+        list,
+        faction,
+        { heroSelectionId: selection.id, optionId: traitId },
+        "heroic trait",
+        issues,
+      );
+    }
   }
 }
 
@@ -716,10 +802,15 @@ function warnSpecialEnhancements(
       selection.unitId,
       pick.heroSelectionId,
     );
-    if (unit?.unique) {
+    if (table?.realm && list.scourgeRealm !== table.realm) {
       issues.push({
         tone: "warn",
-        text: `${unit.name} cannot take ${table?.name ?? "a special enhancement"}.`,
+        text: `${table.name} is not available for this Scourge season.`,
+      });
+    } else if (unit && table && !canTakeSpecialEnhancement(unit, table)) {
+      issues.push({
+        tone: "warn",
+        text: `${unit.name} cannot take ${table.name}.`,
       });
     }
     if (!table || !namedOption(table.options, pick.optionId)) {

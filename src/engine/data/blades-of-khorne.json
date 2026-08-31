@@ -4918,7 +4918,19 @@
               "id": "7810-580d-c5b7-2f3f",
               "name": "Khornate Warlord",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Khornate Warlord",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Bloodbound keyword and the following regiment options: Any Blades of Khorne units In addition, change your hero's Save characteristic to 3+ and change their melee weapon to a Great Blood-slick Weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Blood-slick Weapon",
@@ -4951,21 +4963,57 @@
               "id": "b9d2-7734-7a08-f124",
               "name": "Priest of Khorne",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Priest of Khorne",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Bloodbound and Priest (1) keywords and the following regiment options: Any Bloodbound units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "0b78-459c-b644-2dac",
               "name": "Daemon of Fury",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Daemon of Fury",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Daemon and Priest (1) keywords and the following regiment options: Any Blades of Khorne Daemon units In addition, your hero has Ward (6+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "353c-e908-7839-9082",
               "name": "Daemon of Violence",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Daemon of Violence",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Daemon keyword and the following regiment options: Any Blades of Khorne Daemon units In addition, your hero has Ward (6+) and change their melee weapon to a Bloodshed Blade.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Bloodshed Blade",
@@ -4984,7 +5032,19 @@
               "id": "f55e-57e5-853e-ae93",
               "name": "Locus of Battle",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Locus of Battle",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Bloodbound keyword and the following regiment options: Any Blades of Khorne units In addition, change your hero's Save characteristic to 3+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "stats": {
                 "save": "3+"
@@ -5170,7 +5230,19 @@
               "id": "0202-9ce6-a9d9-24bb",
               "name": "Trophy Racks",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Trophy Racks",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 2
@@ -5180,7 +5252,19 @@
               "id": "10ec-d48c-d24e-008c",
               "name": "Killer's Heirloom",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Killer's Heirloom",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Wound characteristic of your hero's Blood-slick Weapon is 3+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Blood-slick Weapon",
@@ -5199,7 +5283,19 @@
               "id": "e04b-17f3-e85a-0437",
               "name": "Slaughterous Speed",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Slaughterous Speed",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 1\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 1
@@ -5209,7 +5305,19 @@
               "id": "625d-4fe3-ba0b-0b9e",
               "name": "Preferred Prey",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Preferred Prey",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's melee weapon has Anti-X (+1 Rend), where X is one of the following keywords: Infantry, Cavalry, Monster, War Machine, Wizard, or Priest.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -5273,7 +5381,19 @@
               "id": "f8b7-95db-3deb-4377",
               "name": "Leathery Wings",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Leathery Wings",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Your hero has Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -5337,7 +5457,19 @@
               "id": "ebca-1f31-8763-d009",
               "name": "Butcher's Brawn",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Butcher's Brawn",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the Damage characteristic of your hero's non-Companion melee weapons.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             }
           ]
@@ -5352,7 +5484,19 @@
               "id": "b257-3fc0-2172-cb6e",
               "name": "Blood Throne",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Blood Throne",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Daemon Rider's Hellblades weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 8\". \u2022 Change the Health characteristic to 10. \u2022 Replace the Infantry keyword with the War Machine keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Daemon Rider's Hellblades",
@@ -5375,7 +5519,19 @@
               "id": "1d95-ecc1-9d29-dfcf",
               "name": "Juggernaut",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Juggernaut",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Juggernaut's Brass-shod Hooves weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 8. \u2022 If this unit is Bloodbound, change the Save characteristic to 2+. \u2022 If this unit is Daemon, change the Save characteristic to 3+. \u2022 Replace the Infantry keyword with the Cavalry keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Juggernaut's Brass-shod Hooves",
@@ -5407,7 +5563,19 @@
               "id": "619f-7912-8e4a-9546",
               "name": "Furious Haste",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Furious Haste",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 2
@@ -5417,7 +5585,19 @@
               "id": "2ea1-35db-d763-23bc",
               "name": "Studded Brass Hide",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Studded Brass Hide",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Health characteristic,",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 2
@@ -5427,7 +5607,19 @@
               "id": "9956-7e54-2847-c6fa",
               "name": "Spikes and Blades",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Spikes and Blades",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Companion weapons have Crit (Mortal).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {

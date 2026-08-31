@@ -3343,7 +3343,19 @@
               "id": "d184-06cb-47c7-26f5",
               "name": "Warlord",
               "destiny": 0,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Warlord",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Save characteristic to 3+. Their Hashutite Blade has an Attacks characteristic of 5 and Crit (Mortal). They gain the following regiment options: Any Helsmiths of Hashut units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Hashutite Blade",
@@ -3365,7 +3377,19 @@
               "id": "b3ba-b3d6-71ae-f96b",
               "name": "Infernal Sorcerer",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Infernal Sorcerer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Wizard (1) keyword. Their Hashutite Blade has an Attacks characteristic of 5 and Crit (Mortal). They gain the following regiment options: Any Helsmiths of Hashut units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Hashutite Blade",
@@ -3391,6 +3415,17 @@
                   "timing": "End of Your Turn",
                   "declare": "",
                   "effect": "If this unit is contesting an objective, a Place of Power, or a terrain feature and that objective, Place of Power or terrain feature has a friendly desolation token, give this unit 1 ritual point.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Scorched Acolyte",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Priest (1) keyword, the 'Extract Power' ability and the following regiment options: Any Helsmiths of Hashut units",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -3429,6 +3464,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "Apply the effect below that corresponds with the number of daemonic power points this unit has: 1 This unit has Ward (6+). 2 This unit has Ward (5+). 3 This unit has Ward (4+) against damage inflicted by Spells, Prayers, and abilites used by Manifestations. Otherwise, it has Ward (5+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Infernal Taurus",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Horns and Hooves weapon and 'Battle Damaged' and 'Daemonic Resilience' abilities to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 12. \u2022 Change the Control characteristic to 5. \u2022 Change the Save characteristic to 3+. \u2022 Replace the Infantry keyword with the following keywords: Monster, War Machine, Fly.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -3477,6 +3523,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "Apply the effect below that corresponds with the number of daemonic power points this unit has: 1 This unit has Ward (6+). 2 This unit has Ward (5+). 3 This unit has Ward (4+) against damage inflicted by Spells, Prayers, and abilites used by Manifestations. Otherwise, it has Ward (5+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Venerable Taurus",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Crushing Horns and Hooves weapon and 'Battle Damaged' and 'Daemonic Resilience' abilities to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 14. \u2022 Change the Control characteristic to 5. \u2022 Change the Save characteristic to 3+. \u2022 Replace the Infantry keyword with the following keywords: Monster, War Machine, Fly.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -3656,7 +3713,19 @@
               "id": "cd1c-1c60-fe0c-e3b8",
               "name": "Reinforcing Cuneiform",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Reinforcing Cuneiform",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 1
@@ -3685,7 +3754,19 @@
               "id": "c49b-3fbd-e241-5942",
               "name": "Flesh-melting Aura",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Flesh-melting Aura",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Flesh-melting Aura weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Flesh-melting Aura",
@@ -3750,7 +3831,19 @@
               "id": "7461-f427-9565-9414",
               "name": "Dominating Presence",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Dominating Presence",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -3760,7 +3853,19 @@
               "id": "48ac-9a08-a4b2-0f9c",
               "name": "Hardy Constitution",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Hardy Constitution",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 1 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 1
@@ -3770,7 +3875,19 @@
               "id": "1e41-29ba-099f-b51d",
               "name": "Foe-seeking Hexes",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Foe-seeking Hexes",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Hit characteristic of your hero's Hashutite Blade is 2+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Hashutite Blade",
@@ -3789,7 +3906,19 @@
               "id": "fd42-4cac-95d7-ac6b",
               "name": "Malignant Brawn",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Malignant Brawn",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Wound characteristic of your hero's Hashutite Blade is 3+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Hashutite Blade",
@@ -3808,7 +3937,19 @@
               "id": "b221-d35b-96d7-3eff",
               "name": "Cuneiform-etched Blade",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Cuneiform-etched Blade",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Hashutite Blade has Crit (Mortal).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Hashutite Blade",
@@ -3827,7 +3968,19 @@
               "id": "0cc8-77dc-207c-b74d",
               "name": "Spiteful Rivalry",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Spiteful Rivalry",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Hashutite Blade has Anti-X (+1 Rend), where X is one of the following keywords: Infantry, Cavalry, Monster, War Machine, Wizard or Priest",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Hashutite Blade",
@@ -3865,7 +4018,19 @@
               "id": "e5fd-7e84-9ff0-bc55",
               "name": "Rigorously Trained",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Rigorously Trained",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the Attacks characteristic of your hero's Hashutite Blade.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Hashutite Blade",

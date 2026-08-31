@@ -15,7 +15,7 @@ import type {
   FactionCatalogue,
   Selection,
 } from "./types";
-import { pathToGloryExportBits, isPathToGloryList, learnedManifestationsForList, learnedSpellsForList, selectionDisplayName } from "./pathToGlory";
+import { pathToGloryExportBits, isPathToGloryList, learnedManifestationsForList, learnedSpellsForList, pathToGloryPacksLabel, selectionArtefactOptionId, selectionDisplayName, selectionHeroicTraitOptionId } from "./pathToGlory";
 import { summarize } from "./validate";
 
 function selectionLine(
@@ -32,6 +32,22 @@ function selectionLine(
   const size = unitSizeLabel(unit, selection.reinforced);
   const reinforced = selection.reinforced ? ", reinforced" : "";
   const extra = pathToGloryExportBits(selection, unit);
+  if (isPathToGloryList(list)) {
+    const artefactName = enhancementOptionName(
+      faction.artefacts,
+      selectionArtefactOptionId(list, selection),
+    );
+    if (artefactName) {
+      extra.push(`Artefact: ${artefactName}`);
+    }
+    const traitName = enhancementOptionName(
+      faction.heroicTraits,
+      selectionHeroicTraitOptionId(list, selection),
+    );
+    if (traitName) {
+      extra.push(`Heroic trait: ${traitName}`);
+    }
+  }
   const extraText = extra.length > 0 ? ` · ${extra.join(" · ")}` : "";
   if (opts?.omitPoints) {
     return `- ${display}${reinforced} · ${size}${extraText}`;
@@ -98,6 +114,12 @@ export function exportArmyListText(
   lines.push("");
   lines.push(list.name.trim() || "Untitled list");
   lines.push(faction.name);
+  if (isPathToGloryList(list)) {
+    const packs = pathToGloryPacksLabel(
+      list.pathToGlory?.packIds ?? ["ascension"],
+    );
+    lines.push(`Path to Glory · ${packs}`);
+  }
   if (list.scourgeRealm && !isPathToGloryList(list)) {
     lines.push(
       list.scourgeRealm === "aqshy"
@@ -169,20 +191,24 @@ export function exportArmyListText(
   }
 
   const enhancementLines = [
-    enhancementLine(
-      "Artefact",
-      faction.artefacts,
-      list.artefact,
-      list,
-      faction,
-    ),
-    enhancementLine(
-      "Heroic trait",
-      faction.heroicTraits,
-      list.heroicTrait,
-      list,
-      faction,
-    ),
+    isPathToGloryList(list)
+      ? null
+      : enhancementLine(
+          "Artefact",
+          faction.artefacts,
+          list.artefact,
+          list,
+          faction,
+        ),
+    isPathToGloryList(list)
+      ? null
+      : enhancementLine(
+          "Heroic trait",
+          faction.heroicTraits,
+          list.heroicTrait,
+          list,
+          faction,
+        ),
     enhancementLine(
       "Monstrous trait",
       faction.monstrousTraits ?? [],

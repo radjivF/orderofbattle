@@ -1628,7 +1628,73 @@
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
-  "specialEnhancementTables": [],
+  "specialEnhancementTables": [
+    {
+      "id": "aspects-of-the-deepwoods",
+      "name": "Aspects of the Deepwoods",
+      "realm": "aqshy",
+      "restrictTo": "nonHeroNonMonster",
+      "options": [
+        {
+          "id": "012e-015d-04ea-be6f",
+          "name": "Aspect of Harvestboon",
+          "abilities": [
+            {
+              "name": "Aspect of Harvestboon",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Add 2\" to this unit's Move characteristic while it is wholly within the creeping overgrowth.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Aspects of the Deepwoods",
+          "points": 10
+        },
+        {
+          "id": "45ca-b1dc-91c1-cfac",
+          "name": "Aspect of Ironbark",
+          "abilities": [
+            {
+              "name": "Aspect of Ironbark",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When resolving the damage sequence for this unit, if you spend rage dice as part of the 'Fight Through the Pain' ability, you can re-roll any of the dice that determine whether damage points are removed from this unit's damage pool. After the damage sequence has been resolved, if you rolled a total of 10+ on those re-rolls, this ability has no effect for the rest of the battle.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Aspects of the Deepwoods",
+          "points": 10
+        },
+        {
+          "id": "ecb4-a20b-99ed-27da",
+          "name": "Aspect of Heartwood",
+          "abilities": [
+            {
+              "name": "Aspect of Heartwood",
+              "kind": "Activated",
+              "timing": "Once Per Battle, Reaction: You declared the 'Endless Growth' ability",
+              "declare": "",
+              "effect": "If this unit is wholly within the creeping overgrowth, for each target of that ability that is wholly within 12\" of this unit, you can pick 1 of the following effects: \u2022 When resolving that ability, roll a D6 for the target instead of a D3. If, as a result of another ability, you would Heal (3) the target instead of rolling a dice, Heal (6) the target instead. \u2022 If the target is Kurnothi, instead of rolling a D3 and picking 1 of the effects of that ability to apply to it, you can return 1 slain model to the target unit.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Aspects of the Deepwoods",
+          "points": 10
+        }
+      ]
+    }
+  ],
   "terrain": [
     {
       "id": "cda9-53e5-99de-f836",
@@ -4165,7 +4231,19 @@
               "id": "8e11-6d71-6fb8-767c",
               "name": "Swarm of Spites",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Swarm of Spites",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Swarm of Spites weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Swarm of Spites",
@@ -4360,7 +4438,19 @@
               "id": "4805-ca0f-4414-607a",
               "name": "Kurnoth Javelin",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Kurnoth Javelin",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Kurnoth Javelin weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Kurnoth Javelin",
@@ -4379,7 +4469,19 @@
               "id": "4e0d-bbbe-4927-2c1c",
               "name": "Colossal",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Colossal",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 2
@@ -4454,7 +4556,19 @@
               "id": "d26d-df48-c439-14c5",
               "name": "Forest Chieftain",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Forest Chieftain",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -4464,28 +4578,76 @@
               "id": "73b0-ff24-139b-e25c",
               "name": "All Bark, All Bite",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "All Bark, All Bite",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the Attacks characteristic of your hero's non-Companion melee weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "972d-b3c4-a990-b454",
               "name": "Guardian Spirit",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Guardian Spirit",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's non-Companion melee weapon has Anti-charge (+1 Rend).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "2c58-16d5-a1d7-8389",
               "name": "Fey Form",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Fey Form",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (5+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "2d06-58ec-85fd-dc0a",
               "name": "Strangleroots",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Strangleroots",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the 'Strangleroots' weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Strangleroots",
@@ -4504,7 +4666,19 @@
               "id": "eb17-f312-61e2-6ea0",
               "name": "Jade Attunement",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Jade Attunement",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Pick 1 of the following keywords for your hero to have: Wizard (1) or Priest (1).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -4530,14 +4704,38 @@
               "id": "81bc-d37d-cf9b-a070",
               "name": "Exceptional Fury",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Exceptional Fury",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the Damage characteristic of your hero's non-Companion melee weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "325b-4830-49ae-8631",
               "name": "Ancient Spirit",
               "destiny": -8,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Ancient Spirit",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Wizard or Priest only. Add 1 to your hero's power level.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -4871,7 +5069,19 @@
               "id": "b0c1-8a63-2a42-aa80",
               "name": "Swarm of Spites",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Swarm of Spites",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Swarm of Spites weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Swarm of Spites",
@@ -4890,7 +5100,19 @@
               "id": "8548-35ec-9fbe-69a3",
               "name": "Dragonspite",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Dragonspite",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry Hero only. Add the Sharp Mandibles weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 7. \u2022 Replace the Infantry keyword with the Cavalry keyword. \u2022 Add the Fly keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Sharp Mandibles",
@@ -4920,6 +5142,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Razor-like Mandibles is 3.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Greatspite",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry Hero only. Add the Razor-like Mandibles weapon and the 'Battle Damaged' ability to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Save characteristic to 3+. \u2022 Change the Health characteristic to 14. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the Monster keyword.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -5126,14 +5359,38 @@
               "id": "ef26-34c6-fcff-1565",
               "name": "Spiterider Great Lance",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Spiterider Great Lance",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Non-Forest Elder only. Your hero's non-Companion melee weapons have Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "1bda-a1ad-aa29-fe29",
               "name": "Kurnoth Javelin",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Kurnoth Javelin",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Kurnoth Javelin weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Kurnoth Javelin",
@@ -5152,7 +5409,19 @@
               "id": "8864-042c-4550-51ef",
               "name": "Colossal",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Colossal",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 2
@@ -5227,7 +5496,19 @@
               "id": "7f5e-feb2-c4e5-238a",
               "name": "Forest Chieftain",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Forest Chieftain",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -5237,28 +5518,76 @@
               "id": "8065-ea4d-2be5-f2e9",
               "name": "All Bark, All Bite",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "All Bark, All Bite",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the Attacks characteristic of your hero's non-Companion melee weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "7b27-97dc-c334-951c",
               "name": "Guardian Spirit",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Guardian Spirit",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's non-Companion melee weapon has Anti-charge (+1 Rend).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "dfc0-a341-f851-9d12",
               "name": "Fey Form",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Fey Form",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (5+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "582b-ba4f-f484-3962",
               "name": "Strangleroots",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Strangleroots",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the 'Strangleroots' weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Strangleroots",
@@ -5277,7 +5606,19 @@
               "id": "4ecd-dba9-8478-aa75",
               "name": "Jade Attunement",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Jade Attunement",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Pick 1 of the following keywords for your hero to have: Wizard (1) or Priest (1).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -5303,7 +5644,19 @@
               "id": "39c6-eb86-5669-7e5d",
               "name": "Zephyrspite",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Zephyrspite",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 4\" to your hero's Move characteristic. Your hero has Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 4
@@ -5313,14 +5666,38 @@
               "id": "8782-9f11-9418-bc9f",
               "name": "Exceptional Fury",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Exceptional Fury",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the Damage characteristic of your hero's non-Companion melee weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "32cc-da26-a93e-7916",
               "name": "Ancient Spirit",
               "destiny": -8,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Ancient Spirit",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Wizard or Priest only. Add 1 to your hero's power level.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {

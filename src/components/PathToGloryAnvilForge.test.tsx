@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { getFaction } from "@/engine/queries";
-import { render, screen } from "@/test-utils/render";
+import { fireEvent, render, screen } from "@/test-utils/render";
 import userEvent from "@testing-library/user-event";
 import { PathToGloryUnitExtras } from "./PathToGloryUnitExtras";
 
@@ -41,9 +41,10 @@ describe("PathToGloryUnitExtras Anvil forge", () => {
     );
 
     expect(screen.queryByLabelText(/^chamber$/i)).not.toBeInTheDocument();
-    await user.click(
-      screen.getByRole("button", { name: /forge anvil of apotheosis/i }),
+    expect(screen.getByRole("button", { name: /go to forge/i })).toHaveClass(
+      "pressable",
     );
+    await user.click(screen.getByRole("button", { name: /go to forge/i }));
     expect(screen.getByLabelText(/hero rank/i)).toBeInTheDocument();
     const chamber = screen.getByLabelText(/^chamber$/i);
     expect(chamber).toBeInTheDocument();
@@ -59,6 +60,19 @@ describe("PathToGloryUnitExtras Anvil forge", () => {
         name: /anvil of apotheosis: stormcast eternals hero datasheet/i,
       }),
     ).toBeInTheDocument();
+    expect(screen.queryByText(/what it does/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/\+1 Control/i)).toBeInTheDocument();
+    const seeMore = screen.getByRole("button", {
+      name: /see more, loyal companion/i,
+    });
+    expect(seeMore.closest("label")).toBeNull();
+    expect(seeMore.parentElement?.textContent).toMatch(/…\s*See more/);
+    expect(screen.queryByText(/effect ·/i)).not.toBeInTheDocument();
+    fireEvent.click(seeMore);
+    expect(
+      screen.getByRole("button", { name: /see less, loyal companion/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/effect ·/i)).toBeInTheDocument();
 
     const vanguard = anvil.anvilForge
       ?.find((group) => group.name === "Chamber")

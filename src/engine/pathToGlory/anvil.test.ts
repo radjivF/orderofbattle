@@ -245,6 +245,101 @@ describe("resolveAnvilUnit", () => {
     expect(resolved.stats.move).toBe("10\"");
     expect(resolved.stats.health).toBe("8");
   });
+
+  it("puts Fly Wings on the datasheet instead of the ability list", () => {
+    const faction = getFaction("maggotkin-of-nurgle");
+    const anvil = faction?.units.find((unit) =>
+      unit.name.startsWith("Anvil of Apotheosis: Maggotkin"),
+    );
+    expect(anvil).toBeTruthy();
+    if (!anvil) return;
+
+    const fly = anvil.anvilForge
+      ?.flatMap((group) => group.options)
+      .find((option) => option.name === "Fly Wings");
+    const warrior = anvil.anvilForge
+      ?.flatMap((group) => group.options)
+      .find((option) => option.name === "Infected Warrior");
+    expect(fly && warrior).toBeTruthy();
+    if (!fly || !warrior) return;
+
+    const resolved = resolveAnvilUnit(anvil, {
+      id: "s",
+      unitId: anvil.id,
+      reinforced: false,
+      pathToGlory: ptg({ anvilPickIds: [warrior.id, fly.id] }),
+    });
+    expect(resolved.categories).toContain("FLY");
+    expect(resolved.abilities.map((item) => item.name)).not.toContain("Fly Wings");
+    expect(resolved.abilities.map((item) => item.name)).not.toContain(
+      "Infected Warrior",
+    );
+    expect(resolved.weapons.some((item) => item.name === "Great Blight Weapon")).toBe(
+      true,
+    );
+  });
+
+  it("adds Snotshower Sneeze as a weapon and hides the warscroll instruction", () => {
+    const faction = getFaction("maggotkin-of-nurgle");
+    const anvil = faction?.units.find((unit) =>
+      unit.name.startsWith("Anvil of Apotheosis: Maggotkin"),
+    );
+    expect(anvil).toBeTruthy();
+    if (!anvil) return;
+
+    const sneeze = anvil.anvilForge
+      ?.flatMap((group) => group.options)
+      .find((option) => option.name === "Snotshower Sneeze");
+    const rotFly = anvil.anvilForge
+      ?.flatMap((group) => group.options)
+      .find((option) => option.name === "Rot Fly");
+    expect(sneeze && rotFly).toBeTruthy();
+    if (!sneeze || !rotFly) return;
+
+    const resolved = resolveAnvilUnit(anvil, {
+      id: "s",
+      unitId: anvil.id,
+      reinforced: false,
+      pathToGlory: ptg({ anvilPickIds: [rotFly.id, sneeze.id] }),
+    });
+    expect(resolved.weapons.map((item) => item.name)).toContain("Snotshower Sneeze");
+    expect(resolved.abilities.map((item) => item.name)).not.toContain(
+      "Snotshower Sneeze",
+    );
+    expect(resolved.abilities.map((item) => item.name)).not.toContain("Rot Fly");
+    expect(resolved.categories).toContain("CAVALRY");
+    expect(resolved.categories).toContain("FLY");
+    expect(resolved.categories).not.toContain("INFANTRY");
+  });
+
+  it("writes Charge onto melee weapons for Corroded Edges and keeps real abilities", () => {
+    const faction = getFaction("maggotkin-of-nurgle");
+    const anvil = faction?.units.find((unit) =>
+      unit.name.startsWith("Anvil of Apotheosis: Maggotkin"),
+    );
+    expect(anvil).toBeTruthy();
+    if (!anvil) return;
+
+    const ids = (name: string) =>
+      anvil.anvilForge?.flatMap((group) => group.options).find((option) => option.name === name)
+        ?.id;
+    const warrior = ids("Infected Warrior");
+    const edges = ids("Corroded Edges");
+    const discharge = ids("Infected Discharge");
+    expect(warrior && edges && discharge).toBeTruthy();
+    if (!warrior || !edges || !discharge) return;
+
+    const resolved = resolveAnvilUnit(anvil, {
+      id: "s",
+      unitId: anvil.id,
+      reinforced: false,
+      pathToGlory: ptg({ anvilPickIds: [warrior, edges, discharge] }),
+    });
+    const blight = resolved.weapons.find((item) => item.name === "Great Blight Weapon");
+    expect(blight?.ability).toMatch(/Charge \(\+1 Damage\)/);
+    expect(resolved.abilities.map((item) => item.name)).not.toContain("Corroded Edges");
+    expect(resolved.abilities.map((item) => item.name)).toContain("Infected Discharge");
+  });
 });
 
 describe("Anvil forge catalogue", () => {
@@ -416,5 +511,18 @@ describe("Anvil forge validation and play", () => {
       board.abilities.map((row) => row.ability.name),
     );
     expect(withNames).toContain("Freshly Forged");
+  });
+});
+
+describe("Anvil option rules from the catalogue", () => {
+  it("tells you what Corroded Edges does", () => {
+    const faction = getFaction("maggotkin-of-nurgle");
+    const anvil = faction?.units.find((unit) =>
+      unit.name.startsWith("Anvil of Apotheosis"),
+    );
+    const option = anvil?.anvilForge
+      ?.flatMap((group) => group.options)
+      .find((item) => item.name === "Corroded Edges");
+    expect(option?.abilities[0]?.effect).toMatch(/Charge \(\+1 Damage\)/);
   });
 });

@@ -1,8 +1,9 @@
 "use client";
 
-import { getUnit, selectionPoints } from "@/engine/queries";
+import { getUnit, listHeroGearSlots, selectionPoints } from "@/engine/queries";
 import type { CombatModifierNote } from "@/engine/magic";
 import type {
+  ArmyList,
   CatalogueUnit,
   FactionCatalogue,
   Regiment,
@@ -32,6 +33,7 @@ type Props = {
   slotCap: number;
   selected: boolean;
   playMode: boolean;
+  list?: ArmyList;
   artefactBearerId?: string | null;
   artefactLabel?: string;
   artefactAbilities?: UnitAbility[];
@@ -79,6 +81,7 @@ export function RegimentCard({
   slotCap,
   selected,
   playMode,
+  list,
   artefactBearerId,
   artefactLabel,
   artefactAbilities,
@@ -120,6 +123,14 @@ export function RegimentCard({
     ? getUnit(faction, regiment.hero.unitId)
     : undefined;
   const openSlots = slotCap - regiment.units.length;
+  const listGear = {
+    artefactBearerId,
+    artefactLabel,
+    artefactAbilities,
+    heroicTraitBearerId,
+    heroicTraitLabel,
+    heroicTraitAbilities,
+  };
 
   return (
     <article
@@ -215,12 +226,7 @@ export function RegimentCard({
             playMode={playMode}
             allowUniqueHeroTrait={allowUniqueHeroTrait}
             traitKind={traitKind}
-            artefactBearerId={artefactBearerId}
-            artefactLabel={artefactLabel}
-            artefactAbilities={artefactAbilities}
-            heroicTraitBearerId={heroicTraitBearerId}
-            heroicTraitLabel={heroicTraitLabel}
-            heroicTraitAbilities={heroicTraitAbilities}
+            {...slotHeroGear(list, faction, regiment.hero, listGear)}
             monstrousTraitBearerId={monstrousTraitBearerId}
             monstrousTraitLabel={monstrousTraitLabel}
             monstrousTraitAbilities={monstrousTraitAbilities}
@@ -305,12 +311,7 @@ export function RegimentCard({
                 unit={unit}
                 playMode={playMode}
                 traitKind={traitKind}
-                artefactBearerId={artefactBearerId}
-                artefactLabel={artefactLabel}
-                artefactAbilities={artefactAbilities}
-                heroicTraitBearerId={heroicTraitBearerId}
-                heroicTraitLabel={heroicTraitLabel}
-                heroicTraitAbilities={heroicTraitAbilities}
+                {...slotHeroGear(list, faction, slot, listGear)}
                 monstrousTraitBearerId={monstrousTraitBearerId}
                 monstrousTraitLabel={monstrousTraitLabel}
                 monstrousTraitAbilities={monstrousTraitAbilities}
@@ -348,4 +349,32 @@ export function RegimentCard({
       ) : null}
     </article>
   );
+}
+
+function slotHeroGear(
+  list: ArmyList | undefined,
+  faction: FactionCatalogue,
+  selection: Selection,
+  fallback: {
+    artefactBearerId?: string | null;
+    artefactLabel?: string;
+    artefactAbilities?: UnitAbility[];
+    heroicTraitBearerId?: string | null;
+    heroicTraitLabel?: string;
+    heroicTraitAbilities?: UnitAbility[];
+  },
+) {
+  if (list) {
+    return listHeroGearSlots(list, faction, selection);
+  }
+  const hasArtefact = fallback.artefactBearerId === selection.id;
+  const hasTrait = fallback.heroicTraitBearerId === selection.id;
+  return {
+    artefactBearerId: hasArtefact ? selection.id : null,
+    artefactLabel: hasArtefact ? fallback.artefactLabel : undefined,
+    artefactAbilities: hasArtefact ? fallback.artefactAbilities : undefined,
+    heroicTraitBearerId: hasTrait ? selection.id : null,
+    heroicTraitLabel: hasTrait ? fallback.heroicTraitLabel : undefined,
+    heroicTraitAbilities: hasTrait ? fallback.heroicTraitAbilities : undefined,
+  };
 }

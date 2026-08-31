@@ -4364,6 +4364,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Knight of Shrouds",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Malignant Blade has an Attacks characteristics of 5 and Crit (Auto-wound). In addition, your hero gains the 'Stolen Hours' ability and the following regiment options: Any Nighthaunt units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": [
@@ -4384,7 +4395,19 @@
               "id": "e7d9-cd12-5e67-bc59",
               "name": "Guardian of Souls",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Guardian of Souls",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Wizard (1) keyword and the following regiment options: Any Nighthaunt units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -4402,6 +4425,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Dark Judge",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the 'Sinister Judgement' ability and the following regiment options: Any Nighthaunt units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -4410,7 +4444,19 @@
               "id": "90aa-265f-93a3-0584",
               "name": "Baleful Horror",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Baleful Horror",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Balefire-laced Scream weapon and the following regiment options: Any Nighthaunt units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Balefire-laced Scream",
@@ -4437,7 +4483,19 @@
               "id": "a5f7-d144-df4c-7570",
               "name": "Ethereal Steed",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Ethereal Steed",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Ethereal Steed's Ghostly Hooves and Teeth weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 7. \u2022 Replace the Infantry keyword with the Cavalry keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Ethereal Steed's Ghostly Hooves and Teeth",
@@ -4482,6 +4540,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Edifice of the Damned",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Pick the 'Fright Train' or 'Chthonic Juggernaut' ability to add to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Health characteristic to 7. \u2022 You can replace the Infantry keyword with the War Machine keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": [],
@@ -4493,7 +4562,19 @@
               "id": "58bc-2d6d-38f3-4765",
               "name": "Dark Charioteer",
               "destiny": -16,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Dark Charioteer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Relic Bearers' Claws and Ethereal Steeds' Hooves weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 12. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the War Machine keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Relic Bearers' Claws and Ethereal Steeds' Hooves",
@@ -4655,7 +4736,19 @@
               "id": "e936-9748-e0d1-ca45",
               "name": "Damned Haste",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Damned Haste",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 2
@@ -4672,6 +4765,17 @@
                   "timing": "Any Charge Phase",
                   "declare": "If this unit charged this phase, pick an enemy unit within 1\" of it to be the target.",
                   "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Ethereal Scythes",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the 'Spectral Scythes' ability to your hero's warscroll.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -4695,6 +4799,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Desperation's Haste",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the 'Soul of a Coward' ability to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -4703,14 +4818,38 @@
               "id": "93df-24e7-0bc2-d012",
               "name": "Damned Chargers",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Damned Chargers",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Companion weapons have a Damage characteristic of 2.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "cb1b-80b3-385f-3d96",
               "name": "Wailing Attendants",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Wailing Attendants",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "War Machine only. Your hero gains Attendants' Deadly Weapons.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Attendants' Deadly Weapons",
@@ -4729,7 +4868,19 @@
               "id": "43dd-b3a5-a000-f03a",
               "name": "Unholy Knight",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Unholy Knight",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Malignant Blade has Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Malignant Blade",
@@ -4748,7 +4899,19 @@
               "id": "338b-a270-eeed-71c2",
               "name": "On a Pale Horse",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "On a Pale Horse",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's weapons have Crit (Mortal). This also affects Companion weapons.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             }
           ]
@@ -4763,7 +4926,19 @@
               "id": "df87-4829-5a21-6f29",
               "name": "Aura of the Damned",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Aura of the Damned",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -4773,7 +4948,19 @@
               "id": "3b67-6ac5-f4bc-2a09",
               "name": "Insubstantial",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Insubstantial",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 1 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 1
@@ -4783,7 +4970,19 @@
               "id": "aa44-6bba-b72e-bd46",
               "name": "Eager for Death",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Eager for Death",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Hit characteristic of your hero's Malignant Blade is 3+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Malignant Blade",
@@ -4802,7 +5001,19 @@
               "id": "45c0-e09a-bc81-ce2d",
               "name": "Malignant Strength",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Malignant Strength",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Wound characteristic of your hero's Malignant Blade is 2+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Malignant Blade",
@@ -4821,7 +5032,19 @@
               "id": "dfdf-0ead-4133-3de8",
               "name": "Fearsome Horror",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Fearsome Horror",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the Attacks characteristic of your hero's Malignant Blade.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Malignant Blade",
@@ -4840,7 +5063,19 @@
               "id": "a4f9-e6e1-2cdc-c631",
               "name": "Bearer of Dark Flames",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Bearer of Dark Flames",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 3 to the Attacks characteristic of your hero's Balefire-laced Scream.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Balefire-laced Scream",
@@ -4870,6 +5105,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Malicious Urges",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the 'Reckless Reaper' ability to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -4889,6 +5135,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Arcane Devourer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Non-Wizard only. Your hero gains the 'Devour Magic' ability.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -4904,6 +5161,17 @@
                   "timing": "Once Per Turn (Army), Enemy Movement Phase",
                   "declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
                   "effect": "For the rest of the turn, each time the target is picked to use a Core ability, roll a dice as a reaction. On a 4+, inflict D3 mortal damage on the target.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Unrepentant Reaper",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the 'It Tolls for Thee' ability to your hero's warscroll.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",

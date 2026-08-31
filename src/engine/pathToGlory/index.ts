@@ -10,6 +10,7 @@ export {
   normalizePathToGloryState,
   packIdsFromState,
   packLabel,
+  packsFromImportText,
   pathToGloryPackIds,
   pathToGloryPacksLabel,
   resolveBattlepacks,
@@ -63,10 +64,19 @@ export {
   isAnvilOfApotheosis,
   pickAnvilOption,
   resolveAnvilUnit,
+  uniqueKeywordBlocksEnhancements,
   visibleAnvilForgeGroups,
 } from "./anvil";
 export {
+  selectionArtefactOptionId,
+  selectionHeroicTraitOptionId,
+} from "./heroGear";
+export {
+  applyImportedPathToGloryModifier,
+} from "./importFromText";
+export {
   applyPathToGloryPacks,
+  assignPathToGloryHeroEnhancement,
   emptyPathToGlorySelection,
   mergePathToGlory,
   patchPathToGloryState,

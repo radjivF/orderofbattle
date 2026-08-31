@@ -13,6 +13,7 @@ import type {
 
 export type PlayPhaseId =
   | "passive"
+  | "start"
   | "hero"
   | "movement"
   | "shooting"
@@ -32,6 +33,11 @@ export const CORE_PLAY_PHASES: PlayPhase[] = [
     id: "passive",
     name: "Army",
     blurb: "Battle traits, formation, passives, and deploy",
+  },
+  {
+    id: "start",
+    name: "Start of turn",
+    blurb: "Start-of-turn abilities",
   },
   { id: "hero", name: "Hero", blurb: "Spells, prayers, hero-phase abilities" },
   { id: "movement", name: "Movement", blurb: "Movement-phase abilities" },
@@ -240,11 +246,15 @@ export function phasesForAbility(ability: UnitAbility): PlayPhaseId[] {
     }
   };
 
+  const startOfTurn = /\bstart of (?:your |any |enemy )?turn\b/.test(timing);
+  if (startOfTurn) {
+    add("start");
+  }
   if (
     timing.includes("deployment") ||
     timing.includes("start of battle") ||
     timing.includes("start of the battle") ||
-    timing.includes("start of")
+    (timing.includes("start of") && !startOfTurn)
   ) {
     add("passive");
   }
@@ -477,12 +487,16 @@ export function buildPhaseBoards(
       }
   }
 
-  return PLAY_PHASES.map((phase) => boards.get(phase.id)!).filter(
-    (board) =>
+  return PLAY_PHASES.map((phase) => boards.get(phase.id)!).filter((board) => {
+    if (board.phase.id === "start") {
+      return board.abilities.length > 0;
+    }
+    return (
       CORE_PHASE_IDS.has(board.phase.id) ||
       board.abilities.length > 0 ||
-      board.weapons.length > 0,
-  );
+      board.weapons.length > 0
+    );
+  });
 }
 
 function pushLabeledAbilities(

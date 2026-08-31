@@ -4,6 +4,12 @@ import { STANDARD_POINTS_CAPS } from "./pointsCap";
 import { unitBaseName } from "./queries";
 import { inferScourgeRealm } from "./scourgeRealm";
 import { listSpearheads, spearheadAsFaction } from "./spearhead";
+import {
+  applyImportedPathToGloryModifier,
+  isPathToGloryList,
+  normalizePathToGloryState,
+  packsFromImportText,
+} from "./pathToGlory";
 import type {
   ArmyList,
   ArmyListKind,
@@ -43,7 +49,8 @@ export function looksLikeNewRecruit(raw: string): boolean {
     /Created with New Recruit/i.test(raw) ||
     /newrecruit\.eu/i.test(raw) ||
     /General's Regiment/i.test(raw) ||
-    /\(\d+\s*points?\)\s*[-–—].*General's Handbook/i.test(raw)
+    /\(\d+\s*points?\)\s*[-–—].*General's Handbook/i.test(raw) ||
+    /Path to Glory/i.test(raw)
   );
 }
 
@@ -94,21 +101,24 @@ function parseNewRecruitList(
   if (!catalogue) {
     return { ok: false, error: UNKNOWN_FACTION };
   }
+  const pathToGloryPacks = packsFromImportText(lines.slice(0, 20).join("\n"));
 
   const now = Date.now();
   const list: ArmyList = {
     id: createId(),
     name: title.name,
     factionId: catalogue.factionId,
-    kind: catalogue.kind,
+    kind: pathToGloryPacks ? "pathToGlory" : catalogue.kind,
     spearheadId: catalogue.spearheadId,
     regimentAbilityId: null,
     pointsCap:
       catalogue.kind === "spearhead"
         ? 0
-        : title.cap && title.cap >= 1
-          ? title.cap
-          : inferPointsCap(title.points, catalogue.faction.pointsCapDefault),
+        : pathToGloryPacks
+          ? (title.cap ?? inferPointsCap(title.points, 1000))
+          : title.cap && title.cap >= 1
+            ? title.cap
+            : inferPointsCap(title.points, catalogue.faction.pointsCapDefault),
     formationId: null,
     spellLoreId: null,
     prayerLoreId: null,
@@ -129,6 +139,9 @@ function parseNewRecruitList(
     createdAt: now,
     updatedAt: now,
     lastOpenedAt: now,
+    pathToGlory: pathToGloryPacks
+      ? normalizePathToGloryState({ packIds: pathToGloryPacks })
+      : undefined,
   };
 
   let section: Section = "header";
@@ -283,7 +296,13 @@ function parseNewRecruitList(
     return { ok: false, error: NO_UNITS };
   }
 
-  list.scourgeRealm = inferScourgeRealm(list);
+  list.scourgeRealm = pathToGloryPacks ? null : inferScourgeRealm(list);
+  if (pathToGloryPacks) {
+    list.battleTacticCardIds = [];
+    list.battleTacticStage = {};
+    list.spellLoreId = null;
+    list.manifestationLoreId = null;
+  }
   return { ok: true, list };
 
   function flushRegiment() {
@@ -449,6 +468,12 @@ function applyModifier(
     return;
   }
   if (/^\d+\s*x\s/i.test(text)) {
+    return;
+  }
+  if (applyImportedPathToGloryModifier(list, faction, text, selection)) {
+    return;
+  }
+  if (isPathToGloryList(list)) {
     return;
   }
   assignEnhancement(list, faction, stripTrailingPoints(text), selection);
@@ -646,7 +671,8 @@ function isSkipMeta(line: string): boolean {
   return (
     /^Auxiliaries?:\s*\d+/i.test(line) ||
     /^Drops:\s*\d+/i.test(line) ||
-    /General's Handbook/i.test(line)
+    /General's Handbook/i.test(line) ||
+    /Path to Glory/i.test(line)
   );
 }
 

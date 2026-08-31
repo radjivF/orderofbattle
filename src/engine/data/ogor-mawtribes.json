@@ -5312,28 +5312,76 @@
               "id": "2c2f-475b-2cd2-c0de",
               "name": "Gutbuster Warlord",
               "destiny": 0,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Gutbuster Warlord",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Gutbusters keyword and the following regiment options: Any Gutbusters units, 0-1 non-Gutbusters Ogor Mawtribes units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "82b5-db9c-fa22-814a",
               "name": "Gastromancer",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Gastromancer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Wizard (1), Mawseekers and Ward (6+ keywords and the following regiment options: Any Mawseekers units, 0-1 non-Gutbusters Ogor Mawtribes units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "04da-12c7-4b72-ac5d",
               "name": "Apex Hunter",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Apex Hunter",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Beastclaw keyword and the following regiment options: Any Beastclaw units, 0-1 non-Gutbusters Ogor Mawtribes units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "5bc4-598b-e6af-32e4",
               "name": "Overtyrant",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Overtyrant",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the **Gutbusters* keywords and the following regiment options: Any Rotbringers units Replace their melee weapon with an Innard-ripper.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Innard-ripper",
@@ -5352,7 +5400,19 @@
               "id": "8e47-08db-4585-5866",
               "name": "Winter-touched Elder",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Winter-touched Elder",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Priest (1) and **Beastclaw* keywords and the following regiment options: Any Beastclaw units, 0-1 non-Gutbusters Ogor Mawtribes units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             }
           ]
@@ -5367,7 +5427,19 @@
               "id": "cf85-e160-d0d8-fcaa",
               "name": "Hinterlands Beast",
               "destiny": -10,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Hinterlands Beast",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Horns, Teeth and Claws weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 10. \u2022 Change the Save characteristic to 4+. \u2022 Replace the Infantry keyword with the Cavalry keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Horns, Teeth and Claws",
@@ -5398,6 +5470,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Huge Horns is 4.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Primeval Monster",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Huge Horns weapon and the 'Battle Damaged' ability to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 16. \u2022 Change the Save characteristic to 3+. \u2022 Replace the Infantry keyword with the Monster keyword.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -5622,7 +5705,19 @@
               "id": "eda1-80d8-1bad-b653",
               "name": "Strider",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Strider",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Add 2\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 2
@@ -5632,7 +5727,19 @@
               "id": "8768-90ec-adee-18a8",
               "name": "Massive Tusks",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Massive Tusks",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Monster only. Add the Massive Tusks weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Massive Tusks",
@@ -5651,7 +5758,19 @@
               "id": "88b5-d31f-a535-7838",
               "name": "Frostblast",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Frostblast",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Frostblast weapon to your hero's warscroll. You cannot pick this upgrade if your hero already has a ranged weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Frostblast",
@@ -5689,7 +5808,19 @@
               "id": "1ec5-ce09-39fa-50c2",
               "name": "Specific Tastes",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Specific Tastes",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Companion melee weapons have Anti-X (+1 Rend), where X is one of the following keywords: Infantry, Cavalry, Monster^^, War Machine, Wizard or Priest.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -5734,7 +5865,19 @@
               "id": "daed-7fa2-a2a0-4343",
               "name": "Plundered Cannon",
               "destiny": -7,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Plundered Cannon",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Plundered Cannon weapon to your hero's warscroll. You cannot pick this upgrade if your hero already has a ranged weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Plundered Cannon",
@@ -5761,7 +5904,19 @@
               "id": "33ed-2470-c38b-b373",
               "name": "Needs A Bigger Gutplate",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Needs A Bigger Gutplate",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -5771,14 +5926,38 @@
               "id": "5875-6284-4b27-a3f6",
               "name": "Slicer and Dicer",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Slicer and Dicer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the Attacks characteristic of your hero's melee weapons.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "9b73-2e5d-6fc1-2f0c",
               "name": "Bigger than Most",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Bigger than Most",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 2
@@ -5788,7 +5967,19 @@
               "id": "26d2-c24e-915a-dcaa",
               "name": "Chaintrap, Harpoon Launcher or Blood Vulture",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Chaintrap, Harpoon Launcher or Blood Vulture",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Chaintrap, Harpoon Launcher or Blood Vulture weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Chaintrap, Harpoon Launcher or Blood Vulture",
@@ -5807,14 +5998,38 @@
               "id": "134f-d8ec-aed8-1399",
               "name": "Barrels Through",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Barrels Through",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Your hero has Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "f891-e399-ece1-2dd4",
               "name": "Bludgeoner",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Bludgeoner",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's non-Companion melee weapons have Crit (2 Hits).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -5840,21 +6055,57 @@
               "id": "7f5b-f917-389b-f174",
               "name": "Uncanny Fortune",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Uncanny Fortune",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (6+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "f12c-90c7-36ee-d40e",
               "name": "Trampler",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Trampler",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's non-Companion melee weapons have Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "4132-5f30-7300-aa81",
               "name": "Massive Crossbow",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Massive Crossbow",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Massive Crossbow weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Massive Crossbow",

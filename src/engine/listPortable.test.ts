@@ -15,6 +15,7 @@ import { getFaction, heroesOf, unitsForRealm } from "./queries";
 import { catalogueForList } from "./spearhead";
 import { createId } from "@/lib/id";
 import { blankArmy } from "@/lib/storage";
+import { blankPathToGlory } from "./listFactories";
 
 describe("listPortable", () => {
   it("round-trips a list through the export text file", () => {
@@ -90,6 +91,78 @@ describe("listPortable", () => {
     if (!parsed.ok) return;
     expect(parsed.lists[0]?.name).toBe("From builder");
     expect(parsed.lists[0]?.factionId).toBe("stormcast-eternals");
+  });
+
+  it("round-trips a Path to Glory list through the export text file", () => {
+    const faction = getFaction("maggotkin-of-nurgle");
+    const anvil = faction?.units.find((unit) =>
+      unit.name.startsWith("Anvil of Apotheosis"),
+    );
+    const artefact = faction?.artefacts.find(
+      (item) => item.name === "The Carrion Dirge",
+    );
+    const infected = anvil?.anvilForge
+      ?.flatMap((group) => group.options)
+      .find((option) => option.name === "Infected Warrior");
+    expect(faction && anvil && artefact && infected).toBeTruthy();
+    if (!faction || !anvil || !artefact || !infected) return;
+
+    const regimentId = createId();
+    const list = {
+      ...blankPathToGlory(faction.id, ["ascension", "ravaged-coast"]),
+      name: "Rotgarden",
+      generalRegimentId: regimentId,
+      pointsCap: 1000,
+      regiments: [
+        {
+          id: regimentId,
+          hero: {
+            id: createId(),
+            unitId: anvil.id,
+            reinforced: false,
+            pathToGlory: {
+              renown: 5,
+              pathId: "path-of-the-attacker",
+              pathOptionIds: ["4564-988b-2147-1ba8"],
+              battleWoundId: null,
+              scarId: null,
+              anvilRankId: anvil.anvilRanks?.find(
+                (rank) => rank.name === "Lord of Decay",
+              )?.id,
+              anvilPickIds: [infected.id],
+              artefactId: artefact.id,
+            },
+          },
+          units: [],
+        },
+      ],
+    };
+
+    const parsed = parsePortableLists(exportArmyListText(list, faction));
+    expect(parsed.ok).toBe(true);
+    if (!parsed.ok) return;
+    const imported = parsed.lists[0];
+    expect(imported?.kind).toBe("pathToGlory");
+    expect(imported?.pathToGlory?.packIds).toEqual([
+      "ascension",
+      "ravaged-coast",
+    ]);
+    expect(imported?.regiments[0]?.hero?.pathToGlory?.anvilRankId).toBe(
+      list.regiments[0]?.hero?.pathToGlory?.anvilRankId,
+    );
+    expect(imported?.regiments[0]?.hero?.pathToGlory?.anvilPickIds).toEqual([
+      infected.id,
+    ]);
+    expect(imported?.regiments[0]?.hero?.pathToGlory?.pathId).toBe(
+      "path-of-the-attacker",
+    );
+    expect(imported?.regiments[0]?.hero?.pathToGlory?.pathOptionIds).toContain(
+      "4564-988b-2147-1ba8",
+    );
+    expect(imported?.regiments[0]?.hero?.pathToGlory?.artefactId).toBe(
+      artefact.id,
+    );
+    expect(imported?.regiments[0]?.hero?.pathToGlory?.renown).toBe(5);
   });
 
   it("round-trips a list through JSON export", () => {

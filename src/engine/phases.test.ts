@@ -8,6 +8,7 @@ describe("CORE_PLAY_PHASES", () => {
   it("lists army through end phases in order", () => {
     expect(CORE_PLAY_PHASES.map((phase) => phase.id)).toEqual([
       "passive",
+      "start",
       "hero",
       "movement",
       "shooting",

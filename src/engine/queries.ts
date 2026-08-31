@@ -9,10 +9,19 @@ import type {
   RegimentOfRenownUnit,
   RegimentOption,
   Selection,
+  SpecialEnhancementTable,
+  UnitAbility,
   UnitStats,
 } from "./types";
 import { factions, regimentsOfRenown } from "./data/load";
-import { anvilRankForSelection } from "./pathToGlory/anvil";
+import {
+  anvilRankForSelection,
+  uniqueKeywordBlocksEnhancements,
+} from "./pathToGlory/anvil";
+import {
+  selectionArtefactOptionId,
+  selectionHeroicTraitOptionId,
+} from "./pathToGlory/heroGear";
 
 const byFaction = new Map(factions.map((faction) => [faction.id, faction]));
 const byRenown = new Map(
@@ -329,6 +338,35 @@ export function canTakeVisionOfFate(unit: CatalogueUnit): boolean {
   return !unit.hero && !unit.unique && !unitHasKeyword(unit, "BEAST");
 }
 
+export function specialEnhancementTablesForList(
+  faction: FactionCatalogue,
+  list: Pick<ArmyList, "scourgeRealm">,
+): SpecialEnhancementTable[] {
+  return (faction.specialEnhancementTables ?? []).filter((table) => {
+    if (!table.realm) {
+      return true;
+    }
+    return list.scourgeRealm === table.realm;
+  });
+}
+
+export function canTakeSpecialEnhancement(
+  unit: CatalogueUnit,
+  table: SpecialEnhancementTable,
+): boolean {
+  if (uniqueKeywordBlocksEnhancements(unit)) {
+    return false;
+  }
+  if (table.restrictTo === "nonHeroNonMonster") {
+    return (
+      !unit.hero &&
+      !unitHasKeyword(unit, "HERO") &&
+      !unitHasKeyword(unit, "MONSTER")
+    );
+  }
+  return true;
+}
+
 export function enhancementChoiceDetail(
   option: { points?: number; pack?: string },
 ): string | undefined {
@@ -361,6 +399,58 @@ export function enhancementLabel(
   }
   const extra = enhancementChoiceDetail(option);
   return extra ? `${option.name} · ${extra}` : option.name;
+}
+
+export function enhancementSlotView(
+  options: EnhancementOption[],
+  optionId: string | null | undefined,
+  selectionId: string,
+): {
+  bearerId: string | null;
+  label?: string;
+  abilities?: UnitAbility[];
+} {
+  if (!optionId) {
+    return { bearerId: null };
+  }
+  const option = options.find((item) => item.id === optionId);
+  return {
+    bearerId: selectionId,
+    label: enhancementLabel(options, optionId),
+    abilities: option?.abilities,
+  };
+}
+
+export function listHeroGearSlots(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  selection: Selection,
+): {
+  artefactBearerId: string | null;
+  artefactLabel?: string;
+  artefactAbilities?: UnitAbility[];
+  heroicTraitBearerId: string | null;
+  heroicTraitLabel?: string;
+  heroicTraitAbilities?: UnitAbility[];
+} {
+  const artefact = enhancementSlotView(
+    faction.artefacts,
+    selectionArtefactOptionId(list, selection),
+    selection.id,
+  );
+  const trait = enhancementSlotView(
+    faction.heroicTraits,
+    selectionHeroicTraitOptionId(list, selection),
+    selection.id,
+  );
+  return {
+    artefactBearerId: artefact.bearerId,
+    artefactLabel: artefact.label,
+    artefactAbilities: artefact.abilities,
+    heroicTraitBearerId: trait.bearerId,
+    heroicTraitLabel: trait.label,
+    heroicTraitAbilities: trait.abilities,
+  };
 }
 
 export function pickedEnhancementPoints(

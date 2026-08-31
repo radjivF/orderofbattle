@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { createId } from "@/lib/id";
 import { blankArmy } from "@/lib/storage";
+import { blankPathToGlory } from "./listFactories";
 import { getFaction } from "./queries";
 import { pruneOrphanEnhancements, regimentSlotCap, summarize } from "./validate";
 
@@ -90,5 +91,48 @@ describe("pruneOrphanEnhancements", () => {
       regiments: [{ id: "r1", hero: null, units: [] }],
     });
     expect(pruned.artefact).toBeNull();
+  });
+});
+
+describe("Path to Glory Anvil enhancements", () => {
+  it("does not warn when an Anvil takes an artefact", () => {
+    const faction = getFaction("maggotkin-of-nurgle");
+    const anvil = faction?.units.find((unit) =>
+      unit.name.startsWith("Anvil of Apotheosis"),
+    );
+    const artefact = faction?.artefacts[0];
+    expect(anvil && artefact && faction).toBeTruthy();
+    if (!anvil || !artefact || !faction) return;
+
+    const heroId = createId();
+    const list = {
+      ...blankPathToGlory(faction.id, "ascension"),
+      generalRegimentId: "r1",
+      regiments: [
+        {
+          id: "r1",
+          hero: {
+            id: heroId,
+            unitId: anvil.id,
+            reinforced: false,
+            pathToGlory: {
+              renown: 0,
+              pathId: null,
+              pathOptionIds: [],
+              battleWoundId: null,
+              scarId: null,
+              artefactId: artefact.id,
+            },
+          },
+          units: [],
+        },
+      ],
+    };
+    const totals = summarize(list, faction);
+    expect(
+      totals.issues.some((issue) =>
+        issue.text.includes("Unique heroes cannot take"),
+      ),
+    ).toBe(false);
   });
 });

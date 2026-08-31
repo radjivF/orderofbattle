@@ -126,6 +126,20 @@ export function packLabel(id: PathToGloryPackId): string {
   return PATH_TO_GLORY_PACKS.find((pack) => pack.id === id)?.label ?? id;
 }
 
+/** New Recruit / App headers like "Path to Glory: Ravaged Coast". */
+export function packsFromImportText(text: string): PathToGloryPackId[] | null {
+  if (!/path\s+to\s+glory/i.test(text)) {
+    return null;
+  }
+  if (/blighted\s+wilds/i.test(text)) {
+    return resolveBattlepacks("blighted-wilds");
+  }
+  if (/ravaged\s+coast/i.test(text)) {
+    return resolveBattlepacks("ravaged-coast");
+  }
+  return ["ascension"];
+}
+
 export function pathToGloryPacksLabel(packIds: PathToGloryPackId[]): string {
   return normalizePackIds(packIds).map(packLabel).join(" · ");
 }

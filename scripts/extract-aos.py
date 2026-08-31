@@ -819,6 +819,40 @@ def group_limits(group: ET.Element) -> tuple[int, int | None]:
     return min_value, max_value
 
 
+def option_rule_abilities(entry: ET.Element) -> list[dict]:
+    """Hidden <rule><description> text on Anvil picks (Charge, Fly, Ward, …)."""
+    rules_el = child(entry, "rules")
+    if rules_el is None:
+        return []
+    abilities: list[dict] = []
+    seen: set[str] = set()
+    for rule in children(rules_el, "rule"):
+        name = named(rule)
+        desc_el = child(rule, "description")
+        text = (
+            clean_rules_text("".join(desc_el.itertext()))
+            if desc_el is not None
+            else ""
+        )
+        if not name or not text or name in seen:
+            continue
+        seen.add(name)
+        abilities.append(
+            {
+                "name": name,
+                "kind": "Passive",
+                "timing": "",
+                "declare": "",
+                "effect": text,
+                "keywords": "",
+                "castingValue": "",
+                "chantingValue": "",
+                "cost": "",
+            }
+        )
+    return abilities
+
+
 def option_stat_patches(entry: ET.Element) -> tuple[dict, dict]:
     sets: dict[str, str] = {}
     adds: dict[str, int] = {}
@@ -929,11 +963,17 @@ def extract_anvil_forge(
                 continue
             seen.add(oid)
             sets, adds = option_stat_patches(se)
+            abilities = unit_abilities(se)
+            seen_names = {item["name"] for item in abilities}
+            for extra in option_rule_abilities(se):
+                if extra["name"] not in seen_names:
+                    abilities.append(extra)
+                    seen_names.add(extra["name"])
             option: dict = {
                 "id": oid,
                 "name": oname,
                 "destiny": entry_destiny(se),
-                "abilities": unit_abilities(se),
+                "abilities": abilities,
                 "weapons": option_weapons(se, parent_weapons),
             }
             if sets:
@@ -999,7 +1039,15 @@ SPECIAL_ENHANCEMENT_GROUP_NAMES = (
     "Special Knick-knacks",
     "Artycle References",
     "Dark Gifts of Hashut",
+    "Aspects of the Deepwoods",
 )
+
+SPECIAL_ENHANCEMENT_TABLE_META: dict[str, dict[str, str]] = {
+    "Aspects of the Deepwoods": {
+        "realm": "aqshy",
+        "restrictTo": "nonHeroNonMonster",
+    },
+}
 
 HEROIC_TRAIT_GROUP_NAMES = (
     "Royal Traits",
@@ -1039,6 +1087,7 @@ def is_artefact_group_name(name: str) -> bool:
             "decoration",
             "knick",
             "artycle",
+            "aspect",
         )
     ):
         return False
@@ -1141,13 +1190,13 @@ def extract_special_enhancement_tables(
             )
             if not options:
                 continue
-            tables.append(
-                {
-                    "id": slug(table_name),
-                    "name": table_name,
-                    "options": options,
-                }
-            )
+            table: dict = {
+                "id": slug(table_name),
+                "name": table_name,
+                "options": options,
+            }
+            table.update(SPECIAL_ENHANCEMENT_TABLE_META.get(table_name, {}))
+            tables.append(table)
             break
     return tables
 

@@ -4746,7 +4746,19 @@
               "id": "474f-65d2-0f4e-b57f",
               "name": "Arcanite Sorcerer",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Arcanite Sorcerer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Arcanite keyword and the following regiment options: Any Arcanite units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -4791,7 +4803,19 @@
               "id": "9c77-6894-c57b-4e01",
               "name": "Ogroid Enlightened",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Ogroid Enlightened",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Health characteristic to 8 and replace their melee weapon with Great Horns. In addition, your hero has the following regiment options: Any Disciples of Tzeentch units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Great Horns",
@@ -4989,7 +5013,19 @@
               "id": "636a-252b-1fd3-0161",
               "name": "Banner of Tzeentch",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Banner of Tzeentch",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 2
@@ -4999,28 +5035,76 @@
               "id": "cd0d-ffd9-4f64-cd8b",
               "name": "Warping Weapon",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Warping Weapon",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's non-Companion melee weapons have Crit (2 Hits).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "09a3-95f5-1bd1-50c5",
               "name": "Mystical Protection",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Mystical Protection",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (6+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "b9cc-c2e8-97da-68dd",
               "name": "Free-willed Blade",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Free-willed Blade",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's melee weapon has Anti-X (+1 Rend), where X is one of the following keywords: Infantry, Cavalry, Monster, War Machine, Wizard, or Priest.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "3592-ba6c-812f-f011",
               "name": "Shield of Eyes",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Shield of Eyes",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Save characteristic is 4+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "stats": {
                 "save": "4+"
@@ -5068,7 +5152,19 @@
               "id": "0319-29a6-2fe5-e03e",
               "name": "Sorcerers Staff",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Sorcerer's Staff",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Sorcerer's Staff weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Sorcerer's Staff",
@@ -5106,7 +5202,19 @@
               "id": "ec29-8874-35cd-d56c",
               "name": "Grand Sorcerer",
               "destiny": -8,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Grand Sorcerer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Wizard only. Your hero has Wizard (2)",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -5159,7 +5267,19 @@
               "id": "22c8-6384-38e3-4849",
               "name": "Disc of Tzeentch",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Disc of Tzeentch",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Disc's Teeth and Horns weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 14\". \u2022 Change the Health characteristic to 7. \u2022 Replace the Infantry keyword with the following keywords: Cavalry, Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Disc's Teeth and Horns",
@@ -5182,7 +5302,19 @@
               "id": "5477-695d-8b6d-c4eb",
               "name": "Burning Chariot",
               "destiny": -7,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Burning Chariot",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Screamers' Lamprey Bites weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 10. \u2022 Replace the Infantry keyword with the following keywords: War Machine, Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Screamers' Lamprey Bites",
@@ -5213,7 +5345,19 @@
               "id": "bedf-2378-cfd9-5bf1",
               "name": "Blur in the Sky",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Blur in the Sky",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 2
@@ -5223,7 +5367,19 @@
               "id": "78c1-905e-f025-70aa",
               "name": "Gigantic Disc",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Gigantic Disc",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Health characteristic,",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 2
@@ -5233,7 +5389,19 @@
               "id": "4af0-78c9-3cb5-9b95",
               "name": "Jagged Fangs",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Jagged Fangs",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the Rend characteristic of your hero's Companion weapons.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {

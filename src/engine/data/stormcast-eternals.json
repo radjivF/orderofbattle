@@ -8645,28 +8645,76 @@
               "id": "783d-05c8-ff24-a5ab",
               "name": "Warrior Chamber",
               "destiny": 0,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Warrior Chamber",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Warrior Chamber keyword and the following regiment options: Any Warrior Chamber units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "f360-fc79-b18c-f75f",
               "name": "Vanguard Chamber",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Vanguard Chamber",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Vanguard Chamber keyword, the 'Vanguard Chamber' ability and the following regiment options: Any Vanguard Chamber units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "042f-73ed-a4ad-62aa",
               "name": "Extremis Chamber",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Extremis Chamber",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Extremis Chamber keyword, the 'Extremis Chamber' ability and the following regiment options: Any Extremis Chamber units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "9ff4-1316-844a-7171",
               "name": "Ruination Chamber",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Ruination Chamber",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Ruination Chamber keyword, the 'Ruination Chamber' ability and the following regiment options: Any Ruination Chamber units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             }
           ]
@@ -8681,7 +8729,19 @@
               "id": "c5b7-cafc-c6d3-2de1",
               "name": "Noble Beast",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Noble Beast",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Noble Beast's Claws weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 8. \u2022 Replace the Infantry keyword with the Cavalry keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Noble Beast's Claws",
@@ -8711,6 +8771,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Mighty Flying Noble Beast's Claws is 4.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Flying Noble Beast",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Flying Noble Beast's Claws weapon and the 'Battle Damaged' ability to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 16. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the following keywords: Monster, Fly.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -8762,7 +8833,19 @@
               "id": "016a-a366-220b-4933",
               "name": "Flying Noble Beast",
               "destiny": -10,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Flying Noble Beast",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Flying Noble Beast's Claws weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 12. \u2022 Replace the Infantry keyword with the following keywords: Monster, Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Flying Noble Beast's Claws",
@@ -8972,7 +9055,19 @@
               "id": "b3b7-4d90-dee3-50fd",
               "name": "Swift",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Swift",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Add 2\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 2
@@ -8982,7 +9077,19 @@
               "id": "afce-a82c-ee94-ac5e",
               "name": "Stormblast",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Stormblast",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Stormblast ranged weapon to your hero's warscroll. You cannot pick this upgrade if your hero has another Companion ranged weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Stormblast",
@@ -9001,7 +9108,19 @@
               "id": "0194-605e-d17f-a283",
               "name": "Legendary Beast",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Legendary Beast",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Monster only. Add 2 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 2
@@ -9011,7 +9130,19 @@
               "id": "2fa1-e4dd-df68-d755",
               "name": "Fiery Breath",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Fiery Breath",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Fiery Breath ranged weapon to your hero's warscroll. You cannot pick this upgrade if your hero has another Companion ranged weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Fiery Breath",
@@ -9068,7 +9199,19 @@
               "id": "8e07-4dc5-ffef-d957",
               "name": "Rending Claws",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Rending Claws",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Monster only. Your hero's Mighty Flying Noble Beast's Claws or Flying Noble Beast's Claws have a Damage characteristic of 3.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Mighty Flying Noble Beast's Claws",
@@ -9117,7 +9260,19 @@
               "id": "ffc8-a39c-4319-2e97",
               "name": "Commanding Presence",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Commanding Presence",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -9127,7 +9282,19 @@
               "id": "d4f4-1fcc-aac2-ce47",
               "name": "Fleet of Foot",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Fleet of Foot",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 1\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 1
@@ -9137,7 +9304,19 @@
               "id": "49a5-f971-7249-7c0e",
               "name": "Incredibly Tough",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Incredibly Tough",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 1 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 1
@@ -9147,14 +9326,38 @@
               "id": "eeb6-dcaa-b808-3c7c",
               "name": "Blessed Sigmarite",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Blessed Sigmarite",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (6+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "f7fb-2a0e-f218-670e",
               "name": "Preferred Enemy",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Preferred Enemy",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Warblade has Anti-X (+1 Rend), where X is one of the following keywords: Infantry, Cavalry, Monster, War Machine, Wizard or Priest.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Warblade",
@@ -9173,7 +9376,19 @@
               "id": "32e6-7a20-8d04-f523",
               "name": "Masterful Warrior",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Masterful Warrior",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Hit characteristic of your hero's Warblade is 2+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Warblade",
@@ -9192,7 +9407,19 @@
               "id": "45a4-1cba-015c-fe47",
               "name": "Lancer",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Lancer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry or Monster only. Your hero's Warblade has Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Warblade",
@@ -9211,7 +9438,19 @@
               "id": "4421-b780-9987-9974",
               "name": "Heavy Boltstorm Pistol",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Heavy Boltstorm Pistol",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Heavy Boltstorm Pistol ranged weapon to your hero's warscroll. You cannot pick this upgrade if your hero has another non-Companion ranged weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Heavy Boltstorm Pistol",
@@ -9230,21 +9469,57 @@
               "id": "aa34-e0ac-f780-02e4",
               "name": "Relic Weapon",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Relic Weapon",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's warblade has Crit (Mortal).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "c250-e8c2-e96f-e91d",
               "name": "Master of the Magical Arts",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Master of the Magical Arts",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Non-Priest only. your hero is a Wizard (1). If this unit is already a Wizard, add 1 to casting rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "9727-2adc-52b6-7060",
               "name": "Radiant Wings",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Radiant Wings",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Your hero has Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -9270,7 +9545,19 @@
               "id": "f8ed-d83a-25cb-eb1b",
               "name": "Blade Master",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Blade Master",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the Attacks characteristic of your hero's Warblade.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Warblade",
@@ -9289,14 +9576,38 @@
               "id": "f7bf-4ab7-2e2f-0916",
               "name": "Warrior-cleric",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Warrior-cleric",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Non-Wizard only. your hero is a Priest (1). If this unit is already a Priest, add 1 to chanting rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "89bf-c149-4be5-86c9",
               "name": "Terminus Greatbow",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Terminus Greatbow",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Terminus Greatbow ranged weapon to your hero's warscroll. You cannot pick this upgrade if your hero has another non-Companion ranged weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Terminus Greatbow",

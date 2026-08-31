@@ -215,11 +215,14 @@ describe("builder play tabs", () => {
     );
     expect(card).toContain("onPickTrait={locked ? undefined : onPickTrait}");
     expect(card).toContain("allowUniqueHeroTrait");
+    expect(card).toContain("listHeroGearSlots");
     expect(card).toContain("cursor-default rounded-2xl");
     expect(cardSlots).toContain(
       "(canReinforce && onToggleReinforce) || onDuplicate || onRemove",
     );
+    expect(cardSlots).toContain("uniqueKeywordBlocksEnhancements");
     expect(builder).toContain("hidePoints={spearhead}");
+    expect(builder).toContain("assignPathToGloryHeroEnhancement");
 
     const datasheet = readFileSync(
       path.resolve(

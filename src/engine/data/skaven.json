@@ -6167,6 +6167,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Masterclan",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Masterclan and Wizard (1) keywords, the 'Malicious Authority' ability and the following regiment options: Any Skaven units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -6182,6 +6193,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "Each time a friendly Clanrats or Stormvermin unit wholly within 13\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Clans Verminus",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Verminus keyword, the 'Back-Back to the Fray, Minions!' ability and the following regiment options: Any Verminus units",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -6205,6 +6227,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Clans Moulder",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Moulder keyword, the 'Unholy Ministrations' ability and the following regiment options: Any Moulder units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -6220,6 +6253,17 @@
                   "timing": "Once Per Turn (Army), End of Any Turn",
                   "declare": "Pick any number of enemy units within 6\" of this unit to be the targets.",
                   "effect": "Inflict D3 mortal damage on each target.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Clans Pestilens",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Pestilens and Priest (1) keywords, the 'Festering Chanter' ability and the following regiment options: Any Pestilens units",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -6243,6 +6287,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Clans Eshin",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Eshin keyword, the 'One with the Shadows' ability and the following regiment options: Any Eshin units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -6258,6 +6313,17 @@
                   "timing": "Once Per Turn (Army), Any Combat Phase",
                   "declare": "Pick up to 3 friendly non-Hero Skryre units wholly within 13\" of this unit to be the targets.",
                   "effect": "Inflict 1 mortal damage on each target, Then, add 1 to the Attacks characteristic of each target's melee weapons for the rest of the turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Clans Skryre",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Skryre keyword, the 'Incessant Tinkerer' ability and the following regiment options: Any Skryre units",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -6446,7 +6512,19 @@
               "id": "9295-8d55-bdba-5409",
               "name": "Alpha-claw",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Alpha-claw",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -6456,7 +6534,19 @@
               "id": "915c-bac6-33d4-6ced",
               "name": "Frenzied",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Frenzied",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 1
@@ -6466,7 +6556,19 @@
               "id": "8109-07b8-76b2-d626",
               "name": "Bloated",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Bloated",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 1
@@ -6476,14 +6578,38 @@
               "id": "9b44-f852-b671-c45d",
               "name": "A Knack for Survival",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "A Knack for Survival",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (6+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "31f5-e8ae-c44d-fea4",
               "name": "Ruthless Opponent",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Ruthless Opponent",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Warpforged Blade has Anti-X (+1 Rend), where X is one of the following keywords: Infantry, Cavalry, Monster, War Machine, Wizard or Priest",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Warpforged Blade",
@@ -6502,7 +6628,19 @@
               "id": "dbb0-0cce-9045-e8f8",
               "name": "Warpstone-infused Blade",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Warpstone-infused Blade",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Damage characteristic of your hero's Warpforged Blade is 3.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Warpforged Blade",
@@ -6521,7 +6659,19 @@
               "id": "2a46-937b-e463-7252",
               "name": "Fell-blessed Weapon",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Fell-blessed Weapon",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Warpforged Blade has Crit (Mortal).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Warpforged Blade",
@@ -6540,7 +6690,19 @@
               "id": "1dcc-1bbb-1c68-c99c",
               "name": "Impaler",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Impaler",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Your hero's Warpforged Blade has Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Warpforged Blade",
@@ -6559,7 +6721,19 @@
               "id": "99d3-ee0f-cfed-8db0",
               "name": "Warplock Musket",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Warpfire Musket",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Warplock Musket ranged weapon to your hero's warscroll. You cannot pick this upgrade if your hero has another non-Companion ranged weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Warplock Musket",
@@ -6597,7 +6771,19 @@
               "id": "c4b5-ef7e-5cd6-fdb2",
               "name": "Doomrocket",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Doomrocket",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Doomrocket ranged weapon to your hero's warscroll. You cannot pick this upgrade if your hero has another non-Companion ranged weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Doomrocket",
@@ -6616,7 +6802,19 @@
               "id": "dfbd-dfff-2e56-092e",
               "name": "Experimental Warpvolt Incinerator",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Experimental Warpvolt Incinerator",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Experimental Warpvolt Incinerator ranged weapon to your hero's warscroll. You cannot pick this upgrade if your hero has another non-Companion ranged weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Experimental Warpvolt Incinerator",
@@ -6635,7 +6833,19 @@
               "id": "b1cc-9c8b-1f4a-7d6b",
               "name": "Frenetic Assault",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Frenetic Assault",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the Attacks characteristic of your hero's Warpforged Blade.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Warpforged Blade",

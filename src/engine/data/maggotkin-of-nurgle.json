@@ -4855,14 +4855,38 @@
               "id": "fca6-b385-3f72-bae3",
               "name": "Revolting Acolyte",
               "destiny": 0,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Revolting Acolyte",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Rotbringers keyword and the following regiment options: Any Rotbringers units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "4966-510e-ecfd-5127",
               "name": "Infected Warrior",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Infected Warrior",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Rotbringers keyword and the following regiment options: Any Rotbringers units In addition, change your hero's Health characteristic to 7, change their Save characteristic to 3+, and replace their melee weapon with a Great Blight Weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Great Blight Weapon",
@@ -4885,28 +4909,76 @@
               "id": "c6a8-5920-dcb2-01bc",
               "name": "Tainted Mage",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Tainted Mage",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Rotbringers and **Wizard (1)* keywords and the following regiment options: Any Rotbringers units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "ba73-5701-8514-050b",
               "name": "Sorcerer of Sickness",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Sorcerer of Sickness",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Daemon, Wizard (1) and **Ward (5+)* keywords and the following regiment options: Any Maggotkin of Nurgle Daemon units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "37fb-4cd9-1713-8e14",
               "name": "Priest of Corruption",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Priest of Corruption",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Rotbringers and **Priest (1)* keywords and the following regiment options: Any Rotbringers units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "0884-897c-77f0-e932",
               "name": "Plague Daemon",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Plague Daemon",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Daemon and **Ward (5+)* keywords and the following regiment options: Any Maggotkin of Nurgle Daemon units In addition, replace your hero's melee weapon with a Pestilential Weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Pestilential Weapon",
@@ -4933,7 +5005,19 @@
               "id": "47d4-731b-2164-492b",
               "name": "Rot Fly",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Rot Fly",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Rot Fly's Mouthparts and Sting weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 8\". \u2022 Change the Health characteristic to 8. \u2022 Replace the Infantry keyword with the following keywords: Cavalry, Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Rot Fly's Mouthparts and Sting",
@@ -4963,6 +5047,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Pox Maggoth's Claws is 3.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Pox Maggoth",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Pox Maggoth's Claws weapon and the 'Battle Damaged' ability to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 8\". \u2022 Change the Health characteristic to 14. \u2022 Change the Save characteristic to 4+. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the Monster keyword.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -5169,7 +5264,19 @@
               "id": "0550-e0e5-ae45-39c4",
               "name": "Droning Wings",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Droning Wings",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "If your hero is a Monster, your hero has Fly. If your hero is Cavalry^^, add 2\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 2
@@ -5179,7 +5286,19 @@
               "id": "14a0-0ed7-9d3f-ab18",
               "name": "Immense Rot Fly",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Immense Rot Fly",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Add 2\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 2
@@ -5189,7 +5308,19 @@
               "id": "4961-5b17-186f-edb9",
               "name": "Snotshower Sneeze",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Snotshower Sneeze",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Snotshower Sneeze weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Snotshower Sneeze",
@@ -5273,7 +5404,19 @@
               "id": "ead0-29e9-9362-97ad",
               "name": "Bloated Presence",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Bloated Presence",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -5283,7 +5426,19 @@
               "id": "a20e-e351-2aff-7044",
               "name": "Blood Poisoning",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Blood Poisoning",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Wound characteristic of your hero's Septic Weapon is 2.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Septic Weapon",
@@ -5302,7 +5457,19 @@
               "id": "e3b7-aa67-8ca7-fa22",
               "name": "Loathsome and Lumbering",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Loathsome and Lumbering",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 1\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 1
@@ -5312,14 +5479,38 @@
               "id": "1f17-7095-4f45-b2df",
               "name": "Parasitic Infection",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Parasitic Infection",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's non-Companion melee weapons have Anti-X (+1 Rend), where X is one of the following keywords: Infantry, Cavalry, Monster^^, War Machine, Wizard or Priest.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "07d5-0e3b-2c65-b50c",
               "name": "Trio of Death's Heads",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Trio of Death's Heads",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the 'Trio of Death's Heads' weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Trio of Death's Heads",
@@ -5338,7 +5529,19 @@
               "id": "0470-e3db-6584-9d37",
               "name": "In Foul Health",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "In Foul Health",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 2 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 2
@@ -5348,14 +5551,38 @@
               "id": "3905-5dbf-2818-6ab2",
               "name": "Corroded Edges",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Corroded Edges",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's non-Companion melee weapons have Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "10d1-812a-791e-1580",
               "name": "Fly Wings",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Fly Wings",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Your hero has Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {

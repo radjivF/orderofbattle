@@ -78,6 +78,20 @@ describe("PlayPhaseBoard", () => {
     expect(screen.getByRole("tablist", { name: "Battle phases" }));
     expect(screen.getByRole("tab", { name: "Army" }));
     expect(screen.getByRole("tab", { name: "Hero" }));
+    expect(
+      screen.queryByRole("tab", { name: "Start of turn" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("shows Start of turn for Sylvaneth Creeping Dread", async () => {
+    const user = userEvent.setup();
+    const { faction, list } = listWithNamedHero("sylvaneth", "Arch-Revenant");
+    render(
+      <PlayPhaseBoard list={list} faction={faction} onOpenSheet={vi.fn()} />,
+    );
+
+    await openPhase(user, "Start of turn");
+    expect(screen.getByText("Creeping Dread").closest("li")).toBeTruthy();
   });
 
   it("shows a datasheet control on movement units so the sheet is obvious", async () => {

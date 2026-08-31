@@ -3777,14 +3777,38 @@
               "id": "1713-ff4f-5820-34cf",
               "name": "Akhelian",
               "destiny": 0,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Akhelian",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Akhelian keyword and the following regiment options: Any Idoneth Deepkin units In addition, change the Attacks characteristic of your hero's Thalassic Weapon to 5.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "0b93-b1a8-ed56-a9f5",
               "name": "Isharann",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Isharann",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Isharann and Wizard (1) keyword and the following regiment options: Any Idoneth Deepkin units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             }
           ]
@@ -3799,7 +3823,19 @@
               "id": "9326-3558-8545-7de3",
               "name": "Sea-steed",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Sea-steed",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Sea-steed's Fangs weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 7. \u2022 Change the Save characteristic to 4+. \u2022 Replace the Infantry keyword with the following keywords: Cavalry, Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Sea-steed's Fangs",
@@ -3830,6 +3866,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Mighty Sea-beast's Jaws is 3.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Mighty Sea-beast",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Mighty Sea-beast's Jaws weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 16. \u2022 Change the Save characteristic to 3+. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the following keywords: Monster, Fly.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -3867,6 +3914,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "Add 1 to the Attacks characteristic of this unit's Allopex's Ferocious Bite while it is within 6\" of any damaged enemy units or while it is within 6\" of any enemy units that had any models slain in the same turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Allopex",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Allopex's Ferocious Bite weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 10. \u2022 Change the Save characteristic to 4+. \u2022 Replace the Infantry keyword with the following keywords: Cavalry, Fly.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -4072,7 +4130,19 @@
               "id": "c03a-5629-19a8-5231",
               "name": "Formidable Bulk",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Formidable Bulk",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 1
@@ -4082,7 +4152,19 @@
               "id": "fd89-ccc7-66bb-568d",
               "name": "Rapid Striker",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Rapid Striker",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Add 2\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 2
@@ -4111,7 +4193,19 @@
               "id": "0f9b-d23d-d877-9add",
               "name": "Void Drummer",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Void Drummer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Monster only. Your hero has Ward (5+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -4137,7 +4231,19 @@
               "id": "7d7c-0a13-356c-6b18",
               "name": "Mounted Crew",
               "destiny": -10,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Mounted Crew",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Monster only. Add the Razorshell Harpoon Launchers and Crew's Spears and Harpoons weapons to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Razorshell Harpoon Launchers",
@@ -4175,7 +4281,19 @@
               "id": "0190-0a2b-0f47-3408",
               "name": "Tactical Acumen",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Tactical Acumen",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Control characteristic",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -4185,7 +4303,19 @@
               "id": "9e8e-1ab5-9b5a-c845",
               "name": "Martial Grace",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Martial Grace",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 1
@@ -4195,7 +4325,19 @@
               "id": "7eca-9602-effe-4402",
               "name": "Grim Resolve",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Grim Resolve",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 1 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 1
@@ -4205,28 +4347,76 @@
               "id": "8a4b-8c6c-a9f0-52fa",
               "name": "Warding Currents",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Warding Currents",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (6+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "5ae1-2150-da0c-8c69",
               "name": "Focused Hunter",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Focused Hunter",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Thalassic Weapon has Anti-X (+1 Rend), where X is 1 of the following keywords: Infantry, Cavalry, Monster, War Machine, Wizard or Priest.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "f07c-4954-5569-e220",
               "name": "Duellist",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Duellist",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Hit characteristic of your hero's Thalassic Weapon is 2+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "425b-a4f6-9808-da78",
               "name": "Ornate Armour",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Ornate Armour",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Save characteristic is 3+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "stats": {
                 "save": "3+"
@@ -4236,14 +4426,38 @@
               "id": "54b7-e93e-8376-1552",
               "name": "Shining Blade",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Shining Blade",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Thalassic Weapon has Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "897f-c620-8169-6a8d",
               "name": "Deep-sea Companion",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Deep-sea Companion",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add the Deep-sea Companion's Bite weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Deep-sea Companion's Bite",
@@ -4262,7 +4476,19 @@
               "id": "7143-2714-3c54-438d",
               "name": "Serrated Bill",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Serrated Bill",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "You can only pick this upgrade if you picked the 'Deep-sea Companion' upgrade for your hero. The Rend characteristic of your hero's Deep-sea Companion's Bite is 1.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Deep-sea Companion's Bite",
@@ -4281,7 +4507,19 @@
               "id": "6b23-1868-7186-6194",
               "name": "Flurry of Attacks",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Flurry of Attacks",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "You can only pick this upgrade if you picked the 'Deep-sea Companion' upgrade for your hero. The Attacks characteristic of your hero's Deep-sea Companion's Bite is 3.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Deep-sea Companion's Bite",
@@ -4300,7 +4538,19 @@
               "id": "1960-22a0-d7e0-01da",
               "name": "Vicious Bite",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Vicious Bite",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "You can only pick this upgrade if you picked the 'Deep-sea Companion' upgrade for your hero. The Wound characteristic of your hero's Deep-sea Companion's Bite is 3+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Deep-sea Companion's Bite",
@@ -4319,7 +4569,19 @@
               "id": "bead-8153-e95c-55ed",
               "name": "Oracle of the Enclave",
               "destiny": -8,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Oracle of the Enclave",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Wizard only. Your hero's power level is 2.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             }
           ]
@@ -4394,7 +4656,19 @@
               "id": "ada1-f365-83c7-a16d",
               "name": "Shoal of Zephyrfish",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Shoal of Zephyrfish",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Shoal of Zephyrfish to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Shoal of Zephyrfish",

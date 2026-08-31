@@ -6273,7 +6273,19 @@
               "id": "95ab-8669-84f6-5903",
               "name": "Chaos Lord",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Chaos Lord",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Save characteristic to 3+. In addition, change the Hit characteristic of their Chaos Blade to 3+, the Attacks characteristic to 5 and it gains Crit (Mortal). In addition, your hero gains the Warriors of Chaos keyword and the following regiment options: Any Slaves to Darkness units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Chaos Blade",
@@ -6295,7 +6307,19 @@
               "id": "935d-f945-4543-dcd1",
               "name": "Chaos Sorcerer Lord",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Chaos Sorcerer Lord",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Warriors of Chaos and Wizard (1) keywords and the following regiment options: Any Slaves to Darkness units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -6309,6 +6333,17 @@
                   "timing": "Once Per Battle, Any Charge Phase",
                   "declare": "",
                   "effect": "If this unit is wholly within enemy territory and charged this phase, for the rest of the battle, add 1 to hit rolls for combat attacks made by friendly Darkoath units while they are wholly within 12\" of this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Darkoath Warleader",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Darkoath keyword, the 'Oath of Supremacy' ability and the following regiment options: Any Darkoath units",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -6328,6 +6363,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "While this unit is damaged, add 2 to the Attacks characteristic of its melee weapons.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Ogroid Brute",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Move characteristic to 6\" and Health characteristic to 8. Your hero gains the 'Myrmidon Rage' ability and the following regiment options: Any Slaves to Darkness units",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -6352,7 +6398,19 @@
               "id": "c33d-51ec-9a21-70c2",
               "name": "Daemonic Steed",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Daemonic Steed",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Daemonic Steed's Mighty Hooves weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 8. \u2022 Replace the Infantry keyword with the Cavalry keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Daemonic Steed's Mighty Hooves",
@@ -6375,7 +6433,19 @@
               "id": "6c31-dd25-6517-18a2",
               "name": "Chaos Chariot",
               "destiny": -10,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Chaos Chariot",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Chaos Steeds' Trampling Hooves Hooves weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 10. \u2022 Change the Save characteristic to 5+. \u2022 Replace the Infantry keyword with the War Machine keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Chaos Steeds' Trampling Hooves",
@@ -6405,6 +6475,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Mighty Chaotic Beast's Talons is 4.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Mighty Chaotic Beast",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Mighty Chaotic Beast's Talons weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 14. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the Monster keyword.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -6572,7 +6653,19 @@
               "id": "6894-f3e6-f3a5-b7d3",
               "name": "Daemonic Speed",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Daemonic Speed",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 2
@@ -6582,14 +6675,38 @@
               "id": "7540-bed7-f072-7c5a",
               "name": "Winged Beast",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Winged Beast",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry or Monster only. Your hero gains the Fly keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "5336-a529-acdd-3705",
               "name": "Stubborn Beast",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Stubborn Beast",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Monster only. Add 2 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 2
@@ -6599,7 +6716,19 @@
               "id": "0ea7-fef2-3cc1-bc6c",
               "name": "Razor-like Talons",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Razor-like Talons",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Monster only. Your hero's Mighty Chaotic Beast's Talons have a damage characteristic of 3.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Mighty Chaotic Beast's Talons",
@@ -6618,7 +6747,19 @@
               "id": "e215-c921-4217-4434",
               "name": "Gorebeast Chariot",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Gorebeast Chariot",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "War Machine only. Your hero's Chaos Steeds' Trampling Hooves is replaced with the Gorebeast's Crushing Fists melee weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Chaos Steeds' Trampling Hooves",
@@ -6694,7 +6835,19 @@
               "id": "c9f4-4031-010f-b1d8",
               "name": "Dominating Presence",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Dominating Presence",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -6704,7 +6857,19 @@
               "id": "7eea-5a7e-3351-38de",
               "name": "Blastphemous Fortitude",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Blastphemous Fortitude",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 1 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 1
@@ -6714,7 +6879,19 @@
               "id": "5b3b-7a70-10f4-6594",
               "name": "Weapon Master",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Weapon Master",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Hit characteristic of your hero's Chaos Blade is 3+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Chaos Blade",
@@ -6733,7 +6910,19 @@
               "id": "874e-8d7c-0564-2535",
               "name": "Diabolic Strength",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Diabolic Strength",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Wound characteristic of your hero's Chaos Blade is 2+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Chaos Blade",
@@ -6752,7 +6941,19 @@
               "id": "4a52-ddfa-5b12-47a8",
               "name": "Fearsome Charger",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Fearsome Charger",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry, War Machine or Monster only. Your hero's Chaos Blade has Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Chaos Blade",
@@ -6771,7 +6972,19 @@
               "id": "b8a2-8ec7-e723-ca9d",
               "name": "Favoured Foe",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Favoured Foe",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Chaos Blade has Anti-X (+1 Rend, where X is 1 of the following keywords: Infantry, Cavalry, Monster, War Machine, Wizard or Priest.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Chaos Blade",
@@ -6790,7 +7003,19 @@
               "id": "023a-e58e-6484-1af9",
               "name": "Battle Ferocity",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Battle Ferocity",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the Attacks characteristic of your hero's Chaos Blade.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Chaos Blade",
@@ -6809,7 +7034,19 @@
               "id": "fc58-d9db-138c-f851",
               "name": "Daemon-bound Blade",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Daemon-bound Blade",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Chaos Blade has Crit (Mortal).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Chaos Blade",

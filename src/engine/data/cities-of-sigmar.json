@@ -6790,7 +6790,19 @@
               "id": "716d-fe9e-86f5-ee75",
               "name": "Freeguild Officer",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Freeguild Officer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Save characteristic to 3+ and replace their melee weapon with a Marshal's Blade. In addition, your hero has the following regiment options: Any Sigmarite units.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Marshal's Blade",
@@ -6812,14 +6824,38 @@
               "id": "fc48-e501-434f-f980",
               "name": "Sigmarite Battlemage",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Sigmarite Battlemage",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Wizard (1) keyword and the following regiment options: Any Sigmarite Infantry units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "346a-5e62-0d01-2185",
               "name": "Sigmarite Battle-priest",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Sigmarite Battle-priest",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Save characteristic to 4+. In addition, your hero has the Priest(1) keyword and the following regiment options: Any Sigmarite Infantry units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "stats": {
                 "save": "4+"
@@ -6829,7 +6865,19 @@
               "id": "3995-1be3-3fa7-a62b",
               "name": "Agent Azyrite",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Agent Azyrite",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Save characteristic to 4+ and replace their melee weapon with an Order Crossbow and a Marshal's Blade. In addition, your hero has the following regiment options. Any Sigmarite Infantry units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Marshal's Blade",
@@ -6870,7 +6918,19 @@
               "id": "1384-4583-3301-08b2",
               "name": "Cavalier Steed",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Cavalier Steed",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Cavalier Steed's Iron-shod Hooves weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 7. \u2022 Replace the Infantry keyword with the Cavalry keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Cavalier Steed's Iron-shod Hooves",
@@ -6911,6 +6971,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "Add 1 to casting rolls and chanting rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Magisterial Platform",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Draught Horse's Iron-shod Hooves weapons to your hero's warscroll. In addition, if your hero is a Sigmarite Battlemage or Sigmarite Priest, pick the 'Azyrite Storm' or 'Magical Foci' ability. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 8\". \u2022 Change the Health characteristic to 10. \u2022 Replace the Infantry keyword with the War Machine keyword. If your hero is a Sigmarite Battlemage: \u2022 Replace the Wizard (1) keyword with the Wizard (2) keyword. If your hero is a Sigmarite Battle-priest: \u2022 Replace the Priest (1) keyword with the Priest (2) keyword.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -7078,7 +7149,19 @@
               "id": "621e-71a9-1e7d-6905",
               "name": "Purebred Warhorse",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Purebred Warhorse",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 2
@@ -7107,7 +7190,19 @@
               "id": "92f4-b076-4643-10e4",
               "name": "Honed Instincts",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Honed Instincts",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the 'Honed Instincts' ability to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -7133,7 +7228,19 @@
               "id": "164d-a177-4600-f687",
               "name": "Borne to War",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Borne to War",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's non-Companion melee weapon has Charge (+1 Damage.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -7205,14 +7312,38 @@
               "id": "1def-7973-8704-912b",
               "name": "Daring Duelist",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Daring Duelist",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's non-Companion weapon has Crit (2 Hits).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "e57b-ea11-4523-bb3e",
               "name": "Blade of the Order",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Blade of the Order",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "If your hero has a Marshal's Blade, it has Anti-Wizard (+1 Rend) and Anti-Priest (+1 Remd)**.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Marshal's Blade",
@@ -7231,7 +7362,19 @@
               "id": "e27d-7a58-28f3-d1f0",
               "name": "Rapid Blows",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Rapid Blows",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the Attacks characteristic of your hero's melee weapons.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -7257,7 +7400,19 @@
               "id": "7a32-98ac-7aa0-330f",
               "name": "Blademaster",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Blademaster",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the Rend characteristic of your hero's melee weapons.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -7769,7 +7924,19 @@
               "id": "e6b5-dd5d-bce4-310a",
               "name": "Eccentric Browbeater",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Eccentric Browbeater",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -7779,21 +7946,57 @@
               "id": "4836-7862-95a8-af67",
               "name": "Martial Training",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Martial Training",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the Attacks characteristic of your hero's non-Companion melee weapons.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "b2ea-ceb8-db40-7d60",
               "name": "Offensive Enchantments",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Offensive Enchantments",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's non-Companion melee weapons have Crit (2 Hits).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "6951-8746-d06a-0e50",
               "name": "Guiding Enchantments",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Guiding Enchantments",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Hit characteristic of your hero's Mage Staff is 2+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -7819,7 +8022,19 @@
               "id": "acd2-db21-4c22-9351",
               "name": "Wand of Blasting",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Wand of Blasting",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Wand of Blasting weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Wand of Blasting",
@@ -7838,7 +8053,19 @@
               "id": "219f-51ad-f5ad-7c3e",
               "name": "Arcane Form",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Arcane Form",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (5+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -7902,7 +8129,19 @@
               "id": "c328-6bef-4d7d-4933",
               "name": "Wizard Lord",
               "destiny": -8,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Wizard Lord",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's power level.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             }
           ]
@@ -7917,7 +8156,19 @@
               "id": "2170-f7f8-0e8d-b074",
               "name": "War Horse",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "War Horse",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Well-kept Hooves weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 7. \u2022 Replace the Infantry keyword with the Cavalry keyword. \u2022 Change the Save characteristic to 5+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Well-kept Hooves",
@@ -7952,6 +8203,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Wizard's Familiar",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the 'Drain Familiar' ability to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Replace Wizard (1) with Wizard (2).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -7968,7 +8230,19 @@
               "id": "e109-3c5e-d051-4d29",
               "name": "Swift-footed",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Swift-footed",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Add 2\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 2
@@ -7978,7 +8252,19 @@
               "id": "b74d-d0ec-1a2f-5756",
               "name": "Hardy Companion",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Hardy Companion",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 2 to your hero's Health characteristic,",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 2
@@ -7988,14 +8274,38 @@
               "id": "902f-9a1b-0fc8-36fe",
               "name": "Winged Companion",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Winged Companion",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Fly keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "aa6b-ddf0-7efa-2112",
               "name": "Battle Familiar",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Battle Familiar",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Familiar's Weapons weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Familiar's Weapons",

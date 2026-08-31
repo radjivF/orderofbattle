@@ -17,8 +17,9 @@ import {
   pathToGlorySpellIds,
   toggleLearnedId,
 } from "@/engine/pathToGlory";
-import { manifestationStatLine } from "@/engine/queries";
+import { armyHasKeyword, manifestationStatLine } from "@/engine/queries";
 import { castValueLabel } from "@/lib/abilityUi";
+import { CollapseChevron } from "./ExpandableRuleCard";
 import { RuleText } from "./RuleText";
 import { PlaySlotRow, SheetLinkButton } from "./ios/SheetIconButton";
 
@@ -37,10 +38,14 @@ export function PathToGlorySpellCard({
 }: SpellProps) {
   const picks = factionSpellPicks(faction);
   const learned = learnedSpellsForList(list, faction);
+  const hasWizard = armyHasKeyword(list, faction, "WIZARD");
   if (picks.length === 0) {
     return null;
   }
   if (playMode && learned.length === 0) {
+    return null;
+  }
+  if (!playMode && !hasWizard && learned.length === 0) {
     return null;
   }
 
@@ -57,7 +62,9 @@ export function PathToGlorySpellCard({
         </h2>
         {!playMode ? (
           <p className="mt-1 text-sm text-sheet-muted">
-            Pick each spell you have learned. You do not take a whole lore.
+            The first time you add a Wizard, you can pick 1 spell from a lore —
+            not the whole lore. Skip this if you have no Wizard. Later spells
+            come from quests.
           </p>
         ) : null}
       </header>
@@ -113,10 +120,16 @@ export function PathToGloryManifestationCard({
 }: ManifestationProps) {
   const picks = factionManifestationPicks(faction);
   const learned = learnedManifestationsForList(list, faction);
+  const hasCaster =
+    armyHasKeyword(list, faction, "WIZARD") ||
+    armyHasKeyword(list, faction, "PRIEST");
   if (picks.length === 0) {
     return null;
   }
   if (playMode && learned.length === 0) {
+    return null;
+  }
+  if (!playMode && !hasCaster && learned.length === 0) {
     return null;
   }
 
@@ -133,7 +146,8 @@ export function PathToGloryManifestationCard({
         </h2>
         {!playMode ? (
           <p className="mt-1 text-sm text-sheet-muted">
-            Pick each manifestation you can summon. You do not take a whole lore.
+            The first Wizard or Priest can pick 1 manifestation — not the whole
+            lore. Skip this until you have one.
           </p>
         ) : null}
       </header>
@@ -264,9 +278,9 @@ function LoreGroup({
           ) : null}
           <span
             aria-hidden="true"
-            className={`transition ${open ? "rotate-180" : ""}`}
+            className="inline-flex size-11 shrink-0 items-center justify-center"
           >
-            ▾
+            <CollapseChevron turned={open} />
           </span>
         </span>
       </button>
@@ -345,14 +359,14 @@ function LearnedPick({
             type="button"
             aria-expanded={rulesOpen}
             onClick={() => setRulesOpen((value) => !value)}
-            className="flex w-full items-center justify-between gap-2 px-3 py-2 text-left text-xs font-semibold tracking-wide uppercase text-sheet-muted"
+            className="flex min-h-11 w-full items-center justify-between gap-2 px-3 py-2 text-left text-xs font-semibold tracking-wide uppercase text-sheet-muted"
           >
             What it does
             <span
               aria-hidden="true"
-              className={`transition ${rulesOpen ? "rotate-180" : ""}`}
+              className="inline-flex size-11 shrink-0 items-center justify-center"
             >
-              ▾
+              <CollapseChevron turned={rulesOpen} />
             </span>
           </button>
           {rulesOpen ? (

@@ -161,6 +161,10 @@ export type SpecialEnhancementTable = {
   id: string;
   name: string;
   options: EnhancementOption[];
+  /** Scourge season this table belongs to — omit for always-on tables. */
+  realm?: "aqshy" | "ghyran";
+  /** Aspects of the Deepwoods: non-HERO non-MONSTER only. */
+  restrictTo?: "nonHeroNonMonster";
 };
 
 export type BattleTacticCard = {
@@ -260,6 +264,10 @@ export type PathToGlorySelectionState = {
   anvilRankId?: string | null;
   /** Picked Anvil of Apotheosis option ids (chamber, origin, mount, …). */
   anvilPickIds?: string[];
+  /** Artefact of Power on this unit — Path to Glory has no army-wide cap. */
+  artefactId?: string | null;
+  /** Heroic trait on this unit — Path to Glory has no army-wide cap. */
+  heroicTraitId?: string | null;
 };
 
 export type FactionCatalogue = {

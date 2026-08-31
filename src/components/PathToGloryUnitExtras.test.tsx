@@ -29,8 +29,18 @@ describe("PathToGloryUnitExtras Path", () => {
       />,
     );
 
-    expect(screen.getByRole("button", { name: "Full-On Attack" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Battle Fury" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /full-on attack/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /battle fury/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/add 1 to hit rolls for attacks made by units this phase/i),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/charge abilities even if it used a run ability/i),
+    ).toBeInTheDocument();
     const pair = screen.getByRole("group", { name: /aspiring/i });
     expect(pair.className).toContain("grid-cols-2");
   });
@@ -49,6 +59,6 @@ describe("PathToGloryUnitExtras Path", () => {
     expect(screen.getByText(/path abilities/i)).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: /path of the attacker/i }));
     expect(screen.queryByText(/path abilities/i)).not.toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: "Full-On Attack" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /full-on attack/i })).not.toBeInTheDocument();
   });
 });

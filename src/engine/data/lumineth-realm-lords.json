@@ -4473,7 +4473,19 @@
               "id": "e40a-a702-c3f2-fbd8",
               "name": "Vanari Commander",
               "destiny": 0,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Vanari Commander",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Vanari keyword, has a save characteristic of 4+, and gains the following regiment options: Any Lumineth Realm-lords units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "stats": {
                 "save": "4+"
@@ -4483,7 +4495,19 @@
               "id": "9cdd-45d5-c72a-0a1d",
               "name": "Eclipsian Warsage",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Eclipsian Warsage",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Wizard (1), Scinari, and Vanari keywords, has a Save characteristic of 4+, and gains the following regiment options: Any Lumineth Realm-lords units In addition, replace your hero's Hyshian Blade with an Eclipsian Blade.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Hyshian Blade",
@@ -4527,6 +4551,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Alarith Mountain Keeper",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Alarith and Wizard (1) keywords, the 'Immovable Defenders' ability, and the following regiment options: Any Alarith or Vanari units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -4542,6 +4577,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "If you depicted Oreali, Rune of the Wind this battle round, ranged weapons used by friendly Hurakan units have Crit (Auto-wound) while they are wholly within 12\" Of this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Hurakan Wind Charmer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Hurakan and Wizard (1) keywords, the 'Gale-force Arrows' ability, and the following regiment options: Any Hurakan or Vanari units",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -4565,6 +4611,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Ydrilan River Shaper",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Ydrilan and Wizard (1) keywords, the 'Flow with the Current' ability, and the following regiment options: Any Ydrilan or Vanari units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -4584,6 +4641,17 @@
                   "castingValue": "7",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Scinari Mage",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Scinari Mage and Wizard (1) keywords, the 'Shining Blades' ability, and the following regiment options: Any Vanari units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -4600,7 +4668,19 @@
               "id": "dc60-43e2-7a2e-4bf4",
               "name": "Lightcourser",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Lightcourser",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Lightcourser's Horns and Claws weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 14\". \u2022 Change the Health characteristic to 7. \u2022 Replace the Infantry keyword with the Cavalry keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Lightcourser's Horns and Claws",
@@ -4634,6 +4714,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Unyielding Realm Spirit",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Non-Vanari, non-Scinari only. Replace your hero's weapons with the Aelementor Colossal Weapon weapon and add the 'Battle Damaged' ability to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Save characteristic to 3+. \u2022 Change the Health characteristic to 14. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the Monster keyword. \u2022 Replace the Aelf keyword with the Aelementor keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": [
@@ -4659,7 +4750,19 @@
               "id": "c3c7-7f0c-dcaf-fe3e",
               "name": "Swift Realm Spirit",
               "destiny": -10,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Swift Realm Spirit",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Non-Vanari, non-Scinari only. Replace your hero's weapons with the Aelementor Ranged Weapon and Swirling Debris weapons. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 14\". \u2022 Change the Health characteristic to 8. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the Monster keyword. \u2022 Replace the Aelf keyword with the Aelementor keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Aelementor Ranged Weapon",
@@ -4870,14 +4973,38 @@
               "id": "32e9-2600-7568-8e26",
               "name": "Alpha Lightcourser",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Alpha Lightcourser",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Your hero's Companion weapons have Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "d6e1-8779-5bc3-b70e",
               "name": "Symbiotic Protectors",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Symbiotic Protectors",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Aelementor only. Your hero gains the Aelf keyword and the Hyshian Blade weapon from the starting warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Hyshian Blade",
@@ -4896,7 +5023,19 @@
               "id": "7990-3db5-97fd-01f7",
               "name": "Swarm of Lesser Spirits",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Swarm of Lesser Spirits",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Awakened Realm Spirits weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Awakened Realm Spirits",
@@ -4980,7 +5119,19 @@
               "id": "03f9-981d-7072-7349",
               "name": "Fly the Standard",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Fly the Standard",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -4990,7 +5141,19 @@
               "id": "6418-f03a-c46e-2ab2",
               "name": "Sharpened by Light",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Sharpened by Light",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Rend characteristic of your hero's Hyshian Blade is 2.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Hyshian Blade",
@@ -5009,7 +5172,19 @@
               "id": "2c2b-3a22-0fe9-5f37",
               "name": "Shining Armour",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Shining Armour",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Save characteristic is 3+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "stats": {
                 "save": "3+"
@@ -5019,14 +5194,38 @@
               "id": "f414-f87c-3b96-45fb",
               "name": "Skillfully Trained",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Skillfully Trained",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Pick 1 of your hero's melee weapons. That weapon has Anti-X (+1 Rend), where X is one of the following keywords: Infantry, Cavalry, Monster, War Machine, Wizard or Priest",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "0baf-4fc6-e486-3082",
               "name": "Silver Bow",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Silver Bow",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry or Cavalry only. Add the Silver Bow weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Silver Bow",
@@ -5045,21 +5244,57 @@
               "id": "bac0-19c4-fafa-c4bb",
               "name": "Arcane Protection",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Arcane Protection",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (5+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "9fa5-48f1-29b1-b419",
               "name": "Forged in Sunmetal",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Forged in Sunmetal",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry or Cavalry only. Your hero's non-Companion melee weapons gain Crit (Mortal).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "ea38-a8d1-1740-928b",
               "name": "Lifted by Nature",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Lifted by Nature",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2\" to your hero's Move characteristic. Your hero has Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 2
@@ -5088,7 +5323,19 @@
               "id": "f222-0362-6867-2b8c",
               "name": "Magical Brilliance",
               "destiny": -8,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Magical Brilliance",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Wizard only. Your hero has Wizard (2).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -5121,6 +5368,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "Add 1 to casting rolls and banishment rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Master of Aelven Sorcery",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Wizard only. Add the 'Master of Aelven Sorcery' ability to your hero's warscroll.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",

@@ -4931,21 +4931,57 @@
               "id": "e9ce-afb4-6932-4711",
               "name": "Sybarite Warlord",
               "destiny": 0,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Sybarite Warlord",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Sybarite keyword and the following regiment options: Any Sybarite units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "ecb6-b24a-75f0-288a",
               "name": "Sybarite Sorcerer",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Priest of Khorne",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Sybarite and Wizard (1) keywords and the following regiment options: Any Sybarite units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "4f2e-6ce0-7eaa-de7e",
               "name": "Sinful Exemplar",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Sinful Exemplar",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Sybarite and the following regiment options: Any Hedonites of Slaanesh units In addition, replace their melee weapon with a Weapon of Seduction.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Weapon of Seduction",
@@ -4964,14 +5000,38 @@
               "id": "dafb-0780-23cd-6d4c",
               "name": "Herald of the Dark Prince",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Herald of the Dark Prince",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Daemon and Ward (6+) keywords and the following regiment options: Any Hedonites of Slaanesh Daemon units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "7797-3d1d-9f81-8a69",
               "name": "Master of Seduction",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Master of Seduction",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Daemon, Ward (^+) and Wizard (1) keywords and the following regiment options: Any Hedonites of Slaanesh Daemon units.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             }
           ]
@@ -5154,7 +5214,19 @@
               "id": "c962-e0da-c815-bd7d",
               "name": "Conceited Individual",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Conceited Individual",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -5183,7 +5255,19 @@
               "id": "d836-b04b-bbf2-9802",
               "name": "Gluttonous Girth",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Slaughterous Speed",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 2
@@ -5193,7 +5277,19 @@
               "id": "e795-4a9e-36e3-a110",
               "name": "Blissbarb Bow",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Blissbarb Bow",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Blissbarb Bow weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Blissbarb Bow",
@@ -5250,7 +5346,19 @@
               "id": "6d09-eb9d-7a85-ce43",
               "name": "Finely Cured Leathers",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Finely Cured Leathers",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Save characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "save": 1
@@ -5279,7 +5387,19 @@
               "id": "e812-f47c-96e3-a783",
               "name": "Slickblade Glaive",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Slickblade Glaive",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Replace your hero's melee weapon with a Slickblade Glaive.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Slickblade Glaive",
@@ -5309,6 +5429,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Blind to All but Hate",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the 'Blind to All but Hate' ability.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -5325,7 +5456,19 @@
               "id": "58e3-6cd8-d2c8-f67d",
               "name": "Steed of Slaanesh",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Steed of Slaanesh",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Steed's Poisoned Tongue weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 14\". \u2022 Change the Health characteristic to 7. \u2022 Replace the Infantry keyword with the Cavalry keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Steed's Poisoned Tongue",
@@ -5348,7 +5491,19 @@
               "id": "a1a8-2f39-c875-d9b8",
               "name": "Exalted Steed",
               "destiny": -7,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Exalted Steed",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Exalted Steed's Poisoned Tongue weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 14\". \u2022 Change the Health characteristic to 8. \u2022 Replace the Infantry keyword with the Cavalry keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Steed's Poisoned Tongue",
@@ -5428,7 +5583,19 @@
               "id": "e6d7-c5c6-bef8-5f36",
               "name": "Impossibly Fleet",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Impossibly Fleet",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2\" to the Move characteristic of your hero.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 2
@@ -5457,7 +5624,19 @@
               "id": "8fd3-9e3a-dc40-fc27",
               "name": "Tailored Toxins",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Tailored Toxins",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Companion melee weapons have Anti-X (+1 Rend), where X is a one of the following keywords: Infantry, Cavalry, Monster, War Machine, Hero, Wizard or Priest.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {

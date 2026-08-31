@@ -276,6 +276,38 @@ describe("formation phase routing", () => {
     ).toEqual(["end"]);
   });
 
+  it("maps Start of Any Turn to start of turn, not Army", () => {
+    expect(
+      phasesForAbility({
+        name: "Creeping Dread",
+        kind: "Activated",
+        timing: "Once Per Turn (Army), Start of Any Turn",
+        declare: "",
+        effect: "",
+        keywords: "",
+        castingValue: "",
+        chantingValue: "",
+        cost: "",
+      }),
+    ).toEqual(["start"]);
+  });
+
+  it("keeps Start of Battle Round on Army", () => {
+    expect(
+      phasesForAbility({
+        name: "Ever Growing",
+        kind: "Activated",
+        timing: "Once Per Battle Round, Start of Battle Round",
+        declare: "",
+        effect: "",
+        keywords: "",
+        castingValue: "",
+        chantingValue: "",
+        cost: "",
+      }),
+    ).toEqual(["passive"]);
+  });
+
   it("puts Coven Zealots Higher Purpose on End of turn, not Army", () => {
     const faction = getFaction("daughters-of-khaine");
     expect(faction).toBeTruthy();
@@ -298,6 +330,33 @@ describe("formation phase routing", () => {
 
     expect(namesOn("end")).toContain("Higher Purpose");
     expect(namesOn("passive")).not.toContain("Higher Purpose");
+  });
+
+  it("puts Sylvaneth Creeping Dread on Start of turn and hides that tab for Stormcast", () => {
+    const sylvaneth = getFaction("sylvaneth");
+    const stormcast = getFaction("stormcast-eternals");
+    expect(sylvaneth && stormcast).toBeTruthy();
+    if (!sylvaneth || !stormcast) return;
+
+    const sylvanethBoards = buildPhaseBoards(blankArmy(sylvaneth.id), sylvaneth);
+    const stormcastBoards = buildPhaseBoards(
+      blankArmy(stormcast.id),
+      stormcast,
+    );
+    const startNames =
+      sylvanethBoards
+        .find((board) => board.phase.id === "start")
+        ?.abilities.map((row) => row.ability.name) ?? [];
+
+    expect(startNames).toContain("Creeping Dread");
+    expect(
+      sylvanethBoards
+        .find((board) => board.phase.id === "passive")
+        ?.abilities.map((row) => row.ability.name),
+    ).not.toContain("Creeping Dread");
+    expect(stormcastBoards.some((board) => board.phase.id === "start")).toBe(
+      false,
+    );
   });
 });
 

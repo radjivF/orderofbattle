@@ -7,6 +7,7 @@ import type {
   UnitStats,
   UnitWeapon,
 } from "../types";
+import { applyWarscrollInstruction, bumpStat } from "./anvilWarscroll";
 
 export type { AnvilForgeGroup, AnvilRank };
 
@@ -17,6 +18,13 @@ export function isAnvilOfApotheosis(
     Boolean(unit.pathToGloryOnly) ||
     unit.name.startsWith("Anvil of Apotheosis")
   );
+}
+
+/** Extract `unique` is a roster cap of one. Anvil is a custom hero, not UNIQUE. */
+export function uniqueKeywordBlocksEnhancements(
+  unit: Pick<CatalogueUnit, "unique" | "name" | "pathToGloryOnly">,
+): boolean {
+  return Boolean(unit.unique) && !isAnvilOfApotheosis(unit);
 }
 
 export function anvilForgeGroups(unit: CatalogueUnit): AnvilForgeGroup[] {
@@ -139,18 +147,6 @@ function uniqueByName<T extends { name: string }>(items: T[]): T[] {
   return out;
 }
 
-function bumpStat(value: string, delta: number): string {
-  if (!delta) {
-    return value;
-  }
-  const match = value.match(/^(-?\d+)/);
-  if (!match) {
-    return value;
-  }
-  const next = Number(match[1]) + delta;
-  return `${next}${value.slice(match[1].length)}`;
-}
-
 function applyStatAdds(
   stats: UnitStats,
   adds: { move: number; health: number; control: number },
@@ -209,16 +205,33 @@ export function resolveAnvilUnit(
     }
   }
 
+  let categories = [...unit.categories];
+  let weapons = uniqueByName([
+    ...unit.weapons.filter((item) => !forgeWeaponNames.has(item.name)),
+    ...pickedWeapons,
+  ]);
+  const keptAbilities: UnitAbility[] = [];
+  for (const ability of pickedAbilities) {
+    const applied = applyWarscrollInstruction(
+      ability.effect,
+      categories,
+      weapons,
+    );
+    categories = applied.categories;
+    weapons = applied.weapons;
+    if (applied.keep) {
+      keptAbilities.push(ability);
+    }
+  }
+
   return {
     ...unit,
+    categories,
     stats: applyStatAdds(stats, adds),
     abilities: uniqueByName([
       ...unit.abilities.filter((item) => !forgeAbilityNames.has(item.name)),
-      ...pickedAbilities,
+      ...keptAbilities,
     ]),
-    weapons: uniqueByName([
-      ...unit.weapons.filter((item) => !forgeWeaponNames.has(item.name)),
-      ...pickedWeapons,
-    ]),
+    weapons,
   };
 }

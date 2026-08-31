@@ -3398,6 +3398,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Ironsunz",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the 'Alright, Get 'Em!' ability and the following regiment options: Any Ironjawz units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -3413,6 +3424,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "Friendly Ironjawz units can pile in 2D6\" instead of 3\" while they are wholly within 12\" of this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Bloodtoofs",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the 'Hunt and Crush' ability and the following regiment options: Any Ironjawz units",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -3436,6 +3458,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Da Choppas",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Priest (1), the 'Rousing Ruckus' ability and the following regiment options: Any Ironjawz units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -3452,7 +3485,19 @@
               "id": "1d9a-f1e2-e516-838e",
               "name": "Maw-grunta",
               "destiny": -12,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Maw-grunta",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Maw-grunta's Tusks weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 14. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the Monster keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Maw-grunta's Tusks",
@@ -3476,7 +3521,19 @@
               "id": "9e7a-dc4a-97d5-0a1e",
               "name": "Maw-krusha",
               "destiny": -24,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Maw-krusha",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Maw-krusha's Fists and Tail weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 18. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the following keywords: Monster, Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Maw-krusha's Fists and Tail",
@@ -3714,7 +3771,19 @@
               "id": "28e6-5ad6-268a-1d0c",
               "name": "Fast 'Un",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Fast 'Un",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Monster only. Add 3\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 3
@@ -3731,6 +3800,17 @@
                   "timing": "Once Per Turn, Reaction: Opponent declared a command for a unit within 12\" of this unit",
                   "declare": "",
                   "effect": "Roll a dice. On a 4+, unless your opponent spends 1 additional command point to use that command, the command has no effect, it still counts as having been used and the command points spent to use the command are still lost.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Loud'Un",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Monster only. Add the 'Loud 'Un' ability to your hero's warscroll.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -3789,7 +3869,19 @@
               "id": "7774-4985-7a1e-3547",
               "name": "Towering Ego",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Towering Ego",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -3799,7 +3891,19 @@
               "id": "2150-fcd5-1ff1-aef2",
               "name": "Eager to Fight",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Eager to Fight",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 1
@@ -3809,7 +3913,19 @@
               "id": "0b09-f3c4-fd79-29fe",
               "name": "Gnarled Flesh",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Gnarled Flesh",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 1
@@ -3819,14 +3935,38 @@
               "id": "1c3b-aaef-dcee-bf95",
               "name": "Mork's Own Luck",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Mork's Own Luck",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (6+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "ea76-3564-7944-c759",
               "name": "Warlike Grudge",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Warlike Grudge",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Choppa or Hacka has Anti-X (+1 Rend), where X is 1 of the following keywords: Infantry, Cavalry, Monster, War Machine, Wizard or Priest.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Choppa",
@@ -3845,7 +3985,19 @@
               "id": "4197-9d86-2271-d37b",
               "name": "Gork's Strength",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Gork's Strength",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Damage characteristic of your hero's Choppa or Hacka is 3.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Choppa",
@@ -3864,7 +4016,19 @@
               "id": "941f-934e-1b50-1faa",
               "name": "Underhanded",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Underhanded",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Choppa or Hacka has Crit (Mortal).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Choppa",
@@ -3883,7 +4047,19 @@
               "id": "ed4b-19c5-7c10-a0cb",
               "name": "Rider-boss",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Rider-boss",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Choppa or Hacka has Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Choppa",
@@ -3902,7 +4078,19 @@
               "id": "cd9c-0f7b-41a5-e040",
               "name": "Extra Stabby Bitz",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Extra Stabby Bitz",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the Attacks characteristic of your hero's Choppa or Hacka.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Choppa",
@@ -3940,7 +4128,19 @@
               "id": "e593-b572-0989-b850",
               "name": "Touched by da Waaagh!",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Touched by da Waaagh!",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Non-Priest only. Your hero has Wizard (1). If this unit is already a Wizard, add 1 to casting rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             }
           ]

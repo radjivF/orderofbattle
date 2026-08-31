@@ -23,6 +23,7 @@ import {
   SHEET_HEADER_START_CLASS,
   SHEET_PANEL_CLASS,
 } from "@/lib/builderUi";
+import { CollapseChevron } from "./ExpandableRuleCard";
 import { ModalFrame } from "./ModalFrame";
 import { RuleText } from "./RuleText";
 import { SheetCloseButton, SheetLinkButton } from "./ios/SheetIconButton";
@@ -65,14 +66,17 @@ export function PathToGloryAnvilForge({
     <>
       <button
         type="button"
-        aria-label="Forge Anvil of Apotheosis"
+        aria-label="Go to forge"
         onClick={() => setOpen(true)}
-        className="flex min-h-10 w-full items-center justify-between gap-2 text-left text-xs font-semibold tracking-wide uppercase text-sheet-muted"
+        className="pressable flex min-h-11 w-full cursor-pointer items-center gap-2 rounded-lg px-2.5 text-left ring-1 ring-aether/35"
       >
-        <span>Forge</span>
-        <span className="truncate font-sans font-normal normal-case tracking-normal text-sm text-parchment-ink">
+        <span className="shrink-0 text-sm font-semibold text-aether underline decoration-aether/40 underline-offset-2">
+          Go to forge
+        </span>
+        <span className="min-w-0 flex-1 truncate text-sm text-parchment-ink">
           {anvilForgeSummary(unit, selection)}
         </span>
+        <ForgeOpenMark />
       </button>
       {open ? (
         <ModalFrame
@@ -198,8 +202,11 @@ function ForgeGroup({
         <span>{group.name}</span>
         <span className="flex min-w-0 items-center gap-2 font-sans font-normal normal-case tracking-normal">
           <span className="truncate text-sm text-parchment-ink">{summary}</span>
-          <span aria-hidden="true" className="transition group-open:rotate-180">
-            ▾
+          <span
+            aria-hidden="true"
+            className="inline-flex size-11 shrink-0 items-center justify-center"
+          >
+            <CollapseChevron />
           </span>
         </span>
       </summary>
@@ -255,6 +262,77 @@ function ForgeGroup({
   );
 }
 
+const SHORT_OPTION_RULES = 140;
+
+function optionRulesPlainText(option: AnvilForgeOption): string {
+  const adds = option.statAdds;
+  const stats = option.stats;
+  return [
+    stats?.move ? `Move ${stats.move}` : "",
+    stats?.health ? `Health ${stats.health}` : "",
+    stats?.save ? `Save ${stats.save}` : "",
+    adds?.move ? `+${adds.move} Move` : "",
+    adds?.health ? `+${adds.health} Health` : "",
+    adds?.control ? `+${adds.control} Control` : "",
+    ...option.weapons.map((weapon) =>
+      [
+        weapon.kind === "ranged" ? "Shoot" : "Melee",
+        weapon.name,
+        weapon.range,
+        weapon.ability,
+      ]
+        .filter(Boolean)
+        .join(" · "),
+    ),
+    ...option.abilities.flatMap((ability) =>
+      [ability.timing, ability.declare, ability.effect].filter(Boolean),
+    ),
+  ]
+    .filter(Boolean)
+    .join(" · ");
+}
+
+function optionRulesNeedCollapse(option: AnvilForgeOption): boolean {
+  return optionRulesPlainText(option).length > SHORT_OPTION_RULES;
+}
+
+function optionRulesPreview(option: AnvilForgeOption): string {
+  const text = optionRulesPlainText(option);
+  if (text.length <= SHORT_OPTION_RULES) {
+    return text;
+  }
+  const slice = text.slice(0, SHORT_OPTION_RULES);
+  const lastSpace = slice.lastIndexOf(" ");
+  const cut = lastSpace > 80 ? slice.slice(0, lastSpace) : slice;
+  return `${cut.trimEnd()}…`;
+}
+
+function RulesMoreButton({
+  more,
+  name,
+  onToggle,
+}: {
+  more: boolean;
+  name: string;
+  onToggle: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      aria-expanded={more}
+      aria-label={more ? `See less, ${name}` : `See more, ${name}`}
+      onClick={(event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        onToggle();
+      }}
+      className="pressable relative z-10 inline text-sm font-semibold text-aether underline decoration-aether/40 underline-offset-2"
+    >
+      {more ? "See less" : "See more"}
+    </button>
+  );
+}
+
 function ForgeOption({
   option,
   checked,
@@ -264,39 +342,50 @@ function ForgeOption({
   checked: boolean;
   onToggle: () => void;
 }) {
+  const [more, setMore] = useState(false);
   const hasRules = optionHasRules(option);
+  const long = hasRules && optionRulesNeedCollapse(option);
+  const shortRules = hasRules && !long ? optionRulesPlainText(option) : "";
+
   return (
-    <div className="rounded-lg bg-parchment-ink/5">
-      <label className="flex cursor-pointer items-start gap-2 px-2 py-2 text-sm font-sans font-normal normal-case tracking-normal">
+    <div className="rounded-lg bg-parchment-ink/5 px-2 py-1">
+      <label className="flex min-h-10 min-w-0 cursor-pointer items-center gap-2 text-sm font-sans font-normal normal-case tracking-normal">
         <input
           type="checkbox"
           checked={checked}
           onChange={onToggle}
           aria-label={option.name}
-          className="mt-0.5 size-4 shrink-0 accent-aether"
+          className="size-4 shrink-0 accent-aether"
         />
         <span className="min-w-0 text-parchment-ink">
           {option.name}
           {destinyLabel(option.destiny)}
+          {shortRules ? (
+            <span className="text-sheet-muted"> · {shortRules}</span>
+          ) : null}
         </span>
       </label>
-      {hasRules ? (
-        <details className="group border-t border-parchment-ink/10">
-          <summary className="cursor-pointer list-none px-2 py-1.5 text-[11px] font-semibold tracking-wide uppercase text-sheet-muted [&::-webkit-details-marker]:hidden">
-            <span className="flex items-center justify-between gap-2">
-              What it does
-              <span
-                aria-hidden="true"
-                className="transition group-open:rotate-180"
-              >
-                ▾
-              </span>
-            </span>
-          </summary>
-          <div className="px-2 pb-2">
-            <OptionRules option={option} />
-          </div>
-        </details>
+      {long && !more ? (
+        <p className="pl-6 text-sm text-sheet-muted">
+          {optionRulesPreview(option)}{" "}
+          <RulesMoreButton
+            more={false}
+            name={option.name}
+            onToggle={() => setMore(true)}
+          />
+        </p>
+      ) : null}
+      {long && more ? (
+        <div className="pl-6">
+          <OptionRules option={option} />
+          <p className="mt-1">
+            <RulesMoreButton
+              more
+              name={option.name}
+              onToggle={() => setMore(false)}
+            />
+          </p>
+        </div>
       ) : null}
     </div>
   );
@@ -361,5 +450,24 @@ function OptionRules({ option }: { option: AnvilForgeOption }) {
         </div>
       ))}
     </div>
+  );
+}
+
+function ForgeOpenMark() {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+      className="h-5 w-5 shrink-0 text-aether"
+    >
+      <path
+        d="M8 5l5 5-5 5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }

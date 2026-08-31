@@ -4197,7 +4197,19 @@
               "id": "83ea-19f0-1de3-9b17",
               "name": "Mortek Commander",
               "destiny": 0,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Mortek Commander",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Save characteristic to 3+. Change the number after your hero's Relentless Discipline keyword to 5. Your hero has the following regiment options: Any Ossiarch Bonereapers units You can also pick a War Form for your hero.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "stats": {
                 "save": "3+"
@@ -4207,7 +4219,19 @@
               "id": "25fe-daf3-a9e9-3cf9",
               "name": "Bonecrafter",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Bonecrafter",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Replace your hero's melee weapon with Ossified Talons. Your hero has the Wizard (1) keyword and the following regiment options: Any Ossiarch Bonereapers units You can also pick a War Form for your hero.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Ossified Talons",
@@ -4226,7 +4250,19 @@
               "id": "c3e1-8e85-05a1-6dd9",
               "name": "Kavalos Commander",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Kavalos Commander",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Health characteristic to 7, their Move characteristic to 10\" and their Save characteristic to 3+. Replace your hero's Infantry keyword with the Cavalry keyword. Change the number after your hero's Relentless Discipline keyword to 6. Your hero's Nadirite Blade gains Charge (+1 Damage) and they gain the Kavalos Steed's Hooves, Teeth, and Barbed Tails weapon. Your hero has the following regiment options: Any Ossiarch Bonereapers units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Nadirite Blade",
@@ -4261,7 +4297,19 @@
               "id": "ef03-c690-ad93-79fd",
               "name": "Chariot Commander",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Chariot Commander",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Health characteristic to 12, their Move characteristic to 10\" and their Save characteristic to 3+. Replace your hero's Infantry keyword with the War Machine keyword. Change the number after your hero's Relentless Discipline keyword to 6. Your hero's Nadirite Blade gains Charge (+1 Damage) and they gain the Kavalos Steed's Hooves, Teeth, and Barbed Tails weapon. Your hero has the following regiment options: Any Ossiarch Bonereapers units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Nadirite Blade",
@@ -4307,6 +4355,17 @@
                   "castingValue": "7",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Soulwright",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Health characteristic to 6 and their Move characteristic to 6\". Your hero has the Wizard (2) keyword, the 'Soul-guide' ability, and the following regiment options: Any Ossiarch Bonereapers units You can also pick a War Form for your hero.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": [],
@@ -4327,7 +4386,19 @@
               "id": "b2e6-ca16-0dfa-3f42",
               "name": "Guardian of the Empire",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Guardian of the Empire",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Replace your hero's melee weapon with Guardian's Weapons. In addition, make the following changes to your hero's warscroll: \u2022 Change the Health characteristic to 8. Designer's Note: *We recommend a 50mm or 60mm base for this War Form.*",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Guardian's Weapons",
@@ -4356,6 +4427,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Crushing Appendages is 5.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Towering War Construct",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Titanic Weapons and Crushing Appendages weapons and the 'Battle Damaged' ability to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 8\". \u2022 Change the Health characteristic to 16. \u2022 Replace the Infantry keyword with the War Machine keyword. Designer's Note: *We recommend a 170x90mm base for this War Form.*",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -4395,7 +4477,19 @@
               "id": "8533-785b-3ac2-6407",
               "name": "Nightmarish Ossiarch",
               "destiny": -10,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Nightmarish Ossiarch",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Monstrous Blades weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 6\". \u2022 Change the Health characteristic to 12. \u2022 Replace the Infantry keyword with the War Machine keyword. Designer's Note: *We recommend a 105x70mm base for this War Form.*",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Monstrous Blades",
@@ -4594,7 +4688,19 @@
               "id": "cfcb-1bec-4fdb-db08",
               "name": "Extra Limbs",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Extra Limbs",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Pick 1 of your hero's melee weapons. Add 1 to the Attacks characteristic of that weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -4620,7 +4726,19 @@
               "id": "1aff-1fbd-0b44-e4ea",
               "name": "Osseous Wings",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Osseous Wings",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Fly keyword and their Move characteristic is 12\". If your hero has a Towering War Construct War Form, this upgrade costs 6 DP instead of 4 DP.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "stats": {
                 "move": "12\""
@@ -4630,7 +4748,19 @@
               "id": "cd64-5d09-da14-154b",
               "name": "Immortis Pavise",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Immortis Pavise",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Save characteristic is 3+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "stats": {
                 "save": "3+"
@@ -4697,7 +4827,19 @@
               "id": "fa22-84c1-06a7-dde4",
               "name": "Morbid Catapult",
               "destiny": -8,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Morbid Catapult",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the 'Unliving Regeneration' ability to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Morbid Catapult",
@@ -4812,7 +4954,19 @@
               "id": "fe7d-9d73-c678-b295",
               "name": "Fortified Construct",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Fortified Construct",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 2
@@ -4860,7 +5014,19 @@
               "id": "8c0e-93cc-dc3a-3671",
               "name": "Supple Bone Supports",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Supple Bone Supports",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "If your hero has a Nightmarish Ossiarch War Form, you can pick this upgrade. Add 2\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 2
@@ -4870,7 +5036,19 @@
               "id": "cae0-2f22-047d-b5eb",
               "name": "Eerie Precision",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Eerie Precision",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's melee weapons have Crit (Mortal).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             }
           ]

@@ -6085,7 +6085,19 @@
               "id": "d70c-af2d-46c3-3645",
               "name": "Snarlfang",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Snarlfang",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Snarlfang's Slavering Jaws weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 6. \u2022 Replace the Infantry keyword with the Cavalry keyword. \u2022 Add the Gitmob keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Snarlfang's Slavering Jaws",
@@ -6108,7 +6120,19 @@
               "id": "393a-0cfd-74f6-5092",
               "name": "Giant Cave Squig",
               "destiny": -8,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Giant Cave Squig",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Massive Fang-filled Gob weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to D6+6\". \u2022 Change the Health characteristic to 6. \u2022 Replace the Infantry keyword with the Cavalry keyword. \u2022 Add the Squig, Moonclan, and Fly keywords.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Massive Fang-filled Gob",
@@ -6131,7 +6155,19 @@
               "id": "ef16-c283-9b51-0427",
               "name": "Gigantic Spider",
               "destiny": -10,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Gigantic Spider",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Gigantic Fangs weapon and the 'Wall Crawler' ability to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 8. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the Cavalry keyword. Add the Spiderfang keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Gigantic Fangs",
@@ -6173,6 +6209,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "If this unit is destroyed, before removing it from play, roll a dice for each enemy unit within this unit's combat range. On a 4+, inflict D3 mortal damage on that unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Mangler Squigs",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Huge Gang-filled Gobs and Balls and Chains weapons and the 'Squig Rage' and 'Watch Out' abilities to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to D6+8\". \u2022 Change the Health characteristic to 12. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the Monster keyword. \u2022 Add the Squig, Moonclan, and Fly keywords.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -6220,6 +6267,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Chitinous Legs is 6.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Arachnarok Spider",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Chitinous Legs and Monstrous Spider Fangs weapons and the 'Battle Damaged' and 'Wall Crawler' abilities to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 14. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the Monster keyword. \u2022 Add the Arachnarok and Spiderfang keywords.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -6398,14 +6456,38 @@
               "id": "e135-9297-a7e8-8cb5",
               "name": "Unnervingly Fast",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Unnervingly Fast",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Add 'D3+' in front of your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "a6c8-6678-f262-8c3a",
               "name": "Colossal",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Colossal",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 2
@@ -6415,7 +6497,19 @@
               "id": "7cfe-c0e8-a600-5ba9",
               "name": "Rock Flinger",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Rock Flinger",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Rock Flinger ranged weapon to your hero's warscoll. You cannot pick this upgrade if your hero has another Companion ranged weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Rock Flinger",
@@ -6434,7 +6528,19 @@
               "id": "5498-9d75-6b35-0462",
               "name": "Extra Teeth",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Extra Teeth",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Squig only. Add 1 to the attacks characteristic of your hero's Massive Fang-filled Gob or Huge Fang-filled Gobs weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Massive Fang-filled Gob",
@@ -6513,6 +6619,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Web-binding",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Arachnarok only. Add the 'Webbed!' ability to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -6529,7 +6646,19 @@
               "id": "b790-8fe6-4e45-c746",
               "name": "Boss Git",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Boss Git",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -6539,7 +6668,19 @@
               "id": "f2a1-0e10-0aef-ea6e",
               "name": "Surprisingly Speedy",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Surprisingly Speedy",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 1\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 1
@@ -6568,14 +6709,38 @@
               "id": "b26c-4771-c1ef-d8ef",
               "name": "Dank and Vile",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Dank and Vile",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (6+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "ecbd-f7fd-aa5c-e1e1",
               "name": "Jaggedy Stabba",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Jaggedy Stabba",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry or Monster only. Your hero's non-Companion melee weapon has Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -6639,7 +6804,19 @@
               "id": "c252-3618-daf7-8917",
               "name": "Ferocious Git",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Ferocious Git",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the Attacks characteristic of your hero's Troggoth Club or add 2 to the Attacks characteristic of your hero's Boss Weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Boss Weapon",
@@ -6658,14 +6835,38 @@
               "id": "50af-58bc-3176-ca5c",
               "name": "Conduit of the Bad Moon",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Conduit of the Bad Moon",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Non-Wizard only. Your hero has Priest (1)",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "dbbe-7357-867e-c92e",
               "name": "Shroom Shaman",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Shroom Shaman",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Non-Priest only. Your hero has Wizard (1).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             }
           ]
@@ -7033,7 +7234,19 @@
               "id": "838b-1784-6dd6-5096",
               "name": "Boss Git",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Boss Git",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -7043,7 +7256,19 @@
               "id": "08a7-cfdf-84ce-d663",
               "name": "Surprisingly Speedy",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Surprisingly Speedy",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 1\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 1
@@ -7072,14 +7297,38 @@
               "id": "d4b7-5e53-b5b8-6692",
               "name": "Dank and Vile",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Dank and Vile",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (6+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "683a-abf0-9f68-1c0c",
               "name": "Jaggedy Stabba",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Jaggedy Stabba",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry or Monster only. Your hero's non-Companion melee weapon has Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -7143,7 +7392,19 @@
               "id": "f557-0324-1d33-48a9",
               "name": "Ferocious Git",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Ferocious Git",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the Attacks characteristic of your hero's Troggoth Club or add 2 to the Attacks characteristic of your hero's Boss Weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Troggoth Club",
@@ -7162,21 +7423,57 @@
               "id": "ef53-55f6-95af-9eb0",
               "name": "Conduit of the Bad Moon",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Conduit of the Bad Moon",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Non-Wizard only. Your hero has Priest (1)",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "216d-250e-75df-c11d",
               "name": "Shroom Shaman",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Shroom Shaman",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Non-Priest only. Your hero has Wizard (1).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "4c2f-d8c3-6f1b-a86f",
               "name": "Chucking Boulder",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Chucking Boulder",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Troggoth only. Add the Chucking Boulder ranged weapon to your hero's warscroll. You cannot pick this upgrade if your hero has another non-Companion ranged weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Chucking Boulder",

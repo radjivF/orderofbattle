@@ -18,8 +18,11 @@ import {
   enhancementLabel,
   formationLabel,
   getListUnit,
+  getSelection,
   getUnit,
+  listHeroGearSlots,
   listRegimentsOfRenown,
+  specialEnhancementTablesForList,
   resolveGeneralRegimentId,
   selectionPlayState,
   selectionPoints,
@@ -31,9 +34,12 @@ import { combatModifierNotes } from "@/engine/magic";
 import { isSpearheadList } from "@/engine/spearhead";
 import {
   applyPathToGloryPacks,
+  assignPathToGloryHeroEnhancement,
   isPathToGloryList,
   pathToGloryPackIds,
   patchSelection,
+  selectionArtefactOptionId,
+  selectionHeroicTraitOptionId,
   showsBattleWoundsAndScars,
 } from "@/engine/pathToGlory";
 import { hideSelectionFromPhase, playAfterDamage } from "@/engine/playHide";
@@ -343,6 +349,21 @@ export function BuilderReady({
       setPicker(null);
       return;
     }
+    if (
+      pathToGlory &&
+      (picker.kind === "artefact" || picker.kind === "trait")
+    ) {
+      await commit(
+        assignPathToGloryHeroEnhancement(
+          list,
+          picker.heroSelectionId,
+          picker.kind === "artefact" ? "artefact" : "heroicTrait",
+          option?.id ?? null,
+        ),
+      );
+      setPicker(null);
+      return;
+    }
     const field =
       picker.kind === "artefact"
         ? "artefact"
@@ -374,18 +395,31 @@ export function BuilderReady({
   const manifestation = faction.manifestationLores.find(
     (lore) => lore.id === list.manifestationLoreId,
   );
+  const pickerHero =
+    picker &&
+    (picker.kind === "artefact" ||
+      picker.kind === "trait" ||
+      picker.kind === "monstrous" ||
+      picker.kind === "vision" ||
+      picker.kind === "special")
+      ? getSelection(list, picker.heroSelectionId)
+      : undefined;
   const enhancementPicker =
     picker?.kind === "artefact"
       ? {
           title: "Artefact",
           options: enhancementChoices(faction.artefacts),
-          selectedId: list.artefact?.optionId,
+          selectedId: pickerHero
+            ? (selectionArtefactOptionId(list, pickerHero) ?? undefined)
+            : list.artefact?.optionId,
         }
       : picker?.kind === "trait"
         ? {
             title: spearhead ? "Enhancement" : "Heroic trait",
             options: enhancementChoices(faction.heroicTraits),
-            selectedId: list.heroicTrait?.optionId,
+            selectedId: pickerHero
+              ? (selectionHeroicTraitOptionId(list, pickerHero) ?? undefined)
+              : list.heroicTrait?.optionId,
           }
         : picker?.kind === "monstrous"
           ? {
@@ -416,7 +450,7 @@ export function BuilderReady({
                 }
               : null;
 
-  const specialTables = faction.specialEnhancementTables ?? [];
+  const specialTables = specialEnhancementTablesForList(faction, list);
   const specialEnhancementPicks = list.specialEnhancements ?? [];
   const onPickSpecial =
     specialTables.length > 0
@@ -685,6 +719,14 @@ export function BuilderReady({
                       scourgeRealm,
                       battleTacticCardIds: [],
                       battleTacticStage: {},
+                      specialEnhancements: (list.specialEnhancements ?? []).filter(
+                        (pick) => {
+                          const table = faction.specialEnhancementTables?.find(
+                            (item) => item.id === pick.tableId,
+                          );
+                          return !table?.realm || table.realm === scourgeRealm;
+                        },
+                      ),
                     });
                   }}
                   className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
@@ -823,6 +865,7 @@ export function BuilderReady({
             key={regiment.id}
             regiment={regiment}
             faction={faction}
+            list={list}
             isGeneral={regimentIsGeneral}
             canBeGeneral={canBeGeneral(list, faction, regiment.id)}
             slotCap={totals.slotCap(regiment.id)}
@@ -1141,6 +1184,7 @@ export function BuilderReady({
                 if (!unit) {
                   return null;
                 }
+                const heroGear = listHeroGearSlots(list, faction, slot);
                 if (forPlayMode) {
                   const track = selectionPlayState(slot, unit);
                   const warning = battleDamagedWarning(unit, track.damage);
@@ -1182,34 +1226,7 @@ export function BuilderReady({
                           selectionId={slot.id}
                           unit={unit}
                           playMode={forPlayMode}
-                          artefactBearerId={list.artefact?.heroSelectionId}
-                          artefactLabel={enhancementLabel(
-                            faction.artefacts,
-                            list.artefact?.optionId,
-                          )}
-                          artefactAbilities={
-                            list.artefact
-                              ? faction.artefacts.find(
-                                  (item) =>
-                                    item.id === list.artefact?.optionId,
-                                )?.abilities
-                              : undefined
-                          }
-                          heroicTraitBearerId={
-                            list.heroicTrait?.heroSelectionId
-                          }
-                          heroicTraitLabel={enhancementLabel(
-                            faction.heroicTraits,
-                            list.heroicTrait?.optionId,
-                          )}
-                          heroicTraitAbilities={
-                            list.heroicTrait
-                              ? faction.heroicTraits.find(
-                                  (item) =>
-                                    item.id === list.heroicTrait?.optionId,
-                                )?.abilities
-                              : undefined
-                          }
+                          {...heroGear}
                           monstrousTraitBearerId={
                             list.monstrousTrait?.heroSelectionId
                           }
@@ -1315,31 +1332,7 @@ export function BuilderReady({
                       selectionId={slot.id}
                       unit={unit}
                       playMode={false}
-                      artefactBearerId={list.artefact?.heroSelectionId}
-                      artefactLabel={enhancementLabel(
-                        faction.artefacts,
-                        list.artefact?.optionId,
-                      )}
-                      artefactAbilities={
-                        list.artefact
-                          ? faction.artefacts.find(
-                              (item) => item.id === list.artefact?.optionId,
-                            )?.abilities
-                          : undefined
-                      }
-                      heroicTraitBearerId={list.heroicTrait?.heroSelectionId}
-                      heroicTraitLabel={enhancementLabel(
-                        faction.heroicTraits,
-                        list.heroicTrait?.optionId,
-                      )}
-                      heroicTraitAbilities={
-                        list.heroicTrait
-                          ? faction.heroicTraits.find(
-                              (item) =>
-                                item.id === list.heroicTrait?.optionId,
-                            )?.abilities
-                          : undefined
-                      }
+                      {...heroGear}
                       monstrousTraitBearerId={
                         list.monstrousTrait?.heroSelectionId
                       }

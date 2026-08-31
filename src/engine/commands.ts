@@ -17,6 +17,7 @@ export type CoreCommand = {
  */
 export const CORE_COMMANDS_BY_PHASE: Record<PlayPhaseId, CoreCommand[]> = {
   passive: [],
+  start: [],
   hero: [
     {
       id: "rally",

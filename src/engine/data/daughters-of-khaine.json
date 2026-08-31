@@ -4028,6 +4028,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Champion of the Arena",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the 'Peerless Agility' ability and the following regiment options: Any Daughters of Khaine units Your hero has the Aelf keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -4036,14 +4047,38 @@
               "id": "22dc-880d-2069-bc59",
               "name": "Priestess of Khaine",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Priestess of Khaine",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Priest (1) keyword and the following regiment options: Any Daughters of Khaine units Your hero has the Aelf keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "b53c-cb96-8042-053c",
               "name": "Khinerai Skyhunter",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Khinerai Skyhunter",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Move characteristic to 12\". Your hero has the Fly keyword and the following regiment options: Any Daughters of Khaine units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "stats": {
                 "move": "12\""
@@ -4060,6 +4095,17 @@
                   "timing": "Your Shooting Phase",
                   "declare": "Pick a visible enemy unit within 18\" of this unit to be the target.",
                   "effect": "Roll a dice. On a 3+, roll a number of dice equal to the target's Health characteristic. Subtract 1 from each roll if the target is a Monster. For each 5+, inflict 1 mortal damage on the target.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Bloodwrack Sorceress",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Health characteristic to 6, their Move characteristic to 8\" and their Save characteristic to 5+. Your hero has the Wizard (1) keyword, the 'Bloodwrack Stare' ability and the following regiment options: Any Daughters of Khaine units",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -4100,6 +4146,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Ironscale Commander",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Health characteristic to 6, their Move characteristic to 8\" and their Save characteristic to 5+. Your hero has the 'Fist of the Sc\u00e1thborn' ability and the following regiment options: Any Daughters of Khaine units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": [],
@@ -4121,7 +4178,19 @@
               "id": "a80c-4a9b-b4c5-fa26",
               "name": "Dark Steed",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Dark Steed",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Champion of the Arena or Priestess of Khaine only. Add the Dark Steed's Hooves and Teeth weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 14\". \u2022 Change the Health characteristic to 7. \u2022 Replace the Infantry keyword with the Cavalry keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Dark Steed's Hooves and Teeth",
@@ -4151,6 +4220,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "This unit counts as a Bloodwrack Shrine for the purposes of the 'Born of Slaughter' ability.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Khainite Shrine",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Bloodwrack Sorceress only. Add the Bloodwrack Stare and Guardians' Blades weapons and the 'Invoke Murder' ability to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Health characteristic to 12. \u2022 Change the Save characteristic to 4+. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the War Machine keyword.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -4191,7 +4271,19 @@
               "id": "ad73-fdda-eb16-4bef",
               "name": "Cauldron of Blood",
               "destiny": -8,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Cauldron of Blood",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Champion of the Arena or Priestess of Khaine only. Add the Guardians' Blades and Avatar's Sword weapons to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Health characteristic to 12. \u2022 Change the Save characteristic to 4+. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the War Machine keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Avatar's Sword",
@@ -4414,7 +4506,19 @@
               "id": "fae5-2843-d783-dda0",
               "name": "Swift",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Swift",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Add 2\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 2
@@ -4424,7 +4528,19 @@
               "id": "03a4-839e-b576-1cf5",
               "name": "Barding",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Barding",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Your hero has a Save characteristic of 5+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "stats": {
                 "save": "5+"
@@ -4434,21 +4550,57 @@
               "id": "207f-ee81-0dd9-0499",
               "name": "Dark Pegasus",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Dark Pegasus",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Your hero has the Fly keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "e15a-fb98-4b84-e69e",
               "name": "Steed of Dark Flames",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Steed of Dark Flames",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Add the 'Steed of Dark Flames' ability to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "bebf-d1a6-f245-38d0",
               "name": "Iron-bound",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Iron-bound",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "War Machine only. Add 2 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 2
@@ -4458,7 +4610,19 @@
               "id": "9576-74e6-28aa-d88a",
               "name": "Fanatical Guardians",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Fanatical Guardians",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "War Machine only. Add 2 to the Attacks characteristic of your hero's Guardian Blades.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -4484,7 +4648,19 @@
               "id": "9d60-f6ab-d89e-d5b1",
               "name": "Torrent of Burning Blood",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Torrent of Burning Blood",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "War Machine Priest only. Add the Torrent of Burning Blood ability to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Torrent of Burning Blood",
@@ -4530,7 +4706,19 @@
               "id": "2b19-bd79-12e1-5882",
               "name": "Aelven Grace",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Aelven Grace",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 1
@@ -4540,7 +4728,19 @@
               "id": "b46e-2741-fa1f-e534",
               "name": "Ulguan Heritage",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Ulguan Heritage",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 1
@@ -4550,14 +4750,38 @@
               "id": "3e4e-0796-c189-88bb",
               "name": "Gift of Khaine",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Gift of Khaine",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (5+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "8e90-ea29-3e15-d1bd",
               "name": "Perfect Accuracy",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Perfect Accuracy",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Hit characteristic of your hero's Cult Blade is 2+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Cult Blade",
@@ -4576,7 +4800,19 @@
               "id": "09de-1bf7-401f-1265",
               "name": "Word of Khaine",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Word of Khaine",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Non-War Machine only. Add the 'Word of Khaine' weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Word of Khaine",
@@ -4595,7 +4831,19 @@
               "id": "99c7-7a8a-630f-1192",
               "name": "Killing Grace",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Killing Grace",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the Rend characteristic of your hero's Cult Blade.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Cult Blade",
@@ -4614,7 +4862,19 @@
               "id": "fe1e-d7ac-9789-79a4",
               "name": "Ferocious Cultist",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Ferocious Cultist",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the Attacks characteristic of your hero's Cult Blade.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Cult Blade",
@@ -4633,7 +4893,19 @@
               "id": "05ff-f613-28aa-ea62",
               "name": "Master of Poisons",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Master of Poisons",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Cult Blade has Crit (Mortal).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Cult Blade",
@@ -4671,7 +4943,19 @@
               "id": "1b0b-d48a-7b4b-605f",
               "name": "Blistering Speed",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Blistering Speed",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Your hero has Strike-first.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
@@ -4697,7 +4981,19 @@
               "id": "af4d-f872-a710-6236",
               "name": "Cult Fanatic",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Cult Fanatic",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Wizard or Priest only. Your hero's power level is 2.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             }
           ]

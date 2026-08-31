@@ -6128,7 +6128,19 @@
               "id": "03ba-0e15-59b5-7e5a",
               "name": "Martial Vampire",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Martial Vampire",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Move characteristic to 6\". In addition, your hero gains the Vampire and Wizard (1) keywords and the following regiment options: Any Soublight Gravelords units In addition, change the Hit and Wound characteristics of their Grave Blade to 3+, and it gains Crit (2 Hits).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Grave Blade",
@@ -6161,6 +6173,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Necromancer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Wizard (1) keyword, the 'Undead Minions' ability and the following regiment options: Any Deadwakers or Deathrattle units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -6178,6 +6201,17 @@
                   "effect": "Until the start of your next turn, each time the target uses a command, you receive 1 command point.",
                   "keywords": "Spell",
                   "castingValue": "5",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Arcane Vampire",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Move characteristic to 6\". In addition, your hero gains the Vampire and Wizard (2) keywords, the 'Dark Intrigue' ability and the following regiment options: Any Soulblight Gravelords units",
+                  "keywords": "",
+                  "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
                 }
@@ -6198,6 +6232,17 @@
                   "timing": "Reaction: You declared a Fight ability for this unit",
                   "declare": "",
                   "effect": "Pick a friendly Deathrattle Cavalry or Infantry unit that has not used a Fight ability this turn and is within this unit's combat range to be the target. The target can be picked to use a Fight ability immediately after the Fight** ability used by this unit has been resolved.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Wight King",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Move characteristic to 4\" and its Grave Blade gains Crit (Mortal). In addition, your hero gains the Deathrattle keyword, the 'Immortal Retainers' ability and the following regiment options: Any Deathrattle units",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -6233,7 +6278,19 @@
               "id": "314e-d87b-263d-f26a",
               "name": "Undead Steed",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Undead Steed",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Undead Steed's Hooves weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 8. \u2022 Change the Save characteristic to 5+. \u2022 Replace the Infantry keyword with the Cavalry keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Undead Steed's Hooves",
@@ -6268,6 +6325,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Mighty Grave Beast",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Mighty Grave Beast's Talons weapon and the 'Battle Damaged' ability to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 16. \u2022 Change the Control characteristic to 5. \u2022 Change the Save characteristic to 4+. \u2022 Replace the Infantry keyword with the following keywords: Monster, Fly",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": [
@@ -6294,7 +6362,19 @@
               "id": "9815-44c8-7bdf-655d",
               "name": "Spectral Palanquin",
               "destiny": -10,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Spectral Palanquin",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Spectral Host's Blades weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 12. \u2022 Change the Control characteristic to 5. \u2022 Change the Save characteristic to 4+. \u2022 Replace the Infantry keyword with the following keywords: War Machine, Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Spectral Host's Blades",
@@ -6476,7 +6556,19 @@
               "id": "fc8f-ee6c-09e6-de79",
               "name": "Swift",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Swift",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Add 2\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 2
@@ -6486,7 +6578,19 @@
               "id": "bf04-60b1-4337-c80c",
               "name": "Legendary Beast",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Legendary Beast",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Monster only. Add 2 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 2
@@ -6496,7 +6600,19 @@
               "id": "fbca-2474-8ba6-e11d",
               "name": "Rending Claws",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Rending Claws",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Monster only. Your hero's Mighty Grave Beast's Talons have a Damage characteristic of 3.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Mighty Grave Beast's Talons",
@@ -6564,6 +6680,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Wailing Gheists",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "War Machine only. Add the 'Wails of the Damned' ability to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -6572,7 +6699,19 @@
               "id": "e5f2-1e9f-b178-3ae2",
               "name": "Necrotic Breath",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Necrotic Breath",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the 'Necrotic Breath' weapon to your hero's warscroll. You cannot pick this upgrade if your hero has another Companion ranged weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Necrotic Breath",
@@ -6599,7 +6738,19 @@
               "id": "6415-d853-2024-bf11",
               "name": "Commanding Presence",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Commanding Presence",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -6609,7 +6760,19 @@
               "id": "6ac8-e39c-5242-fdc5",
               "name": "Swiftblood",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Swiftblood",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 1 to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 1
@@ -6619,7 +6782,19 @@
               "id": "7020-36b1-1961-0713",
               "name": "Dark Fortitude",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Dark Fortitude",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 1 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 1
@@ -6629,7 +6804,19 @@
               "id": "40a2-090a-c018-1a2e",
               "name": "Dynastic Finery",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Dynastic Finery",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Vampire only. Your hero has a Save characteristic of 4+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "stats": {
                 "save": "4+"
@@ -6639,7 +6826,19 @@
               "id": "914e-86e9-6a4b-de5d",
               "name": "Unholy Strength",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Unholy Strength",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The wound characteristic of your hero's Grave Blade is 2+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Grave Blade",
@@ -6658,7 +6857,19 @@
               "id": "2b6e-d3d3-0f24-b810",
               "name": "Ancient Skill",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Ancient Skill",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Hit characteristic of your hero's Grave Blade is 2+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Grave Blade",
@@ -6677,7 +6888,19 @@
               "id": "4e52-f652-bdd6-6773",
               "name": "Grave Lancer",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Grave Lancer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry or Monster only. Your hero's Grave Blade has Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Grave Blade",
@@ -6696,7 +6919,19 @@
               "id": "b3e3-213d-3654-6886",
               "name": "Deathless Hunter",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Deathless Hunter",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Grave Blade has Anti-X (+1 Rend), where X is one of the following keywords: Infantry, Cavalry, Monster, War Machine, Wizard or Priest",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Grave Blade",
@@ -6715,7 +6950,19 @@
               "id": "17af-10c1-ab4f-dbc5",
               "name": "Cursed Weapon",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Cursed Weapon",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Grave Blade has Crit (Mortal).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Grave Blade",
@@ -6753,7 +7000,19 @@
               "id": "1cf7-ad08-2469-27d5",
               "name": "Macabre Panoply",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Macabre Panoply",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Vampire Infantry or Cavalry or Deathrattle Infantry or Cavalry only. Your hero has a Save characteristic of 3+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "stats": {
                 "save": "3+"
@@ -6763,7 +7022,19 @@
               "id": "bab2-5e9b-943d-5f67",
               "name": "Blade Master",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Blade Master",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the Attacks characteristic of your hero's Grave Blade",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Grave Blade",

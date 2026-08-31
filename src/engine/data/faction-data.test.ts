@@ -181,6 +181,25 @@ describe("faction catalogues", () => {
     }
   });
 
+  it("ships Sylvaneth Aspects of the Deepwoods for Scourge of Aqshy", () => {
+    const faction = getFaction("sylvaneth");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const table = faction.specialEnhancementTables?.find(
+      (item) => item.id === "aspects-of-the-deepwoods",
+    );
+    expect(table?.name).toBe("Aspects of the Deepwoods");
+    expect(table?.realm).toBe("aqshy");
+    expect(table?.restrictTo).toBe("nonHeroNonMonster");
+    expect(table?.options.map((item) => item.name)).toEqual([
+      "Aspect of Harvestboon",
+      "Aspect of Ironbark",
+      "Aspect of Heartwood",
+    ]);
+    expect(table?.options.every((item) => item.points === 10)).toBe(true);
+  });
+
   it("treats AoR RoR eligibility via parent match ids", () => {
     const core = getFaction("kruleboyz")!;
     const aor = getFaction("kruleboyz-murkvast-menagerie")!;

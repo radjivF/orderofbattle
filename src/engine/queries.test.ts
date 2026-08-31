@@ -4,9 +4,11 @@ import { blankArmy } from "@/lib/storage";
 import {
   canBeGeneral,
   canJoinRegiment,
+  canTakeSpecialEnhancement,
   getFaction,
   listFactions,
   selectionPoints,
+  specialEnhancementTablesForList,
 } from "./queries";
 
 describe("listFactions", () => {
@@ -137,5 +139,56 @@ describe("canBeGeneral", () => {
 
     expect(canBeGeneral(list, faction, warmasterRegimentId)).toBe(true);
     expect(canBeGeneral(list, faction, otherRegimentId)).toBe(false);
+  });
+});
+
+describe("Aspects of the Deepwoods", () => {
+  it("is only on the list during Scourge of Aqshy", () => {
+    const faction = getFaction("sylvaneth");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const tableId = "aspects-of-the-deepwoods";
+    expect(
+      specialEnhancementTablesForList(faction, { scourgeRealm: "aqshy" }).some(
+        (table) => table.id === tableId,
+      ),
+    ).toBe(true);
+    expect(
+      specialEnhancementTablesForList(faction, { scourgeRealm: "ghyran" }).some(
+        (table) => table.id === tableId,
+      ),
+    ).toBe(false);
+    expect(
+      specialEnhancementTablesForList(faction, { scourgeRealm: null }).some(
+        (table) => table.id === tableId,
+      ),
+    ).toBe(false);
+  });
+
+  it("is for non-hero non-monster units only", () => {
+    const faction = getFaction("sylvaneth");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const table = faction.specialEnhancementTables?.find(
+      (item) => item.id === "aspects-of-the-deepwoods",
+    );
+    expect(table).toBeTruthy();
+    if (!table) return;
+
+    const hero = faction.units.find((unit) => unit.name === "Arch-Revenant");
+    const dryads = faction.units.find((unit) => unit.name === "Dryads");
+    const treelord = faction.units.find((unit) => unit.name === "Treelord");
+    const hunters = faction.units.find((unit) =>
+      unit.name.startsWith("Kurnoth Hunters with Kurnoth Scythes"),
+    );
+    expect(hero && dryads && treelord && hunters).toBeTruthy();
+    if (!hero || !dryads || !treelord || !hunters) return;
+
+    expect(canTakeSpecialEnhancement(hero, table)).toBe(false);
+    expect(canTakeSpecialEnhancement(treelord, table)).toBe(false);
+    expect(canTakeSpecialEnhancement(dryads, table)).toBe(true);
+    expect(canTakeSpecialEnhancement(hunters, table)).toBe(true);
   });
 });

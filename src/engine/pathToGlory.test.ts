@@ -8,12 +8,14 @@ import {
   applyPathToGloryPacks,
   factionManifestationPicks,
   factionSpellPicks,
+  emptyPathToGlorySelection,
   findPath,
   isPathToGloryList,
   learnedManifestationsForList,
   learnedSpellKey,
   learnedSpellsForList,
   packLabel,
+  packsFromImportText,
   pathsForPacks,
   pathsForPreset,
   patchPathToGloryState,
@@ -23,10 +25,13 @@ import {
   prunePathOptionIds,
   rankForRenown,
   resolveBattlepacks,
+  selectionArtefactOptionId,
   selectionDisplayName,
   showsBattleWoundsAndScars,
   toggleLearnedId,
   togglePathToGloryPack,
+  uniqueKeywordBlocksEnhancements,
+  assignPathToGloryHeroEnhancement,
 } from "@/engine/pathToGlory";
 
 describe("resolveBattlepacks", () => {
@@ -42,6 +47,21 @@ describe("resolveBattlepacks", () => {
       "blighted-wilds",
     ]);
     expect(resolveBattlepacks("all")).toEqual(resolveBattlepacks("blighted-wilds"));
+  });
+});
+
+describe("packsFromImportText", () => {
+  it("reads New Recruit and App Path to Glory headers", () => {
+    expect(packsFromImportText("Host (2000 points) - General's Handbook")).toBeNull();
+    expect(
+      packsFromImportText("Rotgarden (850 points) - Path to Glory: Ravaged Coast"),
+    ).toEqual(["ascension", "ravaged-coast"]);
+    expect(packsFromImportText("Path to Glory: Ascension")).toEqual(["ascension"]);
+    expect(packsFromImportText("Path to Glory: Blighted Wilds")).toEqual([
+      "ascension",
+      "ravaged-coast",
+      "blighted-wilds",
+    ]);
   });
 });
 
@@ -350,5 +370,74 @@ describe("Anvil of Apotheosis", () => {
     expect(anvil?.anvilRanks?.map((rank) => rank.points)).toEqual([
       150, 250, 350,
     ]);
+  });
+});
+
+describe("Path to Glory hero gear", () => {
+  it("lets each hero keep their own artefact", () => {
+    const faction = getFaction("maggotkin-of-nurgle");
+    const anvil = faction?.units.find((unit) =>
+      unit.name.startsWith("Anvil of Apotheosis"),
+    );
+    const generic = faction?.units.find(
+      (unit) => unit.hero && !unit.unique && unit.name === "Great Unclean One",
+    );
+    const artefactA = faction?.artefacts[0];
+    const artefactB = faction?.artefacts[1];
+    expect(anvil && generic && artefactA && artefactB && faction).toBeTruthy();
+    if (!anvil || !generic || !artefactA || !artefactB || !faction) {
+      return;
+    }
+    expect(uniqueKeywordBlocksEnhancements(anvil)).toBe(false);
+    expect(uniqueKeywordBlocksEnhancements(generic)).toBe(false);
+
+    const anvilId = createId();
+    const genericId = createId();
+    const list = {
+      ...blankPathToGlory(faction.id, "ascension"),
+      generalRegimentId: "reg-1",
+      regiments: [
+        {
+          id: "reg-1",
+          hero: {
+            id: anvilId,
+            unitId: anvil.id,
+            reinforced: false,
+            pathToGlory: emptyPathToGlorySelection(),
+          },
+          units: [],
+        },
+        {
+          id: "reg-2",
+          hero: {
+            id: genericId,
+            unitId: generic.id,
+            reinforced: false,
+            pathToGlory: emptyPathToGlorySelection(),
+          },
+          units: [],
+        },
+      ],
+    };
+
+    const withAnvil = assignPathToGloryHeroEnhancement(
+      list,
+      anvilId,
+      "artefact",
+      artefactA.id,
+    );
+    const withBoth = assignPathToGloryHeroEnhancement(
+      withAnvil,
+      genericId,
+      "artefact",
+      artefactB.id,
+    );
+    expect(selectionArtefactOptionId(withBoth, withBoth.regiments[0]!.hero!)).toBe(
+      artefactA.id,
+    );
+    expect(selectionArtefactOptionId(withBoth, withBoth.regiments[1]!.hero!)).toBe(
+      artefactB.id,
+    );
+    expect(withBoth.artefact).toBeNull();
   });
 });

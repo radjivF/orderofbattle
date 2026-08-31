@@ -147,11 +147,22 @@ export function PathToGloryUnitExtras({
                       >
                         {options.map((option) => {
                           const checked = optionIds.includes(option.id);
+                          const recap = [
+                            option.ability.timing,
+                            option.ability.effect,
+                          ]
+                            .filter(Boolean)
+                            .join(" · ");
                           return (
                             <button
                               key={option.id}
                               type="button"
                               aria-pressed={checked}
+                              aria-label={
+                                recap
+                                  ? `${option.name}. ${recap}`
+                                  : option.name
+                              }
                               disabled={!unlocked}
                               onClick={() =>
                                 patchPath({
@@ -173,7 +184,19 @@ export function PathToGloryUnitExtras({
                                   : "bg-parchment-ink/5 text-parchment-ink"
                               }`}
                             >
-                              {option.name}
+                              <span className="block leading-snug">
+                                {option.name}
+                              </span>
+                              {option.ability.timing ? (
+                                <span className="mt-0.5 block text-[11px] font-semibold tracking-wide uppercase text-sheet-muted">
+                                  {option.ability.timing}
+                                </span>
+                              ) : null}
+                              {option.ability.effect ? (
+                                <span className="mt-1 block text-xs leading-snug text-sheet-muted">
+                                  {option.ability.effect}
+                                </span>
+                              ) : null}
                             </button>
                           );
                         })}

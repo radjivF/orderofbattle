@@ -3660,6 +3660,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Grinnin' Blades",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Wizard (1), the 'Out of the Mists' ability and the following regiment options: Any Kruleboyz units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -3675,6 +3686,17 @@
                   "timing": "",
                   "declare": "",
                   "effect": "Add 3\" to the Range characteristic of ranged weapons used by friendly Kruleboyz units. In addition, you can re-roll 1 hit roll per turn for shooting attacks made by each friendly Kruleboyz unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Big Yellers",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the 'Only da Best' ability and the following regiment options: Any Kruleboyz units",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -3698,6 +3720,17 @@
                   "castingValue": "",
                   "chantingValue": "",
                   "cost": ""
+                },
+                {
+                  "name": "Skulbugs",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the 'Super Kreepy' ability and the following regiment options: Any Kruleboyz units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
                 }
               ],
               "weapons": []
@@ -3714,7 +3747,19 @@
               "id": "edb3-c15c-0334-34ff",
               "name": "Sludgeraker Beast",
               "destiny": -12,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Sludgeraker Beast",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Sludgeraker's Talons weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 8\". \u2022 Change the Health characteristic to 14. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the Monster keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Sludgeraker's Talons",
@@ -3738,7 +3783,19 @@
               "id": "3dfe-6b32-6c2e-94d1",
               "name": "Corpse-rippa Vulcha",
               "destiny": -20,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Corpse-rippa Vulcha",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Vulcha's Talons and Beak weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 14. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the following keywords: Monster, Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Vulcha's Talons and Beak",
@@ -3976,7 +4033,19 @@
               "id": "d196-fb4b-ab3d-50fd",
               "name": "Fast 'Un",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Fast 'Un",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Monster only. Add 3\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 3
@@ -3993,6 +4062,17 @@
                   "timing": "Once Per Turn, Reaction: Opponent declared a command for a unit within 12\" of this unit",
                   "declare": "",
                   "effect": "Roll a dice. On a 4+, unless your opponent spends 1 additional command point to use that command, the command has no effect, it still counts as having been used and the command points spent to use the command are still lost.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Loud'Un",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Monster only. Add the 'Loud 'Un' ability to your hero's warscroll.",
                   "keywords": "",
                   "castingValue": "",
                   "chantingValue": "",
@@ -4051,7 +4131,19 @@
               "id": "dc32-724d-93c8-7e19",
               "name": "Towering Ego",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Towering Ego",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "control": 1
@@ -4061,7 +4153,19 @@
               "id": "a860-2b88-611c-87ef",
               "name": "Eager to Fight",
               "destiny": -1,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Eager to Fight",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "move": 1
@@ -4071,7 +4175,19 @@
               "id": "b2e3-885b-ea75-43a5",
               "name": "Gnarled Flesh",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Gnarled Flesh",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [],
               "statAdds": {
                 "health": 1
@@ -4081,14 +4197,38 @@
               "id": "c9ff-37cd-ff88-fb66",
               "name": "Mork's Own Luck",
               "destiny": -2,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Mork's Own Luck",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (6+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
               "id": "d0c3-392f-ae72-082b",
               "name": "Warlike Grudge",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Warlike Grudge",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Choppa or Hacka has Anti-X (+1 Rend), where X is 1 of the following keywords: Infantry, Cavalry, Monster, War Machine, Wizard or Priest.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Hacka",
@@ -4107,7 +4247,19 @@
               "id": "542e-cd2e-d820-b9ea",
               "name": "Gork's Strength",
               "destiny": -3,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Gork's Strength",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Damage characteristic of your hero's Choppa or Hacka is 3.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Hacka",
@@ -4126,7 +4278,19 @@
               "id": "927c-f4cc-2e32-80ea",
               "name": "Underhanded",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Underhanded",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Choppa or Hacka has Crit (Mortal).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Hacka",
@@ -4145,7 +4309,19 @@
               "id": "4bb3-8045-5c1f-538a",
               "name": "Rider-boss",
               "destiny": -4,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Rider-boss",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Choppa or Hacka has Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Hacka",
@@ -4164,7 +4340,19 @@
               "id": "97cf-29f4-3263-979e",
               "name": "Extra Stabby Bitz",
               "destiny": -5,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Extra Stabby Bitz",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the Attacks characteristic of your hero's Choppa or Hacka.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": [
                 {
                   "name": "Hacka",
@@ -4183,7 +4371,19 @@
               "id": "16a9-7f02-ad43-3470",
               "name": "Prophet of Gorkamorka",
               "destiny": -6,
-              "abilities": [],
+              "abilities": [
+                {
+                  "name": "Prophet of Gorkamorka",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Non-Wizard only. Your hero has Priest (1). If this unit is already a Priest, add 1 to chanting rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
               "weapons": []
             },
             {
