@@ -149,27 +149,29 @@ export function BattleTacticCardPicker({
                 {expanded ? (
                   <div className="border-t border-parchment/10 px-3 pb-3 pt-2 text-xs leading-relaxed text-parchment/80">
                     {card.setup ? (
-                      <p className="text-sm leading-relaxed text-parchment/70 sm:text-base">
+                      <p className="text-xs leading-relaxed text-parchment/70 sm:text-sm">
                         {card.setup}
                       </p>
                     ) : null}
                     {card.affray ? (
                       <BattleTacticText
-                        className={card.setup ? "mt-2" : undefined}
+                        className={`text-sm leading-relaxed sm:text-base${
+                          card.setup ? " mt-2" : ""
+                        }`}
                         stage="Affray"
                         text={card.affray}
                       />
                     ) : null}
                     {card.strike ? (
                       <BattleTacticText
-                        className="mt-2"
+                        className="mt-2 text-sm leading-relaxed sm:text-base"
                         stage="Strike"
                         text={card.strike}
                       />
                     ) : null}
                     {card.domination ? (
                       <BattleTacticText
-                        className="mt-2"
+                        className="mt-2 text-sm leading-relaxed sm:text-base"
                         stage="Domination"
                         text={card.domination}
                       />
