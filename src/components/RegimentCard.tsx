@@ -118,8 +118,9 @@ export function RegimentCard({
   allowUniqueHeroTrait = false,
   traitKind,
 }: Props) {
-  const hero = regiment.hero
-    ? getUnit(faction, regiment.hero.unitId)
+  const heroSelection = regiment.hero ?? undefined;
+  const hero = heroSelection
+    ? getUnit(faction, heroSelection.unitId)
     : undefined;
   const openSlots = slotCap - regiment.units.length;
   const campaignEnabled = Boolean(
@@ -173,7 +174,7 @@ export function RegimentCard({
           )}
           <h2 className="font-serif text-2xl leading-tight">
             {hero
-              ? selectionDisplayName(regiment.hero ?? undefined, hero)
+              ? selectionDisplayName(heroSelection, hero)
               : "Empty regiment"}
           </h2>
         </div>
@@ -192,11 +193,11 @@ export function RegimentCard({
         ) : null}
       </header>
 
-      {hero && regiment.hero ? (
+      {hero && heroSelection ? (
         <>
           <PathToGlorySlot
             enabled={campaignEnabled}
-            selection={regiment.hero}
+            selection={heroSelection}
             unit={hero}
             packIds={pathToGloryPackIds ?? []}
             showBattleWounds={showBattleWounds}
@@ -206,15 +207,15 @@ export function RegimentCard({
             {(toggle) => (
               <SlotLine
                 unit={hero}
-                selection={regiment.hero}
-                points={selectionPoints(hero, false, regiment.hero)}
+                selection={heroSelection}
+                points={selectionPoints(hero, false, heroSelection)}
                 playMode={playMode}
                 hidePoints={locked}
                 bindNotes={bindNotes}
                 onReplace={locked ? undefined : onPickHero}
                 onOpenDatasheet={() =>
                   onOpenDatasheet(
-                    resolvePathToGloryUnit(hero, regiment.hero),
+                    resolvePathToGloryUnit(hero, heroSelection),
                   )
                 }
                 onPlayHealth={onPlayHealth}
@@ -223,12 +224,12 @@ export function RegimentCard({
             )}
           </PathToGlorySlot>
           <SlotEnhancements
-            selectionId={regiment.hero.id}
+            selectionId={heroSelection.id}
             unit={hero}
             playMode={playMode}
             allowUniqueHeroTrait={allowUniqueHeroTrait}
             traitKind={traitKind}
-            {...slotHeroGear(list, faction, regiment.hero, listGear)}
+            {...slotHeroGear(list, faction, heroSelection, listGear)}
             monstrousTraitBearerId={monstrousTraitBearerId}
             monstrousTraitLabel={monstrousTraitLabel}
             monstrousTraitAbilities={monstrousTraitAbilities}
@@ -243,7 +244,7 @@ export function RegimentCard({
             specialEnhancementPicks={specialEnhancementPicks}
             onPickSpecial={
               onPickSpecial
-                ? (tableId) => onPickSpecial(tableId, regiment.hero!.id)
+                ? (tableId) => onPickSpecial(tableId, heroSelection.id)
                 : undefined
             }
           />
