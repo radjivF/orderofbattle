@@ -106,7 +106,9 @@ function LeftDrawer({
     >
       <div
         aria-hidden="true"
-        className="modal-scrim absolute inset-0 bg-ink"
+        className={`modal-scrim absolute inset-0 ${
+          leaving ? "bg-ink" : "bg-ink/70"
+        }`}
         onPointerDown={(event) => {
           event.preventDefault();
         }}

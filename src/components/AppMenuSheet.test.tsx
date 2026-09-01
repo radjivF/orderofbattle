@@ -38,6 +38,19 @@ afterEach(() => {
 });
 
 describe("AppMenuSheet", () => {
+  it("dims the page under the drawer instead of covering it in solid ink", () => {
+    render(<Harness onSelect={vi.fn()} />);
+
+    const dialog = screen.getByRole("dialog", { name: "Menu" });
+    const scrim = dialog.parentElement?.querySelector(".modal-scrim");
+    const classes = scrim?.className.split(/\s+/) ?? [];
+
+    expect(classes).toContain("bg-ink/70");
+    expect(classes).not.toContain("bg-ink");
+    expect(dialog).toHaveTextContent("Age of Sigmar");
+    expect(dialog).toHaveTextContent("Battle record");
+  });
+
   it("shows The old world as coming soon and does not select it", async () => {
     const user = userEvent.setup({ pointerEventsCheck: 0 });
     const onSelect = vi.fn();
@@ -79,6 +92,10 @@ describe("AppMenuSheet", () => {
     expect(screen.getByRole("dialog", { name: "Menu" }).className).toContain(
       "app-menu-drawer--out",
     );
+    const leaveScrim = screen
+      .getByRole("dialog", { name: "Menu" })
+      .parentElement?.querySelector(".modal-scrim");
+    expect(leaveScrim?.className.split(/\s+/)).toContain("bg-ink");
 
     vi.advanceTimersByTime(APP_MENU_DRAWER_MS);
     await waitFor(() => {
