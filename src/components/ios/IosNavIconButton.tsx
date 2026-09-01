@@ -1,6 +1,7 @@
 "use client";
 
 import { IOS_NAV_ICON_BUTTON_CLASS, IOS_NAV_MENU_BUTTON_CLASS, IOS_NAV_MENU_ICON_CLASS, LIBRARY_HEADER_OPTIONS_BUTTON_CLASS } from "@/lib/builderUi";
+import { IosEditIcon } from "./SheetIconButton";
 
 type Props = {
   label: string;
@@ -55,6 +56,19 @@ export function IosNavCloseButton({ label, onClick }: Props) {
       className={IOS_NAV_ICON_BUTTON_CLASS}
     >
       <IosCloseIcon />
+    </button>
+  );
+}
+
+export function IosNavEditButton({ label, onClick }: Props) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={label}
+      className={LIBRARY_HEADER_OPTIONS_BUTTON_CLASS}
+    >
+      <IosEditIcon />
     </button>
   );
 }

@@ -48,7 +48,7 @@ import {
   BattleRecordTurnScore,
   turnPlayerOrder,
 } from "./BattleRecordTurnScore";
-import { IosNavBackButton } from "./ios/IosNavIconButton";
+import { IosNavBackButton, IosNavEditButton } from "./ios/IosNavIconButton";
 import { IosDatasheetIcon } from "./ios/SheetIconButton";
 import { SiteFooter } from "./SiteFooter";
 
@@ -222,13 +222,10 @@ export function BattleRecordGameScreen({ gameId }: Props) {
           <h1 className={LIBRARY_TITLE_CLASS}>
             {game.yourName} vs {game.opponentName}
           </h1>
-          <button
-            type="button"
+          <IosNavEditButton
+            label="Edit"
             onClick={() => setEditingSetup(true)}
-            className="pressable inline-flex h-11 shrink-0 items-center text-sm font-medium text-parchment [text-shadow:0_1px_8px_rgba(0,0,0,0.85)]"
-          >
-            Edit
-          </button>
+          />
         </div>
 
         <section className={PANEL}>

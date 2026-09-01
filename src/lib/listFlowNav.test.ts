@@ -219,7 +219,7 @@ describe("listFlowWindowScrollY", () => {
 
 describe("list flow navigation wiring", () => {
   it("stores the list name when opening from the library", () => {
-    const library = readSource("components/LibraryScreen.tsx");
+    const library = readSource("components/LibraryCreateFlow.tsx");
     const libraryCard = readSource("components/LibraryListCard.tsx");
     expect(libraryCard).toContain("listOpenDisplayNameForHeader(list)");
     expect(libraryCard).toContain("rememberOpenList(list)");

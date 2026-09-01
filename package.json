@@ -14,7 +14,8 @@
     "e2e:ui": "playwright test -c e2e.config.ts --ui",
     "e2e:local": "PLAYWRIGHT_BROWSERS_PATH=$HOME/Library/Caches/ms-playwright playwright test -c e2e.config.ts",
     "smoke:magic": "tsx scripts/smoke-magic-binds.ts",
-    "verify": "yarn lint && yarn test && yarn build"
+    "verify": "yarn lint && yarn test && yarn build",
+    "sentry:prod-watch": "tsx scripts/sentry-prod-watch.ts"
   },
   "dependencies": {
     "@sentry/nextjs": "^10.72.0",
