@@ -508,37 +508,37 @@ export function LibraryScreen() {
             />
           </div>
           <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
-            <div className="shrink-0 px-5 pb-4">
-              <p className="pb-2 text-sm font-medium text-sheet-muted">
-                Sort lists by
-              </p>
-              <IosSegmentedControl
-                ariaLabel="Sort lists"
-                value={sortMode}
-                onChange={onSortModeChange}
-                options={[
-                  { value: "recent", label: "Recent" },
-                  { value: "alphabetic", label: "A–Z" },
-                ]}
-              />
-            </div>
-            <div
-              role="separator"
-              className={LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS}
-            />
-            <div className="shrink-0 px-5 pb-4 pt-4">
-              <IosSegmentedControl
-                ariaLabel="Import or export lists"
-                value={librarySheetTab}
-                onChange={onLibrarySheetTabChange}
-                options={[
-                  { value: "import", label: "Import" },
-                  { value: "export", label: "Export" },
-                ]}
-              />
-            </div>
             <div className={MODAL_SHEET_SCROLL_HOST_CLASS}>
               <div className={MODAL_SHEET_SCROLL_CLASS}>
+                <div className="px-5 pb-4">
+                  <p className="pb-2 text-sm font-medium text-sheet-muted">
+                    Sort lists by
+                  </p>
+                  <IosSegmentedControl
+                    ariaLabel="Sort lists"
+                    value={sortMode}
+                    onChange={onSortModeChange}
+                    options={[
+                      { value: "recent", label: "Recent" },
+                      { value: "alphabetic", label: "A–Z" },
+                    ]}
+                  />
+                </div>
+                <div
+                  role="separator"
+                  className={LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS}
+                />
+                <div className="px-5 pb-4 pt-4">
+                  <IosSegmentedControl
+                    ariaLabel="Import or export lists"
+                    value={librarySheetTab}
+                    onChange={onLibrarySheetTabChange}
+                    options={[
+                      { value: "import", label: "Import" },
+                      { value: "export", label: "Export" },
+                    ]}
+                  />
+                </div>
                 {librarySheetTab === "import" ? (
                   <>
                     <p className="px-5 pb-3 text-sm leading-relaxed text-sheet-muted">
