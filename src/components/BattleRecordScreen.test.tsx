@@ -53,8 +53,16 @@ vi.mock("next/navigation", () => ({
 }));
 
 const rememberListNavigation = vi.fn();
+const listNav = vi.hoisted(() => ({
+  goBack: vi.fn(),
+  goForward: vi.fn(),
+}));
 vi.mock("@/lib/listTransition", () => ({
   rememberListNavigation: (...args: unknown[]) => rememberListNavigation(...args),
+}));
+
+vi.mock("./IosNavSlide", () => ({
+  useListNav: () => listNav,
 }));
 
 import { deleteGame } from "@/lib/gameStorage";
@@ -96,6 +104,7 @@ afterEach(() => {
   cleanup();
   games.length = 0;
   rememberListNavigation.mockClear();
+  listNav.goForward.mockReset();
   vi.clearAllMocks();
   document.body.removeAttribute("style");
 });
@@ -153,9 +162,23 @@ describe("BattleRecordScreen", () => {
 
     await user.click(screen.getByRole("link", { name: /Rad vs Alex/ }));
 
-    expect(rememberListNavigation).toHaveBeenCalledWith("forward");
+    expect(listNav.goForward).toHaveBeenCalledWith(
+      "/battle-record/game-delete-me",
+    );
     expect(screen.getByRole("link", { name: /Rad vs Alex/ })).toHaveAttribute(
       "href",
+      "/battle-record/game-delete-me",
+    );
+  });
+
+  it("opens the battle from the status line, not only the title", async () => {
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    games.push(seededGame());
+    render(<BattleRecordScreen />);
+
+    await user.click(screen.getByText(/In progress/i));
+
+    expect(listNav.goForward).toHaveBeenCalledWith(
       "/battle-record/game-delete-me",
     );
   });

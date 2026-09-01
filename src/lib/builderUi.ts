@@ -203,10 +203,6 @@ export const LIBRARY_TITLE_ROW_CLASS =
 export const LIBRARY_TITLE_CLASS =
   "min-w-0 flex-1 font-serif text-3xl font-semibold leading-none text-parchment [text-shadow:0_2px_16px_rgba(0,0,0,0.95),0_1px_3px_rgba(0,0,0,1)]";
 
-/** Battle setup / recap / live game — same gutter as the parchment cards. */
-export const BATTLE_PAGE_COLUMN_CLASS =
-  "mx-auto w-full max-w-3xl px-5 sm:px-6";
-
 export const IOS_NAV_ADD_BUTTON_CLASS = IOS_NAV_ICON_BUTTON_CLASS;
 
 export const IOS_NAV_BACK_BUTTON_CLASS = IOS_NAV_ICON_BUTTON_CLASS;

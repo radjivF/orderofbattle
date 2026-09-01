@@ -20,7 +20,6 @@ import {
   SCOREBOARD_PLAY_BUTTON_CLASS,
   LIBRARY_HEADER_OPTIONS_BUTTON_CLASS,
   LIBRARY_TITLE_CLASS,
-  BATTLE_PAGE_COLUMN_CLASS,
   SHEET_CHECKLIST_ITEM_CLASS,
   SHEET_CHECKLIST_ITEM_IDLE_CLASS,
   SHEET_CHECKLIST_ITEM_SELECTED_CLASS,
@@ -411,9 +410,37 @@ describe("iOS nav controls", () => {
     expect(SCOREBOARD_PLAY_BUTTON_CLASS).toContain("text-aether");
     expect(SCOREBOARD_PLAY_BUTTON_CLASS).toContain("h-6");
     expect(SCOREBOARD_PLAY_BUTTON_CLASS).not.toContain("ios-liquid-glass");
-    expect(BATTLE_PAGE_COLUMN_CLASS).toContain("px-5");
-    expect(BATTLE_PAGE_COLUMN_CLASS).toContain("sm:px-6");
-    expect(BATTLE_PAGE_COLUMN_CLASS).toContain("max-w-3xl");
+
+    const battleGame = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/BattleRecordGameScreen.tsx",
+      ),
+      "utf8",
+    );
+    const battleSetup = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/BattleRecordSetupScreen.tsx",
+      ),
+      "utf8",
+    );
+    const battleRecap = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/BattleRecordRecapScreen.tsx",
+      ),
+      "utf8",
+    );
+    expect(battleGame).toContain("SITE_COLUMN_CLASS");
+    expect(battleSetup).toContain("SITE_COLUMN_CLASS");
+    expect(battleRecap).toContain("SITE_COLUMN_CLASS");
+    expect(battleGame).not.toContain("BATTLE_PAGE_COLUMN_CLASS");
+    expect(battleSetup).not.toContain("BATTLE_PAGE_COLUMN_CLASS");
+    expect(battleRecap).not.toContain("BATTLE_PAGE_COLUMN_CLASS");
+    expect(battleGame).toContain("`${SITE_COLUMN_CLASS} pt-2 pb-3`");
+    expect(battleSetup).toContain("`${SITE_COLUMN_CLASS} pt-2 pb-3`");
+    expect(battleRecap).toContain("`${SITE_COLUMN_CLASS} pt-2 pb-3`");
   });
 
   it("uses the same header row and brand lockup across screens", () => {

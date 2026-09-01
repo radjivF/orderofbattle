@@ -20,8 +20,10 @@ import {
   subscribeGames,
 } from "@/lib/gameStorage";
 import { rememberListNavigation } from "@/lib/listTransition";
+import { listOpenUsesInAppSlide } from "@/lib/listFlowNav";
 import { BattleRecordCreateSheet } from "./BattleRecordCreateSheet";
 import { ConfirmSheetActions } from "./ConfirmSheetActions";
+import { useListNav } from "./IosNavSlide";
 import { ModalFrame } from "./ModalFrame";
 import { IosNavAddButton } from "./ios/IosNavIconButton";
 import { SiteFooter } from "./SiteFooter";
@@ -37,6 +39,7 @@ function statusLabel(status: GameSession["status"]): string {
 
 export function BattleRecordScreen() {
   const router = useRouter();
+  const { goForward } = useListNav();
   const games = useSyncExternalStore(
     subscribeGames,
     getGamesSnapshot,
@@ -103,8 +106,22 @@ export function BattleRecordScreen() {
                     <Link
                       href={`/battle-record/${game.id}`}
                       scroll={false}
-                      onClick={() => rememberListNavigation("forward")}
-                      className="pressable flex flex-col gap-1 text-left text-parchment-ink"
+                      onClick={(event) => {
+                        if (
+                          !listOpenUsesInAppSlide({
+                            metaKey: event.metaKey,
+                            ctrlKey: event.ctrlKey,
+                            shiftKey: event.shiftKey,
+                            altKey: event.altKey,
+                            button: event.button,
+                          })
+                        ) {
+                          return;
+                        }
+                        event.preventDefault();
+                        goForward(`/battle-record/${game.id}`);
+                      }}
+                      className="pressable flex cursor-pointer select-none flex-col gap-1 text-left text-parchment-ink"
                     >
                       <span className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
                         {statusLabel(game.status)}

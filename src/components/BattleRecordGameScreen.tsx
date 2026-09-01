@@ -27,13 +27,13 @@ import {
 import { isTowList } from "@/engine/storedList";
 import type { ArmyList } from "@/engine/types";
 import {
-  BATTLE_PAGE_COLUMN_CLASS,
   IOS_LIQUID_CTA_CLASS,
   LIBRARY_TITLE_CLASS,
   LIBRARY_TITLE_ROW_CLASS,
   LIST_FLOW_SLIDE_MS,
   SCOREBOARD_PLAY_BUTTON_CLASS,
   SHEET_SECONDARY_BUTTON_CLASS,
+  SITE_COLUMN_CLASS,
 } from "@/lib/builderUi";
 import { deleteGame, getGame, saveGame } from "@/lib/gameStorage";
 import { listFlowTrackClass } from "@/lib/listFlowNav";
@@ -287,8 +287,8 @@ export function BattleRecordGameScreen({ gameId }: Props) {
       <div className={listFlowTrackClass(editOpen, editSettled)}>
         <div className="list-flow-pane relative min-h-dvh">
           <div className="relative z-10 min-h-full">
-      <main className={`${BATTLE_PAGE_COLUMN_CLASS} flex flex-col gap-4 pb-24`}>
-        <div className={`${LIBRARY_TITLE_ROW_CLASS} pt-2`}>
+      <div className={`${SITE_COLUMN_CLASS} pt-2 pb-3`}>
+        <div className={LIBRARY_TITLE_ROW_CLASS}>
           <IosNavBackButton
             label="Back to Battle record"
             onClick={goBack}
@@ -301,7 +301,9 @@ export function BattleRecordGameScreen({ gameId }: Props) {
             onClick={openEditSetup}
           />
         </div>
+      </div>
 
+      <main className={`${SITE_COLUMN_CLASS} flex flex-col gap-4 pb-24`}>
         <section className={PANEL} aria-label="Match score">
           <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-start gap-x-3">
             <ScoreIdentity

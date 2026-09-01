@@ -203,8 +203,8 @@ describe("BattleRecordSetupScreen", () => {
     const back = screen.getByRole("button", { name: "Back to Battle record" });
     expect(back.parentElement?.className).toContain("min-h-11");
     expect(back.parentElement?.className).toContain("items-center");
-    expect(back.parentElement?.parentElement?.className).toContain("px-5");
-    expect(screen.getByRole("main").className).toContain("px-5");
+    expect(back.parentElement?.parentElement?.className).toContain("px-3");
+    expect(screen.getByRole("main").className).toContain("px-3");
     expect(screen.getByRole("heading", { name: "Set up battle" }).className).toContain(
       "leading-none",
     );

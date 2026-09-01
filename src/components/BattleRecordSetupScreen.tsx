@@ -23,11 +23,11 @@ import {
 import { isTowList } from "@/engine/storedList";
 import type { ArmyList } from "@/engine/types";
 import {
-  BATTLE_PAGE_COLUMN_CLASS,
   IOS_LIQUID_CTA_CLASS,
   LIBRARY_TITLE_CLASS,
   LIBRARY_TITLE_ROW_CLASS,
   SHEET_SECONDARY_BUTTON_CLASS,
+  SITE_COLUMN_CLASS,
 } from "@/lib/builderUi";
 import {
   getArmiesServerSnapshot,
@@ -149,7 +149,7 @@ export function BattleRecordSetupScreen({
 
   return (
     <div className="relative z-10 min-h-full">
-      <div className={`${BATTLE_PAGE_COLUMN_CLASS} pt-2 pb-3`}>
+      <div className={`${SITE_COLUMN_CLASS} pt-2 pb-3`}>
         <div className={LIBRARY_TITLE_ROW_CLASS}>
           <IosNavBackButton
             label={editing ? "Close setup" : "Back to Battle record"}
@@ -160,7 +160,7 @@ export function BattleRecordSetupScreen({
         </div>
       </div>
 
-      <main className={`${BATTLE_PAGE_COLUMN_CLASS} flex flex-col gap-4 pb-20`}>
+      <main className={`${SITE_COLUMN_CLASS} flex flex-col gap-4 pb-20`}>
         <section className={`${PANEL} flex flex-col gap-5`}>
           <h2 className="font-serif text-xl">Match</h2>
           <BattleRecordMatchFields

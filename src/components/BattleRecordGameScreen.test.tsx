@@ -287,6 +287,8 @@ describe("BattleRecordGameScreen", () => {
     const title = await screen.findByRole("heading", { name: /Rad vs Alex/ });
     const back = screen.getByRole("button", { name: "Back to Battle record" });
     expect(title.parentElement).toContainElement(back);
+    expect(screen.getByRole("main").className).toContain("px-3");
+    expect(screen.getByRole("main").className).not.toContain("px-5");
     await user.click(back);
     expect(push).toHaveBeenCalledWith("/battle-record");
   });
