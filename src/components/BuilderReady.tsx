@@ -47,6 +47,9 @@ import {
   CONFIRM_SHEET_PANEL_CLASS,
   LIST_ISSUE_BANNER_CLASS,
   builderPlayTabs,
+  listIssueAnchorId,
+  listIssueHighlightClass,
+  listIssueOpensOptions,
 } from "@/lib/builderUi";
 import { createId } from "@/lib/id";
 import { appendRegimentWithHero, saveArmy } from "@/lib/storage";
@@ -90,19 +93,28 @@ function enhancementChoices(options: EnhancementOption[]) {
 export function BuilderReady({
   list,
   faction,
+  openPlay = false,
+  embedded = false,
 }: {
   list: ArmyList;
   faction: FactionCatalogue;
+  openPlay?: boolean;
+  embedded?: boolean;
 }) {
   const [selectedRegimentId, setSelectedRegimentId] = useState<string | null>(
     null,
   );
   const [picker, setPicker] = useState<Picker>(null);
   const [datasheet, setDatasheet] = useState<DatasheetSubject | null>(null);
-  const [pane, setPane] = useState<"build" | "play">("build");
+  const [pane, setPane] = useState<"build" | "play">(
+    openPlay ? "play" : "build",
+  );
   const [optionsOpen, setOptionsOpen] = useState(false);
   const [playTab, setPlayTab] = useState<"units" | "magic" | "phases">("units");
   const [regimentRemoveId, setRegimentRemoveId] = useState<string | null>(null);
+  const [highlightedAnchorId, setHighlightedAnchorId] = useState<string | null>(
+    null,
+  );
   const totals = useMemo(() => summarize(list, faction), [list, faction]);
   const playMode = pane === "play";
   const spearhead = isSpearheadList(list);
@@ -117,6 +129,7 @@ export function BuilderReady({
       totals.issues[0] ?? {
         tone: "warn" as const,
         text: "Add a regiment to begin.",
+        target: { area: "add-regiment" as const },
       }
     );
   }, [totals.issues]);
@@ -127,6 +140,38 @@ export function BuilderReady({
   useEffect(() => {
     listRef.current = list;
   }, [list]);
+
+  useLayoutEffect(() => {
+    if (!highlightedAnchorId) {
+      return;
+    }
+    document.getElementById(highlightedAnchorId)?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  }, [highlightedAnchorId, optionsOpen]);
+
+  useEffect(() => {
+    if (!highlightedAnchorId) {
+      return;
+    }
+    const timer = window.setTimeout(() => setHighlightedAnchorId(null), 2500);
+    return () => window.clearTimeout(timer);
+  }, [highlightedAnchorId]);
+
+  function revealIssue() {
+    if (!issue.target) {
+      return;
+    }
+    if (issue.target.area === "add-regiment") {
+      openNewRegimentHeroPicker();
+      return;
+    }
+    if (listIssueOpensOptions(issue.target)) {
+      setOptionsOpen(true);
+    }
+    setHighlightedAnchorId(listIssueAnchorId(issue.target));
+  }
 
   async function commit(next: ArmyList) {
     await saveArmy(next);
@@ -447,6 +492,9 @@ export function BuilderReady({
   const { setBuilderChrome } = useListFlowChrome();
 
   useLayoutEffect(() => {
+    if (embedded) {
+      return;
+    }
     setBuilderChrome({
       list,
       faction,
@@ -472,11 +520,12 @@ export function BuilderReady({
     enterPlay,
     exitPlay,
     spearhead,
+    embedded,
   ]);
 
   function renderListMain(forPlayMode: boolean) {
     return (
-      <main className="mx-auto flex w-full max-w-3xl min-w-0 flex-col gap-5 px-4 py-4 pb-28 sm:py-6">
+      <main className={`mx-auto flex w-full max-w-3xl min-w-0 flex-col gap-5 px-4 py-4 sm:py-6 ${embedded ? "pb-8" : "pb-28"}`}>
         {forPlayMode ? (
           <IosSegmentedControl
             ariaLabel="Play sections"
@@ -488,13 +537,14 @@ export function BuilderReady({
           />
         ) : null}
         {!forPlayMode && issue.tone !== "ok" ? (
-          <p
-            className={LIST_ISSUE_BANNER_CLASS}
-            role="status"
+          <button
+            type="button"
+            onClick={revealIssue}
+            className={`${LIST_ISSUE_BANNER_CLASS} w-full cursor-pointer text-left`}
           >
             <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-illegal" />
             <span>{issue.text}</span>
-          </p>
+          </button>
         ) : null}
         {!forPlayMode && spearhead ? (
           <SpearheadPicks
@@ -530,14 +580,28 @@ export function BuilderReady({
             </button>
             {optionsOpen ? (
             <div className="flex min-w-0 flex-col gap-4 border-t border-parchment/10 px-4 pt-4">
-              <PointsCapField
-                value={list.pointsCap}
-                onChange={(pointsCap) => void commit({ ...list, pointsCap })}
-                variant="ink"
-              />
+              <div
+                id={listIssueAnchorId({ area: "options", field: "points" })}
+                className={listIssueHighlightClass(
+                  listIssueAnchorId({ area: "options", field: "points" }),
+                  highlightedAnchorId,
+                )}
+              >
+                <PointsCapField
+                  value={list.pointsCap}
+                  onChange={(pointsCap) => void commit({ ...list, pointsCap })}
+                  variant="ink"
+                />
+              </div>
 
               {faction.spellLores.length > 0 ? (
-                <div className="flex flex-col gap-2">
+                <div
+                  id={listIssueAnchorId({ area: "options", field: "spell-lore" })}
+                  className={`flex flex-col gap-2 ${listIssueHighlightClass(
+                    listIssueAnchorId({ area: "options", field: "spell-lore" }),
+                    highlightedAnchorId,
+                  )}`}
+                >
                   <label className="flex flex-col gap-2 text-sm text-parchment/80">
                     Spell lore
                     <select
@@ -612,7 +676,13 @@ export function BuilderReady({
               ) : null}
 
               {faction.prayerLores.length > 0 ? (
-                <label className="flex flex-col gap-2 text-sm text-parchment/80">
+                <label
+                  id={listIssueAnchorId({ area: "options", field: "prayer-lore" })}
+                  className={`flex flex-col gap-2 text-sm text-parchment/80 ${listIssueHighlightClass(
+                    listIssueAnchorId({ area: "options", field: "prayer-lore" }),
+                    highlightedAnchorId,
+                  )}`}
+                >
                   Prayer lore
                   <select
                     value={list.prayerLoreId ?? ""}
@@ -639,7 +709,13 @@ export function BuilderReady({
                 </label>
               ) : null}
 
-              <label className="flex flex-col gap-2 text-sm text-parchment/80">
+              <label
+                id={listIssueAnchorId({ area: "options", field: "scourge" })}
+                className={`flex flex-col gap-2 text-sm text-parchment/80 ${listIssueHighlightClass(
+                  listIssueAnchorId({ area: "options", field: "scourge" }),
+                  highlightedAnchorId,
+                )}`}
+              >
                 Scourge season
                 <select
                   value={list.scourgeRealm ?? ""}
@@ -662,7 +738,13 @@ export function BuilderReady({
                 </select>
               </label>
 
-              <div className="flex flex-col gap-2">
+              <div
+                id={listIssueAnchorId({ area: "options", field: "tactics" })}
+                className={`flex flex-col gap-2 ${listIssueHighlightClass(
+                  listIssueAnchorId({ area: "options", field: "tactics" }),
+                  highlightedAnchorId,
+                )}`}
+              >
                 <p className="text-sm text-parchment/80">
                   Battle tactic cards (pick up to 2)
                 </p>
@@ -796,6 +878,7 @@ export function BuilderReady({
             locked={spearhead}
             allowUniqueHeroTrait={spearhead && regimentIsGeneral}
             traitKind={spearhead ? "Enhancement" : undefined}
+            highlightedAnchorId={highlightedAnchorId}
             onSelect={() => setSelectedRegimentId(regiment.id)}
             onMakeGeneral={() => {
               if (!canBeGeneral(list, faction, regiment.id)) {
@@ -1379,12 +1462,16 @@ export function BuilderReady({
             {list.regiments.length < 5 ? (
               <button
                 type="button"
+                id={listIssueAnchorId({ area: "add-regiment" })}
                 onClick={() => openNewRegimentHeroPicker()}
-                className={
+                className={`${
                   list.regiments.length === 0
                     ? BUILDER_ADD_ACTION_EMPHASIS_CLASS
                     : BUILDER_ADD_ACTION_CLASS
-                }
+                } ${listIssueHighlightClass(
+                  listIssueAnchorId({ area: "add-regiment" }),
+                  highlightedAnchorId,
+                )}`}
               >
                 + Regiment
               </button>
@@ -1408,8 +1495,12 @@ export function BuilderReady({
                 </span>
                 <button
                   type="button"
+                  id={listIssueAnchorId({ area: "add-ror" })}
                   onClick={() => setPicker({ kind: "ror" })}
-                  className={BUILDER_ADD_ACTION_CLASS}
+                  className={`${BUILDER_ADD_ACTION_CLASS} ${listIssueHighlightClass(
+                    listIssueAnchorId({ area: "add-ror" }),
+                    highlightedAnchorId,
+                  )}`}
                 >
                   {list.regimentOfRenown
                     ? "Change Regiment of Renown"
@@ -1442,19 +1533,29 @@ export function BuilderReady({
   }
 
   return (
-    <div className="min-h-full w-full max-w-[100vw] overflow-x-hidden overflow-y-visible text-parchment">
-      <div className="overflow-x-hidden overflow-y-visible">
-        <div
-          className={`builder-view-track ${pane === "play" ? "builder-view-track--play" : ""}`}
-        >
-          <div className="builder-view-pane" aria-hidden={pane === "play"}>
-            {renderListMain(false)}
-          </div>
-          <div className="builder-view-pane" aria-hidden={pane === "build"}>
-            {renderListMain(true)}
+    <div
+      className={
+        embedded
+          ? "w-full text-parchment"
+          : "min-h-full w-full max-w-[100vw] overflow-x-hidden overflow-y-visible text-parchment"
+      }
+    >
+      {embedded ? (
+        renderListMain(true)
+      ) : (
+        <div className="overflow-x-hidden overflow-y-visible">
+          <div
+            className={`builder-view-track ${pane === "play" ? "builder-view-track--play" : ""}`}
+          >
+            <div className="builder-view-pane" aria-hidden={pane === "play"}>
+              {renderListMain(false)}
+            </div>
+            <div className="builder-view-pane" aria-hidden={pane === "build"}>
+              {renderListMain(true)}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {picker && pickerUnits && !playMode && !spearhead ? (
         <PickerSheet

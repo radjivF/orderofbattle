@@ -10,6 +10,10 @@ import type {
   SpecialEnhancementTable,
   UnitAbility,
 } from "@/engine/types";
+import {
+  listIssueAnchorId,
+  listIssueHighlightClass,
+} from "@/lib/builderUi";
 import { IosTrashIcon } from "./ios/SheetIconButton";
 import { SlotEnhancements, SlotLine } from "./RegimentCardSlots";
 
@@ -54,6 +58,7 @@ type Props = {
   onRemoveRegiment: () => void;
   onPlayHealth?: (selectionId: string, damage: number) => void;
   bindNotes?: CombatModifierNote[];
+  highlightedAnchorId?: string | null;
   locked?: boolean;
   /** Spearhead generals take an enhancement even when the warscroll is unique. */
   allowUniqueHeroTrait?: boolean;
@@ -98,6 +103,7 @@ export function RegimentCard({
   onRemoveRegiment,
   onPlayHealth,
   bindNotes,
+  highlightedAnchorId = null,
   locked = false,
   allowUniqueHeroTrait = false,
   traitKind,
@@ -106,12 +112,21 @@ export function RegimentCard({
     ? getUnit(faction, regiment.hero.unitId)
     : undefined;
   const openSlots = slotCap - regiment.units.length;
+  const regimentAnchor = listIssueAnchorId({
+    area: "regiment",
+    regimentId: regiment.id,
+  });
+  const heroAnchor = listIssueAnchorId({
+    area: "add-hero",
+    regimentId: regiment.id,
+  });
 
   return (
     <article
+      id={regimentAnchor}
       className={`cursor-default rounded-2xl bg-parchment p-5 text-parchment-ink shadow-sm ${
         selected && !playMode ? "ring-2 ring-aether" : ""
-      }`}
+      } ${listIssueHighlightClass(regimentAnchor, highlightedAnchorId)}`}
       onClick={playMode ? undefined : onSelect}
     >
       <header className="mb-4 flex items-start justify-between gap-3">
@@ -161,6 +176,19 @@ export function RegimentCard({
 
       {hero && regiment.hero ? (
         <>
+          <div
+            id={listIssueAnchorId({
+              area: "unit",
+              selectionId: regiment.hero.id,
+            })}
+            className={listIssueHighlightClass(
+              listIssueAnchorId({
+                area: "unit",
+                selectionId: regiment.hero.id,
+              }),
+              highlightedAnchorId,
+            )}
+          >
           <SlotLine
             unit={hero}
             selection={regiment.hero}
@@ -202,6 +230,7 @@ export function RegimentCard({
                 : undefined
             }
           />
+          </div>
         </>
       ) : playMode ? (
         <p className="text-sm text-sheet-muted">No hero</p>
@@ -210,11 +239,15 @@ export function RegimentCard({
       ) : (
         <button
           type="button"
+          id={heroAnchor}
           onClick={(event) => {
             event.stopPropagation();
             onPickHero();
           }}
-          className="mb-2 flex min-h-11 w-full items-center justify-center rounded-xl border border-dashed border-parchment-ink/20 text-sm"
+          className={`mb-2 flex min-h-11 w-full cursor-pointer items-center justify-center rounded-xl border border-dashed border-parchment-ink/20 text-sm ${listIssueHighlightClass(
+            heroAnchor,
+            highlightedAnchorId,
+          )}`}
         >
           Choose a hero
         </button>
@@ -227,7 +260,14 @@ export function RegimentCard({
             return null;
           }
           return (
-            <li key={slot.id}>
+            <li
+              key={slot.id}
+              id={listIssueAnchorId({ area: "unit", selectionId: slot.id })}
+              className={listIssueHighlightClass(
+                listIssueAnchorId({ area: "unit", selectionId: slot.id }),
+                highlightedAnchorId,
+              )}
+            >
               <SlotLine
                 unit={unit}
                 selection={slot}

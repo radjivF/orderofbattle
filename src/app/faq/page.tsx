@@ -8,7 +8,7 @@ import { SITE_DESCRIPTION, SITE_PUBLISHED, sitePath } from "@/lib/site";
 
 const title = "Age of Sigmar army builder FAQ";
 const description =
-  "Answers about Order of Battle, a free unofficial Age of Sigmar 4th edition army builder: accounts, privacy, factions, Play mode, and Games Workshop status.";
+  "Answers about Order of Battle: accounts, privacy, factions, Play, and whether this is a Games Workshop app.";
 
 export const metadata: Metadata = {
   title,
@@ -67,7 +67,7 @@ export default function FaqPage() {
           </Link>
           . Comparison:{" "}
           <Link href="/compare">army builder comparison</Link>. Play:{" "}
-          <Link href="/play">wound tracker and table companion</Link>. Armies:{" "}
+          <Link href="/play">Play: wounds and phases</Link>. Armies:{" "}
           <Link href="/factions">factions</Link>.
         </p>
       </ContentDoc>

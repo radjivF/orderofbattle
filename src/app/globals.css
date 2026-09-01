@@ -18,6 +18,10 @@
   --legal: #4a7c59;
   --illegal: #8b2e2e;
   --illegal-lit: #e8b4b4;
+  --olive: #5e6b2e;
+  --sky: #2b6aa3;
+  --arcane: #6b5a8a;
+  --copper: #a0562a;
 }
 
 @theme inline {
@@ -36,6 +40,10 @@
   --color-legal: var(--legal);
   --color-illegal: var(--illegal);
   --color-illegal-lit: var(--illegal-lit);
+  --color-olive: var(--olive);
+  --color-sky: var(--sky);
+  --color-arcane: var(--arcane);
+  --color-copper: var(--copper);
   --font-sans: var(--font-instrument);
   --font-serif: var(--font-cinzel);
 }
@@ -328,6 +336,13 @@ a {
   touch-action: pan-y;
 }
 
+.modal-sheet--page {
+  max-width: none;
+  width: 100%;
+  height: calc(100dvh - 0.5rem);
+  max-height: calc(100dvh - 0.5rem);
+}
+
 .modal-sheet-scroll {
   overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;
@@ -429,6 +444,23 @@ a {
   cursor: grab;
 }
 
+.modal-sheet--page .modal-grabber {
+  background:
+    linear-gradient(
+        to bottom,
+        transparent 0.625rem,
+        color-mix(in srgb, var(--parchment) 45%, transparent) 0.625rem,
+        color-mix(in srgb, var(--parchment) 45%, transparent) 0.9375rem,
+        transparent 0.9375rem
+      )
+      center / 2.25rem 100% no-repeat;
+}
+
+.modal-sheet--page .modal-sheet-scroll-host::before,
+.modal-sheet--page .modal-sheet-scroll-host::after {
+  display: none;
+}
+
 .modal-sheet--animating {
   transition: transform 280ms cubic-bezier(0.32, 0.72, 0, 1);
 }
@@ -456,6 +488,39 @@ a {
 
 @media (prefers-reduced-motion: reduce) {
   .modal-sheet {
+    animation: none;
+  }
+}
+
+.app-menu-drawer {
+  animation: app-menu-drawer-in 280ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.app-menu-drawer--out {
+  animation: app-menu-drawer-out 280ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes app-menu-drawer-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes app-menu-drawer-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-menu-drawer,
+  .app-menu-drawer--out {
     animation: none;
   }
 }
@@ -626,6 +691,22 @@ a {
 .ios-tab-underline--parchment .ios-tab-underline-option--selected {
   border-bottom-color: var(--parchment-ink);
   color: var(--parchment-ink);
+}
+
+.ios-tab-underline--spread {
+  width: 100%;
+}
+
+.ios-tab-underline--spread .ios-tab-underline-option {
+  flex: 1 1 0;
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0 8px;
+  font-size: 15px;
+  text-align: center;
 }
 
 .ios-glass-button {

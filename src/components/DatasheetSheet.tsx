@@ -16,6 +16,7 @@ import {
   SHEET_HEADER_START_CLASS,
 } from "@/lib/builderUi";
 import { AbilityMeta } from "./AbilityMeta";
+import { KeywordChips } from "./KeywordChip";
 import { ModalFrame } from "./ModalFrame";
 import { RuleText } from "./RuleText";
 import { SheetCloseButton } from "./ios/SheetIconButton";
@@ -87,17 +88,7 @@ export function DatasheetSheet({ sheet, hidePoints, onClose }: Props) {
             {banishment ? <Stat label="Banish" value={banishment} /> : null}
             {ward ? <Stat label="Ward" value={ward} /> : null}
           </dl>
-
-          {sheet.categories.length > 0 ? (
-            <section className="mt-5">
-              <h3 className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-                Keywords
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-parchment-ink/80">
-                {sheet.categories.join(", ")}
-              </p>
-            </section>
-          ) : null}
+          <KeywordChips categories={sheet.categories} />
 
           {ranged.length > 0 ? (
             <WeaponBlock title="Ranged weapons" weapons={ranged} ranged />
@@ -181,7 +172,7 @@ function WeaponBlock({
   ranged?: boolean;
 }) {
   return (
-    <section className="mt-6">
+    <section className="mt-4">
       <h3 className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
         {title}
       </h3>

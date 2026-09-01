@@ -1,0 +1,1921 @@
+{
+  "id": "skaven",
+  "name": "Skaven",
+  "game": "The Old World",
+  "source": "https://github.com/vflam/Warhammer-The-Old-World",
+  "pointsCapDefault": 2000,
+  "journal": false,
+  "units": [
+    {
+      "id": "skaven-warlord",
+      "name": "Skaven Warlord",
+      "category": "characters",
+      "pointsPerModel": 90,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry (character)",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            },
+            {
+              "id": "halberd",
+              "name": "Halberd",
+              "points": 3
+            }
+          ]
+        },
+        {
+          "id": "armour",
+          "name": "Armour",
+          "options": [
+            {
+              "id": "light-armour",
+              "name": "Light Armour",
+              "points": 0
+            },
+            {
+              "id": "heavy-armour",
+              "name": "Heavy Armour",
+              "points": 3
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 2
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Scurry Away",
+          "text": "Models with this special rule have a +1 modifier to the result of any Flee roll they make."
+        },
+        {
+          "name": "Verminous Valour",
+          "text": "Unless they are engaged in a challenge, a character with this special rule that has joined a unit that has a Unit Strength of 10 or more may voluntarily \u2018retire\u2019 to the rear of the unit at any time, moving through the ranks and taking up a position away from the combat. Should they do so, they are no longer within the fighting rank and cannot make any attacks or have attacks directed against them. However, the unit may still use this character\u2019s Leadership."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "Warpstone Weapons",
+          "text": "A hand weapon carried by a model with this special rule has the Magical Attacks special rule and an Armour Piercing characteristic of -1.\n\n*Note that this special rule only applies to a single, ordinary hand weapon. If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply.*"
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        },
+        {
+          "name": "Halberd",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1 (-2)",
+          "specialRules": "Armour Bane (1), Requires Two Hands"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "6",
+        "BS": "4",
+        "S": "4",
+        "T": "4",
+        "W": "3",
+        "I": "7",
+        "A": "4",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "skaven-chieftain",
+      "name": "Skaven Chieftain",
+      "category": "characters",
+      "pointsPerModel": 45,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry (character)",
+      "magicItems": true,
+      "command": [
+        {
+          "id": "battle-standard-bearer",
+          "name": "Battle Standard Bearer",
+          "points": 25
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            },
+            {
+              "id": "halberd",
+              "name": "Halberd",
+              "points": 3
+            }
+          ]
+        },
+        {
+          "id": "armour",
+          "name": "Armour",
+          "options": [
+            {
+              "id": "light-armour",
+              "name": "Light Armour",
+              "points": 0
+            },
+            {
+              "id": "heavy-armour",
+              "name": "Heavy Armour",
+              "points": 3
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 2
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Scurry Away",
+          "text": "Models with this special rule have a +1 modifier to the result of any Flee roll they make."
+        },
+        {
+          "name": "Verminous Valour",
+          "text": "Unless they are engaged in a challenge, a character with this special rule that has joined a unit that has a Unit Strength of 10 or more may voluntarily \u2018retire\u2019 to the rear of the unit at any time, moving through the ranks and taking up a position away from the combat. Should they do so, they are no longer within the fighting rank and cannot make any attacks or have attacks directed against them. However, the unit may still use this character\u2019s Leadership."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "Warpstone Weapons",
+          "text": "A hand weapon carried by a model with this special rule has the Magical Attacks special rule and an Armour Piercing characteristic of -1.\n\n*Note that this special rule only applies to a single, ordinary hand weapon. If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply.*"
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        },
+        {
+          "name": "Halberd",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1 (-2)",
+          "specialRules": "Armour Bane (1), Requires Two Hands"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "5",
+        "BS": "4",
+        "S": "4",
+        "T": "4",
+        "W": "2",
+        "I": "6",
+        "A": "3",
+        "Ld": "6"
+      }
+    },
+    {
+      "id": "grey-seer",
+      "name": "Grey Seer",
+      "category": "characters",
+      "pointsPerModel": 185,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry (character)",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-3",
+              "name": "Wizard Level 3",
+              "points": 0
+            },
+            {
+              "id": "wizard-level-4",
+              "name": "Wizard Level 4",
+              "points": 30
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            },
+            {
+              "id": "daemonology",
+              "name": "Daemonology",
+              "points": 0
+            },
+            {
+              "id": "dark-magic",
+              "name": "Dark Magic",
+              "points": 0
+            },
+            {
+              "id": "elementalism",
+              "name": "Elementalism",
+              "points": 0
+            },
+            {
+              "id": "illusion",
+              "name": "Illusion",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "mount",
+          "name": "Mount",
+          "options": [
+            {
+              "id": "screaming-bell",
+              "name": "Screaming Bell",
+              "points": 185,
+              "stats": {
+                "M": "2",
+                "WS": "-",
+                "BS": "-",
+                "S": "5",
+                "T": "6",
+                "W": "5",
+                "I": "-",
+                "A": "-",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armour Bane",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+                },
+                {
+                  "name": "Blessings Of The Horned Rat",
+                  "text": "This model has a 5+ Ward save against any wounds suffered that were caused by a non-magical enemy attack."
+                },
+                {
+                  "name": "Dragged Along",
+                  "text": "A model with this special rule that begins its movement within 1\" of a friendly unit whose troop type is \u2018infantry,\u2019 that is not fleeing and that contains ten or more models, may replace its Movement characteristic with that of the unit."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Magic Resistance",
+                  "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+                },
+                {
+                  "name": "Scurrying Masses",
+                  "text": "Whilst within 3\" of a friendly unit, this model gains a positive (+) modifier to its Leadership characteristic equal to that unit\u2019s current Rank Bonus, up to a maximum of Leadership 10."
+                },
+                {
+                  "name": "Stubborn",
+                  "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                },
+                {
+                  "name": "Tolling The Bell",
+                  "text": "A Screaming Bell may be rung during the Command sub-phase of your turn. Roll on the table below to determine the effect this has:\n\n|||\n|:--|:--|\n|**2D6**|**Result**|\n|**1**|**Magical Backlash:** Every unit (friend or foe) that is within this model's command range suffers D3 Strength 4 hits, each with an AP of -2.|\n|**3-4**|**Dissonant Peal:** Until your next Start of Turn sub-phase, all enemy units within 18\" of this model suffers a -1 modifier to their Leadership characteristic (to a minimum of 2).|\n|**5-6**|**Wall of Unholy Sound:** Until your next Start of Turn sub-phase, all friendly Skaven units within 18\" of this model gain the Fear special rule.|\n|**7**|**Resonant Power:** Until the end of this turn, all friendly Skaven Wizards within this model's Command range may apply a +1 modifier to any Casting roll they make.|\n|**8-9**|**Emboldening Clamour:** Until your next Start of Turn sub-phase, all friendly Skaven units within 18\" of this model gain the Immune to Psychology special rule.|\n|**10-11**|**Rupturous Ringing:** Until your next Start of Turn sub-phase, all friendly Skaven units within 18\" of this model gain the Extra Attacks (1) special rule.\n|**12**|**Sonorous Knell:** Any enemy unit that is within 18\" of this model, including units that are fleeing or that are engaged in combat, must make a Leadership test. If this test is failed, the unit suffers D6 Strength 4 hits, with no armour or Regeneration saves permitted (Ward saves can be attempted as normal).|"
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Lore of the Horned Rat",
+          "text": "A Wizard with the \u2018Lore of the Horned Rat\u2019 special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below:\n\u2022 Skitterleap\n\u2022 Warp Lightning\n\u2022 Cloud Of Corruption"
+        },
+        {
+          "name": "Magical Attacks",
+          "text": "Any attack made or hit caused by a model with this special rule, or made using a weapon with this special rule, is a \u2018Magical\u2019 attack.\n\n Note that all spells are considered to have this special rule, as are any hits caused by magic items."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Scurry Away",
+          "text": "Models with this special rule have a +1 modifier to the result of any Flee roll they make."
+        },
+        {
+          "name": "Verminous Valour",
+          "text": "Unless they are engaged in a challenge, a character with this special rule that has joined a unit that has a Unit Strength of 10 or more may voluntarily \u2018retire\u2019 to the rear of the unit at any time, moving through the ranks and taking up a position away from the combat. Should they do so, they are no longer within the fighting rank and cannot make any attacks or have attacks directed against them. However, the unit may still use this character\u2019s Leadership."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "Warpstone Weapons",
+          "text": "A hand weapon carried by a model with this special rule has the Magical Attacks special rule and an Armour Piercing characteristic of -1.\n\n*Note that this special rule only applies to a single, ordinary hand weapon. If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply.*"
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "3",
+        "BS": "3",
+        "S": "3",
+        "T": "4",
+        "W": "3",
+        "I": "5",
+        "A": "2",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "warlock-engineer",
+      "name": "Warlock Engineer",
+      "category": "characters",
+      "pointsPerModel": 35,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry (character)",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "warplock-musket",
+              "name": "Warplock musket",
+              "points": 9
+            },
+            {
+              "id": "warplock-pistol",
+              "name": "Warplock pistol",
+              "points": 6
+            }
+          ]
+        },
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-1",
+              "name": "Wizard Level 1",
+              "points": 40
+            },
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 70
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            },
+            {
+              "id": "elementalism",
+              "name": "Elementalism",
+              "points": 0
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Lore of the Horned Rat",
+          "text": "A Wizard with the \u2018Lore of the Horned Rat\u2019 special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below:\n\u2022 Skitterleap\n\u2022 Warp Lightning\n\u2022 Cloud Of Corruption"
+        },
+        {
+          "name": "Magical Attacks",
+          "text": "Any attack made or hit caused by a model with this special rule, or made using a weapon with this special rule, is a \u2018Magical\u2019 attack.\n\n Note that all spells are considered to have this special rule, as are any hits caused by magic items."
+        },
+        {
+          "name": "Scurry Away",
+          "text": "Models with this special rule have a +1 modifier to the result of any Flee roll they make."
+        },
+        {
+          "name": "Verminous Valour",
+          "text": "Unless they are engaged in a challenge, a character with this special rule that has joined a unit that has a Unit Strength of 10 or more may voluntarily \u2018retire\u2019 to the rear of the unit at any time, moving through the ranks and taking up a position away from the combat. Should they do so, they are no longer within the fighting rank and cannot make any attacks or have attacks directed against them. However, the unit may still use this character\u2019s Leadership."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "Warpstone Weapons",
+          "text": "A hand weapon carried by a model with this special rule has the Magical Attacks special rule and an Armour Piercing characteristic of -1.\n\n*Note that this special rule only applies to a single, ordinary hand weapon. If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply.*"
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Warplock musket",
+          "range": "24\"",
+          "strength": "5",
+          "ap": "-2",
+          "specialRules": "Magical Attacks, Ponderous"
+        },
+        {
+          "name": "Warplock pistol",
+          "range": "12\"",
+          "strength": "4",
+          "ap": "-2",
+          "specialRules": "Magical Attacks, Quick Shot"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "3",
+        "BS": "3",
+        "S": "3",
+        "T": "3",
+        "W": "2",
+        "I": "4",
+        "A": "2",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "master-assassin",
+      "name": "Master Assassin",
+      "category": "characters",
+      "pointsPerModel": 90,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry (character)",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Ambushers",
+          "text": "A unit with this special rule may be held in reserve rather than be deployed at the start of the game. From the beginning of round two onwards, roll a D6 during each of your Start of Turn sub-phases for each unit of Ambushers in your army that is held in reserve.\n\n On a roll of 1-3, the unit is delayed until your next turn at least.\u00a0 On a roll of 4+, the unit arrives, entering the battle as reinforcements during the Compulsory Moves sub-phase. The unit may be placed on any edge of the battlefield, chosen by its controlling player, but cannot be placed within 8\" of an enemy model. If any Ambushers are still held in reserve by the start of round five, they arrive automatically."
+        },
+        {
+          "name": "Eshin Infiltration",
+          "text": "When a friendly unit of Gutter Runners with the Ambushers special rule arrives from reserve, it can be placed on the battlefield anywhere completely within 12\" of a revealed Master Assassin, but not within 6\" of any enemy models (rather than entering the battle as reinforcements). The unit cannot charge during this turn and counts as having moved for the purposes of shooting, but can otherwise act as normal.\n*Note that this character cannot use this special rule whilst it remains hidden.*"
+        },
+        {
+          "name": "Evasive",
+          "text": "Once per turn, when a unit in which the majority of models have this special rule is declared the target during the enemy Shooting phase, it may choose to Fall Back in Good Order, fleeing directly away from the enemy unit shooting at it. Once this unit has completed its move, the enemy unit may continue with its shooting as declared."
+        },
+        {
+          "name": "Feigned Flight",
+          "text": "If this unit chooses to Flee (or Fire & Flee) as a charge reaction, it automatically rallies at the end of its move."
+        },
+        {
+          "name": "Fire & Flee",
+          "text": "If the majority of the models in a unit armed armed with missile weapons have this special rule, the unit may declare that it will \u2018Fire & Flee\u2019 as a charge reaction:\n\nFire & Flee: The unit launches a volley of weapons fire before turning to flee from the enemy. If a unit with this special rule is armed with missile weapons and can draw a line of sight to the charging unit, it may declare that it will Fire & Flee. The unit will Stand & Shoot before turning tail and fleeing from the charge. However, due to the time spent shooting at the charging foe, when making its Flee roll the unit rolls two D6 and discards the lowest result. If both dice roll the same result, discard either.\n\nNote that, if the distance between this unit and the charging unit is less than the Movement characteristic of the charging unit, this unit must either Hold or Flee."
+        },
+        {
+          "name": "Hidden",
+          "text": "Master Assassins are not placed on the battlefield at the start of the game. Instead, they are \u2018hidden\u2019 within a friendly Skaven unit whose troop type is \u2018infantry\u2019 and that has a Unit Strength of ten or more. Make a note of which unit each Master Assassin is hiding within.\nA hidden Master Assassin may be revealed during any Start of Turn sub-phase or at the start of any Combat phase. Position the revealed Master Assassin as you would a character that has joined the unit.\u00a0\nIf a unit in which a Master Assassin is hiding is destroyed or flees the battlefield before the Master Assassin is revealed, the Master Assassin is removed as a casualty. A Master Assassin cannot be your army General."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Poisoned Attacks",
+          "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+        },
+        {
+          "name": "Scurry Away",
+          "text": "Models with this special rule have a +1 modifier to the result of any Flee roll they make."
+        },
+        {
+          "name": "Verminous Valour",
+          "text": "Unless they are engaged in a challenge, a character with this special rule that has joined a unit that has a Unit Strength of 10 or more may voluntarily \u2018retire\u2019 to the rear of the unit at any time, moving through the ranks and taking up a position away from the combat. Should they do so, they are no longer within the fighting rank and cannot make any attacks or have attacks directed against them. However, the unit may still use this character\u2019s Leadership."
+        },
+        {
+          "name": "Warpstone Weapons",
+          "text": "A hand weapon carried by a model with this special rule has the Magical Attacks special rule and an Armour Piercing characteristic of -1.\n\n*Note that this special rule only applies to a single, ordinary hand weapon. If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply.*"
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "8",
+        "BS": "7",
+        "S": "4",
+        "T": "4",
+        "W": "2",
+        "I": "8",
+        "A": "3",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "plague-priest",
+      "name": "Plague Priest",
+      "category": "characters",
+      "pointsPerModel": 60,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry (character)",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "plague-censer",
+              "name": "Plague censer",
+              "points": 6
+            }
+          ]
+        },
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-1",
+              "name": "Wizard Level 1",
+              "points": 30
+            },
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 60
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            },
+            {
+              "id": "daemonology",
+              "name": "Daemonology",
+              "points": 0
+            },
+            {
+              "id": "dark-magic",
+              "name": "Dark Magic",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "mount",
+          "name": "Mount",
+          "options": [
+            {
+              "id": "plague-furnace",
+              "name": "Plague Furnace",
+              "points": 170,
+              "stats": {
+                "M": "2",
+                "WS": "-",
+                "BS": "-",
+                "S": "5",
+                "T": "6",
+                "W": "5",
+                "I": "-",
+                "A": "-",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Dragged Along",
+                  "text": "A model with this special rule that begins its movement within 1\" of a friendly unit whose troop type is \u2018infantry,\u2019 that is not fleeing and that contains ten or more models, may replace its Movement characteristic with that of the unit."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Frenzy",
+                  "text": "During a turn in which it made a charge move, or during the\u00a0turn after it made a follow up move, a Frenzied model has a +1\u00a0modifier to its Attacks characteristic. This modifier does not\u00a0apply to the model\u2019s mount (in the case of a cavalry model), to\u00a0the beasts that draw it (in the case of a chariot), or to its rider\u00a0(in the case of a monster).\n\nIn addition:\n- If the majority of the models in a unit are Frenzied, the unit automatically passes any Fear, Panic or Terror tests it is required to make.\n- If a unit that includes one or more Frenzied models is able to declare a charge during the Declare Charges & Charge Reactions sub-phase of its turn, it must do so.\n- If the majority of the models in a unit are Frenzied, it cannot choose to Flee as a charge reaction, nor can it ever choose to make a Restraint test.\n\n**Losing Frenzy:** Unlike other special rules, Frenzy can be lost during a game. Any model that loses a round of combat will immediately lose this special rule."
+                },
+                {
+                  "name": "Great Censer",
+                  "text": "Stomp Attacks made by a Plague Furnace represent the Great Censer being let loose to swing into the enemy with devastating effect. Any Stomp Attacks made by a Plague Furnace have an Armour Piercing characteristic of -2.\nIn addition, whilst within 3\" of one or more models with this special rule, the noxious fumes billowing from the Great Censer cause enemy units to suffer a -1 modifier to their Toughness characteristic (to a minimum of 1)."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Magic Resistance",
+                  "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+                },
+                {
+                  "name": "Poisoned Attacks",
+                  "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+                },
+                {
+                  "name": "Scurrying Masses",
+                  "text": "Whilst within 3\" of a friendly unit, this model gains a positive (+) modifier to its Leadership characteristic equal to that unit\u2019s current Rank Bonus, up to a maximum of Leadership 10."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Cloud of Flies",
+          "text": "Any enemy model that directs its attacks against this character during the Combat phase suffers a -1 modifier to its rolls To Hit."
+        },
+        {
+          "name": "Frenzy",
+          "text": "During a turn in which it made a charge move, or during the\u00a0turn after it made a follow up move, a Frenzied model has a +1\u00a0modifier to its Attacks characteristic. This modifier does not\u00a0apply to the model\u2019s mount (in the case of a cavalry model), to\u00a0the beasts that draw it (in the case of a chariot), or to its rider\u00a0(in the case of a monster).\n\nIn addition:\n- If the majority of the models in a unit are Frenzied, the unit automatically passes any Fear, Panic or Terror tests it is required to make.\n- If a unit that includes one or more Frenzied models is able to declare a charge during the Declare Charges & Charge Reactions sub-phase of its turn, it must do so.\n- If the majority of the models in a unit are Frenzied, it cannot choose to Flee as a charge reaction, nor can it ever choose to make a Restraint test.\n\n**Losing Frenzy:** Unlike other special rules, Frenzy can be lost during a game. Any model that loses a round of combat will immediately lose this special rule."
+        },
+        {
+          "name": "Lore of the Horned Rat",
+          "text": "A Wizard with the \u2018Lore of the Horned Rat\u2019 special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below:\n\u2022 Skitterleap\n\u2022 Warp Lightning\n\u2022 Cloud Of Corruption"
+        },
+        {
+          "name": "Magical Attacks",
+          "text": "Any attack made or hit caused by a model with this special rule, or made using a weapon with this special rule, is a \u2018Magical\u2019 attack.\n\n Note that all spells are considered to have this special rule, as are any hits caused by magic items."
+        },
+        {
+          "name": "Scurry Away",
+          "text": "Models with this special rule have a +1 modifier to the result of any Flee roll they make."
+        },
+        {
+          "name": "Verminous Valour",
+          "text": "Unless they are engaged in a challenge, a character with this special rule that has joined a unit that has a Unit Strength of 10 or more may voluntarily \u2018retire\u2019 to the rear of the unit at any time, moving through the ranks and taking up a position away from the combat. Should they do so, they are no longer within the fighting rank and cannot make any attacks or have attacks directed against them. However, the unit may still use this character\u2019s Leadership."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "Warpstone Weapons",
+          "text": "A hand weapon carried by a model with this special rule has the Magical Attacks special rule and an Armour Piercing characteristic of -1.\n\n*Note that this special rule only applies to a single, ordinary hand weapon. If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply.*"
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Plague censer",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-1",
+          "specialRules": "Poisoned Attacks, Requires Two Hands"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "5",
+        "BS": "3",
+        "S": "4",
+        "T": "5",
+        "W": "2",
+        "I": "5",
+        "A": "3",
+        "Ld": "6"
+      }
+    },
+    {
+      "id": "stormvermin",
+      "name": "Stormvermin",
+      "category": "core",
+      "pointsPerModel": 10,
+      "minModels": 10,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "fangleader",
+          "name": "Fangleader",
+          "points": 8
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 1
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Horde",
+          "text": "A unit with this special rule may increase the maximum Rank Bonus it can claim (as determined by its troop type) by one."
+        },
+        {
+          "name": "Scurry Away",
+          "text": "Models with this special rule have a +1 modifier to the result of any Flee roll they make."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "Warpstone Weapons",
+          "text": "A hand weapon carried by a model with this special rule has the Magical Attacks special rule and an Armour Piercing characteristic of -1.\n\n*Note that this special rule only applies to a single, ordinary hand weapon. If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply.*"
+        },
+        {
+          "name": "Regimental Unit",
+          "text": "A unit with this special rule can be accompanied by \u2018detachments\u2019 (see page 282)."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "4",
+        "BS": "3",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "5",
+        "A": "1",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "clanrats",
+      "name": "Clanrats",
+      "category": "core",
+      "pointsPerModel": 4,
+      "minModels": 20,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "clawleader",
+          "name": "Clawleader",
+          "points": 7
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 5
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 5
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "weapon-team",
+              "name": "Weapon Team",
+              "points": 0
+            },
+            {
+              "id": "thrusting-spear",
+              "name": "Thrusting Spear",
+              "points": 1
+            },
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 1
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Horde",
+          "text": "A unit with this special rule may increase the maximum Rank Bonus it can claim (as determined by its troop type) by one."
+        },
+        {
+          "name": "Scurry Away",
+          "text": "Models with this special rule have a +1 modifier to the result of any Flee roll they make."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "Regimental Unit",
+          "text": "A unit with this special rule can be accompanied by \u2018detachments\u2019 (see page 282)."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "3",
+        "BS": "3",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "4",
+        "A": "1",
+        "Ld": "4"
+      }
+    },
+    {
+      "id": "warplock-jezzails",
+      "name": "Warplock Jezzails",
+      "category": "special",
+      "pointsPerModel": 19,
+      "minModels": 3,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Open Order",
+          "text": "A unit consisting of models with this special rule may adopt an Open Order formation."
+        },
+        {
+          "name": "Scurry Away",
+          "text": "Models with this special rule have a +1 modifier to the result of any Flee roll they make."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "3",
+        "BS": "3",
+        "S": "3",
+        "T": "3",
+        "W": "2",
+        "I": "3",
+        "A": "2",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "poisoned-wind-globadiers",
+      "name": "Poisoned Wind Globadiers",
+      "category": "special",
+      "pointsPerModel": 10,
+      "minModels": 2,
+      "maxModels": 10,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Scurry Away",
+          "text": "Models with this special rule have a +1 modifier to the result of any Flee roll they make."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "3",
+        "BS": "3",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "4",
+        "A": "1",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "rat-swarms",
+      "name": "Rat Swarms",
+      "category": "core",
+      "pointsPerModel": 36,
+      "minModels": 3,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Swarms",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Immune To Psychology",
+          "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+        },
+        {
+          "name": "Loner",
+          "text": "A character with this special rule cannot be your General and cannot join a unit without this special rule. A unit with this special rule cannot be joined by a character without this special rule."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Unbreakable",
+          "text": "If a unit with this special rule loses a round of combat, it is not required to make a Break test. Instead, it will automatically Give Ground as it is pushed back by the enemy. Characters that are not Unbreakable cannot join units that are, and vice versa."
+        },
+        {
+          "name": "Vanguard",
+          "text": "After deployment, units with this special rule may make a Vanguard move. A unit making a Vanguard move moves as described in the Basic Movement rules. It may manoeuvre normally but cannot march.\n\nIf both armies contain Vanguard units, a roll-off determines who moves first. The players then alternate moving their Vanguard units one at a time, starting with the player who won the roll-off. Units that make a Vanguard move cannot declare a charge during their first turn."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "2",
+        "BS": "0",
+        "S": "2",
+        "T": "2",
+        "W": "5",
+        "I": "4",
+        "A": "5",
+        "Ld": "4"
+      }
+    },
+    {
+      "id": "rat-ogres",
+      "name": "Rat Ogres",
+      "category": "special",
+      "pointsPerModel": 48,
+      "minModels": 3,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "master-moulder",
+          "name": "Master Moulder",
+          "points": 7
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Armour Bane",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Frenzy",
+          "text": "During a turn in which it made a charge move, or during the\u00a0turn after it made a follow up move, a Frenzied model has a +1\u00a0modifier to its Attacks characteristic. This modifier does not\u00a0apply to the model\u2019s mount (in the case of a cavalry model), to\u00a0the beasts that draw it (in the case of a chariot), or to its rider\u00a0(in the case of a monster).\n\nIn addition:\n- If the majority of the models in a unit are Frenzied, the unit automatically passes any Fear, Panic or Terror tests it is required to make.\n- If a unit that includes one or more Frenzied models is able to declare a charge during the Declare Charges & Charge Reactions sub-phase of its turn, it must do so.\n- If the majority of the models in a unit are Frenzied, it cannot choose to Flee as a charge reaction, nor can it ever choose to make a Restraint test.\n\n**Losing Frenzy:** Unlike other special rules, Frenzy can be lost during a game. Any model that loses a round of combat will immediately lose this special rule."
+        },
+        {
+          "name": "Horde",
+          "text": "A unit with this special rule may increase the maximum Rank Bonus it can claim (as determined by its troop type) by one."
+        },
+        {
+          "name": "Safe From Harm",
+          "text": "When an enemy unit shoots at a unit of Rat Ogres that also contains one or more Packmasters, the enemy player must roll a D6 for each successful roll To Hit before making any rolls To Wound. On a roll of 1-4, the hit is inflicted upon a Rat Ogre. In combat, enemy models must allocate their attacks against a model they are in base contact with (or against the closest model if they are within the fighting rank but not in base contact) before rolling To Hit."
+        },
+        {
+          "name": "Scurry Away",
+          "text": "Models with this special rule have a +1 modifier to the result of any Flee roll they make."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "4",
+        "BS": "1",
+        "S": "5",
+        "T": "4",
+        "W": "3",
+        "I": "4",
+        "A": "3",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "giant-rats",
+      "name": "Giant Rats",
+      "category": "core",
+      "pointsPerModel": 3,
+      "minModels": 10,
+      "maxModels": 30,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "War beasts",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "master-moulder",
+          "name": "Master Moulder",
+          "points": 7
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Fight In Extra Rank",
+          "text": "A model with this special rule may make a supporting attack."
+        },
+        {
+          "name": "Horde",
+          "text": "A unit with this special rule may increase the maximum Rank Bonus it can claim (as determined by its troop type) by one."
+        },
+        {
+          "name": "Scurry Away",
+          "text": "Models with this special rule have a +1 modifier to the result of any Flee roll they make."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "2",
+        "BS": "0",
+        "S": "2",
+        "T": "3",
+        "W": "1",
+        "I": "4",
+        "A": "1",
+        "Ld": "3"
+      }
+    },
+    {
+      "id": "night-runners",
+      "name": "Night Runners",
+      "category": "core",
+      "pointsPerModel": 7,
+      "minModels": 10,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "nightleader",
+          "name": "Nightleader",
+          "points": 6
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "sling",
+              "name": "Sling",
+              "points": 2
+            },
+            {
+              "id": "throwing-weapon",
+              "name": "Throwing Weapon",
+              "points": 1
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 2
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Evasive",
+          "text": "Once per turn, when a unit in which the majority of models have this special rule is declared the target during the enemy Shooting phase, it may choose to Fall Back in Good Order, fleeing directly away from the enemy unit shooting at it. Once this unit has completed its move, the enemy unit may continue with its shooting as declared."
+        },
+        {
+          "name": "Fire & Flee",
+          "text": "If the majority of the models in a unit armed armed with missile weapons have this special rule, the unit may declare that it will \u2018Fire & Flee\u2019 as a charge reaction:\n\nFire & Flee: The unit launches a volley of weapons fire before turning to flee from the enemy. If a unit with this special rule is armed with missile weapons and can draw a line of sight to the charging unit, it may declare that it will Fire & Flee. The unit will Stand & Shoot before turning tail and fleeing from the charge. However, due to the time spent shooting at the charging foe, when making its Flee roll the unit rolls two D6 and discards the lowest result. If both dice roll the same result, discard either.\n\nNote that, if the distance between this unit and the charging unit is less than the Movement characteristic of the charging unit, this unit must either Hold or Flee."
+        },
+        {
+          "name": "Scurry Away",
+          "text": "Models with this special rule have a +1 modifier to the result of any Flee roll they make."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Sling",
+          "range": "18\"",
+          "strength": "3",
+          "ap": "-",
+          "specialRules": "Multiple Shots (2)"
+        },
+        {
+          "name": "Throwing Weapon",
+          "range": "9\"",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Multiple Shots (2), Move & Shoot, Quick Shot"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "3",
+        "BS": "3",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "5",
+        "A": "1",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "gutter-runners",
+      "name": "Gutter Runners",
+      "category": "special",
+      "pointsPerModel": 14,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "assassin",
+          "name": "Assassin",
+          "points": 7
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "sling",
+              "name": "Sling",
+              "points": 2
+            },
+            {
+              "id": "throwing-weapon",
+              "name": "Throwing Weapon",
+              "points": 1
+            }
+          ]
+        },
+        {
+          "id": "special-rules",
+          "name": "Special Rules",
+          "options": [
+            {
+              "id": "ambushers",
+              "name": "Ambushers",
+              "points": 1,
+              "specialRules": [
+                {
+                  "name": "Ambushers",
+                  "text": "A unit with this special rule may be held in reserve rather than be deployed at the start of the game. From the beginning of round two onwards, roll a D6 during each of your Start of Turn sub-phases for each unit of Ambushers in your army that is held in reserve.\n\n On a roll of 1-3, the unit is delayed until your next turn at least.\u00a0 On a roll of 4+, the unit arrives, entering the battle as reinforcements during the Compulsory Moves sub-phase. The unit may be placed on any edge of the battlefield, chosen by its controlling player, but cannot be placed within 8\" of an enemy model. If any Ambushers are still held in reserve by the start of round five, they arrive automatically."
+                }
+              ]
+            },
+            {
+              "id": "poisoned-attacks",
+              "name": "Poisoned Attacks",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Poisoned Attacks",
+                  "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Evasive",
+          "text": "Once per turn, when a unit in which the majority of models have this special rule is declared the target during the enemy Shooting phase, it may choose to Fall Back in Good Order, fleeing directly away from the enemy unit shooting at it. Once this unit has completed its move, the enemy unit may continue with its shooting as declared."
+        },
+        {
+          "name": "Feigned Flight",
+          "text": "If this unit chooses to Flee (or Fire & Flee) as a charge reaction, it automatically rallies at the end of its move."
+        },
+        {
+          "name": "Fire & Flee",
+          "text": "If the majority of the models in a unit armed armed with missile weapons have this special rule, the unit may declare that it will \u2018Fire & Flee\u2019 as a charge reaction:\n\nFire & Flee: The unit launches a volley of weapons fire before turning to flee from the enemy. If a unit with this special rule is armed with missile weapons and can draw a line of sight to the charging unit, it may declare that it will Fire & Flee. The unit will Stand & Shoot before turning tail and fleeing from the charge. However, due to the time spent shooting at the charging foe, when making its Flee roll the unit rolls two D6 and discards the lowest result. If both dice roll the same result, discard either.\n\nNote that, if the distance between this unit and the charging unit is less than the Movement characteristic of the charging unit, this unit must either Hold or Flee."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Scouts",
+          "text": "Units with this special rule may be deployed after all other units from both armies. They can be deployed anywhere on the battlefield that is more than 12\" away from an enemy model. If deployed in this way, Scouts cannot declare a charge during their first turn.\n\n If both armies contain Scouts, a roll-off should determine which player deploys Scouts first. The players then alternate deploying their scouting units one at a time, starting with the player who won the roll-off."
+        },
+        {
+          "name": "Scurry Away",
+          "text": "Models with this special rule have a +1 modifier to the result of any Flee roll they make."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Sling",
+          "range": "18\"",
+          "strength": "3",
+          "ap": "-",
+          "specialRules": "Multiple Shots (2)"
+        },
+        {
+          "name": "Throwing Weapon",
+          "range": "9\"",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Multiple Shots (2), Move & Shoot, Quick Shot"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "4",
+        "BS": "4",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "5",
+        "A": "1",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "plague-monks",
+      "name": "Plague Monks",
+      "category": "special",
+      "pointsPerModel": 7,
+      "minModels": 10,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "plague-deacon",
+          "name": "Plague Deacon",
+          "points": 6
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 2
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Frenzy",
+          "text": "During a turn in which it made a charge move, or during the\u00a0turn after it made a follow up move, a Frenzied model has a +1\u00a0modifier to its Attacks characteristic. This modifier does not\u00a0apply to the model\u2019s mount (in the case of a cavalry model), to\u00a0the beasts that draw it (in the case of a chariot), or to its rider\u00a0(in the case of a monster).\n\nIn addition:\n- If the majority of the models in a unit are Frenzied, the unit automatically passes any Fear, Panic or Terror tests it is required to make.\n- If a unit that includes one or more Frenzied models is able to declare a charge during the Declare Charges & Charge Reactions sub-phase of its turn, it must do so.\n- If the majority of the models in a unit are Frenzied, it cannot choose to Flee as a charge reaction, nor can it ever choose to make a Restraint test.\n\n**Losing Frenzy:** Unlike other special rules, Frenzy can be lost during a game. Any model that loses a round of combat will immediately lose this special rule."
+        },
+        {
+          "name": "Horde",
+          "text": "A unit with this special rule may increase the maximum Rank Bonus it can claim (as determined by its troop type) by one."
+        },
+        {
+          "name": "Scurry Away",
+          "text": "Models with this special rule have a +1 modifier to the result of any Flee roll they make."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "3",
+        "BS": "3",
+        "S": "3",
+        "T": "4",
+        "W": "1",
+        "I": "3",
+        "A": "1",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "plague-censer-bearers",
+      "name": "Plague Censer Bearers",
+      "category": "rare",
+      "pointsPerModel": 13,
+      "minModels": 2,
+      "maxModels": 10,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Frenzy",
+          "text": "During a turn in which it made a charge move, or during the\u00a0turn after it made a follow up move, a Frenzied model has a +1\u00a0modifier to its Attacks characteristic. This modifier does not\u00a0apply to the model\u2019s mount (in the case of a cavalry model), to\u00a0the beasts that draw it (in the case of a chariot), or to its rider\u00a0(in the case of a monster).\n\nIn addition:\n- If the majority of the models in a unit are Frenzied, the unit automatically passes any Fear, Panic or Terror tests it is required to make.\n- If a unit that includes one or more Frenzied models is able to declare a charge during the Declare Charges & Charge Reactions sub-phase of its turn, it must do so.\n- If the majority of the models in a unit are Frenzied, it cannot choose to Flee as a charge reaction, nor can it ever choose to make a Restraint test.\n\n**Losing Frenzy:** Unlike other special rules, Frenzy can be lost during a game. Any model that loses a round of combat will immediately lose this special rule."
+        },
+        {
+          "name": "Scurry Away",
+          "text": "Models with this special rule have a +1 modifier to the result of any Flee roll they make."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "3",
+        "BS": "3",
+        "S": "3",
+        "T": "4",
+        "W": "1",
+        "I": "3",
+        "A": "1",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "doomwheel",
+      "name": "Doomwheel",
+      "category": "rare",
+      "pointsPerModel": 145,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Heavy chariot",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Crushing Bulk",
+          "text": "Any Stomp Attacks made by a Doom Wheel have an Armour Piercing characteristic of -1. In addition, an enemy unit that suffers Impact Hits from this model must immediately make a Leadership test. If this test is failed, the unit becomes Disrupted until the end of the current Combat phase."
+        },
+        {
+          "name": "Immune To Psychology",
+          "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Large Target",
+          "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+        },
+        {
+          "name": "Random Attacks",
+          "text": "Models with this special rule do not have a normal Attacks characteristic. Instead, a dice roll is given (D3+1, for example). Each time a model with this special rule attacks in combat, roll the dice to determine the number of attacks it will make, then roll To Hit as normal. If a fighting rank contains more than one model with this special rule, roll separately for each, unless specified otherwise."
+        },
+        {
+          "name": "Random Movement",
+          "text": "Models with this special rule do not have a normal Movement characteristic. Instead, a dice roll is given (2D6, for example). When a model with this special rule moves, roll the dice to determine its maximum movement..\n\nModels with this special rule move during the Compulsory Moves sub-phase. They cannot march or declare a charge. They can wheel to change direction, but cannot perform any other manoeuvres. If the model is able to make contact with an enemy unit during the Compulsory Moves sub-phase or whilst pursuing, it may do so and counts as having charged. The model aligns against the enemy unit and stops moving. A unit charged in this way must Hold.\n\nIf every model in a unit has this special rule, roll once for the entire unit. If two or more models in a unit have different Random Movement characteristics, roll for each and use the lowest result for the entire unit."
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Zzzzap!",
+          "text": "At the end of every Shooting phase, after all shooting has been resolved, place up to three small (3\") blast templates so that their central hole is within 6\" of this model. Once placed, each template will scatter D6\". Any model (friend or foe) whose base lies underneath a template\u2019s final position risks being hit and suffering a single hit, the Strength of which is determined by rolling an Artillery dice. Each hit has an AP of -2.\n\nIf a \u2018Misfire\u2019 is rolled when rolling to determine the Strength of a template, this model suffers the brunt of the warp lightning bolt. The template is removed and any models hit by it are left unharmed, but this model loses a single Wound."
+        },
+        {
+          "name": "Armour Value",
+          "text": "Base Armour value"
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "3D6",
+        "WS": "-",
+        "BS": "-",
+        "S": "5",
+        "T": "5",
+        "W": "4",
+        "I": "-",
+        "A": "-",
+        "Ld": "-"
+      }
+    },
+    {
+      "id": "hell-pit-abomination",
+      "name": "Hell Pit Abomination",
+      "category": "rare",
+      "pointsPerModel": 210,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Behemoth",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Abominable Attacks",
+          "text": "Instead of attacking normally during the Combat phase, a Hell Pit Abomination may choose to make one of the following Abominable Attacks:\n\u2022 Feed: Nominate a single enemy model in base contact with the Hell Pit Abomination to be the target of this attack. If that model is hit, it suffers D3 automatic wounds with no armour save permitted (Ward and Regeneration saves can be attempted as normal).\n\u2022 Avalanche of Flesh: Place a small (3\") blast template so that its central hole is directly over the centre of the target unit. Any model (friend or foe, but not including this model) whose base lies underneath the template risks being hit and suffering a single hit, using the Strength characteristic of this model, with an AP of -2."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Immune To Psychology",
+          "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+        },
+        {
+          "name": "Large Target",
+          "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Random Attacks",
+          "text": "Models with this special rule do not have a normal Attacks characteristic. Instead, a dice roll is given (D3+1, for example). Each time a model with this special rule attacks in combat, roll the dice to determine the number of attacks it will make, then roll To Hit as normal. If a fighting rank contains more than one model with this special rule, roll separately for each, unless specified otherwise."
+        },
+        {
+          "name": "Random Movement",
+          "text": "Models with this special rule do not have a normal Movement characteristic. Instead, a dice roll is given (2D6, for example). When a model with this special rule moves, roll the dice to determine its maximum movement..\n\nModels with this special rule move during the Compulsory Moves sub-phase. They cannot march or declare a charge. They can wheel to change direction, but cannot perform any other manoeuvres. If the model is able to make contact with an enemy unit during the Compulsory Moves sub-phase or whilst pursuing, it may do so and counts as having charged. The model aligns against the enemy unit and stops moving. A unit charged in this way must Hold.\n\nIf every model in a unit has this special rule, roll once for the entire unit. If two or more models in a unit have different Random Movement characteristics, roll for each and use the lowest result for the entire unit."
+        },
+        {
+          "name": "Regeneration",
+          "text": "Immediately after a Wound is lost, but before models with zero Wounds remaining are removed from play, a model with this special rule may make a \"Regeneration save\" roll by rolling a D6 and comparing the result to its \"Regeneration value\", shown in brackets after the name of this special rule (shown here as \"X+\"). If the Regeneration save roll equals or exceeds the model\u2019s Regeneration value, the lost Wound is recovered, but is still counted for the purposes of calculating the combat result. Rules that affect armour values do not affect Regeneration values unless stated otherwise."
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Terror",
+          "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+        },
+        {
+          "name": "Timmm-Berrr!",
+          "text": "When this model is reduced to zero Wounds, the winner of a roll-off chooses one of its arcs (front, flank or rear) for it to fall into. Any units that are within the chosen arc and in base contact with this model suffer D6 hits, each using the Strength characteristic of this model, with an AP of -1. Once these hits are resolved, this model is removed from play."
+        },
+        {
+          "name": "Too Horrible To Die",
+          "text": "The first time a Hell Pit Abomination loses its last Wound, roll a D6 before removing the model from play:\n\u2022 On a roll of 1-3, the beast wheezes its last breath and is removed from play.\n\u2022 On a roll of 4 or 5, the great corpse shudders and a swarm of rats bursts forth. Place a Rat Swarm of one model within 3\" of this model, then remove this model from play.\n\u2022 On a roll of 6, the Hell Pit Abomination jolts and shudders with unnatural vitality before rising anew. This model immediately recovers D3 Wounds."
+        },
+        {
+          "name": "Unbreakable",
+          "text": "If a unit with this special rule loses a round of combat, it is not required to make a Break test. Instead, it will automatically Give Ground as it is pushed back by the enemy. Characters that are not Unbreakable cannot join units that are, and vice versa."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "3D6",
+        "WS": "3",
+        "BS": "1",
+        "S": "6",
+        "T": "5",
+        "W": "6",
+        "I": "4",
+        "A": "D6+1",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "warp-lightning-cannon",
+      "name": "Warp Lightning Cannon",
+      "category": "rare",
+      "pointsPerModel": 110,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "War machine",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "-",
+        "BS": "-",
+        "S": "-",
+        "T": "6",
+        "W": "4",
+        "I": "-",
+        "A": "-",
+        "Ld": "-"
+      }
+    },
+    {
+      "id": "plagueclaw-catapult",
+      "name": "Plagueclaw Catapult",
+      "category": "rare",
+      "pointsPerModel": 110,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "War machine",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Random Attacks",
+          "text": "Models with this special rule do not have a normal Attacks characteristic. Instead, a dice roll is given (D3+1, for example). Each time a model with this special rule attacks in combat, roll the dice to determine the number of attacks it will make, then roll To Hit as normal. If a fighting rank contains more than one model with this special rule, roll separately for each, unless specified otherwise."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "-",
+        "BS": "-",
+        "S": "-",
+        "T": "6",
+        "W": "4",
+        "I": "-",
+        "A": "-",
+        "Ld": "-"
+      }
+    }
+  ]
+}

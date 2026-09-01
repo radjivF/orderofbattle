@@ -239,6 +239,7 @@ export type ArmyList = {
   id: string;
   name: string;
   factionId: string;
+  game?: "aos";
   kind?: ArmyListKind;
   spearheadId?: string | null;
   regimentAbilityId?: string | null;

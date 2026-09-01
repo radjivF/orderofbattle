@@ -3,10 +3,10 @@
 export const SITE_NAME = "Order of Battle";
 
 export const SITE_DESCRIPTION =
-  "Order of Battle is a free unofficial Age of Sigmar 4th edition army builder and table companion. Build lists with regiments and Regiments of Renown, then track wounds, spells, and phase abilities at the table. No account; lists stay on your device.";
+  "Order of Battle is a free unofficial Age of Sigmar 4th edition army builder. You put a list together by regiment, add a Regiment of Renown when the army allows it, then keep wounds, spells, and phase abilities in front of you during the game. You don't sign up; the lists live on the device.";
 
 export const SITE_SHORT_DESCRIPTION =
-  "Free unofficial Age of Sigmar army builder and table companion. Lists stay on your device.";
+  "Free unofficial Age of Sigmar army builder. Lists stay on your device.";
 
 export const SITE_KEYWORDS = [
   "Age of Sigmar army builder",
@@ -14,7 +14,7 @@ export const SITE_KEYWORDS = [
   "Warhammer Age of Sigmar 4th edition",
   "Age of Sigmar list builder",
   "AoS army builder no account",
-  "Age of Sigmar companion app",
+  "Age of Sigmar list builder Play",
   "Regiments of Renown builder",
   "Order of Battle",
 ];

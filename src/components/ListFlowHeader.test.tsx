@@ -36,6 +36,7 @@ describe("ListFlowHeader", () => {
     );
 
     expect(screen.getByRole("link", { name: /Order of Battle/i }));
+    expect(screen.getByRole("button", { name: "Open menu" }));
     expect(screen.queryByRole("heading", { name: "My lists" })).toBeNull();
     expect(screen.queryByRole("button", { name: "New list" })).toBeNull();
     expect(screen.queryByRole("button", { name: "List options" })).toBeNull();

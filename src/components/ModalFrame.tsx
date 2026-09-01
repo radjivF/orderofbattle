@@ -14,6 +14,7 @@ import {
   releaseModalLayer,
 } from "@/lib/modalLock";
 import {
+  isSheetDragControl,
   shouldBeginSheetDrag,
   shouldCommitSheetDismiss,
   sheetDismissEligible,
@@ -28,6 +29,8 @@ type Props = {
   zClass?: string;
   /** "sheet" pins to the bottom edge on phones (iOS style); "center" always floats. */
   variant?: "sheet" | "center";
+  /** Full-page sheet: one rise from the bottom, tiny peek of the screen behind. */
+  fullPage?: boolean;
 };
 
 type SheetDragState = {
@@ -58,12 +61,26 @@ function isMobileSheet(variant: Props["variant"]) {
   );
 }
 
+function sheetDragEnabled(
+  variant: Props["variant"],
+  fullPage: boolean,
+): boolean {
+  if (variant !== "sheet") {
+    return false;
+  }
+  if (fullPage) {
+    return true;
+  }
+  return isMobileSheet(variant);
+}
+
 export function ModalFrame({
   label,
   onClose,
   children,
   panelClassName,
   variant = "sheet",
+  fullPage = false,
 }: Props) {
   const panelRef = useRef<HTMLDivElement>(null);
   const onCloseRef = useRef(onClose);
@@ -113,7 +130,7 @@ export function ModalFrame({
     }
     drag.dragging = true;
     setDragAnimating(false);
-    panelRef.current?.setPointerCapture(pointerId);
+    panelRef.current?.setPointerCapture?.(pointerId);
     const scrollEl = drag.scrollEl;
     if (scrollEl) {
       scrollEl.style.overflow = "hidden";
@@ -122,17 +139,22 @@ export function ModalFrame({
   }
 
   function primeSheetDrag(event: React.PointerEvent<HTMLDivElement>) {
-    if (!isMobileSheet(variant) || !isTopModal(closeHandlerRef.current)) {
+    if (
+      !sheetDragEnabled(variant, fullPage) ||
+      !isTopModal(closeHandlerRef.current)
+    ) {
       return;
     }
 
     const target = event.target as HTMLElement;
     const scrollEl = sheetScrollEl();
     const fromGrabber = Boolean(target.closest(".modal-grabber"));
+    const fromControl = isSheetDragControl(target);
     const inScrollArea = Boolean(scrollEl?.contains(target));
     const scrollTop = scrollEl?.scrollTop ?? 0;
     const dismissEligible = sheetDismissEligible({
       fromGrabber,
+      fromControl,
       inScrollArea,
       scrollTop,
     });
@@ -186,7 +208,7 @@ export function ModalFrame({
       return;
     }
 
-    if (panelRef.current?.hasPointerCapture(event.pointerId)) {
+    if (panelRef.current?.hasPointerCapture?.(event.pointerId)) {
       panelRef.current.releasePointerCapture(event.pointerId);
     }
 
@@ -263,7 +285,11 @@ export function ModalFrame({
   useLayoutEffect(() => {
     const sheetPanel = panelRef.current;
     const scrollContainer = sheetScrollEl();
-    if (!sheetPanel || !scrollContainer || !isMobileSheet(variant)) {
+    if (
+      !sheetPanel ||
+      !scrollContainer ||
+      !sheetDragEnabled(variant, fullPage)
+    ) {
       return;
     }
     const panel: HTMLDivElement = sheetPanel;
@@ -279,6 +305,7 @@ export function ModalFrame({
       }
       const target = event.target as HTMLElement;
       const fromGrabber = Boolean(target.closest(".modal-grabber"));
+      const fromControl = isSheetDragControl(target);
       const inScrollArea = scrollEl.contains(target);
       const scrollTop = scrollEl.scrollTop;
       dragRef.current = {
@@ -288,6 +315,7 @@ export function ModalFrame({
         dragging: fromGrabber,
         dismissEligible: sheetDismissEligible({
           fromGrabber,
+          fromControl,
           inScrollArea,
           scrollTop,
         }),
@@ -367,7 +395,7 @@ export function ModalFrame({
       panel.removeEventListener("touchend", onTouchEnd);
       panel.removeEventListener("touchcancel", onTouchEnd);
     };
-  }, [variant, zIndex]);
+  }, [variant, fullPage, zIndex]);
 
   if (typeof document === "undefined" || zIndex === null) {
     return null;
@@ -375,7 +403,9 @@ export function ModalFrame({
 
   const sheet = variant === "sheet";
   const frameClass = sheet
-    ? "flex items-end justify-center pt-10 sm:items-center sm:p-4"
+    ? fullPage
+      ? "flex items-end justify-center pt-2"
+      : "flex items-end justify-center pt-10 sm:items-center sm:p-4"
     : "flex items-center justify-center p-4";
 
   return createPortal(
@@ -402,7 +432,7 @@ export function ModalFrame({
         aria-modal="true"
         aria-label={label}
         tabIndex={-1}
-        className={`relative z-10 outline-none ${sheet ? "modal-sheet" : ""} ${dragAnimating ? "modal-sheet--animating" : ""} ${panelClassName}`}
+        className={`relative z-10 outline-none ${sheet ? "modal-sheet" : ""} ${fullPage ? "modal-sheet--page" : ""} ${dragAnimating ? "modal-sheet--animating" : ""} ${panelClassName}`}
         style={
           sheet && dragOffset > 0
             ? { transform: `translateY(${dragOffset}px)` }
@@ -420,7 +450,7 @@ export function ModalFrame({
         {sheet ? (
           <div
             aria-hidden="true"
-            className="modal-grabber sm:hidden"
+            className={`modal-grabber relative z-10 ${fullPage ? "" : "sm:hidden"}`}
             style={{ touchAction: "none" }}
           />
         ) : null}

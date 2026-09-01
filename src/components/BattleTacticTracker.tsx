@@ -6,6 +6,7 @@ import type {
   BattleTacticStage,
 } from "@/engine/types";
 import { battleTactics } from "@/engine/data/load";
+import { BattleTacticText } from "./BattleTacticText";
 
 type Props = {
   list: ArmyList;
@@ -67,7 +68,7 @@ export function BattleTacticTracker({ list, onStageChange }: Props) {
               <li key={card.id} className="flex flex-col gap-2">
                 <p className="font-medium text-parchment">{card.name}</p>
                 {card.setup ? (
-                  <p className="text-xs leading-relaxed text-parchment/65">
+                  <p className="text-xs leading-6 text-parchment/65 sm:text-sm">
                     {card.setup}
                   </p>
                 ) : null}
@@ -120,9 +121,10 @@ export function BattleTacticTracker({ list, onStageChange }: Props) {
                             </span>
                           </div>
                           {text ? (
-                            <p className="mt-2 text-xs leading-relaxed text-parchment/80">
-                              {text}
-                            </p>
+                            <BattleTacticText
+                              className="mt-2 text-sm sm:text-base"
+                              text={text}
+                            />
                           ) : null}
                         </button>
                       </li>

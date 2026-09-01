@@ -47,6 +47,9 @@ next-env.d.ts
 /data/aos4/*.cat
 /data/aos4/*.gst
 
+# New Recruit / BattleScribe catalogues for The Old World
+/data/tow/*.json
+
 # local knowledge graph (regenerate with `graphify update .`)
 /graphify-out/
 
