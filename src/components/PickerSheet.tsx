@@ -195,12 +195,14 @@ export function ChoiceSheet({
   options,
   selectedId,
   onPick,
+  onOpenDatasheet,
   onClose,
 }: {
   title: string;
   options: NamedChoice[];
   selectedId?: string | null;
   onPick: (option: NamedChoice | null) => void;
+  onOpenDatasheet?: (option: NamedChoice) => void;
   onClose: () => void;
 }) {
   return (
@@ -228,12 +230,21 @@ export function ChoiceSheet({
             {options.map((option) => {
               const selected = selectedId === option.id;
               return (
-                <li key={option.id}>
+                <li key={option.id} className="flex items-start gap-1">
+                  {onOpenDatasheet ? (
+                    <SheetLinkButton
+                      label={`${option.name} datasheet`}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        onOpenDatasheet(option);
+                      }}
+                    />
+                  ) : null}
                   <button
                     type="button"
                     onClick={() => onPick(option)}
                     aria-pressed={selected}
-                    className={`flex w-full items-start gap-3 rounded-lg px-3 py-3 text-left hover:bg-parchment-ink/5 ${
+                    className={`flex min-w-0 flex-1 items-start gap-3 rounded-lg px-3 py-3 text-left hover:bg-parchment-ink/5 ${
                       selected
                         ? "bg-aether/10 ring-1 ring-aether/40"
                         : ""
@@ -253,9 +264,14 @@ export function ChoiceSheet({
                           {option.detail}
                         </p>
                       ) : null}
-                      {(option.abilities ?? []).map((ability) => (
-                        <AbilityBlurb key={ability.name} ability={ability} />
-                      ))}
+                      {onOpenDatasheet
+                        ? null
+                        : (option.abilities ?? []).map((ability) => (
+                            <AbilityBlurb
+                              key={ability.name}
+                              ability={ability}
+                            />
+                          ))}
                     </span>
                   </button>
                 </li>

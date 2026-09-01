@@ -23,7 +23,7 @@ const buildFeatures = [
 const playFeatures = [
   {
     title: "Wounds",
-    body: "Track damage on every unit mid-game. Health, models, battle damage at a glance.",
+    body: "Track damage on every unit mid-game: leftover health, models, battle damage.",
   },
   {
     title: "Spells & prayers",
@@ -31,7 +31,7 @@ const playFeatures = [
   },
   {
     title: "Abilities by phase",
-    body: "Hero, movement, shooting, charge, combat, end of turn. Only what that phase needs.",
+    body: "Hero, movement, shooting, charge, combat, end of turn. Weapons and abilities for that phase, plus the datasheet one tap away.",
   },
 ] as const;
 
@@ -144,7 +144,7 @@ export function TryLanding() {
               Build
             </h2>
             <p className="mt-2 max-w-lg text-sm font-medium text-parchment [text-shadow:0_1px_8px_rgba(0,0,0,0.8)]">
-              List construction from BSData catalogues.
+              From community BSData catalogues, regiment by regiment.
             </p>
             <ul className="mt-5 grid gap-3 sm:grid-cols-2 sm:gap-4">
               {buildFeatures.map((feature) => (
@@ -170,7 +170,7 @@ export function TryLanding() {
               className="gilded-card rounded-2xl p-5 sm:p-8"
             >
               <p className="text-[0.7rem] tracking-[0.35em] text-sigmarite uppercase">
-                The part players love
+                At the table
               </p>
               <h2
                 id="play-section"
@@ -180,8 +180,10 @@ export function TryLanding() {
               </h2>
               <div className="gold-rule mt-4 w-20" aria-hidden="true" />
               <p className="mt-5 text-sm leading-relaxed text-parchment/70 sm:text-base">
-                Open a list, hit Play, and run the game from your phone. Track
-                the fight without flipping warscrolls all night.
+                Open a saved list, tap Play, and keep the army in front of you
+                during the game. This phase, these weapons, these abilities, the
+                datasheet if you need it, without digging through warscrolls
+                between turns.
               </p>
             </div>
             <ul className="mt-6 grid gap-3 sm:grid-cols-3 sm:gap-4">
@@ -223,9 +225,9 @@ export function TryLanding() {
             </h2>
             <div className="gold-rule mt-4 w-20" aria-hidden="true" />
             <p className="mt-5 text-sm leading-relaxed text-parchment/70">
-              Build Age of Sigmar lists in the browser, then keep score at the
-              table. Regiments, Regiments of Renown, wounds, magic targets, and
-              phase abilities. Lists stay on your device.
+              Build the list in the browser, then keep it next to you during the
+              game. Regiments, Regiments of Renown, wounds, magic targets, and
+              phase abilities. Lists stay on the device.
             </p>
             <p className="mt-4 text-sm leading-relaxed text-parchment/70">
               Catalogue data is BSData, not Games Workshop. Double-check points

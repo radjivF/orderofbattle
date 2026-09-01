@@ -18,6 +18,10 @@
   --legal: #4a7c59;
   --illegal: #8b2e2e;
   --illegal-lit: #e8b4b4;
+  --olive: #5e6b2e;
+  --sky: #2b6aa3;
+  --arcane: #6b5a8a;
+  --copper: #a0562a;
 }
 
 @theme inline {
@@ -36,6 +40,10 @@
   --color-legal: var(--legal);
   --color-illegal: var(--illegal);
   --color-illegal-lit: var(--illegal-lit);
+  --color-olive: var(--olive);
+  --color-sky: var(--sky);
+  --color-arcane: var(--arcane);
+  --color-copper: var(--copper);
   --font-sans: var(--font-instrument);
   --font-serif: var(--font-cinzel);
 }
@@ -305,6 +313,26 @@ a {
 .pressable:active {
   transform: scale(0.97);
   filter: brightness(0.96);
+}
+
+.library-card {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.library-card::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  background: rgb(22 18 12 / 0);
+  transition: background 80ms ease-out;
+}
+
+.library-card:has(.library-card-open:active)::after,
+.library-card[data-opening="true"]::after {
+  background: rgb(22 18 12 / 0.12);
 }
 
 .ios-liquid-glass:active {

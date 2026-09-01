@@ -19,6 +19,33 @@ export function listFlowIsHome(pathname: string): boolean {
   return pathname === "/";
 }
 
+/** Primary in-app tap — not a new-tab / modified click. */
+export function listOpenUsesInAppSlide(event: {
+  metaKey: boolean;
+  ctrlKey: boolean;
+  shiftKey: boolean;
+  altKey: boolean;
+  button: number;
+}): boolean {
+  return (
+    event.button === 0 &&
+    !event.metaKey &&
+    !event.ctrlKey &&
+    !event.shiftKey &&
+    !event.altKey
+  );
+}
+
+/** Skip the post-route slide when the library already started it on press. */
+export function listFlowSkipsPostRouteSlide(pendingForward: boolean): boolean {
+  return pendingForward;
+}
+
+/** Keep the library card pressed only while list details are on screen. */
+export function libraryCardPressHoldsOn(pathname: string): boolean {
+  return pathname.startsWith("/lists/");
+}
+
 /** Carousel track class when the list detail pane is visible. */
 export function listFlowTrackClass(
   showDetail: boolean,
@@ -32,6 +59,38 @@ export function listFlowTrackClass(
     parts.push("list-flow-track--settled");
   }
   return parts.join(" ");
+}
+
+/** Splash only while list data is missing — never a timed pause. */
+export function listOpenNeedsSplash(listsReady: boolean): boolean {
+  return !listsReady;
+}
+
+/** Spinner while the list route is still coming — not a pause to show faction art. */
+export function listFlowPendingRouteSplash(
+  showDetail: boolean,
+  isBuilder: boolean,
+): boolean {
+  return showDetail && !isBuilder;
+}
+
+/** Keep list art mounted while sliding back so it can fade instead of cutting to ink. */
+export function listFlowShowsFactionBackdrop(input: {
+  hasBackdrop: boolean;
+  isBuilder: boolean;
+  returningToLibrary: boolean;
+}): boolean {
+  return input.hasBackdrop && (input.isBuilder || input.returningToLibrary);
+}
+
+/** Fade list art out with the back slide — library art is already painted underneath. */
+export function listFlowFactionBackdropFaded(returningToLibrary: boolean): boolean {
+  return returningToLibrary;
+}
+
+/** Library art stays painted under the list so going back does not flash ink. */
+export function listFlowIndexBackdropRevealed(): boolean {
+  return true;
 }
 
 /** Opening splash covers the incoming list; never show it while sliding back. */
