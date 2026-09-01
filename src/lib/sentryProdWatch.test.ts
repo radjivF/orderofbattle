@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   SENTRY_PROD_WATCH_MARKER,
@@ -88,6 +89,14 @@ describe("sentryProdWatch", () => {
     expect(markdown).toContain(SENTRY_WATCH.preview.marker);
     expect(markdown).toContain("SENTRY_AUTH_TOKEN");
     expect(markdown).not.toContain("Preview/dev is clear");
+  });
+
+  it("reads SENTRY_AUTH_TOKEN from the Preview GitHub environment", () => {
+    const yaml = readFileSync(
+      ".github/workflows/sentry-preview-watch.yml",
+      "utf8",
+    );
+    expect(yaml).toMatch(/environment:\s*Preview/);
   });
 
   it("builds the preview issues URL", () => {

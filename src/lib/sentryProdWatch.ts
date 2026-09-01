@@ -124,7 +124,7 @@ export function formatSentryWatchMarkdown(report: SentryWatchReport): string {
   if (report.skipped) {
     return `${config.marker}
 Sentry watch skipped: GitHub secret \`SENTRY_AUTH_TOKEN\` is not set.
-Add a Sentry User Auth Token with Issue & Event Read under Settings → Secrets and variables → Actions.
+Add a Sentry User Auth Token with Issue & Event Read as a Preview environment secret.
 `;
   }
   if (report.count === 0) {
