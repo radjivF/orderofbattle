@@ -52,7 +52,6 @@ import {
   type LibrarySortMode,
 } from "@/lib/librarySort";
 import {
-  CONFIRM_CANCEL_BUTTON_CLASS,
   CONFIRM_SHEET_ACTIONS_CLASS,
   CONFIRM_SHEET_PANEL_CLASS,
   IOS_LIQUID_CTA_CLASS,
@@ -286,12 +285,6 @@ export function LibraryScreen() {
     setExportFormat("text");
     setExportCopied(false);
     setExportPhase("preview");
-  }
-
-  function backToExportPicker() {
-    setExportFormat("text");
-    setExportCopied(false);
-    setExportPhase("pick");
   }
 
   async function copyExport() {
@@ -692,13 +685,6 @@ export function LibraryScreen() {
                         className={SHEET_SECONDARY_BUTTON_CLASS}
                       >
                         {exportFormat === "json" ? "Download .json" : "Download .txt"}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={backToExportPicker}
-                        className={CONFIRM_CANCEL_BUTTON_CLASS}
-                      >
-                        Back
                       </button>
                     </div>
                   </>
