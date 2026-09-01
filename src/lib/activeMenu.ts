@@ -6,6 +6,7 @@ export const GAME_MENU_ROWS: readonly {
   id: Exclude<ActiveMenu, "tactics">;
   label: string;
   brandSubtitle: string;
+  disabled?: boolean;
 }[] = [
   {
     id: "aos",
@@ -14,8 +15,9 @@ export const GAME_MENU_ROWS: readonly {
   },
   {
     id: "tow",
-    label: "The Old World",
+    label: "The old world (coming soon)",
     brandSubtitle: "Army lists for The Old World",
+    disabled: true,
   },
 ];
 

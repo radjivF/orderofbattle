@@ -156,7 +156,11 @@ export function AppMenuSheet({ active, onSelect, onClose }: Props) {
                 key={row.id}
                 label={row.label}
                 selected={selected === row.id}
+                disabled={row.disabled}
                 onSelect={() => {
+                  if (row.disabled) {
+                    return;
+                  }
                   onSelect(row.id);
                   if (onBattleRecord) {
                     // Swap under the open drawer/scrim, then slide the menu out.
@@ -223,10 +227,12 @@ function MenuCheck({ selected }: { selected: boolean }) {
 function MenuRow({
   label,
   selected,
+  disabled,
   onSelect,
 }: {
   label: string;
   selected: boolean;
+  disabled?: boolean;
   onSelect: () => void;
 }) {
   return (
@@ -234,8 +240,9 @@ function MenuRow({
       <button
         type="button"
         aria-pressed={selected}
+        disabled={disabled}
         onClick={onSelect}
-        className={rowClassName(selected)}
+        className={`${rowClassName(selected)} disabled:cursor-not-allowed disabled:opacity-45`}
       >
         <span
           className={`min-w-0 flex-1 font-medium ${selected ? "text-aether" : ""}`}

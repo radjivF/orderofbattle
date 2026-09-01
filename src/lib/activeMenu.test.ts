@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
+  GAME_MENU_ROWS,
   brandSubtitleForMenu,
   getActiveMenuSnapshot,
   menuPlaceholderCopy,
@@ -44,6 +45,12 @@ describe("active menu preference", () => {
     expect(getActiveMenuSnapshot()).toBe("tactics");
     expect(menuShowsListLibrary("tactics")).toBe(false);
     expect(menuPlaceholderCopy("tactics")?.title).toBe("Battle record");
+  });
+
+  it("marks The old world as coming soon until the game ships", () => {
+    const tow = GAME_MENU_ROWS.find((row) => row.id === "tow");
+    expect(tow?.label).toBe("The old world (coming soon)");
+    expect(tow?.disabled).toBe(true);
   });
 
   it("treats unknown stored values as Age of Sigmar", () => {

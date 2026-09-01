@@ -38,7 +38,27 @@ afterEach(() => {
 });
 
 describe("AppMenuSheet", () => {
-  it("leaves Battle record for Old World by sliding the menu out over the swap", async () => {
+  it("shows The old world as coming soon and does not select it", async () => {
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    const onSelect = vi.fn();
+
+    render(<Harness onSelect={onSelect} />);
+
+    const row = screen.getByRole("button", {
+      name: "The old world (coming soon)",
+    });
+    expect(row).toBeDisabled();
+
+    await user.click(row);
+
+    expect(onSelect).not.toHaveBeenCalled();
+    expect(push).not.toHaveBeenCalled();
+    expect(
+      screen.queryByRole("button", { name: "The Old World" }),
+    ).toBeNull();
+  });
+
+  it("leaves Battle record for Age of Sigmar by sliding the menu out over the swap", async () => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
     const user = userEvent.setup({
       pointerEventsCheck: 0,
@@ -50,9 +70,9 @@ describe("AppMenuSheet", () => {
 
     expect(screen.getByRole("dialog", { name: "Menu" })).toBeInTheDocument();
 
-    await user.click(screen.getByRole("button", { name: "The Old World" }));
+    await user.click(screen.getByRole("button", { name: "Age of Sigmar" }));
 
-    expect(onSelect).toHaveBeenCalledWith("tow");
+    expect(onSelect).toHaveBeenCalledWith("aos");
     // Route swaps immediately under the still-open drawer.
     expect(push).toHaveBeenCalledWith("/dashboard", { scroll: false });
     expect(screen.getByRole("dialog", { name: "Menu" })).toBeInTheDocument();
