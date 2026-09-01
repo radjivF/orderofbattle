@@ -9,6 +9,8 @@ import { battleTacticsForRealm } from "@/engine/data/load";
 import {
   battleSetupGaps,
   canStartBattle,
+  patchBattleRecord,
+  setBattleArmy,
   setBattleplan,
   setPlayerTacticCards,
   startBattle,
@@ -19,8 +21,10 @@ import {
   LIBRARY_TITLE_CLASS,
   LIBRARY_TITLE_ROW_CLASS,
   SHEET_SECONDARY_BUTTON_CLASS,
+  SITE_COLUMN_CLASS,
 } from "@/lib/builderUi";
 import { BattleplanBoard } from "./BattleplanBoard";
+import { BattleRecordMatchFields } from "./BattleRecordMatchFields";
 import { BattleTacticText } from "./BattleTacticText";
 import { IosNavBackButton } from "./ios/IosNavIconButton";
 
@@ -64,7 +68,7 @@ export function BattleRecordSetupScreen({
 
   return (
     <div className="relative z-10 min-h-full">
-      <div className="mx-auto w-full max-w-3xl px-5 pt-2 pb-3 sm:px-6">
+      <div className={`${SITE_COLUMN_CLASS} pt-2 pb-3`}>
         <div className={LIBRARY_TITLE_ROW_CLASS}>
           <IosNavBackButton
             label={editing ? "Close setup" : "Back to Battle record"}
@@ -76,10 +80,46 @@ export function BattleRecordSetupScreen({
       </div>
 
       <main className="mx-auto flex w-full max-w-3xl flex-col gap-4 px-5 pb-20 sm:px-6">
-        <p className="rounded-xl bg-[#efe6d2]/95 px-4 py-2.5 text-sm font-medium text-parchment-ink shadow-[0_1px_8px_rgba(0,0,0,0.35)]">
-          {game.yourName} ({game.yourArmy}) vs {game.opponentName} (
-          {game.opponentArmy})
-        </p>
+        <section className={`${PANEL} flex flex-col gap-5`}>
+          <h2 className="font-serif text-xl">Match</h2>
+          <BattleRecordMatchFields
+            values={{
+              yourName: game.yourName,
+              yourArmyLabel: game.yourArmy,
+              opponentName: game.opponentName,
+              opponentArmyLabel: game.opponentArmy,
+              allowDoubleTurn: game.allowDoubleTurn,
+              paintedYou: game.paintedYou,
+              paintedOpponent: game.paintedOpponent,
+            }}
+            onYourName={(value) =>
+              onChange((prev) => patchBattleRecord(prev, { yourName: value }))
+            }
+            onOpponentName={(value) =>
+              onChange((prev) =>
+                patchBattleRecord(prev, { opponentName: value }),
+              )
+            }
+            onAllowDoubleTurn={(value) =>
+              onChange((prev) =>
+                patchBattleRecord(prev, { allowDoubleTurn: value }),
+              )
+            }
+            onPaintedYou={(value) =>
+              onChange((prev) =>
+                patchBattleRecord(prev, { paintedYou: value }),
+              )
+            }
+            onPaintedOpponent={(value) =>
+              onChange((prev) =>
+                patchBattleRecord(prev, { paintedOpponent: value }),
+              )
+            }
+            onPickArmy={(side, pick) =>
+              onChange((prev) => setBattleArmy(prev, side, pick))
+            }
+          />
+        </section>
 
         <section className={PANEL}>
           <h2 className="font-serif text-xl">Battleplan</h2>

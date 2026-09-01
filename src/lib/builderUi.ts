@@ -199,6 +199,10 @@ export const IOS_NAV_BACK_BUTTON_CLASS = IOS_NAV_ICON_BUTTON_CLASS;
 export const IOS_NAV_PLAY_BUTTON_CLASS =
   "ios-liquid-glass pressable inline-flex h-11 shrink-0 cursor-pointer items-center justify-center rounded-full px-4 text-[15px] font-semibold leading-none text-black";
 
+/** Scoreboard play affordance — aether datasheet mark, same as unit sheet links. */
+export const SCOREBOARD_PLAY_BUTTON_CLASS =
+  "h-6 w-6 shrink-0 text-aether";
+
 /** In-app primary CTA — same parchment glass as the nav +. */
 export const IOS_LIQUID_CTA_CLASS =
   "ios-liquid-glass pressable inline-flex min-h-11 w-full cursor-pointer items-center justify-center rounded-xl px-4 text-[15px] font-semibold text-black";
@@ -319,6 +323,10 @@ export const SHEET_PANEL_CLASS =
 /** List options — fixed phone height so Import/Export tabs do not resize the sheet. */
 export const LIBRARY_OPTIONS_SHEET_PANEL_CLASS =
   `${SHEET_PANEL_CLASS} h-[85vh] sm:h-auto sm:min-h-[32rem]`;
+
+/** Full-page play sheet — faction art + play-mode chrome, not a parchment card. */
+export const PLAY_SHEET_PANEL_CLASS =
+  "relative flex w-full flex-col overflow-hidden bg-ink text-parchment";
 
 /** Rule between sort and Import/Export in list options. */
 export const LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS =

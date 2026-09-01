@@ -17,6 +17,7 @@ import {
   IOS_NAV_ADD_BUTTON_CLASS,
   IOS_NAV_BACK_BUTTON_CLASS,
   IOS_NAV_PLAY_BUTTON_CLASS,
+  SCOREBOARD_PLAY_BUTTON_CLASS,
   LIBRARY_HEADER_OPTIONS_BUTTON_CLASS,
   LIBRARY_TITLE_CLASS,
   SHEET_CHECKLIST_ITEM_CLASS,
@@ -47,6 +48,7 @@ import {
   CONFIRM_SHEET_PANEL_CLASS,
   LIBRARY_OPTIONS_SHEET_PANEL_CLASS,
   LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS,
+  PLAY_SHEET_PANEL_CLASS,
   SHEET_FOOTER_ACTIONS_CLASS,
   SHEET_PANEL_CLASS,
   SHEET_SECONDARY_BUTTON_CLASS,
@@ -357,6 +359,9 @@ describe("iOS nav controls", () => {
     expect(IOS_NAV_PLAY_BUTTON_CLASS).toContain("ios-liquid-glass");
     expect(IOS_NAV_PLAY_BUTTON_CLASS).toContain("text-black");
     expect(IOS_NAV_PLAY_BUTTON_CLASS).toContain("cursor-pointer");
+    expect(SCOREBOARD_PLAY_BUTTON_CLASS).toContain("text-aether");
+    expect(SCOREBOARD_PLAY_BUTTON_CLASS).toContain("h-6");
+    expect(SCOREBOARD_PLAY_BUTTON_CLASS).not.toContain("ios-liquid-glass");
   });
 
   it("uses the same header row and brand lockup across screens", () => {
@@ -677,6 +682,9 @@ describe("iOS polish contracts", () => {
     expect(css).toContain(".modal-sheet-scroll-host");
     expect(css).toContain(".modal-sheet-footer");
     expect(css).toContain("overscroll-behavior-y: contain");
+    expect(css).toContain(".modal-sheet--page");
+    expect(css).toContain(".modal-sheet--page .modal-grabber");
+    expect(css).toContain(".ios-tab-underline--spread");
     expect(css).toContain("@keyframes modal-sheet-in");
 
     const modal = readFileSync(
@@ -687,6 +695,7 @@ describe("iOS polish contracts", () => {
       "utf8",
     );
     expect(modal).toContain('variant?: "sheet" | "center"');
+    expect(modal).toContain("fullPage?: boolean");
     expect(modal).toContain("primeSheetDrag");
     expect(modal).toContain("modal-grabber");
     expect(modal).toContain("modal-sheet-scroll");
@@ -701,6 +710,11 @@ describe("iOS polish contracts", () => {
     expect(SHEET_PANEL_CLASS).toContain("sm:rounded-2xl");
     expect(LIBRARY_OPTIONS_SHEET_PANEL_CLASS).toContain("h-[85vh]");
     expect(LIBRARY_OPTIONS_SHEET_PANEL_CLASS).toContain("sm:min-h-[32rem]");
+    expect(PLAY_SHEET_PANEL_CLASS).toContain("w-full");
+    expect(PLAY_SHEET_PANEL_CLASS).toContain("text-parchment");
+    expect(PLAY_SHEET_PANEL_CLASS).toContain("bg-ink");
+    expect(PLAY_SHEET_PANEL_CLASS).not.toContain("parchment-card");
+    expect(PLAY_SHEET_PANEL_CLASS).not.toContain("max-w-3xl");
     expect(LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS).toContain("border-t");
     expect(CONFIRM_SHEET_PANEL_CLASS).toContain("pt-4");
     expect(CONFIRM_SHEET_PANEL_CLASS).toContain("sm:pt-5");

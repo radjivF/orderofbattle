@@ -46,6 +46,19 @@ export function IosNavBackButton({ label, onClick }: Props) {
   );
 }
 
+export function IosNavCloseButton({ label, onClick }: Props) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={label}
+      className={IOS_NAV_ICON_BUTTON_CLASS}
+    >
+      <IosCloseIcon />
+    </button>
+  );
+}
+
 export function IosNavMenuButton({ label, onClick }: Props) {
   return (
     <button
@@ -69,6 +82,20 @@ function IosChevronLeftIcon() {
         strokeWidth="2.6"
         strokeLinecap="round"
         strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function IosCloseIcon() {
+  return (
+    <svg viewBox="0 0 20 20" aria-hidden="true" className="h-5 w-5">
+      <path
+        d="m5.5 5.5 9 9M14.5 5.5l-9 9"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
       />
     </svg>
   );

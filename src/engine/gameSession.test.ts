@@ -18,6 +18,7 @@ import {
   setRoundVp,
   setTwistApplied,
   startBattle,
+  syncPrimaryVp,
   underdog,
 } from "./gameSession";
 
@@ -161,11 +162,23 @@ describe("battle tactics Affray / Strike / Domination", () => {
 });
 
 describe("double turn", () => {
-  it("detects consecutive rounds with the same first player when allowed", () => {
+  it("detects a double when last round's second player goes first", () => {
+    let game = fresh();
+    game = setRoundFirstPlayer(game, 0, "you");
+    game = setRoundFirstPlayer(game, 1, "opponent");
+    expect(isDoubleTurn(game, 0)).toBe(false);
+    expect(isDoubleTurn(game, 1)).toBe(true);
+    game = setRoundFirstPlayer(game, 2, "opponent");
+    expect(isDoubleTurn(game, 2)).toBe(false);
+    game = setRoundFirstPlayer(game, 2, "you");
+    expect(isDoubleTurn(game, 2)).toBe(true);
+  });
+
+  it("is not a double when the same player keeps going first", () => {
     let game = fresh();
     game = setRoundFirstPlayer(game, 0, "you");
     game = setRoundFirstPlayer(game, 1, "you");
-    expect(isDoubleTurn(game, 1)).toBe(true);
+    expect(isDoubleTurn(game, 1)).toBe(false);
   });
 
   it("skips priority entirely when double turns are off", () => {
@@ -205,6 +218,18 @@ describe("mission primary claims", () => {
     game = setPrimaryClaim(game, 0, "primary-1", "opponent", true, points);
     expect(game.rounds[0]!.opponentVp).toBe(1);
     expect(matchTotal(game, "you")).toBe(1);
+  });
+
+  it("recounts claimed lines using the printed VP", () => {
+    let game = fresh();
+    game = setPrimaryClaim(game, 0, "primary-0", "you", true, points);
+    expect(game.rounds[0]!.yourVp).toBe(1);
+    game = syncPrimaryVp(game, [
+      { id: "primary-0", vp: 3 },
+      { id: "primary-1", vp: 4 },
+    ]);
+    expect(game.rounds[0]!.yourVp).toBe(3);
+    expect(game.rounds[0]!.primaryClaims["primary-0"]?.you).toBe(true);
   });
 
   it("assigns twist application only when there is an underdog", () => {

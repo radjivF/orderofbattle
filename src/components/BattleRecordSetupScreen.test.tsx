@@ -8,6 +8,19 @@ import {
   setBattleplan,
   setPlayerTacticCards,
 } from "@/engine/gameSession";
+import type { StoredList } from "@/engine/storedList";
+
+const armyStore: { items: StoredList[] } = { items: [] };
+
+vi.mock("@/lib/storage", () => ({
+  subscribeArmies: (onStoreChange: () => void) => {
+    onStoreChange();
+    return () => undefined;
+  },
+  getArmiesSnapshot: () => armyStore.items,
+  getArmiesServerSnapshot: () => armyStore.items,
+}));
+
 import { BattleRecordSetupScreen } from "./BattleRecordSetupScreen";
 
 afterEach(() => {

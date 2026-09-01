@@ -1,12 +1,25 @@
 /** Pure helpers for iOS-style bottom sheet pull-to-dismiss. */
 
+const SHEET_DRAG_CONTROL_SELECTOR =
+  "button, a, input, textarea, select, label, [role='tab'], [role='slider']";
+
+export function isSheetDragControl(target: EventTarget | null): boolean {
+  return Boolean(
+    target instanceof Element && target.closest(SHEET_DRAG_CONTROL_SELECTOR),
+  );
+}
+
 export function sheetDismissEligible(input: {
   fromGrabber: boolean;
+  fromControl?: boolean;
   inScrollArea: boolean;
   scrollTop: number;
 }): boolean {
   if (input.fromGrabber) {
     return true;
+  }
+  if (input.fromControl) {
+    return false;
   }
   if (!input.inScrollArea) {
     return true;

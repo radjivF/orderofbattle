@@ -36,13 +36,20 @@ export type MissionPrimaryPoint = {
   vp: number;
 };
 
+/** VP printed on a GHB scoring line, e.g. "Score 3 victory points if…". */
+export function scoringLineVp(label: string): number {
+  const match = label.match(/(\d+)\s+victory points/i);
+  const vp = match ? Number(match[1]) : NaN;
+  return Number.isFinite(vp) && vp > 0 ? vp : 1;
+}
+
 export function missionPrimaryPoints(
   layout: BattleplanLayout,
 ): MissionPrimaryPoint[] {
   return layout.primaryScoring.map((label, index) => ({
     id: `primary-${index}`,
     label,
-    vp: 1,
+    vp: scoringLineVp(label),
   }));
 }
 

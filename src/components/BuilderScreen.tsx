@@ -57,13 +57,14 @@ import { ListLoadingSplash } from "./ListLoadingSplash";
 
 type Props = {
   listId: string;
+  openPlay?: boolean;
 };
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-export function BuilderScreen({ listId }: Props) {
+export function BuilderScreen({ listId, openPlay = false }: Props) {
   const lists = useSyncExternalStore(
     subscribeArmies,
     getArmiesSnapshot,
@@ -304,7 +305,7 @@ export function BuilderScreen({ listId }: Props) {
             : LIST_LANDING_CONTENT_HIDDEN_CLASS
         }`}
       >
-        <BuilderReady list={list} faction={faction} />
+        <BuilderReady list={list} faction={faction} openPlay={openPlay} />
       </div>
     </FactionBackdrop>
   );

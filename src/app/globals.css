@@ -336,6 +336,13 @@ a {
   touch-action: pan-y;
 }
 
+.modal-sheet--page {
+  max-width: none;
+  width: 100%;
+  height: calc(100dvh - 0.5rem);
+  max-height: calc(100dvh - 0.5rem);
+}
+
 .modal-sheet-scroll {
   overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;
@@ -435,6 +442,23 @@ a {
       )
       center / 2.25rem 100% no-repeat;
   cursor: grab;
+}
+
+.modal-sheet--page .modal-grabber {
+  background:
+    linear-gradient(
+        to bottom,
+        transparent 0.625rem,
+        color-mix(in srgb, var(--parchment) 45%, transparent) 0.625rem,
+        color-mix(in srgb, var(--parchment) 45%, transparent) 0.9375rem,
+        transparent 0.9375rem
+      )
+      center / 2.25rem 100% no-repeat;
+}
+
+.modal-sheet--page .modal-sheet-scroll-host::before,
+.modal-sheet--page .modal-sheet-scroll-host::after {
+  display: none;
 }
 
 .modal-sheet--animating {
@@ -667,6 +691,22 @@ a {
 .ios-tab-underline--parchment .ios-tab-underline-option--selected {
   border-bottom-color: var(--parchment-ink);
   color: var(--parchment-ink);
+}
+
+.ios-tab-underline--spread {
+  width: 100%;
+}
+
+.ios-tab-underline--spread .ios-tab-underline-option {
+  flex: 1 1 0;
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0 8px;
+  font-size: 15px;
+  text-align: center;
 }
 
 .ios-glass-button {

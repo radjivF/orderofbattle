@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import {
   getBattleplanLayout,
   missionPrimaryPoints,
@@ -13,26 +13,43 @@ import {
   finishBattle,
   isDoubleTurn,
   matchTotal,
+  paintedBonus,
   reopenBattle,
+  roundVpTotal,
   setPrimaryClaim,
   setRoundFirstPlayer,
   setTwistApplied,
+  syncPrimaryVp,
+  tacticVpTotal,
   underdog,
   type BattlePlayer,
   type GameSession,
 } from "@/engine/gameSession";
+import { isTowList } from "@/engine/storedList";
+import type { ArmyList } from "@/engine/types";
 import {
   IOS_LIQUID_CTA_CLASS,
   LIBRARY_TITLE_CLASS,
   LIBRARY_TITLE_ROW_CLASS,
+  SCOREBOARD_PLAY_BUTTON_CLASS,
   SHEET_SECONDARY_BUTTON_CLASS,
 } from "@/lib/builderUi";
 import { deleteGame, getGame, saveGame } from "@/lib/gameStorage";
+import {
+  getArmiesServerSnapshot,
+  getArmiesSnapshot,
+  subscribeArmies,
+} from "@/lib/storage";
 import { BattleplanBoard } from "./BattleplanBoard";
+import { BattleRecordPlaySheet } from "./BattleRecordPlaySheet";
 import { BattleRecordRecapScreen } from "./BattleRecordRecapScreen";
 import { BattleRecordSetupScreen } from "./BattleRecordSetupScreen";
-import { BattleRecordTacticTracker } from "./BattleRecordTacticTracker";
+import {
+  BattleRecordTurnScore,
+  turnPlayerOrder,
+} from "./BattleRecordTurnScore";
 import { IosNavBackButton } from "./ios/IosNavIconButton";
+import { IosDatasheetIcon } from "./ios/SheetIconButton";
 import { SiteFooter } from "./SiteFooter";
 
 type Props = { gameId: string };
@@ -41,9 +58,20 @@ const PANEL = "parchment-card rounded-2xl px-4 py-4 text-parchment-ink";
 
 export function BattleRecordGameScreen({ gameId }: Props) {
   const router = useRouter();
+  const lists = useSyncExternalStore(
+    subscribeArmies,
+    getArmiesSnapshot,
+    getArmiesServerSnapshot,
+  );
   const [game, setGame] = useState<GameSession | null | undefined>(undefined);
   const [roundIndex, setRoundIndex] = useState(0);
   const [editingSetup, setEditingSetup] = useState(false);
+  const [playSide, setPlaySide] = useState<{
+    listId: string;
+    armyName: string;
+    playerName: string;
+  } | null>(null);
+  const [turnTab, setTurnTab] = useState<BattlePlayer>("you");
 
   useEffect(() => {
     let cancelled = false;
@@ -65,6 +93,18 @@ export function BattleRecordGameScreen({ gameId }: Props) {
     [layout],
   );
 
+  useEffect(() => {
+    if (!game || primaryPoints.length === 0) {
+      return;
+    }
+    const next = syncPrimaryVp(game, primaryPoints);
+    if (next === game) {
+      return;
+    }
+    void saveGame(next);
+    setGame(next);
+  }, [game, primaryPoints]);
+
   const yourCards = useMemo(() => {
     if (!game) return [];
     return game.yourTacticCardIds
@@ -78,6 +118,15 @@ export function BattleRecordGameScreen({ gameId }: Props) {
       .map((id) => battleTactics.find((card) => card.id === id))
       .filter((card): card is NonNullable<typeof card> => Boolean(card));
   }, [game]);
+
+  const firstPlayerOfRound =
+    game != null && game.status === "active"
+      ? (game.rounds[roundIndex]?.firstPlayer ?? null)
+      : null;
+
+  useEffect(() => {
+    setTurnTab(turnPlayerOrder(firstPlayerOfRound)[0]!);
+  }, [roundIndex, firstPlayerOfRound]);
 
   async function commit(
     next: GameSession | ((prev: GameSession) => GameSession),
@@ -152,11 +201,20 @@ export function BattleRecordGameScreen({ gameId }: Props) {
         ? game.opponentName
         : null;
   const trackPriority = game.allowDoubleTurn;
+  const yourPlayList = playableList(lists, game.yourListId, game.yourArmy);
+  const opponentPlayList = playableList(
+    lists,
+    game.opponentListId,
+    game.opponentArmy,
+  );
+  const playList = playSide
+    ? playableList(lists, playSide.listId, playSide.armyName)
+    : undefined;
 
   return (
     <div className="relative z-10 min-h-full">
-      <div className="mx-auto w-full max-w-3xl px-5 pt-2 pb-3 sm:px-6">
-        <div className={LIBRARY_TITLE_ROW_CLASS}>
+      <main className="mx-auto flex w-full max-w-3xl flex-col gap-4 px-5 pb-24 sm:px-6">
+        <div className={`${LIBRARY_TITLE_ROW_CLASS} pt-2`}>
           <IosNavBackButton
             label="Back to Battle record"
             onClick={() => router.push("/battle-record")}
@@ -164,35 +222,58 @@ export function BattleRecordGameScreen({ gameId }: Props) {
           <h1 className={LIBRARY_TITLE_CLASS}>
             {game.yourName} vs {game.opponentName}
           </h1>
-          <span className="w-10" aria-hidden="true" />
+          <button
+            type="button"
+            onClick={() => setEditingSetup(true)}
+            className="pressable inline-flex h-11 shrink-0 items-center text-sm font-medium text-parchment [text-shadow:0_1px_8px_rgba(0,0,0,0.85)]"
+          >
+            Edit
+          </button>
         </div>
-      </div>
 
-      <main className="mx-auto flex w-full max-w-3xl flex-col gap-4 px-5 pb-24 sm:px-6">
         <section className={PANEL}>
-          <div className="flex items-end justify-between gap-4">
+          <div className="flex items-end justify-between gap-3">
             <ScoreBlock
               name={game.yourName}
               army={game.yourArmy}
               total={matchTotal(game, "you")}
+              primary={roundVpTotal(game, "you")}
+              tactics={tacticVpTotal(game, "you")}
+              painted={paintedBonus(game, "you")}
               underdog={dog === "you"}
+              onPlay={
+                yourPlayList
+                  ? () =>
+                      setPlaySide({
+                        listId: yourPlayList.id,
+                        armyName: yourPlayList.name,
+                        playerName: game.yourName,
+                      })
+                  : undefined
+              }
             />
             <p className="pb-1 text-sm text-sheet-muted">vs</p>
             <ScoreBlock
               name={game.opponentName}
               army={game.opponentArmy}
               total={matchTotal(game, "opponent")}
+              primary={roundVpTotal(game, "opponent")}
+              tactics={tacticVpTotal(game, "opponent")}
+              painted={paintedBonus(game, "opponent")}
               underdog={dog === "opponent"}
               align="right"
+              onPlay={
+                opponentPlayList
+                  ? () =>
+                      setPlaySide({
+                        listId: opponentPlayList.id,
+                        armyName: opponentPlayList.name,
+                        playerName: game.opponentName,
+                      })
+                  : undefined
+              }
             />
           </div>
-          <button
-            type="button"
-            onClick={() => setEditingSetup(true)}
-            className={`${SHEET_SECONDARY_BUTTON_CLASS} mt-3`}
-          >
-            Edit setup
-          </button>
         </section>
 
         <nav
@@ -283,67 +364,39 @@ export function BattleRecordGameScreen({ gameId }: Props) {
         </section>
 
         {layout ? (
-          <section className={PANEL}>
-            <h2 className="font-serif text-xl">Primary · {layout.name}</h2>
-            <p className="mt-1 text-sm text-sheet-muted">
-              Mark who scored each mission point this turn (+1 each).
-            </p>
-            <ul className="mt-3 flex flex-col gap-3">
-              {primaryPoints.map((point, index) => {
-                const claim = round.primaryClaims[point.id] ?? {
-                  you: false,
-                  opponent: false,
-                };
-                return (
-                  <li
-                    key={point.id}
-                    className="rounded-xl bg-parchment-ink/5 px-3 py-3 ring-1 ring-parchment-ink/10"
-                  >
-                    <p className="text-xs font-semibold tracking-wide uppercase text-sheet-muted">
-                      Point {index + 1}
-                    </p>
-                    <p className="mt-1 text-sm leading-snug text-parchment-ink">
-                      {point.label}
-                    </p>
-                    <div className="mt-3 flex gap-2">
-                      <ClaimButton
-                        label={game.yourName}
-                        pressed={claim.you}
-                        onClick={() =>
-                          void commit(
-                            setPrimaryClaim(
-                              game,
-                              roundIndex,
-                              point.id,
-                              "you",
-                              !claim.you,
-                              primaryPoints,
-                            ),
-                          )
-                        }
-                      />
-                      <ClaimButton
-                        label={game.opponentName}
-                        pressed={claim.opponent}
-                        onClick={() =>
-                          void commit(
-                            setPrimaryClaim(
-                              game,
-                              roundIndex,
-                              point.id,
-                              "opponent",
-                              !claim.opponent,
-                              primaryPoints,
-                            ),
-                          )
-                        }
-                      />
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </section>
+          <BattleRecordTurnScore
+            battleplanName={layout.name}
+            yourName={game.yourName}
+            opponentName={game.opponentName}
+            firstPlayer={round.firstPlayer}
+            activePlayer={turnTab}
+            onSelectPlayer={setTurnTab}
+            primaryPoints={primaryPoints}
+            claims={round.primaryClaims}
+            onToggleClaim={(pointId, player) => {
+              const claim = round.primaryClaims[pointId] ?? {
+                you: false,
+                opponent: false,
+              };
+              void commit(
+                setPrimaryClaim(
+                  game,
+                  roundIndex,
+                  pointId,
+                  player,
+                  player === "you" ? !claim.you : !claim.opponent,
+                  primaryPoints,
+                ),
+              );
+            }}
+            yourCards={yourCards}
+            opponentCards={opponentCards}
+            yourStages={game.yourTacticStage}
+            opponentStages={game.opponentTacticStage}
+            onStageChange={(player, cardId, stage) =>
+              void commit(advanceTacticStage(game, player, cardId, stage))
+            }
+          />
         ) : null}
 
         {layout ? (
@@ -381,23 +434,6 @@ export function BattleRecordGameScreen({ gameId }: Props) {
           </section>
         ) : null}
 
-        <BattleRecordTacticTracker
-          title={`${game.yourName} · secondary (tactics)`}
-          cards={yourCards}
-          stages={game.yourTacticStage}
-          onStageChange={(cardId, stage) =>
-            void commit(advanceTacticStage(game, "you", cardId, stage))
-          }
-        />
-        <BattleRecordTacticTracker
-          title={`${game.opponentName} · secondary (tactics)`}
-          cards={opponentCards}
-          stages={game.opponentTacticStage}
-          onStageChange={(cardId, stage) =>
-            void commit(advanceTacticStage(game, "opponent", cardId, stage))
-          }
-        />
-
         {layout ? (
           <details className={PANEL}>
             <summary className="cursor-pointer font-serif text-lg">
@@ -422,59 +458,116 @@ export function BattleRecordGameScreen({ gameId }: Props) {
         </button>
       </main>
       <SiteFooter showPitch={false} />
+      {playSide && playList ? (
+        <BattleRecordPlaySheet
+          list={playList}
+          playerName={playSide.playerName}
+          onClose={() => setPlaySide(null)}
+        />
+      ) : null}
     </div>
   );
 }
 
-function ClaimButton({
-  label,
-  pressed,
-  onClick,
-}: {
-  label: string;
-  pressed: boolean;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      aria-label={`${label} scored this point`}
-      aria-pressed={pressed}
-      onClick={onClick}
-      className={`min-h-11 flex-1 rounded-xl px-2 text-sm font-medium ring-1 ${
-        pressed
-          ? "bg-aether/15 ring-aether/40 text-parchment-ink"
-          : "bg-[#efe6d2] ring-parchment-ink/15 text-parchment-ink"
-      }`}
-    >
-      {pressed ? `✓ ${label}` : label}
-    </button>
+function playableList(
+  lists: ReturnType<typeof getArmiesSnapshot>,
+  listId: string | undefined,
+  armyName: string,
+): ArmyList | undefined {
+  const aos = (lists ?? []).filter(
+    (item): item is ArmyList => !isTowList(item),
   );
+  if (listId) {
+    const byId = aos.find((item) => item.id === listId);
+    if (byId) {
+      return byId;
+    }
+  }
+  const byName = aos.filter((item) => item.name === armyName);
+  if (byName.length === 1) {
+    return byName[0];
+  }
+  return undefined;
 }
 
 function ScoreBlock({
   name,
   army,
   total,
+  primary,
+  tactics,
+  painted,
   underdog: isUnderdog,
   align = "left",
+  onPlay,
 }: {
   name: string;
   army: string;
   total: number;
+  primary: number;
+  tactics: number;
+  painted: number;
   underdog: boolean;
   align?: "left" | "right";
+  onPlay?: () => void;
 }) {
+  const extras =
+    tactics > 0 || painted > 0
+      ? [
+          `${primary} primary`,
+          tactics > 0 ? `${tactics} tactics` : null,
+          painted > 0 ? `${painted} painted` : null,
+        ]
+          .filter(Boolean)
+          .join(" · ")
+      : null;
   return (
     <div className={`min-w-0 flex-1 ${align === "right" ? "text-right" : ""}`}>
-      <p className="truncate text-sm text-sheet-muted">
-        {name}
-        {isUnderdog ? " · underdog" : ""}
-      </p>
-      <p className="truncate text-xs text-sheet-muted/80">{army}</p>
-      <p className="font-serif text-4xl tabular-nums text-parchment-ink">
+      {onPlay ? (
+        <button
+          type="button"
+          onClick={onPlay}
+          aria-label={`Play ${name}`}
+          className={`pressable flex min-h-11 min-w-0 max-w-full items-center gap-2 ${
+            align === "right" ? "ml-auto" : ""
+          }`}
+        >
+          <IosDatasheetIcon className={SCOREBOARD_PLAY_BUTTON_CLASS} />
+          <span className="min-w-0 text-left">
+            <span className="block truncate text-sm text-sheet-muted">
+              {name}
+              {isUnderdog ? " · underdog" : ""}
+            </span>
+            <span className="block truncate text-xs text-sheet-muted/80">
+              {army}
+            </span>
+          </span>
+        </button>
+      ) : (
+        <>
+          <p className="truncate text-sm text-sheet-muted">
+            {name}
+            {isUnderdog ? " · underdog" : ""}
+          </p>
+          <p className="truncate text-xs text-sheet-muted/80">{army}</p>
+        </>
+      )}
+      <p
+        className={`font-serif text-4xl tabular-nums text-parchment-ink ${
+          onPlay && align !== "right" ? "ps-8" : ""
+        }`}
+      >
         {total}
       </p>
+      {extras ? (
+        <p
+          className={`mt-0.5 truncate text-xs text-sheet-muted ${
+            onPlay && align !== "right" ? "ps-8" : ""
+          }`}
+        >
+          {extras}
+        </p>
+      ) : null}
     </div>
   );
 }

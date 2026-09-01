@@ -29,12 +29,36 @@ describe("BattleRecordTacticTracker", () => {
       />,
     );
 
-    const stages = screen.getAllByRole("button");
-    expect(stages[0]).toHaveTextContent("Undo");
-    expect(stages[0]).toHaveTextContent("✓");
-    expect(stages[1]).toHaveTextContent("Done");
-    expect(stages[2]).toHaveTextContent("—");
-    expect(stages[2]).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Undo Affray" })).toHaveTextContent(
+      "✓",
+    );
+    expect(
+      screen.getByRole("button", { name: "Mark Strike done" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Domination locked" }),
+    ).toBeDisabled();
+  });
+
+  it("hides stage rule text until the stage is expanded", async () => {
+    const user = userEvent.setup();
+    render(
+      <BattleRecordTacticTracker
+        title="Rad · secondary (tactics)"
+        cards={[card]}
+        stages={{ [card.id]: 0 }}
+        onStageChange={() => undefined}
+      />,
+    );
+
+    expect(
+      screen.queryByText("Ambuscade condition text."),
+    ).not.toBeInTheDocument();
+
+    await user.click(
+      screen.getByRole("button", { name: "Show Affray details" }),
+    );
+    expect(screen.getByText("Ambuscade condition text.")).toBeInTheDocument();
   });
 
   it("Done advances the next stage and Undo steps the current stage back", async () => {
@@ -50,7 +74,7 @@ describe("BattleRecordTacticTracker", () => {
       />,
     );
 
-    await user.click(screen.getByRole("button", { name: /Done/ }));
+    await user.click(screen.getByRole("button", { name: "Mark Affray done" }));
     expect(onStageChange).toHaveBeenCalledWith(card.id, 1);
 
     rerender(
@@ -62,7 +86,7 @@ describe("BattleRecordTacticTracker", () => {
       />,
     );
 
-    await user.click(screen.getByRole("button", { name: /Undo/ }));
+    await user.click(screen.getByRole("button", { name: "Undo Affray" }));
     expect(onStageChange).toHaveBeenCalledWith(card.id, 0);
   });
 });

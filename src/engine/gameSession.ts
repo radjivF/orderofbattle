@@ -20,6 +20,9 @@ export type GameSession = {
   yourArmy: string;
   opponentName: string;
   opponentArmy: string;
+  /** Saved list id when army was picked from My lists. */
+  yourListId?: string;
+  opponentListId?: string;
   /** Empty until chosen during the game. */
   battleplanId: string;
   allowDoubleTurn: boolean;
@@ -46,6 +49,8 @@ export type CreateBattleRecordInput = {
   paintedOpponent?: boolean;
   yourTacticCardIds?: string[];
   opponentTacticCardIds?: string[];
+  yourListId?: string;
+  opponentListId?: string;
 };
 
 const PAINTED_BONUS = 10;
@@ -82,6 +87,12 @@ function stagesFor(
     : session.opponentTacticStage;
 }
 
+export type BattleArmyPick = {
+  label: string;
+  tacticIds: string[];
+  listId?: string;
+};
+
 export function createBattleRecord(
   input: CreateBattleRecordInput,
 ): GameSession {
@@ -94,6 +105,8 @@ export function createBattleRecord(
     yourArmy: input.yourArmy.trim(),
     opponentName: input.opponentName.trim(),
     opponentArmy: input.opponentArmy.trim(),
+    yourListId: input.yourListId || undefined,
+    opponentListId: input.opponentListId || undefined,
     battleplanId: "",
     allowDoubleTurn: input.allowDoubleTurn,
     paintedYou: Boolean(input.paintedYou),
@@ -158,6 +171,7 @@ export function underdog(session: GameSession): BattlePlayer | null {
   return yours < theirs ? "you" : "opponent";
 }
 
+/** True when this round's first player took the previous round's second turn. */
 export function isDoubleTurn(
   session: GameSession,
   roundIndex: number,
@@ -166,7 +180,7 @@ export function isDoubleTurn(
   if (roundIndex < 1 || roundIndex >= session.rounds.length) return false;
   const prev = session.rounds[roundIndex - 1]?.firstPlayer;
   const current = session.rounds[roundIndex]?.firstPlayer;
-  return Boolean(prev && current && prev === current);
+  return Boolean(prev && current && prev !== current);
 }
 
 export function canSetFirstPlayer(
@@ -298,6 +312,42 @@ export function setBattleplan(
   return touch({ ...session, battleplanId });
 }
 
+export function patchBattleRecord(
+  session: GameSession,
+  patch: Partial<
+    Pick<
+      GameSession,
+      | "yourName"
+      | "opponentName"
+      | "allowDoubleTurn"
+      | "paintedYou"
+      | "paintedOpponent"
+    >
+  >,
+): GameSession {
+  return touch({ ...session, ...patch });
+}
+
+export function setBattleArmy(
+  session: GameSession,
+  player: BattlePlayer,
+  pick: BattleArmyPick,
+): GameSession {
+  const next =
+    player === "you"
+      ? {
+          ...session,
+          yourArmy: pick.label.trim(),
+          yourListId: pick.listId || undefined,
+        }
+      : {
+          ...session,
+          opponentArmy: pick.label.trim(),
+          opponentListId: pick.listId || undefined,
+        };
+  return setPlayerTacticCards(next, player, pick.tacticIds);
+}
+
 export function setPlayerTacticCards(
   session: GameSession,
   player: BattlePlayer,
@@ -316,6 +366,32 @@ export function setPlayerTacticCards(
     opponentTacticCardIds: clipped,
     opponentTacticStage: stageMap(clipped),
   });
+}
+
+/** Recalculate round VP from claims using current battleplan VP values. */
+export function syncPrimaryVp(
+  session: GameSession,
+  points: Array<{ id: string; vp: number }>,
+): GameSession {
+  let changed = false;
+  const rounds = session.rounds.map((round) => {
+    const hasClaims = Object.values(round.primaryClaims).some(
+      (claim) => claim.you || claim.opponent,
+    );
+    if (!hasClaims) {
+      return round;
+    }
+    const next = syncRoundVpFromClaims(round, points);
+    if (next.yourVp !== round.yourVp || next.opponentVp !== round.opponentVp) {
+      changed = true;
+      return next;
+    }
+    return round;
+  });
+  if (!changed) {
+    return session;
+  }
+  return touch({ ...session, rounds });
 }
 
 export function canStartBattle(session: GameSession): boolean {

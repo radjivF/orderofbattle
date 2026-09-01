@@ -12,9 +12,10 @@ import { TowBuilderScreen } from "./TowBuilderScreen";
 
 type Props = {
   listId: string;
+  openPlay?: boolean;
 };
 
-export function ListScreen({ listId }: Props) {
+export function ListScreen({ listId, openPlay = false }: Props) {
   const lists = useSyncExternalStore(
     subscribeArmies,
     getArmiesSnapshot,
@@ -24,5 +25,5 @@ export function ListScreen({ listId }: Props) {
   if (list && isTowList(list)) {
     return <TowBuilderScreen listId={listId} />;
   }
-  return <BuilderScreen listId={listId} />;
+  return <BuilderScreen listId={listId} openPlay={openPlay} />;
 }

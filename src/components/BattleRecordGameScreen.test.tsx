@@ -1,14 +1,21 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { blankArmy } from "@/engine/listFactories";
 import {
   createBattleRecord,
   finishBattle,
   setBattleplan,
+  setRoundFirstPlayer,
   setRoundVp,
   startBattle,
 } from "@/engine/gameSession";
 import * as gameStorage from "@/lib/gameStorage";
+import type { StoredList } from "@/engine/storedList";
+
+const armyStore: { items: StoredList[] } = { items: [] };
+const armyListeners = new Set<() => void>();
+const push = vi.fn();
 
 vi.mock("@/lib/gameStorage", () => ({
   getGame: vi.fn(),
@@ -16,36 +23,95 @@ vi.mock("@/lib/gameStorage", () => ({
   deleteGame: vi.fn(async () => undefined),
 }));
 
+vi.mock("@/lib/storage", () => ({
+  subscribeArmies: (onStoreChange: () => void) => {
+    armyListeners.add(onStoreChange);
+    onStoreChange();
+    return () => {
+      armyListeners.delete(onStoreChange);
+    };
+  },
+  getArmiesSnapshot: () => armyStore.items,
+  getArmiesServerSnapshot: () => armyStore.items,
+}));
+
 vi.mock("next/navigation", () => ({
-  useRouter: () => ({ push: vi.fn() }),
+  useRouter: () => ({ push }),
+}));
+
+vi.mock("./BuilderReady", () => ({
+  BuilderReady: ({ list }: { list: { name: string } }) => (
+    <p>Play mode · {list.name}</p>
+  ),
 }));
 
 import { BattleRecordGameScreen } from "./BattleRecordGameScreen";
 
-function activeFixture() {
+function activeFixture(
+  overrides: {
+    yourListId?: string;
+    opponentListId?: string;
+    yourArmy?: string;
+    opponentArmy?: string;
+    firstPlayer?: "you" | "opponent";
+    yourTacticCardIds?: string[];
+    opponentTacticCardIds?: string[];
+    skipRoundVp?: boolean;
+  } = {},
+) {
   let game = createBattleRecord({
     yourName: "Rad",
-    yourArmy: "Stormcast",
+    yourArmy: overrides.yourArmy ?? "Stormcast",
     opponentName: "Alex",
-    opponentArmy: "Khorne",
+    opponentArmy: overrides.opponentArmy ?? "Khorne",
     allowDoubleTurn: true,
+    yourListId: overrides.yourListId,
+    opponentListId: overrides.opponentListId,
+    yourTacticCardIds: overrides.yourTacticCardIds,
+    opponentTacticCardIds: overrides.opponentTacticCardIds,
   });
   game = setBattleplan(game, "into-the-fire");
   game = startBattle(game);
-  game = setRoundVp(game, 0, "you", 5);
-  game = setRoundVp(game, 0, "opponent", 2);
+  if (overrides.firstPlayer) {
+    game = setRoundFirstPlayer(game, 0, overrides.firstPlayer);
+  }
+  if (!overrides.skipRoundVp) {
+    game = setRoundVp(game, 0, "you", 5);
+    game = setRoundVp(game, 0, "opponent", 2);
+  }
   return game;
 }
 
 afterEach(() => {
   cleanup();
+  armyStore.items = [];
+  armyListeners.clear();
+  push.mockClear();
   vi.restoreAllMocks();
+});
+
+beforeEach(() => {
+  Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: vi.fn().mockImplementation((query: string) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    })),
+  });
 });
 
 describe("BattleRecordGameScreen", () => {
   it("scores mission points one by one and shows twist for underdog", async () => {
     const user = userEvent.setup();
-    vi.mocked(gameStorage.getGame).mockResolvedValue(activeFixture());
+    vi.mocked(gameStorage.getGame).mockResolvedValue(
+      activeFixture({ skipRoundVp: true }),
+    );
 
     render(<BattleRecordGameScreen gameId="game-1" />);
 
@@ -54,13 +120,49 @@ describe("BattleRecordGameScreen", () => {
     ).toBeInTheDocument();
     expect(screen.getByText(/Primary · Into the Fire/)).toBeInTheDocument();
     expect(screen.getByText(/Twist · underdog/)).toBeInTheDocument();
-    expect(screen.getByText("Point 1")).toBeInTheDocument();
+    expect(screen.getByText("Point 1 · 3 VP")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Rad scored point 1" }),
+    ).toHaveTextContent(
+      "Score 3 victory points if you control at least 1 objective.",
+    );
 
     await user.click(
-      screen.getAllByRole("button", { name: "Rad scored this point" })[0]!,
+      screen.getByRole("button", { name: "Rad scored point 1" }),
     );
-    expect(screen.getByText("✓ Rad")).toBeInTheDocument();
-    expect(screen.getByText("1", { selector: "p.tabular-nums" })).toBeTruthy();
+    expect(
+      screen.getByRole("button", { name: "Rad scored point 1" }),
+    ).toHaveAttribute("aria-pressed", "true");
+    expect(
+      screen.getByText(/Turn score · Rad 3 · Alex 0/),
+    ).toBeInTheDocument();
+  });
+
+  it("adds completed tactic stages to the match total", async () => {
+    const user = userEvent.setup();
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      yourTacticCardIds: ["7865-8113-df4e-f70a"],
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+    vi.mocked(gameStorage.getGame).mockResolvedValue(game);
+
+    render(<BattleRecordGameScreen gameId="game-tactics" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+    expect(screen.getByText("Flanking Firestorm")).toBeInTheDocument();
+    expect(screen.queryByText(/5 tactics/)).not.toBeInTheDocument();
+
+    await user.click(
+      screen.getByRole("button", { name: "Mark Affray done" }),
+    );
+
+    expect(await screen.findByText(/5 tactics/)).toBeInTheDocument();
+    expect(screen.getByText("5", { selector: "p.tabular-nums" })).toBeTruthy();
   });
 
   it("shows a battle timeline with turns and Done", async () => {
@@ -156,6 +258,38 @@ describe("BattleRecordGameScreen", () => {
     });
   });
 
+  it("uses a discreet Edit control instead of a full-width Edit setup button", async () => {
+    vi.mocked(gameStorage.getGame).mockResolvedValue(activeFixture());
+    render(<BattleRecordGameScreen gameId="game-1" />);
+
+    const title = await screen.findByRole("heading", { name: /Rad vs Alex/ });
+    expect(
+      screen.queryByRole("button", { name: "Edit setup" }),
+    ).not.toBeInTheDocument();
+    const edit = screen.getByRole("button", { name: "Edit" });
+    expect(edit.className).not.toMatch(/\bw-full\b/);
+    expect(title.parentElement).toContainElement(edit);
+  });
+
+  it("Edit opens setup where match settings can change army and initiative", async () => {
+    const user = userEvent.setup();
+    vi.mocked(gameStorage.getGame).mockResolvedValue(activeFixture());
+    render(<BattleRecordGameScreen gameId="game-1" />);
+
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+    await user.click(screen.getByRole("button", { name: "Edit" }));
+
+    expect(
+      await screen.findByRole("heading", { name: "Set up battle" }),
+    ).toBeInTheDocument();
+    expect(screen.getByLabelText("Your name")).toBeInTheDocument();
+    expect(screen.getByLabelText("Your army")).toBeInTheDocument();
+    expect(
+      screen.getByRole("group", { name: "Priority and double turn" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Yours painted")).toBeInTheDocument();
+  });
+
   it("Edit setup lets you change battleplan on an active battle", async () => {
     const user = userEvent.setup();
     vi.mocked(gameStorage.getGame).mockResolvedValue(activeFixture());
@@ -164,7 +298,7 @@ describe("BattleRecordGameScreen", () => {
     await screen.findByRole("heading", { name: /Rad vs Alex/ });
     expect(screen.getByText(/Primary · Into the Fire/)).toBeInTheDocument();
 
-    await user.click(screen.getByRole("button", { name: "Edit setup" }));
+    await user.click(screen.getByRole("button", { name: "Edit" }));
     expect(
       await screen.findByRole("heading", { name: "Set up battle" }),
     ).toBeInTheDocument();
@@ -186,6 +320,70 @@ describe("BattleRecordGameScreen", () => {
     });
   });
 
+  it("opens Play as a full-page sheet from the army name when a linked list exists", async () => {
+    const user = userEvent.setup();
+    const yourList = blankArmy("stormcast-eternals");
+    yourList.id = "list-you";
+    yourList.name = "My Stormcast";
+    armyStore.items = [yourList];
+
+    vi.mocked(gameStorage.getGame).mockResolvedValue(
+      activeFixture({
+        yourListId: "list-you",
+        opponentListId: "list-gone",
+        yourArmy: "My Stormcast",
+      }),
+    );
+    render(<BattleRecordGameScreen gameId="game-play" />);
+
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+    expect(
+      screen.getByRole("button", { name: "Play Rad" }),
+    ).toHaveTextContent("My Stormcast");
+    expect(
+      screen.getByRole("button", { name: "Play Rad" }).querySelector("svg"),
+    ).not.toBeNull();
+    expect(
+      screen.queryByRole("button", { name: "Play Alex" }),
+    ).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "Play Rad" }));
+    expect(push).not.toHaveBeenCalled();
+    const sheet = await screen.findByRole("dialog", { name: "Play Rad" });
+    expect(sheet).toHaveTextContent("Play mode · My Stormcast");
+    expect(
+      screen.getByRole("button", { name: "Close play" }),
+    ).toBeInTheDocument();
+    expect(sheet.querySelector(".modal-grabber")).not.toBeNull();
+    expect(sheet.querySelector("img")).not.toBeNull();
+
+    armyStore.items = [{ ...yourList, name: "Damaged Stormcast" }];
+    armyListeners.forEach((notify) => notify());
+    expect(
+      await screen.findByText("Play mode · Damaged Stormcast"),
+    ).toBeInTheDocument();
+  });
+
+  it("offers Play when the army name uniquely matches a saved list", async () => {
+    const yourList = blankArmy("stormcast-eternals");
+    yourList.id = "list-you";
+    yourList.name = "My Maggotkin of Nurgle";
+    armyStore.items = [yourList];
+
+    vi.mocked(gameStorage.getGame).mockResolvedValue(
+      activeFixture({ yourArmy: "My Maggotkin of Nurgle" }),
+    );
+    render(<BattleRecordGameScreen gameId="game-name" />);
+
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+    expect(
+      screen.getByRole("button", { name: "Play Rad" }),
+    ).toHaveTextContent("My Maggotkin of Nurgle");
+    expect(
+      screen.getByRole("button", { name: "Play Rad" }).querySelector("svg"),
+    ).not.toBeNull();
+  });
+
   it("hides who-went-first when priority tracking is off", async () => {
     let game = createBattleRecord({
       yourName: "Rad",
@@ -205,11 +403,123 @@ describe("BattleRecordGameScreen", () => {
     expect(screen.queryByText("Double turn")).not.toBeInTheDocument();
   });
 
+  it("shows Double turn only when last round's second player goes first", async () => {
+    const user = userEvent.setup();
+    let game = activeFixture({ skipRoundVp: true });
+    game = setRoundFirstPlayer(game, 0, "you");
+    game = setRoundFirstPlayer(game, 1, "opponent");
+    game = setRoundFirstPlayer(game, 2, "opponent");
+    vi.mocked(gameStorage.getGame).mockResolvedValue(game);
+
+    render(<BattleRecordGameScreen gameId="game-double" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    await user.click(screen.getByRole("button", { name: "T2" }));
+    expect(screen.getByText("Double turn")).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "T3" }));
+    expect(screen.queryByText("Double turn")).not.toBeInTheDocument();
+  });
+
   it("shows who-went-first when priority tracking is on", async () => {
     vi.mocked(gameStorage.getGame).mockResolvedValue(activeFixture());
     render(<BattleRecordGameScreen gameId="game-1" />);
     await screen.findByRole("heading", { name: /Rad vs Alex/ });
 
     expect(screen.getByText("Who went first")).toBeInTheDocument();
+  });
+
+  it("orders turn tabs by who went first and keeps scoring per player", async () => {
+    const user = userEvent.setup();
+    vi.mocked(gameStorage.getGame).mockResolvedValue(
+      activeFixture({
+        firstPlayer: "opponent",
+        skipRoundVp: true,
+        yourTacticCardIds: ["7865-8113-df4e-f70a"],
+        opponentTacticCardIds: ["7d3c-b9b7-6412-d44e"],
+      }),
+    );
+    render(<BattleRecordGameScreen gameId="game-tabs" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    const tabs = screen.getByRole("tablist", { name: "Turn players" });
+    expect(tabs.className).toContain("ios-tab-underline--spread");
+    const tabButtons = within(tabs).getAllByRole("tab");
+    expect(tabButtons.map((tab) => tab.textContent)).toEqual(["Alex", "Rad"]);
+    await waitFor(() => {
+      expect(tabButtons[0]).toHaveAttribute("aria-selected", "true");
+    });
+    expect(screen.getByText("Blazing Onslaught")).toBeInTheDocument();
+    expect(screen.queryByText("Flanking Firestorm")).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Rad scored point 1" }),
+    ).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "Alex scored point 1" }));
+    expect(
+      screen.getByText(/Turn score · Rad 0 · Alex 3/),
+    ).toBeInTheDocument();
+
+    await user.click(screen.getByRole("tab", { name: "Rad" }));
+    expect(screen.getByText("Flanking Firestorm")).toBeInTheDocument();
+    expect(screen.queryByText("Blazing Onslaught")).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Rad scored point 1" }),
+    ).toHaveAttribute("aria-pressed", "false");
+  });
+
+  it("puts the new first player first when who-went-first changes", async () => {
+    const user = userEvent.setup();
+    vi.mocked(gameStorage.getGame).mockResolvedValue(
+      activeFixture({ firstPlayer: "opponent" }),
+    );
+    render(<BattleRecordGameScreen gameId="game-flip" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    const firstTabs = within(
+      screen.getByRole("tablist", { name: "Turn players" }),
+    ).getAllByRole("tab");
+    expect(firstTabs.map((tab) => tab.textContent)).toEqual(["Alex", "Rad"]);
+
+    await user.click(screen.getByRole("button", { name: "Rad" }));
+
+    const flipped = within(
+      screen.getByRole("tablist", { name: "Turn players" }),
+    ).getAllByRole("tab");
+    expect(flipped.map((tab) => tab.textContent)).toEqual(["Rad", "Alex"]);
+    expect(flipped[0]).toHaveAttribute("aria-selected", "true");
+  });
+
+  it("still shows you-then-opponent tabs when priority tracking is off", async () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: false,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+    vi.mocked(gameStorage.getGame).mockResolvedValue(game);
+
+    render(<BattleRecordGameScreen gameId="game-no-init-tabs" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    const tabs = within(
+      screen.getByRole("tablist", { name: "Turn players" }),
+    ).getAllByRole("tab");
+    expect(tabs.map((tab) => tab.textContent)).toEqual(["Rad", "Alex"]);
+    expect(screen.queryByText("Who went first")).not.toBeInTheDocument();
+  });
+
+  it("hides the tactics block when the active player has none", async () => {
+    vi.mocked(gameStorage.getGame).mockResolvedValue(
+      activeFixture({ skipRoundVp: true }),
+    );
+    render(<BattleRecordGameScreen gameId="game-no-tac" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    expect(screen.getByRole("tablist", { name: "Turn players" })).toBeTruthy();
+    expect(screen.queryByText(/tactics/i)).not.toBeInTheDocument();
   });
 });

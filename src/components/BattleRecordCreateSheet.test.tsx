@@ -122,8 +122,10 @@ describe("BattleRecordCreateSheet", () => {
     expect(onCreated).toHaveBeenCalled();
     const game = onCreated.mock.calls[0]![0];
     expect(game.yourArmy).toBe("My Sylvaneth");
+    expect(game.yourListId).toBe(list.id);
     expect(game.yourTacticCardIds).toEqual(["card-a", "card-b"]);
     expect(game.opponentArmy).toBe("Stormcast Eternals");
+    expect(game.opponentListId).toBeUndefined();
     expect(game.opponentTacticCardIds).toEqual([]);
   });
 });

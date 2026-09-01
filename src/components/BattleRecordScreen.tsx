@@ -9,6 +9,7 @@ import {
   EMPTY_LIBRARY_CTA_CLASS,
   LIBRARY_TITLE_CLASS,
   LIBRARY_TITLE_ROW_CLASS,
+  SITE_COLUMN_CLASS,
 } from "@/lib/builderUi";
 import {
   deleteGame,
@@ -58,7 +59,7 @@ export function BattleRecordScreen() {
 
   return (
     <div className="relative z-10 min-h-full">
-      <div className="mx-auto w-full max-w-3xl px-5 pt-2 pb-3 sm:px-6">
+      <div className={`${SITE_COLUMN_CLASS} pt-2 pb-3`}>
         <div className={LIBRARY_TITLE_ROW_CLASS}>
           <span className="w-11" aria-hidden="true" />
           <h1 className={LIBRARY_TITLE_CLASS}>Battle record</h1>

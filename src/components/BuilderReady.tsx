@@ -93,16 +93,22 @@ function enhancementChoices(options: EnhancementOption[]) {
 export function BuilderReady({
   list,
   faction,
+  openPlay = false,
+  embedded = false,
 }: {
   list: ArmyList;
   faction: FactionCatalogue;
+  openPlay?: boolean;
+  embedded?: boolean;
 }) {
   const [selectedRegimentId, setSelectedRegimentId] = useState<string | null>(
     null,
   );
   const [picker, setPicker] = useState<Picker>(null);
   const [datasheet, setDatasheet] = useState<DatasheetSubject | null>(null);
-  const [pane, setPane] = useState<"build" | "play">("build");
+  const [pane, setPane] = useState<"build" | "play">(
+    openPlay ? "play" : "build",
+  );
   const [optionsOpen, setOptionsOpen] = useState(false);
   const [playTab, setPlayTab] = useState<"units" | "magic" | "phases">("units");
   const [regimentRemoveId, setRegimentRemoveId] = useState<string | null>(null);
@@ -486,6 +492,9 @@ export function BuilderReady({
   const { setBuilderChrome } = useListFlowChrome();
 
   useLayoutEffect(() => {
+    if (embedded) {
+      return;
+    }
     setBuilderChrome({
       list,
       faction,
@@ -511,11 +520,12 @@ export function BuilderReady({
     enterPlay,
     exitPlay,
     spearhead,
+    embedded,
   ]);
 
   function renderListMain(forPlayMode: boolean) {
     return (
-      <main className="mx-auto flex w-full max-w-3xl min-w-0 flex-col gap-5 px-4 py-4 pb-28 sm:py-6">
+      <main className={`mx-auto flex w-full max-w-3xl min-w-0 flex-col gap-5 px-4 py-4 sm:py-6 ${embedded ? "pb-8" : "pb-28"}`}>
         {forPlayMode ? (
           <IosSegmentedControl
             ariaLabel="Play sections"
@@ -1523,19 +1533,29 @@ export function BuilderReady({
   }
 
   return (
-    <div className="min-h-full w-full max-w-[100vw] overflow-x-hidden overflow-y-visible text-parchment">
-      <div className="overflow-x-hidden overflow-y-visible">
-        <div
-          className={`builder-view-track ${pane === "play" ? "builder-view-track--play" : ""}`}
-        >
-          <div className="builder-view-pane" aria-hidden={pane === "play"}>
-            {renderListMain(false)}
-          </div>
-          <div className="builder-view-pane" aria-hidden={pane === "build"}>
-            {renderListMain(true)}
+    <div
+      className={
+        embedded
+          ? "w-full text-parchment"
+          : "min-h-full w-full max-w-[100vw] overflow-x-hidden overflow-y-visible text-parchment"
+      }
+    >
+      {embedded ? (
+        renderListMain(true)
+      ) : (
+        <div className="overflow-x-hidden overflow-y-visible">
+          <div
+            className={`builder-view-track ${pane === "play" ? "builder-view-track--play" : ""}`}
+          >
+            <div className="builder-view-pane" aria-hidden={pane === "play"}>
+              {renderListMain(false)}
+            </div>
+            <div className="builder-view-pane" aria-hidden={pane === "build"}>
+              {renderListMain(true)}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {picker && pickerUnits && !playMode && !spearhead ? (
         <PickerSheet

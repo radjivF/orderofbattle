@@ -3,6 +3,8 @@ import {
   BATTLEPLAN_IDS,
   battleplanLayouts,
   getBattleplanLayout,
+  missionPrimaryPoints,
+  scoringLineVp,
 } from "./battleplanLayout";
 
 describe("Scourge of Aqshy battleplan layouts", () => {
@@ -68,5 +70,25 @@ describe("Scourge of Aqshy battleplan layouts", () => {
         /Follow the battleplan twist rules/,
       );
     }
+  });
+
+  it("uses the printed victory points on each scoring line", () => {
+    expect(scoringLineVp("Score 3 victory points if you control at least 1 objective.")).toBe(3);
+    expect(scoringLineVp("Score 4 victory points if you control more objectives than your opponent.")).toBe(4);
+    expect(
+      scoringLineVp(
+        "Score 7 victory points if there are no objectives on the battlefield.",
+      ),
+    ).toBe(7);
+    expect(
+      scoringLineVp(
+        "From the second battle round onwards, score 4 victory points if you control an objective.",
+      ),
+    ).toBe(4);
+
+    const intoTheFire = getBattleplanLayout("into-the-fire")!;
+    expect(missionPrimaryPoints(intoTheFire).map((point) => point.vp)).toEqual([
+      3, 3, 4,
+    ]);
   });
 });
