@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { getFaction } from "@/engine/queries";
 import { catalogueForList, isSpearheadList } from "@/engine/spearhead";
 import { formatPoints } from "@/engine/pointsCap";
@@ -14,7 +16,7 @@ import {
   rememberListNavigation,
   rememberListOpen,
 } from "@/lib/listTransition";
-import { listOpenDisplayNameForHeader } from "@/lib/listFlowNav";
+import { libraryCardPressHoldsOn, listOpenDisplayNameForHeader, listOpenUsesInAppSlide } from "@/lib/listFlowNav";
 import {
   LIBRARY_CARD_ACTION_BUTTON_CLASS,
   LIBRARY_CARD_ACTIONS_CLASS,
@@ -22,6 +24,7 @@ import {
   LIBRARY_CARD_DELETE_BUTTON_CLASS,
   LIBRARY_CARD_LIST_NAME_INPUT_CLASS,
 } from "@/lib/builderUi";
+import { useListNav } from "./IosNavSlide";
 
 function rememberOpenList(list: StoredList) {
   if (isTowList(list)) {
@@ -85,15 +88,43 @@ export function LibraryListCard({
   onDelete: (list: StoredList) => void;
 }) {
   const meta = cardMeta(list);
+  const pathname = usePathname();
+  const { goForward } = useListNav();
+  const [opening, setOpening] = useState(false);
+
+  useEffect(() => {
+    if (!libraryCardPressHoldsOn(pathname)) {
+      setOpening(false);
+    }
+  }, [pathname]);
 
   return (
-    <article className={LIBRARY_CARD_CLASS}>
+    <article
+      className={LIBRARY_CARD_CLASS}
+      data-opening={opening ? "true" : undefined}
+    >
       <Link
         href={`/lists/${list.id}`}
         scroll={false}
         aria-label={`Open ${list.name}`}
-        onClick={() => rememberOpenList(list)}
-        className="absolute inset-0 z-[1]"
+        onClick={(event) => {
+          if (
+            !listOpenUsesInAppSlide({
+              metaKey: event.metaKey,
+              ctrlKey: event.ctrlKey,
+              shiftKey: event.shiftKey,
+              altKey: event.altKey,
+              button: event.button,
+            })
+          ) {
+            return;
+          }
+          event.preventDefault();
+          setOpening(true);
+          rememberOpenList(list);
+          goForward(`/lists/${list.id}`);
+        }}
+        className="library-card-open absolute inset-0 z-[1]"
       />
       <div className="pointer-events-none relative z-[2] flex min-w-0 flex-col p-4 sm:p-5">
         <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">

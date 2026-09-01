@@ -1,10 +1,14 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { cleanup, render, screen } from "@/test-utils/render";
-import { LIST_ISSUE_HIGHLIGHT_CLASS } from "@/lib/builderUi";
+import {
+  LIST_ISSUE_HIGHLIGHT_CLASS,
+  LIST_LANDING_CONTENT_HIDDEN_CLASS,
+  LIST_LANDING_CONTENT_VISIBLE_CLASS,
+} from "@/lib/builderUi";
 import { BuilderScreen } from "./BuilderScreen";
 
-const { list, noHeroList } = vi.hoisted(() => {
+const { list, noHeroList, art, listOpen } = vi.hoisted(() => {
   const now = Date.now();
   const shared = {
     name: "Test list",
@@ -45,6 +49,15 @@ const { list, noHeroList } = vi.hoisted(() => {
       generalRegimentId: "r1",
       regiments: [{ id: "r1", hero: null, units: [] }],
     },
+    art: {
+      src: null as string | null,
+      ready: true,
+      preload: vi.fn(() => Promise.resolve()),
+    },
+    listOpen: {
+      skipSplash: true,
+      splashRequested: false,
+    },
   };
 });
 
@@ -83,12 +96,12 @@ vi.mock("@/lib/listTransition", () => ({
   getListOpenFactionSnapshot: () => null,
   clearListOpenSplash: vi.fn(),
   clearListCreateSplash: vi.fn(),
-  consumeSkipListSplash: vi.fn(() => true),
+  consumeSkipListSplash: () => listOpen.skipSplash,
   getListOpenDisplayNameServerSnapshot: () => null,
   getListOpenDisplayNameSnapshot: () => null,
   getListOpenScourgeServerSnapshot: () => null,
   getListOpenScourgeSnapshot: () => null,
-  peekListOpenSplash: vi.fn(() => false),
+  peekListOpenSplash: () => listOpen.splashRequested,
   peekListNavigationDirection: vi.fn(() => null),
   subscribeListOpenFaction: () => () => {},
 }));
@@ -104,15 +117,35 @@ vi.mock("./ListFlowShell", () => ({
 }));
 
 vi.mock("@/lib/factionArt", () => ({
-  listBackdropArtSrc: () => null,
-  isBackdropArtReady: () => true,
-  preloadBackdropArt: vi.fn(() => Promise.resolve()),
+  listBackdropArtSrc: () => art.src,
+  isBackdropArtReady: () => art.ready,
+  preloadBackdropArt: () => art.preload(),
 }));
+
+function pendingArt() {
+  art.src = "/factions/stormcast-eternals.webp";
+  art.ready = false;
+  art.preload.mockReturnValue(new Promise(() => {}));
+}
+
+function landing() {
+  const node = screen
+    .getByRole("button", { name: "+ Regiment" })
+    .closest(".transition-opacity");
+  expect(node).toBeTruthy();
+  return node as HTMLElement;
+}
 
 describe("BuilderScreen", () => {
   beforeEach(() => {
     cleanup();
     HTMLElement.prototype.scrollIntoView = vi.fn();
+    art.src = null;
+    art.ready = true;
+    art.preload.mockReset();
+    art.preload.mockResolvedValue(undefined);
+    listOpen.skipSplash = true;
+    listOpen.splashRequested = false;
     Object.defineProperty(window, "matchMedia", {
       writable: true,
       value: (query: string) => ({
@@ -126,10 +159,44 @@ describe("BuilderScreen", () => {
     });
   });
 
+  afterEach(() => {
+    vi.useRealTimers();
+  });
   it("renders build pane for an existing list", () => {
     render(<BuilderScreen listId={list.id} />);
     expect(screen.getByText("Battle formation")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "+ Regiment" })).toBeInTheDocument();
+    expect(landing()).toHaveClass(LIST_LANDING_CONTENT_VISIBLE_CLASS);
+  });
+
+  it("shows the list before backdrop art finishes loading", () => {
+    pendingArt();
+
+    render(<BuilderScreen listId={list.id} />);
+
+    expect(landing()).toHaveClass(LIST_LANDING_CONTENT_VISIBLE_CLASS);
+    expect(landing()).not.toHaveClass(LIST_LANDING_CONTENT_HIDDEN_CLASS);
+  });
+
+  it("still shows the list when backdrop preload fails", () => {
+    pendingArt();
+    const failed = Promise.reject(new Error("art failed"));
+    void failed.catch(() => {});
+    art.preload.mockReturnValue(failed);
+
+    render(<BuilderScreen listId={list.id} />);
+
+    expect(landing()).toHaveClass(LIST_LANDING_CONTENT_VISIBLE_CLASS);
+  });
+
+  it("shows the list as soon as it is mounted, without a splash pause", () => {
+    pendingArt();
+    listOpen.skipSplash = false;
+    listOpen.splashRequested = true;
+
+    render(<BuilderScreen listId={list.id} />);
+
+    expect(landing()).toHaveClass(LIST_LANDING_CONTENT_VISIBLE_CLASS);
+    expect(landing()).not.toHaveClass(LIST_LANDING_CONTENT_HIDDEN_CLASS);
   });
 
   it("opens the hero picker when Add a regiment to begin is tapped", async () => {

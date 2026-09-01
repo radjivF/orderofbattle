@@ -130,8 +130,15 @@ export function listIssueAnchorId(target: ListIssueTarget): string {
   return `list-issue-${target.field}`;
 }
 
-export function listIssueOpensOptions(target: ListIssueTarget): boolean {
-  return target.area === "options";
+export function listIssueOpensOptions(target: ListIssueTarget): boolean;
+export function listIssueOpensOptions(text: string): boolean;
+export function listIssueOpensOptions(
+  input: ListIssueTarget | string,
+): boolean {
+  if (typeof input === "string") {
+    return input.toLowerCase().includes("battle tactic");
+  }
+  return input.area === "options";
 }
 
 export function listIssueHighlightClass(
@@ -139,6 +146,10 @@ export function listIssueHighlightClass(
   highlightedId: string | null,
 ): string {
   return highlightedId === anchorId ? LIST_ISSUE_HIGHLIGHT_CLASS : "";
+}
+
+export function listIssueOpensAddRegiment(text: string): boolean {
+  return text === "Add a regiment to begin.";
 }
 
 /** GHB reminder — auxiliaries are allowed; they affect drops and CP. */
@@ -362,7 +373,7 @@ export const SHEET_HEADER_CLASS =
 export const SHEET_HEADER_START_CLASS = SHEET_HEADER_CLASS;
 
 export const LIBRARY_CARD_CLASS =
-  "parchment-card relative grid min-h-[8.5rem] cursor-pointer grid-cols-[minmax(0,1fr)_7.5rem] overflow-hidden rounded-2xl text-parchment-ink sm:grid-cols-[minmax(0,1fr)_9.5rem]";
+  "library-card parchment-card relative grid min-h-[8.5rem] cursor-pointer grid-cols-[minmax(0,1fr)_7.5rem] overflow-hidden rounded-2xl text-parchment-ink sm:grid-cols-[minmax(0,1fr)_9.5rem]";
 
 export const LIBRARY_CARD_ACTIONS_CLASS =
   "mt-3 flex items-center justify-end gap-1 text-sm";

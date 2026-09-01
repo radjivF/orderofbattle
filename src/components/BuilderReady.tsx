@@ -18,6 +18,7 @@ import {
   enhancementLabel,
   formationLabel,
   getListUnit,
+  getRegimentOfRenown,
   getUnit,
   listRegimentsOfRenown,
   resolveGeneralRegimentId,
@@ -49,6 +50,7 @@ import {
   builderPlayTabs,
   listIssueAnchorId,
   listIssueHighlightClass,
+  listIssueOpensAddRegiment,
   listIssueOpensOptions,
 } from "@/lib/builderUi";
 import { createId } from "@/lib/id";
@@ -539,8 +541,17 @@ export function BuilderReady({
         {!forPlayMode && issue.tone !== "ok" ? (
           <button
             type="button"
-            onClick={revealIssue}
-            className={`${LIST_ISSUE_BANNER_CLASS} w-full cursor-pointer text-left`}
+            onClick={() => {
+              if (listIssueOpensAddRegiment(issue.text)) {
+                openNewRegimentHeroPicker();
+                return;
+              }
+              if (listIssueOpensOptions(issue.text)) {
+                setOptionsOpen(true);
+              }
+              revealIssue();
+            }}
+            className={`${LIST_ISSUE_BANNER_CLASS} pressable w-full cursor-pointer text-left`}
           >
             <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-illegal" />
             <span>{issue.text}</span>
@@ -1612,6 +1623,12 @@ export function BuilderReady({
               regimentOfRenown: next,
             });
             setPicker(null);
+          }}
+          onOpenDatasheet={(option) => {
+            const ror = getRegimentOfRenown(option.id);
+            if (ror) {
+              setDatasheet(ror);
+            }
           }}
           onClose={() => setPicker(null)}
         />

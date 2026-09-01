@@ -14,17 +14,19 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   LIST_FLOW_HEADER_OFFSET_CLASS,
   LIST_FLOW_SLIDE_MS,
-  LIST_BACKDROP_RETURN_MS,
-  LIST_BACKDROP_TRANSITION_CLASS,
-  LIST_DETAIL_BACKDROP_TRANSITION_CLASS,
   LIST_LANDING_CONTENT_HIDDEN_CLASS,
   LIST_LANDING_CONTENT_VISIBLE_CLASS,
   SITE_HEADER_BAR_CLASS,
 } from "@/lib/builderUi";
 import {
   listFlowBackHref,
+  listFlowFactionBackdropFaded,
+  listFlowIndexBackdropRevealed,
   listFlowIsDetail,
   listFlowIsHome,
+  listFlowPendingRouteSplash,
+  listFlowShowsFactionBackdrop,
+  listFlowSkipsPostRouteSlide,
   listFlowTrackClass,
   listFlowWindowScrollY,
 } from "@/lib/listFlowNav";
@@ -33,11 +35,18 @@ import {
   clearListOpenSplash,
   clearListCreateSplash,
   peekListNavigationDirection,
+  peekListOpenDisplayName,
+  peekListOpenFactionId,
   rememberListNavigation,
 } from "@/lib/listTransition";
+import { getFaction } from "@/engine/queries";
 import { IndexBackdropLayer } from "./IndexBackdrop";
+import { ListLoadingSplash } from "./ListLoadingSplash";
 
-const ListNavContext = createContext<{ goBack: () => void } | null>(null);
+const ListNavContext = createContext<{
+  goBack: () => void;
+  goForward: (href: string) => void;
+} | null>(null);
 
 export function useListNav() {
   const ctx = useContext(ListNavContext);
@@ -96,11 +105,11 @@ export function ListNavProvider({
   const [showDetail, setShowDetailState] = useState(false);
   const [settled, setSettled] = useState(true);
   const [animatingBack, setAnimatingBack] = useState(false);
-  const [backdropExiting, setBackdropExiting] = useState(false);
-  const [factionBackdropRevealed, setFactionBackdropRevealed] = useState(false);
   const [cachedBackdrop, setCachedBackdrop] = useState<ReactNode>(null);
   const timers = useRef<number[]>([]);
   const animatingBackRef = useRef(false);
+  const pendingForwardRef = useRef(false);
+  const forwardGenRef = useRef(0);
   const libraryScrollYRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -136,6 +145,36 @@ export function ListNavProvider({
     return id;
   }
 
+  function startForwardSlide() {
+    const gen = ++forwardGenRef.current;
+    libraryScrollYRef.current = window.scrollY;
+    if (prefersReducedMotion()) {
+      publishNavState({ showDetail: true, animatingBack: false, settled: true });
+      scrollToPane(true, libraryScrollYRef);
+      return;
+    }
+    publishNavState({ showDetail: false, animatingBack: false, settled: false });
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        if (gen !== forwardGenRef.current) {
+          return;
+        }
+        scrollToPane(true, libraryScrollYRef);
+        publishNavState({
+          showDetail: true,
+          animatingBack: false,
+          settled: false,
+        });
+      });
+    });
+    schedule(() => {
+      if (gen !== forwardGenRef.current) {
+        return;
+      }
+      publishNavState({ showDetail: true, animatingBack: false, settled: true });
+    }, LIST_FLOW_SLIDE_MS);
+  }
+
   useEffect(() => {
     if (!isDetail) {
       return;
@@ -145,15 +184,24 @@ export function ListNavProvider({
 
   useLayoutEffect(() => {
     if (isHome) {
+      pendingForwardRef.current = false;
       animatingBackRef.current = false;
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
       return;
     }
     if (!isDetail) {
+      if (listFlowSkipsPostRouteSlide(pendingForwardRef.current)) {
+        return;
+      }
       animatingBackRef.current = false;
       clearListNavigationDirection();
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
       scrollToPane(false, libraryScrollYRef);
+      return;
+    }
+
+    if (listFlowSkipsPostRouteSlide(pendingForwardRef.current)) {
+      clearListNavigationDirection();
       return;
     }
 
@@ -199,11 +247,23 @@ export function ListNavProvider({
     scrollToPane(true, libraryScrollYRef);
   }, [isDetail, isHome, pathname, publishNavState]);
 
+  function goForward(href: string) {
+    if (animatingBackRef.current || isDetail || pendingForwardRef.current) {
+      return;
+    }
+    pendingForwardRef.current = true;
+    rememberListNavigation("forward");
+    startForwardSlide();
+    router.push(href, { scroll: false });
+  }
+
   function goBack() {
     if (animatingBackRef.current || !isDetail) {
       return;
     }
     const backHref = listFlowBackHref(pathname);
+    pendingForwardRef.current = false;
+    forwardGenRef.current += 1;
     rememberListNavigation("back");
     clearListOpenSplash();
     clearListCreateSplash();
@@ -215,54 +275,31 @@ export function ListNavProvider({
       return;
     }
     animatingBackRef.current = true;
-    setBackdropExiting(true);
     publishNavState({ showDetail: false, animatingBack: true, settled: false });
     scrollToPane(false, libraryScrollYRef);
     schedule(() => {
       clearListNavigationDirection();
       router.push(backHref, { scroll: false });
-      animatingBackRef.current = false;
-      publishNavState({ showDetail: false, animatingBack: false, settled: true });
-      schedule(() => setBackdropExiting(false), LIST_BACKDROP_RETURN_MS);
     }, LIST_FLOW_SLIDE_MS);
   }
 
-  const showFactionBackdrop = isBuilder && Boolean(backdrop);
-  const indexBackdropRevealed =
-    !showFactionBackdrop || animatingBack || backdropExiting;
-  const factionBackdropLayer = showFactionBackdrop
-    ? backdrop
-    : backdropExiting
-      ? cachedBackdrop
-      : null;
-  const factionBackdropFadingOut = animatingBack || backdropExiting;
-  const indexBackdropTransitionClass =
-    showFactionBackdrop && !factionBackdropFadingOut
-      ? LIST_DETAIL_BACKDROP_TRANSITION_CLASS
-      : LIST_BACKDROP_TRANSITION_CLASS;
-  const factionBackdropTransitionClass = factionBackdropFadingOut
-    ? LIST_BACKDROP_TRANSITION_CLASS
-    : LIST_DETAIL_BACKDROP_TRANSITION_CLASS;
-
-  useLayoutEffect(() => {
-    if (!factionBackdropLayer || factionBackdropFadingOut) {
-      setFactionBackdropRevealed(false);
-      return;
-    }
-    setFactionBackdropRevealed(false);
-    const raf = window.requestAnimationFrame(() => {
-      setFactionBackdropRevealed(true);
-    });
-    return () => window.cancelAnimationFrame(raf);
-  }, [factionBackdropFadingOut, factionBackdropLayer]);
+  const openFactionId = peekListOpenFactionId();
+  const pendingSplashName = openFactionId
+    ? getFaction(openFactionId)?.name
+    : peekListOpenDisplayName();
+  const factionLayer = backdrop ?? cachedBackdrop;
+  const factionOnScreen = listFlowShowsFactionBackdrop({
+    hasBackdrop: Boolean(factionLayer),
+    isBuilder,
+    returningToLibrary: animatingBack,
+  });
+  const factionFaded = listFlowFactionBackdropFaded(animatingBack);
+  const pendingRouteSplash = listFlowPendingRouteSplash(showDetail, isDetail);
 
   return (
-    <ListNavContext.Provider value={{ goBack }}>
+    <ListNavContext.Provider value={{ goBack, goForward }}>
       <div className="relative min-h-dvh w-full overflow-x-hidden overflow-y-visible">
-        <IndexBackdropLayer
-          revealed={indexBackdropRevealed}
-          transitionClass={indexBackdropTransitionClass}
-        />
+        <IndexBackdropLayer revealed={listFlowIndexBackdropRevealed()} />
         {header ? (
           <header
             className={`${SITE_HEADER_BAR_CLASS} pointer-events-auto fixed inset-x-0 top-0 z-[60] pt-[env(safe-area-inset-top)]`}
@@ -270,18 +307,22 @@ export function ListNavProvider({
             {header}
           </header>
         ) : null}
-        {factionBackdropLayer ? (
+        {factionOnScreen ? (
           <div
-            className={`pointer-events-none fixed inset-0 z-[1] ${factionBackdropTransitionClass} ${
-              factionBackdropFadingOut || !factionBackdropRevealed
+            className={`pointer-events-none fixed inset-0 z-[1] transition-opacity duration-[320ms] ease-out ${
+              factionFaded
                 ? LIST_LANDING_CONTENT_HIDDEN_CLASS
                 : LIST_LANDING_CONTENT_VISIBLE_CLASS
             }`}
           >
-            {factionBackdropLayer}
+            {factionLayer}
           </div>
         ) : null}
-        {isBuilder && overlay ? (
+        {pendingRouteSplash ? (
+          <div className="pointer-events-none fixed inset-0 z-[30]">
+            <ListLoadingSplash factionName={pendingSplashName} />
+          </div>
+        ) : isBuilder && overlay ? (
           <div className="pointer-events-none fixed inset-0 z-[30]">{overlay}</div>
         ) : null}
         <div className="relative z-10 overflow-x-hidden overflow-y-visible">

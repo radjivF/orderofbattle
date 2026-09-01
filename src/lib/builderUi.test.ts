@@ -31,7 +31,6 @@ import {
   LIST_ISSUE_BANNER_CLASS,
   LIST_ISSUE_HIGHLIGHT_CLASS,
   listIssueAnchorId,
-  listIssueOpensOptions,
   LIST_OPEN_LANDING_MS,
   LIST_BACKDROP_RETURN_MS,
   LIST_DETAIL_BACKDROP_MS,
@@ -64,8 +63,10 @@ import {
   playPhaseShowsCoreRulesTab,
   datasheetUnitPointsLabel,
   dropCountLabel,
+  listIssueOpensAddRegiment,
   libraryListExportSubtitle,
   libraryListGameLabel,
+  listIssueOpensOptions,
   pointsCapInputClass,
 } from "./builderUi";
 
@@ -305,6 +306,39 @@ describe("list issue banner", () => {
 
   it("highlights the broken control with an illegal ring", () => {
     expect(LIST_ISSUE_HIGHLIGHT_CLASS).toContain("ring-illegal");
+  });
+});
+
+describe("listIssueOpensOptions", () => {
+  it("opens Options for the battle tactic warning people tap", () => {
+    expect(
+      listIssueOpensOptions("Pick up to 2 battle tactic cards."),
+    ).toBe(true);
+  });
+
+  it("stays inert for empty-list and points issues", () => {
+    expect(listIssueOpensOptions("Add a regiment to begin.")).toBe(false);
+    expect(listIssueOpensOptions("200 points over.")).toBe(false);
+    expect(listIssueOpensOptions("")).toBe(false);
+  });
+
+  it("opens Options when they went over two tactic cards", () => {
+    expect(
+      listIssueOpensOptions("Maximum two battle tactic cards."),
+    ).toBe(true);
+  });
+});
+
+describe("listIssueOpensAddRegiment", () => {
+  it("opens the hero picker for the empty-list prompt people tap", () => {
+    expect(listIssueOpensAddRegiment("Add a regiment to begin.")).toBe(true);
+  });
+
+  it("stays inert for other warnings", () => {
+    expect(
+      listIssueOpensAddRegiment("Pick up to 2 battle tactic cards."),
+    ).toBe(false);
+    expect(listIssueOpensAddRegiment("Choose a spell lore.")).toBe(false);
   });
 });
 
@@ -694,6 +728,8 @@ describe("iOS polish contracts", () => {
     expect(css).toContain(".pressable:active");
     expect(css).toContain("cursor: pointer");
     expect(css).toContain("transform: scale(0.97)");
+    expect(css).toContain(".library-card:has(.library-card-open:active)::after");
+    expect(css).toContain('.library-card[data-opening="true"]::after');
   });
 
   it("defines bottom sheet animation and grabber", () => {
@@ -785,6 +821,7 @@ describe("iOS polish contracts", () => {
   });
 
   it("uses pressable library cards and rounded-xl points cap", () => {
+    expect(LIBRARY_CARD_CLASS).toContain("library-card");
     expect(LIBRARY_CARD_CLASS).toContain("cursor-pointer");
     expect(LIBRARY_CARD_CLASS).toContain("rounded-2xl");
     expect(LIBRARY_CARD_CLASS).not.toContain("pressable");
@@ -800,8 +837,9 @@ describe("iOS polish contracts", () => {
       ),
       "utf8",
     );
-    expect(libraryCard).toContain("absolute inset-0 z-[1]");
+    expect(libraryCard).toContain("library-card-open absolute inset-0 z-[1]");
     expect(libraryCard).toContain("LIBRARY_CARD_LIST_NAME_INPUT_CLASS");
+    expect(libraryCard).toContain('data-opening={opening ? "true" : undefined}');
     expect(libraryCard).not.toContain('sr-only">Open list');
   });
 

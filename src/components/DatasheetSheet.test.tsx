@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { CatalogueUnit } from "@/engine/types";
+import { listRegimentsOfRenown } from "@/engine/queries";
 import { cleanup, render, screen } from "@/test-utils/render";
 import { DatasheetSheet } from "./DatasheetSheet";
 
@@ -64,5 +65,43 @@ describe("DatasheetSheet keywords", () => {
     expect(keywords).toHaveTextContent("WIZARD (1)");
     expect(keywords).toHaveTextContent("CASTELITE");
     expect(keywords).not.toHaveTextContent("WARD");
+  });
+});
+
+describe("DatasheetSheet Regiment of Renown", () => {
+  beforeEach(() => {
+    cleanup();
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: (query: string) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+        dispatchEvent: () => false,
+      }),
+    });
+  });
+
+  it("shows Regiment of Renown abilities without a combat stat block", () => {
+    const ror = listRegimentsOfRenown("gloomspite-gitz").find(
+      (item) => item.abilities.length > 0,
+    );
+    expect(ror).toBeTruthy();
+    if (!ror) {
+      throw new Error("missing gloomspite Regiment of Renown");
+    }
+    const abilityName = ror.abilities[0]?.name;
+    expect(abilityName).toBeTruthy();
+
+    render(<DatasheetSheet sheet={ror} onClose={vi.fn()} />);
+
+    expect(
+      screen.getByRole("dialog", { name: `${ror.name} datasheet` }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(abilityName ?? "")).toBeInTheDocument();
+    expect(screen.queryByText("Move")).toBeNull();
+    expect(screen.queryByText("Health")).toBeNull();
   });
 });

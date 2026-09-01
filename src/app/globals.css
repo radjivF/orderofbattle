@@ -315,6 +315,26 @@ a {
   filter: brightness(0.96);
 }
 
+.library-card {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.library-card::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  background: rgb(22 18 12 / 0);
+  transition: background 80ms ease-out;
+}
+
+.library-card:has(.library-card-open:active)::after,
+.library-card[data-opening="true"]::after {
+  background: rgb(22 18 12 / 0.12);
+}
+
 .ios-liquid-glass:active {
   filter: brightness(0.96);
 }
