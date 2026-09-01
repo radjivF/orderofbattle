@@ -39,6 +39,10 @@ vi.mock("next/navigation", () => ({
   useRouter: () => ({ push }),
 }));
 
+vi.mock("./IosNavSlide", () => ({
+  useListNav: () => ({ goBack: () => push("/battle-record") }),
+}));
+
 vi.mock("./BuilderReady", () => ({
   BuilderReady: ({ list }: { list: { name: string } }) => (
     <p>Play mode · {list.name}</p>
@@ -179,6 +183,23 @@ describe("BattleRecordGameScreen", () => {
     ).toBeInTheDocument();
   });
 
+  it("keeps both players on the same name, score, and extras rows", async () => {
+    vi.mocked(gameStorage.getGame).mockResolvedValue(activeFixture());
+    render(<BattleRecordGameScreen gameId="game-1" />);
+
+    const board = await screen.findByRole("region", { name: "Match score" });
+    const grid = board.firstElementChild;
+    expect(grid?.className).toContain("grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]");
+    expect(grid?.className).not.toContain("items-end");
+    expect(board.querySelector(":scope > div > .sr-only")).toBeNull();
+    expect(board.querySelectorAll("p.tabular-nums")).toHaveLength(2);
+    const cells = grid ? [...grid.children] : [];
+    expect(cells[0]?.className).toContain("col-start-1");
+    expect(cells[2]?.className).toContain("col-start-3");
+    expect(within(board).getByText("vs").className).toContain("col-start-2");
+    expect(within(board).getByText("vs").className).toContain("self-center");
+  });
+
   it("Done finishes the battle and shows the recap with score share actions", async () => {
     const user = userEvent.setup();
     vi.mocked(gameStorage.getGame).mockResolvedValue(activeFixture());
@@ -258,6 +279,18 @@ describe("BattleRecordGameScreen", () => {
     });
   });
 
+  it("puts back next to the match title and returns to Battle record", async () => {
+    const user = userEvent.setup();
+    vi.mocked(gameStorage.getGame).mockResolvedValue(activeFixture());
+    render(<BattleRecordGameScreen gameId="game-1" />);
+
+    const title = await screen.findByRole("heading", { name: /Rad vs Alex/ });
+    const back = screen.getByRole("button", { name: "Back to Battle record" });
+    expect(title.parentElement).toContainElement(back);
+    await user.click(back);
+    expect(push).toHaveBeenCalledWith("/battle-record");
+  });
+
   it("uses a discreet Edit control instead of a full-width Edit setup button", async () => {
     vi.mocked(gameStorage.getGame).mockResolvedValue(activeFixture());
     render(<BattleRecordGameScreen gameId="game-1" />);
@@ -272,6 +305,8 @@ describe("BattleRecordGameScreen", () => {
     expect(edit.className).not.toContain("ios-liquid-glass");
     expect(edit.className).not.toMatch(/\bw-full\b/);
     expect(title.parentElement).toContainElement(edit);
+    const back = screen.getByRole("button", { name: "Back to Battle record" });
+    expect(title.parentElement).toContainElement(back);
   });
 
   it("Edit opens setup where match settings can change army and initiative", async () => {
@@ -281,7 +316,6 @@ describe("BattleRecordGameScreen", () => {
 
     await screen.findByRole("heading", { name: /Rad vs Alex/ });
     await user.click(screen.getByRole("button", { name: "Edit" }));
-
     expect(
       await screen.findByRole("heading", { name: "Set up battle" }),
     ).toBeInTheDocument();
@@ -291,6 +325,37 @@ describe("BattleRecordGameScreen", () => {
       screen.getByRole("group", { name: "Priority and double turn" }),
     ).toBeInTheDocument();
     expect(screen.getByText("Yours painted")).toBeInTheDocument();
+  });
+
+  it("slides setup in over the live game and slides it back out", async () => {
+    const user = userEvent.setup();
+    vi.mocked(gameStorage.getGame).mockResolvedValue(activeFixture());
+    render(<BattleRecordGameScreen gameId="game-1" />);
+
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+    await user.click(screen.getByRole("button", { name: "Edit" }));
+
+    const setupTitle = await screen.findByRole("heading", {
+      name: "Set up battle",
+    });
+    expect(
+      screen.getByRole("heading", { name: /Rad vs Alex/ }),
+    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(setupTitle.closest(".list-flow-track")?.className).toContain(
+        "list-flow-track--detail",
+      );
+    });
+
+    await user.click(screen.getByRole("button", { name: "Back to battle" }));
+    await waitFor(() => {
+      expect(
+        screen.queryByRole("heading", { name: "Set up battle" }),
+      ).not.toBeInTheDocument();
+    });
+    expect(
+      screen.getByRole("heading", { name: /Rad vs Alex/ }),
+    ).toBeInTheDocument();
   });
 
   it("Edit setup lets you change battleplan on an active battle", async () => {

@@ -1,11 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import {
   battleplanLayouts,
   getBattleplanLayout,
 } from "@/engine/battleplanLayout";
-import { battleTacticsForRealm } from "@/engine/data/load";
+import {
+  battleTacticPickerCards,
+  battleTacticRealmForPicker,
+  battleTacticsForRealm,
+} from "@/engine/data/load";
 import {
   battleSetupGaps,
   canStartBattle,
@@ -16,13 +20,20 @@ import {
   startBattle,
   type GameSession,
 } from "@/engine/gameSession";
+import { isTowList } from "@/engine/storedList";
+import type { ArmyList } from "@/engine/types";
 import {
+  BATTLE_PAGE_COLUMN_CLASS,
   IOS_LIQUID_CTA_CLASS,
   LIBRARY_TITLE_CLASS,
   LIBRARY_TITLE_ROW_CLASS,
   SHEET_SECONDARY_BUTTON_CLASS,
-  SITE_COLUMN_CLASS,
 } from "@/lib/builderUi";
+import {
+  getArmiesServerSnapshot,
+  getArmiesSnapshot,
+  subscribeArmies,
+} from "@/lib/storage";
 import { BattleplanBoard } from "./BattleplanBoard";
 import { BattleRecordMatchFields } from "./BattleRecordMatchFields";
 import { BattleTacticText } from "./BattleTacticText";
@@ -55,31 +66,101 @@ function pickRandomBattleplanId(): string {
   return battleplanLayouts[index]!.id;
 }
 
+function aosListById(
+  lists: ReturnType<typeof getArmiesSnapshot>,
+  listId: string | undefined,
+): ArmyList | undefined {
+  if (!listId) {
+    return undefined;
+  }
+  const found = (lists ?? []).find((item) => item.id === listId);
+  if (!found || isTowList(found)) {
+    return undefined;
+  }
+  return found;
+}
+
+function tacticCardsForPlayer(
+  list: ArmyList | undefined,
+  selectedIds: string[],
+) {
+  const realm = battleTacticRealmForPicker(list?.scourgeRealm, selectedIds);
+  return battleTacticPickerCards(realm, selectedIds);
+}
+
+function listTacticPrefill(list: ArmyList | undefined): string[] {
+  return (list?.battleTacticCardIds ?? []).slice(0, 2);
+}
+
 export function BattleRecordSetupScreen({
   game,
   onChange,
   onBack,
   editing = false,
 }: Props) {
-  const aqshyCards = useMemo(() => battleTacticsForRealm("aqshy"), []);
+  const lists = useSyncExternalStore(
+    subscribeArmies,
+    getArmiesSnapshot,
+    getArmiesServerSnapshot,
+  );
+  const yourList = aosListById(lists, game.yourListId);
+  const opponentList = aosListById(lists, game.opponentListId);
+  const yourCards = useMemo(
+    () => tacticCardsForPlayer(yourList, game.yourTacticCardIds),
+    [yourList, game.yourTacticCardIds],
+  );
+  const opponentCards = useMemo(
+    () => tacticCardsForPlayer(opponentList, game.opponentTacticCardIds),
+    [opponentList, game.opponentTacticCardIds],
+  );
   const layout = getBattleplanLayout(game.battleplanId);
   const ready = canStartBattle(game);
   const gaps = battleSetupGaps(game);
 
+  useEffect(() => {
+    const yourPrefill = listTacticPrefill(yourList);
+    const opponentPrefill = listTacticPrefill(opponentList);
+    if (
+      (yourPrefill.length === 0 || game.yourTacticCardIds.length > 0) &&
+      (opponentPrefill.length === 0 || game.opponentTacticCardIds.length > 0)
+    ) {
+      return;
+    }
+    onChange((prev) => {
+      let next = prev;
+      if (prev.yourTacticCardIds.length === 0 && yourPrefill.length > 0) {
+        next = setPlayerTacticCards(next, "you", yourPrefill);
+      }
+      if (
+        next.opponentTacticCardIds.length === 0 &&
+        opponentPrefill.length > 0
+      ) {
+        next = setPlayerTacticCards(next, "opponent", opponentPrefill);
+      }
+      return next;
+    });
+  }, [
+    game.opponentTacticCardIds.length,
+    game.yourTacticCardIds.length,
+    onChange,
+    opponentList,
+    yourList,
+  ]);
+
   return (
     <div className="relative z-10 min-h-full">
-      <div className={`${SITE_COLUMN_CLASS} pt-2 pb-3`}>
+      <div className={`${BATTLE_PAGE_COLUMN_CLASS} pt-2 pb-3`}>
         <div className={LIBRARY_TITLE_ROW_CLASS}>
           <IosNavBackButton
             label={editing ? "Close setup" : "Back to Battle record"}
             onClick={onBack}
           />
           <h1 className={LIBRARY_TITLE_CLASS}>Set up battle</h1>
-          <span className="w-10" aria-hidden="true" />
+          <span className="h-11 w-11 shrink-0" aria-hidden="true" />
         </div>
       </div>
 
-      <main className="mx-auto flex w-full max-w-3xl flex-col gap-4 px-5 pb-20 sm:px-6">
+      <main className={`${BATTLE_PAGE_COLUMN_CLASS} flex flex-col gap-4 pb-20`}>
         <section className={`${PANEL} flex flex-col gap-5`}>
           <h2 className="font-serif text-xl">Match</h2>
           <BattleRecordMatchFields
@@ -211,7 +292,7 @@ export function BattleRecordSetupScreen({
         <TacticPick
           title={`${game.yourName} · battle tactics`}
           selected={game.yourTacticCardIds}
-          cards={aqshyCards}
+          cards={yourCards}
           onToggle={(id) =>
             onChange((prev) =>
               setPlayerTacticCards(
@@ -225,7 +306,7 @@ export function BattleRecordSetupScreen({
         <TacticPick
           title={`${game.opponentName} · battle tactics`}
           selected={game.opponentTacticCardIds}
-          cards={aqshyCards}
+          cards={opponentCards}
           onToggle={(id) =>
             onChange((prev) =>
               setPlayerTacticCards(
@@ -324,7 +405,7 @@ function TacticPick({
                   checked
                     ? "bg-aether/15 ring-aether/35"
                     : "bg-parchment-ink/5 ring-parchment-ink/10"
-                } ${disabled ? "opacity-45" : ""}`}
+                } ${disabled ? "opacity-70" : ""}`}
               >
                 <div className="flex items-center gap-2 px-3 py-2">
                   <label

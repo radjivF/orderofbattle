@@ -1,6 +1,9 @@
 "use client";
 
 import {
+  createContext,
+  useCallback,
+  useContext,
   useEffect,
   useLayoutEffect,
   useRef,
@@ -19,6 +22,12 @@ import {
   shouldCommitSheetDismiss,
   sheetDismissEligible,
 } from "@/lib/sheetDismiss";
+
+const ModalDismissContext = createContext<() => void>(() => {});
+
+export function useModalDismiss() {
+  return useContext(ModalDismissContext);
+}
 
 type Props = {
   label: string;
@@ -41,6 +50,12 @@ type SheetDragState = {
   dismissEligible: boolean;
   scrollEl: HTMLElement | null;
 };
+
+function prefersReducedMotion() {
+  return Boolean(window.matchMedia?.("(prefers-reduced-motion: reduce)").matches);
+}
+
+const SHEET_SLIDE_MS = 280;
 
 function emptyDragState(): SheetDragState {
   return {
@@ -91,6 +106,8 @@ export function ModalFrame({
   const [dragAnimating, setDragAnimating] = useState(false);
   const dragOffsetRef = useRef(0);
   const dragRef = useRef<SheetDragState>(emptyDragState());
+  const dismissingRef = useRef(false);
+  const requestCloseRef = useRef<() => void>(() => {});
 
   useEffect(() => {
     onCloseRef.current = onClose;
@@ -104,13 +121,44 @@ export function ModalFrame({
     );
   }
 
-  function dismissSheet() {
-    const height = panelRef.current?.offsetHeight ?? 400;
-    dragOffsetRef.current = height;
-    setDragAnimating(true);
-    setDragOffset(height);
-    window.setTimeout(() => onCloseRef.current(), 240);
-  }
+  const requestClose = useCallback(() => {
+    if (variant !== "sheet") {
+      onCloseRef.current();
+      return;
+    }
+    if (dismissingRef.current) {
+      return;
+    }
+    dismissingRef.current = true;
+    if (prefersReducedMotion()) {
+      onCloseRef.current();
+      return;
+    }
+    const height = panelRef.current?.offsetHeight || 400;
+    const fromRest = dragOffsetRef.current === 0;
+    const slideOut = () => {
+      dragOffsetRef.current = height;
+      setDragAnimating(true);
+      setDragOffset(height);
+    };
+    if (fromRest) {
+      setDragAnimating(true);
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(slideOut);
+      });
+    } else {
+      slideOut();
+    }
+    window.setTimeout(() => onCloseRef.current(), SHEET_SLIDE_MS);
+  }, [variant]);
+
+  useLayoutEffect(() => {
+    requestCloseRef.current = requestClose;
+  }, [requestClose]);
+
+  const dismiss = useCallback(() => {
+    requestCloseRef.current();
+  }, []);
 
   function resetSheetDrag() {
     const scrollEl = dragRef.current.scrollEl;
@@ -217,7 +265,7 @@ export function ModalFrame({
       if (
         shouldCommitSheetDismiss(dragOffsetRef.current, threshold)
       ) {
-        dismissSheet();
+        requestClose();
       } else {
         dragOffsetRef.current = 0;
         resetSheetDrag();
@@ -228,7 +276,7 @@ export function ModalFrame({
   }
 
   useLayoutEffect(() => {
-    closeHandlerRef.current = () => onCloseRef.current();
+    closeHandlerRef.current = () => requestCloseRef.current();
     const layer = acquireModalLayer(closeHandlerRef.current);
     setZIndex(layer);
 
@@ -243,7 +291,7 @@ export function ModalFrame({
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
         if (isTopModal(closeHandlerRef.current)) {
-          onCloseRef.current();
+          requestCloseRef.current();
         }
         return;
       }
@@ -374,7 +422,7 @@ export function ModalFrame({
       if (drag.dragging) {
         const threshold = panel.offsetHeight;
         if (shouldCommitSheetDismiss(dragOffsetRef.current, threshold)) {
-          dismissSheet();
+          requestCloseRef.current();
         } else {
           dragOffsetRef.current = 0;
           resetSheetDrag();
@@ -422,7 +470,7 @@ export function ModalFrame({
         }}
         onClick={() => {
           if (backdropArmed.current && isTopModal(closeHandlerRef.current)) {
-            onClose();
+            requestCloseRef.current();
           }
         }}
       />
@@ -454,7 +502,9 @@ export function ModalFrame({
             style={{ touchAction: "none" }}
           />
         ) : null}
-        {children}
+        <ModalDismissContext.Provider value={dismiss}>
+          {children}
+        </ModalDismissContext.Provider>
       </div>
     </div>,
     document.body,

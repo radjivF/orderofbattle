@@ -178,7 +178,7 @@ export const LIBRARY_BRAND_HEADER_ROW_CLASS =
 export const APP_MENU_DRAWER_MS = 280;
 
 export const APP_MENU_DRAWER_PANEL_CLASS =
-  "flex h-full w-[min(20rem,88vw)] flex-col bg-parchment text-parchment-ink shadow-[8px_0_32px_rgba(0,0,0,0.35)]";
+  "flex h-full w-[min(20rem,88vw)] flex-col overflow-hidden bg-parchment text-parchment-ink shadow-[8px_0_32px_rgba(0,0,0,0.35)]";
 
 /** Options over library art — translucent ink disc with a gold rim. */
 export const LIBRARY_HEADER_OPTIONS_BUTTON_CLASS =
@@ -186,11 +186,15 @@ export const LIBRARY_HEADER_OPTIONS_BUTTON_CLASS =
 
 /** My lists heading: options leading, New list trailing. */
 export const LIBRARY_TITLE_ROW_CLASS =
-  "flex items-center gap-3";
+  "flex min-h-11 items-center gap-3";
 
 /** Page title over index art — shadow for contrast on busy backdrops. */
 export const LIBRARY_TITLE_CLASS =
-  "min-w-0 flex-1 font-serif text-3xl font-semibold text-parchment [text-shadow:0_2px_16px_rgba(0,0,0,0.95),0_1px_3px_rgba(0,0,0,1)]";
+  "min-w-0 flex-1 font-serif text-3xl font-semibold leading-none text-parchment [text-shadow:0_2px_16px_rgba(0,0,0,0.95),0_1px_3px_rgba(0,0,0,1)]";
+
+/** Battle setup / recap / live game — same gutter as the parchment cards. */
+export const BATTLE_PAGE_COLUMN_CLASS =
+  "mx-auto w-full max-w-3xl px-5 sm:px-6";
 
 export const IOS_NAV_ADD_BUTTON_CLASS = IOS_NAV_ICON_BUTTON_CLASS;
 
@@ -225,6 +229,18 @@ export const MODAL_SHEET_SCROLL_HOST_CLASS =
 /** Pinned sheet footer below the scroll body — stays visible while content moves. */
 export const MODAL_SHEET_FOOTER_CLASS =
   "modal-sheet-footer ios-sheet-actions shrink-0 px-5 pb-5";
+
+/** Same pinned footer, Cancel + Continue on one row instead of stacked. */
+export const MODAL_SHEET_FOOTER_ROW_CLASS =
+  "modal-sheet-footer ios-sheet-actions-row shrink-0 px-5 pb-5";
+
+/** Quiet dismiss on the left of a footer row — not a competing chip. */
+export const SHEET_FOOTER_CANCEL_CLASS =
+  "pressable inline-flex min-h-11 shrink-0 cursor-pointer items-center justify-center rounded-xl px-3 text-[15px] font-semibold text-sheet-muted";
+
+/** Primary footer action — fills the rest of the row; stays readable when disabled. */
+export const SHEET_FOOTER_PRIMARY_CLASS =
+  "ios-liquid-glass pressable inline-flex min-h-11 min-w-0 flex-1 cursor-pointer items-center justify-center rounded-xl px-4 text-[15px] font-semibold text-black disabled:cursor-not-allowed disabled:text-black/45";
 
 /** Secondary sheet action — file pick, download, etc. */
 export const SHEET_SECONDARY_BUTTON_CLASS =

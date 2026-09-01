@@ -2,20 +2,18 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
+  GAME_FEATURE_ROWS,
   GAME_MENU_ROWS,
-  TRACK_GAME_MENU_ROW,
+  gameBattleRecordSelected,
+  gameListsSelected,
   type ActiveMenu,
+  type GameFeatureId,
 } from "@/lib/activeMenu";
 import {
   APP_MENU_DRAWER_MS,
   APP_MENU_DRAWER_PANEL_CLASS,
-  LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS,
-  SHEET_CHECKLIST_ITEM_CLASS,
-  SHEET_CHECKLIST_ITEM_IDLE_CLASS,
-  SHEET_CHECKLIST_ITEM_SELECTED_CLASS,
   SHEET_HEADER_CLASS,
 } from "@/lib/builderUi";
 import {
@@ -23,7 +21,6 @@ import {
   isTopModal,
   releaseModalLayer,
 } from "@/lib/modalLock";
-import { isBattleRecordPath } from "./BattleRecordHost";
 import { SheetCloseButton } from "./ios/SheetIconButton";
 
 type Props = {
@@ -106,8 +103,8 @@ function LeftDrawer({
     >
       <div
         aria-hidden="true"
-        className={`modal-scrim absolute inset-0 ${
-          leaving ? "bg-ink" : "bg-ink/70"
+        className={`modal-scrim app-menu-scrim absolute inset-0 bg-ink/70 ${
+          leaving ? "app-menu-scrim--out" : ""
         }`}
         onPointerDown={(event) => {
           event.preventDefault();
@@ -137,11 +134,32 @@ function LeftDrawer({
   );
 }
 
-export function AppMenuSheet({ active, onSelect, onClose }: Props) {
+const MENU_GAME_TITLE_CLASS = "font-serif text-lg";
+
+export function AppMenuSheet({ onSelect, onClose }: Props) {
   const pathname = usePathname();
   const router = useRouter();
-  const onBattleRecord = isBattleRecordPath(pathname);
-  const selected = onBattleRecord ? "tactics" : active;
+
+  function openFeature(feature: GameFeatureId, close: () => void) {
+    if (feature === "lists") {
+      onSelect("aos");
+      if (pathname !== "/dashboard") {
+        router.push("/dashboard", { scroll: false });
+      }
+    } else {
+      onSelect("tactics");
+      if (!pathname.startsWith("/battle-record")) {
+        router.push("/battle-record", { scroll: false });
+      }
+    }
+    close();
+  }
+
+  function featureSelected(feature: GameFeatureId) {
+    return feature === "lists"
+      ? gameListsSelected(pathname, "aos")
+      : gameBattleRecordSelected(pathname, "aos");
+  }
 
   return (
     <LeftDrawer label="Menu" onClose={onClose}>
@@ -151,47 +169,40 @@ export function AppMenuSheet({ active, onSelect, onClose }: Props) {
             <h2 className="font-serif text-2xl">Menu</h2>
             <SheetCloseButton label="Close menu" onClick={close} />
           </div>
-          <h3 className="px-5 pb-2 text-sm font-medium text-sheet-muted">Games</h3>
-          <ul className="flex flex-col gap-2 px-3 pb-4">
-            {GAME_MENU_ROWS.map((row) => (
-              <MenuRow
-                key={row.id}
-                label={row.label}
-                selected={selected === row.id}
-                disabled={row.disabled}
-                onSelect={() => {
-                  if (row.disabled) {
-                    return;
-                  }
-                  onSelect(row.id);
-                  if (onBattleRecord) {
-                    // Swap under the open drawer/scrim, then slide the menu out.
-                    // Instant close flashes the page; leave-then-nav remounts the drawer.
-                    router.push("/dashboard", { scroll: false });
-                  }
-                  close();
-                }}
-              />
-            ))}
-          </ul>
-          <div
-            role="separator"
-            className={LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS}
-          />
-          <h3 className="px-5 pt-4 pb-2 text-sm font-medium text-sheet-muted">
-            Track a game
-          </h3>
-          <ul className="flex flex-col gap-2 px-3 pb-6">
-            <MenuLinkRow
-              href="/battle-record"
-              label={TRACK_GAME_MENU_ROW.label}
-              selected={selected === "tactics"}
-              onSelect={() => {
-                onSelect("tactics");
-                close();
-              }}
-            />
-          </ul>
+          <nav className="app-menu-nav">
+            <div className="px-5 pb-6">
+              {GAME_MENU_ROWS.map((game, index) => (
+                <section
+                  key={game.id}
+                  className={index === 0 ? undefined : "mt-8"}
+                  aria-labelledby={`menu-game-${game.id}`}
+                >
+                  <h3
+                    id={`menu-game-${game.id}`}
+                    className={MENU_GAME_TITLE_CLASS}
+                  >
+                    {game.label}
+                  </h3>
+                  {game.comingSoon ? (
+                    <p className="pt-1 text-[15px] text-sheet-muted">
+                      Coming soon
+                    </p>
+                  ) : (
+                    <ul>
+                      {GAME_FEATURE_ROWS.map((feature) => (
+                        <MenuRow
+                          key={feature.id}
+                          label={feature.label}
+                          selected={featureSelected(feature.id)}
+                          onSelect={() => openFeature(feature.id, close)}
+                        />
+                      ))}
+                    </ul>
+                  )}
+                </section>
+              ))}
+            </div>
+          </nav>
         </>
       )}
     </LeftDrawer>
@@ -199,10 +210,8 @@ export function AppMenuSheet({ active, onSelect, onClose }: Props) {
 }
 
 function rowClassName(selected: boolean) {
-  return `${SHEET_CHECKLIST_ITEM_CLASS} pressable w-full items-center text-left ${
-    selected
-      ? SHEET_CHECKLIST_ITEM_SELECTED_CLASS
-      : SHEET_CHECKLIST_ITEM_IDLE_CLASS
+  return `flex min-h-11 w-full cursor-pointer items-center gap-3 py-2 text-left ${
+    selected ? "text-aether" : "hover:text-aether"
   }`;
 }
 
@@ -229,60 +238,25 @@ function MenuCheck({ selected }: { selected: boolean }) {
 function MenuRow({
   label,
   selected,
-  disabled,
   onSelect,
 }: {
   label: string;
   selected: boolean;
-  disabled?: boolean;
   onSelect: () => void;
 }) {
   return (
     <li>
       <button
         type="button"
+        aria-label={label}
         aria-pressed={selected}
-        disabled={disabled}
         onClick={onSelect}
-        className={`${rowClassName(selected)} disabled:cursor-not-allowed disabled:opacity-45`}
+        className={`pressable ${rowClassName(selected)}`}
       >
-        <span
-          className={`min-w-0 flex-1 font-medium ${selected ? "text-aether" : ""}`}
-        >
-          {label}
-        </span>
+        <span className="min-w-0 flex-1 font-medium">{label}</span>
         <MenuCheck selected={selected} />
       </button>
     </li>
   );
 }
 
-function MenuLinkRow({
-  href,
-  label,
-  selected,
-  onSelect,
-}: {
-  href: string;
-  label: string;
-  selected: boolean;
-  onSelect: () => void;
-}) {
-  return (
-    <li>
-      <Link
-        href={href}
-        aria-current={selected ? "page" : undefined}
-        onClick={onSelect}
-        className={rowClassName(selected)}
-      >
-        <span
-          className={`min-w-0 flex-1 font-medium ${selected ? "text-aether" : ""}`}
-        >
-          {label}
-        </span>
-        <MenuCheck selected={selected} />
-      </Link>
-    </li>
-  );
-}

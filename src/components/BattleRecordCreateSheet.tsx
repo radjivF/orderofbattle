@@ -8,12 +8,12 @@ import {
   type GameSession,
 } from "@/engine/gameSession";
 import {
-  IOS_LIQUID_CTA_CLASS,
-  MODAL_SHEET_FOOTER_CLASS,
+  MODAL_SHEET_FOOTER_ROW_CLASS,
   MODAL_SHEET_SCROLL_CLASS,
   MODAL_SHEET_SCROLL_HOST_CLASS,
+  SHEET_FOOTER_CANCEL_CLASS,
+  SHEET_FOOTER_PRIMARY_CLASS,
   SHEET_HEADER_CLASS,
-  SHEET_SECONDARY_BUTTON_CLASS,
 } from "@/lib/builderUi";
 import { BattleRecordMatchFields } from "./BattleRecordMatchFields";
 import { ModalFrame } from "./ModalFrame";
@@ -111,21 +111,21 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
           />
         </div>
       </div>
-      <div className={MODAL_SHEET_FOOTER_CLASS}>
+      <div className={MODAL_SHEET_FOOTER_ROW_CLASS}>
+        <button
+          type="button"
+          onClick={onClose}
+          className={SHEET_FOOTER_CANCEL_CLASS}
+        >
+          Cancel
+        </button>
         <button
           type="button"
           disabled={!canCreate}
           onClick={create}
-          className={`${IOS_LIQUID_CTA_CLASS} disabled:cursor-not-allowed disabled:opacity-40`}
+          className={SHEET_FOOTER_PRIMARY_CLASS}
         >
           {saving ? "Starting…" : "Continue"}
-        </button>
-        <button
-          type="button"
-          onClick={onClose}
-          className={SHEET_SECONDARY_BUTTON_CLASS}
-        >
-          Cancel
         </button>
       </div>
     </ModalFrame>

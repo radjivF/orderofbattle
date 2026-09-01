@@ -1,19 +1,9 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { BattleRecordGameScreen } from "./BattleRecordGameScreen";
 import { BattleRecordScreen } from "./BattleRecordScreen";
 
-/** Renders Battle record inside the list-flow library pane. */
+/** Battle record list stays in the library pane while a game slides in the detail pane. */
 export function BattleRecordHost() {
-  const pathname = usePathname();
-  const match = pathname.match(/^\/battle-record\/([^/]+)/);
-  const gameId = match?.[1];
-
-  if (gameId) {
-    return <BattleRecordGameScreen gameId={gameId} />;
-  }
-
   return <BattleRecordScreen />;
 }
 

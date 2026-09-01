@@ -11,11 +11,12 @@ const armyStore = vi.hoisted(() => ({ items: [] as StoredList[] }));
 const navigation = vi.hoisted(() => ({
   push: vi.fn(),
   replace: vi.fn(),
+  pathname: "/dashboard",
 }));
 
 vi.mock("next/navigation", () => ({
   useRouter: () => navigation,
-  usePathname: () => "/dashboard",
+  usePathname: () => navigation.pathname,
 }));
 
 vi.mock("next/link", () => ({
@@ -89,6 +90,8 @@ describe("LibraryScreen", () => {
   beforeEach(() => {
     cleanup();
     armyStore.items = [];
+    navigation.pathname = "/dashboard";
+    navigation.replace.mockClear();
     localStorage.clear();
     setActiveMenu("aos");
     Object.defineProperty(window, "matchMedia", {
@@ -120,7 +123,7 @@ describe("LibraryScreen", () => {
     expect(screen.getByRole("button", { name: "Make your first list" }));
   });
 
-  it("shows a real Old World library and sends Battle record to its route", () => {
+  it("keeps My lists on screen while Battle record is opening", () => {
     setActiveMenu("tow");
     render(<LibraryScreen />);
 
@@ -134,14 +137,27 @@ describe("LibraryScreen", () => {
     setActiveMenu("tactics");
     render(<LibraryScreen />);
 
-    expect(navigation.replace).toHaveBeenCalledWith("/battle-record");
-    expect(screen.getByRole("heading", { name: "Battle record" }));
-    expect(screen.getByText(/Open Battle record from the menu/i));
-    expect(screen.queryByRole("button", { name: "New list" })).toBeNull();
-    expect(screen.queryByRole("button", { name: "List options" })).toBeNull();
-    expect(
-      screen.queryByRole("button", { name: "Make your first list" }),
-    ).toBeNull();
+    expect(navigation.replace).not.toHaveBeenCalled();
+    expect(screen.getByRole("heading", { name: "My lists" }));
+    expect(screen.queryByText(/Open Battle record from the menu/i)).toBeNull();
+    expect(screen.getByRole("button", { name: "New list" }));
+    expect(screen.getByRole("button", { name: "List options" }));
+  });
+
+  it("does not steal the homepage or My lists after Battle record was last opened", () => {
+    setActiveMenu("tactics");
+    render(<LibraryScreen />);
+
+    expect(navigation.replace).not.toHaveBeenCalled();
+    expect(screen.getByRole("heading", { name: "My lists" }));
+
+    cleanup();
+    navigation.pathname = "/";
+    navigation.replace.mockClear();
+    setActiveMenu("tactics");
+    render(<LibraryScreen />);
+
+    expect(navigation.replace).not.toHaveBeenCalled();
   });
 
   it("hides Age of Sigmar lists when Old World is selected", () => {

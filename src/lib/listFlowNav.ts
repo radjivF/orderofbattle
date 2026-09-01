@@ -6,7 +6,10 @@ export function listFlowHeaderMode(input: {
   settled?: boolean;
 }): "library" | "builder" {
   if (input.animatingBack) {
-    return "builder";
+    if (input.isBuilder) {
+      return "builder";
+    }
+    return "library";
   }
   if (input.isBuilder && input.showDetail) {
     return "builder";
@@ -17,6 +20,23 @@ export function listFlowHeaderMode(input: {
 /** Home lives in the flow layout so `/dashboard` does not remount the list shell. */
 export function listFlowIsHome(pathname: string): boolean {
   return pathname === "/";
+}
+
+/** Detail pane of the library carousel: a list or a battle. */
+export function listFlowIsDetail(pathname: string): boolean {
+  return pathname.startsWith("/lists/") || listFlowIsBattleRecordGame(pathname);
+}
+
+export function listFlowIsBattleRecordGame(pathname: string): boolean {
+  return pathname.startsWith("/battle-record/");
+}
+
+/** Where the iOS back slide returns. */
+export function listFlowBackHref(pathname: string): string {
+  if (listFlowIsBattleRecordGame(pathname)) {
+    return "/battle-record";
+  }
+  return "/dashboard";
 }
 
 /** Carousel track class when the list detail pane is visible. */

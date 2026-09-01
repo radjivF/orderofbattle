@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, render, screen, within } from "@testing-library/react";
+import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { battleplanLayouts } from "@/engine/battleplanLayout";
 import { battleTacticsForRealm } from "@/engine/data/load";
@@ -7,7 +8,9 @@ import {
   createBattleRecord,
   setBattleplan,
   setPlayerTacticCards,
+  type GameSession,
 } from "@/engine/gameSession";
+import { blankArmy } from "@/engine/listFactories";
 import type { StoredList } from "@/engine/storedList";
 
 const armyStore: { items: StoredList[] } = { items: [] };
@@ -23,8 +26,22 @@ vi.mock("@/lib/storage", () => ({
 
 import { BattleRecordSetupScreen } from "./BattleRecordSetupScreen";
 
+function SetupHarness({ initial }: { initial: GameSession }) {
+  const [game, setGame] = useState(initial);
+  return (
+    <BattleRecordSetupScreen
+      game={game}
+      onChange={(next) =>
+        setGame((prev) => (typeof next === "function" ? next(prev) : next))
+      }
+      onBack={() => undefined}
+    />
+  );
+}
+
 afterEach(() => {
   cleanup();
+  armyStore.items = [];
   vi.restoreAllMocks();
 });
 
@@ -166,6 +183,33 @@ describe("BattleRecordSetupScreen", () => {
     ).toBeInTheDocument();
   });
 
+  it("aligns the back button with the title and the match card gutter", () => {
+    const game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+    });
+
+    render(
+      <BattleRecordSetupScreen
+        game={game}
+        onChange={() => undefined}
+        onBack={() => undefined}
+      />,
+    );
+
+    const back = screen.getByRole("button", { name: "Back to Battle record" });
+    expect(back.parentElement?.className).toContain("min-h-11");
+    expect(back.parentElement?.className).toContain("items-center");
+    expect(back.parentElement?.parentElement?.className).toContain("px-5");
+    expect(screen.getByRole("main").className).toContain("px-5");
+    expect(screen.getByRole("heading", { name: "Set up battle" }).className).toContain(
+      "leading-none",
+    );
+  });
+
   it("Choose random picks a battleplan from the list", async () => {
     const user = userEvent.setup();
     const onChange = vi.fn();
@@ -270,5 +314,82 @@ describe("BattleRecordSetupScreen", () => {
       }),
     );
     expect(screen.queryByText(blazing!.setup)).not.toBeInTheDocument();
+  });
+
+  it("copies battle tactics from the linked list when the game has none", async () => {
+    const aqshy = battleTacticsForRealm("aqshy");
+    const list = {
+      ...blankArmy("sylvaneth", "Radjiv"),
+      battleTacticCardIds: [aqshy[0]!.id, aqshy[1]!.id],
+      scourgeRealm: "aqshy" as const,
+    };
+    armyStore.items = [list];
+    const game = createBattleRecord({
+      yourName: "Radjiv",
+      yourArmy: list.name,
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      yourListId: list.id,
+    });
+
+    render(<SetupHarness initial={game} />);
+
+    const section = screen
+      .getByRole("heading", { name: /Radjiv · battle tactics/ })
+      .closest("section")!;
+    await waitFor(() => {
+      expect(
+        within(section).getByRole("checkbox", { name: aqshy[0]!.name }),
+      ).toBeChecked();
+    });
+    expect(
+      within(section).getByRole("checkbox", { name: aqshy[1]!.name }),
+    ).toBeChecked();
+    expect(
+      within(section).getByRole("checkbox", { name: aqshy[2]!.name }),
+    ).toBeDisabled();
+  });
+
+  it("keeps prefilled tactics from another realm checked and lets you swap", async () => {
+    const user = userEvent.setup();
+    const ghyran = battleTacticsForRealm("ghyran");
+    const first = ghyran[0]!;
+    const second = ghyran[1]!;
+    const third = ghyran[2]!;
+    const game = createBattleRecord({
+      yourName: "Radjiv",
+      yourArmy: "Sylvaneth",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      yourTacticCardIds: [first.id, second.id],
+    });
+
+    render(<SetupHarness initial={game} />);
+
+    const section = screen
+      .getByRole("heading", { name: /Radjiv · battle tactics/ })
+      .closest("section")!;
+    const firstBox = within(section).getByRole("checkbox", {
+      name: first.name,
+    });
+    const secondBox = within(section).getByRole("checkbox", {
+      name: second.name,
+    });
+    const thirdBox = within(section).getByRole("checkbox", {
+      name: third.name,
+    });
+    expect(firstBox).toBeChecked();
+    expect(secondBox).toBeChecked();
+    expect(firstBox).toBeEnabled();
+    expect(thirdBox).toBeDisabled();
+
+    await user.click(firstBox);
+    expect(firstBox).not.toBeChecked();
+    expect(thirdBox).toBeEnabled();
+    await user.click(thirdBox);
+    expect(thirdBox).toBeChecked();
+    expect(secondBox).toBeChecked();
   });
 });

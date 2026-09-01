@@ -11,11 +11,11 @@ import {
 } from "@/engine/gameSession";
 import type { BattleTacticCard, BattleTacticStage } from "@/engine/types";
 import {
+  BATTLE_PAGE_COLUMN_CLASS,
   IOS_LIQUID_CTA_CLASS,
   LIBRARY_TITLE_CLASS,
   LIBRARY_TITLE_ROW_CLASS,
   SHEET_SECONDARY_BUTTON_CLASS,
-  SITE_COLUMN_CLASS,
 } from "@/lib/builderUi";
 import {
   copyBattleRecap,
@@ -57,18 +57,18 @@ export function BattleRecordRecapScreen({ game, onBack, onEdit }: Props) {
 
   return (
     <div className="relative z-10 min-h-full">
-      <div className={`${SITE_COLUMN_CLASS} pt-2 pb-3`}>
+      <div className={`${BATTLE_PAGE_COLUMN_CLASS} pt-2 pb-3`}>
         <div className={LIBRARY_TITLE_ROW_CLASS}>
           <IosNavBackButton label="Back to Battle record" onClick={onBack} />
           <h1 className={LIBRARY_TITLE_CLASS}>
             ({yourFinal} – {opponentFinal}) {game.yourName} vs{" "}
             {game.opponentName}
           </h1>
-          <span className="w-10" aria-hidden="true" />
+          <span className="h-11 w-11 shrink-0" aria-hidden="true" />
         </div>
       </div>
 
-      <main className="mx-auto flex w-full max-w-3xl flex-col gap-4 px-5 pb-20 sm:px-6">
+      <main className={`${BATTLE_PAGE_COLUMN_CLASS} flex flex-col gap-4 pb-20`}>
         <section className={PANEL}>
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0 flex-1">

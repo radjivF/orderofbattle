@@ -22,6 +22,8 @@ import {
   SITE_HEADER_BAR_CLASS,
 } from "@/lib/builderUi";
 import {
+  listFlowBackHref,
+  listFlowIsDetail,
   listFlowIsHome,
   listFlowTrackClass,
   listFlowWindowScrollY,
@@ -90,6 +92,7 @@ export function ListNavProvider({
   const pathname = usePathname();
   const isHome = listFlowIsHome(pathname);
   const isBuilder = pathname.startsWith("/lists/");
+  const isDetail = listFlowIsDetail(pathname);
   const [showDetail, setShowDetailState] = useState(false);
   const [settled, setSettled] = useState(true);
   const [animatingBack, setAnimatingBack] = useState(false);
@@ -134,11 +137,11 @@ export function ListNavProvider({
   }
 
   useEffect(() => {
-    if (!isBuilder) {
+    if (!isDetail) {
       return;
     }
-    router.prefetch("/dashboard");
-  }, [isBuilder, router]);
+    router.prefetch(listFlowBackHref(pathname));
+  }, [isDetail, pathname, router]);
 
   useLayoutEffect(() => {
     if (isHome) {
@@ -146,7 +149,7 @@ export function ListNavProvider({
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
       return;
     }
-    if (!isBuilder) {
+    if (!isDetail) {
       animatingBackRef.current = false;
       clearListNavigationDirection();
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
@@ -194,12 +197,13 @@ export function ListNavProvider({
 
     publishNavState({ showDetail: true, animatingBack: false, settled: true });
     scrollToPane(true, libraryScrollYRef);
-  }, [isBuilder, isHome, pathname, publishNavState]);
+  }, [isDetail, isHome, pathname, publishNavState]);
 
   function goBack() {
-    if (animatingBackRef.current || !isBuilder) {
+    if (animatingBackRef.current || !isDetail) {
       return;
     }
+    const backHref = listFlowBackHref(pathname);
     rememberListNavigation("back");
     clearListOpenSplash();
     clearListCreateSplash();
@@ -207,7 +211,7 @@ export function ListNavProvider({
     if (prefersReducedMotion()) {
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
       scrollToPane(false, libraryScrollYRef);
-      router.push("/dashboard", { scroll: false });
+      router.push(backHref, { scroll: false });
       return;
     }
     animatingBackRef.current = true;
@@ -216,7 +220,7 @@ export function ListNavProvider({
     scrollToPane(false, libraryScrollYRef);
     schedule(() => {
       clearListNavigationDirection();
-      router.push("/dashboard", { scroll: false });
+      router.push(backHref, { scroll: false });
       animatingBackRef.current = false;
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
       schedule(() => setBackdropExiting(false), LIST_BACKDROP_RETURN_MS);
@@ -287,10 +291,10 @@ export function ListNavProvider({
             </div>
             <div
               className="list-flow-pane relative min-h-dvh"
-              aria-hidden={!showDetail && !isBuilder}
+              aria-hidden={!showDetail && !isDetail}
             >
               <div className={`relative z-10 ${LIST_FLOW_HEADER_OFFSET_CLASS}`}>
-                {isBuilder ? children : null}
+                {isDetail ? children : null}
               </div>
             </div>
           </div>

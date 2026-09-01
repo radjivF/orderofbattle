@@ -1,7 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import {
   getBattleplanLayout,
   missionPrimaryPoints,
@@ -28,13 +27,16 @@ import {
 import { isTowList } from "@/engine/storedList";
 import type { ArmyList } from "@/engine/types";
 import {
+  BATTLE_PAGE_COLUMN_CLASS,
   IOS_LIQUID_CTA_CLASS,
   LIBRARY_TITLE_CLASS,
   LIBRARY_TITLE_ROW_CLASS,
+  LIST_FLOW_SLIDE_MS,
   SCOREBOARD_PLAY_BUTTON_CLASS,
   SHEET_SECONDARY_BUTTON_CLASS,
 } from "@/lib/builderUi";
 import { deleteGame, getGame, saveGame } from "@/lib/gameStorage";
+import { listFlowTrackClass } from "@/lib/listFlowNav";
 import {
   getArmiesServerSnapshot,
   getArmiesSnapshot,
@@ -50,6 +52,7 @@ import {
 } from "./BattleRecordTurnScore";
 import { IosNavBackButton, IosNavEditButton } from "./ios/IosNavIconButton";
 import { IosDatasheetIcon } from "./ios/SheetIconButton";
+import { useListNav } from "./IosNavSlide";
 import { SiteFooter } from "./SiteFooter";
 
 type Props = { gameId: string };
@@ -57,7 +60,7 @@ type Props = { gameId: string };
 const PANEL = "parchment-card rounded-2xl px-4 py-4 text-parchment-ink";
 
 export function BattleRecordGameScreen({ gameId }: Props) {
-  const router = useRouter();
+  const { goBack } = useListNav();
   const lists = useSyncExternalStore(
     subscribeArmies,
     getArmiesSnapshot,
@@ -65,7 +68,13 @@ export function BattleRecordGameScreen({ gameId }: Props) {
   );
   const [game, setGame] = useState<GameSession | null | undefined>(undefined);
   const [roundIndex, setRoundIndex] = useState(0);
-  const [editingSetup, setEditingSetup] = useState(false);
+  const [editMounted, setEditMounted] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
+  const [editSettled, setEditSettled] = useState(true);
+  const editAnim = useRef<{ timers: number[]; rafs: number[] }>({
+    timers: [],
+    rafs: [],
+  });
   const [playSide, setPlaySide] = useState<{
     listId: string;
     armyName: string;
@@ -82,6 +91,17 @@ export function BattleRecordGameScreen({ gameId }: Props) {
       cancelled = true;
     };
   }, [gameId]);
+
+  useEffect(() => {
+    return () => {
+      for (const id of editAnim.current.timers) {
+        window.clearTimeout(id);
+      }
+      for (const id of editAnim.current.rafs) {
+        window.cancelAnimationFrame(id);
+      }
+    };
+  }, []);
 
   const layout = useMemo(
     () => (game ? getBattleplanLayout(game.battleplanId) : undefined),
@@ -141,6 +161,64 @@ export function BattleRecordGameScreen({ gameId }: Props) {
     });
   }
 
+  function clearEditAnim() {
+    for (const id of editAnim.current.timers) {
+      window.clearTimeout(id);
+    }
+    for (const id of editAnim.current.rafs) {
+      window.cancelAnimationFrame(id);
+    }
+    editAnim.current = { timers: [], rafs: [] };
+  }
+
+  function prefersReducedMotion() {
+    return Boolean(
+      window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches,
+    );
+  }
+
+  function openEditSetup() {
+    clearEditAnim();
+    window.scrollTo(0, 0);
+    if (prefersReducedMotion()) {
+      setEditMounted(true);
+      setEditOpen(true);
+      setEditSettled(true);
+      return;
+    }
+    setEditMounted(true);
+    setEditOpen(false);
+    setEditSettled(false);
+    const outer = window.requestAnimationFrame(() => {
+      const inner = window.requestAnimationFrame(() => {
+        setEditOpen(true);
+      });
+      editAnim.current.rafs.push(inner);
+    });
+    editAnim.current.rafs.push(outer);
+    const settle = window.setTimeout(() => {
+      setEditSettled(true);
+    }, LIST_FLOW_SLIDE_MS);
+    editAnim.current.timers.push(settle);
+  }
+
+  function closeEditSetup() {
+    clearEditAnim();
+    if (prefersReducedMotion()) {
+      setEditOpen(false);
+      setEditMounted(false);
+      setEditSettled(true);
+      return;
+    }
+    setEditSettled(false);
+    setEditOpen(false);
+    const done = window.setTimeout(() => {
+      setEditMounted(false);
+      setEditSettled(true);
+    }, LIST_FLOW_SLIDE_MS);
+    editAnim.current.timers.push(done);
+  }
+
   if (game === undefined) {
     return (
       <p className="p-8 text-center text-parchment/80" role="status">
@@ -156,7 +234,7 @@ export function BattleRecordGameScreen({ gameId }: Props) {
         <button
           type="button"
           className={`${SHEET_SECONDARY_BUTTON_CLASS} mx-auto mt-4 max-w-xs`}
-          onClick={() => router.push("/battle-record")}
+          onClick={goBack}
         >
           Back to Battle record
         </button>
@@ -164,19 +242,12 @@ export function BattleRecordGameScreen({ gameId }: Props) {
     );
   }
 
-  if (game.status === "setup" || editingSetup) {
+  if (game.status === "setup") {
     return (
       <BattleRecordSetupScreen
         game={game}
-        editing={editingSetup}
         onChange={(next) => void commit(next)}
-        onBack={() => {
-          if (editingSetup) {
-            setEditingSetup(false);
-            return;
-          }
-          router.push("/battle-record");
-        }}
+        onBack={goBack}
       />
     );
   }
@@ -185,7 +256,7 @@ export function BattleRecordGameScreen({ gameId }: Props) {
     return (
       <BattleRecordRecapScreen
         game={game}
-        onBack={() => router.push("/battle-record")}
+        onBack={goBack}
         onEdit={() => void commit((prev) => reopenBattle(prev))}
       />
     );
@@ -212,32 +283,32 @@ export function BattleRecordGameScreen({ gameId }: Props) {
     : undefined;
 
   return (
-    <div className="relative z-10 min-h-full">
-      <main className="mx-auto flex w-full max-w-3xl flex-col gap-4 px-5 pb-24 sm:px-6">
+    <div className="relative z-10 overflow-x-hidden overflow-y-visible">
+      <div className={listFlowTrackClass(editOpen, editSettled)}>
+        <div className="list-flow-pane relative min-h-dvh">
+          <div className="relative z-10 min-h-full">
+      <main className={`${BATTLE_PAGE_COLUMN_CLASS} flex flex-col gap-4 pb-24`}>
         <div className={`${LIBRARY_TITLE_ROW_CLASS} pt-2`}>
           <IosNavBackButton
             label="Back to Battle record"
-            onClick={() => router.push("/battle-record")}
+            onClick={goBack}
           />
           <h1 className={LIBRARY_TITLE_CLASS}>
             {game.yourName} vs {game.opponentName}
           </h1>
           <IosNavEditButton
             label="Edit"
-            onClick={() => setEditingSetup(true)}
+            onClick={openEditSetup}
           />
         </div>
 
-        <section className={PANEL}>
-          <div className="flex items-end justify-between gap-3">
-            <ScoreBlock
+        <section className={PANEL} aria-label="Match score">
+          <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-start gap-x-3">
+            <ScoreIdentity
               name={game.yourName}
               army={game.yourArmy}
-              total={matchTotal(game, "you")}
-              primary={roundVpTotal(game, "you")}
-              tactics={tacticVpTotal(game, "you")}
-              painted={paintedBonus(game, "you")}
               underdog={dog === "you"}
+              className="col-start-1"
               onPlay={
                 yourPlayList
                   ? () =>
@@ -249,16 +320,13 @@ export function BattleRecordGameScreen({ gameId }: Props) {
                   : undefined
               }
             />
-            <p className="pb-1 text-sm text-sheet-muted">vs</p>
-            <ScoreBlock
+            <span aria-hidden="true" className="col-start-2" />
+            <ScoreIdentity
               name={game.opponentName}
               army={game.opponentArmy}
-              total={matchTotal(game, "opponent")}
-              primary={roundVpTotal(game, "opponent")}
-              tactics={tacticVpTotal(game, "opponent")}
-              painted={paintedBonus(game, "opponent")}
               underdog={dog === "opponent"}
               align="right"
+              className="col-start-3"
               onPlay={
                 opponentPlayList
                   ? () =>
@@ -270,6 +338,30 @@ export function BattleRecordGameScreen({ gameId }: Props) {
                   : undefined
               }
             />
+            <p className="col-start-1 font-serif text-4xl tabular-nums text-parchment-ink">
+              {matchTotal(game, "you")}
+            </p>
+            <p className="col-start-2 self-center text-sm text-sheet-muted">
+              vs
+            </p>
+            <p className="col-start-3 text-right font-serif text-4xl tabular-nums text-parchment-ink">
+              {matchTotal(game, "opponent")}
+            </p>
+            <p className="col-start-1 min-h-[1rem] truncate text-xs text-sheet-muted">
+              {scoreExtras(
+                roundVpTotal(game, "you"),
+                tacticVpTotal(game, "you"),
+                paintedBonus(game, "you"),
+              )}
+            </p>
+            <span aria-hidden="true" className="col-start-2" />
+            <p className="col-start-3 min-h-[1rem] truncate text-right text-xs text-sheet-muted">
+              {scoreExtras(
+                roundVpTotal(game, "opponent"),
+                tacticVpTotal(game, "opponent"),
+                paintedBonus(game, "opponent"),
+              )}
+            </p>
           </div>
         </section>
 
@@ -446,15 +538,29 @@ export function BattleRecordGameScreen({ gameId }: Props) {
           type="button"
           className={SHEET_SECONDARY_BUTTON_CLASS}
           onClick={() => {
-            void deleteGame(game.id).then(() =>
-              router.push("/battle-record"),
-            );
+            void deleteGame(game.id).then(() => goBack());
           }}
         >
           Delete battle
         </button>
       </main>
       <SiteFooter showPitch={false} />
+          </div>
+        </div>
+        <div
+          className="list-flow-pane relative min-h-dvh"
+          aria-hidden={!editOpen}
+        >
+          {editMounted ? (
+            <BattleRecordSetupScreen
+              game={game}
+              editing
+              onChange={(next) => void commit(next)}
+              onBack={closeEditSetup}
+            />
+          ) : null}
+        </div>
+      </div>
       {playSide && playList ? (
         <BattleRecordPlaySheet
           list={playList}
@@ -487,84 +593,67 @@ function playableList(
   return undefined;
 }
 
-function ScoreBlock({
+function scoreExtras(primary: number, tactics: number, painted: number): string {
+  if (tactics <= 0 && painted <= 0) {
+    return "\u00a0";
+  }
+  return [
+    `${primary} primary`,
+    tactics > 0 ? `${tactics} tactics` : null,
+    painted > 0 ? `${painted} painted` : null,
+  ]
+    .filter(Boolean)
+    .join(" · ");
+}
+
+function ScoreIdentity({
   name,
   army,
-  total,
-  primary,
-  tactics,
-  painted,
   underdog: isUnderdog,
   align = "left",
+  className = "",
   onPlay,
 }: {
   name: string;
   army: string;
-  total: number;
-  primary: number;
-  tactics: number;
-  painted: number;
   underdog: boolean;
   align?: "left" | "right";
+  className?: string;
   onPlay?: () => void;
 }) {
-  const extras =
-    tactics > 0 || painted > 0
-      ? [
-          `${primary} primary`,
-          tactics > 0 ? `${tactics} tactics` : null,
-          painted > 0 ? `${painted} painted` : null,
-        ]
-          .filter(Boolean)
-          .join(" · ")
-      : null;
-  return (
-    <div className={`min-w-0 flex-1 ${align === "right" ? "text-right" : ""}`}>
-      {onPlay ? (
-        <button
-          type="button"
-          onClick={onPlay}
-          aria-label={`Play ${name}`}
-          className={`pressable flex min-h-11 min-w-0 max-w-full items-center gap-2 ${
-            align === "right" ? "ml-auto" : ""
-          }`}
-        >
-          <IosDatasheetIcon className={SCOREBOARD_PLAY_BUTTON_CLASS} />
-          <span className="min-w-0 text-left">
-            <span className="block truncate text-sm text-sheet-muted">
-              {name}
-              {isUnderdog ? " · underdog" : ""}
-            </span>
-            <span className="block truncate text-xs text-sheet-muted/80">
-              {army}
-            </span>
-          </span>
-        </button>
-      ) : (
-        <>
-          <p className="truncate text-sm text-sheet-muted">
-            {name}
-            {isUnderdog ? " · underdog" : ""}
-          </p>
-          <p className="truncate text-xs text-sheet-muted/80">{army}</p>
-        </>
-      )}
-      <p
-        className={`font-serif text-4xl tabular-nums text-parchment-ink ${
-          onPlay && align !== "right" ? "ps-8" : ""
-        }`}
+  const names = (
+    <span
+      className={`min-w-0 ${align === "right" ? "text-right" : "text-left"}`}
+    >
+      <span className="block truncate text-sm text-sheet-muted">
+        {name}
+        {isUnderdog ? " · underdog" : ""}
+      </span>
+      <span className="block truncate text-xs text-sheet-muted/80">{army}</span>
+    </span>
+  );
+
+  if (!onPlay) {
+    return (
+      <div
+        className={`${align === "right" ? "min-w-0 text-right" : "min-w-0"} ${className}`.trim()}
       >
-        {total}
-      </p>
-      {extras ? (
-        <p
-          className={`mt-0.5 truncate text-xs text-sheet-muted ${
-            onPlay && align !== "right" ? "ps-8" : ""
-          }`}
-        >
-          {extras}
-        </p>
-      ) : null}
-    </div>
+        {names}
+      </div>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={onPlay}
+      aria-label={`Play ${name}`}
+      className={`pressable flex min-h-11 min-w-0 max-w-full items-start gap-2 ${
+        align === "right" ? "ml-auto" : ""
+      } ${className}`.trim()}
+    >
+      <IosDatasheetIcon className={`${SCOREBOARD_PLAY_BUTTON_CLASS} mt-0.5`} />
+      {names}
+    </button>
   );
 }

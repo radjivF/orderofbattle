@@ -4,7 +4,9 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
   libraryCreatingSplashVisible,
+  listFlowBackHref,
   listFlowHeaderMode,
+  listFlowIsDetail,
   listFlowIsHome,
   listFlowTrackClass,
   listFlowWindowScrollY,
@@ -139,6 +141,23 @@ describe("listFlowHeaderMode", () => {
     ).toBe("builder");
   });
 
+  it("keeps the library header on a live battle so back lives next to the match title", () => {
+    expect(
+      listFlowHeaderMode({
+        isBuilder: false,
+        showDetail: false,
+        animatingBack: true,
+      }),
+    ).toBe("library");
+    expect(
+      listFlowHeaderMode({
+        isBuilder: false,
+        showDetail: true,
+        animatingBack: false,
+      }),
+    ).toBe("library");
+  });
+
   it("keeps the builder header once the list detail pane is showing", () => {
     expect(
       listFlowHeaderMode({
@@ -166,6 +185,17 @@ describe("listFlowIsHome", () => {
     expect(listFlowIsHome("/")).toBe(true);
     expect(listFlowIsHome("/dashboard")).toBe(false);
     expect(listFlowIsHome("/lists/abc")).toBe(false);
+  });
+});
+
+describe("listFlowIsDetail", () => {
+  it("slides a battle the same way as a list", () => {
+    expect(listFlowIsDetail("/dashboard")).toBe(false);
+    expect(listFlowIsDetail("/battle-record")).toBe(false);
+    expect(listFlowIsDetail("/lists/abc")).toBe(true);
+    expect(listFlowIsDetail("/battle-record/game-1")).toBe(true);
+    expect(listFlowBackHref("/lists/abc")).toBe("/dashboard");
+    expect(listFlowBackHref("/battle-record/game-1")).toBe("/battle-record");
   });
 });
 
@@ -244,6 +274,18 @@ describe("list flow navigation wiring", () => {
     expect(nav).toContain("listFlowIsHome");
     expect(nav).toContain("listFlowTrackClass");
     expect(nav).toContain("listFlowTrackClass(showDetail, settled)");
+    expect(nav).toContain("listFlowIsDetail");
+    expect(nav).toContain("listFlowBackHref");
+    const battlePage = readSource("app/(flow)/battle-record/[id]/page.tsx");
+    const battleList = readSource("components/BattleRecordScreen.tsx");
+    const battleHost = readSource("components/BattleRecordHost.tsx");
+    expect(battlePage).toContain("BattleRecordGameScreen");
+    expect(battleList).toContain('rememberListNavigation("forward")');
+    expect(battleHost).not.toContain("BattleRecordGameScreen");
+    const battleGame = readSource("components/BattleRecordGameScreen.tsx");
+    expect(battleGame).toContain("listFlowTrackClass(editOpen, editSettled)");
+    expect(battleGame).toContain("openEditSetup");
+    expect(battleGame).not.toContain("setEditingSetup(true)");
     expect(nav).toContain("LIST_FLOW_HEADER_OFFSET_CLASS");
     expect(nav).not.toContain(
       "overflow-x-hidden ${listFlowHeaderOffsetClass",
@@ -288,6 +330,8 @@ describe("list flow navigation wiring", () => {
   it("resolves header fallback from storage before chrome loads", () => {
     const header = readSource("components/ListFlowHeader.tsx");
     expect(header).toContain("resolveBuilderHeaderDisplay");
+    expect(header).not.toContain('mode === "battle"');
+    expect(header).not.toContain('label="Battle record"');
     expect(header).not.toContain("builderHeaderShowsListStats");
   });
 

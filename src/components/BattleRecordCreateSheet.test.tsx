@@ -120,6 +120,52 @@ describe("BattleRecordCreateSheet", () => {
     ).not.toContainElement(hint);
   });
 
+  it("puts a quiet Cancel on the left and Continue as the primary action", () => {
+    render(
+      <BattleRecordCreateSheet
+        open
+        onClose={() => undefined}
+        onCreated={() => undefined}
+      />,
+    );
+
+    const dialog = screen.getByRole("dialog", { name: "New battle record" });
+    const cancel = within(dialog).getByRole("button", { name: "Cancel" });
+    const continueBtn = within(dialog).getByRole("button", { name: "Continue" });
+    expect(cancel.parentElement).toBe(continueBtn.parentElement);
+    expect(cancel.parentElement?.className).toContain("ios-sheet-actions-row");
+    expect(cancel.className).toContain("text-sheet-muted");
+    expect(cancel.className).not.toContain("bg-parchment-ink/8");
+    expect(continueBtn.className).toContain("ios-liquid-glass");
+    expect(continueBtn.className).toContain("flex-1");
+    expect(continueBtn.className).not.toContain("opacity-40");
+    expect(continueBtn).toBeDisabled();
+    expect(
+      cancel.compareDocumentPosition(continueBtn) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+  });
+
+  it("closes from Cancel", async () => {
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    const onClose = vi.fn();
+    render(
+      <BattleRecordCreateSheet
+        open
+        onClose={onClose}
+        onCreated={() => undefined}
+      />,
+    );
+
+    await user.click(
+      within(screen.getByRole("dialog", { name: "New battle record" })).getByRole(
+        "button",
+        { name: "Cancel" },
+      ),
+    );
+    expect(onClose).toHaveBeenCalled();
+  });
+
   it("lets you pick a saved list and preloads its battle tactics", async () => {
     const user = userEvent.setup({ pointerEventsCheck: 0 });
     const onCreated = vi.fn();

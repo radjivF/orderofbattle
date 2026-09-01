@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useSyncExternalStore } from "react";
 import { usePathname } from "next/navigation";
 import { getFaction } from "@/engine/queries";
 import { formatPoints } from "@/engine/pointsCap";
@@ -11,7 +11,6 @@ import {
   brandSubtitleForMenu,
   getActiveMenuServerSnapshot,
   getActiveMenuSnapshot,
-  setActiveMenu,
   subscribeActiveMenu,
 } from "@/lib/activeMenu";
 import {
@@ -40,9 +39,9 @@ import type { BuilderChromeValue } from "./BuilderChrome";
 import type { LibraryChromeValue } from "./LibraryChrome";
 import { isBattleRecordPath } from "./BattleRecordHost";
 import { useListNav } from "./IosNavSlide";
-import { IosNavBackButton, IosNavMenuButton } from "./ios/IosNavIconButton";
+import { AppHeaderMenu } from "./AppHeaderMenu";
+import { IosNavBackButton } from "./ios/IosNavIconButton";
 import { SiteBrandLockup } from "./BrandMark";
-import { AppMenuSheet } from "./AppMenuSheet";
 
 function LibraryHeaderRow() {
   const pathname = usePathname();
@@ -52,24 +51,13 @@ function LibraryHeaderRow() {
     getActiveMenuServerSnapshot,
   );
   const menu = isBattleRecordPath(pathname) ? "tactics" : storedMenu;
-  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className={SITE_HEADER_ROW_CLASS}>
       <div className={LIBRARY_BRAND_HEADER_ROW_CLASS}>
-        <IosNavMenuButton
-          label="Open menu"
-          onClick={() => setMenuOpen(true)}
-        />
+        <AppHeaderMenu />
         <SiteBrandLockup subtitle={brandSubtitleForMenu(menu)} />
       </div>
-      {menuOpen ? (
-        <AppMenuSheet
-          active={menu}
-          onSelect={setActiveMenu}
-          onClose={() => setMenuOpen(false)}
-        />
-      ) : null}
     </div>
   );
 }

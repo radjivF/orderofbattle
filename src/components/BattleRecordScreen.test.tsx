@@ -28,15 +28,33 @@ vi.mock("next/link", () => ({
   default: ({
     children,
     href,
+    onClick,
     ...props
   }: {
     children: React.ReactNode;
     href: string;
+    onClick?: React.MouseEventHandler<HTMLAnchorElement>;
   } & React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-    <a href={href} {...props}>
+    <a
+      href={href}
+      {...props}
+      onClick={(event) => {
+        event.preventDefault();
+        onClick?.(event);
+      }}
+    >
       {children}
     </a>
   ),
+}));
+
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ push: vi.fn() }),
+}));
+
+const rememberListNavigation = vi.fn();
+vi.mock("@/lib/listTransition", () => ({
+  rememberListNavigation: (...args: unknown[]) => rememberListNavigation(...args),
 }));
 
 import { deleteGame } from "@/lib/gameStorage";
@@ -77,6 +95,7 @@ beforeEach(() => {
 afterEach(() => {
   cleanup();
   games.length = 0;
+  rememberListNavigation.mockClear();
   vi.clearAllMocks();
   document.body.removeAttribute("style");
 });
@@ -125,5 +144,19 @@ describe("BattleRecordScreen", () => {
     );
 
     expect(deleteGame).toHaveBeenCalledWith("game-delete-me");
+  });
+
+  it("slides the battle in like opening a list", async () => {
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    games.push(seededGame());
+    render(<BattleRecordScreen />);
+
+    await user.click(screen.getByRole("link", { name: /Rad vs Alex/ }));
+
+    expect(rememberListNavigation).toHaveBeenCalledWith("forward");
+    expect(screen.getByRole("link", { name: /Rad vs Alex/ })).toHaveAttribute(
+      "href",
+      "/battle-record/game-delete-me",
+    );
   });
 });

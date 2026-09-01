@@ -1,13 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useMemo, useState, useSyncExternalStore } from "react";
+import { usePathname } from "next/navigation";
 import type { StoredList } from "@/engine/storedList";
 import { listGame } from "@/engine/storedList";
 import {
   getActiveMenuServerSnapshot,
   getActiveMenuSnapshot,
-  menuPlaceholderCopy,
   menuShowsListLibrary,
   subscribeActiveMenu,
 } from "@/lib/activeMenu";
@@ -33,7 +32,7 @@ import {
   type LibrarySortMode,
   subscribeLibrarySort,
 } from "@/lib/librarySort";
-import { LibraryEmptyState, LibraryMenuPlaceholder } from "./LibraryEmptyState";
+import { LibraryEmptyState } from "./LibraryEmptyState";
 import { LibraryCreateFlow } from "./LibraryCreateFlow";
 import { LibraryListCard } from "./LibraryListCard";
 import { LibraryOptionsSheet } from "./LibraryOptionsSheet";
@@ -48,7 +47,6 @@ import { SiteFooter } from "./SiteFooter";
 
 export function LibraryScreen() {
   const pathname = usePathname();
-  const router = useRouter();
   const lists = useSyncExternalStore(
     subscribeArmies,
     getArmiesSnapshot,
@@ -68,17 +66,11 @@ export function LibraryScreen() {
   const [picking, setPicking] = useState(false);
   const [librarySheetOpen, setLibrarySheetOpen] = useState(false);
   const displayedLists = useMemo(() => {
-    const scoped = (lists ?? []).filter((list) => listGame(list) === activeMenu);
+    const libraryMenu = menuShowsListLibrary(activeMenu) ? activeMenu : "aos";
+    const scoped = (lists ?? []).filter((list) => listGame(list) === libraryMenu);
     return sortLibraryLists(scoped, sortMode);
   }, [activeMenu, lists, sortMode]);
-  const menuPlaceholder = menuPlaceholderCopy(activeMenu);
-  const showListLibrary = menuShowsListLibrary(activeMenu);
-
-  useEffect(() => {
-    if (!isBattleRecordPath(pathname) && activeMenu === "tactics") {
-      router.replace("/battle-record");
-    }
-  }, [activeMenu, pathname, router]);
+  const onBattleRecord = isBattleRecordPath(pathname);
 
   async function onDuplicate(list: StoredList) {
     await saveArmy(duplicateArmy(list));
@@ -105,33 +97,19 @@ export function LibraryScreen() {
     setLibrarySortMode(next as LibrarySortMode);
   }
 
-  if (isBattleRecordPath(pathname)) {
-    return <BattleRecordHost />;
-  }
-
-  return (
+  const listsPane = (
     <div className="relative z-10 min-h-full text-parchment">
       <div className={`${SITE_COLUMN_CLASS} pt-2 pb-3`}>
         <div className={LIBRARY_TITLE_ROW_CLASS}>
-          {showListLibrary ? (
-            <IosNavOptionsButton
-              label="List options"
-              onClick={() => setLibrarySheetOpen(true)}
-            />
-          ) : (
-            <span className="inline-flex h-11 w-11 shrink-0" aria-hidden="true" />
-          )}
-          <h1 className={LIBRARY_TITLE_CLASS}>
-            {menuPlaceholder?.title ?? "My lists"}
-          </h1>
-          {showListLibrary ? (
-            <IosNavAddButton
-              label="New list"
-              onClick={() => setPicking(true)}
-            />
-          ) : (
-            <span className="inline-flex h-11 w-11 shrink-0" aria-hidden="true" />
-          )}
+          <IosNavOptionsButton
+            label="List options"
+            onClick={() => setLibrarySheetOpen(true)}
+          />
+          <h1 className={LIBRARY_TITLE_CLASS}>My lists</h1>
+          <IosNavAddButton
+            label="New list"
+            onClick={() => setPicking(true)}
+          />
         </div>
       </div>
       <main className={`${SITE_COLUMN_CLASS} pb-20`}>
@@ -150,8 +128,6 @@ export function LibraryScreen() {
               Loading your lists
             </p>
           </div>
-        ) : menuPlaceholder ? (
-          <LibraryMenuPlaceholder body={menuPlaceholder.body} />
         ) : displayedLists.length === 0 ? (
           <LibraryEmptyState
             onCreate={() => setPicking(true)}
@@ -204,5 +180,14 @@ export function LibraryScreen() {
 
       <LibraryCreateFlow open={picking} onOpenChange={setPicking} />
     </div>
+  );
+
+  return (
+    <>
+      <div hidden={!onBattleRecord}>
+        <BattleRecordHost />
+      </div>
+      <div hidden={onBattleRecord}>{listsPane}</div>
+    </>
   );
 }

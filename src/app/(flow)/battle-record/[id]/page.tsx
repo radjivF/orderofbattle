@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BattleRecordGameScreen } from "@/components/BattleRecordGameScreen";
 
 export async function generateMetadata({
   params,
@@ -11,10 +12,9 @@ export async function generateMetadata({
   };
 }
 
-/** UI lives in LibraryScreen inside ListFlowShell (same shell as My lists). */
 export default async function BattleRecordGamePage({
   params,
 }: PageProps<"/battle-record/[id]">) {
-  await params;
-  return null;
+  const { id } = await params;
+  return <BattleRecordGameScreen gameId={id} />;
 }

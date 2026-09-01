@@ -88,9 +88,9 @@ export function IosNavMenuButton({ label, onClick }: Props) {
 
 function IosChevronLeftIcon() {
   return (
-    <svg viewBox="0 0 20 20" aria-hidden="true" className="h-5 w-5">
+    <svg viewBox="0 0 20 20" aria-hidden="true" className="block h-5 w-5">
       <path
-        d="M12.5 4.5 7 10l5.5 5.5"
+        d="M12.5 5 7.5 10l5 5"
         fill="none"
         stroke="currentColor"
         strokeWidth="2.6"

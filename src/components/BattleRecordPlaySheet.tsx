@@ -16,7 +16,7 @@ import {
 import { BuilderReady } from "./BuilderReady";
 import { FactionArtLayers } from "./FactionArtBackground";
 import { IosNavCloseButton } from "./ios/IosNavIconButton";
-import { ModalFrame } from "./ModalFrame";
+import { ModalFrame, useModalDismiss } from "./ModalFrame";
 
 type Props = {
   list: ArmyList;
@@ -40,7 +40,35 @@ export function BattleRecordPlaySheet({ list, playerName, onClose }: Props) {
       fullPage
       panelClassName={PLAY_SHEET_PANEL_CLASS}
     >
-      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+      <PlaySheetBody
+        list={list}
+        totals={totals}
+        spearhead={spearhead}
+        faction={faction}
+      />
+    </ModalFrame>
+  );
+}
+
+function PlaySheetBody({
+  list,
+  totals,
+  spearhead,
+  faction,
+}: {
+  list: ArmyList;
+  totals: ReturnType<typeof summarize>;
+  spearhead: boolean;
+  faction: NonNullable<ReturnType<typeof catalogueForList>>;
+}) {
+  const close = useModalDismiss();
+
+  return (
+    <>
+      <div
+        className="pointer-events-none absolute inset-0 z-0"
+        aria-hidden="true"
+      >
         <FactionArtLayers
           factionId={list.factionId}
           scourgeRealm={list.scourgeRealm}
@@ -71,7 +99,7 @@ export function BattleRecordPlaySheet({ list, playerName, onClose }: Props) {
               </p>
             )}
           </div>
-          <IosNavCloseButton label="Close play" onClick={onClose} />
+          <IosNavCloseButton label="Close play" onClick={close} />
         </div>
       </div>
       <div className={`${MODAL_SHEET_SCROLL_HOST_CLASS} relative z-10`}>
@@ -79,6 +107,6 @@ export function BattleRecordPlaySheet({ list, playerName, onClose }: Props) {
           <BuilderReady list={list} faction={faction} openPlay embedded />
         </div>
       </div>
-    </ModalFrame>
+    </>
   );
 }

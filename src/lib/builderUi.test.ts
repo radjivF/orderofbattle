@@ -20,6 +20,7 @@ import {
   SCOREBOARD_PLAY_BUTTON_CLASS,
   LIBRARY_HEADER_OPTIONS_BUTTON_CLASS,
   LIBRARY_TITLE_CLASS,
+  BATTLE_PAGE_COLUMN_CLASS,
   SHEET_CHECKLIST_ITEM_CLASS,
   SHEET_CHECKLIST_ITEM_IDLE_CLASS,
   SHEET_CHECKLIST_ITEM_SELECTED_CLASS,
@@ -50,6 +51,9 @@ import {
   LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS,
   PLAY_SHEET_PANEL_CLASS,
   SHEET_FOOTER_ACTIONS_CLASS,
+  SHEET_FOOTER_CANCEL_CLASS,
+  SHEET_FOOTER_PRIMARY_CLASS,
+  MODAL_SHEET_FOOTER_ROW_CLASS,
   SHEET_PANEL_CLASS,
   SHEET_SECONDARY_BUTTON_CLASS,
   builderHeaderShowsListStats,
@@ -340,6 +344,17 @@ describe("iOS nav controls", () => {
     expect(IOS_NAV_BACK_BUTTON_CLASS).toContain("rounded-full");
     expect(IOS_NAV_BACK_BUTTON_CLASS).toContain("text-black");
 
+    const backButton = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../components/ios/IosNavIconButton.tsx",
+      ),
+      "utf8",
+    );
+    expect(backButton).toContain("block h-5 w-5");
+    expect(backButton).toContain('d="M12.5 5 7.5 10l5 5"');
+    expect(backButton).not.toContain("translate-x-0.5");
+
     const header = readFileSync(
       path.resolve(
         path.dirname(fileURLToPath(import.meta.url)),
@@ -362,6 +377,9 @@ describe("iOS nav controls", () => {
     expect(SCOREBOARD_PLAY_BUTTON_CLASS).toContain("text-aether");
     expect(SCOREBOARD_PLAY_BUTTON_CLASS).toContain("h-6");
     expect(SCOREBOARD_PLAY_BUTTON_CLASS).not.toContain("ios-liquid-glass");
+    expect(BATTLE_PAGE_COLUMN_CLASS).toContain("px-5");
+    expect(BATTLE_PAGE_COLUMN_CLASS).toContain("sm:px-6");
+    expect(BATTLE_PAGE_COLUMN_CLASS).toContain("max-w-3xl");
   });
 
   it("uses the same header row and brand lockup across screens", () => {
@@ -418,7 +436,7 @@ describe("iOS nav controls", () => {
       "utf8",
     );
     expect(header).toContain("SITE_HEADER_ROW_CLASS");
-    expect(header).toContain("IosNavMenuButton");
+    expect(header).toContain("AppHeaderMenu");
     expect(header).toContain("SiteBrandLockup");
     expect(header).not.toContain("IosNavOptionsButton");
     expect(header).not.toContain("IosNavAddButton");
@@ -468,6 +486,7 @@ describe("iOS nav controls", () => {
     expect(landing).toContain("SiteBrandLockup");
     expect(landing).toContain("SITE_HEADER_BAR_CLASS");
     expect(landing).toContain("SITE_HEADER_ROW_CLASS");
+    expect(landing).toContain("AppHeaderMenu");
 
     const css = readFileSync(
       path.resolve(
@@ -499,6 +518,13 @@ describe("empty library CTA", () => {
     expect(SHEET_FOOTER_ACTIONS_CLASS).toContain("px-5");
     expect(SHEET_SECONDARY_BUTTON_CLASS).toContain("ring-1");
     expect(SHEET_SECONDARY_BUTTON_CLASS).toContain("rounded-xl");
+    expect(SHEET_FOOTER_CANCEL_CLASS).toContain("text-sheet-muted");
+    expect(SHEET_FOOTER_CANCEL_CLASS).not.toContain("bg-parchment-ink");
+    expect(SHEET_FOOTER_PRIMARY_CLASS).toContain("ios-liquid-glass");
+    expect(SHEET_FOOTER_PRIMARY_CLASS).toContain("flex-1");
+    expect(SHEET_FOOTER_PRIMARY_CLASS).not.toContain("opacity-40");
+    expect(MODAL_SHEET_FOOTER_ROW_CLASS).toContain("ios-sheet-actions-row");
+    expect(MODAL_SHEET_FOOTER_ROW_CLASS).not.toContain("ios-sheet-actions ");
     expect(CONFIRM_CANCEL_BUTTON_CLASS).toContain("ring-1");
     expect(CONFIRM_CANCEL_BUTTON_CLASS).toContain("rounded-xl");
     expect(IOS_LIQUID_CTA_CLASS).toContain("ios-liquid-glass");
@@ -540,6 +566,7 @@ describe("empty library CTA", () => {
     expect(SITE_HEADER_ROW_CLASS).toContain(SITE_COLUMN_CLASS);
     expect(screen).toContain("IosNavAddButton");
     expect(LIBRARY_TITLE_CLASS).toContain("text-shadow");
+    expect(LIBRARY_TITLE_CLASS).toContain("leading-none");
     expect(screen).toContain("sortLibraryLists");
     expect(screen).not.toContain("No armies yet. Make your first list.");
 
@@ -681,6 +708,9 @@ describe("iOS polish contracts", () => {
     expect(css).toContain(".modal-sheet-scroll");
     expect(css).toContain(".modal-sheet-scroll-host");
     expect(css).toContain(".modal-sheet-footer");
+    expect(css).toContain(".ios-sheet-actions-row");
+    expect(css).toContain("flex-direction: row");
+    expect(css).not.toContain(".ios-sheet-actions-row > *");
     expect(css).toContain("overscroll-behavior-y: contain");
     expect(css).toContain(".modal-sheet--page");
     expect(css).toContain(".modal-sheet--page .modal-grabber");
