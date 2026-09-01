@@ -87,6 +87,11 @@ async function openExportPicker() {
   return user;
 }
 
+function sheetScroll() {
+  const dialog = screen.getByRole("dialog", { name: "List options" });
+  return dialog.querySelector(".modal-sheet-scroll");
+}
+
 describe("LibraryScreen", () => {
   beforeEach(() => {
     cleanup();
@@ -127,6 +132,35 @@ describe("LibraryScreen", () => {
     expect(
       screen.queryByRole("heading", { name: "This app is free. It stays free." }),
     ).toBeNull();
+  });
+
+  it("scrolls sort with the import paste field instead of pinning it", async () => {
+    render(<LibraryScreen />);
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+
+    await user.click(screen.getByRole("button", { name: "List options" }));
+
+    const scroll = sheetScroll();
+    expect(scroll).not.toBeNull();
+    expect(scroll).toContainElement(screen.getByText("Sort lists by"));
+    expect(scroll).toContainElement(
+      screen.getByRole("group", { name: "Sort lists" }),
+    );
+    expect(scroll).toContainElement(
+      screen.getByRole("textbox", { name: "List to import" }),
+    );
+  });
+
+  it("scrolls sort with the empty export picker", async () => {
+    render(<LibraryScreen />);
+    await openExportPicker();
+
+    const scroll = sheetScroll();
+    expect(scroll).not.toBeNull();
+    expect(scroll).toContainElement(screen.getByText("Sort lists by"));
+    expect(scroll).toContainElement(
+      screen.getByText("No lists to export yet."),
+    );
   });
 
   it("tells you to pick a list when Continue is pressed with none selected", async () => {
