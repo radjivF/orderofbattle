@@ -4,6 +4,7 @@ import {
   GAME_FEATURE_ROWS,
   GAME_MENU_ROWS,
   LISTS_MENU_LABEL,
+  MENU_SECTIONS,
   brandSubtitleForMenu,
   gameBattleRecordSelected,
   gameComingSoon,
@@ -11,6 +12,7 @@ import {
   gameListsSelected,
   gameRootSelected,
   getActiveMenuSnapshot,
+  menuEntrySelected,
   menuPlaceholderCopy,
   menuShowsListLibrary,
   setActiveMenu,
@@ -55,21 +57,28 @@ describe("active menu preference", () => {
     expect(menuPlaceholderCopy("tactics")?.title).toBe("Battle record");
   });
 
-  it("marks The old world and 40k as coming soon until those games ship", () => {
-    const tow = GAME_MENU_ROWS.find((row) => row.id === "tow");
-    expect(tow?.label).toBe("The old world");
-    expect(tow?.comingSoon).toBe(true);
+  it("marks 40k and The old world as coming soon until those games ship", () => {
     const fortyK = GAME_MENU_ROWS.find((row) => row.id === "40k");
     expect(fortyK?.label).toBe("40k");
-    expect(fortyK?.comingSoon).toBe(true);
     expect(gameComingSoon("40k")).toBe(true);
+    expect(gameComingSoon("tow")).toBe(true);
     expect(gameComingSoon("aos")).toBe(false);
     expect(gameFeatureEnabled("aos", "lists")).toBe(true);
     expect(gameFeatureEnabled("aos", "battle-record")).toBe(true);
+    expect(gameFeatureEnabled("tow", "lists")).toBe(false);
+    expect(gameFeatureEnabled("tow", "battle-record")).toBe(false);
     expect(gameFeatureEnabled("40k", "lists")).toBe(false);
     expect(GAME_FEATURE_ROWS.map((row) => row.label)).toEqual([
       LISTS_MENU_LABEL,
       BATTLE_RECORD_MENU_LABEL,
+    ]);
+    expect(MENU_SECTIONS[0]?.label).toBe("List builder");
+    expect(MENU_SECTIONS[1]?.label).toBe("Battle record");
+    expect(MENU_SECTIONS[1]?.entries.map((entry) => entry.label)).toEqual([
+      "AOS",
+      "The old world",
+      "40k",
+      "Spearhead",
     ]);
   });
 
@@ -84,9 +93,27 @@ describe("active menu preference", () => {
     expect(gameRootSelected("/lists/abc", "aos")).toBe(true);
     expect(gameRootSelected("/battle-record", "aos")).toBe(true);
     expect(gameListsSelected("/dashboard", "aos")).toBe(true);
+    expect(gameListsSelected("/dashboard", "tow", "tow")).toBe(true);
+    expect(gameListsSelected("/dashboard", "aos", "tow")).toBe(false);
     expect(gameListsSelected("/battle-record", "aos")).toBe(false);
     expect(gameBattleRecordSelected("/battle-record", "aos")).toBe(true);
+    expect(gameBattleRecordSelected("/battle-record/game-1", "aos")).toBe(true);
     expect(gameBattleRecordSelected("/dashboard", "aos")).toBe(false);
     expect(gameRootSelected("/dashboard", "tow")).toBe(false);
+  });
+
+  it("selects List builder and Battle record rows from the route", () => {
+    expect(menuEntrySelected("/dashboard", "aos", "lists", "aos")).toBe(true);
+    expect(menuEntrySelected("/dashboard", "tow", "lists", "tow")).toBe(true);
+    expect(menuEntrySelected("/dashboard", "aos", "lists", "tow")).toBe(false);
+    expect(
+      menuEntrySelected("/battle-record", "tactics", "battle-record", "aos"),
+    ).toBe(true);
+    expect(
+      menuEntrySelected("/battle-record/game-1", "tactics", "lists", "aos"),
+    ).toBe(false);
+    expect(
+      menuEntrySelected("/battle-record", "tactics", "battle-record", "spearhead"),
+    ).toBe(false);
   });
 });

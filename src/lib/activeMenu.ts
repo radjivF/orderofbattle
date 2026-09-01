@@ -31,7 +31,9 @@ export const GAME_MENU_ROWS: readonly {
 
 export type GameFeatureId = "lists" | "battle-record";
 
-export const LISTS_MENU_LABEL = "Lists";
+export type MenuGameId = GameSystemId | "spearhead";
+
+export const LISTS_MENU_LABEL = "List builder";
 
 export const BATTLE_RECORD_MENU_LABEL = "Battle record";
 
@@ -41,6 +43,78 @@ export const GAME_FEATURE_ROWS: readonly {
 }[] = [
   { id: "lists", label: LISTS_MENU_LABEL },
   { id: "battle-record", label: BATTLE_RECORD_MENU_LABEL },
+];
+
+export type MenuSectionEntry = {
+  id: MenuGameId;
+  label: string;
+  actionName: string;
+  comingSoon?: boolean;
+  menu?: ActiveMenu;
+  href?: "/dashboard" | "/battle-record";
+};
+
+export const MENU_SECTIONS: readonly {
+  id: GameFeatureId;
+  label: string;
+  entries: readonly MenuSectionEntry[];
+}[] = [
+  {
+    id: "lists",
+    label: LISTS_MENU_LABEL,
+    entries: [
+      {
+        id: "aos",
+        label: "AOS",
+        actionName: "AOS lists",
+        menu: "aos",
+        href: "/dashboard",
+      },
+      {
+        id: "tow",
+        label: "The old world",
+        actionName: "The old world lists",
+        comingSoon: true,
+      },
+      {
+        id: "40k",
+        label: "40k",
+        actionName: "40k lists",
+        comingSoon: true,
+      },
+    ],
+  },
+  {
+    id: "battle-record",
+    label: BATTLE_RECORD_MENU_LABEL,
+    entries: [
+      {
+        id: "aos",
+        label: "AOS",
+        actionName: "AOS battle record",
+        menu: "tactics",
+        href: "/battle-record",
+      },
+      {
+        id: "tow",
+        label: "The old world",
+        actionName: "The old world battle record",
+        comingSoon: true,
+      },
+      {
+        id: "40k",
+        label: "40k",
+        actionName: "40k battle record",
+        comingSoon: true,
+      },
+      {
+        id: "spearhead",
+        label: "Spearhead",
+        actionName: "Spearhead battle record",
+        comingSoon: true,
+      },
+    ],
+  },
 ];
 
 export const TRACK_GAME_MENU_ROW: {
@@ -122,20 +196,20 @@ export function menuShowsListLibrary(menu: ActiveMenu): boolean {
 }
 
 export function gameComingSoon(gameId: GameSystemId): boolean {
-  return GAME_MENU_ROWS.find((row) => row.id === gameId)?.comingSoon === true;
+  const entries = MENU_SECTIONS.flatMap((section) =>
+    section.entries.filter((entry) => entry.id === gameId),
+  );
+  return entries.length > 0 && entries.every((entry) => entry.comingSoon);
 }
 
 export function gameFeatureEnabled(
   gameId: GameSystemId,
   feature: GameFeatureId,
 ): boolean {
-  if (gameComingSoon(gameId)) {
-    return false;
-  }
-  if (feature === "lists") {
-    return gameId === "aos" || gameId === "tow";
-  }
-  return gameId === "aos";
+  const entry = MENU_SECTIONS.find((section) => section.id === feature)?.entries.find(
+    (item) => item.id === gameId,
+  );
+  return Boolean(entry && !entry.comingSoon);
 }
 
 /** A game row is current when any of its features is on screen — not the homepage. */
@@ -152,11 +226,21 @@ export function gameRootSelected(
 export function gameListsSelected(
   pathname: string,
   gameId: GameSystemId,
+  activeMenu: ActiveMenu = "aos",
 ): boolean {
-  if (gameId !== "aos") {
+  if (gameId !== "aos" && gameId !== "tow") {
     return false;
   }
-  return pathname === "/dashboard" || pathname.startsWith("/lists/");
+  if (
+    pathname === "/battle-record" ||
+    pathname.startsWith("/battle-record/")
+  ) {
+    return false;
+  }
+  if (pathname !== "/dashboard" && !pathname.startsWith("/lists/")) {
+    return false;
+  }
+  return gameId === activeMenu;
 }
 
 export function gameBattleRecordSelected(
@@ -169,6 +253,24 @@ export function gameBattleRecordSelected(
   return (
     pathname === "/battle-record" || pathname.startsWith("/battle-record/")
   );
+}
+
+export function menuEntrySelected(
+  pathname: string,
+  activeMenu: ActiveMenu,
+  feature: GameFeatureId,
+  gameId: MenuGameId,
+): boolean {
+  if (feature === "lists") {
+    if (gameId !== "aos" && gameId !== "tow") {
+      return false;
+    }
+    return gameListsSelected(pathname, gameId, activeMenu);
+  }
+  if (gameId !== "aos") {
+    return false;
+  }
+  return gameBattleRecordSelected(pathname, "aos");
 }
 
 export function menuPlaceholderCopy(

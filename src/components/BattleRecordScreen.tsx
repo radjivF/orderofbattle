@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState, useSyncExternalStore } from "react";
 import { getBattleplanLayout } from "@/engine/battleplanLayout";
 import { matchTotal, type GameSession } from "@/engine/gameSession";
@@ -19,7 +18,6 @@ import {
   saveGame,
   subscribeGames,
 } from "@/lib/gameStorage";
-import { rememberListNavigation } from "@/lib/listTransition";
 import { listOpenUsesInAppSlide } from "@/lib/listFlowNav";
 import { BattleRecordCreateSheet } from "./BattleRecordCreateSheet";
 import { ConfirmSheetActions } from "./ConfirmSheetActions";
@@ -38,7 +36,6 @@ function statusLabel(status: GameSession["status"]): string {
 }
 
 export function BattleRecordScreen() {
-  const router = useRouter();
   const { goForward } = useListNav();
   const games = useSyncExternalStore(
     subscribeGames,
@@ -51,8 +48,7 @@ export function BattleRecordScreen() {
   async function onCreated(game: GameSession) {
     await saveGame(game);
     setCreating(false);
-    rememberListNavigation("forward");
-    router.push(`/battle-record/${game.id}`, { scroll: false });
+    goForward(`/battle-record/${game.id}`);
   }
 
   async function confirmDelete() {

@@ -4,12 +4,10 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNo
 import { createPortal } from "react-dom";
 import { usePathname, useRouter } from "next/navigation";
 import {
-  GAME_FEATURE_ROWS,
-  GAME_MENU_ROWS,
-  gameBattleRecordSelected,
-  gameListsSelected,
+  MENU_SECTIONS,
+  menuEntrySelected,
   type ActiveMenu,
-  type GameFeatureId,
+  type MenuSectionEntry,
 } from "@/lib/activeMenu";
 import {
   APP_MENU_DRAWER_MS,
@@ -136,29 +134,19 @@ function LeftDrawer({
 
 const MENU_GAME_TITLE_CLASS = "font-serif text-lg";
 
-export function AppMenuSheet({ onSelect, onClose }: Props) {
+export function AppMenuSheet({ active, onSelect, onClose }: Props) {
   const pathname = usePathname();
   const router = useRouter();
 
-  function openFeature(feature: GameFeatureId, close: () => void) {
-    if (feature === "lists") {
-      onSelect("aos");
-      if (pathname !== "/dashboard") {
-        router.push("/dashboard", { scroll: false });
-      }
-    } else {
-      onSelect("tactics");
-      if (!pathname.startsWith("/battle-record")) {
-        router.push("/battle-record", { scroll: false });
-      }
+  function openEntry(entry: MenuSectionEntry, close: () => void) {
+    if (entry.comingSoon || !entry.menu || !entry.href) {
+      return;
+    }
+    onSelect(entry.menu);
+    if (pathname !== entry.href) {
+      router.push(entry.href, { scroll: false });
     }
     close();
-  }
-
-  function featureSelected(feature: GameFeatureId) {
-    return feature === "lists"
-      ? gameListsSelected(pathname, "aos")
-      : gameBattleRecordSelected(pathname, "aos");
   }
 
   return (
@@ -171,34 +159,38 @@ export function AppMenuSheet({ onSelect, onClose }: Props) {
           </div>
           <nav className="app-menu-nav">
             <div className="px-5 pb-6">
-              {GAME_MENU_ROWS.map((game, index) => (
+              {MENU_SECTIONS.map((section, index) => (
                 <section
-                  key={game.id}
+                  key={section.id}
                   className={index === 0 ? undefined : "mt-8"}
-                  aria-labelledby={`menu-game-${game.id}`}
+                  aria-labelledby={`menu-feature-${section.id}`}
                 >
                   <h3
-                    id={`menu-game-${game.id}`}
+                    id={`menu-feature-${section.id}`}
                     className={MENU_GAME_TITLE_CLASS}
                   >
-                    {game.label}
+                    {section.label}
                   </h3>
-                  {game.comingSoon ? (
-                    <p className="pt-1 text-[15px] text-sheet-muted">
-                      Coming soon
-                    </p>
-                  ) : (
-                    <ul>
-                      {GAME_FEATURE_ROWS.map((feature) => (
+                  <ul>
+                    {section.entries.map((entry) =>
+                      entry.comingSoon ? (
+                        <ComingSoonRow key={entry.id} label={entry.label} />
+                      ) : (
                         <MenuRow
-                          key={feature.id}
-                          label={feature.label}
-                          selected={featureSelected(feature.id)}
-                          onSelect={() => openFeature(feature.id, close)}
+                          key={entry.id}
+                          label={entry.label}
+                          actionName={entry.actionName}
+                          selected={menuEntrySelected(
+                            pathname,
+                            active,
+                            section.id,
+                            entry.id,
+                          )}
+                          onSelect={() => openEntry(entry, close)}
                         />
-                      ))}
-                    </ul>
-                  )}
+                      ),
+                    )}
+                  </ul>
                 </section>
               ))}
             </div>
@@ -235,12 +227,28 @@ function MenuCheck({ selected }: { selected: boolean }) {
   );
 }
 
+function ComingSoonRow({ label }: { label: string }) {
+  return (
+    <li>
+      <div
+        aria-disabled="true"
+        className="pointer-events-none flex min-h-11 w-full cursor-default select-none items-center gap-3 py-2 text-left text-sheet-muted opacity-40"
+      >
+        <span className="min-w-0 flex-1 font-medium">{label}</span>
+        <span className="shrink-0 text-[13px] font-normal">Coming soon</span>
+      </div>
+    </li>
+  );
+}
+
 function MenuRow({
   label,
+  actionName,
   selected,
   onSelect,
 }: {
   label: string;
+  actionName: string;
   selected: boolean;
   onSelect: () => void;
 }) {
@@ -248,7 +256,7 @@ function MenuRow({
     <li>
       <button
         type="button"
-        aria-label={label}
+        aria-label={actionName}
         aria-pressed={selected}
         onClick={onSelect}
         className={`pressable ${rowClassName(selected)}`}

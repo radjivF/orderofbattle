@@ -384,10 +384,18 @@ describe("list flow navigation wiring", () => {
     const battlePage = readSource("app/(flow)/battle-record/[id]/page.tsx");
     const battleList = readSource("components/BattleRecordScreen.tsx");
     const battleHost = readSource("components/BattleRecordHost.tsx");
+    const appMenu = readSource("components/AppMenuSheet.tsx");
     expect(battlePage).toContain("BattleRecordGameScreen");
     expect(battleList).toContain("goForward");
+    expect(battleList).toContain("goForward(`/battle-record/${game.id}`)");
+    expect(battleList).not.toContain("rememberListNavigation");
+    expect(battleList).not.toContain("useRouter");
     expect(battleList).toContain("listOpenUsesInAppSlide");
     expect(battleHost).not.toContain("BattleRecordGameScreen");
+    expect(appMenu).toContain("pathname !== entry.href");
+    expect(appMenu).not.toContain(
+      '!pathname.startsWith("/battle-record")',
+    );
     const battleGame = readSource("components/BattleRecordGameScreen.tsx");
     expect(battleGame).toContain("listFlowTrackClass(editOpen, editSettled)");
     expect(battleGame).toContain("openEditSetup");

@@ -48,21 +48,28 @@ vi.mock("next/link", () => ({
   ),
 }));
 
-vi.mock("next/navigation", () => ({
-  useRouter: () => ({ push: vi.fn() }),
-}));
-
-const rememberListNavigation = vi.fn();
 const listNav = vi.hoisted(() => ({
   goBack: vi.fn(),
   goForward: vi.fn(),
 }));
-vi.mock("@/lib/listTransition", () => ({
-  rememberListNavigation: (...args: unknown[]) => rememberListNavigation(...args),
-}));
 
 vi.mock("./IosNavSlide", () => ({
   useListNav: () => listNav,
+}));
+
+vi.mock("./BattleRecordCreateSheet", () => ({
+  BattleRecordCreateSheet: ({
+    open,
+    onCreated,
+  }: {
+    open: boolean;
+    onCreated: (game: { id: string }) => void;
+  }) =>
+    open ? (
+      <button type="button" onClick={() => onCreated({ id: "game-created" })}>
+        Finish create
+      </button>
+    ) : null,
 }));
 
 import { deleteGame } from "@/lib/gameStorage";
@@ -103,7 +110,6 @@ beforeEach(() => {
 afterEach(() => {
   cleanup();
   games.length = 0;
-  rememberListNavigation.mockClear();
   listNav.goForward.mockReset();
   vi.clearAllMocks();
   document.body.removeAttribute("style");
@@ -181,5 +187,17 @@ describe("BattleRecordScreen", () => {
     expect(listNav.goForward).toHaveBeenCalledWith(
       "/battle-record/game-delete-me",
     );
+  });
+
+  it("slides a new battle in like opening a card", async () => {
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    render(<BattleRecordScreen />);
+
+    await user.click(
+      screen.getAllByRole("button", { name: "New battle record" })[0]!,
+    );
+    await user.click(screen.getByRole("button", { name: "Finish create" }));
+
+    expect(listNav.goForward).toHaveBeenCalledWith("/battle-record/game-created");
   });
 });

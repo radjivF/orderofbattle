@@ -13,24 +13,24 @@ async function openAppMenu(page: Page) {
   return page.getByRole("dialog", { name: "Menu" });
 }
 
-test("hamburger lists games as titles and opens Battle record", async ({
+test("hamburger groups List builder and Battle record and opens AOS battle record", async ({
   page,
 }) => {
   await openDashboard(page);
   await dismissCookies(page);
 
   const menu = await openAppMenu(page);
-  await expect(menu.getByRole("heading", { name: "Age of Sigmar" })).toBeVisible();
-  await expect(menu.getByRole("heading", { name: "The old world" })).toBeVisible();
-  await expect(menu.getByRole("heading", { name: "40k" })).toBeVisible();
-  await expect(menu.getByRole("button", { name: "Lists" })).toBeVisible();
-  await expect(menu.getByRole("button", { name: "Battle record" })).toBeVisible();
-  await expect(menu.getByRole("button", { name: "Age of Sigmar" })).toHaveCount(0);
-  await expect(menu.getByRole("button", { name: "The old world" })).toHaveCount(0);
-  await expect(menu.getByRole("button", { name: "40k" })).toHaveCount(0);
-  await expect(menu.getByText("Coming soon")).toHaveCount(2);
+  await expect(menu.getByRole("heading", { name: "List builder" })).toBeVisible();
+  await expect(menu.getByRole("heading", { name: "Battle record" })).toBeVisible();
+  await expect(menu.getByRole("button", { name: "AOS lists" })).toBeVisible();
+  await expect(menu.getByRole("button", { name: "The old world lists" })).toHaveCount(0);
+  await expect(menu.getByRole("button", { name: "AOS battle record" })).toBeVisible();
+  await expect(menu.getByRole("button", { name: "40k lists" })).toHaveCount(0);
+  await expect(menu.getByRole("button", { name: "Spearhead battle record" })).toHaveCount(0);
+  await expect(menu.getByText("Coming soon")).toHaveCount(5);
+  await expect(menu.getByText("Spearhead")).toBeVisible();
 
-  await menu.getByRole("button", { name: "Battle record" }).click();
+  await menu.getByRole("button", { name: "AOS battle record" }).click();
   await page.waitForURL(/\/battle-record$/);
   await expect(page.getByRole("heading", { name: "Battle record" })).toBeVisible();
   await expect(page.getByRole("dialog", { name: "Menu" })).toHaveCount(0);
@@ -62,4 +62,17 @@ test("new battle record keeps Cancel left of Continue on one row", async ({
 
   await cancel.click();
   await expect(sheet).toHaveCount(0);
+});
+
+test("hamburger Battle record from a live game returns to the list", async ({
+  page,
+}) => {
+  await page.goto("/battle-record/game-1");
+  await dismissCookies(page);
+
+  const menu = await openAppMenu(page);
+  await menu.getByRole("button", { name: "AOS battle record" }).click();
+  await page.waitForURL(/\/battle-record$/);
+  await expect(page.getByRole("heading", { name: "Battle record" })).toBeVisible();
+  await expect(page.getByRole("dialog", { name: "Menu" })).toHaveCount(0);
 });
