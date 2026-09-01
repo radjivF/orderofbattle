@@ -81,6 +81,7 @@ export function BattleRecordGameScreen({ gameId }: Props) {
     playerName: string;
   } | null>(null);
   const [turnTab, setTurnTab] = useState<BattlePlayer>("you");
+  const prevStatusRef = useRef<GameSession["status"] | undefined>(undefined);
 
   useEffect(() => {
     let cancelled = false;
@@ -147,6 +148,17 @@ export function BattleRecordGameScreen({ gameId }: Props) {
   useEffect(() => {
     setTurnTab(turnPlayerOrder(firstPlayerOfRound)[0]!);
   }, [roundIndex, firstPlayerOfRound]);
+
+  useEffect(() => {
+    if (!game) {
+      prevStatusRef.current = undefined;
+      return;
+    }
+    if (prevStatusRef.current === "setup" && game.status === "active") {
+      window.scrollTo(0, 0);
+    }
+    prevStatusRef.current = game.status;
+  }, [game]);
 
   async function commit(
     next: GameSession | ((prev: GameSession) => GameSession),
