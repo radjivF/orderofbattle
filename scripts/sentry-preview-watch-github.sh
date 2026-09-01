@@ -2,11 +2,19 @@
 set -euo pipefail
 
 COUNT="$(python3 -c 'import json; print(json.load(open("watch.json"))["count"])')"
+SKIPPED="$(python3 -c 'import json; print("true" if json.load(open("watch.json")).get("skipped") else "false")')"
 BODY_FILE="watch.md"
 export MARKER="<!-- sentry-preview-watch -->"
 
+if [ "$SKIPPED" = "true" ]; then
+  echo "Preview Sentry watch: skipped (no SENTRY_AUTH_TOKEN)"
+  if [ -z "${PR_NUMBER:-}" ] || [ "$PR_NUMBER" = "null" ]; then
+    exit 0
+  fi
+fi
+
 if [ -z "${PR_NUMBER:-}" ] || [ "$PR_NUMBER" = "null" ]; then
-  if [ "$COUNT" = "0" ]; then
+  if [ "$SKIPPED" = "true" ] || [ "$COUNT" = "0" ]; then
     echo "Preview Sentry watch: clear"
     exit 0
   fi
@@ -34,7 +42,7 @@ else
     -f body="$(cat "$BODY_FILE")" >/dev/null
 fi
 
-if [ "$COUNT" = "0" ]; then
+if [ "$SKIPPED" = "true" ] || [ "$COUNT" = "0" ]; then
   echo "Preview Sentry watch: clear"
   exit 0
 fi

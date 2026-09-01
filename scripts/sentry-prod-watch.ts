@@ -6,6 +6,8 @@ import {
   parseSentryWatchIssues,
   sentryIssuesApiUrl,
   sentryWatchShouldFail,
+  sentryWatchSkippedReport,
+  type SentryWatchReport,
 } from "../src/lib/sentryProdWatch";
 
 function argValue(flag: string): string | undefined {
@@ -20,17 +22,34 @@ function hasFlag(flag: string): boolean {
   return process.argv.includes(flag);
 }
 
-async function main() {
-  const token = process.env.SENTRY_AUTH_TOKEN?.trim();
-  if (!token) {
-    throw new Error(
-      "SENTRY_AUTH_TOKEN is missing. Create a Sentry user token with Issue & Event Read, then add it as a GitHub Actions secret.",
-    );
-  }
+function writeWatchOutputs(report: SentryWatchReport) {
+  const markdown = formatSentryWatchMarkdown(report);
+  const jsonOut = argValue("--json");
+  const mdOut = argValue("--md");
 
+  if (jsonOut) {
+    writeFileSync(jsonOut, `${JSON.stringify(report, null, 2)}\n`);
+  }
+  if (mdOut) {
+    writeFileSync(mdOut, markdown);
+  }
+  if (!jsonOut && !mdOut) {
+    process.stdout.write(markdown);
+  }
+}
+
+async function main() {
   const environment = parseSentryWatchEnvironment(
     argValue("--env") || process.env.SENTRY_WATCH_ENV || "production",
   );
+  const token = process.env.SENTRY_AUTH_TOKEN?.trim();
+  if (!token) {
+    writeWatchOutputs(sentryWatchSkippedReport(environment));
+    console.error(
+      "SENTRY_AUTH_TOKEN is missing; skipping Sentry watch. Add a GitHub Actions secret to enable it.",
+    );
+    return;
+  }
 
   const url = sentryIssuesApiUrl({
     region: process.env.SENTRY_REGION?.trim() || "us",
@@ -57,19 +76,7 @@ async function main() {
     parseSentryWatchIssues(payload),
     environment,
   );
-  const markdown = formatSentryWatchMarkdown(report);
-  const jsonOut = argValue("--json");
-  const mdOut = argValue("--md");
-
-  if (jsonOut) {
-    writeFileSync(jsonOut, `${JSON.stringify(report, null, 2)}\n`);
-  }
-  if (mdOut) {
-    writeFileSync(mdOut, markdown);
-  }
-  if (!jsonOut && !mdOut) {
-    process.stdout.write(markdown);
-  }
+  writeWatchOutputs(report);
 
   if (hasFlag("--fail") && sentryWatchShouldFail(report)) {
     process.exitCode = 1;

@@ -9,6 +9,7 @@ import {
   parseSentryWatchIssues,
   sentryIssuesApiUrl,
   sentryWatchShouldFail,
+  sentryWatchSkippedReport,
 } from "./sentryProdWatch";
 
 const sample = {
@@ -76,6 +77,17 @@ describe("sentryProdWatch", () => {
     });
     expect(url).toContain("zheat/orderofbattle/issues/");
     expect(url).toContain(encodeURIComponent(SENTRY_PROD_WATCH_QUERY));
+  });
+
+  it("skips the watch when the GitHub token is missing", () => {
+    const report = sentryWatchSkippedReport("preview");
+    expect(report.count).toBe(0);
+    expect(report.skipped).toBe(true);
+    expect(sentryWatchShouldFail(report)).toBe(false);
+    const markdown = formatSentryWatchMarkdown(report);
+    expect(markdown).toContain(SENTRY_WATCH.preview.marker);
+    expect(markdown).toContain("SENTRY_AUTH_TOKEN");
+    expect(markdown).not.toContain("Preview/dev is clear");
   });
 
   it("builds the preview issues URL", () => {

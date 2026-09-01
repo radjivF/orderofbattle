@@ -2,9 +2,15 @@
 set -euo pipefail
 
 COUNT="$(python3 -c 'import json; print(json.load(open("watch.json"))["count"])')"
+SKIPPED="$(python3 -c 'import json; print("true" if json.load(open("watch.json")).get("skipped") else "false")')"
 TITLE="Production Sentry errors"
 LABEL="sentry-watch"
 BODY_FILE="watch.md"
+
+if [ "$SKIPPED" = "true" ]; then
+  echo "Production Sentry watch: skipped (no SENTRY_AUTH_TOKEN)"
+  exit 0
+fi
 
 gh label create "$LABEL" --description "Auto-synced production Sentry errors" --color B60205 >/dev/null 2>&1 || true
 

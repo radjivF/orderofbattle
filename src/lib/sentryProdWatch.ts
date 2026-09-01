@@ -44,6 +44,7 @@ export type SentryWatchReport = {
   count: number;
   issues: SentryWatchIssue[];
   query: string;
+  skipped?: boolean;
 };
 
 type SentryIssuePayload = {
@@ -105,8 +106,27 @@ export function buildSentryWatchReport(
   };
 }
 
+export function sentryWatchSkippedReport(
+  environment: SentryWatchEnvironment,
+): SentryWatchReport {
+  const config = sentryWatchConfig(environment);
+  return {
+    environment,
+    count: 0,
+    issues: [],
+    query: config.query,
+    skipped: true,
+  };
+}
+
 export function formatSentryWatchMarkdown(report: SentryWatchReport): string {
   const config = sentryWatchConfig(report.environment);
+  if (report.skipped) {
+    return `${config.marker}
+Sentry watch skipped: GitHub secret \`SENTRY_AUTH_TOKEN\` is not set.
+Add a Sentry User Auth Token with Issue & Event Read under Settings → Secrets and variables → Actions.
+`;
+  }
   if (report.count === 0) {
     return `${config.marker}
 ${config.clearLine}
@@ -130,7 +150,7 @@ ${lines.join("\n")}
 }
 
 export function sentryWatchShouldFail(report: SentryWatchReport): boolean {
-  return report.count > 0;
+  return !report.skipped && report.count > 0;
 }
 
 export function sentryIssuesApiUrl(input: {
