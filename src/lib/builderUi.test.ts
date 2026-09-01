@@ -53,6 +53,7 @@ import {
   listIssueOpensAddRegiment,
   libraryListExportSubtitle,
   libraryListGameLabel,
+  listIssueOpensOptions,
   pointsCapInputClass,
 } from "./builderUi";
 
@@ -268,6 +269,26 @@ describe("list issue banner", () => {
     expect(LIST_ISSUE_BANNER_CLASS).toContain("text-illegal-lit");
     expect(LIST_ISSUE_BANNER_CLASS).not.toContain("font-medium");
     expect(LIST_ISSUE_BANNER_CLASS).not.toMatch(/(?:^|\s)text-illegal(?:\s|$)/);
+  });
+});
+
+describe("listIssueOpensOptions", () => {
+  it("opens Options for the battle tactic warning people tap", () => {
+    expect(
+      listIssueOpensOptions("Pick up to 2 battle tactic cards."),
+    ).toBe(true);
+  });
+
+  it("stays inert for empty-list and points issues", () => {
+    expect(listIssueOpensOptions("Add a regiment to begin.")).toBe(false);
+    expect(listIssueOpensOptions("200 points over.")).toBe(false);
+    expect(listIssueOpensOptions("")).toBe(false);
+  });
+
+  it("opens Options when they went over two tactic cards", () => {
+    expect(
+      listIssueOpensOptions("Maximum two battle tactic cards."),
+    ).toBe(true);
   });
 });
 
@@ -592,8 +613,8 @@ describe("iOS polish contracts", () => {
     expect(css).toContain(".pressable:active");
     expect(css).toContain("cursor: pointer");
     expect(css).toContain("transform: scale(0.97)");
-    expect(css).toContain(".library-card:has(.library-card-open:active)");
-    expect(css).toContain('.library-card[data-opening="true"]');
+    expect(css).toContain(".library-card:has(.library-card-open:active)::after");
+    expect(css).toContain('.library-card[data-opening="true"]::after');
   });
 
   it("defines bottom sheet animation and grabber", () => {

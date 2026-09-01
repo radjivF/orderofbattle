@@ -62,6 +62,7 @@ import {
   LIST_ISSUE_BANNER_CLASS,
   builderPlayTabs,
   listIssueOpensAddRegiment,
+  listIssueOpensOptions,
 } from "@/lib/builderUi";
 import { createId } from "@/lib/id";
 import { appendRegimentWithHero, saveArmy } from "@/lib/storage";
@@ -541,7 +542,16 @@ export function BuilderReady({
           />
         ) : null}
         {!forPlayMode && issue.tone !== "ok" ? (
-          listIssueOpensAddRegiment(issue.text) ? (
+          listIssueOpensOptions(issue.text) ? (
+            <button
+              type="button"
+              className={`${LIST_ISSUE_BANNER_CLASS} pressable w-full cursor-pointer text-left`}
+              onClick={() => setOptionsOpen(true)}
+            >
+              <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-illegal" />
+              <span>{issue.text}</span>
+            </button>
+          ) : listIssueOpensAddRegiment(issue.text) ? (
             <button
               type="button"
               className={`${LIST_ISSUE_BANNER_CLASS} pressable w-full cursor-pointer text-left`}

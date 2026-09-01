@@ -38,6 +38,7 @@ export function FactionArtLayers({
         src={src}
         alt=""
         decoding="sync"
+        loading="eager"
         fetchPriority="high"
         className={`absolute inset-0 h-full w-full ${artClass}`}
       />

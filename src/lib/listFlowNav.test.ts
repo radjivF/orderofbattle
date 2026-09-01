@@ -6,16 +6,24 @@ import { blankArmy } from "@/engine/listFactories";
 import { listBackdropArtSrc } from "./factionArt";
 import {
   LIST_CREATE_BACKDROP_SCOURGE,
+  libraryCardPressHoldsOn,
   libraryCreatingSplashVisible,
   listCreateBackdropFactionId,
   listCreateFactionBackdropStartsRevealed,
   listFlowHeaderMode,
   listFlowIsHome,
+  listFlowSkipsPostRouteSlide,
   listFlowTrackClass,
   listFlowWindowScrollY,
+  listFlowShowsFactionBackdrop,
+  listFlowFactionBackdropFaded,
+  listFlowIndexBackdropRevealed,
+  listFlowPendingRouteSplash,
+  listOpenNeedsSplash,
   listOpenShowsSplash,
   listOpenDisplayNameForHeader,
   listOpenSplashFactionName,
+  listOpenUsesInAppSlide,
   resolveBuilderHeaderDisplay,
 } from "./listFlowNav";
 
@@ -174,6 +182,36 @@ describe("listFlowIsHome", () => {
   });
 });
 
+describe("listOpenUsesInAppSlide", () => {
+  it("starts the slide on a normal press, not a modified click", () => {
+    const tap = {
+      metaKey: false,
+      ctrlKey: false,
+      shiftKey: false,
+      altKey: false,
+      button: 0,
+    };
+    expect(listOpenUsesInAppSlide(tap)).toBe(true);
+    expect(listOpenUsesInAppSlide({ ...tap, metaKey: true })).toBe(false);
+    expect(listOpenUsesInAppSlide({ ...tap, button: 1 })).toBe(false);
+  });
+});
+
+describe("listFlowSkipsPostRouteSlide", () => {
+  it("does not replay the slide after the route catches up", () => {
+    expect(listFlowSkipsPostRouteSlide(true)).toBe(true);
+    expect(listFlowSkipsPostRouteSlide(false)).toBe(false);
+  });
+});
+
+describe("libraryCardPressHoldsOn", () => {
+  it("holds the press on list details and releases back on My lists", () => {
+    expect(libraryCardPressHoldsOn("/lists/abc")).toBe(true);
+    expect(libraryCardPressHoldsOn("/dashboard")).toBe(false);
+    expect(libraryCardPressHoldsOn("/")).toBe(false);
+  });
+});
+
 describe("listFlowTrackClass", () => {
   it("slides the library pane off-screen when detail is visible", () => {
     expect(listFlowTrackClass(false)).toBe(
@@ -189,6 +227,67 @@ describe("listFlowTrackClass", () => {
     expect(listFlowTrackClass(true, false)).toBe(
       "list-flow-track list-flow-track--detail",
     );
+  });
+});
+
+describe("listOpenNeedsSplash", () => {
+  it("covers the list only until data is ready", () => {
+    expect(listOpenNeedsSplash(false)).toBe(true);
+    expect(listOpenNeedsSplash(true)).toBe(false);
+  });
+});
+
+describe("listFlowPendingRouteSplash", () => {
+  it("covers the slide only until the list page mounts", () => {
+    expect(listFlowPendingRouteSplash(true, false)).toBe(true);
+    expect(listFlowPendingRouteSplash(true, true)).toBe(false);
+    expect(listFlowPendingRouteSplash(false, false)).toBe(false);
+  });
+});
+
+describe("listFlowShowsFactionBackdrop", () => {
+  it("keeps list art mounted while sliding back so it can fade", () => {
+    expect(
+      listFlowShowsFactionBackdrop({
+        hasBackdrop: true,
+        isBuilder: true,
+        returningToLibrary: false,
+      }),
+    ).toBe(true);
+    expect(
+      listFlowShowsFactionBackdrop({
+        hasBackdrop: true,
+        isBuilder: true,
+        returningToLibrary: true,
+      }),
+    ).toBe(true);
+    expect(
+      listFlowShowsFactionBackdrop({
+        hasBackdrop: true,
+        isBuilder: false,
+        returningToLibrary: true,
+      }),
+    ).toBe(true);
+    expect(
+      listFlowShowsFactionBackdrop({
+        hasBackdrop: true,
+        isBuilder: false,
+        returningToLibrary: false,
+      }),
+    ).toBe(false);
+  });
+});
+
+describe("listFlowFactionBackdropFaded", () => {
+  it("fades list art out while returning to My lists", () => {
+    expect(listFlowFactionBackdropFaded(false)).toBe(false);
+    expect(listFlowFactionBackdropFaded(true)).toBe(true);
+  });
+});
+
+describe("listFlowIndexBackdropRevealed", () => {
+  it("keeps library art painted so going back does not flash ink", () => {
+    expect(listFlowIndexBackdropRevealed()).toBe(true);
   });
 });
 
@@ -268,6 +367,8 @@ describe("list flow navigation wiring", () => {
     const libraryCard = readSource("components/LibraryListCard.tsx");
     expect(libraryCard).toContain("listOpenDisplayNameForHeader(list)");
     expect(libraryCard).toContain("rememberOpenList(list)");
+    expect(libraryCard).toContain("goForward");
+    expect(libraryCard).toContain("preventDefault");
     expect(library).toContain("rememberListCreate");
     expect(libraryCard).not.toContain("rememberOpenList(list.factionId)");
     expect(libraryCard).not.toContain("rememberListOpen(artId, faction?.name)");
@@ -289,8 +390,8 @@ describe("list flow navigation wiring", () => {
     expect(library).not.toMatch(
       /libraryCreatingSplashVisible[\s\S]*className="absolute inset-0"/,
     );
-    expect(nav).toContain("listCreateFactionBackdropStartsRevealed");
-    expect(nav).toContain("peekListCreateSplash");
+    expect(nav).toContain("listFlowShowsFactionBackdrop");
+    expect(nav).toContain("listFlowFactionBackdropFaded");
   });
 
   it("keeps the library mounted in the carousel shell", () => {
@@ -308,13 +409,22 @@ describe("list flow navigation wiring", () => {
     expect(nav).toContain("listFlowIsHome");
     expect(nav).toContain("listFlowTrackClass");
     expect(nav).toContain("listFlowTrackClass(showDetail, settled)");
+    expect(nav).toContain("goForward");
+    expect(nav).toContain("listFlowSkipsPostRouteSlide");
+    expect(nav).toContain("startForwardSlide");
     expect(nav).toContain("LIST_FLOW_HEADER_OFFSET_CLASS");
     expect(nav).not.toContain(
       "overflow-x-hidden ${listFlowHeaderOffsetClass",
     );
     expect(nav).not.toContain("headerMode");
     expect(nav).not.toContain("setShowDetail(false);");
-    expect(nav).toContain("showFactionBackdrop");
+    expect(nav).toContain("listFlowShowsFactionBackdrop");
+    expect(nav).toContain("listFlowFactionBackdropFaded");
+    expect(nav).toContain("listFlowIndexBackdropRevealed");
+    expect(nav).toContain("listFlowPendingRouteSplash");
+    expect(nav).not.toContain("optimisticBackdrop");
+    expect(nav).not.toContain("LIST_BACKDROP_RETURN_MS");
+    expect(nav).not.toContain("setBackdropExiting");
     expect(nav).toContain("clearListOpenSplash");
     expect(nav).toContain('direction === "instant"');
     expect(nav).toContain("SITE_HEADER_BAR_CLASS");
@@ -323,30 +433,33 @@ describe("list flow navigation wiring", () => {
     expect(nav).not.toContain("ios-push-overlay");
   });
 
-  it("lets the list slide in with its opening splash on the incoming pane", () => {
+  it("lets the list slide in with a loader only until it mounts", () => {
     const builder = readSource("components/BuilderScreen.tsx");
     const nav = readSource("components/IosNavSlide.tsx");
-    expect(builder).toContain("listOpenShowsSplash");
-    expect(builder).toContain("consumeSkipListSplash");
+    expect(builder).toContain("listOpenNeedsSplash");
     expect(builder).toContain("clearListCreateSplash");
-    expect(builder).toContain("setOpeningSplash(true)");
-    expect(builder).toContain("fading={overlayFading}");
-    expect(builder).toContain("LIST_OPEN_LANDING_MS");
-    expect(builder).toContain("splashExiting");
-    expect(nav).toContain("indexBackdropRevealed");
-    expect(nav).toContain("LIST_BACKDROP_RETURN_MS");
-    expect(nav).toContain("LIST_DETAIL_BACKDROP_TRANSITION_CLASS");
-    expect(nav).toContain("factionBackdropRevealed");
-    expect(nav).toContain("listCreateFactionBackdropStartsRevealed");
-    expect(nav).toContain("revealed={indexBackdropRevealed}");
-    expect(nav).toContain("transitionClass={indexBackdropTransitionClass}");
-    expect(nav).not.toMatch(/\{backdrop\}[\s\S]*list-flow-pane/);
+    expect(builder).not.toContain("LIST_OPEN_SPLASH_MS");
+    expect(builder).not.toContain("setOpeningSplash(true)");
+    expect(builder).not.toContain("splashExiting");
+    expect(nav).not.toContain("optimisticBackdrop");
+    expect(nav).not.toContain("FactionArtLayers");
+    expect(nav).toContain("listFlowPendingRouteSplash");
+    expect(nav).toContain("listFlowShowsFactionBackdrop");
+    expect(nav).toContain("listFlowFactionBackdropFaded");
+    expect(nav).toContain("cachedBackdrop");
+    expect(nav).not.toContain("LIST_BACKDROP_RETURN_MS");
+    expect(nav).not.toContain("factionBackdropRevealed");
+    expect(nav).toContain("revealed={listFlowIndexBackdropRevealed()}");
+    expect(nav).not.toMatch(/list-flow-pane[\s\S]*\{backdrop\}/);
     expect(nav).toContain("listFlowWindowScrollY");
     expect(nav).toContain("scrollToPane");
     expect(nav).not.toContain("lockPageScroll");
-    expect(builder).toContain("LIST_OPEN_SPLASH_MS");
     expect(nav).toMatch(
       /settled: false[\s\S]*requestAnimationFrame[\s\S]*scrollToPane\(true/,
+    );
+    expect(nav).toContain('router.push("/dashboard", { scroll: false });');
+    expect(nav).not.toContain(
+      'router.push("/dashboard", { scroll: false });\n      animatingBackRef.current = false;',
     );
   });
 
