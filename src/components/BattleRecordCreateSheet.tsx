@@ -13,7 +13,6 @@ import {
   MODAL_SHEET_SCROLL_CLASS,
   MODAL_SHEET_SCROLL_HOST_CLASS,
   SHEET_HEADER_CLASS,
-  SHEET_PANEL_CLASS,
   SHEET_SECONDARY_BUTTON_CLASS,
 } from "@/lib/builderUi";
 import { BattleRecordMatchFields } from "./BattleRecordMatchFields";
@@ -71,7 +70,8 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
     <ModalFrame
       label="New battle record"
       onClose={onClose}
-      panelClassName={`${SHEET_PANEL_CLASS} text-parchment-ink`}
+      fullPage
+      panelClassName="parchment-card flex h-full w-full flex-col overflow-hidden text-parchment-ink"
     >
       <div className={SHEET_HEADER_CLASS}>
         <h2 className="font-serif text-2xl">New battle record</h2>

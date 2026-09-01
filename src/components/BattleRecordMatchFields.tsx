@@ -9,7 +9,6 @@ import {
   MODAL_SHEET_SCROLL_CLASS,
   MODAL_SHEET_SCROLL_HOST_CLASS,
   SHEET_HEADER_CLASS,
-  SHEET_PANEL_CLASS,
 } from "@/lib/builderUi";
 import { listFactionsByGrandAlliance } from "@/lib/factionAlliance";
 import {
@@ -188,7 +187,8 @@ function ArmyPickSheet({
     <ModalFrame
       label={title}
       onClose={onClose}
-      panelClassName={`${SHEET_PANEL_CLASS} text-parchment-ink`}
+      fullPage
+      panelClassName="parchment-card flex h-full w-full flex-col overflow-hidden text-parchment-ink"
     >
       <div className={SHEET_HEADER_CLASS}>
         <h2 className="font-serif text-2xl">{title}</h2>

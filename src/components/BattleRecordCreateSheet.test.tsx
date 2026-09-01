@@ -40,6 +40,42 @@ afterEach(() => {
 });
 
 describe("BattleRecordCreateSheet", () => {
+  it("opens as a full-page sheet so the keyboard has room to type a name", () => {
+    render(
+      <BattleRecordCreateSheet
+        open
+        onClose={() => undefined}
+        onCreated={() => undefined}
+      />,
+    );
+
+    const dialog = screen.getByRole("dialog", { name: "New battle record" });
+    expect(dialog.className).toContain("modal-sheet--page");
+    expect(dialog.className).not.toContain("max-h-[85vh]");
+    expect(within(dialog).getByLabelText("Your name")).toBeTruthy();
+    expect(
+      within(dialog).getByRole("button", { name: "Continue" }),
+    ).toBeTruthy();
+  });
+
+  it("opens the army picker full-page too", async () => {
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    render(
+      <BattleRecordCreateSheet
+        open
+        onClose={() => undefined}
+        onCreated={() => undefined}
+      />,
+    );
+
+    await user.click(screen.getByLabelText("Your army"));
+    const picker = await screen.findByRole("dialog", {
+      name: "Choose your army",
+    });
+    expect(picker.className).toContain("modal-sheet--page");
+    expect(picker.className).not.toContain("max-h-[85vh]");
+  });
+
   it("asks for names, armies, priority mode, and painted only", () => {
     render(
       <BattleRecordCreateSheet
