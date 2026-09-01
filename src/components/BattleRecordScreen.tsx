@@ -59,10 +59,11 @@ export function BattleRecordScreen() {
 
   return (
     <div className="relative z-10 min-h-full">
-      <div className={`${SITE_COLUMN_CLASS} pt-2 pb-3`}>
+      <div className={`${SITE_COLUMN_CLASS} pt-2 pb-2`}>
         <div className={LIBRARY_TITLE_ROW_CLASS}>
-          <span className="w-11" aria-hidden="true" />
-          <h1 className={LIBRARY_TITLE_CLASS}>Battle record</h1>
+          <h1 className={`${LIBRARY_TITLE_CLASS} whitespace-nowrap`}>
+            Battle record
+          </h1>
           <IosNavAddButton
             label="New battle record"
             onClick={() => setCreating(true)}
@@ -70,7 +71,7 @@ export function BattleRecordScreen() {
         </div>
       </div>
 
-      <main className="mx-auto w-full max-w-3xl px-5 pb-20 sm:px-6">
+      <main className={`${SITE_COLUMN_CLASS} pb-20`}>
         {games === undefined ? (
           <p className="py-16 text-center text-sm text-parchment/80">
             Loading games…
@@ -91,7 +92,7 @@ export function BattleRecordScreen() {
             </button>
           </div>
         ) : (
-          <ul className="flex flex-col gap-3 pt-2">
+          <ul className="flex flex-col gap-3">
             {games.map((game) => {
               const plan = getBattleplanLayout(game.battleplanId);
               return (

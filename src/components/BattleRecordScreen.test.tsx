@@ -82,6 +82,22 @@ afterEach(() => {
 });
 
 describe("BattleRecordScreen", () => {
+  it("keeps Battle record on one line, flush with the cards", () => {
+    games.push(seededGame());
+    render(<BattleRecordScreen />);
+
+    const heading = screen.getByRole("heading", { name: "Battle record" });
+    expect(heading.className).toContain("whitespace-nowrap");
+    expect(heading.parentElement?.firstElementChild).toBe(heading);
+
+    const titleColumn = heading.parentElement?.parentElement;
+    const main = titleColumn?.nextElementSibling;
+    expect(titleColumn?.className).toContain("px-3");
+    expect(main?.tagName).toBe("MAIN");
+    expect(main?.className).toContain("px-3");
+    expect(main?.className).not.toContain("px-5");
+  });
+
   it("shows a large score on each game card", () => {
     games.push(seededGame());
     render(<BattleRecordScreen />);
