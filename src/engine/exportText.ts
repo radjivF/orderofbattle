@@ -1,6 +1,6 @@
 import { formatPoints } from "./pointsCap";
 import { battleTactics } from "./data/load";
-import { SITE_NAME, getSiteUrl } from "@/lib/site";
+import { SITE_EXPORT_URL, SITE_NAME } from "@/lib/site";
 import {
   getListUnit,
   getRegimentOfRenown,
@@ -244,7 +244,7 @@ export function exportArmyListText(
 
   lines.push("");
   lines.push(`Built with ${SITE_NAME}`);
-  lines.push(getSiteUrl());
+  lines.push(SITE_EXPORT_URL);
   return lines.join("\n");
 }
 
