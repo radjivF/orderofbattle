@@ -268,6 +268,10 @@ describe("listFlowPendingRouteSplash", () => {
     expect(listFlowPendingRouteSplash(true, true)).toBe(false);
     expect(listFlowPendingRouteSplash(false, false)).toBe(false);
   });
+
+  it("does not cover a battle open with the list spinner", () => {
+    expect(listFlowPendingRouteSplash(true, false, false)).toBe(false);
+  });
 });
 
 describe("listFlowShowsFactionBackdrop", () => {
@@ -424,6 +428,7 @@ describe("list flow navigation wiring", () => {
     expect(nav).not.toContain("optimisticBackdrop");
     expect(nav).not.toContain("FactionArtLayers");
     expect(nav).toContain("listFlowPendingRouteSplash");
+    expect(nav).toContain("openingList");
     expect(nav).toContain("listFlowShowsFactionBackdrop");
     expect(nav).toContain("listFlowFactionBackdropFaded");
     expect(nav).toContain("cachedBackdrop");

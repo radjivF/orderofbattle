@@ -109,8 +109,10 @@ export function ListNavProvider({
   const timers = useRef<number[]>([]);
   const animatingBackRef = useRef(false);
   const pendingForwardRef = useRef(false);
+  const pendingFromRef = useRef<string | null>(null);
   const forwardGenRef = useRef(0);
   const libraryScrollYRef = useRef<number | null>(null);
+  const [openingList, setOpeningList] = useState(false);
 
   useEffect(() => {
     if (backdrop) {
@@ -185,14 +187,22 @@ export function ListNavProvider({
   useLayoutEffect(() => {
     if (isHome) {
       pendingForwardRef.current = false;
+      pendingFromRef.current = null;
+      setOpeningList(false);
       animatingBackRef.current = false;
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
       return;
     }
     if (!isDetail) {
-      if (listFlowSkipsPostRouteSlide(pendingForwardRef.current)) {
+      if (
+        listFlowSkipsPostRouteSlide(pendingForwardRef.current) &&
+        pathname === pendingFromRef.current
+      ) {
         return;
       }
+      pendingForwardRef.current = false;
+      pendingFromRef.current = null;
+      setOpeningList(false);
       animatingBackRef.current = false;
       clearListNavigationDirection();
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
@@ -201,6 +211,9 @@ export function ListNavProvider({
     }
 
     if (listFlowSkipsPostRouteSlide(pendingForwardRef.current)) {
+      pendingForwardRef.current = false;
+      pendingFromRef.current = null;
+      setOpeningList(false);
       clearListNavigationDirection();
       return;
     }
@@ -252,7 +265,13 @@ export function ListNavProvider({
       return;
     }
     pendingForwardRef.current = true;
+    pendingFromRef.current = pathname;
+    const openingAList = href.startsWith("/lists/");
+    setOpeningList(openingAList);
     rememberListNavigation("forward");
+    if (!openingAList) {
+      clearListOpenSplash();
+    }
     startForwardSlide();
     router.push(href, { scroll: false });
   }
@@ -263,6 +282,8 @@ export function ListNavProvider({
     }
     const backHref = listFlowBackHref(pathname);
     pendingForwardRef.current = false;
+    pendingFromRef.current = null;
+    setOpeningList(false);
     forwardGenRef.current += 1;
     rememberListNavigation("back");
     clearListOpenSplash();
@@ -294,7 +315,11 @@ export function ListNavProvider({
     returningToLibrary: animatingBack,
   });
   const factionFaded = listFlowFactionBackdropFaded(animatingBack);
-  const pendingRouteSplash = listFlowPendingRouteSplash(showDetail, isDetail);
+  const pendingRouteSplash = listFlowPendingRouteSplash(
+    showDetail,
+    isDetail,
+    openingList,
+  );
 
   return (
     <ListNavContext.Provider value={{ goBack, goForward }}>

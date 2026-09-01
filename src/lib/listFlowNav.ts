@@ -90,8 +90,9 @@ export function listOpenNeedsSplash(listsReady: boolean): boolean {
 export function listFlowPendingRouteSplash(
   showDetail: boolean,
   isBuilder: boolean,
+  openingList = true,
 ): boolean {
-  return showDetail && !isBuilder;
+  return showDetail && !isBuilder && openingList;
 }
 
 /** Keep list art mounted while sliding back so it can fade instead of cutting to ink. */
