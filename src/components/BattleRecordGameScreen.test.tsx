@@ -267,6 +267,9 @@ describe("BattleRecordGameScreen", () => {
       screen.queryByRole("button", { name: "Edit setup" }),
     ).not.toBeInTheDocument();
     const edit = screen.getByRole("button", { name: "Edit" });
+    expect(edit.className).toContain("bg-ink/50");
+    expect(edit.className).toContain("border-sigmarite/70");
+    expect(edit.className).not.toContain("ios-liquid-glass");
     expect(edit.className).not.toMatch(/\bw-full\b/);
     expect(title.parentElement).toContainElement(edit);
   });
