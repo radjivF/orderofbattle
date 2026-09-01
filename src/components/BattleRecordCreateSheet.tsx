@@ -74,7 +74,17 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
       panelClassName="parchment-card flex h-full w-full flex-col overflow-hidden text-parchment-ink"
     >
       <div className={SHEET_HEADER_CLASS}>
-        <h2 className="font-serif text-2xl">New battle record</h2>
+        <div className="min-w-0 flex-1">
+          <h2 className="font-serif text-2xl">New battle record</h2>
+          {gaps.length > 0 ? (
+            <p
+              role="status"
+              className="mt-0.5 text-[11px] leading-snug text-sheet-muted"
+            >
+              Still need {gaps.join(", ")}
+            </p>
+          ) : null}
+        </div>
         <SheetCloseButton label="Close new battle record" onClick={onClose} />
       </div>
       <div className={MODAL_SHEET_SCROLL_HOST_CLASS}>
@@ -102,11 +112,6 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
         </div>
       </div>
       <div className={MODAL_SHEET_FOOTER_CLASS}>
-        {gaps.length > 0 ? (
-          <p className="pb-2 text-center text-xs text-sheet-muted">
-            Still need {gaps.join(", ")}
-          </p>
-        ) : null}
         <button
           type="button"
           disabled={!canCreate}

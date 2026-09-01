@@ -106,11 +106,18 @@ describe("BattleRecordCreateSheet", () => {
     expect(
       within(dialog).getByRole("button", { name: "Continue" }),
     ).toBeDisabled();
+    const heading = within(dialog).getByRole("heading", {
+      name: "New battle record",
+    });
+    const hint = within(dialog).getByRole("status");
+    expect(hint).toHaveTextContent(
+      /Still need your name, your army, opponent name, opponent army/,
+    );
+    expect(heading.parentElement).toContainElement(hint);
+    expect(hint.className).toContain("text-[11px]");
     expect(
-      within(dialog).getByText(
-        /Still need your name, your army, opponent name, opponent army/,
-      ),
-    ).toBeTruthy();
+      within(dialog).getByRole("button", { name: "Continue" }).parentElement,
+    ).not.toContainElement(hint);
   });
 
   it("lets you pick a saved list and preloads its battle tactics", async () => {
