@@ -26,23 +26,22 @@ export function LandingMotion({ children }: { children: React.ReactNode }) {
         });
         timeline
           .from("[data-rise='crest']", {
-            opacity: 0,
             scale: 0.86,
             duration: 1.15,
           })
           .from(
             "[data-rise='copy']",
-            { opacity: 0, y: 28, duration: 0.8 },
+            { y: 28, duration: 0.8 },
             "-=0.5",
           )
           .from(
             "[data-rise='cta']",
-            { opacity: 0, y: 18, duration: 0.55 },
+            { y: 18, duration: 0.55 },
             "-=0.4",
           )
           .from(
             "[data-rise='card']",
-            { opacity: 0, y: 22, stagger: 0.1, duration: 0.55 },
+            { y: 22, stagger: 0.1, duration: 0.55 },
             "-=0.25",
           );
 

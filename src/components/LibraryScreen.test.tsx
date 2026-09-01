@@ -149,6 +149,22 @@ describe("LibraryScreen", () => {
     expect(scroll).toContainElement(
       screen.getByRole("textbox", { name: "List to import" }),
     );
+    expect(scroll).toContainElement(
+      screen.getByRole("group", { name: "Import or export lists" }),
+    );
+    expect(scroll).toContainElement(
+      screen.getByRole("button", { name: "Choose file" }),
+    );
+    for (const importControl of screen.getAllByRole("button", { name: "Import" })) {
+      expect(scroll).toContainElement(importControl);
+    }
+
+    const chooseFile = screen.getByRole("button", { name: "Choose file" });
+    const importAction = screen
+      .getAllByRole("button", { name: "Import" })
+      .find((button) => button.parentElement === chooseFile.parentElement);
+    expect(importAction).toBeDefined();
+    expect(chooseFile.parentElement?.className).toContain("ios-sheet-actions");
   });
 
   it("scrolls sort with the empty export picker", async () => {
@@ -187,6 +203,26 @@ describe("LibraryScreen", () => {
 
     await user.click(screen.getByRole("button", { name: "Continue" }));
     expect(screen.getByRole("heading", { name: "Export list" }));
+    expect(screen.queryByRole("button", { name: "Back" })).toBeNull();
+  });
+
+  it("resets export when the sheet is closed instead of offering Back", async () => {
+    armyStore.items = [blankArmy("stormcast-eternals", "Test list")];
+    render(<LibraryScreen />);
+    const user = await openExportPicker();
+
+    await user.click(screen.getByRole("checkbox", { name: "Export Test list" }));
+    await user.click(screen.getByRole("button", { name: "Continue" }));
+    expect(screen.getByRole("heading", { name: "Export list" }));
+
+    await user.click(screen.getByRole("button", { name: "Close list options" }));
+    expect(screen.queryByRole("dialog", { name: "List options" })).toBeNull();
+
+    await user.click(screen.getByRole("button", { name: "List options" }));
+    await user.click(screen.getByRole("button", { name: "Export" }));
+    expect(screen.getByText("Choose one or more lists to export."));
+    expect(screen.queryByRole("heading", { name: "Export list" })).toBeNull();
+    expect(screen.getByRole("checkbox", { name: "Export Test list" })).not.toBeChecked();
   });
 
   it("presses the list card when opening list details", async () => {

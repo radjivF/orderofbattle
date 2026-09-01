@@ -166,7 +166,7 @@ export const IOS_LIQUID_CTA_CLASS =
 
 /** Compact confirm sheet footer — destructive primary + quiet cancel. */
 export const CONFIRM_SHEET_ACTIONS_CLASS =
-  "flex shrink-0 flex-col gap-2 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-1";
+  "ios-sheet-actions shrink-0 pt-1";
 
 /** Padded footer for full-height sheets (export, import) — panel has no side padding. */
 export const SHEET_FOOTER_ACTIONS_CLASS =
@@ -179,7 +179,7 @@ export const MODAL_SHEET_SCROLL_CLASS =
 export const MODAL_SHEET_SCROLL_HOST_CLASS =
   "modal-sheet-scroll-host min-h-0 flex-1";
 
-/** Pinned sheet footer below the scroll body — stays visible while content moves. */
+/** Sheet actions at the end of the scroll body. */
 export const MODAL_SHEET_FOOTER_CLASS =
   "modal-sheet-footer ios-sheet-actions shrink-0 px-5 pb-5";
 
@@ -202,7 +202,7 @@ export const BUILDER_ADD_ACTION_EMPHASIS_CLASS =
 
 /** Primary + quiet secondary actions in form sheets (Create / Back, etc.). */
 export const SHEET_FORM_ACTIONS_CLASS =
-  "mt-2 flex shrink-0 flex-col gap-3 pt-2";
+  "ios-sheet-actions mt-2 shrink-0 pt-2";
 
 /** Soft gold homepage / footer CTAs — not the in-app parchment glass. */
 export const HOME_CTA_CLASS =
