@@ -149,6 +149,15 @@ describe("LibraryScreen", () => {
     expect(scroll).toContainElement(
       screen.getByRole("textbox", { name: "List to import" }),
     );
+    expect(scroll).toContainElement(
+      screen.getByRole("group", { name: "Import or export lists" }),
+    );
+    expect(scroll).toContainElement(
+      screen.getByRole("button", { name: "Choose file" }),
+    );
+    for (const importControl of screen.getAllByRole("button", { name: "Import" })) {
+      expect(scroll).toContainElement(importControl);
+    }
   });
 
   it("scrolls sort with the empty export picker", async () => {

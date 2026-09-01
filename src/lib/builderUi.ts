@@ -179,7 +179,7 @@ export const MODAL_SHEET_SCROLL_CLASS =
 export const MODAL_SHEET_SCROLL_HOST_CLASS =
   "modal-sheet-scroll-host min-h-0 flex-1";
 
-/** Pinned sheet footer below the scroll body — stays visible while content moves. */
+/** Sheet actions at the end of the scroll body. */
 export const MODAL_SHEET_FOOTER_CLASS =
   "modal-sheet-footer ios-sheet-actions shrink-0 px-5 pb-5";
 
