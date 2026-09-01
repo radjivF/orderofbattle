@@ -4,6 +4,7 @@ import {
   GAME_FEATURE_ROWS,
   GAME_MENU_ROWS,
   LISTS_MENU_LABEL,
+  MENU_ROWS,
   MENU_SECTIONS,
   brandSubtitleForMenu,
   gameBattleRecordSelected,
@@ -43,6 +44,7 @@ describe("active menu preference", () => {
     expect(menuShowsListLibrary("aos")).toBe(true);
     expect(menuPlaceholderCopy("aos")).toBeNull();
     expect(brandSubtitleForMenu("aos")).toBe("Army lists for Age of Sigmar");
+    expect(MENU_ROWS.map((row) => row.id)).toEqual(["aos", "tow", "tactics"]);
   });
 
   it("persists Old World and Battle record menu ids", () => {

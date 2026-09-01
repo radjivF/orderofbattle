@@ -132,8 +132,16 @@ export const MENU_ROWS: readonly {
   label: string;
   brandSubtitle: string;
 }[] = [
-  GAME_MENU_ROWS[0],
-  GAME_MENU_ROWS[1],
+  {
+    id: "aos",
+    label: GAME_MENU_ROWS[0].label,
+    brandSubtitle: GAME_MENU_ROWS[0].brandSubtitle,
+  },
+  {
+    id: "tow",
+    label: GAME_MENU_ROWS[1].label,
+    brandSubtitle: GAME_MENU_ROWS[1].brandSubtitle,
+  },
   TRACK_GAME_MENU_ROW,
 ];
 
