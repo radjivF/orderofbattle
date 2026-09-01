@@ -386,7 +386,7 @@ export function ModalFrame({
     >
       <div
         aria-hidden="true"
-        className="modal-scrim absolute inset-0 bg-ink/70"
+        className="modal-scrim absolute inset-0 z-0 bg-ink/70"
         onPointerDown={(event) => {
           event.preventDefault();
         }}
