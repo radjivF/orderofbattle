@@ -259,7 +259,7 @@ describe("CoreRulesScreen", () => {
       screen.getByText("Fury is a level from 0 to 7. It does not go up just because the round number did."),
     ).toBeTruthy();
     expect(
-      screen.getByText(/Start of every battle round: gain Rage equal to your current Fury/),
+      screen.getByText(/End of the round, leftovers are gone\. Next round you draw again\. You do not keep a stash\./),
     ).toBeTruthy();
     expect(
       screen.getByText(/Once, in deployment: attacker Fury 1, defender Fury 2/),
@@ -268,7 +268,7 @@ describe("CoreRulesScreen", () => {
       screen.getByText(/If nobody changes Fury: attacker stays at 1/),
     ).toBeTruthy();
     expect(
-      screen.getByText(/Fury only moves when an ability below says so/),
+      screen.getByText(/A 6 on Eruption of Fury raises the opponent's Fury\. Fight Through the Pain drops yours/),
     ).toBeTruthy();
   });
 });
