@@ -110,6 +110,7 @@ export function ListNavProvider({
   const animatingBackRef = useRef(false);
   const pendingForwardRef = useRef(false);
   const pendingFromRef = useRef<string | null>(null);
+  const wasBuilderRef = useRef(isDetail);
   const forwardGenRef = useRef(0);
   const libraryScrollYRef = useRef<number | null>(null);
   const [openingList, setOpeningList] = useState(false);
@@ -186,6 +187,7 @@ export function ListNavProvider({
 
   useLayoutEffect(() => {
     if (isHome) {
+      wasBuilderRef.current = false;
       pendingForwardRef.current = false;
       pendingFromRef.current = null;
       setOpeningList(false);
@@ -194,8 +196,10 @@ export function ListNavProvider({
       return;
     }
     if (!isDetail) {
+      const leavingBuilder = wasBuilderRef.current;
+      wasBuilderRef.current = false;
       if (
-        listFlowSkipsPostRouteSlide(pendingForwardRef.current) &&
+        listFlowSkipsPostRouteSlide(pendingForwardRef.current, leavingBuilder) &&
         pathname === pendingFromRef.current
       ) {
         return;
@@ -205,11 +209,14 @@ export function ListNavProvider({
       setOpeningList(false);
       animatingBackRef.current = false;
       clearListNavigationDirection();
+      clearListOpenSplash();
+      clearListCreateSplash();
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
       scrollToPane(false, libraryScrollYRef);
       return;
     }
 
+    wasBuilderRef.current = true;
     if (listFlowSkipsPostRouteSlide(pendingForwardRef.current)) {
       pendingForwardRef.current = false;
       pendingFromRef.current = null;

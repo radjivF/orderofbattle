@@ -567,9 +567,21 @@ a {
 
 .ios-sheet-actions {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
   gap: 8px;
   padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+}
+
+.ios-sheet-actions > :not(button) {
+  flex: 1 0 100%;
+}
+
+.ios-sheet-actions > button {
+  flex: 1 1 0;
+  min-width: 0;
+  width: auto;
 }
 
 .ios-action-sheet {
@@ -618,8 +630,15 @@ a {
 .ios-sheet-actions-row {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: stretch;
   gap: 12px;
+}
+
+.ios-sheet-actions-row > button {
+  flex: 1 1 0;
+  min-width: 0;
+  width: auto;
 }
 
 .ios-segmented {
