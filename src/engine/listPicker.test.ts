@@ -77,6 +77,29 @@ describe("listPicker", () => {
     ).toBe(true);
   });
 
+  it("hides Scourge-of-* units from Path to Glory pickers", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const scourgeUnit = faction.units.find((unit) =>
+      unit.name.includes("(Scourge of"),
+    );
+    expect(scourgeUnit).toBeTruthy();
+
+    const ptgList = blankPathToGlory(faction.id, "ascension");
+    const ptgUnits = pickerUnitsFor(ptgList, faction, { kind: "hero" });
+    expect(
+      ptgUnits?.some((unit) => unit.name.includes("(Scourge of")),
+    ).toBe(false);
+
+    const matchedList = blankArmy(faction.id);
+    const matchedUnits = pickerUnitsFor(matchedList, faction, { kind: "hero" });
+    expect(
+      matchedUnits?.some((unit) => unit.name.includes("(Scourge of")),
+    ).toBe(true);
+  });
+
   it("returns legal units for Anvil of Apotheosis regiment slots", () => {
     const faction = getFaction("stormcast-eternals");
     expect(faction).toBeTruthy();

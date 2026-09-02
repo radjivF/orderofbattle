@@ -5,6 +5,7 @@ import {
   heroesOf,
   legalCompanions,
   unitBaseName,
+  unitScourgeRealm,
 } from "@/engine/queries";
 import type { ArmyList, CatalogueUnit, FactionCatalogue } from "@/engine/types";
 import { isPathToGloryList } from "@/engine/pathToGlory/packs";
@@ -72,6 +73,9 @@ export function availablePickerUnits(
   const pathToGlory = isPathToGloryList(list);
   return units.filter((unit) => {
     if (isAnvilOfApotheosis(unit) && !pathToGlory) {
+      return false;
+    }
+    if (pathToGlory && unitScourgeRealm(unit.name)) {
       return false;
     }
     return !unit.unique || !taken.has(unitBaseName(unit.name));
