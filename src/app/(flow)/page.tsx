@@ -6,13 +6,13 @@ import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: {
-    absolute: `${SITE_NAME} | Free Age of Sigmar Army Builder`,
+    absolute: `Free AoS List Builder | Age of Sigmar 4th | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   keywords: SITE_KEYWORDS,
   alternates: { canonical: "/" },
   openGraph: {
-    title: `${SITE_NAME} | Free Age of Sigmar Army Builder`,
+    title: `Free AoS List Builder | Age of Sigmar 4th | ${SITE_NAME}`,
     description: SITE_DESCRIPTION,
     type: "website",
   },
