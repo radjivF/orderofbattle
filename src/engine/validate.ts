@@ -37,6 +37,7 @@ import {
 } from "./pathToGlory";
 import type {
   ArmyList,
+  CatalogueUnit,
   EnhancementPick,
   FactionCatalogue,
   Selection,
