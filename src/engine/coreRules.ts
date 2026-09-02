@@ -119,6 +119,7 @@ const WARD_SAVE: CorePhaseRule = {
 /** Universal core abilities shown once per phase — not on each warscroll. */
 export const CORE_RULES_BY_PHASE: Record<PlayPhaseId, CorePhaseRule[]> = {
   passive: [],
+  start: [],
   hero: [],
   movement: [
     {

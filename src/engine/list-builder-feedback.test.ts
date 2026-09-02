@@ -10,6 +10,7 @@ import {
 } from "./queries";
 import {
   blankArmy,
+  blankPathToGlory,
   duplicateArmy,
   appendRegimentWithHero,
   prepareImportedArmy,
@@ -129,6 +130,45 @@ describe("battle tactic cards", () => {
     );
     expect(
       totals.issues.some((issue) => issue.text.includes("battle tactic")),
+    ).toBe(false);
+  });
+
+  it("does not ask Path to Glory lists for Scourge season or tactics", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const totals = summarize(blankPathToGlory(faction.id, "ascension"), faction);
+    expect(
+      totals.issues.some((issue) => issue.text.includes("battle tactic")),
+    ).toBe(false);
+    expect(
+      totals.issues.some((issue) => issue.text.includes("Scourge")),
+    ).toBe(false);
+  });
+
+  it("does not require a Scourge season when a Path to Glory list has a scourge warscroll", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const scourgeHero = unitsForPicker(faction).find(
+      (unit) => unit.hero && unit.name.includes("Scourge of Aqshy"),
+    );
+    expect(scourgeHero).toBeTruthy();
+    if (!scourgeHero) return;
+
+    const list = appendRegimentWithHero(
+      blankPathToGlory(faction.id, "ascension"),
+      scourgeHero.id,
+      { regimentId: createId(), heroSelectionId: createId() },
+    );
+    expect(list).toBeTruthy();
+    if (!list) return;
+
+    const totals = summarize(list, faction);
+    expect(
+      totals.issues.some((issue) => issue.text.includes("Scourge")),
     ).toBe(false);
   });
 
@@ -370,6 +410,176 @@ describe("special enhancements", () => {
           issue.text.includes("Duplicate special enhancement table"),
       ),
     ).toBe(true);
+  });
+
+  it("adds Aspects of the Deepwoods points on a Sylvaneth unit", () => {
+    const faction = getFaction("sylvaneth");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const table = faction.specialEnhancementTables?.find(
+      (item) => item.id === "aspects-of-the-deepwoods",
+    );
+    const option = table?.options.find(
+      (item) => item.name === "Aspect of Harvestboon",
+    );
+    const hero = faction.units.find((unit) => unit.name === "Arch-Revenant");
+    const dryads = faction.units.find((unit) => unit.name === "Dryads");
+    expect(table && option && hero && dryads).toBeTruthy();
+    if (!table || !option || !hero || !dryads) return;
+
+    const regimentId = createId();
+    const unitId = createId();
+    const list = {
+      ...blankArmy(faction.id),
+      scourgeRealm: "aqshy" as const,
+      generalRegimentId: regimentId,
+      regiments: [
+        {
+          id: regimentId,
+          hero: { id: createId(), unitId: hero.id, reinforced: false },
+          units: [{ id: unitId, unitId: dryads.id, reinforced: false }],
+        },
+      ],
+    };
+
+    const base = summarize(list, faction);
+    const withAspect = summarize(
+      {
+        ...list,
+        specialEnhancements: [
+          {
+            tableId: table.id,
+            heroSelectionId: unitId,
+            optionId: option.id,
+          },
+        ],
+      },
+      faction,
+    );
+    expect(withAspect.points - base.points).toBe(10);
+  });
+
+  it("warns when a hero or the wrong season takes Aspects of the Deepwoods", () => {
+    const faction = getFaction("sylvaneth");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const table = faction.specialEnhancementTables?.find(
+      (item) => item.id === "aspects-of-the-deepwoods",
+    );
+    const hero = faction.units.find((unit) => unit.name === "Arch-Revenant");
+    expect(table && hero).toBeTruthy();
+    if (!table || !hero) return;
+
+    const regimentId = createId();
+    const heroId = createId();
+    const onHero = summarize(
+      {
+        ...blankArmy(faction.id),
+        scourgeRealm: "aqshy",
+        generalRegimentId: regimentId,
+        regiments: [
+          {
+            id: regimentId,
+            hero: { id: heroId, unitId: hero.id, reinforced: false },
+            units: [],
+          },
+        ],
+        specialEnhancements: [
+          {
+            tableId: table.id,
+            heroSelectionId: heroId,
+            optionId: table.options[0].id,
+          },
+        ],
+      },
+      faction,
+    );
+    expect(
+      onHero.issues.some(
+        (issue) =>
+          issue.tone === "warn" &&
+          issue.text.includes(hero.name) &&
+          issue.text.includes("cannot take"),
+      ),
+    ).toBe(true);
+
+    const dryads = faction.units.find((unit) => unit.name === "Dryads");
+    expect(dryads).toBeTruthy();
+    if (!dryads) return;
+    const unitId = createId();
+    const wrongSeason = summarize(
+      {
+        ...blankArmy(faction.id),
+        scourgeRealm: "ghyran",
+        generalRegimentId: regimentId,
+        regiments: [
+          {
+            id: regimentId,
+            hero: { id: createId(), unitId: hero.id, reinforced: false },
+            units: [{ id: unitId, unitId: dryads.id, reinforced: false }],
+          },
+        ],
+        specialEnhancements: [
+          {
+            tableId: table.id,
+            heroSelectionId: unitId,
+            optionId: table.options[0].id,
+          },
+        ],
+      },
+      faction,
+    );
+    expect(
+      wrongSeason.issues.some(
+        (issue) =>
+          issue.tone === "warn" &&
+          issue.text.includes("not available for this Scourge season"),
+      ),
+    ).toBe(true);
+  });
+
+  it("prunes Aspects of the Deepwoods when the season is not Aqshy", () => {
+    const faction = getFaction("sylvaneth");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const table = faction.specialEnhancementTables?.find(
+      (item) => item.id === "aspects-of-the-deepwoods",
+    );
+    const hero = faction.units.find((unit) => unit.name === "Arch-Revenant");
+    const dryads = faction.units.find((unit) => unit.name === "Dryads");
+    expect(table && hero && dryads).toBeTruthy();
+    if (!table || !hero || !dryads) return;
+
+    const regimentId = createId();
+    const unitId = createId();
+    const list = {
+      ...blankArmy(faction.id),
+      scourgeRealm: "aqshy" as const,
+      generalRegimentId: regimentId,
+      regiments: [
+        {
+          id: regimentId,
+          hero: { id: createId(), unitId: hero.id, reinforced: false },
+          units: [{ id: unitId, unitId: dryads.id, reinforced: false }],
+        },
+      ],
+      specialEnhancements: [
+        {
+          tableId: table.id,
+          heroSelectionId: unitId,
+          optionId: table.options[0].id,
+        },
+      ],
+    };
+
+    expect(pruneOrphanEnhancements(list).specialEnhancements).toHaveLength(1);
+    expect(
+      pruneOrphanEnhancements({ ...list, scourgeRealm: "ghyran" })
+        .specialEnhancements,
+    ).toEqual([]);
   });
 });
 

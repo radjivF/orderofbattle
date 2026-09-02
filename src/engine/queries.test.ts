@@ -4,9 +4,11 @@ import { blankArmy } from "@/lib/storage";
 import {
   canBeGeneral,
   canJoinRegiment,
+  canTakeSpecialEnhancement,
   getFaction,
   listFactions,
   selectionPoints,
+  specialEnhancementTablesForList,
 } from "./queries";
 
 describe("listFactions", () => {
@@ -37,6 +39,39 @@ describe("selectionPoints", () => {
 
     expect(selectionPoints(unit, false)).toBe(unit.points);
     expect(selectionPoints(unit, true)).toBe(unit.points * 2);
+  });
+
+  it("uses Anvil of Apotheosis destiny ranks for points", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const anvil = faction.units.find((item) =>
+      item.name.startsWith("Anvil of Apotheosis"),
+    );
+    expect(anvil).toBeTruthy();
+    if (!anvil) return;
+
+    const knight = anvil.anvilRanks?.[0];
+    const templar = anvil.anvilRanks?.[1];
+    expect(knight?.points).toBe(150);
+    expect(templar?.points).toBe(250);
+    expect(selectionPoints(anvil, false)).toBe(150);
+    expect(
+      selectionPoints(anvil, false, {
+        id: "sel",
+        unitId: anvil.id,
+        reinforced: false,
+        pathToGlory: {
+          renown: 0,
+          pathId: null,
+          pathOptionIds: [],
+          battleWoundId: null,
+          scarId: null,
+          anvilRankId: templar?.id,
+        },
+      }),
+    ).toBe(250);
   });
 });
 
@@ -104,5 +139,56 @@ describe("canBeGeneral", () => {
 
     expect(canBeGeneral(list, faction, warmasterRegimentId)).toBe(true);
     expect(canBeGeneral(list, faction, otherRegimentId)).toBe(false);
+  });
+});
+
+describe("Aspects of the Deepwoods", () => {
+  it("is only on the list during Scourge of Aqshy", () => {
+    const faction = getFaction("sylvaneth");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const tableId = "aspects-of-the-deepwoods";
+    expect(
+      specialEnhancementTablesForList(faction, { scourgeRealm: "aqshy" }).some(
+        (table) => table.id === tableId,
+      ),
+    ).toBe(true);
+    expect(
+      specialEnhancementTablesForList(faction, { scourgeRealm: "ghyran" }).some(
+        (table) => table.id === tableId,
+      ),
+    ).toBe(false);
+    expect(
+      specialEnhancementTablesForList(faction, { scourgeRealm: null }).some(
+        (table) => table.id === tableId,
+      ),
+    ).toBe(false);
+  });
+
+  it("is for non-hero non-monster units only", () => {
+    const faction = getFaction("sylvaneth");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const table = faction.specialEnhancementTables?.find(
+      (item) => item.id === "aspects-of-the-deepwoods",
+    );
+    expect(table).toBeTruthy();
+    if (!table) return;
+
+    const hero = faction.units.find((unit) => unit.name === "Arch-Revenant");
+    const dryads = faction.units.find((unit) => unit.name === "Dryads");
+    const treelord = faction.units.find((unit) => unit.name === "Treelord");
+    const hunters = faction.units.find((unit) =>
+      unit.name.startsWith("Kurnoth Hunters with Kurnoth Scythes"),
+    );
+    expect(hero && dryads && treelord && hunters).toBeTruthy();
+    if (!hero || !dryads || !treelord || !hunters) return;
+
+    expect(canTakeSpecialEnhancement(hero, table)).toBe(false);
+    expect(canTakeSpecialEnhancement(treelord, table)).toBe(false);
+    expect(canTakeSpecialEnhancement(dryads, table)).toBe(true);
+    expect(canTakeSpecialEnhancement(hunters, table)).toBe(true);
   });
 });

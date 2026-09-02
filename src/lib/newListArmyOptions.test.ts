@@ -16,6 +16,7 @@ describe("newListArmySelectGroups", () => {
       "Stormcast Eternals",
       "Army of Renown",
       "Spearhead",
+      "Path to Glory",
     ]);
 
     const aorIds = listArmiesOfRenown("stormcast-eternals").map((item) => item.id);
@@ -57,5 +58,43 @@ describe("newList army select values", () => {
       kind: "matched",
       factionId: "stormcast-eternals",
     });
+  });
+
+  it("round-trips Path to Glory values onto the chosen army", () => {
+    const encoded = encodeNewListArmyValue({
+      kind: "pathToGlory",
+      factionId: "stormcast-eternals",
+    });
+    expect(parseNewListArmyValue(encoded)).toEqual({
+      kind: "pathToGlory",
+      factionId: "stormcast-eternals",
+    });
+  });
+
+  it("still reads older Path to Glory values that included a battlepack", () => {
+    expect(
+      parseNewListArmyValue("pathToGlory:ravaged-coast:stormcast-eternals"),
+    ).toEqual({
+      kind: "pathToGlory",
+      factionId: "stormcast-eternals",
+    });
+  });
+
+  it("offers one Path to Glory option, not one row per battlepack", () => {
+    const aorId = listArmiesOfRenown("stormcast-eternals")[0]?.id;
+    expect(aorId).toBeTruthy();
+    if (!aorId) return;
+
+    const groups = newListArmySelectGroups("stormcast-eternals", aorId);
+    const pathGroup = groups.find((group) => group.label === "Path to Glory");
+    expect(pathGroup?.options).toEqual([
+      {
+        value: encodeNewListArmyValue({
+          kind: "pathToGlory",
+          factionId: aorId,
+        }),
+        label: "Path to Glory",
+      },
+    ]);
   });
 });

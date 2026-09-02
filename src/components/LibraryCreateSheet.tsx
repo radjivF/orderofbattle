@@ -10,6 +10,8 @@ import {
   newListArmySelectGroups,
   newListArmySelectHasExtras,
 } from "@/lib/newListArmyOptions";
+import type { PathToGloryPackId } from "@/engine/pathToGlory";
+import { PathToGloryBattlepackPicker } from "./PathToGloryBattlepackPicker";
 import { SHEET_HEADER_CLASS, SHEET_PANEL_CLASS } from "@/lib/builderUi";
 import { ModalFrame } from "./ModalFrame";
 import { PointsCapField } from "./PointsCapField";
@@ -23,8 +25,9 @@ type Props = {
   draftParent: FactionCatalogue | null;
   draftName: string;
   draftPoints: number;
-  draftMode: "points" | "spearhead";
+  draftMode: "points" | "spearhead" | "pathToGlory";
   draftSpearheadId: string | null;
+  draftPackIds: PathToGloryPackId[];
   createCounts: { heroes: number; units: number } | null;
   onClose: () => void;
   onCreate: () => void;
@@ -32,6 +35,7 @@ type Props = {
   onDraftPointsChange: (points: number) => void;
   onSelectFaction: (faction: FactionCatalogue) => void;
   onArmyChange: (value: string) => void;
+  onPackIdsChange: (packIds: PathToGloryPackId[]) => void;
   onBackToFactions: () => void;
 };
 
@@ -44,6 +48,7 @@ export function LibraryCreateSheet({
   draftPoints,
   draftMode,
   draftSpearheadId,
+  draftPackIds,
   createCounts,
   onClose,
   onCreate,
@@ -51,6 +56,7 @@ export function LibraryCreateSheet({
   onDraftPointsChange,
   onSelectFaction,
   onArmyChange,
+  onPackIdsChange,
   onBackToFactions,
 }: Props) {
   if (!open) {
@@ -92,22 +98,36 @@ export function LibraryCreateSheet({
                         kind: "spearhead",
                         spearheadId: draftSpearheadId,
                       })
+                    : draftMode === "pathToGlory"
+                      ? encodeNewListArmyValue({
+                          kind: "pathToGlory",
+                          factionId: draftFaction.id,
+                        })
                     : draftFaction.id
                 }
                 onChange={(event) => onArmyChange(event.target.value)}
                 className="min-h-11 w-full rounded-xl bg-parchment-ink/5 px-3 font-serif text-xl text-parchment-ink"
               >
-                {newListArmySelectGroups(draftParent.id).map((group) => (
-                  <optgroup key={group.label} label={group.label}>
-                    {group.options.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </optgroup>
-                ))}
+                {newListArmySelectGroups(draftParent.id, draftFaction.id).map(
+                  (group) => (
+                    <optgroup key={group.label} label={group.label}>
+                      {group.options.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </optgroup>
+                  ),
+                )}
               </select>
             </label>
+          ) : null}
+          {draftMode === "pathToGlory" ? (
+            <PathToGloryBattlepackPicker
+              packIds={draftPackIds}
+              onChange={onPackIdsChange}
+              variant="parchment"
+            />
           ) : null}
           <label className="flex flex-col gap-2 text-base text-sheet-muted">
             List name

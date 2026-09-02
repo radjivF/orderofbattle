@@ -75,6 +75,14 @@ export function PlayPhaseBoard({
   >({});
   const hiddenRef = useRef<Partial<Record<string, string[]>>>({});
   const [commandRulesOpen, setCommandRulesOpen] = useState(false);
+
+  useEffect(() => {
+    if (boards.some((board) => board.phase.id === phaseId)) {
+      return;
+    }
+    setPhaseId(boards[0]?.phase.id ?? "passive");
+  }, [boards, phaseId]);
+
   const active =
     boards.find((board) => board.phase.id === phaseId) ?? boards[0] ?? null;
   const showCombatMods =
@@ -328,10 +336,9 @@ export function PlayPhaseBoard({
                 {subTab === "abilities" ? (
                   <ul className="flex flex-col gap-3">
                     {visibleAbilities.map((row) => (
-                      <AbilityCard
-                        key={`${row.selectionId}-${row.ability.name}`}
-                        row={row}
-                      />
+                      <li key={`${row.selectionId}-${row.ability.name}`}>
+                        <AbilityCard row={row} />
+                      </li>
                     ))}
                   </ul>
                 ) : null}
@@ -442,10 +449,9 @@ export function PlayPhaseBoard({
                         </h3>
                         <ul className="mt-3 flex flex-col gap-3">
                           {armyCommands.map((row) => (
-                            <AbilityCard
-                              key={`${row.selectionId}-${row.ability.name}`}
-                              row={row}
-                            />
+                            <li key={`${row.selectionId}-${row.ability.name}`}>
+                              <AbilityCard row={row} />
+                            </li>
                           ))}
                         </ul>
                       </div>

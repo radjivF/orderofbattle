@@ -15,6 +15,7 @@ import {
   peekListCreateSplash,
   peekListNavigationDirection,
   peekListOpenFactionId,
+  peekListOpenScourgeRealm,
   peekListOpenSplash,
   rememberListCreate,
   rememberListNavigation,
@@ -82,12 +83,13 @@ describe("listTransition hydration safety", () => {
   });
 
   it("instant navigation skips the opening splash and carousel slide", () => {
-    rememberListCreate("stormcast-eternals", "My Host");
+    rememberListCreate("stormcast-eternals", "My Host", "aqshy");
     expect(peekListNavigationDirection()).toBe("instant");
     expect(peekListOpenSplash()).toBe(false);
     expect(peekListCreateSplash()).toBe(true);
     expect(consumeSkipListSplash()).toBe(true);
     expect(peekListOpenFactionId()).toBe("stormcast-eternals");
+    expect(peekListOpenScourgeRealm()).toBe("aqshy");
     clearListCreateSplash();
     expect(peekListCreateSplash()).toBe(false);
   });

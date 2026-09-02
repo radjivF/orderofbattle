@@ -1,15 +1,17 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import {
   battleDamagedWarning,
   battleStatLine,
   canTakeMonstrousTrait,
+  canTakeSpecialEnhancement,
   canTakeVisionOfFate,
   enhancementLabel,
   selectionPlayState,
   unitSizeLabel,
 } from "@/engine/queries";
+import { selectionDisplayName, uniqueKeywordBlocksEnhancements } from "@/engine/pathToGlory";
 import type { CombatModifierNote } from "@/engine/magic";
 import type {
   CatalogueUnit,
@@ -79,11 +81,13 @@ export function SlotEnhancements({
   allowUniqueHeroTrait?: boolean;
   traitKind?: string;
 }) {
-  const showHero = Boolean(unit.hero && !unit.unique);
-  const showTrait = Boolean(unit.hero && (!unit.unique || allowUniqueHeroTrait));
+  const uniqueBlocks = uniqueKeywordBlocksEnhancements(unit);
+  const showHero = Boolean(unit.hero && !uniqueBlocks);
+  const showTrait = Boolean(
+    unit.hero && (!uniqueBlocks || allowUniqueHeroTrait),
+  );
   const showMonstrous = canTakeMonstrousTrait(unit);
   const showVision = canTakeVisionOfFate(unit);
-  const canTakeSpecial = !unit.unique;
   const hasArtefact = artefactBearerId === selectionId;
   const hasTrait = heroicTraitBearerId === selectionId;
   const hasMonstrous = monstrousTraitBearerId === selectionId;
@@ -161,8 +165,16 @@ export function SlotEnhancements({
   const traitPick = showTrait ? onPickTrait : undefined;
   const monstrousPick = showMonstrous ? onPickMonstrousTrait : undefined;
   const visionPick = showVision ? onPickVision : undefined;
-  const specialPick = canTakeSpecial ? onPickSpecial : undefined;
-  const hasSpecialSlots = (specialTables?.length ?? 0) > 0 && specialPick;
+  const specialPick = onPickSpecial;
+  const hasSpecialSlots = (specialTables ?? []).some((table) => {
+    const pick = specialEnhancementPicks?.find(
+      (item) => item.tableId === table.id,
+    );
+    return (
+      pick?.heroSelectionId === selectionId ||
+      canTakeSpecialEnhancement(unit, table)
+    );
+  });
   if (
     !artefactPick &&
     !traitPick &&
@@ -216,6 +228,9 @@ export function SlotEnhancements({
           (item) => item.tableId === table.id,
         );
         const has = pick?.heroSelectionId === selectionId;
+        if (!has && !canTakeSpecialEnhancement(unit, table)) {
+          return null;
+        }
         const label = has
           ? enhancementLabel(table.options, pick?.optionId)
           : undefined;
@@ -231,7 +246,9 @@ export function SlotEnhancements({
             abilities={abilities}
             emptyLabel={table.name}
             onPick={
-              specialPick ? () => specialPick(table.id) : undefined
+              specialPick && canTakeSpecialEnhancement(unit, table)
+                ? () => specialPick(table.id)
+                : undefined
             }
           />
         );
@@ -365,6 +382,7 @@ export function SlotLine({
   onRemove,
   onOpenDatasheet,
   onPlayHealth,
+  extraTrailing,
 }: {
   unit: CatalogueUnit;
   selection?: Selection;
@@ -380,6 +398,7 @@ export function SlotLine({
   onRemove?: () => void;
   onOpenDatasheet: () => void;
   onPlayHealth?: (selectionId: string, damage: number) => void;
+  extraTrailing?: ReactNode;
 }) {
   const stats = battleStatLine(unit);
   const track =
@@ -393,7 +412,7 @@ export function SlotLine({
     return (
       <div className="w-full rounded-xl bg-parchment-ink/5 px-3 py-2.5">
         <PlaySlotRow
-          name={unit.name}
+          name={selectionDisplayName(selection, unit)}
           subtitle={stats || undefined}
           reinforced={reinforced}
           sheetLabel={`${unit.name} datasheet`}
@@ -422,7 +441,7 @@ export function SlotLine({
 
   return (
     <BuildSlotRow
-      name={unit.name}
+      name={selectionDisplayName(selection, unit)}
       subtitle={
         hidePoints
           ? unitSizeLabel(unit, Boolean(reinforced))
@@ -433,6 +452,7 @@ export function SlotLine({
       onOpenSheet={onOpenDatasheet}
       trailing={
         <>
+          {extraTrailing}
           {onReplace ? (
             <EditLinkButton
               label={`Change ${unit.name}`}

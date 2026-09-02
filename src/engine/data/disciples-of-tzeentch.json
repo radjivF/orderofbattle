@@ -4433,6 +4433,1037 @@
       ],
       "regimentOptions": [],
       "regimentHeroes": []
+    },
+    {
+      "id": "acdb-d73b-5903-7692",
+      "name": "Anvil of Apotheosis: Disciples of Tzeentch Hero",
+      "points": 150,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "CHAOS",
+        "DISCIPLES OF TZEENTCH",
+        "WIZARD (1)"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Great Horns",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Charge (+1 Damage)"
+        },
+        {
+          "name": "Bladed Staff",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "-"
+        },
+        {
+          "name": "Screamers' Lamprey Bites",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Charge (+1 Damage), Companion"
+        },
+        {
+          "name": "Disc's Teeth and Horns",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Sorcerer's Staff",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "D3",
+          "ability": "Shoot in Combat"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Illustrious Daemon",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time a friendly Disciples of Tzeentch unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Tzaangor Boss",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time a friendly Warflock unit is set up wholly within 12\" of this unit, that Warflock unit can immediately move D3\" but cannot end that move in combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Eldritch Artificer",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a friendly Disciples of Tzeentch unit within this unit's combat range to be the target.",
+          "effect": "Roll a dice. On a 3+, the target's melee weapons have Crit (2 Hits) for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Third Eye",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Heal (X) this unit, where X is the number of fate points you have.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Master of Corruption",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 5 to this unit's control score if it was set up in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Endless Minions",
+          "kind": "Command",
+          "timing": "Once Per Battle, Your Movement Phase",
+          "declare": "Pick a friendly non-Hero Arcanite unit that has been destroyed to be the target.",
+          "effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 9\" of a battlefield edge and more than 9\" from all enemy units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": "1"
+        },
+        {
+          "name": "Cursed by Tzeentch",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit no longer has the Wizard (1) keyword.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Ever-shifting Mind",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot contest objectives that it contested in the previous turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Limned in Wyrdflame",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit can only be set up using a Deploy ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Mutated Limbs",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit's Move characteristic is D6\"+2\".",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Destined to Survive",
+          "kind": "Fate",
+          "timing": "Any Hero Phase",
+          "declare": "",
+          "effect": "Spend any number of fate points. For each fate point you spend, Heal (1) this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Flash of Insight",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "",
+          "effect": "This unit can use the 'Normal Move' ability as if it were your movement phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Illusory Aura",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit was set up in the same turn, friendly Disciples of Tzeentch units have Ward (5+) while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Fated Slayer",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 3 to the Attacks characteristic of this unit's melee weapons while you have 6 or more fate points.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Master Arcanist",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to casting rolls and banishment rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Blazing Trail",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Movement Phase",
+          "declare": "",
+          "effect": "This unit can move a distance up to its Move characteristic. It can pass through other models and the combat ranges of enemy units, but it cannot end that move in combat. Then, pick up to 1 enemy unit that this unit passed across during that move to be the target. Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target. Designer's Note: *This unit can use this ability even if it is in combat.*",
+          "keywords": "Core, Move",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Slash and Rip",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Charge Phase",
+          "declare": "If this unit charged this phase, pick an enemy unit in combat with it to be the target.",
+          "effect": "Roll a number of dice equal to the unmodified charge roll. For each 4+, inflict 1 mortal damage on the target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Eater of Fate",
+          "kind": "Activated",
+          "timing": "Any Hero Phase",
+          "declare": "Pick a friendly Disciples of Tzeentch unit wholly within 12\" of this unit to be the target.",
+          "effect": "If the target is destroyed this turn, before removing it from play, gain 1 fate point.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": [],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "2643-83ed-25d1-4e9e",
+          "name": "Chief Cabalist",
+          "points": 150,
+          "destiny": 10
+        },
+        {
+          "id": "e186-fd2e-ad1c-c6ff",
+          "name": "Herald of Destiny",
+          "points": 250,
+          "destiny": 30
+        },
+        {
+          "id": "6558-7d9a-3abc-4007",
+          "name": "Lord of Flux",
+          "points": 350,
+          "destiny": 50
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "6b7e-99ff-4ecb-12f8",
+          "name": "Archetype",
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "id": "474f-65d2-0f4e-b57f",
+              "name": "Arcanite Sorcerer",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Arcanite Sorcerer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Arcanite keyword and the following regiment options: Any Arcanite units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "4a92-d0e4-40e6-ff1b",
+              "name": "Illustrious Daemon",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Illustrious Daemon",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Each time a friendly Disciples of Tzeentch unit wholly within 12\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "f0ae-71f7-e8cc-de91",
+              "name": "Tzaangor Boss",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Tzaangor Boss",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Each time a friendly Warflock unit is set up wholly within 12\" of this unit, that Warflock unit can immediately move D3\" but cannot end that move in combat.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "9c77-6894-c57b-4e01",
+              "name": "Ogroid Enlightened",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Ogroid Enlightened",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Health characteristic to 8 and replace their melee weapon with Great Horns. In addition, your hero has the following regiment options: Any Disciples of Tzeentch units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Great Horns",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Charge (+1 Damage)"
+                }
+              ],
+              "stats": {
+                "health": "8"
+              }
+            }
+          ]
+        },
+        {
+          "id": "bd07-426a-35d4-f54e",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "759b-a7cc-cb5d-f8c4",
+              "name": "Eldritch Artificer",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Eldritch Artificer",
+                  "kind": "Activated",
+                  "timing": "Your Hero Phase",
+                  "declare": "Pick a friendly Disciples of Tzeentch unit within this unit's combat range to be the target.",
+                  "effect": "Roll a dice. On a 3+, the target's melee weapons have Crit (2 Hits) for the rest of the turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "0db6-cf45-1ba8-64cf",
+              "name": "Third Eye",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Third Eye",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Heal (X) this unit, where X is the number of fate points you have.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "6016-58a8-fc77-ed06",
+              "name": "Master of Corruption",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Master of Corruption",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 5 to this unit's control score if it was set up in the same turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "fd88-84d5-f3ca-fa1c",
+              "name": "Endless Minions",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Endless Minions",
+                  "kind": "Command",
+                  "timing": "Once Per Battle, Your Movement Phase",
+                  "declare": "Pick a friendly non-Hero Arcanite unit that has been destroyed to be the target.",
+                  "effect": "Set up a replacement unit with half the number of models from the target unit (rounding up) wholly within 9\" of a battlefield edge and more than 9\" from all enemy units.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": "1"
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "8a24-a13a-c3c0-c18e",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "cf95-6b28-6b26-7867",
+              "name": "Cursed by Tzeentch",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Cursed by Tzeentch",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit no longer has the Wizard (1) keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "239f-c114-1a39-4369",
+              "name": "Ever-shifting Mind",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Ever-shifting Mind",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot contest objectives that it contested in the previous turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "b3c3-90e8-2000-8212",
+              "name": "Limned in Wyrdflame",
+              "destiny": 3,
+              "abilities": [
+                {
+                  "name": "Limned in Wyrdflame",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit can only be set up using a Deploy ability.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "cccf-eb8e-6dce-01c6",
+              "name": "Mutated Limbs",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Mutated Limbs",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit's Move characteristic is D6\"+2\".",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "abed-d907-99c0-f134",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "636a-252b-1fd3-0161",
+              "name": "Banner of Tzeentch",
+              "destiny": -1,
+              "abilities": [
+                {
+                  "name": "Banner of Tzeentch",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "control": 2
+              }
+            },
+            {
+              "id": "cd0d-ffd9-4f64-cd8b",
+              "name": "Warping Weapon",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Warping Weapon",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's non-Companion melee weapons have Crit (2 Hits).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "09a3-95f5-1bd1-50c5",
+              "name": "Mystical Protection",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Mystical Protection",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (6+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "b9cc-c2e8-97da-68dd",
+              "name": "Free-willed Blade",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Free-willed Blade",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's melee weapon has Anti-X (+1 Rend), where X is one of the following keywords: Infantry, Cavalry, Monster, War Machine, Wizard, or Priest.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "3592-ba6c-812f-f011",
+              "name": "Shield of Eyes",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Shield of Eyes",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Save characteristic is 4+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "stats": {
+                "save": "4+"
+              }
+            },
+            {
+              "id": "9a32-8b0d-1a78-caf1",
+              "name": "Destined to Survive",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Destined to Survive",
+                  "kind": "Fate",
+                  "timing": "Any Hero Phase",
+                  "declare": "",
+                  "effect": "Spend any number of fate points. For each fate point you spend, Heal (1) this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "eb3b-40c4-3e2c-9d0f",
+              "name": "Flash of Insight",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Flash of Insight",
+                  "kind": "Activated",
+                  "timing": "Deployment Phase",
+                  "declare": "",
+                  "effect": "This unit can use the 'Normal Move' ability as if it were your movement phase.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "0319-29a6-2fe5-e03e",
+              "name": "Sorcerers Staff",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Sorcerer's Staff",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Sorcerer's Staff weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Sorcerer's Staff",
+                  "kind": "ranged",
+                  "range": "12\"",
+                  "attacks": "3",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "-",
+                  "damage": "D3",
+                  "ability": "Shoot in Combat"
+                }
+              ]
+            },
+            {
+              "id": "9376-c5ff-a43a-30af",
+              "name": "Illusory Aura",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Illusory Aura",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "If this unit was set up in the same turn, friendly Disciples of Tzeentch units have Ward (5+) while they are wholly within 12\" of this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "ec29-8874-35cd-d56c",
+              "name": "Grand Sorcerer",
+              "destiny": -8,
+              "abilities": [
+                {
+                  "name": "Grand Sorcerer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Wizard only. Your hero has Wizard (2)",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "9e56-dbf7-f8e0-8cb1",
+              "name": "Fated Slayer",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Fated Slayer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 3 to the Attacks characteristic of this unit's melee weapons while you have 6 or more fate points.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "76bc-b4f8-44c3-1db0",
+              "name": "Master Arcanist",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Master Arcanist",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to casting rolls and banishment rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "971b-4208-fb55-d84c",
+          "name": "Battle Mounts",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "22c8-6384-38e3-4849",
+              "name": "Disc of Tzeentch",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Disc of Tzeentch",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Disc's Teeth and Horns weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 14\". \u2022 Change the Health characteristic to 7. \u2022 Replace the Infantry keyword with the following keywords: Cavalry, Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Disc's Teeth and Horns",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "2",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "D3",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "7",
+                "move": "14\""
+              }
+            },
+            {
+              "id": "5477-695d-8b6d-c4eb",
+              "name": "Burning Chariot",
+              "destiny": -7,
+              "abilities": [
+                {
+                  "name": "Burning Chariot",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Screamers' Lamprey Bites weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 10. \u2022 Replace the Infantry keyword with the following keywords: War Machine, Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Screamers' Lamprey Bites",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "6",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "1",
+                  "ability": "Charge (+1 Damage), Companion"
+                }
+              ],
+              "stats": {
+                "health": "10",
+                "move": "12\""
+              }
+            }
+          ]
+        },
+        {
+          "id": "e76c-8030-1554-25a1",
+          "name": "Battle Mount Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "bedf-2378-cfd9-5bf1",
+              "name": "Blur in the Sky",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Blur in the Sky",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "move": 2
+              }
+            },
+            {
+              "id": "78c1-905e-f025-70aa",
+              "name": "Gigantic Disc",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Gigantic Disc",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Health characteristic,",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "health": 2
+              }
+            },
+            {
+              "id": "4af0-78c9-3cb5-9b95",
+              "name": "Jagged Fangs",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Jagged Fangs",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the Rend characteristic of your hero's Companion weapons.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "7728-2115-824a-07cb",
+              "name": "Blazing Trail",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Blazing Trail",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Your Movement Phase",
+                  "declare": "",
+                  "effect": "This unit can move a distance up to its Move characteristic. It can pass through other models and the combat ranges of enemy units, but it cannot end that move in combat. Then, pick up to 1 enemy unit that this unit passed across during that move to be the target. Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target. Designer's Note: *This unit can use this ability even if it is in combat.*",
+                  "keywords": "Core, Move",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "3451-7e0f-22e3-f706",
+              "name": "Slash and Rip",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Slash and Rip",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Charge Phase",
+                  "declare": "If this unit charged this phase, pick an enemy unit in combat with it to be the target.",
+                  "effect": "Roll a number of dice equal to the unmodified charge roll. For each 4+, inflict 1 mortal damage on the target.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "63e3-8d0e-0c39-851a",
+              "name": "Eater of Fate",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Eater of Fate",
+                  "kind": "Activated",
+                  "timing": "Any Hero Phase",
+                  "declare": "Pick a friendly Disciples of Tzeentch unit wholly within 12\" of this unit to be the target.",
+                  "effect": "If the target is destroyed this turn, before removing it from play, gain 1 fate point.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

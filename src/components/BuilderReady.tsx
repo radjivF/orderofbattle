@@ -19,8 +19,11 @@ import {
   formationLabel,
   getListUnit,
   getRegimentOfRenown,
+  getSelection,
   getUnit,
+  listHeroGearSlots,
   listRegimentsOfRenown,
+  specialEnhancementTablesForList,
   resolveGeneralRegimentId,
   selectionPlayState,
   selectionPoints,
@@ -30,6 +33,22 @@ import { battleTacticsForRealm } from "@/engine/data/load";
 import { dropEnhancements, pickerUnitsFor, type ListPicker as Picker } from "@/engine/listPicker";
 import { combatModifierNotes } from "@/engine/magic";
 import { isSpearheadList } from "@/engine/spearhead";
+import {
+  applyPathToGloryPacks,
+  assignPathToGloryHeroEnhancement,
+  findBattleplan,
+  getWarlordSelection,
+  initializeWarlordState,
+  isPathToGloryList,
+  PATH_TO_GLORY_BATTLEPLANS,
+  PATH_TO_GLORY_QUESTS,
+  pathToGloryPackIds,
+  patchSelection,
+  selectionArtefactOptionId,
+  selectionHeroicTraitOptionId,
+  resolvePathToGloryUnit,
+  showsBattleWoundsAndScars,
+} from "@/engine/pathToGlory";
 import { hideSelectionFromPhase, playAfterDamage } from "@/engine/playHide";
 import { summarize } from "@/engine/validate";
 import type {
@@ -56,10 +75,15 @@ import {
 import { createId } from "@/lib/id";
 import { appendRegimentWithHero, saveArmy } from "@/lib/storage";
 import { BattleTacticCardPicker } from "./BattleTacticCardPicker";
+import { PathToGloryBattlepackPicker } from "./PathToGloryBattlepackPicker";
 import { BattleTacticTracker } from "./BattleTacticTracker";
 import { ConfirmSheetActions } from "./ConfirmSheetActions";
 import { DatasheetSheet } from "./DatasheetSheet";
 import { ManifestationCard } from "./ManifestationCard";
+import {
+  PathToGloryManifestationCard,
+  PathToGlorySpellCard,
+} from "./PathToGloryLearnedCards";
 import { ModalFrame } from "./ModalFrame";
 import { ChoiceSheet, PickerSheet } from "./PickerSheet";
 import { PlayMagicBoard } from "./PlayMagicBoard";
@@ -120,6 +144,7 @@ export function BuilderReady({
   const totals = useMemo(() => summarize(list, faction), [list, faction]);
   const playMode = pane === "play";
   const spearhead = isSpearheadList(list);
+  const pathToGlory = isPathToGloryList(list);
   const bindNotes = useMemo(
     () => (playMode ? combatModifierNotes(list, faction) : []),
     [playMode, list, faction],
@@ -179,19 +204,98 @@ export function BuilderReady({
     await saveArmy(next);
   }
 
+  function toggleWarlord(selectionId: string) {
+    if (!list.pathToGlory) {
+      return;
+    }
+    
+    const currentWarlord = list.pathToGlory.warlordSelectionId;
+    const isCurrentlyWarlord = currentWarlord === selectionId;
+    
+    if (isCurrentlyWarlord) {
+      // Unmark warlord
+      void commit({
+        ...list,
+        pathToGlory: {
+          ...list.pathToGlory,
+          warlordSelectionId: null,
+        },
+      });
+      return;
+    }
+    
+    // Mark as warlord and initialize with Path + first aspiring ability
+    const selection = list.regiments
+      .flatMap((r) => (r.hero ? [r.hero] : []))
+      .concat(list.auxiliaries)
+      .find((s) => s.id === selectionId);
+    
+    if (!selection) {
+      return;
+    }
+    
+    const unit = getListUnit(list, faction, selection.unitId);
+    if (!unit) {
+      return;
+    }
+    
+    const initialized = initializeWarlordState(list, unit, selection);
+    
+    void commit({
+      ...list,
+      pathToGlory: {
+        ...list.pathToGlory,
+        warlordSelectionId: selectionId,
+      },
+      regiments: list.regiments.map((r) => {
+        if (r.hero?.id === selectionId) {
+          return {
+            ...r,
+            hero: initialized,
+          };
+        }
+        return r;
+      }),
+      auxiliaries: list.auxiliaries.map((aux) => {
+        if (aux.id === selectionId) {
+          return initialized;
+        }
+        return aux;
+      }),
+    });
+  }
+
   useEffect(() => {
     const nextPrayer =
       !list.prayerLoreId && faction.prayerLores.length === 1
         ? faction.prayerLores[0].id
         : list.prayerLoreId;
     const nextSpell =
-      !list.spellLoreId && faction.spellLores.length === 1
-        ? faction.spellLores[0].id
-        : list.spellLoreId;
-    const nextGeneral = resolveGeneralRegimentId(list, faction);
+      pathToGlory
+        ? list.spellLoreId
+        : !list.spellLoreId && faction.spellLores.length === 1
+          ? faction.spellLores[0].id
+          : list.spellLoreId;
+    
+    // For PTG, if warlord is in a regiment, that regiment must be general
+    let nextGeneral = resolveGeneralRegimentId(list, faction);
+    if (pathToGlory) {
+      const warlord = getWarlordSelection(list);
+      if (warlord) {
+        const warlordRegiment = list.regiments.find(
+          (r) => r.hero?.id === warlord.id,
+        );
+        if (warlordRegiment) {
+          nextGeneral = warlordRegiment.id;
+        }
+      }
+    }
+    
     const nextScourgeRealm = spearhead
       ? list.scourgeRealm
-      : (list.scourgeRealm ?? "aqshy");
+      : pathToGlory
+        ? null
+        : (list.scourgeRealm ?? "aqshy");
     if (
       nextPrayer === list.prayerLoreId &&
       nextSpell === list.spellLoreId &&
@@ -207,7 +311,7 @@ export function BuilderReady({
       generalRegimentId: nextGeneral,
       scourgeRealm: nextScourgeRealm,
     });
-  }, [list, faction, spearhead]);
+  }, [list, faction, spearhead, pathToGlory]);
 
   useEffect(() => {
     if (spearhead && playTab === "magic") {
@@ -373,6 +477,21 @@ export function BuilderReady({
       setPicker(null);
       return;
     }
+    if (
+      pathToGlory &&
+      (picker.kind === "artefact" || picker.kind === "trait")
+    ) {
+      await commit(
+        assignPathToGloryHeroEnhancement(
+          list,
+          picker.heroSelectionId,
+          picker.kind === "artefact" ? "artefact" : "heroicTrait",
+          option?.id ?? null,
+        ),
+      );
+      setPicker(null);
+      return;
+    }
     const field =
       picker.kind === "artefact"
         ? "artefact"
@@ -404,18 +523,31 @@ export function BuilderReady({
   const manifestation = faction.manifestationLores.find(
     (lore) => lore.id === list.manifestationLoreId,
   );
+  const pickerHero =
+    picker &&
+    (picker.kind === "artefact" ||
+      picker.kind === "trait" ||
+      picker.kind === "monstrous" ||
+      picker.kind === "vision" ||
+      picker.kind === "special")
+      ? getSelection(list, picker.heroSelectionId)
+      : undefined;
   const enhancementPicker =
     picker?.kind === "artefact"
       ? {
           title: "Artefact",
           options: enhancementChoices(faction.artefacts),
-          selectedId: list.artefact?.optionId,
+          selectedId: pickerHero
+            ? (selectionArtefactOptionId(list, pickerHero) ?? undefined)
+            : list.artefact?.optionId,
         }
       : picker?.kind === "trait"
         ? {
             title: spearhead ? "Enhancement" : "Heroic trait",
             options: enhancementChoices(faction.heroicTraits),
-            selectedId: list.heroicTrait?.optionId,
+            selectedId: pickerHero
+              ? (selectionHeroicTraitOptionId(list, pickerHero) ?? undefined)
+              : list.heroicTrait?.optionId,
           }
         : picker?.kind === "monstrous"
           ? {
@@ -446,7 +578,7 @@ export function BuilderReady({
                 }
               : null;
 
-  const specialTables = faction.specialEnhancementTables ?? [];
+  const specialTables = specialEnhancementTablesForList(faction, list);
   const specialEnhancementPicks = list.specialEnhancements ?? [];
   const onPickSpecial =
     specialTables.length > 0
@@ -535,7 +667,7 @@ export function BuilderReady({
             onChange={(next) =>
               setPlayTab(next as "units" | "magic" | "phases")
             }
-            options={builderPlayTabs(spearhead)}
+            options={builderPlayTabs(spearhead, pathToGlory)}
           />
         ) : null}
         {!forPlayMode && issue.tone !== "ok" ? (
@@ -579,7 +711,11 @@ export function BuilderReady({
               <span className="font-medium tracking-wide">Options</span>
               <span className="flex items-center gap-2 text-xs text-ink-muted">
                 {!optionsOpen ? (
-                  <span>Points · Lores · Tactics</span>
+                  <span>
+                    {isPathToGloryList(list)
+                      ? "Battlepacks · Lores · Quest"
+                      : "Points · Lores · Tactics"}
+                  </span>
                 ) : null}
                 <span
                   aria-hidden="true"
@@ -605,7 +741,94 @@ export function BuilderReady({
                 />
               </div>
 
-              {faction.spellLores.length > 0 ? (
+              {isPathToGloryList(list) ? (
+                <>
+                  <PathToGloryBattlepackPicker
+                    packIds={pathToGloryPackIds(list)}
+                    onChange={(packIds) =>
+                      void commit(applyPathToGloryPacks(list, packIds))
+                    }
+                    variant="ink"
+                  />
+                  <label className="flex flex-col gap-2 text-sm text-parchment/80">
+                    Quest
+                    <select
+                      value={list.pathToGlory?.questId ?? ""}
+                      onChange={(event) =>
+                        void commit({
+                          ...list,
+                          pathToGlory: {
+                            ...list.pathToGlory!,
+                            questId: event.target.value || null,
+                            questPoints: list.pathToGlory?.questPoints ?? 0,
+                          },
+                        })
+                      }
+                      className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
+                    >
+                      <option value="">None</option>
+                      {PATH_TO_GLORY_QUESTS.map((quest) => (
+                        <option key={quest.id} value={quest.id}>
+                          {quest.name}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  {list.pathToGlory?.questId ? (
+                    <label className="flex flex-col gap-2 text-sm text-parchment/80">
+                      Quest points
+                      <input
+                        type="number"
+                        min={0}
+                        max={99}
+                        value={list.pathToGlory?.questPoints ?? 0}
+                        onChange={(event) =>
+                          void commit({
+                            ...list,
+                            pathToGlory: {
+                              ...list.pathToGlory!,
+                              questPoints: Math.max(0, Number(event.target.value)),
+                            },
+                          })
+                        }
+                        className="min-h-11 w-full max-w-32 rounded-xl bg-parchment px-3 text-parchment-ink"
+                      />
+                    </label>
+                  ) : null}
+                  <label className="flex flex-col gap-2 text-sm text-parchment/80">
+                    Battleplan
+                    <select
+                      value={list.pathToGlory?.battleplanId ?? ""}
+                      onChange={(event) =>
+                        void commit({
+                          ...list,
+                          pathToGlory: {
+                            ...list.pathToGlory!,
+                            battleplanId: event.target.value || null,
+                          },
+                        })
+                      }
+                      className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
+                    >
+                      <option value="">None</option>
+                      {PATH_TO_GLORY_BATTLEPLANS.map((plan) => (
+                        <option key={plan.id} value={plan.id}>
+                          {plan.name}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  {list.pathToGlory?.battleplanId ? (
+                    <div className="text-xs text-parchment/70">
+                      {findBattleplan(list.pathToGlory.battleplanId)?.twists.map((twist, i) => (
+                        <div key={i}>Twist {i + 1}: {twist}</div>
+                      ))}
+                    </div>
+                  ) : null}
+                </>
+              ) : null}
+
+              {faction.spellLores.length > 0 && !pathToGlory ? (
                 <div
                   id={listIssueAnchorId({ area: "options", field: "spell-lore" })}
                   className={`flex flex-col gap-2 ${listIssueHighlightClass(
@@ -720,6 +943,8 @@ export function BuilderReady({
                 </label>
               ) : null}
 
+              {!pathToGlory ? (
+                <>
               <label
                 id={listIssueAnchorId({ area: "options", field: "scourge" })}
                 className={`flex flex-col gap-2 text-sm text-parchment/80 ${listIssueHighlightClass(
@@ -739,6 +964,14 @@ export function BuilderReady({
                       scourgeRealm,
                       battleTacticCardIds: [],
                       battleTacticStage: {},
+                      specialEnhancements: (list.specialEnhancements ?? []).filter(
+                        (pick) => {
+                          const table = faction.specialEnhancementTables?.find(
+                            (item) => item.id === pick.tableId,
+                          );
+                          return !table?.realm || table.realm === scourgeRealm;
+                        },
+                      ),
                     });
                   }}
                   className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
@@ -765,6 +998,8 @@ export function BuilderReady({
                   onCommit={(next) => void commit(next)}
                 />
               </div>
+                </>
+              ) : null}
             </div>
             ) : null}
           </section>
@@ -831,7 +1066,7 @@ export function BuilderReady({
           <PlaySummary list={list} faction={faction} />
         ) : null}
 
-        {forPlayMode && playTab === "phases" && !spearhead ? (
+        {forPlayMode && playTab === "phases" && !spearhead && !pathToGlory ? (
           <BattleTacticTracker
             list={list}
             onStageChange={(cardId, stage) =>
@@ -881,12 +1116,20 @@ export function BuilderReady({
             key={regiment.id}
             regiment={regiment}
             faction={faction}
+            list={list}
+            warlordSelectionId={list.pathToGlory?.warlordSelectionId}
             isGeneral={regimentIsGeneral}
             canBeGeneral={canBeGeneral(list, faction, regiment.id)}
             slotCap={totals.slotCap(regiment.id)}
             selected={selectedId === regiment.id}
             playMode={forPlayMode}
             locked={spearhead}
+            pathToGloryPackIds={pathToGloryPackIds(list)}
+            showBattleWounds={showsBattleWoundsAndScars(list)}
+            onPatchSelection={(selectionId, next) =>
+              void commit(patchSelection(list, selectionId, next))
+            }
+            onToggleWarlord={pathToGlory ? toggleWarlord : undefined}
             allowUniqueHeroTrait={spearhead && regimentIsGeneral}
             traitKind={spearhead ? "Enhancement" : undefined}
             highlightedAnchorId={highlightedAnchorId}
@@ -1076,6 +1319,11 @@ export function BuilderReady({
           <RegimentOfRenownCard
             list={list}
             playMode={forPlayMode}
+            pathToGloryPackIds={pathToGloryPackIds(list)}
+            showBattleWounds={showsBattleWoundsAndScars(list)}
+            onPatchSelection={(selectionId, next) =>
+              void commit(patchSelection(list, selectionId, next))
+            }
             artefactBearerId={list.artefact?.heroSelectionId}
             artefactLabel={enhancementLabel(
               faction.artefacts,
@@ -1190,23 +1438,25 @@ export function BuilderReady({
                 if (!unit) {
                   return null;
                 }
+                const heroGear = listHeroGearSlots(list, faction, slot);
                 if (forPlayMode) {
-                  const track = selectionPlayState(slot, unit);
-                  const warning = battleDamagedWarning(unit, track.damage);
+                  const resolvedUnit = resolvePathToGloryUnit(unit, slot);
+                  const track = selectionPlayState(slot, resolvedUnit);
+                  const warning = battleDamagedWarning(resolvedUnit, track.damage);
                   return (
                     <li key={slot.id}>
                       <div className="rounded-xl bg-parchment-ink/5 px-3 py-2.5">
                         <div className="flex items-center gap-3">
                           <button
                             type="button"
-                            onClick={() => setDatasheet(unit)}
+                            onClick={() => setDatasheet(resolvedUnit)}
                             className="min-w-0 w-fit max-w-full text-left"
                           >
                             <span className="font-serif text-lg leading-tight">
-                              {unit.name}
+                              {resolvedUnit.name}
                             </span>
                             <span className="mt-0.5 block text-sm text-parchment-ink/60">
-                              {battleStatLine(unit)}
+                              {battleStatLine(resolvedUnit)}
                             </span>
                           </button>
                           <PlayHealthTrack
@@ -1231,34 +1481,7 @@ export function BuilderReady({
                           selectionId={slot.id}
                           unit={unit}
                           playMode={forPlayMode}
-                          artefactBearerId={list.artefact?.heroSelectionId}
-                          artefactLabel={enhancementLabel(
-                            faction.artefacts,
-                            list.artefact?.optionId,
-                          )}
-                          artefactAbilities={
-                            list.artefact
-                              ? faction.artefacts.find(
-                                  (item) =>
-                                    item.id === list.artefact?.optionId,
-                                )?.abilities
-                              : undefined
-                          }
-                          heroicTraitBearerId={
-                            list.heroicTrait?.heroSelectionId
-                          }
-                          heroicTraitLabel={enhancementLabel(
-                            faction.heroicTraits,
-                            list.heroicTrait?.optionId,
-                          )}
-                          heroicTraitAbilities={
-                            list.heroicTrait
-                              ? faction.heroicTraits.find(
-                                  (item) =>
-                                    item.id === list.heroicTrait?.optionId,
-                                )?.abilities
-                              : undefined
-                          }
+                          {...heroGear}
                           monstrousTraitBearerId={
                             list.monstrousTrait?.heroSelectionId
                           }
@@ -1304,7 +1527,7 @@ export function BuilderReady({
                   <li key={slot.id}>
                     <BuildSlotRow
                       name={unit.name}
-                      subtitle={`${unitSizeLabel(unit, slot.reinforced)} · ${selectionPoints(unit, slot.reinforced)} pts`}
+                      subtitle={`${unitSizeLabel(unit, slot.reinforced)} · ${selectionPoints(unit, slot.reinforced, slot)} pts`}
                       reinforced={slot.reinforced}
                       sheetLabel={`${unit.name} datasheet`}
                       onOpenSheet={() => setDatasheet(unit)}
@@ -1364,31 +1587,7 @@ export function BuilderReady({
                       selectionId={slot.id}
                       unit={unit}
                       playMode={false}
-                      artefactBearerId={list.artefact?.heroSelectionId}
-                      artefactLabel={enhancementLabel(
-                        faction.artefacts,
-                        list.artefact?.optionId,
-                      )}
-                      artefactAbilities={
-                        list.artefact
-                          ? faction.artefacts.find(
-                              (item) => item.id === list.artefact?.optionId,
-                            )?.abilities
-                          : undefined
-                      }
-                      heroicTraitBearerId={list.heroicTrait?.heroSelectionId}
-                      heroicTraitLabel={enhancementLabel(
-                        faction.heroicTraits,
-                        list.heroicTrait?.optionId,
-                      )}
-                      heroicTraitAbilities={
-                        list.heroicTrait
-                          ? faction.heroicTraits.find(
-                              (item) =>
-                                item.id === list.heroicTrait?.optionId,
-                            )?.abilities
-                          : undefined
-                      }
+                      {...heroGear}
                       monstrousTraitBearerId={
                         list.monstrousTrait?.heroSelectionId
                       }
@@ -1522,16 +1721,35 @@ export function BuilderReady({
           </div>
         ) : null}
 
-        {faction.manifestationLores.length > 0 && !spearhead ? (
-          <ManifestationCard
-            lore={manifestation ?? null}
-            lores={faction.manifestationLores}
+        {faction.spellLores.length > 0 && !spearhead && pathToGlory ? (
+          <PathToGlorySpellCard
+            list={list}
+            faction={faction}
             playMode={forPlayMode}
-            onChangeLore={(loreId) =>
-              void commit({ ...list, manifestationLoreId: loreId })
-            }
-            onOpenSheet={setDatasheet}
+            onChange={(next) => void commit(next)}
           />
+        ) : null}
+
+        {faction.manifestationLores.length > 0 && !spearhead ? (
+          pathToGlory ? (
+            <PathToGloryManifestationCard
+              list={list}
+              faction={faction}
+              playMode={forPlayMode}
+              onChange={(next) => void commit(next)}
+              onOpenSheet={setDatasheet}
+            />
+          ) : (
+            <ManifestationCard
+              lore={manifestation ?? null}
+              lores={faction.manifestationLores}
+              playMode={forPlayMode}
+              onChangeLore={(loreId) =>
+                void commit({ ...list, manifestationLoreId: loreId })
+              }
+              onOpenSheet={setDatasheet}
+            />
+          )
         ) : null}
 
         {faction.terrain.length > 0 && !spearhead ? (

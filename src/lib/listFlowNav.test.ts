@@ -2,9 +2,14 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
+import { blankArmy } from "@/engine/listFactories";
+import { listBackdropArtSrc } from "./factionArt";
 import {
+  LIST_CREATE_BACKDROP_SCOURGE,
   libraryCardPressHoldsOn,
   libraryCreatingSplashVisible,
+  listCreateBackdropFactionId,
+  listCreateFactionBackdropStartsRevealed,
   listFlowBackHref,
   listFlowHeaderMode,
   listFlowIsDetail,
@@ -344,6 +349,46 @@ describe("libraryCreatingSplashVisible", () => {
   });
 });
 
+describe("listCreateBackdropFactionId", () => {
+  it("prefers parent faction art so Spearhead and Path to Glory match the list pane", () => {
+    expect(
+      listCreateBackdropFactionId({
+        parentId: "stormcast-eternals",
+        factionId: "stormcast-eternals-draconith-skywing",
+      }),
+    ).toBe("stormcast-eternals");
+    expect(
+      listCreateBackdropFactionId({
+        parentFactionIds: ["cities-of-sigmar"],
+        factionId: "cities-of-sigmar-castelite",
+      }),
+    ).toBe("cities-of-sigmar");
+    expect(
+      listCreateBackdropFactionId({ factionId: "sylvaneth" }),
+    ).toBe("sylvaneth");
+  });
+});
+
+describe("listCreateFactionBackdropStartsRevealed", () => {
+  it("skips the opacity fade while the create splash is still covering the list", () => {
+    expect(listCreateFactionBackdropStartsRevealed(true)).toBe(true);
+    expect(listCreateFactionBackdropStartsRevealed(false)).toBe(false);
+  });
+});
+
+describe("list create backdrop src", () => {
+  it("matches a newly saved list so the picture does not swap on open", () => {
+    const list = blankArmy("stormcast-eternals");
+    expect(list.scourgeRealm).toBe(LIST_CREATE_BACKDROP_SCOURGE);
+    expect(
+      listBackdropArtSrc(
+        listCreateBackdropFactionId({ factionId: list.factionId }),
+        LIST_CREATE_BACKDROP_SCOURGE,
+      ),
+    ).toBe(listBackdropArtSrc(list.factionId, list.scourgeRealm));
+  });
+});
+
 describe("listFlowWindowScrollY", () => {
   it("resets to the top of the list and restores the library on the way back", () => {
     expect(
@@ -367,6 +412,25 @@ describe("list flow navigation wiring", () => {
     expect(libraryCard).not.toContain("rememberOpenList(list.factionId)");
     expect(libraryCard).not.toContain("rememberListOpen(artId, faction?.name)");
     expect(library).toContain("libraryCreatingSplashVisible");
+  });
+
+  it("create splash uses the list art frame so the picture does not jump or shake", () => {
+    const library = readSource("components/LibraryCreateFlow.tsx");
+    const nav = readSource("components/IosNavSlide.tsx");
+    expect(library).toContain("listCreateBackdropFactionId");
+    expect(library).toContain("LIST_CREATE_BACKDROP_SCOURGE");
+    expect(library).toContain("LIST_PANE_ART_CLASS");
+    expect(library).toContain("preloadBackdropArt");
+    expect(library).toContain("scourgeRealm={LIST_CREATE_BACKDROP_SCOURGE}");
+    expect(library).toMatch(
+      /preloadBackdropArt\([\s\S]*setCreating\(true\)/,
+    );
+    expect(library).not.toMatch(/setCreating\(true\)[\s\S]*preloadBackdropArt/);
+    expect(library).not.toMatch(
+      /libraryCreatingSplashVisible[\s\S]*className="absolute inset-0"/,
+    );
+    expect(nav).toContain("listFlowShowsFactionBackdrop");
+    expect(nav).toContain("listFlowFactionBackdropFaded");
   });
 
   it("keeps the library mounted in the carousel shell", () => {

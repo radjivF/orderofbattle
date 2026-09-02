@@ -3,10 +3,13 @@ import { listUsesScourgeContent } from "./scourgeRealm";
 import {
   getUnit,
   getListUnit,
+  getFaction,
   getRegimentOfRenown,
   canJoinRegiment,
   canTakeMonstrousTrait,
+  canTakeSpecialEnhancement,
   canTakeVisionOfFate,
+  specialEnhancementTablesForList,
   selectionPoints,
   pickedEnhancementPoints,
   armyHasKeyword,
@@ -20,7 +23,25 @@ import {
   catalogueMatchIds,
 } from "./queries";
 import { isSpearheadList } from "./spearhead";
-import type { ArmyList, EnhancementPick, FactionCatalogue } from "./types";
+import {
+  anvilDestinyRemaining,
+  anvilForgeGroups,
+  anvilPickIds,
+  canBeWarlord,
+  getWarlordSelection,
+  isAnvilOfApotheosis,
+  isPathToGloryList,
+  pathToGloryManifestationPoints,
+  pathToGlorySpellIds,
+  uniqueKeywordBlocksEnhancements,
+} from "./pathToGlory";
+import type {
+  ArmyList,
+  CatalogueUnit,
+  EnhancementPick,
+  FactionCatalogue,
+  Selection,
+} from "./types";
 
 export type ListIssueOptionsField =
   | "points"
@@ -69,12 +90,11 @@ export function summarize(
   const issues: ListIssue[] = [];
 
   const addSel = (
-    unitId: string,
-    reinforced: boolean,
+    selection: Selection,
     where: string,
     target?: ListIssueTarget,
   ) => {
-    const unit = getUnit(faction, unitId);
+    const unit = getUnit(faction, selection.unitId);
     if (!unit) {
       issues.push({
         tone: "bad",
@@ -83,8 +103,8 @@ export function summarize(
       });
       return;
     }
-    points += selectionPoints(unit, reinforced);
-    if (reinforced && !unit.reinforce) {
+    points += selectionPoints(unit, selection.reinforced, selection);
+    if (selection.reinforced && !unit.reinforce) {
       issues.push({
         tone: "bad",
         text: `${unit.name} cannot be reinforced.`,
@@ -114,7 +134,7 @@ export function summarize(
       continue;
     }
     const hero = getUnit(faction, regiment.hero.unitId);
-    addSel(regiment.hero.unitId, regiment.hero.reinforced, "a regiment", {
+    addSel(regiment.hero, "a regiment", {
       area: "unit",
       selectionId: regiment.hero.id,
     });
@@ -129,7 +149,7 @@ export function summarize(
       }
     }
     for (const slot of regiment.units) {
-      addSel(slot.unitId, slot.reinforced, "a regiment", {
+      addSel(slot, "a regiment", {
         area: "unit",
         selectionId: slot.id,
       });
@@ -150,7 +170,7 @@ export function summarize(
   }
 
   for (const aux of list.auxiliaries) {
-    addSel(aux.unitId, aux.reinforced, "auxiliaries", {
+    addSel(aux, "auxiliaries", {
       area: "unit",
       selectionId: aux.id,
     });
@@ -201,7 +221,9 @@ export function summarize(
   }
 
   warnMixedScourgeSheets(list, faction, issues);
-  warnScourgeSeason(list, faction, issues);
+  if (!isPathToGloryList(list)) {
+    warnScourgeSeason(list, faction, issues);
+  }
 
   points += pickedEnhancementPoints(list.artefact, faction.artefacts);
   points += pickedEnhancementPoints(list.heroicTrait, faction.heroicTraits);
@@ -221,7 +243,9 @@ export function summarize(
   const manifestationLore = faction.manifestationLores.find(
     (item) => item.id === list.manifestationLoreId,
   );
-  if (manifestationLore?.points) {
+  if (isPathToGloryList(list)) {
+    points += pathToGloryManifestationPoints(list, faction);
+  } else if (manifestationLore?.points) {
     points += manifestationLore.points;
   }
 
@@ -288,6 +312,7 @@ export function summarize(
   if (
     armyHasKeyword(list, faction, "WIZARD") &&
     faction.spellLores.length > 0 &&
+    !isPathToGloryList(list) &&
     !list.spellLoreId
   ) {
     issues.push({
@@ -295,6 +320,15 @@ export function summarize(
       text: "Choose a spell lore.",
       target: { area: "options", field: "spell-lore" },
     });
+  }
+
+  if (
+    isPathToGloryList(list) &&
+    armyHasKeyword(list, faction, "WIZARD") &&
+    faction.spellLores.length > 0 &&
+    pathToGlorySpellIds(list).length === 0
+  ) {
+    issues.push({ tone: "warn", text: "Learn a spell." });
   }
 
   if (
@@ -311,17 +345,27 @@ export function summarize(
 
   warnUniqueEnhancement(list, faction, list.artefact, "artefact", issues);
   warnUniqueEnhancement(list, faction, list.heroicTrait, "heroic trait", issues);
+  warnPathToGloryUnitEnhancements(list, faction, issues);
   warnMonstrousTrait(list, faction, issues);
   warnVisionOfFate(list, faction, issues);
   warnSpecialEnhancements(list, faction, issues);
+  warnAnvilForge(list, faction, issues);
+  warnWarlord(list, faction, issues);
+  warnGloomspiteMix(list, faction, issues);
 
-  if ((list.battleTacticCardIds ?? []).length === 0) {
+  if (
+    !isPathToGloryList(list) &&
+    (list.battleTacticCardIds ?? []).length === 0
+  ) {
     issues.push({
       tone: "warn",
       text: "Pick up to 2 battle tactic cards.",
       target: { area: "options", field: "tactics" },
     });
-  } else if ((list.battleTacticCardIds ?? []).length > 2) {
+  } else if (
+    !isPathToGloryList(list) &&
+    (list.battleTacticCardIds ?? []).length > 2
+  ) {
     issues.push({
       tone: "bad",
       text: "Maximum two battle tactic cards.",
@@ -411,9 +455,33 @@ export function pruneOrphanEnhancements(list: ArmyList): ArmyList {
     list.visionOfFate && ids.has(list.visionOfFate.heroSelectionId)
       ? list.visionOfFate
       : null;
-  const specialEnhancements = (list.specialEnhancements ?? []).filter((pick) =>
-    ids.has(pick.heroSelectionId),
-  );
+  const faction = getFaction(list.factionId);
+  const visibleTables = faction
+    ? specialEnhancementTablesForList(faction, list)
+    : [];
+  const specialEnhancements = (list.specialEnhancements ?? []).filter((pick) => {
+    if (!ids.has(pick.heroSelectionId)) {
+      return false;
+    }
+    if (!faction) {
+      return true;
+    }
+    const table = visibleTables.find((item) => item.id === pick.tableId);
+    if (!table) {
+      return false;
+    }
+    const selection = rosterSelection(list, pick.heroSelectionId);
+    if (!selection) {
+      return false;
+    }
+    const unit = unitForSelection(
+      list,
+      faction,
+      selection.unitId,
+      pick.heroSelectionId,
+    );
+    return !unit || canTakeSpecialEnhancement(unit, table);
+  });
 
   if (
     artefact === list.artefact &&
@@ -456,6 +524,19 @@ function rosterSelection(list: ArmyList, selectionId: string) {
     }
   }
   return null;
+}
+
+function rosterSelections(list: ArmyList): Selection[] {
+  const selections: Selection[] = [];
+  for (const regiment of list.regiments) {
+    if (regiment.hero) {
+      selections.push(regiment.hero);
+    }
+    selections.push(...regiment.units);
+  }
+  selections.push(...list.auxiliaries);
+  selections.push(...(list.regimentOfRenown?.units ?? []));
+  return selections;
 }
 
 function scourgeRealmLabel(realm: "core" | "aqshy" | "ghyran"): string {
@@ -599,6 +680,56 @@ function warnMixedScourgeSheets(
   }
 }
 
+function listSelections(list: ArmyList): Selection[] {
+  const slots: Selection[] = [];
+  for (const regiment of list.regiments) {
+    if (regiment.hero) {
+      slots.push(regiment.hero);
+    }
+    slots.push(...regiment.units);
+  }
+  slots.push(...list.auxiliaries);
+  if (list.regimentOfRenown) {
+    slots.push(...list.regimentOfRenown.units);
+  }
+  return slots;
+}
+
+function warnAnvilForge(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  issues: ListIssue[],
+) {
+  if (!isPathToGloryList(list)) {
+    return;
+  }
+  for (const selection of listSelections(list)) {
+    const unit = getUnit(faction, selection.unitId);
+    if (!unit || !isAnvilOfApotheosis(unit)) {
+      continue;
+    }
+    const picks = new Set(anvilPickIds(selection));
+    for (const group of anvilForgeGroups(unit)) {
+      if (group.min <= 0) {
+        continue;
+      }
+      const taken = group.options.filter((option) => picks.has(option.id)).length;
+      if (taken < group.min) {
+        issues.push({
+          tone: "bad",
+          text: `Pick a ${group.name} for ${unit.name}.`,
+        });
+      }
+    }
+    if (anvilDestinyRemaining(unit, selection) < 0) {
+      issues.push({
+        tone: "bad",
+        text: `${unit.name} is over its destiny point limit.`,
+      });
+    }
+  }
+}
+
 function warnUniqueEnhancement(
   list: ArmyList,
   faction: FactionCatalogue,
@@ -626,7 +757,7 @@ function warnUniqueEnhancement(
     }
   } else {
     const unit = getUnit(faction, selection.unitId);
-    if (unit?.unique) {
+    if (unit && uniqueKeywordBlocksEnhancements(unit)) {
       issues.push({
         tone: "warn",
         text: `Unique heroes cannot take ${article.toLowerCase()} ${label}.`,
@@ -642,6 +773,50 @@ function warnUniqueEnhancement(
       tone: "warn",
       text: `Unknown ${label}.`,
     });
+  }
+}
+
+function warnPathToGloryUnitEnhancements(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  issues: ListIssue[],
+) {
+  if (!isPathToGloryList(list)) {
+    return;
+  }
+  for (const selection of rosterSelections(list)) {
+    const artefactId = selection.pathToGlory?.artefactId;
+    if (
+      artefactId &&
+      !(
+        list.artefact?.heroSelectionId === selection.id &&
+        list.artefact.optionId === artefactId
+      )
+    ) {
+      warnUniqueEnhancement(
+        list,
+        faction,
+        { heroSelectionId: selection.id, optionId: artefactId },
+        "artefact",
+        issues,
+      );
+    }
+    const traitId = selection.pathToGlory?.heroicTraitId;
+    if (
+      traitId &&
+      !(
+        list.heroicTrait?.heroSelectionId === selection.id &&
+        list.heroicTrait.optionId === traitId
+      )
+    ) {
+      warnUniqueEnhancement(
+        list,
+        faction,
+        { heroSelectionId: selection.id, optionId: traitId },
+        "heroic trait",
+        issues,
+      );
+    }
   }
 }
 
@@ -721,10 +896,16 @@ function warnSpecialEnhancements(
       selection.unitId,
       pick.heroSelectionId,
     );
-    if (unit?.unique) {
+    if (table?.realm && list.scourgeRealm !== table.realm) {
       issues.push({
         tone: "warn",
-        text: `${unit.name} cannot take ${table?.name ?? "a special enhancement"}.`,
+        text: `${table.name} is not available for this Scourge season.`,
+        target: { area: "unit", selectionId: pick.heroSelectionId },
+      });
+    } else if (unit && table && !canTakeSpecialEnhancement(unit, table)) {
+      issues.push({
+        tone: "warn",
+        text: `${unit.name} cannot take ${table.name}.`,
         target: { area: "unit", selectionId: pick.heroSelectionId },
       });
     }
@@ -745,4 +926,73 @@ function unitForSelection(
     return rorUnitAsCatalogue(rorHero);
   }
   return getListUnit(list, faction, unitId);
+}
+
+function warnWarlord(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  issues: ListIssue[],
+) {
+  if (!isPathToGloryList(list)) {
+    return;
+  }
+
+  const warlord = getWarlordSelection(list);
+  if (!warlord) {
+    issues.push({ tone: "warn", text: "Mark a warlord hero." });
+    return;
+  }
+
+  const unit = getUnit(faction, warlord.unitId);
+  if (!unit) {
+    issues.push({ tone: "bad", text: "Warlord unit not found." });
+    return;
+  }
+
+  if (!canBeWarlord(unit, warlord, faction)) {
+    issues.push({
+      tone: "bad",
+      text: "Warlord must be a non-unique single-model hero ≤ 350 pts.",
+    });
+  }
+
+  if (!warlord.pathToGlory?.pathId) {
+    issues.push({ tone: "warn", text: "Warlord needs a Path." });
+  }
+}
+
+function warnGloomspiteMix(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  issues: ListIssue[],
+) {
+  if (!isPathToGloryList(list) || faction.id !== "gloomspite-gitz") {
+    return;
+  }
+
+  const allUnits: CatalogueUnit[] = [];
+  for (const regiment of list.regiments) {
+    if (regiment.hero) {
+      const unit = getUnit(faction, regiment.hero.unitId);
+      if (unit) allUnits.push(unit);
+    }
+    for (const slot of regiment.units) {
+      const unit = getUnit(faction, slot.unitId);
+      if (unit) allUnits.push(unit);
+    }
+  }
+  for (const aux of list.auxiliaries) {
+    const unit = getUnit(faction, aux.unitId);
+    if (unit) allUnits.push(unit);
+  }
+
+  const hasTrogg = allUnits.some((u) => u.categories.includes("TROGGOTH"));
+  const hasGrot = allUnits.some((u) => !u.categories.includes("TROGGOTH"));
+
+  if (hasTrogg && hasGrot) {
+    issues.push({
+      tone: "bad",
+      text: "Gloomspite PTG: choose Troggoth OR grot, not both.",
+    });
+  }
 }

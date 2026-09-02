@@ -3,7 +3,7 @@ export const UPDATES_PATH = "/updates";
 export const UPDATES_TITLE = "What's new in Order of Battle";
 
 export const UPDATES_DESCRIPTION =
-  "Bug fixes in this Age of Sigmar army builder release: play-mode unit abilities, dead units on the board, export Continue, and remaining wounds.";
+  "Path to Glory campaign lists in this Age of Sigmar army builder, plus play-mode unit abilities, dead units on the board, and remaining wounds.";
 
 export const UPDATES_UPDATED = "31 August 2026";
 

@@ -5751,6 +5751,1746 @@
       ],
       "regimentOptions": [],
       "regimentHeroes": []
+    },
+    {
+      "id": "3ffe-7c86-f14a-985e",
+      "name": "Anvil of Apotheosis: Grot Hero",
+      "points": 100,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "4",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Boss Weapon",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Snarlfang's Slavering Jaws",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "2",
+          "ability": "Companion"
+        },
+        {
+          "name": "Massive Fang-filled Gob",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Gigantic Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (Mortal), Companion"
+        },
+        {
+          "name": "Huge Fang-filled Gobs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "D6",
+          "ability": "Companion"
+        },
+        {
+          "name": "Balls and Chains",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "D3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Chitinous Legs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "8",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Monstrous Spider Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "Crit (Mortal), Companion"
+        },
+        {
+          "name": "Rock Flinger",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "2",
+          "hit": "5+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Squig Rage",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Huge Fang-filled Gobs is 6.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Watch Out!",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit is destroyed, before removing it from play, roll a dice for each enemy unit within this unit's combat range. On a 4+, inflict D3 mortal damage on that unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Chitinous Legs is 6.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Seen That Before!",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Other than the Companion weapon ability, weapon abilities for attacks that target this unit have no effect.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "The Bad Moonbeam",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Hero Phase",
+          "declare": "",
+          "effect": "For the rest of the battle round, this unit is affected by all of the faces of the bad moon.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Sneaky Git",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit is not a Monster, while it is wholly on a terrain feature, it is not visible to enemy units that are not within this unit's combat range. If this unit is a Monster, subtract 1 from hit rolls for attacks that target this unit while it is wholly on a terrain feature.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Gittishly Overconfident",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "In your charge phase, if this unit is not in combat and there is an enemy Hero within 12\" of this unit, this unit must use the 'Charge' ability, and if the charge roll would allow it to finish within 1/2\" of that enemy Hero, it must do so.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Last to the Fight",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit has Strike-last.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Shroomist",
+          "kind": "Activated",
+          "timing": "Reaction: You declared a Move ability for this unit",
+          "declare": "",
+          "effect": "Roll 2D6. If the total is equal to or lower than this unit's Control characteristic, that Move ability has no effect.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Vicious Until the End",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit is destroyed, before removing it from play, pick an enemy unit in combat with it and roll a number of dice equal to this unit's health characteristic. For each 5+, inflict 1 mortal damage on that enemy unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Boinging Ker-splat!",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Charge Phase",
+          "declare": "If this unit charged this phase, pick any number of enemy units within 1\" of it to be the targets.",
+          "effect": "Roll a dice and add the number of targets to the roll. If the result is less than 6, inflict 1 mortal damage on each target and repeat the sequence, but add another dice to the roll each time you do so.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Webbed!",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick an enemy Hero within 1\" of this unit to be the target.",
+          "effect": "Roll 2D6. If the roll exceeds the target's Move characteristic, until the start of your next turn, the target cannot pile in and cannot use Retreat abilities.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Incredibly Annoying",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While your hero is contesting an objective, subtract 1 from the control scores of enemy units while they are in combat with your hero.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Slippery Git",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "",
+          "effect": "If this unit is in combat, roll a dice. On a 4+, this unit can immediately use the 'Retreat' ability without any mortal damage being inflicted on it.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Cunning Git",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, ward rolls cannot be made for damage points inflicted on the target by this unit's attacks this phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Squig-fang Stikka",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick each enemy unit that charged this turn and that is in combat with this unit to be the targets.",
+          "effect": "Roll a dice for each target. On a 4+, inflict D3 mortal damage on that target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": [],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "abf4-72c4-3847-3e56",
+          "name": "Grot Boss",
+          "points": 100,
+          "destiny": 10
+        },
+        {
+          "id": "aa63-2a94-c820-5899",
+          "name": "Grot Mob Boss",
+          "points": 200,
+          "destiny": 30
+        },
+        {
+          "id": "9b9e-9222-17f2-289b",
+          "name": "Grot Big Mob Boss",
+          "points": 320,
+          "destiny": 50
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "73f5-49e5-6907-7efa",
+          "name": "Battle Mounts",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "d70c-af2d-46c3-3645",
+              "name": "Snarlfang",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Snarlfang",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Snarlfang's Slavering Jaws weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 6. \u2022 Replace the Infantry keyword with the Cavalry keyword. \u2022 Add the Gitmob keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Snarlfang's Slavering Jaws",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "-",
+                  "damage": "2",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "6",
+                "move": "12\""
+              }
+            },
+            {
+              "id": "393a-0cfd-74f6-5092",
+              "name": "Giant Cave Squig",
+              "destiny": -8,
+              "abilities": [
+                {
+                  "name": "Giant Cave Squig",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Massive Fang-filled Gob weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to D6+6\". \u2022 Change the Health characteristic to 6. \u2022 Replace the Infantry keyword with the Cavalry keyword. \u2022 Add the Squig, Moonclan, and Fly keywords.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Massive Fang-filled Gob",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "2",
+                  "damage": "D3",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "6",
+                "move": "D6+6\""
+              }
+            },
+            {
+              "id": "ef16-c283-9b51-0427",
+              "name": "Gigantic Spider",
+              "destiny": -10,
+              "abilities": [
+                {
+                  "name": "Gigantic Spider",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Gigantic Fangs weapon and the 'Wall Crawler' ability to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 8. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the Cavalry keyword. Add the Spiderfang keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Gigantic Fangs",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Crit (Mortal), Companion"
+                }
+              ],
+              "stats": {
+                "health": "8",
+                "move": "10\"",
+                "control": "5"
+              }
+            },
+            {
+              "id": "cf3f-542d-40a6-c11f",
+              "name": "Mangler Squigs",
+              "destiny": -20,
+              "abilities": [
+                {
+                  "name": "Squig Rage",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Huge Fang-filled Gobs is 6.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Watch Out!",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "If this unit is destroyed, before removing it from play, roll a dice for each enemy unit within this unit's combat range. On a 4+, inflict D3 mortal damage on that unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Mangler Squigs",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Huge Gang-filled Gobs and Balls and Chains weapons and the 'Squig Rage' and 'Watch Out' abilities to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to D6+8\". \u2022 Change the Health characteristic to 12. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the Monster keyword. \u2022 Add the Squig, Moonclan, and Fly keywords.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Huge Fang-filled Gobs",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "1",
+                  "damage": "D6",
+                  "ability": "Companion"
+                },
+                {
+                  "name": "Balls and Chains",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "-",
+                  "damage": "D3",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "12",
+                "move": "D6+8\"",
+                "control": "5"
+              }
+            },
+            {
+              "id": "36af-6cb1-8ca5-eaca",
+              "name": "Arachnarok Spider",
+              "destiny": -20,
+              "abilities": [
+                {
+                  "name": "Battle Damaged",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Chitinous Legs is 6.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Arachnarok Spider",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Chitinous Legs and Monstrous Spider Fangs weapons and the 'Battle Damaged' and 'Wall Crawler' abilities to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 10\". \u2022 Change the Health characteristic to 14. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the Monster keyword. \u2022 Add the Arachnarok and Spiderfang keywords.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Chitinous Legs",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "8",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "1",
+                  "damage": "1",
+                  "ability": "Companion"
+                },
+                {
+                  "name": "Monstrous Spider Fangs",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "3+",
+                  "wound": "2+",
+                  "rend": "1",
+                  "damage": "3",
+                  "ability": "Crit (Mortal), Companion"
+                }
+              ],
+              "stats": {
+                "health": "14",
+                "move": "10\"",
+                "control": "5"
+              }
+            }
+          ]
+        },
+        {
+          "id": "44a5-7f4f-f921-5f0e",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "6cb5-8c25-836f-e054",
+              "name": "Seen That Before!",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Seen That Before!",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Other than the Companion weapon ability, weapon abilities for attacks that target this unit have no effect.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "0ff2-702f-47fb-dfaf",
+              "name": "The Bad Moonbeam",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "The Bad Moonbeam",
+                  "kind": "Activated",
+                  "timing": "Once Per Battle, Your Hero Phase",
+                  "declare": "",
+                  "effect": "For the rest of the battle round, this unit is affected by all of the faces of the bad moon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "4dcd-8944-b4a5-99cb",
+              "name": "Sneaky Git",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Sneaky Git",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "If this unit is not a Monster, while it is wholly on a terrain feature, it is not visible to enemy units that are not within this unit's combat range. If this unit is a Monster, subtract 1 from hit rolls for attacks that target this unit while it is wholly on a terrain feature.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "ee3d-6ac1-7df0-9109",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "78fc-811e-9977-b05d",
+              "name": "Gittishly Overconfident",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Gittishly Overconfident",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "In your charge phase, if this unit is not in combat and there is an enemy Hero within 12\" of this unit, this unit must use the 'Charge' ability, and if the charge roll would allow it to finish within 1/2\" of that enemy Hero, it must do so.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "a1d3-7bc6-cf4c-f6bb",
+              "name": "Last to the Fight",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Last to the Fight",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit has Strike-last.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "b76d-d5a6-60aa-c179",
+              "name": "Shroomist",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Shroomist",
+                  "kind": "Activated",
+                  "timing": "Reaction: You declared a Move ability for this unit",
+                  "declare": "",
+                  "effect": "Roll 2D6. If the total is equal to or lower than this unit's Control characteristic, that Move ability has no effect.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "c500-d694-4e6c-759a",
+          "name": "Battle Mount Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "e135-9297-a7e8-8cb5",
+              "name": "Unnervingly Fast",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Unnervingly Fast",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Add 'D3+' in front of your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "a6c8-6678-f262-8c3a",
+              "name": "Colossal",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Colossal",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "health": 2
+              }
+            },
+            {
+              "id": "7cfe-c0e8-a600-5ba9",
+              "name": "Rock Flinger",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Rock Flinger",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Rock Flinger ranged weapon to your hero's warscoll. You cannot pick this upgrade if your hero has another Companion ranged weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Rock Flinger",
+                  "kind": "ranged",
+                  "range": "18\"",
+                  "attacks": "2",
+                  "hit": "5+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "D3",
+                  "ability": "Companion"
+                }
+              ]
+            },
+            {
+              "id": "5498-9d75-6b35-0462",
+              "name": "Extra Teeth",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Extra Teeth",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Squig only. Add 1 to the attacks characteristic of your hero's Massive Fang-filled Gob or Huge Fang-filled Gobs weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Massive Fang-filled Gob",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "2",
+                  "damage": "D3",
+                  "ability": "Companion"
+                },
+                {
+                  "name": "Huge Fang-filled Gobs",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "1",
+                  "damage": "D6",
+                  "ability": "Companion"
+                }
+              ]
+            },
+            {
+              "id": "7991-efa3-c079-671f",
+              "name": "Vicious Until the End",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Vicious Until the End",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "If this unit is destroyed, before removing it from play, pick an enemy unit in combat with it and roll a number of dice equal to this unit's health characteristic. For each 5+, inflict 1 mortal damage on that enemy unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "6a1d-c77f-90f2-c4e3",
+              "name": "Boinging Ker-splat!",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Boinging Ker-splat!",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Charge Phase",
+                  "declare": "If this unit charged this phase, pick any number of enemy units within 1\" of it to be the targets.",
+                  "effect": "Roll a dice and add the number of targets to the roll. If the result is less than 6, inflict 1 mortal damage on each target and repeat the sequence, but add another dice to the roll each time you do so.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "9417-a89c-cf32-38a8",
+              "name": "Web-binding",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Webbed!",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Combat Phase",
+                  "declare": "Pick an enemy Hero within 1\" of this unit to be the target.",
+                  "effect": "Roll 2D6. If the roll exceeds the target's Move characteristic, until the start of your next turn, the target cannot pile in and cannot use Retreat abilities.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Web-binding",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Arachnarok only. Add the 'Webbed!' ability to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "f98e-dd1f-c8db-c176",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "b790-8fe6-4e45-c746",
+              "name": "Boss Git",
+              "destiny": -1,
+              "abilities": [
+                {
+                  "name": "Boss Git",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "control": 1
+              }
+            },
+            {
+              "id": "f2a1-0e10-0aef-ea6e",
+              "name": "Surprisingly Speedy",
+              "destiny": -1,
+              "abilities": [
+                {
+                  "name": "Surprisingly Speedy",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 1\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "move": 1
+              }
+            },
+            {
+              "id": "0c5f-b0be-5ef3-423b",
+              "name": "Incredibly Annoying",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Incredibly Annoying",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While your hero is contesting an objective, subtract 1 from the control scores of enemy units while they are in combat with your hero.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "b26c-4771-c1ef-d8ef",
+              "name": "Dank and Vile",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Dank and Vile",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (6+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "ecbd-f7fd-aa5c-e1e1",
+              "name": "Jaggedy Stabba",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Jaggedy Stabba",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry or Monster only. Your hero's non-Companion melee weapon has Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "5ebd-9c66-0899-5005",
+              "name": "Slippery Git",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Slippery Git",
+                  "kind": "Activated",
+                  "timing": "Any Combat Phase",
+                  "declare": "",
+                  "effect": "If this unit is in combat, roll a dice. On a 4+, this unit can immediately use the 'Retreat' ability without any mortal damage being inflicted on it.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "3100-88f5-78f0-b691",
+              "name": "Cunning Git",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Cunning Git",
+                  "kind": "Activated",
+                  "timing": "Any Combat Phase",
+                  "declare": "Pick an enemy unit in combat with this unit to be the target.",
+                  "effect": "Roll a dice. On a 3+, ward rolls cannot be made for damage points inflicted on the target by this unit's attacks this phase.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "d2f6-41fc-401b-d11c",
+              "name": "Squig-fang Stikka",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Squig-fang Stikka",
+                  "kind": "Activated",
+                  "timing": "Any Combat Phase",
+                  "declare": "Pick each enemy unit that charged this turn and that is in combat with this unit to be the targets.",
+                  "effect": "Roll a dice for each target. On a 4+, inflict D3 mortal damage on that target.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "c252-3618-daf7-8917",
+              "name": "Ferocious Git",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Ferocious Git",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the Attacks characteristic of your hero's Troggoth Club or add 2 to the Attacks characteristic of your hero's Boss Weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Boss Weapon",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "50af-58bc-3176-ca5c",
+              "name": "Conduit of the Bad Moon",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Conduit of the Bad Moon",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Non-Wizard only. Your hero has Priest (1)",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "dbbe-7357-867e-c92e",
+              "name": "Shroom Shaman",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Shroom Shaman",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Non-Priest only. Your hero has Wizard (1).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "1e89-ff47-6f5b-483f",
+          "name": "Keywords",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "bdfc-ebcc-5d92-c6ac",
+              "name": "MOONCLAN",
+              "destiny": 0,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "d87c-b93e-a91c-c833",
+              "name": "SPIDERFANG",
+              "destiny": 0,
+              "abilities": [],
+              "weapons": []
+            },
+            {
+              "id": "7d5a-204f-e90a-42e6",
+              "name": "GITMOB",
+              "destiny": 0,
+              "abilities": [],
+              "weapons": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1d2f-efe8-1248-f74c",
+      "name": "Anvil of Apotheosis: Troggoth Hero",
+      "points": 150,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "DESTRUCTION",
+        "GLOOMSPITE GITZ",
+        "TROGGOTH"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "8",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Troggoth Club",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "D3+1",
+          "ability": "-"
+        },
+        {
+          "name": "Chucking Boulder",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "2",
+          "hit": "5+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Greater Regeneration",
+          "kind": "Activated",
+          "timing": "Start of Any Turn",
+          "declare": "",
+          "effect": "Heal (D6) this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Seen That Before!",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Other than the Companion weapon ability, weapon abilities for attacks that target this unit have no effect.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "The Bad Moonbeam",
+          "kind": "Activated",
+          "timing": "Once Per Battle, Your Hero Phase",
+          "declare": "",
+          "effect": "For the rest of the battle round, this unit is affected by all of the faces of the bad moon.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Sneaky Git",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit is not a Monster, while it is wholly on a terrain feature, it is not visible to enemy units that are not in combat with it. If this unit is a Monster, subtract 1 from hit rolls for attacks that target this unit while it is wholly on a terrain feature.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Gittishly Overconfident",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "In your charge phase, if this unit is not in combat and there is an enemy Hero within 12\" of this unit, this unit must use the 'Charge' ability, and if the charge roll would allow it to finish within 1/2\" of that enemy Hero, it must do so.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Last to the Fight",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit has Strike-last.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Shroomist",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Roll 2D6. If the total is equal to or lower than this unit's Control characteristic, that Move ability has no effect.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Incredibly Annoying",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While your hero is contesting an objective, subtract 1 from the control scores of enemy units while they are in combat with your hero.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Slippery Git",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "",
+          "effect": "If this unit is in combat, roll a dice. On a 4+, this unit can immediately use the 'Retreat' ability without any mortal damage being inflicted on it.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Cunning Git",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, ward rolls cannot be made for damage points inflicted on the target by this unit's attacks this phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Squig-fang Stikka",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick each enemy unit that charged this turn and that is in combat with this unit to be the targets.",
+          "effect": "Roll a dice for each target. On a 4+, inflict D3 mortal damage on that target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": [],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "5c79-dae6-5f37-dc1d",
+          "name": "Troggoth Boss",
+          "points": 150,
+          "destiny": 10
+        },
+        {
+          "id": "ad0b-d22a-4031-eff0",
+          "name": "Troggoth Mob Boss",
+          "points": 250,
+          "destiny": 30
+        },
+        {
+          "id": "28d9-310a-1faa-7c70",
+          "name": "Troggoth Big Mob Boss",
+          "points": 350,
+          "destiny": 50
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "c706-d290-2c38-e57c",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "b171-b6dc-410d-6f48",
+              "name": "Seen That Before!",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Seen That Before!",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Other than the Companion weapon ability, weapon abilities for attacks that target this unit have no effect.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "35e7-0dc3-c0af-9640",
+              "name": "The Bad Moonbeam",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "The Bad Moonbeam",
+                  "kind": "Activated",
+                  "timing": "Once Per Battle, Your Hero Phase",
+                  "declare": "",
+                  "effect": "For the rest of the battle round, this unit is affected by all of the faces of the bad moon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "4c8a-fea2-9a1a-47b0",
+              "name": "Sneaky Git",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Sneaky Git",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "If this unit is not a Monster, while it is wholly on a terrain feature, it is not visible to enemy units that are not in combat with it. If this unit is a Monster, subtract 1 from hit rolls for attacks that target this unit while it is wholly on a terrain feature.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "462f-02b2-9b20-2b3d",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "2c0b-f895-bf0c-3042",
+              "name": "Gittishly Overconfident",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Gittishly Overconfident",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "In your charge phase, if this unit is not in combat and there is an enemy Hero within 12\" of this unit, this unit must use the 'Charge' ability, and if the charge roll would allow it to finish within 1/2\" of that enemy Hero, it must do so.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "f62c-7445-5c6e-7ac5",
+              "name": "Last to the Fight",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Last to the Fight",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit has Strike-last.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "45a1-4a28-ae9c-24f9",
+              "name": "Shroomist",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Shroomist",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Roll 2D6. If the total is equal to or lower than this unit's Control characteristic, that Move ability has no effect.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "756c-5e3f-ba65-31d7",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "838b-1784-6dd6-5096",
+              "name": "Boss Git",
+              "destiny": -1,
+              "abilities": [
+                {
+                  "name": "Boss Git",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "control": 1
+              }
+            },
+            {
+              "id": "08a7-cfdf-84ce-d663",
+              "name": "Surprisingly Speedy",
+              "destiny": -1,
+              "abilities": [
+                {
+                  "name": "Surprisingly Speedy",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 1\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "move": 1
+              }
+            },
+            {
+              "id": "5ee0-bdbc-5e34-258f",
+              "name": "Incredibly Annoying",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Incredibly Annoying",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While your hero is contesting an objective, subtract 1 from the control scores of enemy units while they are in combat with your hero.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "d4b7-5e53-b5b8-6692",
+              "name": "Dank and Vile",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Dank and Vile",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (6+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "683a-abf0-9f68-1c0c",
+              "name": "Jaggedy Stabba",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Jaggedy Stabba",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry or Monster only. Your hero's non-Companion melee weapon has Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "5d55-6857-d5cc-090e",
+              "name": "Slippery Git",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Slippery Git",
+                  "kind": "Activated",
+                  "timing": "Any Combat Phase",
+                  "declare": "",
+                  "effect": "If this unit is in combat, roll a dice. On a 4+, this unit can immediately use the 'Retreat' ability without any mortal damage being inflicted on it.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "5a32-5be4-9c1d-cce1",
+              "name": "Cunning Git",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Cunning Git",
+                  "kind": "Activated",
+                  "timing": "Any Combat Phase",
+                  "declare": "Pick an enemy unit in combat with this unit to be the target.",
+                  "effect": "Roll a dice. On a 3+, ward rolls cannot be made for damage points inflicted on the target by this unit's attacks this phase.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "f2a7-272c-1d7b-f3fe",
+              "name": "Squig-fang Stikka",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Squig-fang Stikka",
+                  "kind": "Activated",
+                  "timing": "Any Combat Phase",
+                  "declare": "Pick each enemy unit that charged this turn and that is in combat with this unit to be the targets.",
+                  "effect": "Roll a dice for each target. On a 4+, inflict D3 mortal damage on that target.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "f557-0324-1d33-48a9",
+              "name": "Ferocious Git",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Ferocious Git",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the Attacks characteristic of your hero's Troggoth Club or add 2 to the Attacks characteristic of your hero's Boss Weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Troggoth Club",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "1",
+                  "damage": "D3+1",
+                  "ability": "-"
+                }
+              ]
+            },
+            {
+              "id": "ef53-55f6-95af-9eb0",
+              "name": "Conduit of the Bad Moon",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Conduit of the Bad Moon",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Non-Wizard only. Your hero has Priest (1)",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "216d-250e-75df-c11d",
+              "name": "Shroom Shaman",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Shroom Shaman",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Non-Priest only. Your hero has Wizard (1).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "4c2f-d8c3-6f1b-a86f",
+              "name": "Chucking Boulder",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Chucking Boulder",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Troggoth only. Add the Chucking Boulder ranged weapon to your hero's warscroll. You cannot pick this upgrade if your hero has another non-Companion ranged weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Chucking Boulder",
+                  "kind": "ranged",
+                  "range": "10\"",
+                  "attacks": "2",
+                  "hit": "5+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "3",
+                  "ability": "Companion"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

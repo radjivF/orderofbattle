@@ -1,5 +1,6 @@
-import { getListUnit, getRegimentOfRenown } from "./queries";
+import { getListUnit, getRegimentOfRenown, getSelection } from "./queries";
 import { isSpearheadList } from "./spearhead";
+import { findPath, findPathOption, isPathToGloryList, learnedManifestationsForList, resolvePathToGloryUnit, selectionDisplayName } from "./pathToGlory";
 import { isUniversalCoreAbility, warscrollAbilities } from "./coreRules";
 import type {
   ArmyList,
@@ -12,6 +13,7 @@ import type {
 
 export type PlayPhaseId =
   | "passive"
+  | "start"
   | "hero"
   | "movement"
   | "shooting"
@@ -31,6 +33,11 @@ export const CORE_PLAY_PHASES: PlayPhase[] = [
     id: "passive",
     name: "Army",
     blurb: "Battle traits, formation, passives, and deploy",
+  },
+  {
+    id: "start",
+    name: "Start of turn",
+    blurb: "Start-of-turn abilities",
   },
   { id: "hero", name: "Hero", blurb: "Spells, prayers, hero-phase abilities" },
   { id: "movement", name: "Movement", blurb: "Movement-phase abilities" },
@@ -73,6 +80,7 @@ export function armyRoster(
   faction: FactionCatalogue,
 ): RosterEntry[] {
   const rows: RosterEntry[] = [];
+  const pathToGlory = isPathToGloryList(list);
   const add = (selection: Selection) => {
     const unit = getListUnit(list, faction, selection.unitId);
     if (!unit) {
@@ -80,7 +88,7 @@ export function armyRoster(
     }
     rows.push({
       selectionId: selection.id,
-      unit,
+      unit: pathToGlory ? resolvePathToGloryUnit(unit, selection) : unit,
       reinforced: selection.reinforced,
     });
   };
@@ -239,11 +247,15 @@ export function phasesForAbility(ability: UnitAbility): PlayPhaseId[] {
     }
   };
 
+  const startOfTurn = /\bstart of (?:your |any |enemy )?turn\b/.test(timing);
+  if (startOfTurn) {
+    add("start");
+  }
   if (
     timing.includes("deployment") ||
     timing.includes("start of battle") ||
     timing.includes("start of the battle") ||
-    timing.includes("start of")
+    (timing.includes("start of") && !startOfTurn)
   ) {
     add("passive");
   }
@@ -357,6 +369,8 @@ export function buildPhaseBoards(
     const abilities = isSpearheadList(list)
       ? warscrollAbilities(entry.unit)
       : entry.unit.abilities;
+    const selection = getSelection(list, entry.selectionId);
+    const unitName = selectionDisplayName(selection, entry.unit);
     for (const ability of abilities) {
       if (omitFromPhaseBoard(ability, isSpearheadList(list))) {
         continue;
@@ -364,17 +378,50 @@ export function buildPhaseBoards(
       for (const phaseId of phasesForAbility(ability)) {
         boards.get(phaseId)?.abilities.push({
           selectionId: entry.selectionId,
-          unitName: entry.unit.name,
+          unitName,
           ability,
         });
       }
+    }
+    const path = findPath(selection?.pathToGlory?.pathId);
+    const optionIds = selection?.pathToGlory?.pathOptionIds ?? [];
+    const picked = path
+      ? optionIds
+          .map((optionId) => findPathOption(path, optionId))
+          .filter((option) => option != null)
+      : [];
+    if (picked.length > 0) {
+      for (const option of picked) {
+        for (const phaseId of phasesForAbility(option.ability)) {
+          boards.get(phaseId)?.abilities.push({
+            selectionId: entry.selectionId,
+            unitName,
+            ability: option.ability,
+          });
+        }
+      }
+    } else if (path) {
+      boards.get("passive")?.abilities.push({
+        selectionId: entry.selectionId,
+        unitName,
+        ability: {
+          name: path.name,
+          kind: "passive",
+          timing: "Path to Glory",
+          declare: "",
+          effect: "",
+          keywords: "",
+          castingValue: "",
+          chantingValue: "",
+        },
+      });
     }
     for (const weapon of entry.unit.weapons) {
       const phaseId: PlayPhaseId =
         weapon.kind === "ranged" ? "shooting" : "combat";
       boards.get(phaseId)?.weapons.push({
         selectionId: entry.selectionId,
-        unitName: entry.unit.name,
+        unitName,
         weapon,
       });
     }
@@ -408,11 +455,12 @@ export function buildPhaseBoards(
     }
   }
 
-  const lore = faction.manifestationLores.find(
-    (item) => item.id === list.manifestationLoreId,
-  );
-  if (lore) {
-    for (const model of lore.manifestations) {
+  const models = isPathToGloryList(list)
+    ? learnedManifestationsForList(list, faction)
+    : faction.manifestationLores.find(
+        (item) => item.id === list.manifestationLoreId,
+      )?.manifestations ?? [];
+  for (const model of models) {
       const powers = [
         ...(model.summon ? [model.summon] : []),
         ...model.abilities,
@@ -438,15 +486,18 @@ export function buildPhaseBoards(
           weapon,
         });
       }
-    }
   }
 
-  return PLAY_PHASES.map((phase) => boards.get(phase.id)!).filter(
-    (board) =>
+  return PLAY_PHASES.map((phase) => boards.get(phase.id)!).filter((board) => {
+    if (board.phase.id === "start") {
+      return board.abilities.length > 0;
+    }
+    return (
       CORE_PHASE_IDS.has(board.phase.id) ||
       board.abilities.length > 0 ||
-      board.weapons.length > 0,
-  );
+      board.weapons.length > 0
+    );
+  });
 }
 
 function pushLabeledAbilities(
@@ -527,25 +578,10 @@ function rosterUnitName(
   faction: FactionCatalogue,
   selectionId: string,
 ): string | null {
-  for (const regiment of list.regiments) {
-    if (regiment.hero?.id === selectionId) {
-      return getListUnit(list, faction, regiment.hero.unitId)?.name ?? null;
-    }
-    for (const slot of regiment.units) {
-      if (slot.id === selectionId) {
-        return getListUnit(list, faction, slot.unitId)?.name ?? null;
-      }
-    }
+  const selection = getSelection(list, selectionId);
+  if (!selection) {
+    return null;
   }
-  for (const slot of list.auxiliaries) {
-    if (slot.id === selectionId) {
-      return getListUnit(list, faction, slot.unitId)?.name ?? null;
-    }
-  }
-  for (const slot of list.regimentOfRenown?.units ?? []) {
-    if (slot.id === selectionId) {
-      return getListUnit(list, faction, slot.unitId)?.name ?? null;
-    }
-  }
-  return null;
+  const unit = getListUnit(list, faction, selection.unitId);
+  return unit ? selectionDisplayName(selection, unit) : null;
 }

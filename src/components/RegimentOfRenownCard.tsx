@@ -18,6 +18,12 @@ import type {
   UnitAbility,
 } from "@/engine/types";
 import { PlayBindNotes, PlayHealthTrack, SlotEnhancements, SlotMoreMenu } from "./RegimentCard";
+import { PathToGlorySlot } from "./PathToGloryUnitExtras";
+import {
+  resolvePathToGloryUnit,
+  selectionDisplayName,
+  type PathToGloryPackId,
+} from "@/engine/pathToGlory";
 import { BuildSlotRow, PlaySlotRow, SheetLinkButton } from "./ios/SheetIconButton";
 
 type Props = {
@@ -46,6 +52,9 @@ type Props = {
   onRemove: () => void;
   onPlayHealth?: (selectionId: string, damage: number) => void;
   bindNotes?: CombatModifierNote[];
+  pathToGloryPackIds?: PathToGloryPackId[] | null;
+  showBattleWounds?: boolean;
+  onPatchSelection?: (selectionId: string, next: Selection) => void;
 };
 
 export function RegimentOfRenownCard({
@@ -74,6 +83,9 @@ export function RegimentOfRenownCard({
   onRemove,
   onPlayHealth,
   bindNotes,
+  pathToGloryPackIds = null,
+  showBattleWounds = false,
+  onPatchSelection,
 }: Props) {
   const pick = list.regimentOfRenown;
   const ror = pick ? getRegimentOfRenown(pick.renownId) : undefined;
@@ -114,6 +126,9 @@ export function RegimentOfRenownCard({
               unit={unit}
               canEnhance={template.canTakeEnhancements}
               playMode={playMode}
+              pathToGloryPackIds={pathToGloryPackIds}
+              showBattleWounds={showBattleWounds}
+              onPatchSelection={onPatchSelection}
               artefactBearerId={artefactBearerId}
               artefactLabel={artefactLabel}
               artefactAbilities={artefactAbilities}
@@ -153,6 +168,9 @@ function RoRSlotRow({
   unit,
   canEnhance,
   playMode,
+  pathToGloryPackIds,
+  showBattleWounds,
+  onPatchSelection,
   artefactBearerId,
   artefactLabel,
   artefactAbilities,
@@ -180,6 +198,9 @@ function RoRSlotRow({
   unit: CatalogueUnit;
   canEnhance: boolean;
   playMode: boolean;
+  pathToGloryPackIds?: PathToGloryPackId[] | null;
+  showBattleWounds?: boolean;
+  onPatchSelection?: (selectionId: string, next: Selection) => void;
   artefactBearerId?: string | null;
   artefactLabel?: string;
   artefactAbilities?: UnitAbility[];
@@ -205,6 +226,13 @@ function RoRSlotRow({
 }) {
   const play = selectionPlayState(selection, unit);
   const warning = battleDamagedWarning(unit, play.damage);
+  const displayName = selectionDisplayName(selection, unit);
+  const campaignEnabled = Boolean(
+    pathToGloryPackIds &&
+      pathToGloryPackIds.length > 0 &&
+      !playMode &&
+      onPatchSelection,
+  );
   const enhancements = (
     <SlotEnhancements
       selectionId={selection.id}
@@ -241,10 +269,12 @@ function RoRSlotRow({
       {playMode ? (
         <>
           <PlaySlotRow
-            name={unit.name}
+            name={displayName}
             subtitle={battleStatLine(unit)}
             sheetLabel={`${unit.name} datasheet`}
-            onOpenSheet={() => onOpenDatasheet(unit)}
+            onOpenSheet={() =>
+              onOpenDatasheet(resolvePathToGloryUnit(unit, selection))
+            }
             trailing={
               onPlayHealth ? (
                 <PlayHealthTrack
@@ -265,12 +295,27 @@ function RoRSlotRow({
         </>
       ) : (
         <>
-          <BuildSlotRow
-            name={unit.name}
-            subtitle={battleStatLine(unit)}
-            sheetLabel={`${unit.name} datasheet`}
-            onOpenSheet={() => onOpenDatasheet(unit)}
-          />
+          <PathToGlorySlot
+            enabled={campaignEnabled}
+            selection={selection}
+            unit={unit}
+            packIds={pathToGloryPackIds ?? []}
+            showBattleWounds={Boolean(showBattleWounds)}
+            onChange={(next) => onPatchSelection?.(next.id, next)}
+            onOpenDatasheet={onOpenDatasheet}
+          >
+            {(toggle) => (
+              <BuildSlotRow
+                name={displayName}
+                subtitle={battleStatLine(unit)}
+                sheetLabel={`${unit.name} datasheet`}
+                onOpenSheet={() =>
+                  onOpenDatasheet(resolvePathToGloryUnit(unit, selection))
+                }
+                trailing={toggle}
+              />
+            )}
+          </PathToGlorySlot>
           {enhancements}
         </>
       )}

@@ -3817,6 +3817,1243 @@
       ],
       "regimentOptions": [],
       "regimentHeroes": []
+    },
+    {
+      "id": "7be8-2421-76af-0cc7",
+      "name": "Anvil of Apotheosis: Ossiarch Bonereapers Hero",
+      "points": 150,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "WARD (6+)",
+        "RELENTLESS DISCIPLINE (2)",
+        "DEATH",
+        "OSSIARCH BONEREAPERS"
+      ],
+      "stats": {
+        "move": "5\"",
+        "health": "5",
+        "save": "4+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Nadirite Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Monstrous Blades",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Crit (Mortal)"
+        },
+        {
+          "name": "Kavalos Steed's Hooves, Teeth, and Barbed Tails",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Chariot Steeds' Fangs and Hooves",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "5+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Companion"
+        },
+        {
+          "name": "Crushing Appendages",
+          "kind": "melee",
+          "range": "",
+          "attacks": "7",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "-",
+          "damage": "2",
+          "ability": "Anti-Faction Terrain (+1 Rend), Companion"
+        },
+        {
+          "name": "Ossified Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "D3",
+          "ability": ""
+        },
+        {
+          "name": "Guardian's Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Titanic Weapons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Crit (Mortal)"
+        },
+        {
+          "name": "Morbid Catapult",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Soul-guide",
+          "kind": "Spell",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly Ossiarch Bonereapers unit wholly within 12\" of the caster to be the target, then make a casting roll of 2D6.",
+          "effect": "The target has Strike-first for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "7",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Crushing Appendages is 5.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Walking Death",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 2 to charge rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Meticulously Crafted",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit has Ward (5+)",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Precision Duellist",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit's melee weapons have Anti-Hero (+1 Rend).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Katakrosian Dynast",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 2 to the number after this unit's Relentless Discipline keyword.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Fond Memories",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "You must spend 1 additional command point for this unit to use a command.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Petty Rival",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Ward rolls cannot be made for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Hastily Repaired",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "In your charge phase, if this unit is not in combat and there are any enemy units within 12\" of it, this unit must use the 'Charge' ability, and if the charge roll would allow it to finish within 1/2\" of any enemy units, it would do so.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Ostracised",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "The number after this unit's Relentless Discipline keyword is 0.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Impossible Precision",
+          "kind": "Activated",
+          "timing": "Any Hero Phase",
+          "declare": "",
+          "effect": "Pick 1 of the following weapon abilities for this unit's melee weapons to have for the rest of the turn: \u2022 Anti-Infantry (+1 Rend) \u2022 Anti-Cavalry (+1 Rend) \u2022 Anti-Monster (+1 Rend) \u2022 Anti-War Machine (+1 Rend) \u2022 Anti-Beast (+1 Rend)",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Unliving Regeneration",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "Heal (D3) this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Grasping Limbs",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick each enemy Infantry unit in combat with this unit to be the targets.",
+          "effect": "Roll a dice for each target. On a 3+, the target has Strike-last for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Hasty Advance",
+          "kind": "Activated",
+          "timing": "Deployment Phase",
+          "declare": "",
+          "effect": "This unit can use the 'Normal Move' ability as if it were your movement phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Aggressive Commander",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to charge rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Peerless Leader",
+          "kind": "Activated",
+          "timing": "Once Per Turn, Reaction: You declared a Relentless Discipline ability for this unit",
+          "declare": "",
+          "effect": "No relentless discipline points are spent to use that ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Counter-strike",
+          "kind": "Activated",
+          "timing": "Any Charge Phase",
+          "declare": "Pick any number of visible friendly units wholly within 12\" of this unit to be the targets.",
+          "effect": "Spend 1 relentless discipline point for each target. The targets' melee weapons have Anti-charge (+1 Rend) for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Nadirite Blademaster",
+          "kind": "Activated",
+          "timing": "Any Combat Phase",
+          "declare": "Pick an enemy unit in combat with this unit to be the target",
+          "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Disturbing Stillness",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from wound rolls for combat attacks that target this unit if it did not charge in the same turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Remorseless Conquerer",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 2 to run rolls for visible friendly Ossiarch Bonereapers units while they are wholly within 12\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": [],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "2784-df44-aaec-2a56",
+          "name": "Cohort Leader",
+          "points": 150,
+          "destiny": 10
+        },
+        {
+          "id": "7376-a598-238a-8621",
+          "name": "Phalanx General",
+          "points": 250,
+          "destiny": 30
+        },
+        {
+          "id": "9e35-b18a-5473-8fe0",
+          "name": "Legion Commander",
+          "points": 350,
+          "destiny": 50
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "c93a-9819-b6e8-b239",
+          "name": "Archetype",
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "id": "83ea-19f0-1de3-9b17",
+              "name": "Mortek Commander",
+              "destiny": 0,
+              "abilities": [
+                {
+                  "name": "Mortek Commander",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Save characteristic to 3+. Change the number after your hero's Relentless Discipline keyword to 5. Your hero has the following regiment options: Any Ossiarch Bonereapers units You can also pick a War Form for your hero.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "stats": {
+                "save": "3+"
+              }
+            },
+            {
+              "id": "25fe-daf3-a9e9-3cf9",
+              "name": "Bonecrafter",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Bonecrafter",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Replace your hero's melee weapon with Ossified Talons. Your hero has the Wizard (1) keyword and the following regiment options: Any Ossiarch Bonereapers units You can also pick a War Form for your hero.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Ossified Talons",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "-",
+                  "damage": "D3",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "c3e1-8e85-05a1-6dd9",
+              "name": "Kavalos Commander",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Kavalos Commander",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Health characteristic to 7, their Move characteristic to 10\" and their Save characteristic to 3+. Replace your hero's Infantry keyword with the Cavalry keyword. Change the number after your hero's Relentless Discipline keyword to 6. Your hero's Nadirite Blade gains Charge (+1 Damage) and they gain the Kavalos Steed's Hooves, Teeth, and Barbed Tails weapon. Your hero has the following regiment options: Any Ossiarch Bonereapers units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Nadirite Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                },
+                {
+                  "name": "Kavalos Steed's Hooves, Teeth, and Barbed Tails",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "5+",
+                  "wound": "3+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "save": "3+",
+                "health": "7",
+                "move": "10\""
+              }
+            },
+            {
+              "id": "ef03-c690-ad93-79fd",
+              "name": "Chariot Commander",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Chariot Commander",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Health characteristic to 12, their Move characteristic to 10\" and their Save characteristic to 3+. Replace your hero's Infantry keyword with the War Machine keyword. Change the number after your hero's Relentless Discipline keyword to 6. Your hero's Nadirite Blade gains Charge (+1 Damage) and they gain the Kavalos Steed's Hooves, Teeth, and Barbed Tails weapon. Your hero has the following regiment options: Any Ossiarch Bonereapers units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Nadirite Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                },
+                {
+                  "name": "Kavalos Steed's Hooves, Teeth, and Barbed Tails",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "5+",
+                  "wound": "3+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "save": "3+",
+                "health": "12",
+                "move": "10\""
+              }
+            },
+            {
+              "id": "0e50-ac93-8764-b27c",
+              "name": "Soulwright",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Soul-guide",
+                  "kind": "Spell",
+                  "timing": "Your Hero Phase",
+                  "declare": "Pick a visible friendly Ossiarch Bonereapers unit wholly within 12\" of the caster to be the target, then make a casting roll of 2D6.",
+                  "effect": "The target has Strike-first for the rest of the turn.",
+                  "keywords": "",
+                  "castingValue": "7",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Soulwright",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Change your hero's Health characteristic to 6 and their Move characteristic to 6\". Your hero has the Wizard (2) keyword, the 'Soul-guide' ability, and the following regiment options: Any Ossiarch Bonereapers units You can also pick a War Form for your hero.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "stats": {
+                "health": "6",
+                "move": "6\""
+              }
+            }
+          ]
+        },
+        {
+          "id": "79ae-3b88-5688-057a",
+          "name": "War Form",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "b2e6-ca16-0dfa-3f42",
+              "name": "Guardian of the Empire",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Guardian of the Empire",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Replace your hero's melee weapon with Guardian's Weapons. In addition, make the following changes to your hero's warscroll: \u2022 Change the Health characteristic to 8. Designer's Note: *We recommend a 50mm or 60mm base for this War Form.*",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Guardian's Weapons",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "2",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ],
+              "stats": {
+                "health": "8"
+              }
+            },
+            {
+              "id": "7247-25bd-5915-ebfa",
+              "name": "Towering War Construct",
+              "destiny": -20,
+              "abilities": [
+                {
+                  "name": "Battle Damaged",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Crushing Appendages is 5.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Towering War Construct",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Titanic Weapons and Crushing Appendages weapons and the 'Battle Damaged' ability to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 8\". \u2022 Change the Health characteristic to 16. \u2022 Replace the Infantry keyword with the War Machine keyword. Designer's Note: *We recommend a 170x90mm base for this War Form.*",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Crushing Appendages",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "7",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "-",
+                  "damage": "2",
+                  "ability": "Anti-Faction Terrain (+1 Rend), Companion"
+                },
+                {
+                  "name": "Titanic Weapons",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "3+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "3",
+                  "ability": "Crit (Mortal)"
+                }
+              ],
+              "stats": {
+                "health": "16",
+                "move": "8\""
+              }
+            },
+            {
+              "id": "8533-785b-3ac2-6407",
+              "name": "Nightmarish Ossiarch",
+              "destiny": -10,
+              "abilities": [
+                {
+                  "name": "Nightmarish Ossiarch",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Monstrous Blades weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 6\". \u2022 Change the Health characteristic to 12. \u2022 Replace the Infantry keyword with the War Machine keyword. Designer's Note: *We recommend a 105x70mm base for this War Form.*",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Monstrous Blades",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "3+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "3",
+                  "ability": "Crit (Mortal)"
+                }
+              ],
+              "stats": {
+                "health": "12",
+                "move": "6\""
+              }
+            }
+          ]
+        },
+        {
+          "id": "3129-73e5-ea10-3753",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "9660-a3f0-f418-2a5f",
+              "name": "Walking Death",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Walking Death",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to charge rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "5827-da2d-a8b3-cef6",
+              "name": "Meticulously Crafted",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Meticulously Crafted",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit has Ward (5+)",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "f30d-1090-6538-3a0e",
+              "name": "Precision Duellist",
+              "destiny": -1,
+              "abilities": [
+                {
+                  "name": "Precision Duellist",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit's melee weapons have Anti-Hero (+1 Rend).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "e457-88d0-c33d-f66f",
+              "name": "Katakrosian Dynast",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Katakrosian Dynast",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the number after this unit's Relentless Discipline keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "8288-24e6-d5fd-5d1b",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "2cea-e3f9-ea91-748a",
+              "name": "Fond Memories",
+              "destiny": 6,
+              "abilities": [
+                {
+                  "name": "Fond Memories",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "You must spend 1 additional command point for this unit to use a command.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "f788-57b1-b285-e257",
+              "name": "Petty Rival",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Petty Rival",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Ward rolls cannot be made for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "9ebe-d29e-b820-dd7d",
+              "name": "Hastily Repaired",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Hastily Repaired",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "In your charge phase, if this unit is not in combat and there are any enemy units within 12\" of it, this unit must use the 'Charge' ability, and if the charge roll would allow it to finish within 1/2\" of any enemy units, it would do so.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "f265-a8c7-fbe7-99a6",
+              "name": "Ostracised",
+              "destiny": 3,
+              "abilities": [
+                {
+                  "name": "Ostracised",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The number after this unit's Relentless Discipline keyword is 0.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "8656-029e-5872-c0b3",
+          "name": "War Form Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "cfcb-1bec-4fdb-db08",
+              "name": "Extra Limbs",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Extra Limbs",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Pick 1 of your hero's melee weapons. Add 1 to the Attacks characteristic of that weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "7c5e-6189-c838-2d8e",
+              "name": "Impossible Precision",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Impossible Precision",
+                  "kind": "Activated",
+                  "timing": "Any Hero Phase",
+                  "declare": "",
+                  "effect": "Pick 1 of the following weapon abilities for this unit's melee weapons to have for the rest of the turn: \u2022 Anti-Infantry (+1 Rend) \u2022 Anti-Cavalry (+1 Rend) \u2022 Anti-Monster (+1 Rend) \u2022 Anti-War Machine (+1 Rend) \u2022 Anti-Beast (+1 Rend)",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "1aff-1fbd-0b44-e4ea",
+              "name": "Osseous Wings",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Osseous Wings",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Fly keyword and their Move characteristic is 12\". If your hero has a Towering War Construct War Form, this upgrade costs 6 DP instead of 4 DP.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "stats": {
+                "move": "12\""
+              }
+            },
+            {
+              "id": "cd64-5d09-da14-154b",
+              "name": "Immortis Pavise",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Immortis Pavise",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Save characteristic is 3+.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "stats": {
+                "save": "3+"
+              }
+            },
+            {
+              "id": "df4a-0d71-3c54-bbad",
+              "name": "Unliving Regeneration",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Unliving Regeneration",
+                  "kind": "Activated",
+                  "timing": "End of Any Turn",
+                  "declare": "",
+                  "effect": "Heal (D3) this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "ad0e-55ad-6b7d-8469",
+              "name": "Grasping Limbs",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Grasping Limbs",
+                  "kind": "Activated",
+                  "timing": "Any Combat Phase",
+                  "declare": "Pick each enemy Infantry unit in combat with this unit to be the targets.",
+                  "effect": "Roll a dice for each target. On a 3+, the target has Strike-last for the rest of the turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "6fc8-e244-bbf4-af6b",
+              "name": "Hasty Advance",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Hasty Advance",
+                  "kind": "Activated",
+                  "timing": "Deployment Phase",
+                  "declare": "",
+                  "effect": "This unit can use the 'Normal Move' ability as if it were your movement phase.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "fa22-84c1-06a7-dde4",
+              "name": "Morbid Catapult",
+              "destiny": -8,
+              "abilities": [
+                {
+                  "name": "Morbid Catapult",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the 'Unliving Regeneration' ability to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Morbid Catapult",
+                  "kind": "ranged",
+                  "range": "18\"",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "3",
+                  "ability": "Companion"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "0574-c09b-4a07-3d75",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "6637-338a-67c8-15e0",
+              "name": "Aggressive Commander",
+              "destiny": -1,
+              "abilities": [
+                {
+                  "name": "Aggressive Commander",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to charge rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "3b4c-5bd0-7f28-520e",
+              "name": "Peerless Leader",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Peerless Leader",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn, Reaction: You declared a Relentless Discipline ability for this unit",
+                  "declare": "",
+                  "effect": "No relentless discipline points are spent to use that ability.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "ea9f-a522-2bc7-37a8",
+              "name": "Counter-strike",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Counter-strike",
+                  "kind": "Activated",
+                  "timing": "Any Charge Phase",
+                  "declare": "Pick any number of visible friendly units wholly within 12\" of this unit to be the targets.",
+                  "effect": "Spend 1 relentless discipline point for each target. The targets' melee weapons have Anti-charge (+1 Rend) for the rest of the turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "3211-c067-ca13-6269",
+              "name": "Nadirite Blademaster",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Nadirite Blademaster",
+                  "kind": "Activated",
+                  "timing": "Any Combat Phase",
+                  "declare": "Pick an enemy unit in combat with this unit to be the target",
+                  "effect": "Roll a D3. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Nadirite Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "3+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "fe7d-9d73-c678-b295",
+              "name": "Fortified Construct",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Fortified Construct",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "health": 2
+              }
+            },
+            {
+              "id": "434d-9b46-073f-bd40",
+              "name": "Disturbing Stillness",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Disturbing Stillness",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 1 from wound rolls for combat attacks that target this unit if it did not charge in the same turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "147d-e119-5def-43fd",
+              "name": "Remorseless Conquerer",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Remorseless Conquerer",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to run rolls for visible friendly Ossiarch Bonereapers units while they are wholly within 12\" of this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "8c0e-93cc-dc3a-3671",
+              "name": "Supple Bone Supports",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Supple Bone Supports",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "If your hero has a Nightmarish Ossiarch War Form, you can pick this upgrade. Add 2\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "move": 2
+              }
+            },
+            {
+              "id": "cae0-2f22-047d-b5eb",
+              "name": "Eerie Precision",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Eerie Precision",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's melee weapons have Crit (Mortal).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

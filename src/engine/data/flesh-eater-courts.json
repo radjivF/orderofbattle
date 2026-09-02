@@ -4051,6 +4051,1259 @@
       ],
       "regimentOptions": [],
       "regimentHeroes": []
+    },
+    {
+      "id": "dc0b-d375-2b02-7bd0",
+      "name": "Anvil of Apotheosis: Flesh-eater Courts Hero",
+      "points": 150,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "DEATH",
+        "FLESH-EATER COURTS",
+        "WARD (6+)"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Sharpened Talons and Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Nightshrieker's Claws and Teeth",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        },
+        {
+          "name": "Colony of Bats",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "2D6",
+          "hit": "3+",
+          "wound": "5+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit (Mortal), Companion"
+        },
+        {
+          "name": "Fearsome Scream",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "1",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "D6",
+          "ability": "Shoot in Combat, Companion"
+        },
+        {
+          "name": "Winged Abomination's Maw",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "D3+3",
+          "ability": "Crit (Mortal), Companion"
+        },
+        {
+          "name": "Diseased Breath",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "D6",
+          "hit": "2+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "3",
+          "ability": "Shoot in Combat, Companion"
+        },
+        {
+          "name": "Corpse-beast's Maw",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "4",
+          "ability": "Crit (Auto-wound), Companion"
+        },
+        {
+          "name": "Corpse-beast's Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "7",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (Auto-wound), Companion"
+        },
+        {
+          "name": "Winged Abomination's Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Crit (Mortal), Companion"
+        },
+        {
+          "name": "Vile Exhalation",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "D3+3",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "1",
+          "ability": "Crit (2 Hits), Companion"
+        },
+        {
+          "name": "Tainted Talons and Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Corpse-beast's Talons is 5.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Blind to the World",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from wound rolls for shooting attacks that target this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Far-Travelling Sellsword",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "When this unit uses the 'Run' ability, if you roll a 1-3 when determining the distance this unit can move, you can use a value of 4 instead.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Terrifyingly Regal",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 10 to this unit's control score while it is contesting an objective that is not being contested by any other friendly units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Blessed by Ushoran",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from ward rolls for enemy units while they are in combat with this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Old Valour Wound",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Ignore positive modifiers to hit rolls for this unit's attacks.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Court Pariah",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit has a maximum control score of 1.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Frenzied Butcher",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit cannot use commands while it is in combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Tilting at Windmills",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "In your charge phase, if this unit is not in combat and there is an enemy unit within 12\" of it, this unit must use a Charge ability, and if the charge roll would allow it to end the move within 1/2\" of an enemy unit, it must do so.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Regal Presence",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 3 from the control scores of enemy units while they are in combat with this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Powerful Maw",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Any Turn",
+          "declare": "Pick an enemy Monster in combat with this unit to be the target.",
+          "effect": "You and your opponent must each roll 2D6. If you roll higher, inflict an amount of mortal damage on the target equal to the difference between your roll and your opponent's roll.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Memories of Hate",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points: \u2022 Add 2 to the Attacks characteristic of this unit's Companion melee weapons. \u2022 Subtract 1 from save rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Infested Corpse",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit is destroyed, before removing it from play, roll a D3 for each enemy unit in combat with it. Of a 2+, inflict an amount of mortal damage on that unit equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Magnificent Monstrosity",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Charge Phase",
+          "declare": "If this unit charged this turn, pick each enemy unit in combat with it to be the targets.",
+          "effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Infectious Mania",
+          "kind": "Activated",
+          "timing": "Reaction: Opponent declared a command for a unit in combat with this unit",
+          "declare": "",
+          "effect": "Roll a dice. On a 5+, the command has no effect, it still counts as having been used, and the command points spent to use it are still lost.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Agitator to the Masses",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Your Movement Phase",
+          "declare": "Pick a visible friendly Serfs or Knights unit wholly within 12\" of this unit to be the target.",
+          "effect": "Roll a number of dice equal to the number of models in the target unit that have been slain. For each 4+, return 1 slain model to the target unit. No more than 3 slain models can be returned to a friendly Knights unit by this ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Sorcerer-Royarch",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to casting rolls and banishment rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Cannibal Saint",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to chanting rolls and banishment rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": [],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "7ffd-3741-5b4b-09b0",
+          "name": "Cannibal Courtier",
+          "points": 150,
+          "destiny": 10
+        },
+        {
+          "id": "7af9-1da7-73e7-0608",
+          "name": "Ghoulish Earl",
+          "points": 250,
+          "destiny": 30
+        },
+        {
+          "id": "f23b-255a-a2d3-e9bb",
+          "name": "Abhorrant Duke",
+          "points": 350,
+          "destiny": 50
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "31d5-2fea-2e51-eeef",
+          "name": "Archetype",
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "id": "d206-b866-67d2-8aa2",
+              "name": "Landed Noble",
+              "destiny": 0,
+              "abilities": [
+                {
+                  "name": "Landed Noble",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Noble keyword and the following regiment options: Any Serfs or Knights units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "ebc1-8fc3-1d16-af60",
+              "name": "Blooded Royalty",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Blooded Royalty",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Wizard (1) and Abhorrant keywords and the following regiment options: Any Flesh-eater Courts units In addition, replace your hero's melee weapon with Sharpened Talons and Fangs.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Sharpened Talons and Fangs",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "915d-14d2-cefe-7d03",
+              "name": "Ushorite Cleric",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Ushorite Cleric",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero gains the Priest (1) and Abhorrant keywords and the following regiment options: Any Flesh-eater Courts units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "17cb-2bfd-afc4-5297",
+          "name": "Battle Mount",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "f3fe-f906-30cc-9b1a",
+              "name": "Nightshrieker",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Nightshrieker",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Nightshrieker's Claws and Teeth weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 8. \u2022 Replace the Infantry keyword with the following keywords: Cavalry, Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Nightshrieker's Claws and Teeth",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "8",
+                "move": "12\""
+              }
+            },
+            {
+              "id": "4010-830a-7705-0d33",
+              "name": "Royal Corpse-Beast",
+              "destiny": -20,
+              "abilities": [
+                {
+                  "name": "Battle Damaged",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Corpse-beast's Talons is 5.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Royal Winged Abomination",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Diseased Breath, Corpse-beast's Maw and Corpse-beast's Talons weapons and the 'Battle Damaged' ability to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 16. \u2022 Change the Control characteristic to 5. \u2022 Change the Save characteristic to 4+. \u2022 Replace the Infantry keyword with the Monster keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Diseased Breath",
+                  "kind": "ranged",
+                  "range": "10\"",
+                  "attacks": "D6",
+                  "hit": "2+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "3",
+                  "ability": "Shoot in Combat, Companion"
+                },
+                {
+                  "name": "Corpse-beast's Maw",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "4",
+                  "ability": "Crit (Auto-wound), Companion"
+                },
+                {
+                  "name": "Corpse-beast's Talons",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "7",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Crit (Auto-wound), Companion"
+                }
+              ],
+              "stats": {
+                "health": "16",
+                "control": "5",
+                "move": "12\"",
+                "save": "4+"
+              }
+            },
+            {
+              "id": "4161-0ab3-577f-7e00",
+              "name": "Royal Winged Abomination",
+              "destiny": -20,
+              "abilities": [
+                {
+                  "name": "Battle Damaged",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Winged Abomination's Talons is 4.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Royal Winged Abomination",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Fearsome Scream, Winged Abomination's Maw and Winged Abominations Talons weapons and the 'Battle Damaged' ability to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 16. \u2022 Change the Control characteristic to 5. \u2022 Change the Save characteristic to 4+. \u2022 Replace the Infantry keyword with the following keywords: Monster, Fly",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Fearsome Scream",
+                  "kind": "ranged",
+                  "range": "10\"",
+                  "attacks": "1",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "D6",
+                  "ability": "Shoot in Combat, Companion"
+                },
+                {
+                  "name": "Winged Abomination's Maw",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "D3+3",
+                  "ability": "Crit (Mortal), Companion"
+                },
+                {
+                  "name": "Winged Abomination's Talons",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "6",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Crit (Mortal), Companion"
+                }
+              ],
+              "stats": {
+                "health": "16",
+                "move": "12\"",
+                "control": "5",
+                "save": "4+"
+              }
+            }
+          ]
+        },
+        {
+          "id": "6ded-b82f-b205-a9ec",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "f515-219a-9c24-3b36",
+              "name": "Blind to the World",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Blind to the World",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 1 from wound rolls for shooting attacks that target this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "b0fd-ad8d-75b4-c762",
+              "name": "Far-Travelling Sellsword",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Far-Travelling Sellsword",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "When this unit uses the 'Run' ability, if you roll a 1-3 when determining the distance this unit can move, you can use a value of 4 instead.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "ec89-a9d2-9a0f-c80f",
+              "name": "Terrifyingly Regal",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Terrifyingly Regal",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 10 to this unit's control score while it is contesting an objective that is not being contested by any other friendly units.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "4c4b-06df-50a3-a2e1",
+              "name": "Blessed by Ushoran",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Blessed by Ushoran",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 1 from ward rolls for enemy units while they are in combat with this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "edcc-d1d9-8beb-8ba9",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "f217-2aa0-4128-8cd1",
+              "name": "Old Valour Wound",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Old Valour Wound",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Ignore positive modifiers to hit rolls for this unit's attacks.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "da82-b8e2-c36f-1880",
+              "name": "Court Pariah",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Court Pariah",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit has a maximum control score of 1.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "a000-d115-6e02-75a8",
+              "name": "Frenzied Butcher",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Frenzied Butcher",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit cannot use commands while it is in combat.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "0d4c-30da-f4b0-340d",
+              "name": "Tilting at Windmills",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Tilting at Windmills",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "In your charge phase, if this unit is not in combat and there is an enemy unit within 12\" of it, this unit must use a Charge ability, and if the charge roll would allow it to end the move within 1/2\" of an enemy unit, it must do so.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "2457-70e1-9f03-ddb2",
+          "name": "Battle Mount Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "20e7-9d4d-356f-7890",
+              "name": "Regal Presence",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Regal Presence",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 3 from the control scores of enemy units while they are in combat with this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "1c8f-d214-2a5a-b568",
+              "name": "Speed of Undeath",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Speed of Undeath",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "move": 2
+              }
+            },
+            {
+              "id": "372c-7873-e61e-016b",
+              "name": "Vile Exhalation",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Vile Exhalation",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Add the 'Vile Exhalation' weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Vile Exhalation",
+                  "kind": "ranged",
+                  "range": "10\"",
+                  "attacks": "D3+3",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "1",
+                  "damage": "1",
+                  "ability": "Crit (2 Hits), Companion"
+                }
+              ]
+            },
+            {
+              "id": "2574-5ce3-257d-8016",
+              "name": "Preferred Prey",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Preferred Prey",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Your hero's Companion melee weapons have Anti-X (+1 Rend), where X is a faction keyword or one of the following keywords: Infantry, Cavalry, Monster, War Machine, Hero, Wizard, Priest.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "ae57-a384-968c-f296",
+              "name": "Powerful Maw",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Powerful Maw",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), End of Any Turn",
+                  "declare": "Pick an enemy Monster in combat with this unit to be the target.",
+                  "effect": "You and your opponent must each roll 2D6. If you roll higher, inflict an amount of mortal damage on the target equal to the difference between your roll and your opponent's roll.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "2624-e91e-9f8d-5a25",
+              "name": "Memories of Hate",
+              "destiny": -10,
+              "abilities": [
+                {
+                  "name": "Memories of Hate",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit has 10 or more damage points: \u2022 Add 2 to the Attacks characteristic of this unit's Companion melee weapons. \u2022 Subtract 1 from save rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "f854-b042-a5af-e7e6",
+              "name": "Infested Corpse",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Infested Corpse",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "If this unit is destroyed, before removing it from play, roll a D3 for each enemy unit in combat with it. Of a 2+, inflict an amount of mortal damage on that unit equal to the roll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "707a-8cf4-af29-3db9",
+              "name": "Magnificent Monstrosity",
+              "destiny": -10,
+              "abilities": [
+                {
+                  "name": "Magnificent Monstrosity",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Charge Phase",
+                  "declare": "If this unit charged this turn, pick each enemy unit in combat with it to be the targets.",
+                  "effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "edcd-a2b8-8d0c-d996",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "2f8e-d7f4-de46-35a8",
+              "name": "Imposing Ruler",
+              "destiny": -1,
+              "abilities": [
+                {
+                  "name": "Imposing Ruler",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "control": 1
+              }
+            },
+            {
+              "id": "4740-3ed6-4dac-eb9f",
+              "name": "Elongated Talons",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Elongated Talons",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Rend characteristic of your hero's Tainted Talons and Fangs or Sharpened Talons and Fangs is 2.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Sharpened Talons and Fangs",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                },
+                {
+                  "name": "Tainted Talons and Fangs",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "5",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "ab88-f737-2774-0744",
+              "name": "Hulking Corpus",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Hulking Corpus",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "health": 2
+              }
+            },
+            {
+              "id": "88a0-22b8-27c8-d202",
+              "name": "Filth-caked Claws",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Filth-caked Claws",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's non-Companion melee weapons have Crit (Auto-wound).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "3865-e92b-c39b-7060",
+              "name": "Colony of Bats",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Colony of Bats",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add the 'Colony of Bats' weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Colony of Bats",
+                  "kind": "ranged",
+                  "range": "10\"",
+                  "attacks": "2D6",
+                  "hit": "3+",
+                  "wound": "5+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Crit (Mortal), Companion"
+                }
+              ]
+            },
+            {
+              "id": "1da3-089e-7953-b1fa",
+              "name": "Court Champion",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Court Champion",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 3 to the Attacks characteristic of your hero's melee weapons.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "b742-a569-d133-09df",
+              "name": "Knight of the Realm",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Knight of the Realm",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's non-Companion melee weapons have Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "10e9-5a72-1ecc-0a7a",
+              "name": "Leathery Wings",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Leathery Wings",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Your hero has Fly. Change your hero's Move characteristic to 12\".",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "stats": {
+                "move": "12"
+              }
+            },
+            {
+              "id": "e88e-1c8b-8c51-25f4",
+              "name": "Infectious Mania",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Infectious Mania",
+                  "kind": "Activated",
+                  "timing": "Reaction: Opponent declared a command for a unit in combat with this unit",
+                  "declare": "",
+                  "effect": "Roll a dice. On a 5+, the command has no effect, it still counts as having been used, and the command points spent to use it are still lost.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "ab4c-65d9-c292-7847",
+              "name": "Agitator to the Masses",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Agitator to the Masses",
+                  "kind": "Activated",
+                  "timing": "Once Per Battle (Army), Your Movement Phase",
+                  "declare": "Pick a visible friendly Serfs or Knights unit wholly within 12\" of this unit to be the target.",
+                  "effect": "Roll a number of dice equal to the number of models in the target unit that have been slain. For each 4+, return 1 slain model to the target unit. No more than 3 slain models can be returned to a friendly Knights unit by this ability.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "b0fe-227d-6c96-68af",
+              "name": "Sorcerer-Royarch",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Sorcerer-Royarch",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to casting rolls and banishment rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "25fe-0e51-f562-d8fe",
+              "name": "Cannibal Saint",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Cannibal Saint",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to chanting rolls and banishment rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

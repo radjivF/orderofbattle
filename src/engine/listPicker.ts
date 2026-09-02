@@ -1,12 +1,16 @@
 import {
   auxiliaryPickerUnits,
+  getListUnit,
   getRegimentOfRenown,
   getUnit,
   heroesOf,
   legalCompanions,
   unitBaseName,
+  unitScourgeRealm,
 } from "@/engine/queries";
 import type { ArmyList, CatalogueUnit, FactionCatalogue } from "@/engine/types";
+import { isPathToGloryList } from "@/engine/pathToGlory/packs";
+import { isAnvilOfApotheosis } from "@/engine/pathToGlory/anvil";
 
 export type ListPicker =
   | { kind: "hero"; regimentId?: string }
@@ -67,9 +71,66 @@ export function availablePickerUnits(
   exceptUnitId?: string,
 ): CatalogueUnit[] {
   const taken = takenUniqueBases(list, faction, exceptUnitId);
-  return units.filter(
-    (unit) => !unit.unique || !taken.has(unitBaseName(unit.name)),
-  );
+  const pathToGlory = isPathToGloryList(list);
+  // Da King's Gitz is an Army of Renown (faction), not a Regiment of Renown
+  const isDaKingsGitz = faction.id === "gloomspite-gitz-da-king-s-gitz";
+  
+  // Gloomspite XOR: detect if list already has TROGGOTH or non-TROGGOTH units
+  let gloomspiteHasTrogg = false;
+  let gloomspiteHasGrot = false;
+  if (pathToGlory && faction.id === "gloomspite-gitz") {
+    const allUnits: CatalogueUnit[] = [];
+    for (const regiment of list.regiments) {
+      const hero = regiment.hero
+        ? getListUnit(list, faction, regiment.hero.unitId)
+        : null;
+      if (hero) {
+        allUnits.push(hero);
+      }
+      for (const slot of regiment.units) {
+        const unit = getListUnit(list, faction, slot.unitId);
+        if (unit) {
+          allUnits.push(unit);
+        }
+      }
+    }
+    for (const slot of list.auxiliaries) {
+      const unit = getListUnit(list, faction, slot.unitId);
+      if (unit) {
+        allUnits.push(unit);
+      }
+    }
+    gloomspiteHasTrogg = allUnits.some((u) =>
+      u.id !== exceptUnitId && u.categories.includes("TROGGOTH"),
+    );
+    gloomspiteHasGrot = allUnits.some((u) =>
+      u.id !== exceptUnitId && !u.categories.includes("TROGGOTH"),
+    );
+  }
+  
+  return units.filter((unit) => {
+    if (isAnvilOfApotheosis(unit) && !pathToGlory) {
+      return false;
+    }
+    if (pathToGlory && unitScourgeRealm(unit.name)) {
+      return false;
+    }
+    // Da King's Gitz: no TROGGOTH units in auxiliaries
+    if (pathToGlory && isDaKingsGitz && unit.categories.includes("TROGGOTH")) {
+      return false;
+    }
+    // Gloomspite XOR: once a type is chosen, block the other
+    if (pathToGlory && faction.id === "gloomspite-gitz") {
+      const isTrogg = unit.categories.includes("TROGGOTH");
+      if (gloomspiteHasTrogg && !isTrogg) {
+        return false; // Already have TROGGOTHs, block non-TROGGOTHs
+      }
+      if (gloomspiteHasGrot && isTrogg) {
+        return false; // Already have grots, block TROGGOTHs
+      }
+    }
+    return !unit.unique || !taken.has(unitBaseName(unit.name));
+  });
 }
 
 export function pickerUnitsFor(

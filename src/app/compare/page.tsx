@@ -39,7 +39,7 @@ export default function ComparePage() {
       <ContentDoc
         kicker="Comparison"
         title="Which Age of Sigmar army builder should you use?"
-        updated="27 August 2026"
+        updated="31 August 2026"
         crumbs={[
           { href: "/", label: "Home" },
           { href: "/compare", label: "Compare" },
@@ -54,7 +54,8 @@ export default function ComparePage() {
         <p>
           Order of Battle stays with you during the game. Play marks wounds,
           lasting spells and prayers, and the abilities for the current phase.
-          No account. Lists stay on this device. New Recruit is a browser
+          Path to Glory campaign lists sit next to matched play. No account.
+          Lists stay on this device. New Recruit is a browser
           builder with optional cloud sync, and it covers many game systems.
           Listbot is a small text-first builder. The official app is Games
           Workshop&apos;s, needs a GW account, and uses their data.
@@ -64,7 +65,8 @@ export default function ComparePage() {
         <ul>
           <li>
             <strong>Order of Battle</strong>: This one. Free browser builder with
-            Play mode (wounds, lasting spells, phase abilities). You don&apos;t
+            Play mode (wounds, lasting spells, phase abilities) and Path to
+            Glory campaign lists. You don&apos;t
             need an account; lists stay on your device.
           </li>
           <li>
@@ -131,6 +133,13 @@ export default function ComparePage() {
               <td>Yes</td>
               <td>Yes</td>
               <td>Yes</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>Path to Glory campaign lists</td>
+              <td>Yes (battlepacks, Anvil, learned spells)</td>
+              <td>Yes</td>
+              <td>Check the tool</td>
               <td>Yes</td>
             </tr>
             <tr>
@@ -262,6 +271,10 @@ export default function ComparePage() {
           Walkthrough:{" "}
           <Link href="/guides/how-to-build-an-age-of-sigmar-army-list">
             how to build a list
+          </Link>
+          . Path to Glory:{" "}
+          <Link href="/guides/path-to-glory-age-of-sigmar">
+            campaign lists
           </Link>
           . Overview:{" "}
           <Link href="/guides/free-age-of-sigmar-army-builder">

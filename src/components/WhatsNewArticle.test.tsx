@@ -30,7 +30,7 @@ describe("WhatsNewArticle", () => {
     cleanup();
   });
 
-  it("lists this release's bug fixes", () => {
+  it("lists this release's Path to Glory notes", () => {
     render(<WhatsNewArticle />);
 
     expect(
@@ -42,6 +42,9 @@ describe("WhatsNewArticle", () => {
     for (const line of WHATS_NEW_ITEMS) {
       expect(screen.getByText(line));
     }
+    expect(
+      screen.getByRole("link", { name: "Path to Glory guide" }),
+    ).toHaveAttribute("href", "/guides/path-to-glory-age-of-sigmar");
   });
 
   it("explains when no updates have been published yet", () => {

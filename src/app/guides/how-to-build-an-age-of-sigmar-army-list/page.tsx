@@ -113,6 +113,10 @@ export default function HowToBuildPage() {
             Free army builder overview
           </Link>
           {" · "}
+          <Link href="/guides/path-to-glory-age-of-sigmar">
+            Path to Glory
+          </Link>
+          {" · "}
           <Link href="/faq">FAQ</Link>
         </p>
       </ContentDoc>

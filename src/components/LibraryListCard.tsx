@@ -6,6 +6,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getFaction } from "@/engine/queries";
 import { catalogueForList, isSpearheadList } from "@/engine/spearhead";
+import {
+  isPathToGloryList,
+  pathToGloryPackIds,
+  pathToGloryPacksLabel,
+} from "@/engine/pathToGlory";
 import { formatPoints } from "@/engine/pointsCap";
 import { isTowList, type StoredList } from "@/engine/storedList";
 import { getTowFaction } from "@/engine/tow/queries";
@@ -61,14 +66,20 @@ function cardMeta(list: StoredList) {
     (item) => item.id === (list.regimentAbilityId ?? list.formationId),
   );
   const spearhead = isSpearheadList(list);
+  const pathToGlory = isPathToGloryList(list);
+  const packIds = pathToGloryPackIds(list);
   return {
     factionName: faction?.name ?? "Unknown faction",
     pointsLine: spearhead
       ? "Spearhead"
-      : `${formatPoints(totals?.points ?? 0)} / ${formatPoints(list.pointsCap)}`,
+      : pathToGlory
+        ? "Path to Glory"
+        : `${formatPoints(totals?.points ?? 0)} / ${formatPoints(list.pointsCap)}`,
     detail: spearhead
       ? (playCatalogue?.name ?? "Spearhead")
-      : (formation?.name ?? "No formation"),
+      : pathToGlory && packIds.length > 0
+        ? `${pathToGloryPacksLabel(packIds)} · ${formatPoints(totals?.points ?? 0)} / ${formatPoints(list.pointsCap)}`
+        : (formation?.name ?? "No formation"),
     artSrc: catalogueArtSrc(faction),
     artClass: catalogueArtClass(faction),
   };

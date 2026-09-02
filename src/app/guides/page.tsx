@@ -7,7 +7,7 @@ import { sitePath } from "@/lib/site";
 
 const title = "Age of Sigmar army builder guides";
 const description =
-  "Guides for Order of Battle: how to build a free Age of Sigmar 4th edition army list, and what this unofficial builder actually does.";
+  "Guides for Order of Battle: how to build a free Age of Sigmar 4th edition army list, Path to Glory campaign lists, and what this unofficial builder actually does.";
 
 export const metadata: Metadata = {
   title,
@@ -32,6 +32,11 @@ const guides = [
     title: "Play: wounds, weapons, phases, datasheet",
     body: "Why Play exists: organize the turn so you can run a game without opening the book.",
   },
+  {
+    href: "/guides/path-to-glory-age-of-sigmar",
+    title: "Path to Glory army lists",
+    body: "Campaign lists: battlepacks, Anvil of Apotheosis, paths, learned spells, Play on your phone.",
+  },
 ] as const;
 
 export default function GuidesPage() {
@@ -50,15 +55,17 @@ export default function GuidesPage() {
       <ContentDoc
         kicker="Guides"
         title="Age of Sigmar army builder guides"
-        updated="27 August 2026"
+        updated="31 August 2026"
+        updatedDateTime="2026-08-31"
         crumbs={[
           { href: "/", label: "Home" },
           { href: "/guides", label: "Guides" },
         ]}
       >
         <p>
-          How to build a 4th edition list, what this free builder does, and
-          why Play exists. No account. Lists stay on your device.
+          How to build a 4th edition list, Path to Glory campaign lists, what
+          this free builder does, and why Play exists. No account. Lists stay
+          on your device.
         </p>
         <ul className="list-none pl-0">
           {guides.map((guide) => (

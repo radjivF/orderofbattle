@@ -69,6 +69,11 @@ describe("newRecruit", () => {
     expect(
       looksLikeNewRecruit("=== Order of Battle ===\nHammerhost\nStormcast Eternals"),
     ).toBe(false);
+    expect(
+      looksLikeNewRecruit(
+        "=== Order of Battle ===\nRotgarden\nMaggotkin of Nurgle\nPath to Glory · Ascension",
+      ),
+    ).toBe(false);
   });
 
   it("imports a New Recruit Soulblight list", () => {
@@ -261,5 +266,95 @@ Created with Warhammer Age of Sigmar: The App
     expect(parsed.ok).toBe(true);
     if (!parsed.ok) return;
     expect(parsed.lists[0]?.battleTacticCardIds).toHaveLength(2);
+  });
+
+  it("imports a New Recruit Path to Glory list", () => {
+    const faction = getFaction("maggotkin-of-nurgle");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const anvil = faction.units.find(
+      (unit) => unit.name === "Anvil of Apotheosis: Maggotkin of Nurgle Hero",
+    );
+    const infected = anvil?.anvilForge
+      ?.flatMap((group) => group.options)
+      .find((option) => option.name === "Infected Warrior");
+    const parasitic = anvil?.anvilForge
+      ?.flatMap((group) => group.options)
+      .find((option) => option.name === "Parasitic Infection");
+    expect(anvil && infected && parasitic).toBeTruthy();
+    if (!anvil || !infected || !parasitic) return;
+
+    const parsed = parseNewRecruitLists(`Rotgarden (850 points) - Path to Glory: Ravaged Coast
+
+Maggotkin of Nurgle
+Affliction Cyst
+Drops: 1
+
+General's Regiment
+Anvil of Apotheosis: Maggotkin of Nurgle Hero (350)
+• General
+• Lord of Decay
+• Infected Warrior · 4 dest
+• Parasitic Infection
+• Path of the Attacker
+• Full-On Attack
+• The Carrion Dirge
+
+Plaguebearers (140)
+
+Created with New Recruit
+`);
+    expect(parsed.ok).toBe(true);
+    if (!parsed.ok) return;
+
+    const list = parsed.lists[0];
+    expect(list?.kind).toBe("pathToGlory");
+    expect(list?.pathToGlory?.packIds).toEqual(["ascension", "ravaged-coast"]);
+    expect(list?.pointsCap).toBe(1000);
+    expect(list?.scourgeRealm).toBeNull();
+    expect(list?.battleTacticCardIds).toEqual([]);
+    expect(getUnit(faction, list?.regiments[0]?.hero?.unitId ?? "")?.name).toBe(
+      anvil.name,
+    );
+
+    const hero = list?.regiments[0]?.hero?.pathToGlory;
+    expect(hero?.anvilRankId).toBe(
+      anvil.anvilRanks?.find((rank) => rank.name === "Lord of Decay")?.id,
+    );
+    expect(hero?.anvilPickIds).toEqual(
+      expect.arrayContaining([infected.id, parasitic.id]),
+    );
+    expect(hero?.pathId).toBe("path-of-the-attacker");
+    expect(hero?.pathOptionIds).toContain("4564-988b-2147-1ba8");
+    expect(hero?.artefactId).toBe(
+      faction.artefacts.find((item) => item.name === "The Carrion Dirge")?.id,
+    );
+    expect(getUnit(faction, list?.regiments[0]?.units[0]?.unitId ?? "")?.name).toBe(
+      "Plaguebearers",
+    );
+  });
+
+  it("imports an Age of Sigmar App Path to Glory list", () => {
+    const raw = `Rotgarden 850/1000 pts
+-----
+Grand Alliance Chaos | Maggotkin of Nurgle | Affliction Cyst
+Path to Glory: Ascension
+Drops: 1
+-----
+General's Regiment
+Anvil of Apotheosis: Maggotkin of Nurgle Hero (350)
+• General
+• Lord of Decay
+-----
+Created with Warhammer Age of Sigmar: The App
+`;
+    expect(looksLikeAosApp(raw)).toBe(true);
+    const parsed = parsePortableLists(raw);
+    expect(parsed.ok).toBe(true);
+    if (!parsed.ok) return;
+    expect(parsed.lists[0]?.kind).toBe("pathToGlory");
+    expect(parsed.lists[0]?.pathToGlory?.packIds).toEqual(["ascension"]);
+    expect(parsed.lists[0]?.pointsCap).toBe(1000);
   });
 });

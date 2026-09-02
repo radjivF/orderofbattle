@@ -8,9 +8,10 @@ import {
   getArmiesSnapshot,
   subscribeArmies,
 } from "@/lib/storage";
-import { UPDATES_PATH } from "@/lib/updatesPage";
+import { newListPath } from "@/lib/newListLink";
 import {
   WHATS_NEW_AUTO_DISMISS_MS,
+  WHATS_NEW_TOAST_COPY,
   getSeenWhatsNewVersion,
   markWhatsNewSeen,
   shouldShowWhatsNew,
@@ -59,7 +60,7 @@ export function WhatsNewNotice() {
     >
       <div className="ios-glass pointer-events-auto flex max-w-sm flex-col gap-2 rounded-lg px-3 py-2.5 shadow-lg">
         <p className="text-center text-xs leading-snug text-parchment/80">
-          We fixed a few bugs. Want to see?
+          {WHATS_NEW_TOAST_COPY}
         </p>
         <div className="flex items-center justify-center gap-1.5">
           <button
@@ -70,11 +71,11 @@ export function WhatsNewNotice() {
             Dismiss
           </button>
           <Link
-            href={UPDATES_PATH}
+            href={newListPath()}
             onClick={dismiss}
             className="pressable rounded-md bg-parchment px-3 py-1 text-xs font-medium text-parchment-ink"
           >
-            See
+            Try
           </Link>
         </div>
       </div>

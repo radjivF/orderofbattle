@@ -1,6 +1,6 @@
 # Order of Battle
 
-> Order of Battle is a free unofficial Age of Sigmar 4th edition army builder. You put a list together by regiment, add a Regiment of Renown when the army allows it, then keep wounds, spells, and phase abilities in front of you during the game. You don't sign up; the lists live on the device.
+> Order of Battle is a free unofficial Age of Sigmar 4th edition army builder. You put a list together by regiment — matched play or Path to Glory — add a Regiment of Renown when the army allows it, then keep wounds, spells, and phase abilities in front of you during the game. You don't sign up; the lists live on the device.
 
 ## About
 
@@ -22,12 +22,13 @@ Order of Battle is a browser hobby helper for Warhammer Age of Sigmar (4th editi
 
 - [FAQ](/faq): Account, privacy, official status, factions, and Play
 - [How to build an Age of Sigmar army list](/guides/how-to-build-an-age-of-sigmar-army-list): 4th edition list construction
+- [Path to Glory Age of Sigmar army builder](/guides/path-to-glory-age-of-sigmar): Campaign lists, battlepacks, Anvil of Apotheosis, learned spells
 - [Free Age of Sigmar army builder](/guides/free-age-of-sigmar-army-builder): What the app does next to other tools
 - [Compare Age of Sigmar army builders](/compare): Order of Battle, New Recruit, Listbot, and the official app
 - [Play](/play): Wounds, weapons, phase abilities, datasheet
 - [Factions](/factions): Age of Sigmar 4th edition armies you can build
 - [About](/about): Fan project, data source, and legal status
-- [What's new](/updates): Bug fixes in this Age of Sigmar army builder release
+- [What's new](/updates): Path to Glory campaign lists and Play mode updates
 - [Privacy policy](/privacy): Lists stay on the device
 - [Terms of use](/terms): Unofficial helper; not a Games Workshop product
 

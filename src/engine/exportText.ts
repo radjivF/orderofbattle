@@ -15,6 +15,7 @@ import type {
   FactionCatalogue,
   Selection,
 } from "./types";
+import { pathToGloryExportBits, isPathToGloryList, learnedManifestationsForList, learnedSpellsForList, pathToGloryPacksLabel, selectionArtefactOptionId, selectionDisplayName, selectionHeroicTraitOptionId } from "./pathToGlory";
 import { summarize } from "./validate";
 
 function selectionLine(
@@ -27,13 +28,32 @@ function selectionLine(
   if (!unit) {
     return "- Unknown unit";
   }
+  const display = selectionDisplayName(selection, unit);
   const size = unitSizeLabel(unit, selection.reinforced);
   const reinforced = selection.reinforced ? ", reinforced" : "";
-  if (opts?.omitPoints) {
-    return `- ${unit.name}${reinforced} · ${size}`;
+  const extra = pathToGloryExportBits(selection, unit);
+  if (isPathToGloryList(list)) {
+    const artefactName = enhancementOptionName(
+      faction.artefacts,
+      selectionArtefactOptionId(list, selection),
+    );
+    if (artefactName) {
+      extra.push(`Artefact: ${artefactName}`);
+    }
+    const traitName = enhancementOptionName(
+      faction.heroicTraits,
+      selectionHeroicTraitOptionId(list, selection),
+    );
+    if (traitName) {
+      extra.push(`Heroic trait: ${traitName}`);
+    }
   }
-  const pts = selectionPoints(unit, selection.reinforced);
-  return `- ${unit.name}${reinforced} · ${size} · ${formatPoints(pts)} pts`;
+  const extraText = extra.length > 0 ? ` · ${extra.join(" · ")}` : "";
+  if (opts?.omitPoints) {
+    return `- ${display}${reinforced} · ${size}${extraText}`;
+  }
+  const pts = selectionPoints(unit, selection.reinforced, selection);
+  return `- ${display}${reinforced} · ${size} · ${formatPoints(pts)} pts${extraText}`;
 }
 
 function bearerName(
@@ -94,7 +114,13 @@ export function exportArmyListText(
   lines.push("");
   lines.push(list.name.trim() || "Untitled list");
   lines.push(faction.name);
-  if (list.scourgeRealm) {
+  if (isPathToGloryList(list)) {
+    const packs = pathToGloryPacksLabel(
+      list.pathToGlory?.packIds ?? ["ascension"],
+    );
+    lines.push(`Path to Glory · ${packs}`);
+  }
+  if (list.scourgeRealm && !isPathToGloryList(list)) {
     lines.push(
       list.scourgeRealm === "aqshy"
         ? "Scourge of Aqshy"
@@ -118,11 +144,18 @@ export function exportArmyListText(
     );
   }
 
-  const spellLore = faction.spellLores.find(
-    (lore) => lore.id === list.spellLoreId,
-  );
-  if (spellLore) {
-    lines.push(`Spell lore: ${spellLore.name}`);
+  if (isPathToGloryList(list)) {
+    const spells = learnedSpellsForList(list, faction);
+    if (spells.length > 0) {
+      lines.push(`Spells: ${spells.map((item) => item.power.name).join(", ")}`);
+    }
+  } else {
+    const spellLore = faction.spellLores.find(
+      (lore) => lore.id === list.spellLoreId,
+    );
+    if (spellLore) {
+      lines.push(`Spell lore: ${spellLore.name}`);
+    }
   }
 
   const prayerLore = faction.prayerLores.find(
@@ -132,35 +165,50 @@ export function exportArmyListText(
     lines.push(`Prayer lore: ${prayerLore.name}`);
   }
 
-  const manifestationLore = faction.manifestationLores.find(
-    (lore) => lore.id === list.manifestationLoreId,
-  );
-  if (manifestationLore) {
-    lines.push(`Manifestation lore: ${manifestationLore.name}`);
+  if (isPathToGloryList(list)) {
+    const manifestations = learnedManifestationsForList(list, faction);
+    if (manifestations.length > 0) {
+      lines.push(
+        `Manifestations: ${manifestations.map((item) => item.name).join(", ")}`,
+      );
+    }
+  } else {
+    const manifestationLore = faction.manifestationLores.find(
+      (lore) => lore.id === list.manifestationLoreId,
+    );
+    if (manifestationLore) {
+      lines.push(`Manifestation lore: ${manifestationLore.name}`);
+    }
   }
 
-  const tacticNames = (list.battleTacticCardIds ?? [])
-    .map((id) => battleTactics.find((card) => card.id === id)?.name)
-    .filter((name): name is string => Boolean(name));
+  const tacticNames = isPathToGloryList(list)
+    ? []
+    : (list.battleTacticCardIds ?? [])
+        .map((id) => battleTactics.find((card) => card.id === id)?.name)
+        .filter((name): name is string => Boolean(name));
   if (tacticNames.length > 0) {
     lines.push(`Battle tactic cards: ${tacticNames.join(", ")}`);
   }
 
   const enhancementLines = [
-    enhancementLine(
-      "Artefact",
-      faction.artefacts,
-      list.artefact,
-      list,
-      faction,
-    ),
-    enhancementLine(
-      "Heroic trait",
-      faction.heroicTraits,
-      list.heroicTrait,
-      list,
-      faction,
-    ),
+    isPathToGloryList(list)
+      ? null
+      : enhancementLine(
+          "Artefact",
+          faction.artefacts,
+          list.artefact,
+          list,
+          faction,
+        ),
+    isPathToGloryList(list)
+      ? null
+      : enhancementLine(
+          "Heroic trait",
+          faction.heroicTraits,
+          list.heroicTrait,
+          list,
+          faction,
+        ),
     enhancementLine(
       "Monstrous trait",
       faction.monstrousTraits ?? [],

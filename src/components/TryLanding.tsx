@@ -317,7 +317,7 @@ export function TryLanding() {
               Age of Sigmar army builder FAQ
             </h2>
             <dl className="mt-6 space-y-5">
-              {GEO_FAQS.slice(0, 5).map((item) => (
+              {GEO_FAQS.slice(0, 6).map((item) => (
                 <div
                   key={item.question}
                   data-rise="card"
@@ -345,6 +345,13 @@ export function TryLanding() {
                 className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
               >
                 How to build a list
+              </Link>
+              {" · "}
+              <Link
+                href="/guides/path-to-glory-age-of-sigmar"
+                className="text-sigmarite underline decoration-sigmarite/40 underline-offset-2"
+              >
+                Path to Glory
               </Link>
             </p>
           </section>

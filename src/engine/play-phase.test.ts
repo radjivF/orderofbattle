@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { createId } from "@/lib/id";
-import { blankArmy, blankSpearhead } from "@/lib/storage";
+import { blankArmy, blankPathToGlory, blankSpearhead } from "@/lib/storage";
+import {
+  factionManifestationPicks,
+  patchPathToGloryState,
+} from "@/engine/pathToGlory";
 import {
   buildPhaseBoards,
   phasesForAbility,
@@ -231,6 +235,28 @@ describe("manifestation lore points", () => {
     expect(withFree).toBe(base);
     expect(withPaid - base).toBe(paidLore.points);
   });
+
+  it("only puts selected Path to Glory manifestations on phase boards", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const picks = factionManifestationPicks(faction);
+    const picked = picks[0];
+    const skipped = picks[1];
+    expect(picked && skipped).toBeTruthy();
+    if (!picked || !skipped) return;
+
+    const list = patchPathToGloryState(
+      blankPathToGlory(faction.id, "ascension"),
+      { manifestationIds: [picked.model.id] },
+    );
+    const names = buildPhaseBoards(list, faction).flatMap((board) =>
+      board.abilities.map((row) => row.unitName),
+    );
+    expect(names).toContain(picked.model.name);
+    expect(names).not.toContain(skipped.model.name);
+  });
 });
 
 describe("formation phase routing", () => {
@@ -248,6 +274,38 @@ describe("formation phase routing", () => {
         cost: "",
       }),
     ).toEqual(["end"]);
+  });
+
+  it("maps Start of Any Turn to start of turn, not Army", () => {
+    expect(
+      phasesForAbility({
+        name: "Creeping Dread",
+        kind: "Activated",
+        timing: "Once Per Turn (Army), Start of Any Turn",
+        declare: "",
+        effect: "",
+        keywords: "",
+        castingValue: "",
+        chantingValue: "",
+        cost: "",
+      }),
+    ).toEqual(["start"]);
+  });
+
+  it("keeps Start of Battle Round on Army", () => {
+    expect(
+      phasesForAbility({
+        name: "Ever Growing",
+        kind: "Activated",
+        timing: "Once Per Battle Round, Start of Battle Round",
+        declare: "",
+        effect: "",
+        keywords: "",
+        castingValue: "",
+        chantingValue: "",
+        cost: "",
+      }),
+    ).toEqual(["passive"]);
   });
 
   it("puts Coven Zealots Higher Purpose on End of turn, not Army", () => {
@@ -272,6 +330,33 @@ describe("formation phase routing", () => {
 
     expect(namesOn("end")).toContain("Higher Purpose");
     expect(namesOn("passive")).not.toContain("Higher Purpose");
+  });
+
+  it("puts Sylvaneth Creeping Dread on Start of turn and hides that tab for Stormcast", () => {
+    const sylvaneth = getFaction("sylvaneth");
+    const stormcast = getFaction("stormcast-eternals");
+    expect(sylvaneth && stormcast).toBeTruthy();
+    if (!sylvaneth || !stormcast) return;
+
+    const sylvanethBoards = buildPhaseBoards(blankArmy(sylvaneth.id), sylvaneth);
+    const stormcastBoards = buildPhaseBoards(
+      blankArmy(stormcast.id),
+      stormcast,
+    );
+    const startNames =
+      sylvanethBoards
+        .find((board) => board.phase.id === "start")
+        ?.abilities.map((row) => row.ability.name) ?? [];
+
+    expect(startNames).toContain("Creeping Dread");
+    expect(
+      sylvanethBoards
+        .find((board) => board.phase.id === "passive")
+        ?.abilities.map((row) => row.ability.name),
+    ).not.toContain("Creeping Dread");
+    expect(stormcastBoards.some((board) => board.phase.id === "start")).toBe(
+      false,
+    );
   });
 });
 
@@ -300,5 +385,56 @@ describe("battle formation points", () => {
 
     expect(withFree).toBe(base);
     expect(withPaid - base).toBe(paid.points);
+  });
+});
+
+describe("path to glory on phase boards", () => {
+  it("uses the unit nickname and lists the Path on the Army board", () => {
+    const faction = getFaction("sylvaneth");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const hero = faction.units.find((unit) => unit.name === "Arch-Revenant");
+    expect(hero).toBeTruthy();
+    if (!hero) return;
+
+    const heroSelectionId = createId();
+    const list = {
+      ...blankPathToGlory(faction.id, "ascension"),
+      regiments: [
+        {
+          id: "reg-1",
+          hero: {
+            id: heroSelectionId,
+            unitId: hero.id,
+            reinforced: false,
+            nickname: "Thalia",
+            pathToGlory: {
+              renown: 5,
+              pathId: "path-of-the-warrior",
+              pathOptionIds: [],
+              battleWoundId: null,
+              scarId: null,
+            },
+          },
+          units: [],
+        },
+      ],
+    };
+
+    const army =
+      buildPhaseBoards(list, faction).find((board) => board.phase.id === "passive") ??
+      null;
+    expect(army).toBeTruthy();
+    if (!army) return;
+
+    expect(
+      army.abilities.some(
+        (row) =>
+          row.selectionId === heroSelectionId &&
+          row.unitName === "Thalia" &&
+          row.ability.name === "Path of the Warrior",
+      ),
+    ).toBe(true);
   });
 });

@@ -26,6 +26,11 @@ export const GEO_FAQS: GeoFaq[] = [
       "Pick a faction, a points limit (2,000 is common), a battle formation, a general, and one or more regiments led by heroes. Order of Battle follows that structure. A Regiment of Renown can go in last if the list allows it.",
   },
   {
+    question: "Can I build a Path to Glory army in Order of Battle?",
+    answer:
+      "Yes. Create a list, pick a faction, then choose Path to Glory in the army menu. Tick battlepacks (Ascension, Ravaged Coast, Blighted Wilds). The default cap is 1,000 points. Heroes can take a path, renown, Anvil of Apotheosis, artefacts, and learned spells. Lists stay on your device.",
+  },
+  {
     question: "Can I track wounds during an Age of Sigmar game?",
     answer:
       "Yes. Open a saved list and switch to Play. Mark wounds on units, lasting spells and prayers, and the abilities for the phase you are in: hero, movement, shooting, charge, combat, end of turn.",
@@ -61,6 +66,51 @@ export const GEO_FAQS: GeoFaq[] = [
       "No. This app is free and stays free. The maker cannot sell this unofficial fan project. If you want the list builder, or you want one made, email contact@zheat.xyz or visit https://zheat.xyz. Commission the work or buy it. The point is the community keeps a helper, not that the app gets closed down.",
   },
 ];
+
+export const PATH_TO_GLORY_FAQS: GeoFaq[] = [
+  {
+    question: "Can I build a Path to Glory army in Order of Battle?",
+    answer:
+      "Yes. Create a list, pick a faction, then choose Path to Glory in the army menu. Tick battlepacks (Ascension, Ravaged Coast, Blighted Wilds). The default cap is 1,000 points. Heroes can take a path, renown, Anvil of Apotheosis, artefacts, and learned spells. Lists stay on your device.",
+  },
+  {
+    question: "What is Path to Glory in Age of Sigmar?",
+    answer:
+      "Path to Glory is Games Workshop's campaign format for Age of Sigmar 4th edition. You grow a roster over games with paths, scars, extra kit, and an optional custom hero. Official battlepacks include Ascension, Ravaged Coast, and Blighted Wilds.",
+  },
+  {
+    question: "How is Path to Glory different from matched play in this builder?",
+    answer:
+      "Matched play defaults to 2,000 points, a Scourge season, and battle tactics. Path to Glory defaults to 1,000 points, battlepacks instead of season, and campaign fields on units. Spearhead stays a fixed box list.",
+  },
+];
+
+export const PATH_TO_GLORY_HOW_TO_STEPS = [
+  {
+    name: "Open My lists",
+    text: "Open My lists. Tap New list. You don't need an account.",
+  },
+  {
+    name: "Pick a faction",
+    text: "Choose an Age of Sigmar 4th edition faction.",
+  },
+  {
+    name: "Choose Path to Glory",
+    text: "In Army, choose Path to Glory.",
+  },
+  {
+    name: "Tick battlepacks",
+    text: "Tick the battlepacks you are using. Ascension is on by default. Official packs include Ascension, Ravaged Coast, and Blighted Wilds.",
+  },
+  {
+    name: "Set the points cap",
+    text: "Name the list. 1,000 points is the default cap. Change it if your campaign uses another size.",
+  },
+  {
+    name: "Add the roster",
+    text: "Add a general and regiments. Campaign extras sit on the unit card: path, renown, battle wounds, scars, and Anvil of Apotheosis.",
+  },
+] as const;
 
 export const HOW_TO_STEPS = [
   {

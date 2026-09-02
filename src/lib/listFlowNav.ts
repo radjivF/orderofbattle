@@ -133,6 +133,25 @@ export function libraryCreatingSplashVisible(
   return creating || createSplashRequested;
 }
 
+/** New lists start on Aqshy — create splash must use the same season as the list. */
+export const LIST_CREATE_BACKDROP_SCOURGE = "aqshy" as const;
+
+/** Parent art on the create splash — same id the list pane will lock. */
+export function listCreateBackdropFactionId(input: {
+  parentId?: string | null;
+  parentFactionIds?: string[] | null;
+  factionId: string;
+}): string {
+  return input.parentId ?? input.parentFactionIds?.[0] ?? input.factionId;
+}
+
+/** Create already painted the picture — fading it in from opacity 0 makes it shake. */
+export function listCreateFactionBackdropStartsRevealed(
+  createSplashActive: boolean,
+): boolean {
+  return createSplashActive;
+}
+
 /** Window scroll when the library ↔ list carousel changes which pane is on screen. */
 export function listFlowWindowScrollY(input: {
   showingDetail: boolean;

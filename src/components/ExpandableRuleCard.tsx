@@ -130,12 +130,25 @@ export function ExpandableRuleCard({
   );
 }
 
-function CollapseChevron({ open }: { open: boolean }) {
+export function CollapseChevron({
+  open,
+  turned,
+}: {
+  open?: boolean;
+  turned?: boolean;
+} = {}) {
+  const state = open ?? turned;
+  const rotate =
+    state === true
+      ? "rotate-180"
+      : state === false
+        ? ""
+        : "group-open:rotate-180";
   return (
     <svg
       viewBox="0 0 20 20"
       aria-hidden="true"
-      className={`h-4 w-4 shrink-0 text-sheet-muted transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+      className={`h-4 w-4 shrink-0 text-sheet-muted transition-transform duration-200 ${rotate}`}
     >
       <path
         d="M5 8l5 5 5-5"

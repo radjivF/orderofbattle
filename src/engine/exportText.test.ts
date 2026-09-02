@@ -6,6 +6,7 @@ import {
 import { getFaction, heroesOf, unitsForRealm } from "@/engine/queries";
 import { createId } from "@/lib/id";
 import { blankArmy } from "@/lib/storage";
+import { blankPathToGlory } from "./listFactories";
 
 describe("exportArmyListText", () => {
   it("formats a list with regiment, points, and formation", () => {
@@ -150,5 +151,45 @@ describe("exportArmyListText", () => {
     expect(text).not.toMatch(
       new RegExp(`${table.name}:.*${table.name}`),
     );
+  });
+
+  it("prints Path to Glory artefacts on the hero line", () => {
+    const faction = getFaction("maggotkin-of-nurgle");
+    const anvil = faction?.units.find((unit) =>
+      unit.name.startsWith("Anvil of Apotheosis"),
+    );
+    const artefact = faction?.artefacts[0];
+    expect(faction && anvil && artefact).toBeTruthy();
+    if (!faction || !anvil || !artefact) return;
+
+    const regimentId = createId();
+    const list = {
+      ...blankPathToGlory(faction.id, "ascension"),
+      generalRegimentId: regimentId,
+      regiments: [
+        {
+          id: regimentId,
+          hero: {
+            id: createId(),
+            unitId: anvil.id,
+            reinforced: false,
+            pathToGlory: {
+              renown: 0,
+              pathId: null,
+              pathOptionIds: [],
+              battleWoundId: null,
+              scarId: null,
+              artefactId: artefact.id,
+            },
+          },
+          units: [],
+        },
+      ],
+    };
+
+    const text = exportArmyListText(list, faction);
+    expect(text).toContain("Path to Glory · Ascension");
+    expect(text).toContain(`Artefact: ${artefact.name}`);
+    expect(text).not.toContain("Army enhancements");
   });
 });

@@ -1,10 +1,12 @@
-import { GEO_FAQS, HOW_TO_STEPS } from "@/lib/geoContent";
+import { GEO_FAQS, HOW_TO_STEPS, type GeoFaq } from "@/lib/geoContent";
 import {
   SITE_DESCRIPTION,
   SITE_NAME,
   SITE_PUBLISHED,
   sitePath,
 } from "@/lib/site";
+
+type HowToStep = { name: string; text: string };
 
 export function organizationNode() {
   return {
@@ -55,18 +57,19 @@ export function softwareApplicationNode() {
       "Age of Sigmar 4th edition army lists",
       "Regiments and Regiments of Renown",
       "Play mode: wounds, spells, phase abilities",
+      "Path to Glory campaign lists",
       "No account; lists stay on the device",
     ],
     publisher: { "@id": `${sitePath("/")}/#organization` },
   };
 }
 
-export function faqPageNode(url: string) {
+export function faqPageNode(url: string, faqs: GeoFaq[] = GEO_FAQS) {
   return {
     "@type": "FAQPage",
     "@id": `${url}#faq`,
     url,
-    mainEntity: GEO_FAQS.map((item) => ({
+    mainEntity: faqs.map((item) => ({
       "@type": "Question",
       name: item.question,
       acceptedAnswer: {
@@ -77,16 +80,25 @@ export function faqPageNode(url: string) {
   };
 }
 
-export function howToNode(url: string) {
+export function howToNode(
+  url: string,
+  opts?: {
+    name?: string;
+    description?: string;
+    steps?: readonly HowToStep[];
+  },
+) {
+  const steps = opts?.steps ?? HOW_TO_STEPS;
   return {
     "@type": "HowTo",
     "@id": `${url}#howto`,
-    name: "How to build an Age of Sigmar 4th edition army list",
+    name: opts?.name ?? "How to build an Age of Sigmar 4th edition army list",
     description:
+      opts?.description ??
       "Build a Warhammer Age of Sigmar 4th edition army list in Order of Battle, a free unofficial browser builder.",
     url,
     totalTime: "PT20M",
-    step: HOW_TO_STEPS.map((step, index) => ({
+    step: steps.map((step, index) => ({
       "@type": "HowToStep",
       position: index + 1,
       name: step.name,

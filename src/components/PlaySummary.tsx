@@ -2,6 +2,7 @@
 
 import { namedOption } from "@/engine/queries";
 import { isSpearheadList } from "@/engine/spearhead";
+import { isPathToGloryList, learnedSpellsForList } from "@/engine/pathToGlory";
 import type { ArmyList, FactionCatalogue } from "@/engine/types";
 
 export function PlaySummary({
@@ -14,9 +15,16 @@ export function PlaySummary({
   const formation = faction.formations.find(
     (item) => item.id === (list.regimentAbilityId ?? list.formationId),
   );
+  const learnedSpells = isPathToGloryList(list)
+    ? learnedSpellsForList(list, faction)
+    : [];
   const spell = isSpearheadList(list)
     ? undefined
-    : namedOption(faction.spellLores, list.spellLoreId);
+    : isPathToGloryList(list)
+      ? learnedSpells.length > 0
+        ? { name: learnedSpells.map((item) => item.power.name).join(" · ") }
+        : undefined
+      : namedOption(faction.spellLores, list.spellLoreId);
   const prayer = isSpearheadList(list)
     ? undefined
     : namedOption(faction.prayerLores, list.prayerLoreId);

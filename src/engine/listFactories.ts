@@ -1,14 +1,16 @@
-import type { ArmyList } from "@/engine/types";
+import type { ArmyList, PathToGloryPackId } from "@/engine/types";
 import { getFaction } from "@/engine/queries";
 import { getSpearhead } from "@/engine/spearhead";
 import { inferScourgeRealm } from "@/engine/scourgeRealm";
 import { pruneOrphanEnhancements } from "@/engine/validate";
 import { createId } from "@/lib/id";
+import { normalizePathToGloryState } from "@/engine/pathToGlory";
 
 const MAX_REGIMENTS = 5;
 
 export function normalizeArmyList(list: ArmyList): ArmyList {
-  const scourgeRealm = inferScourgeRealm(list);
+  const pathToGlory = list.kind === "pathToGlory";
+  const scourgeRealm = pathToGlory ? null : inferScourgeRealm(list);
   return pruneOrphanEnhancements({
     ...list,
     game: "aos",
@@ -17,13 +19,22 @@ export function normalizeArmyList(list: ArmyList): ArmyList {
     monstrousTrait: list.monstrousTrait ?? null,
     visionOfFate: list.visionOfFate ?? null,
     specialEnhancements: list.specialEnhancements ?? [],
-    battleTacticCardIds: list.battleTacticCardIds ?? [],
-    battleTacticStage: list.battleTacticStage ?? {},
+    battleTacticCardIds: pathToGlory ? [] : (list.battleTacticCardIds ?? []),
+    battleTacticStage: pathToGlory ? {} : (list.battleTacticStage ?? {}),
     scourgeRealm,
     lastOpenedAt: list.lastOpenedAt ?? list.updatedAt,
-    kind: list.kind === "spearhead" ? "spearhead" : "matched",
+    kind:
+      list.kind === "spearhead"
+        ? "spearhead"
+        : list.kind === "pathToGlory"
+          ? "pathToGlory"
+          : "matched",
     spearheadId: list.spearheadId ?? null,
     regimentAbilityId: list.regimentAbilityId ?? null,
+    pathToGlory:
+      list.kind === "pathToGlory"
+        ? normalizePathToGloryState(list.pathToGlory)
+        : undefined,
   });
 }
 
@@ -65,6 +76,25 @@ export function blankArmy(
     updatedAt: now,
     lastOpenedAt: now,
     game: "aos",
+  };
+}
+
+export function blankPathToGlory(
+  factionId: string,
+  packIds: PathToGloryPackId | PathToGloryPackId[],
+  name?: string,
+  pointsCap?: number,
+): ArmyList {
+  const ids = typeof packIds === "string" ? [packIds] : packIds;
+  return {
+    ...blankArmy(factionId, name, pointsCap ?? 1000),
+    kind: "pathToGlory",
+    spellLoreId: null,
+    manifestationLoreId: null,
+    scourgeRealm: null,
+    battleTacticCardIds: [],
+    battleTacticStage: {},
+    pathToGlory: normalizePathToGloryState({ packIds: ids }),
   };
 }
 

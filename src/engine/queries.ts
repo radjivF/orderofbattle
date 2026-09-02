@@ -9,9 +9,20 @@ import type {
   RegimentOfRenownUnit,
   RegimentOption,
   Selection,
+  SpecialEnhancementTable,
+  UnitAbility,
   UnitStats,
 } from "./types";
 import { factions, regimentsOfRenown } from "./data/load";
+import {
+  anvilRankForSelection,
+  isAnvilOfApotheosis,
+  uniqueKeywordBlocksEnhancements,
+} from "./pathToGlory/anvil";
+import {
+  selectionArtefactOptionId,
+  selectionHeroicTraitOptionId,
+} from "./pathToGlory/heroGear";
 
 const byFaction = new Map(factions.map((faction) => [faction.id, faction]));
 const byRenown = new Map(
@@ -273,6 +284,79 @@ export function optionMatches(
   return unit.categories.includes(option.name);
 }
 
+function effectiveRegimentOptions(
+  hero: CatalogueUnit,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  faction?: FactionCatalogue,
+): RegimentOption[] {
+  if (hero.regimentOptions.length > 0) {
+    return hero.regimentOptions;
+  }
+  
+  if (!isAnvilOfApotheosis(hero)) {
+    return hero.regimentOptions;
+  }
+
+  const derived: RegimentOption[] = [];
+
+  for (const category of hero.categories) {
+    const upper = category.toUpperCase();
+    if (
+      upper === "TROGGOTH" ||
+      upper === "MOONCLAN" ||
+      upper === "SPIDERFANG"
+    ) {
+      derived.push({
+        type: "category",
+        id: `derived-${category}`,
+        name: category,
+      });
+    }
+  }
+
+  if (derived.length > 0) {
+    return derived;
+  }
+
+  for (const category of hero.categories) {
+    const upper = category.toUpperCase();
+    if (
+      upper.includes("STORMCAST") ||
+      upper.includes("SOULBLIGHT") ||
+      upper.includes("GLOOMSPITE") ||
+      upper.includes("MAGGOTKIN") ||
+      upper.includes("FLESH-EATER") ||
+      upper.includes("OSSIARCH") ||
+      upper.includes("NIGHTHAUNT") ||
+      upper.includes("KHORNE") ||
+      upper.includes("TZEENTCH") ||
+      upper.includes("NURGLE") ||
+      upper.includes("SLAANESH") ||
+      upper.includes("SKAVEN") ||
+      upper.includes("DAUGHTERS") ||
+      upper.includes("LUMINETH") ||
+      upper.includes("IDONETH") ||
+      upper.includes("SYLVANETH") ||
+      upper.includes("SERAPHON") ||
+      upper.includes("OGOR") ||
+      upper.includes("ORRUK") ||
+      upper.includes("CITIES") ||
+      upper.includes("KRULEBOYZ") ||
+      upper.includes("IRONJAWZ") ||
+      upper.includes("BONESPLITTERZ")
+    ) {
+      derived.push({
+        type: "category",
+        id: `derived-${category}`,
+        name: category,
+      });
+      break;
+    }
+  }
+
+  return derived;
+}
+
 export function canJoinRegiment(
   hero: CatalogueUnit,
   unit: CatalogueUnit,
@@ -283,7 +367,7 @@ export function canJoinRegiment(
   }
   const slots = unit.hero
     ? (hero.regimentHeroes ?? [])
-    : hero.regimentOptions;
+    : effectiveRegimentOptions(hero, faction);
   return slots.some((option) => optionMatches(unit, option, faction));
 }
 
@@ -304,8 +388,11 @@ export function legalCompanions(
 export function selectionPoints(
   unit: CatalogueUnit,
   reinforced: boolean,
+  selection?: Selection | null,
 ): number {
-  return unit.points * (reinforced ? 2 : 1);
+  const anvil = anvilRankForSelection(unit, selection);
+  const base = anvil?.points ?? unit.points;
+  return base * (reinforced ? 2 : 1);
 }
 
 export function unitHasKeyword(unit: CatalogueUnit, keyword: string): boolean {
@@ -323,6 +410,35 @@ export function canTakeMonstrousTrait(unit: CatalogueUnit): boolean {
 
 export function canTakeVisionOfFate(unit: CatalogueUnit): boolean {
   return !unit.hero && !unit.unique && !unitHasKeyword(unit, "BEAST");
+}
+
+export function specialEnhancementTablesForList(
+  faction: FactionCatalogue,
+  list: Pick<ArmyList, "scourgeRealm">,
+): SpecialEnhancementTable[] {
+  return (faction.specialEnhancementTables ?? []).filter((table) => {
+    if (!table.realm) {
+      return true;
+    }
+    return list.scourgeRealm === table.realm;
+  });
+}
+
+export function canTakeSpecialEnhancement(
+  unit: CatalogueUnit,
+  table: SpecialEnhancementTable,
+): boolean {
+  if (uniqueKeywordBlocksEnhancements(unit)) {
+    return false;
+  }
+  if (table.restrictTo === "nonHeroNonMonster") {
+    return (
+      !unit.hero &&
+      !unitHasKeyword(unit, "HERO") &&
+      !unitHasKeyword(unit, "MONSTER")
+    );
+  }
+  return true;
 }
 
 export function enhancementChoiceDetail(
@@ -357,6 +473,58 @@ export function enhancementLabel(
   }
   const extra = enhancementChoiceDetail(option);
   return extra ? `${option.name} · ${extra}` : option.name;
+}
+
+export function enhancementSlotView(
+  options: EnhancementOption[],
+  optionId: string | null | undefined,
+  selectionId: string,
+): {
+  bearerId: string | null;
+  label?: string;
+  abilities?: UnitAbility[];
+} {
+  if (!optionId) {
+    return { bearerId: null };
+  }
+  const option = options.find((item) => item.id === optionId);
+  return {
+    bearerId: selectionId,
+    label: enhancementLabel(options, optionId),
+    abilities: option?.abilities,
+  };
+}
+
+export function listHeroGearSlots(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  selection: Selection,
+): {
+  artefactBearerId: string | null;
+  artefactLabel?: string;
+  artefactAbilities?: UnitAbility[];
+  heroicTraitBearerId: string | null;
+  heroicTraitLabel?: string;
+  heroicTraitAbilities?: UnitAbility[];
+} {
+  const artefact = enhancementSlotView(
+    faction.artefacts,
+    selectionArtefactOptionId(list, selection),
+    selection.id,
+  );
+  const trait = enhancementSlotView(
+    faction.heroicTraits,
+    selectionHeroicTraitOptionId(list, selection),
+    selection.id,
+  );
+  return {
+    artefactBearerId: artefact.bearerId,
+    artefactLabel: artefact.label,
+    artefactAbilities: artefact.abilities,
+    heroicTraitBearerId: trait.bearerId,
+    heroicTraitLabel: trait.label,
+    heroicTraitAbilities: trait.abilities,
+  };
 }
 
 export function pickedEnhancementPoints(

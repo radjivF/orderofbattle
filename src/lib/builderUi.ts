@@ -57,7 +57,10 @@ export function builderHeaderShowsIssueDot(
   return !spearhead && tone !== "ok";
 }
 
-export function builderPlayTabs(spearhead: boolean): {
+export function builderPlayTabs(
+  spearhead: boolean,
+  pathToGlory: boolean,
+): {
   value: "units" | "magic" | "phases";
   label: string;
   ariaLabel?: string;
@@ -66,6 +69,21 @@ export function builderPlayTabs(spearhead: boolean): {
     return [
       { value: "units", label: "Units" },
       { value: "phases", label: "Phases", ariaLabel: "Phases" },
+    ];
+  }
+  if (pathToGlory) {
+    return [
+      { value: "units", label: "Units" },
+      {
+        value: "magic",
+        label: "Magic",
+        ariaLabel: "Magic and prayer lores",
+      },
+      {
+        value: "phases",
+        label: "Phases",
+        ariaLabel: "Phases",
+      },
     ];
   }
   return [

@@ -3,6 +3,12 @@ import { SITE_NAME } from "@/lib/site";
 import { battleTactics, factions, regimentsOfRenown } from "./data/load";
 import { exportArmyListText, exportFileName } from "./exportText";
 import { looksLikeImportedList, parseNewRecruitLists } from "./newRecruit";
+import {
+  applyImportedPathToGloryModifier,
+  isPathToGloryList,
+  normalizePathToGloryState,
+  packsFromImportText,
+} from "./pathToGlory";
 import { parsePointsCap } from "./pointsCap";
 import { getListUnit } from "./queries";
 import {
@@ -131,6 +137,7 @@ export function listContentKey(list: ArmyList): string {
     factionId: list.factionId,
     kind: list.kind ?? "matched",
     spearheadId: list.spearheadId ?? null,
+    pathToGlory: list.pathToGlory ?? null,
     regimentAbilityId: list.regimentAbilityId ?? null,
     pointsCap: list.pointsCap,
     formationId: list.formationId,
@@ -214,7 +221,7 @@ function unitKey(selection: Selection | null): string | null {
   if (!selection) {
     return null;
   }
-  return `${selection.unitId}:${selection.reinforced ? 1 : 0}`;
+  return `${selection.unitId}:${selection.reinforced ? 1 : 0}:${selection.nickname ?? ""}:${selection.pathToGlory?.pathId ?? ""}:${selection.pathToGlory?.renown ?? 0}:${selection.pathToGlory?.battleWoundId ?? ""}:${selection.pathToGlory?.scarId ?? ""}:${selection.pathToGlory?.artefactId ?? ""}:${selection.pathToGlory?.heroicTraitId ?? ""}`;
 }
 
 function selectionUnitKey(list: ArmyList, selectionId: string): string | null {
@@ -258,15 +265,16 @@ function parseListBlock(block: string): ArmyList | null {
     return null;
   }
 
+  const pathToGloryPacks = packsFromImportText(lines.join("\n"));
   const now = Date.now();
   const list: ArmyList = {
     id: createId(),
     name,
     factionId: catalogue.factionId,
-    kind: catalogue.kind,
+    kind: pathToGloryPacks ? "pathToGlory" : catalogue.kind,
     spearheadId: catalogue.spearheadId,
     regimentAbilityId: null,
-    pointsCap: catalogue.kind === "spearhead" ? 0 : 2000,
+    pointsCap: catalogue.kind === "spearhead" ? 0 : pathToGloryPacks ? 1000 : 2000,
     formationId: null,
     spellLoreId: null,
     prayerLoreId: null,
@@ -278,7 +286,10 @@ function parseListBlock(block: string): ArmyList | null {
     specialEnhancements: [],
     battleTacticCardIds: [],
     battleTacticStage: {},
-    scourgeRealm: catalogue.kind === "spearhead" ? null : "aqshy",
+    scourgeRealm:
+      catalogue.kind === "spearhead" || pathToGloryPacks
+        ? null
+        : "aqshy",
     generalRegimentId: null,
     regiments: [],
     auxiliaries: [],
@@ -287,6 +298,9 @@ function parseListBlock(block: string): ArmyList | null {
     createdAt: now,
     updatedAt: now,
     lastOpenedAt: now,
+    pathToGlory: pathToGloryPacks
+      ? normalizePathToGloryState({ packIds: pathToGloryPacks })
+      : undefined,
   };
 
   const pendingEnhancements: PendingEnhancement[] = [];
@@ -341,7 +355,7 @@ function parseListBlock(block: string): ArmyList | null {
       continue;
     }
     if (section === "aux") {
-      const selection = parseSelectionLine(line, catalogue.faction, false);
+      const selection = parseSelectionLine(line, list, catalogue.faction, false);
       if (selection) {
         list.auxiliaries.push(selection);
       }
@@ -365,6 +379,7 @@ function parseListBlock(block: string): ArmyList | null {
       }
       const selection = parseSelectionLine(
         line,
+        list,
         catalogue.faction,
         regimentHeroPending,
       );
@@ -432,6 +447,15 @@ function applyHeaderLine(
   faction: FactionCatalogue,
   line: string,
 ) {
+  const packs = packsFromImportText(line);
+  if (packs) {
+    list.kind = "pathToGlory";
+    list.pathToGlory = normalizePathToGloryState({ packIds: packs });
+    list.scourgeRealm = null;
+    list.battleTacticCardIds = [];
+    list.battleTacticStage = {};
+    return;
+  }
   if (line === "Scourge of Aqshy") {
     list.scourgeRealm = "aqshy";
     return;
@@ -511,6 +535,7 @@ function parseEnhancementLine(line: string): PendingEnhancement | null {
 
 function parseSelectionLine(
   line: string,
+  list: ArmyList,
   faction: FactionCatalogue,
   preferHero: boolean,
 ): Selection | null {
@@ -522,11 +547,31 @@ function parseSelectionLine(
   if (!unit) {
     return null;
   }
-  return {
+  const selection: Selection = {
     id: createId(),
     unitId: unit.id,
     reinforced: parsed.reinforced,
   };
+  if (isPathToGloryList(list)) {
+    for (const extra of selectionLineExtras(line)) {
+      applyImportedPathToGloryModifier(list, faction, extra, selection);
+    }
+  }
+  return selection;
+}
+
+function selectionLineExtras(line: string): string[] {
+  return line
+    .slice(2)
+    .split(" · ")
+    .slice(1)
+    .map((part) => part.trim())
+    .filter(
+      (part) =>
+        Boolean(part) &&
+        !/^\d+\s*models?$/i.test(part) &&
+        !/^[\d,.]+\s*pts$/i.test(part),
+    );
 }
 
 function parseRorSelectionLine(

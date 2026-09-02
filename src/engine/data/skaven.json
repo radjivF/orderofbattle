@@ -5745,6 +5745,1143 @@
       ],
       "regimentOptions": [],
       "regimentHeroes": []
+    },
+    {
+      "id": "c011-fb8c-500a-e727",
+      "name": "Anvil of Apotheosis: Skaven Hero",
+      "points": 150,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "CHAOS",
+        "SKAVEN"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Warpforged Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Gnaw-beast's Chisel Fangs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Moulder-beast's Monstrous Limbs",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Crushing Bulk",
+          "kind": "melee",
+          "range": "",
+          "attacks": "6",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "-",
+          "damage": "2",
+          "ability": "Companion"
+        },
+        {
+          "name": "Warpfire Launcher",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "5",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "1",
+          "ability": "Shoot in Combat, Companion"
+        },
+        {
+          "name": "Warp Lightning Strike",
+          "kind": "ranged",
+          "range": "20\"",
+          "attacks": "2D6",
+          "hit": "4+",
+          "wound": "\u27ddSee 'Warp Lightning Strike' ability\u27de",
+          "rend": "\u27ddSee 'Warp Lightning Strike' ability\u27de",
+          "damage": "\u27ddSee 'Warp Lightning Strike' ability\u27de",
+          "ability": "Companion"
+        },
+        {
+          "name": "Clawed Catapult",
+          "kind": "ranged",
+          "range": "24\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "D6",
+          "ability": "Anti-Infantry (+1 Rend), Companion"
+        },
+        {
+          "name": "Warplock Musket",
+          "kind": "ranged",
+          "range": "24\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": "Crit (Auto-wound)"
+        },
+        {
+          "name": "Experimental Warpvolt Incinerator",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "2",
+          "hit": "3+",
+          "wound": "3+",
+          "rend": "2",
+          "damage": "D3",
+          "ability": "Anti-Cavalry (+1 Rend), Crit (2 Hits)"
+        },
+        {
+          "name": "Doomrocket",
+          "kind": "ranged",
+          "range": "18\"",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "D6",
+          "ability": "Anti-Infantry (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Malicious Authority",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time a friendly non-Hero Skaven unit wholly within 13\" of this unit uses the 'All-out Attack' command no command points are spent.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Back-back to the Fray, Minions!",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time a friendly Clanrats or Stormvermin unit wholly within 13\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Unholy Ministrations",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Any Turn",
+          "declare": "Pick up to 3 friendly Moulder units wholly within 13\" of this unit to be the targets.",
+          "effect": "Heal (3) each target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Festering Chanter",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), End of Any Turn",
+          "declare": "Pick any number of enemy units within 6\" of this unit to be the targets.",
+          "effect": "Inflict D3 mortal damage on each target.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "One with the Shadows",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Movement Phase",
+          "declare": "Pick up to 3 friendly Eshin units wholly within 13\" of this unit and not in combat to be the targets.",
+          "effect": "Remove the targets from the battlefield and set them up again on the battlefield more than 9\" from all enemy units,",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Incessant Tinkerer",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick up to 3 friendly non-Hero Skryre units wholly within 13\" of this unit to be the targets.",
+          "effect": "Inflict 1 mortal damage on each target, Then, add 1 to the Attacks characteristic of each target's melee weapons for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Moulder-beast's Monstrous Limbs is 3.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Blessed (Or Just Lucky)",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "This unit earns D3 additional renown points after each Path to Glory battle.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Favoured Pack",
+          "kind": "Activated",
+          "timing": "Once Per Battle (Army), Deployment Phase",
+          "declare": "Pick a friendly Clanrats or Stormvermin unit within this unit's combat range to be its bodyguard.",
+          "effect": "For the rest of the battle, while the bodyguard is wholly within 6\" of this unit, add 1 to wound rolls for attacks made by the bodyguard and this unit has Ward (4+).",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Natural Swarm-Chief",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "Pick a friendly Skaven unit wholly within 13\" of this unit and not in combat to be the target.",
+          "effect": "The target can move D6\". It can move into combat.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Spiteful Opponent",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to the Attacks characteristic of this unit's melee weapons for each damage point it has.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "'Lead' From the Back",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from the number of dice rolled when making charge rolls for this unit, to a minimum of 1.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "He Who Fights and Runs Away...",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "If this unit used a Retreat ability this turn, it cannot contest objectives for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Suitably Paranoid",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from hit rolls and wound rolls for this unit's attacks while it is within the combat ranges of any other friendly units.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Warp-Addled",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Roll a dice each time you declare a command for this unit. On a 4+, unless you spend 1 additional command point to use that command, the command has no effect, it still counts as having been used and the command points spent to use the command are still lost.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Accelerated Regeneration",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "",
+          "effect": "Heal (D6) this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Best-best Warpstone Spikes",
+          "kind": "Activated",
+          "timing": "Reaction: Opponent declared a Spell ability",
+          "declare": "",
+          "effect": "If this unit or a friendly Skaven unit wholly within 13\" of this unit was picked to be the target of that spell, roll a dice. On a 4+, ignore the effect of that spell on this unit or that friendly unit. This unit can use this ability more than once per phase but only once per Spell ability.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Warp Lightning Strike",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each attack made with this weapon in a single phase must target the same enemy unit. Each hit inflicts 1 mortal damage on the target and the attack sequence ends.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Deafening Bell",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 1 from hit rolls for combat attack made by enemy units while they are within 13# of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Revolting Barrage",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time this unit uses a Shoot ability, if all of its attacks targeted the same enemy unit, after that ability has been resolved, roll a dice. If the result is equal to or less than the number of models in that enemy unit that were slain by attacks made by this unit's Clawed Catapult this phase, that enemy unit has Strike-last for the rest of the turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Dealings with the Masterclan",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to casting rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Cleric of the Horned Rat",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 1 to chanting rolls for this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": [],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "d489-1fd4-a371-7a05",
+          "name": "Skaven Underling",
+          "points": 150,
+          "destiny": 10
+        },
+        {
+          "id": "1c6d-0d42-0bdd-f75c",
+          "name": "Skaven Chieftain",
+          "points": 250,
+          "destiny": 30
+        },
+        {
+          "id": "0e56-9768-e1b2-ae12",
+          "name": "Skaven Clan-lord",
+          "points": 350,
+          "destiny": 50
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "0383-9161-ae29-d577",
+          "name": "Great Clan",
+          "min": 1,
+          "max": 1,
+          "options": [
+            {
+              "id": "6682-9b9e-3a96-c0a1",
+              "name": "Masterclan",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Malicious Authority",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Each time a friendly non-Hero Skaven unit wholly within 13\" of this unit uses the 'All-out Attack' command no command points are spent.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Masterclan",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Masterclan and Wizard (1) keywords, the 'Malicious Authority' ability and the following regiment options: Any Skaven units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "abec-8c24-b65b-6f06",
+              "name": "Clans Verminus",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Back-back to the Fray, Minions!",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Each time a friendly Clanrats or Stormvermin unit wholly within 13\" of this unit uses the 'Rally' command, you can make 3 additional rally rolls of D6.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Clans Verminus",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Verminus keyword, the 'Back-Back to the Fray, Minions!' ability and the following regiment options: Any Verminus units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "b65b-48f9-f60f-63fd",
+              "name": "Clans Moulder",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Unholy Ministrations",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), End of Any Turn",
+                  "declare": "Pick up to 3 friendly Moulder units wholly within 13\" of this unit to be the targets.",
+                  "effect": "Heal (3) each target.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Clans Moulder",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Moulder keyword, the 'Unholy Ministrations' ability and the following regiment options: Any Moulder units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "d5bc-1a42-3e51-fad5",
+              "name": "Clans Pestilens",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Festering Chanter",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), End of Any Turn",
+                  "declare": "Pick any number of enemy units within 6\" of this unit to be the targets.",
+                  "effect": "Inflict D3 mortal damage on each target.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Clans Pestilens",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Pestilens and Priest (1) keywords, the 'Festering Chanter' ability and the following regiment options: Any Pestilens units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "0509-68f0-2ee2-7b23",
+              "name": "Clans Eshin",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "One with the Shadows",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Your Movement Phase",
+                  "declare": "Pick up to 3 friendly Eshin units wholly within 13\" of this unit and not in combat to be the targets.",
+                  "effect": "Remove the targets from the battlefield and set them up again on the battlefield more than 9\" from all enemy units,",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Clans Eshin",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Eshin keyword, the 'One with the Shadows' ability and the following regiment options: Any Eshin units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "2e6d-944e-3fcf-9613",
+              "name": "Clans Skryre",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Incessant Tinkerer",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Combat Phase",
+                  "declare": "Pick up to 3 friendly non-Hero Skryre units wholly within 13\" of this unit to be the targets.",
+                  "effect": "Inflict 1 mortal damage on each target, Then, add 1 to the Attacks characteristic of each target's melee weapons for the rest of the turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Clans Skryre",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has the Skryre keyword, the 'Incessant Tinkerer' ability and the following regiment options: Any Skryre units",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "a60d-bd89-647c-4991",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "df2b-627b-ef6d-efe1",
+              "name": "Blessed (Or Just Lucky)",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Blessed (Or Just Lucky)",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "This unit earns D3 additional renown points after each Path to Glory battle.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "ff5c-4218-4c7c-8f34",
+              "name": "Favoured Pack",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Favoured Pack",
+                  "kind": "Activated",
+                  "timing": "Once Per Battle (Army), Deployment Phase",
+                  "declare": "Pick a friendly Clanrats or Stormvermin unit within this unit's combat range to be its bodyguard.",
+                  "effect": "For the rest of the battle, while the bodyguard is wholly within 6\" of this unit, add 1 to wound rolls for attacks made by the bodyguard and this unit has Ward (4+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "418a-249a-8e6b-6d96",
+              "name": "Natural Swarm-Chief",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Natural Swarm-Chief",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Combat Phase",
+                  "declare": "Pick a friendly Skaven unit wholly within 13\" of this unit and not in combat to be the target.",
+                  "effect": "The target can move D6\". It can move into combat.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "f9df-22af-b2ea-8f4f",
+              "name": "Spiteful Opponent",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Spiteful Opponent",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the Attacks characteristic of this unit's melee weapons for each damage point it has.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "458d-7fe3-b783-b479",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "a13f-8e79-c022-0113",
+              "name": "'Lead' From the Back",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "'Lead' From the Back",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 1 from the number of dice rolled when making charge rolls for this unit, to a minimum of 1.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "be3b-fd52-9fae-e640",
+              "name": "He Who Fights and Runs Away...",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "He Who Fights and Runs Away...",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "If this unit used a Retreat ability this turn, it cannot contest objectives for the rest of the turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "a07f-6ff8-1d54-e650",
+              "name": "Suitably Paranoid",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Suitably Paranoid",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 1 from hit rolls and wound rolls for this unit's attacks while it is within the combat ranges of any other friendly units.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "a805-134b-79e4-5417",
+              "name": "Warp-Addled",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Warp-Addled",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Roll a dice each time you declare a command for this unit. On a 4+, unless you spend 1 additional command point to use that command, the command has no effect, it still counts as having been used and the command points spent to use the command are still lost.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "74d6-4911-cbb0-c494",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "9295-8d55-bdba-5409",
+              "name": "Alpha-claw",
+              "destiny": -1,
+              "abilities": [
+                {
+                  "name": "Alpha-claw",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "control": 1
+              }
+            },
+            {
+              "id": "915c-bac6-33d4-6ced",
+              "name": "Frenzied",
+              "destiny": -1,
+              "abilities": [
+                {
+                  "name": "Frenzied",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1\" to your hero's Move characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "move": 1
+              }
+            },
+            {
+              "id": "8109-07b8-76b2-d626",
+              "name": "Bloated",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Bloated",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "health": 1
+              }
+            },
+            {
+              "id": "9b44-f852-b671-c45d",
+              "name": "A Knack for Survival",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "A Knack for Survival",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (6+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "31f5-e8ae-c44d-fea4",
+              "name": "Ruthless Opponent",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Ruthless Opponent",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Warpforged Blade has Anti-X (+1 Rend), where X is one of the following keywords: Infantry, Cavalry, Monster, War Machine, Wizard or Priest",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Warpforged Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "dbb0-0cce-9045-e8f8",
+              "name": "Warpstone-infused Blade",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Warpstone-infused Blade",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "The Damage characteristic of your hero's Warpforged Blade is 3.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Warpforged Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "2a46-937b-e463-7252",
+              "name": "Fell-blessed Weapon",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Fell-blessed Weapon",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's Warpforged Blade has Crit (Mortal).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Warpforged Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "1dcc-1bbb-1c68-c99c",
+              "name": "Impaler",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Impaler",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Cavalry only. Your hero's Warpforged Blade has Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Warpforged Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "99d3-ee0f-cfed-8db0",
+              "name": "Warplock Musket",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Warpfire Musket",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Warplock Musket ranged weapon to your hero's warscroll. You cannot pick this upgrade if your hero has another non-Companion ranged weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Warplock Musket",
+                  "kind": "ranged",
+                  "range": "24\"",
+                  "attacks": "2",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "2",
+                  "damage": "D3",
+                  "ability": "Crit (Auto-wound)"
+                }
+              ]
+            },
+            {
+              "id": "abe5-d107-7e58-f0a7",
+              "name": "Dealings with the Masterclan",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Dealings with the Masterclan",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to casting rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "c4b5-ef7e-5cd6-fdb2",
+              "name": "Doomrocket",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Doomrocket",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Doomrocket ranged weapon to your hero's warscroll. You cannot pick this upgrade if your hero has another non-Companion ranged weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Doomrocket",
+                  "kind": "ranged",
+                  "range": "18\"",
+                  "attacks": "2",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "D6",
+                  "ability": "Anti-Infantry (+1 Rend)"
+                }
+              ]
+            },
+            {
+              "id": "dfbd-dfff-2e56-092e",
+              "name": "Experimental Warpvolt Incinerator",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Experimental Warpvolt Incinerator",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Experimental Warpvolt Incinerator ranged weapon to your hero's warscroll. You cannot pick this upgrade if your hero has another non-Companion ranged weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Experimental Warpvolt Incinerator",
+                  "kind": "ranged",
+                  "range": "18\"",
+                  "attacks": "2",
+                  "hit": "3+",
+                  "wound": "3+",
+                  "rend": "2",
+                  "damage": "D3",
+                  "ability": "Anti-Cavalry (+1 Rend), Crit (2 Hits)"
+                }
+              ]
+            },
+            {
+              "id": "b1cc-9c8b-1f4a-7d6b",
+              "name": "Frenetic Assault",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Frenetic Assault",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the Attacks characteristic of your hero's Warpforged Blade.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Warpforged Blade",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": ""
+                }
+              ]
+            },
+            {
+              "id": "a772-92d7-1e14-fed0",
+              "name": "Cleric of the Horned Rat",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Cleric of the Horned Rat",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to chanting rolls for this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -56,6 +56,7 @@ describe("universal core rules", () => {
       "Ward Save",
     ]);
     expect(coreRulesForPhase("passive")).toEqual([]);
+    expect(coreRulesForPhase("start")).toEqual([]);
   });
 });
 

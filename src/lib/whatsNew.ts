@@ -1,14 +1,17 @@
 const SEEN_KEY = "oob-whats-new";
 
-export const WHATS_NEW_VERSION = "2026-08-31-play-abilities";
+export const WHATS_NEW_VERSION = "2026-08-31-path-to-glory";
 
 /** Collapsed toast hides itself after this. */
 export const WHATS_NEW_AUTO_DISMISS_MS = 8_000;
 
+export const WHATS_NEW_TOAST_COPY =
+  "Path to Glory is ready. Want to give it a try?";
+
 export const WHATS_NEW_ITEMS = [
-  "Play shows each unit's abilities on the phase they happen — Hero, Combat, End of turn — not only army traits.",
+  "Path to Glory lists: battlepacks, Anvil of Apotheosis, paths, learned spells, import from New Recruit.",
+  "Play shows each unit's abilities on the phase they happen, including Start of turn when the army has them.",
   "Dead units stay on the board until you remove them from that phase.",
-  "Export Continue tells you to pick a list.",
   "Play health shows remaining wounds, not just damage taken.",
 ] as const;
 

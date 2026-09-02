@@ -53,6 +53,38 @@ export type EnhancementOption = NamedOption & {
   pack?: string;
 };
 
+export type AnvilRank = {
+  id: string;
+  name: string;
+  points: number;
+  destiny: number;
+};
+
+export type AnvilStatPatch = {
+  move?: string;
+  health?: string;
+  save?: string;
+  control?: string;
+};
+
+export type AnvilForgeOption = {
+  id: string;
+  name: string;
+  destiny: number;
+  abilities: UnitAbility[];
+  weapons: UnitWeapon[];
+  stats?: AnvilStatPatch;
+  statAdds?: { move?: number; health?: number; control?: number };
+};
+
+export type AnvilForgeGroup = {
+  id: string;
+  name: string;
+  min: number;
+  max: number | null;
+  options: AnvilForgeOption[];
+};
+
 export type CatalogueUnit = {
   id: string;
   name: string;
@@ -70,6 +102,12 @@ export type CatalogueUnit = {
   regimentOptions: RegimentOption[];
   /** Other heroes that may join this hero's regiment. */
   regimentHeroes: RegimentOption[];
+  /** Hidden Anvil of Apotheosis warscrolls — Path to Glory lists only. */
+  pathToGloryOnly?: boolean;
+  /** Destiny Point Limit ranks (Knight / Templar / Lord). */
+  anvilRanks?: AnvilRank[];
+  /** Named Anvil of Apotheosis picks (chamber, origin, mount, …). */
+  anvilForge?: AnvilForgeGroup[];
 };
 
 export type ManifestationModel = {
@@ -121,6 +159,10 @@ export type SpecialEnhancementTable = {
   id: string;
   name: string;
   options: EnhancementOption[];
+  /** Scourge season this table belongs to — omit for always-on tables. */
+  realm?: "aqshy" | "ghyran";
+  /** Aspects of the Deepwoods: non-HERO non-MONSTER only. */
+  restrictTo?: "nonHeroNonMonster";
 };
 
 export type BattleTacticCard = {
@@ -193,7 +235,56 @@ export type SpearheadCatalogue = {
   units: CatalogueUnit[];
 };
 
-export type ArmyListKind = "matched" | "spearhead";
+export type ArmyListKind = "matched" | "spearhead" | "pathToGlory";
+
+export type PathToGloryBattlepackPreset =
+  | "ascension"
+  | "ravaged-coast"
+  | "blighted-wilds"
+  | "all";
+
+export type PathToGloryPackId =
+  | "ascension"
+  | "ravaged-coast"
+  | "blighted-wilds";
+
+export type PathToGloryScarSeverity = "critical" | "serious" | "severe";
+
+export type PathToGloryState = {
+  packIds: PathToGloryPackId[];
+  /** Spells learned in campaign — `loreId::name`, not a whole lore. */
+  spellIds: string[];
+  /** Manifestations learned in campaign — model ids, not a whole lore. */
+  manifestationIds: string[];
+  /** Selection id of the warlord hero. */
+  warlordSelectionId?: string | null;
+  /** Embarked quest id. */
+  questId?: string | null;
+  /** Quest points earned toward quest. */
+  questPoints?: number;
+  /** Battleplan for the next battle. */
+  battleplanId?: string | null;
+};
+
+export type PathToGlorySelectionState = {
+  renown: number;
+  pathId: string | null;
+  pathOptionIds: string[];
+  /** Leftover campaign wounds (not Play damage). */
+  battleWounds?: number;
+  /** Hero-only: Drained status. */
+  battleWoundId: string | null;
+  /** Scar (only when Ravaged Coast or Blighted Wilds is on). */
+  scarId: string | null;
+  /** Destiny Point Limit rank on an Anvil of Apotheosis hero. */
+  anvilRankId?: string | null;
+  /** Picked Anvil of Apotheosis option ids (chamber, origin, mount, …). */
+  anvilPickIds?: string[];
+  /** Artefact of Power on this unit — Path to Glory has no army-wide cap. */
+  artefactId?: string | null;
+  /** Heroic trait on this unit — Path to Glory has no army-wide cap. */
+  heroicTraitId?: string | null;
+};
 
 export type FactionCatalogue = {
   id: string;
@@ -223,6 +314,10 @@ export type Selection = {
   id: string;
   unitId: string;
   reinforced: boolean;
+  /** Custom name. Empty or omitted uses the warscroll name. */
+  nickname?: string;
+  /** Path to Glory overlay. Independent of Play damage. */
+  pathToGlory?: PathToGlorySelectionState;
   /** Damage taken in Play mode (counts up). Models left are derived. */
   play?: {
     damage: number;
@@ -246,6 +341,7 @@ export type ArmyList = {
   game?: "aos";
   kind?: ArmyListKind;
   spearheadId?: string | null;
+  pathToGlory?: PathToGloryState;
   regimentAbilityId?: string | null;
   pointsCap: number;
   formationId: string | null;

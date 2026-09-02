@@ -12,9 +12,17 @@ import {
   subscribeActiveMenu,
 } from "@/lib/activeMenu";
 import { parseNewListArmyValue } from "@/lib/newListArmyOptions";
+import type { PathToGloryPackId } from "@/engine/pathToGlory";
 import { factionPickerCounts } from "@/lib/factionSeo";
+import { preloadBackdropArt } from "@/lib/factionArt";
+import {
+  LIST_CREATE_BACKDROP_SCOURGE,
+  libraryCreatingSplashVisible,
+  listCreateBackdropFactionId,
+} from "@/lib/listFlowNav";
 import {
   blankArmy,
+  blankPathToGlory,
   blankSpearhead,
   blankTowArmy,
   saveArmy,
@@ -24,8 +32,8 @@ import {
   peekListCreateSplash,
   subscribeListOpenFaction,
 } from "@/lib/listTransition";
-import { libraryCreatingSplashVisible } from "@/lib/listFlowNav";
 import { newListDraftFromSearch } from "@/lib/newListLink";
+import { LIST_PANE_ART_CLASS } from "@/lib/builderUi";
 import { FactionArtLayers } from "./FactionArtBackground";
 import { LibraryCreateSheet } from "./LibraryCreateSheet";
 import { TowCreateSheet } from "./TowCreateSheet";
@@ -53,8 +61,13 @@ export function LibraryCreateFlow({ open, onOpenChange }: Props) {
     useState<TowFactionCatalogue | null>(null);
   const [draftName, setDraftName] = useState("");
   const [draftPoints, setDraftPoints] = useState(2000);
-  const [draftMode, setDraftMode] = useState<"points" | "spearhead">("points");
+  const [draftMode, setDraftMode] = useState<
+    "points" | "spearhead" | "pathToGlory"
+  >("points");
   const [draftSpearheadId, setDraftSpearheadId] = useState<string | null>(null);
+  const [draftPackIds, setDraftPackIds] = useState<PathToGloryPackId[]>([
+    "ascension",
+  ]);
   const [creating, setCreating] = useState(false);
   const createSplash = useSyncExternalStore(
     subscribeListOpenFaction,
@@ -69,18 +82,43 @@ export function LibraryCreateFlow({ open, onOpenChange }: Props) {
     if (creating) {
       return;
     }
-    if (activeMenu === "tow") {
-      if (!draftTowFaction) {
+    if (!draftFaction && activeMenu !== "tow") {
+      return;
+    }
+    if (activeMenu !== "tow") {
+      if (!draftFaction) {
         return;
       }
+      if (draftMode === "spearhead" && !draftSpearheadId) {
+        return;
+      }
+      if (draftMode === "pathToGlory" && draftPackIds.length === 0) {
+        return;
+      }
+      const artFactionId = listCreateBackdropFactionId({
+        parentId: draftParent?.id,
+        parentFactionIds: draftFaction.parentFactionIds,
+        factionId: draftFaction.id,
+      });
+      await preloadBackdropArt(artFactionId, LIST_CREATE_BACKDROP_SCOURGE);
+      rememberListCreate(
+        artFactionId,
+        (draftParent ?? draftFaction).name,
+        LIST_CREATE_BACKDROP_SCOURGE,
+      );
       setCreating(true);
-      rememberListCreate(draftTowFaction.id, draftTowFaction.name);
       try {
-        const list = blankTowArmy(
-          draftTowFaction.id,
-          draftName,
-          draftPoints,
-        );
+        const list =
+          draftMode === "spearhead" && draftSpearheadId
+            ? blankSpearhead(draftSpearheadId, draftName)
+            : draftMode === "pathToGlory"
+              ? blankPathToGlory(
+                  draftFaction.id,
+                  draftPackIds,
+                  draftName,
+                  draftPoints,
+                )
+            : blankArmy(draftFaction.id, draftName, draftPoints);
         await saveArmy(list);
         onOpenChange(false);
         router.push(`/lists/${list.id}`);
@@ -89,23 +127,17 @@ export function LibraryCreateFlow({ open, onOpenChange }: Props) {
       }
       return;
     }
-    if (!draftFaction) {
-      return;
-    }
-    if (draftMode === "spearhead" && !draftSpearheadId) {
+    if (!draftTowFaction) {
       return;
     }
     setCreating(true);
-    const artFactionId =
-      draftParent?.id ??
-      draftFaction.parentFactionIds?.[0] ??
-      draftFaction.id;
-    rememberListCreate(artFactionId, (draftParent ?? draftFaction).name);
+    rememberListCreate(draftTowFaction.id, draftTowFaction.name);
     try {
-      const list =
-        draftMode === "spearhead" && draftSpearheadId
-          ? blankSpearhead(draftSpearheadId, draftName)
-          : blankArmy(draftFaction.id, draftName, draftPoints);
+      const list = blankTowArmy(
+        draftTowFaction.id,
+        draftName,
+        draftPoints,
+      );
       await saveArmy(list);
       onOpenChange(false);
       router.push(`/lists/${list.id}`);
@@ -126,6 +158,7 @@ export function LibraryCreateFlow({ open, onOpenChange }: Props) {
     setDraftPoints(2000);
     setDraftMode("points");
     setDraftSpearheadId(null);
+    setDraftPackIds(["ascension"]);
   }
 
   function onDraftArmyChange(value: string) {
@@ -141,6 +174,7 @@ export function LibraryCreateFlow({ open, onOpenChange }: Props) {
       const box = getSpearhead(parsed.spearheadId);
       setDraftMode("spearhead");
       setDraftSpearheadId(parsed.spearheadId);
+      setDraftPackIds(["ascension"]);
       setDraftFaction(draftParent);
       setDraftName((current) =>
         current === `My ${previousLabel}`
@@ -149,9 +183,21 @@ export function LibraryCreateFlow({ open, onOpenChange }: Props) {
       );
       return;
     }
+    if (parsed.kind === "pathToGlory") {
+      const next = getFaction(parsed.factionId) ?? draftFaction ?? draftParent;
+      setDraftMode("pathToGlory");
+      setDraftSpearheadId(null);
+      setDraftPackIds((current) =>
+        current.length > 0 ? current : ["ascension"],
+      );
+      setDraftFaction(next);
+      setDraftPoints((current) => (current === 2000 ? 1000 : current));
+      return;
+    }
     const next = getFaction(parsed.factionId) ?? draftParent;
     setDraftMode("points");
     setDraftSpearheadId(null);
+    setDraftPackIds(["ascension"]);
     setDraftFaction(next);
     setDraftName((current) =>
       current === `My ${previousLabel}`
@@ -167,6 +213,7 @@ export function LibraryCreateFlow({ open, onOpenChange }: Props) {
     setDraftName("");
     setDraftMode("points");
     setDraftSpearheadId(null);
+    setDraftPackIds(["ascension"]);
   }
 
   useEffect(() => {
@@ -221,6 +268,7 @@ export function LibraryCreateFlow({ open, onOpenChange }: Props) {
           draftPoints={draftPoints}
           draftMode={draftMode}
           draftSpearheadId={draftSpearheadId}
+          draftPackIds={draftPackIds}
           createCounts={createCounts}
           onClose={closePicker}
           onCreate={onCreate}
@@ -231,22 +279,27 @@ export function LibraryCreateFlow({ open, onOpenChange }: Props) {
             setDraftFaction(faction);
             setDraftName(`My ${faction.name}`);
             setDraftPoints(faction.pointsCapDefault);
+            setDraftMode("points");
+            setDraftSpearheadId(null);
+            setDraftPackIds(["ascension"]);
           }}
           onArmyChange={onDraftArmyChange}
+          onPackIdsChange={setDraftPackIds}
           onBackToFactions={backToFactionPicker}
         />
       ) : null}
       {libraryCreatingSplashVisible(creating, createSplash) &&
       (draftFaction || draftTowFaction) ? (
         <div className="fixed inset-0 z-[60] text-parchment">
-          <div className="absolute inset-0" aria-hidden="true">
+          <div className={LIST_PANE_ART_CLASS} aria-hidden="true">
             {draftFaction ? (
               <FactionArtLayers
-                factionId={
-                  draftParent?.id ??
-                  draftFaction.parentFactionIds?.[0] ??
-                  draftFaction.id
-                }
+                factionId={listCreateBackdropFactionId({
+                  parentId: draftParent?.id,
+                  parentFactionIds: draftFaction.parentFactionIds,
+                  factionId: draftFaction.id,
+                })}
+                scourgeRealm={LIST_CREATE_BACKDROP_SCOURGE}
                 scrim={false}
               />
             ) : null}

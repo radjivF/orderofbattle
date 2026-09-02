@@ -1,5 +1,6 @@
 import { parsePickOneChoices } from "@/lib/ruleText";
 import { armyRoster } from "./phases";
+import { findLearnedSpell, isPathToGloryList } from "./pathToGlory";
 import { getListUnit, unitHasKeyword } from "./queries";
 import type {
   ArmyList,
@@ -339,6 +340,12 @@ function findBoundPower(
   const fromLore = lore?.powers.find((power) => power.name === name);
   if (fromLore) {
     return fromLore;
+  }
+  if (kind === "spell" && isPathToGloryList(list)) {
+    const learned = findLearnedSpell(list, faction, name);
+    if (learned) {
+      return learned;
+    }
   }
   for (const entry of armyRoster(list, faction)) {
     const match = entry.unit.abilities.find(

@@ -1,11 +1,13 @@
 "use client";
 
-import { getUnit, selectionPoints } from "@/engine/queries";
+import { getUnit, listHeroGearSlots, selectionPoints } from "@/engine/queries";
 import type { CombatModifierNote } from "@/engine/magic";
 import type {
+  ArmyList,
   CatalogueUnit,
   FactionCatalogue,
   Regiment,
+  Selection,
   SpecialEnhancementPick,
   SpecialEnhancementTable,
   UnitAbility,
@@ -16,6 +18,13 @@ import {
 } from "@/lib/builderUi";
 import { IosTrashIcon } from "./ios/SheetIconButton";
 import { SlotEnhancements, SlotLine } from "./RegimentCardSlots";
+import { PathToGlorySlot } from "./PathToGloryUnitExtras";
+import {
+  canBeWarlord,
+  resolvePathToGloryUnit,
+  selectionDisplayName,
+  type PathToGloryPackId,
+} from "@/engine/pathToGlory";
 
 export { PlayHealthTrack } from "./PlayHealthTrack";
 export { PlayBindNotes, SlotEnhancements, SlotMoreMenu } from "./RegimentCardSlots";
@@ -28,6 +37,8 @@ type Props = {
   slotCap: number;
   selected: boolean;
   playMode: boolean;
+  list?: ArmyList;
+  warlordSelectionId?: string | null;
   artefactBearerId?: string | null;
   artefactLabel?: string;
   artefactAbilities?: UnitAbility[];
@@ -57,9 +68,13 @@ type Props = {
   onRemoveUnit: (selectionId: string) => void;
   onRemoveRegiment: () => void;
   onPlayHealth?: (selectionId: string, damage: number) => void;
+  onToggleWarlord?: (selectionId: string) => void;
   bindNotes?: CombatModifierNote[];
   highlightedAnchorId?: string | null;
   locked?: boolean;
+  pathToGloryPackIds?: PathToGloryPackId[] | null;
+  showBattleWounds?: boolean;
+  onPatchSelection?: (selectionId: string, next: Selection) => void;
   /** Spearhead generals take an enhancement even when the warscroll is unique. */
   allowUniqueHeroTrait?: boolean;
   traitKind?: string;
@@ -73,6 +88,8 @@ export function RegimentCard({
   slotCap,
   selected,
   playMode,
+  list,
+  warlordSelectionId,
   artefactBearerId,
   artefactLabel,
   artefactAbilities,
@@ -102,16 +119,36 @@ export function RegimentCard({
   onRemoveUnit,
   onRemoveRegiment,
   onPlayHealth,
+  onToggleWarlord,
   bindNotes,
   highlightedAnchorId = null,
   locked = false,
+  pathToGloryPackIds = null,
+  showBattleWounds = false,
+  onPatchSelection,
   allowUniqueHeroTrait = false,
   traitKind,
 }: Props) {
-  const hero = regiment.hero
-    ? getUnit(faction, regiment.hero.unitId)
+  const heroSelection = regiment.hero ?? undefined;
+  const hero = heroSelection
+    ? getUnit(faction, heroSelection.unitId)
     : undefined;
   const openSlots = slotCap - regiment.units.length;
+  const campaignEnabled = Boolean(
+    pathToGloryPackIds &&
+      pathToGloryPackIds.length > 0 &&
+      selected &&
+      !playMode &&
+      onPatchSelection,
+  );
+  const listGear = {
+    artefactBearerId,
+    artefactLabel,
+    artefactAbilities,
+    heroicTraitBearerId,
+    heroicTraitLabel,
+    heroicTraitAbilities,
+  };
   const regimentAnchor = listIssueAnchorId({
     area: "regiment",
     regimentId: regiment.id,
@@ -156,7 +193,9 @@ export function RegimentCard({
             </p>
           )}
           <h2 className="font-serif text-2xl leading-tight">
-            {hero?.name ?? "Empty regiment"}
+            {hero
+              ? selectionDisplayName(heroSelection, hero)
+              : "Empty regiment"}
           </h2>
         </div>
         {!playMode && !locked ? (
@@ -174,44 +213,58 @@ export function RegimentCard({
         ) : null}
       </header>
 
-      {hero && regiment.hero ? (
+      {hero && heroSelection ? (
         <>
           <div
             id={listIssueAnchorId({
               area: "unit",
-              selectionId: regiment.hero.id,
+              selectionId: heroSelection.id,
             })}
             className={listIssueHighlightClass(
               listIssueAnchorId({
                 area: "unit",
-                selectionId: regiment.hero.id,
+                selectionId: heroSelection.id,
               }),
               highlightedAnchorId,
             )}
           >
-          <SlotLine
+          <PathToGlorySlot
+            enabled={campaignEnabled}
+            selection={heroSelection}
             unit={hero}
-            selection={regiment.hero}
-            points={selectionPoints(hero, false)}
-            playMode={playMode}
-            hidePoints={locked}
-            bindNotes={bindNotes}
-            onReplace={locked ? undefined : onPickHero}
-            onOpenDatasheet={() => onOpenDatasheet(hero)}
-            onPlayHealth={onPlayHealth}
-          />
+            packIds={pathToGloryPackIds ?? []}
+            showBattleWounds={showBattleWounds}
+            isWarlord={warlordSelectionId === heroSelection.id}
+            canBeWarlord={hero && canBeWarlord(hero, heroSelection, faction)}
+            onChange={(next) => onPatchSelection?.(next.id, next)}
+            onToggleWarlord={onToggleWarlord}
+            onOpenDatasheet={onOpenDatasheet}
+          >
+            {(toggle) => {
+              const resolvedHero = resolvePathToGloryUnit(hero, heroSelection);
+              return (
+                <SlotLine
+                  unit={resolvedHero}
+                  selection={heroSelection}
+                  points={selectionPoints(hero, false, heroSelection)}
+                  playMode={playMode}
+                  hidePoints={locked}
+                  bindNotes={bindNotes}
+                  onReplace={locked ? undefined : onPickHero}
+                  onOpenDatasheet={() => onOpenDatasheet(resolvedHero)}
+                  onPlayHealth={onPlayHealth}
+                  extraTrailing={toggle}
+                />
+              );
+            }}
+          </PathToGlorySlot>
           <SlotEnhancements
-            selectionId={regiment.hero.id}
+            selectionId={heroSelection.id}
             unit={hero}
             playMode={playMode}
             allowUniqueHeroTrait={allowUniqueHeroTrait}
             traitKind={traitKind}
-            artefactBearerId={artefactBearerId}
-            artefactLabel={artefactLabel}
-            artefactAbilities={artefactAbilities}
-            heroicTraitBearerId={heroicTraitBearerId}
-            heroicTraitLabel={heroicTraitLabel}
-            heroicTraitAbilities={heroicTraitAbilities}
+            {...slotHeroGear(list, faction, heroSelection, listGear)}
             monstrousTraitBearerId={monstrousTraitBearerId}
             monstrousTraitLabel={monstrousTraitLabel}
             monstrousTraitAbilities={monstrousTraitAbilities}
@@ -226,7 +279,7 @@ export function RegimentCard({
             specialEnhancementPicks={specialEnhancementPicks}
             onPickSpecial={
               onPickSpecial
-                ? (tableId) => onPickSpecial(tableId, regiment.hero!.id)
+                ? (tableId) => onPickSpecial(tableId, heroSelection.id)
                 : undefined
             }
           />
@@ -268,38 +321,49 @@ export function RegimentCard({
                 highlightedAnchorId,
               )}
             >
-              <SlotLine
-                unit={unit}
+              <PathToGlorySlot
+                enabled={campaignEnabled}
                 selection={slot}
-                points={selectionPoints(unit, slot.reinforced)}
-                reinforced={slot.reinforced}
-                canReinforce={unit.reinforce}
-                playMode={playMode}
-                hidePoints={locked}
-                bindNotes={bindNotes}
-                onToggleReinforce={
-                  locked ? undefined : () => onToggleReinforce(slot.id)
-                }
-                onDuplicate={
-                  locked || unit.unique || openSlots <= 0
-                    ? undefined
-                    : () => onDuplicateUnit(slot.id)
-                }
-                onRemove={locked ? undefined : () => onRemoveUnit(slot.id)}
-                onOpenDatasheet={() => onOpenDatasheet(unit)}
-                onPlayHealth={onPlayHealth}
-              />
+                unit={unit}
+                packIds={pathToGloryPackIds ?? []}
+                showBattleWounds={showBattleWounds}
+                onChange={(next) => onPatchSelection?.(next.id, next)}
+                onOpenDatasheet={onOpenDatasheet}
+              >
+                {(toggle) => {
+                  const resolvedUnit = resolvePathToGloryUnit(unit, slot);
+                  return (
+                    <SlotLine
+                      unit={resolvedUnit}
+                      selection={slot}
+                      points={selectionPoints(unit, slot.reinforced, slot)}
+                      reinforced={slot.reinforced}
+                      canReinforce={unit.reinforce}
+                      playMode={playMode}
+                      hidePoints={locked}
+                      bindNotes={bindNotes}
+                      onToggleReinforce={
+                        locked ? undefined : () => onToggleReinforce(slot.id)
+                      }
+                      onDuplicate={
+                        locked || unit.unique || openSlots <= 0
+                          ? undefined
+                          : () => onDuplicateUnit(slot.id)
+                      }
+                      onRemove={locked ? undefined : () => onRemoveUnit(slot.id)}
+                      onOpenDatasheet={() => onOpenDatasheet(resolvedUnit)}
+                      onPlayHealth={onPlayHealth}
+                      extraTrailing={toggle}
+                    />
+                  );
+                }}
+              </PathToGlorySlot>
               <SlotEnhancements
                 selectionId={slot.id}
                 unit={unit}
                 playMode={playMode}
                 traitKind={traitKind}
-                artefactBearerId={artefactBearerId}
-                artefactLabel={artefactLabel}
-                artefactAbilities={artefactAbilities}
-                heroicTraitBearerId={heroicTraitBearerId}
-                heroicTraitLabel={heroicTraitLabel}
-                heroicTraitAbilities={heroicTraitAbilities}
+                {...slotHeroGear(list, faction, slot, listGear)}
                 monstrousTraitBearerId={monstrousTraitBearerId}
                 monstrousTraitLabel={monstrousTraitLabel}
                 monstrousTraitAbilities={monstrousTraitAbilities}
@@ -337,4 +401,32 @@ export function RegimentCard({
       ) : null}
     </article>
   );
+}
+
+function slotHeroGear(
+  list: ArmyList | undefined,
+  faction: FactionCatalogue,
+  selection: Selection,
+  fallback: {
+    artefactBearerId?: string | null;
+    artefactLabel?: string;
+    artefactAbilities?: UnitAbility[];
+    heroicTraitBearerId?: string | null;
+    heroicTraitLabel?: string;
+    heroicTraitAbilities?: UnitAbility[];
+  },
+) {
+  if (list) {
+    return listHeroGearSlots(list, faction, selection);
+  }
+  const hasArtefact = fallback.artefactBearerId === selection.id;
+  const hasTrait = fallback.heroicTraitBearerId === selection.id;
+  return {
+    artefactBearerId: hasArtefact ? selection.id : null,
+    artefactLabel: hasArtefact ? fallback.artefactLabel : undefined,
+    artefactAbilities: hasArtefact ? fallback.artefactAbilities : undefined,
+    heroicTraitBearerId: hasTrait ? selection.id : null,
+    heroicTraitLabel: hasTrait ? fallback.heroicTraitLabel : undefined,
+    heroicTraitAbilities: hasTrait ? fallback.heroicTraitAbilities : undefined,
+  };
 }

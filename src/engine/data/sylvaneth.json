@@ -1628,7 +1628,73 @@
   ],
   "monstrousTraits": [],
   "visionsOfFate": [],
-  "specialEnhancementTables": [],
+  "specialEnhancementTables": [
+    {
+      "id": "aspects-of-the-deepwoods",
+      "name": "Aspects of the Deepwoods",
+      "realm": "aqshy",
+      "restrictTo": "nonHeroNonMonster",
+      "options": [
+        {
+          "id": "012e-015d-04ea-be6f",
+          "name": "Aspect of Harvestboon",
+          "abilities": [
+            {
+              "name": "Aspect of Harvestboon",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "Add 2\" to this unit's Move characteristic while it is wholly within the creeping overgrowth.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Aspects of the Deepwoods",
+          "points": 10
+        },
+        {
+          "id": "45ca-b1dc-91c1-cfac",
+          "name": "Aspect of Ironbark",
+          "abilities": [
+            {
+              "name": "Aspect of Ironbark",
+              "kind": "Passive",
+              "timing": "",
+              "declare": "",
+              "effect": "When resolving the damage sequence for this unit, if you spend rage dice as part of the 'Fight Through the Pain' ability, you can re-roll any of the dice that determine whether damage points are removed from this unit's damage pool. After the damage sequence has been resolved, if you rolled a total of 10+ on those re-rolls, this ability has no effect for the rest of the battle.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Aspects of the Deepwoods",
+          "points": 10
+        },
+        {
+          "id": "ecb4-a20b-99ed-27da",
+          "name": "Aspect of Heartwood",
+          "abilities": [
+            {
+              "name": "Aspect of Heartwood",
+              "kind": "Activated",
+              "timing": "Once Per Battle, Reaction: You declared the 'Endless Growth' ability",
+              "declare": "",
+              "effect": "If this unit is wholly within the creeping overgrowth, for each target of that ability that is wholly within 12\" of this unit, you can pick 1 of the following effects: \u2022 When resolving that ability, roll a D6 for the target instead of a D3. If, as a result of another ability, you would Heal (3) the target instead of rolling a dice, Heal (6) the target instead. \u2022 If the target is Kurnothi, instead of rolling a D3 and picking 1 of the effects of that ability to apply to it, you can return 1 slain model to the target unit.",
+              "keywords": "",
+              "castingValue": "",
+              "chantingValue": "",
+              "cost": ""
+            }
+          ],
+          "pack": "Aspects of the Deepwoods",
+          "points": 10
+        }
+      ]
+    }
+  ],
   "terrain": [
     {
       "id": "cda9-53e5-99de-f836",
@@ -3891,6 +3957,1790 @@
       ],
       "regimentOptions": [],
       "regimentHeroes": []
+    },
+    {
+      "id": "db28-0831-3342-1f0f",
+      "name": "Anvil of Apotheosis: Forest Elder Hero",
+      "points": 250,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "ORDER",
+        "SYLVANETH",
+        "MONSTER",
+        "FOREST ELDER"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "14",
+        "save": "3+",
+        "control": "5"
+      },
+      "weapons": [
+        {
+          "name": "Sweeping Branches",
+          "kind": "melee",
+          "range": "",
+          "attacks": "5",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Anti-charge (+1 Rend)"
+        },
+        {
+          "name": "Strangleroots",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Shoot in Combat"
+        },
+        {
+          "name": "Kurnoth Javelin",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "D6",
+          "ability": "Anti-Monster (+1 Rend)"
+        },
+        {
+          "name": "Huge Impaling Talons",
+          "kind": "melee",
+          "range": "",
+          "attacks": "2",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Crit (Mortal)"
+        },
+        {
+          "name": "Swarm of Spites",
+          "kind": "melee",
+          "range": "",
+          "attacks": "10",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit (Mortal), Companion"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Sweeping Branches is 3.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Verdant Healer",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly Sylvaneth unit wholly within 12\" of this unit to be the target.",
+          "effect": "Pick 1 of the following effects: \u2022 Heal (D3) the target. \u2022 The target has Ward (6+) until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Noble Guardian",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 2 to the Attacks characteristic of this unit's melee weapons while it is wholly within the creeping overgrowth.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Gnarled Spirit",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 3 from the control scores of enemy units while they are in combat with this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Rootwalker",
+          "kind": "Activated",
+          "timing": "Enemy Movement Phase",
+          "declare": "",
+          "effect": "If this unit is more than 9\" from all enemy units, it can immediately use the 'Normal Move' ability as if it were your movement phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Tormented Memories",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "You must use this ability if this unit is contesting an objective you do not control. Pick each other friendly unit contesting the same objective as this unit to be the targets.",
+          "effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Old Barkflesh",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time this unit uses a Move ability, roll a dice. On a 4+, inflict 1 mortal damage on it after that ability has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Slow to Awaken",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Halve this unit's Move characteristic until the start of the second battle round.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Cautious Spirit",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit is wholly outside the creeping overgrowth, it can only use Move and Attack abilities.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Slashing Wings",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "",
+          "effect": "This unit can move a distance up to your Move characteristic. It can pass through models during that move. Then, you can pick an enemy unit that this unit passed across during that move to be the target. Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+          "keywords": "Move",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Strike and Fade",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army). End of Any Turn",
+          "declare": "",
+          "effect": "If this unit used a Fight ability this turn and is wholly within the creeping overgrowth, remove it from the battlefield and set it up again on the battlefield more than 9\" from all enemy units and wholly within the creeping overgrowth.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Charge of the Spites",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Charge Phase",
+          "declare": "If this unit charged this phase, pick up to 3 visible enemy units within 6\" of this unit to be the targets.",
+          "effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Seismic Stomps",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "If this unit charged this turn, pick each enemy unit in combat with this unit to be the targets.",
+          "effect": "Roll a dice for each target. On a 3+, subtract 1 from hit rolls for the target's combat attacks for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Snatching Vines",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Shooting Phase",
+          "declare": "Pick an enemy Infantry Hero within 9\" of this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, your opponent must remove the target from the battlefield and set it up again within 1\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Shambling Overgrowth",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "You can measure the creeping overgrowth unit from this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": [],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "8cca-4516-47e8-2a8b",
+          "name": "Glade Guardian",
+          "points": 250,
+          "destiny": 18
+        },
+        {
+          "id": "e040-4352-2f9f-c9af",
+          "name": "Forest Ancient",
+          "points": 350,
+          "destiny": 38
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "22ac-17ed-cd98-54e5",
+          "name": "Battle Mounts",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "8e11-6d71-6fb8-767c",
+              "name": "Swarm of Spites",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Swarm of Spites",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Swarm of Spites weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Swarm of Spites",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "10",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Crit (Mortal), Companion"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "91bb-4d83-bd50-53f4",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "0efc-4617-172a-8946",
+              "name": "Verdant Healer",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Verdant Healer",
+                  "kind": "Activated",
+                  "timing": "Your Hero Phase",
+                  "declare": "Pick a visible friendly Sylvaneth unit wholly within 12\" of this unit to be the target.",
+                  "effect": "Pick 1 of the following effects: \u2022 Heal (D3) the target. \u2022 The target has Ward (6+) until the start of your next turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "b0ea-ae5d-0cce-eb53",
+              "name": "Noble Guardian",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Noble Guardian",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the Attacks characteristic of this unit's melee weapons while it is wholly within the creeping overgrowth.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "ab0b-b03f-856d-79e6",
+              "name": "Gnarled Spirit",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Gnarled Spirit",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 3 from the control scores of enemy units while they are in combat with this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "c1f0-a6fb-9697-1e43",
+              "name": "Rootwalker",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Rootwalker",
+                  "kind": "Activated",
+                  "timing": "Enemy Movement Phase",
+                  "declare": "",
+                  "effect": "If this unit is more than 9\" from all enemy units, it can immediately use the 'Normal Move' ability as if it were your movement phase.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "44bd-4b23-d8f4-c40d",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "1e80-995d-a776-2e75",
+              "name": "Tormented Memories",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Tormented Memories",
+                  "kind": "Activated",
+                  "timing": "End of Any Turn",
+                  "declare": "You must use this ability if this unit is contesting an objective you do not control. Pick each other friendly unit contesting the same objective as this unit to be the targets.",
+                  "effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "0e70-1c6b-60f8-82e4",
+              "name": "Old Barkflesh",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Old Barkflesh",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Each time this unit uses a Move ability, roll a dice. On a 4+, inflict 1 mortal damage on it after that ability has been resolved.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "79f8-8f0a-6197-fc53",
+              "name": "Slow to Awaken",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Slow to Awaken",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Halve this unit's Move characteristic until the start of the second battle round.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "9550-24ae-5783-1a50",
+              "name": "Cautious Spirit",
+              "destiny": 6,
+              "abilities": [
+                {
+                  "name": "Cautious Spirit",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit is wholly outside the creeping overgrowth, it can only use Move and Attack abilities.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "966d-4de0-786d-9483",
+          "name": "Battle Mount Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "4805-ca0f-4414-607a",
+              "name": "Kurnoth Javelin",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Kurnoth Javelin",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Kurnoth Javelin weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Kurnoth Javelin",
+                  "kind": "ranged",
+                  "range": "12\"",
+                  "attacks": "1",
+                  "hit": "3+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "D6",
+                  "ability": "Anti-Monster (+1 Rend)"
+                }
+              ]
+            },
+            {
+              "id": "4e0d-bbbe-4927-2c1c",
+              "name": "Colossal",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Colossal",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "health": 2
+              }
+            },
+            {
+              "id": "c3c0-4577-b800-7a9b",
+              "name": "Slashing Wings",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Slashing Wings",
+                  "kind": "Activated",
+                  "timing": "Your Movement Phase",
+                  "declare": "",
+                  "effect": "This unit can move a distance up to your Move characteristic. It can pass through models during that move. Then, you can pick an enemy unit that this unit passed across during that move to be the target. Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+                  "keywords": "Move",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "1973-abad-7a70-daa9",
+              "name": "Strike and Fade",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Strike and Fade",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army). End of Any Turn",
+                  "declare": "",
+                  "effect": "If this unit used a Fight ability this turn and is wholly within the creeping overgrowth, remove it from the battlefield and set it up again on the battlefield more than 9\" from all enemy units and wholly within the creeping overgrowth.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "3f42-da8e-068b-c64e",
+              "name": "Charge of the Spites",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Charge of the Spites",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Charge Phase",
+                  "declare": "If this unit charged this phase, pick up to 3 visible enemy units within 6\" of this unit to be the targets.",
+                  "effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "fb24-d0a2-145e-0fe9",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "d26d-df48-c439-14c5",
+              "name": "Forest Chieftain",
+              "destiny": -1,
+              "abilities": [
+                {
+                  "name": "Forest Chieftain",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "control": 1
+              }
+            },
+            {
+              "id": "73b0-ff24-139b-e25c",
+              "name": "All Bark, All Bite",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "All Bark, All Bite",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the Attacks characteristic of your hero's non-Companion melee weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "972d-b3c4-a990-b454",
+              "name": "Guardian Spirit",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Guardian Spirit",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's non-Companion melee weapon has Anti-charge (+1 Rend).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "2c58-16d5-a1d7-8389",
+              "name": "Fey Form",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Fey Form",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (5+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "2d06-58ec-85fd-dc0a",
+              "name": "Strangleroots",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Strangleroots",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the 'Strangleroots' weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Strangleroots",
+                  "kind": "ranged",
+                  "range": "10\"",
+                  "attacks": "3",
+                  "hit": "3+",
+                  "wound": "2+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Shoot in Combat"
+                }
+              ]
+            },
+            {
+              "id": "eb17-f312-61e2-6ea0",
+              "name": "Jade Attunement",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Jade Attunement",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Pick 1 of the following keywords for your hero to have: Wizard (1) or Priest (1).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "ea63-7f2c-bd56-91a8",
+              "name": "Seismic Stomps",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Seismic Stomps",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Combat Phase",
+                  "declare": "If this unit charged this turn, pick each enemy unit in combat with this unit to be the targets.",
+                  "effect": "Roll a dice for each target. On a 3+, subtract 1 from hit rolls for the target's combat attacks for the rest of the turn.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "81bc-d37d-cf9b-a070",
+              "name": "Exceptional Fury",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Exceptional Fury",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the Damage characteristic of your hero's non-Companion melee weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "325b-4830-49ae-8631",
+              "name": "Ancient Spirit",
+              "destiny": -8,
+              "abilities": [
+                {
+                  "name": "Ancient Spirit",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Wizard or Priest only. Add 1 to your hero's power level.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "a78f-b3a6-b494-0b8f",
+              "name": "Snatching Vines",
+              "destiny": -8,
+              "abilities": [
+                {
+                  "name": "Snatching Vines",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Your Shooting Phase",
+                  "declare": "Pick an enemy Infantry Hero within 9\" of this unit to be the target.",
+                  "effect": "Roll a dice. On a 3+, your opponent must remove the target from the battlefield and set it up again within 1\" of this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "c0f1-429c-833a-6f43",
+              "name": "Shambling Overgrowth",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Shambling Overgrowth",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "You can measure the creeping overgrowth unit from this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "53ea-e1a6-df08-f33c",
+      "name": "Anvil of Apotheosis: Tree Spirit Hero",
+      "points": 150,
+      "hero": true,
+      "unique": true,
+      "reinforce": false,
+      "models": 1,
+      "categories": [
+        "HERO",
+        "INFANTRY",
+        "ORDER",
+        "SYLVANETH"
+      ],
+      "stats": {
+        "move": "6\"",
+        "health": "5",
+        "save": "5+",
+        "control": "2"
+      },
+      "weapons": [
+        {
+          "name": "Greenwood Blade",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "3+",
+          "wound": "4+",
+          "rend": "1",
+          "damage": "2",
+          "ability": ""
+        },
+        {
+          "name": "Swarm of Spites",
+          "kind": "melee",
+          "range": "",
+          "attacks": "10",
+          "hit": "4+",
+          "wound": "4+",
+          "rend": "-",
+          "damage": "1",
+          "ability": "Crit (Mortal), Companion"
+        },
+        {
+          "name": "Sharp Mandibles",
+          "kind": "melee",
+          "range": "",
+          "attacks": "3",
+          "hit": "4+",
+          "wound": "3+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Companion"
+        },
+        {
+          "name": "Razor-like Mandibles",
+          "kind": "melee",
+          "range": "",
+          "attacks": "4",
+          "hit": "4+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "3",
+          "ability": "Companion"
+        },
+        {
+          "name": "Strangleroots",
+          "kind": "ranged",
+          "range": "10\"",
+          "attacks": "3",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "1",
+          "damage": "2",
+          "ability": "Shoot in Combat"
+        },
+        {
+          "name": "Kurnoth Javelin",
+          "kind": "ranged",
+          "range": "12\"",
+          "attacks": "1",
+          "hit": "3+",
+          "wound": "2+",
+          "rend": "2",
+          "damage": "D6",
+          "ability": "Anti-Monster (+1 Rend)"
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Battle Damaged",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Razor-like Mandibles is 3.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Verdant Healer",
+          "kind": "Activated",
+          "timing": "Your Hero Phase",
+          "declare": "Pick a visible friendly Sylvaneth unit wholly within 12\" of this unit to be the target.",
+          "effect": "Pick 1 of the following effects: \u2022 Heal (D3) the target. \u2022 The target has Ward (6+) until the start of your next turn.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Noble Guardian",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Add 2 to the Attacks characteristic of this unit's melee weapons while it is wholly within the creeping overgrowth.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Gnarled Spirit",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Subtract 3 from the control scores of enemy units while they are in combat with this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Rootwalker",
+          "kind": "Activated",
+          "timing": "Enemy Movement Phase",
+          "declare": "",
+          "effect": "If this unit is more than 9\" from all enemy units, it can immediately use the 'Normal Move' ability as if it were your movement phase.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Tormented Memories",
+          "kind": "Activated",
+          "timing": "End of Any Turn",
+          "declare": "You must use this ability if this unit is contesting an objective you do not control. Pick each other friendly unit contesting the same objective as this unit to be the targets.",
+          "effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Old Barkflesh",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Each time this unit uses a Move ability, roll a dice. On a 4+, inflict 1 mortal damage on it after that ability has been resolved.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Slow to Awaken",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "Halve this unit's Move characteristic until the start of the second battle round.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Cautious Spirit",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "While this unit is wholly outside the creeping overgrowth, it can only use Move and Attack abilities.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Slashing Wings",
+          "kind": "Activated",
+          "timing": "Your Movement Phase",
+          "declare": "",
+          "effect": "This unit can move a distance up to your Move characteristic. It can pass through models during that move. Then, you can pick an enemy unit that this unit passed across during that move to be the target. Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+          "keywords": "Move",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Strike and Fade",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army). End of Any Turn",
+          "declare": "",
+          "effect": "If this unit used a Fight ability this turn and is wholly within the creeping overgrowth, remove it from the battlefield and set it up again on the battlefield more than 9\" from all enemy units and wholly within the creeping overgrowth.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Charge of the Spites",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Charge Phase",
+          "declare": "If this unit charged this phase, pick up to 3 visible enemy units within 6\" of this unit to be the targets.",
+          "effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Seismic Stomps",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Any Combat Phase",
+          "declare": "If this unit charged this turn, pick each enemy unit in combat with this unit to be the targets.",
+          "effect": "Roll a dice for each target. On a 3+, subtract 1 from hit rolls for the target's combat attacks for the rest of the turn.",
+          "keywords": "Rampage",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Snatching Vines",
+          "kind": "Activated",
+          "timing": "Once Per Turn (Army), Your Shooting Phase",
+          "declare": "Pick an enemy Infantry Hero within 9\" of this unit to be the target.",
+          "effect": "Roll a dice. On a 3+, your opponent must remove the target from the battlefield and set it up again within 1\" of this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        },
+        {
+          "name": "Shambling Overgrowth",
+          "kind": "Passive",
+          "timing": "",
+          "declare": "",
+          "effect": "You can measure the creeping overgrowth unit from this unit.",
+          "keywords": "",
+          "castingValue": "",
+          "chantingValue": "",
+          "cost": ""
+        }
+      ],
+      "regimentOptions": [],
+      "regimentHeroes": [],
+      "pathToGloryOnly": true,
+      "anvilRanks": [
+        {
+          "id": "a5a1-1f54-234d-0ad3",
+          "name": "Grove Warden",
+          "points": 150,
+          "destiny": 10
+        },
+        {
+          "id": "05d1-0942-0877-e60b",
+          "name": "Glade Guardian",
+          "points": 250,
+          "destiny": 30
+        },
+        {
+          "id": "2063-39a7-ff8b-d473",
+          "name": "Forest Ancient",
+          "points": 350,
+          "destiny": 50
+        }
+      ],
+      "anvilForge": [
+        {
+          "id": "e9b5-8971-9cdb-7e33",
+          "name": "Battle Mounts",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "b0c1-8a63-2a42-aa80",
+              "name": "Swarm of Spites",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Swarm of Spites",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Swarm of Spites weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Swarm of Spites",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "10",
+                  "hit": "4+",
+                  "wound": "4+",
+                  "rend": "-",
+                  "damage": "1",
+                  "ability": "Crit (Mortal), Companion"
+                }
+              ]
+            },
+            {
+              "id": "8548-35ec-9fbe-69a3",
+              "name": "Dragonspite",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Dragonspite",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry Hero only. Add the Sharp Mandibles weapon to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Health characteristic to 7. \u2022 Replace the Infantry keyword with the Cavalry keyword. \u2022 Add the Fly keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Sharp Mandibles",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "3",
+                  "hit": "4+",
+                  "wound": "3+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "7",
+                "move": "12\""
+              }
+            },
+            {
+              "id": "c59f-82df-3777-e788",
+              "name": "Greatspite",
+              "destiny": -15,
+              "abilities": [
+                {
+                  "name": "Battle Damaged",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit has 10 or more damage points, the Attacks characteristic of its Razor-like Mandibles is 3.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                },
+                {
+                  "name": "Greatspite",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry Hero only. Add the Razor-like Mandibles weapon and the 'Battle Damaged' ability to your hero's warscroll. In addition, make the following changes to your hero's warscroll: \u2022 Change the Move characteristic to 12\". \u2022 Change the Save characteristic to 3+. \u2022 Change the Health characteristic to 14. \u2022 Change the Control characteristic to 5. \u2022 Replace the Infantry keyword with the Monster keyword.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Razor-like Mandibles",
+                  "kind": "melee",
+                  "range": "",
+                  "attacks": "4",
+                  "hit": "4+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "3",
+                  "ability": "Companion"
+                }
+              ],
+              "stats": {
+                "health": "14",
+                "move": "12\"",
+                "control": "5",
+                "save": "3+"
+              }
+            }
+          ]
+        },
+        {
+          "id": "df0e-ad0e-63dc-e230",
+          "name": "Origins",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "aeb0-db7d-d755-3aa2",
+              "name": "Verdant Healer",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Verdant Healer",
+                  "kind": "Activated",
+                  "timing": "Your Hero Phase",
+                  "declare": "Pick a visible friendly Sylvaneth unit wholly within 12\" of this unit to be the target.",
+                  "effect": "Pick 1 of the following effects: \u2022 Heal (D3) the target. \u2022 The target has Ward (6+) until the start of your next turn.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "07d7-511c-235a-932c",
+              "name": "Noble Guardian",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Noble Guardian",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the Attacks characteristic of this unit's melee weapons while it is wholly within the creeping overgrowth.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "ceea-bf07-f38e-3bf9",
+              "name": "Gnarled Spirit",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "Gnarled Spirit",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Subtract 3 from the control scores of enemy units while they are in combat with this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "9420-5613-e67e-a1bd",
+              "name": "Rootwalker",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Rootwalker",
+                  "kind": "Activated",
+                  "timing": "Enemy Movement Phase",
+                  "declare": "",
+                  "effect": "If this unit is more than 9\" from all enemy units, it can immediately use the 'Normal Move' ability as if it were your movement phase.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "9eb9-4a20-8ddf-65db",
+          "name": "Flaws",
+          "min": 0,
+          "max": 1,
+          "options": [
+            {
+              "id": "7961-6af3-8672-0763",
+              "name": "Tormented Memories",
+              "destiny": 4,
+              "abilities": [
+                {
+                  "name": "Tormented Memories",
+                  "kind": "Activated",
+                  "timing": "End of Any Turn",
+                  "declare": "You must use this ability if this unit is contesting an objective you do not control. Pick each other friendly unit contesting the same objective as this unit to be the targets.",
+                  "effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "8245-0daf-66f9-4815",
+              "name": "Old Barkflesh",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Old Barkflesh",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Each time this unit uses a Move ability, roll a dice. On a 4+, inflict 1 mortal damage on it after that ability has been resolved.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "4652-79c1-e4c9-d853",
+              "name": "Slow to Awaken",
+              "destiny": 2,
+              "abilities": [
+                {
+                  "name": "Slow to Awaken",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Halve this unit's Move characteristic until the start of the second battle round.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "691b-b3d9-6178-7a41",
+              "name": "Cautious Spirit",
+              "destiny": 6,
+              "abilities": [
+                {
+                  "name": "Cautious Spirit",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "While this unit is wholly outside the creeping overgrowth, it can only use Move and Attack abilities.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "a065-0df6-0348-18b3",
+          "name": "Battle Mount Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "ef26-34c6-fcff-1565",
+              "name": "Spiterider Great Lance",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Spiterider Great Lance",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Non-Forest Elder only. Your hero's non-Companion melee weapons have Charge (+1 Damage).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "1bda-a1ad-aa29-fe29",
+              "name": "Kurnoth Javelin",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Kurnoth Javelin",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the Kurnoth Javelin weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Kurnoth Javelin",
+                  "kind": "ranged",
+                  "range": "12\"",
+                  "attacks": "1",
+                  "hit": "3+",
+                  "wound": "2+",
+                  "rend": "2",
+                  "damage": "D6",
+                  "ability": "Anti-Monster (+1 Rend)"
+                }
+              ]
+            },
+            {
+              "id": "8864-042c-4550-51ef",
+              "name": "Colossal",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Colossal",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to your hero's Health characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "health": 2
+              }
+            },
+            {
+              "id": "4fe0-2fb7-76a9-46f5",
+              "name": "Slashing Wings",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Slashing Wings",
+                  "kind": "Activated",
+                  "timing": "Your Movement Phase",
+                  "declare": "",
+                  "effect": "This unit can move a distance up to your Move characteristic. It can pass through models during that move. Then, you can pick an enemy unit that this unit passed across during that move to be the target. Roll a dice for each model in the target unit. For each 5+, inflict 1 mortal damage on the target.",
+                  "keywords": "Move",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "7b32-6768-7fee-6573",
+              "name": "Strike and Fade",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Strike and Fade",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army). End of Any Turn",
+                  "declare": "",
+                  "effect": "If this unit used a Fight ability this turn and is wholly within the creeping overgrowth, remove it from the battlefield and set it up again on the battlefield more than 9\" from all enemy units and wholly within the creeping overgrowth.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "3716-2058-9ce0-0b77",
+              "name": "Charge of the Spites",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Charge of the Spites",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Charge Phase",
+                  "declare": "If this unit charged this phase, pick up to 3 visible enemy units within 6\" of this unit to be the targets.",
+                  "effect": "Roll a D3 for each target. On a 2+, inflict an amount of mortal damage on the target equal to the roll.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        },
+        {
+          "id": "88aa-a4a5-4647-6647",
+          "name": "Upgrades",
+          "min": 0,
+          "max": null,
+          "options": [
+            {
+              "id": "7f5e-feb2-c4e5-238a",
+              "name": "Forest Chieftain",
+              "destiny": -1,
+              "abilities": [
+                {
+                  "name": "Forest Chieftain",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the hero's Control characteristic.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "control": 1
+              }
+            },
+            {
+              "id": "8065-ea4d-2be5-f2e9",
+              "name": "All Bark, All Bite",
+              "destiny": -2,
+              "abilities": [
+                {
+                  "name": "All Bark, All Bite",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 2 to the Attacks characteristic of your hero's non-Companion melee weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "7b27-97dc-c334-951c",
+              "name": "Guardian Spirit",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Guardian Spirit",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero's non-Companion melee weapon has Anti-charge (+1 Rend).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "dfc0-a341-f851-9d12",
+              "name": "Fey Form",
+              "destiny": -3,
+              "abilities": [
+                {
+                  "name": "Fey Form",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Your hero has Ward (5+).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "582b-ba4f-f484-3962",
+              "name": "Strangleroots",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Strangleroots",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add the 'Strangleroots' weapon to your hero's warscroll.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [
+                {
+                  "name": "Strangleroots",
+                  "kind": "ranged",
+                  "range": "10\"",
+                  "attacks": "3",
+                  "hit": "3+",
+                  "wound": "2+",
+                  "rend": "1",
+                  "damage": "2",
+                  "ability": "Shoot in Combat"
+                }
+              ]
+            },
+            {
+              "id": "4ecd-dba9-8478-aa75",
+              "name": "Jade Attunement",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Jade Attunement",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Pick 1 of the following keywords for your hero to have: Wizard (1) or Priest (1).",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "02df-4a9a-9aec-2bb7",
+              "name": "Seismic Stomps",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Seismic Stomps",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Any Combat Phase",
+                  "declare": "If this unit charged this turn, pick each enemy unit in combat with this unit to be the targets.",
+                  "effect": "Roll a dice for each target. On a 3+, subtract 1 from hit rolls for the target's combat attacks for the rest of the turn.",
+                  "keywords": "Rampage",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "39c6-eb86-5669-7e5d",
+              "name": "Zephyrspite",
+              "destiny": -4,
+              "abilities": [
+                {
+                  "name": "Zephyrspite",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Infantry only. Add 4\" to your hero's Move characteristic. Your hero has Fly.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": [],
+              "statAdds": {
+                "move": 4
+              }
+            },
+            {
+              "id": "8782-9f11-9418-bc9f",
+              "name": "Exceptional Fury",
+              "destiny": -5,
+              "abilities": [
+                {
+                  "name": "Exceptional Fury",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Add 1 to the Damage characteristic of your hero's non-Companion melee weapon.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "32cc-da26-a93e-7916",
+              "name": "Ancient Spirit",
+              "destiny": -8,
+              "abilities": [
+                {
+                  "name": "Ancient Spirit",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "Wizard or Priest only. Add 1 to your hero's power level.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "c682-55e0-9e87-980d",
+              "name": "Snatching Vines",
+              "destiny": -8,
+              "abilities": [
+                {
+                  "name": "Snatching Vines",
+                  "kind": "Activated",
+                  "timing": "Once Per Turn (Army), Your Shooting Phase",
+                  "declare": "Pick an enemy Infantry Hero within 9\" of this unit to be the target.",
+                  "effect": "Roll a dice. On a 3+, your opponent must remove the target from the battlefield and set it up again within 1\" of this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            },
+            {
+              "id": "fe00-0ccc-a547-222f",
+              "name": "Shambling Overgrowth",
+              "destiny": -6,
+              "abilities": [
+                {
+                  "name": "Shambling Overgrowth",
+                  "kind": "Passive",
+                  "timing": "",
+                  "declare": "",
+                  "effect": "You can measure the creeping overgrowth unit from this unit.",
+                  "keywords": "",
+                  "castingValue": "",
+                  "chantingValue": "",
+                  "cost": ""
+                }
+              ],
+              "weapons": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

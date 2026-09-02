@@ -9,6 +9,11 @@ describe("publicRoutes", () => {
     expect(STATIC_PUBLIC_ROUTES.some((route) => route.path === "/factions")).toBe(
       true,
     );
+    expect(
+      STATIC_PUBLIC_ROUTES.some(
+        (route) => route.path === "/guides/path-to-glory-age-of-sigmar",
+      ),
+    ).toBe(true);
   });
 
   it("adds faction pages to the sitemap list", () => {

@@ -4,11 +4,11 @@ import { ContentDoc } from "@/components/ContentDoc";
 import { JsonLd } from "@/components/JsonLd";
 import { GEO_FAQS } from "@/lib/geoContent";
 import { articleNode, breadcrumbNode, faqPageNode, pageGraph } from "@/lib/jsonLd";
-import { SITE_DESCRIPTION, SITE_PUBLISHED, sitePath } from "@/lib/site";
+import { SITE_DESCRIPTION, sitePath } from "@/lib/site";
 
 const title = "Age of Sigmar army builder FAQ";
 const description =
-  "Answers about Order of Battle: accounts, privacy, factions, Play, and whether this is a Games Workshop app.";
+  "Answers about Order of Battle: accounts, privacy, Path to Glory, factions, Play, and whether this is a Games Workshop app.";
 
 export const metadata: Metadata = {
   title,
@@ -39,7 +39,7 @@ export default function FaqPage() {
       <ContentDoc
         kicker="FAQ"
         title="Age of Sigmar army builder questions"
-        updated="27 August 2026"
+        updated="31 August 2026"
         crumbs={[
           { href: "/", label: "Home" },
           { href: "/faq", label: "FAQ" },
@@ -47,7 +47,7 @@ export default function FaqPage() {
       >
         <p>{SITE_DESCRIPTION}</p>
         <p>
-          Last reviewed <time dateTime={SITE_PUBLISHED}>27 August 2026</time>.
+          Last reviewed <time dateTime="2026-08-31">31 August 2026</time>.
           Rules and points still need an official check before you play.
         </p>
         {GEO_FAQS.map((item) => (
@@ -60,6 +60,10 @@ export default function FaqPage() {
           Walkthrough:{" "}
           <Link href="/guides/how-to-build-an-age-of-sigmar-army-list">
             how to build a list
+          </Link>
+          . Path to Glory:{" "}
+          <Link href="/guides/path-to-glory-age-of-sigmar">
+            campaign lists
           </Link>
           . Overview:{" "}
           <Link href="/guides/free-age-of-sigmar-army-builder">
