@@ -1,0 +1,3175 @@
+{
+  "id": "beastmen-brayherds",
+  "name": "Beastmen Brayherds",
+  "game": "The Old World",
+  "source": "https://github.com/vflam/Warhammer-The-Old-World",
+  "pointsCapDefault": 2000,
+  "journal": false,
+  "units": [
+    {
+      "id": "beastlord",
+      "name": "Beastlord",
+      "category": "characters",
+      "pointsPerModel": 115,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Heavy Infantry",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "armour",
+          "name": "Armour",
+          "options": [
+            {
+              "id": "light-armour",
+              "name": "Light Armour",
+              "points": 2
+            },
+            {
+              "id": "heavy-armour",
+              "name": "Heavy Armour",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "mount",
+          "name": "Mount",
+          "options": [
+            {
+              "id": "tuskgor-chariot",
+              "name": "Tuskgor Chariot",
+              "points": 85,
+              "stats": {
+                "M": "-",
+                "WS": "-",
+                "BS": "-",
+                "S": "5",
+                "T": "4",
+                "W": "4",
+                "I": "-",
+                "A": "-",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Primal Fury",
+                  "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+                },
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Mark of Chaos Undivided",
+                  "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+                },
+                {
+                  "name": "Razor Tusks",
+                  "text": "During a turn in which it charged, the Armour Piercing characteristic of a Tuskgor\u2019s or Razorgor\u2019s tusks (hand weapon) is improved by 1.\n\n Note that this special rule only applies to attacks made by a Tuskgor or Razorgor, not to a chariot or its crew."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Warband",
+                  "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                }
+              ]
+            },
+            {
+              "id": "razorgor-chariot",
+              "name": "Razorgor Chariot",
+              "points": 120,
+              "stats": {
+                "M": "-",
+                "WS": "-",
+                "BS": "-",
+                "S": "5",
+                "T": "5",
+                "W": "4",
+                "I": "-",
+                "A": "-",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Primal Fury",
+                  "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+                },
+                {
+                  "name": "Armour Bane",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+                },
+                {
+                  "name": "Mark of Chaos Undivided",
+                  "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+                },
+                {
+                  "name": "Razor Tusks",
+                  "text": "During a turn in which it charged, the Armour Piercing characteristic of a Tuskgor\u2019s or Razorgor\u2019s tusks (hand weapon) is improved by 1.\n\n Note that this special rule only applies to attacks made by a Tuskgor or Razorgor, not to a chariot or its crew."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Foe render",
+                  "text": "Whilst subject to Primal Fury, a hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -2.\n\n Note that this special rule only applies to a single, non-magical hand weapon and does not apply to a model\u2019s mount (should it have one). If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "unit-options",
+          "name": "Unit Options",
+          "options": [
+            {
+              "id": "ambushers",
+              "name": "Ambushers",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Ambushers",
+                  "text": "A unit with this special rule may be held in reserve rather than be deployed at the start of the game. From the beginning of round two onwards, roll a D6 during each of your Start of Turn sub-phases for each unit of Ambushers in your army that is held in reserve.\n\n On a roll of 1-3, the unit is delayed until your next turn at least.\u00a0 On a roll of 4+, the unit arrives, entering the battle as reinforcements during the Compulsory Moves sub-phase. The unit may be placed on any edge of the battlefield, chosen by its controlling player, but cannot be placed within 8\" of an enemy model. If any Ambushers are still held in reserve by the start of round five, they arrive automatically."
+                }
+              ]
+            },
+            {
+              "id": "roaming-warband",
+              "name": "Roaming Warband",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Ambushers",
+                  "text": "A unit with this special rule may be held in reserve rather than be deployed at the start of the game. From the beginning of round two onwards, roll a D6 during each of your Start of Turn sub-phases for each unit of Ambushers in your army that is held in reserve.\n\n On a roll of 1-3, the unit is delayed until your next turn at least.\u00a0 On a roll of 4+, the unit arrives, entering the battle as reinforcements during the Compulsory Moves sub-phase. The unit may be placed on any edge of the battlefield, chosen by its controlling player, but cannot be placed within 8\" of an enemy model. If any Ambushers are still held in reserve by the start of round five, they arrive automatically."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 2
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Blood Rage",
+          "text": "If, when testing to see if it becomes subject to Primal Fury (see page 116), this unit passes its Leadership test with any roll of a natural double, it will also become Frenzied. A unit with this special rule may become Frenzied in this way even if it has lost Frenzy earlier in the game."
+        },
+        {
+          "name": "Brayhorn",
+          "text": "From the beginning of round 2 onwards, if your General is on the battlefield during the Command sub-phase of their turn, they may attempt to sound the Brayhorn by making a Leadership test. If this test is passed, you may immediately roll again for each unit of Ambushers in the army that is held in reserve and that did not arrive during the Start of Turn sub-phase of this turn.\n\n*Note that this special rule may only be used by a Beastlord or Wargor that has been selected to be the General of the army.*"
+        },
+        {
+          "name": "Foe render",
+          "text": "Whilst subject to Primal Fury, a hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -2.\n\n Note that this special rule only applies to a single, non-magical hand weapon and does not apply to a model\u2019s mount (should it have one). If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply."
+        },
+        {
+          "name": "Primal Fury",
+          "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+        },
+        {
+          "name": "Gaze of the Gods",
+          "text": "During the Command sub-phase of their turn, a character with this special rule may choose to roll on the Gaze of the Gods table:\n\n - 1: Damned by Chaos: The Champion is beset with visions of the Reals of Chaos. This model becomes subject to the Stupidity special rule for the reminder of the game. If they already have this special rule, they suffer a -1 modifier to their Leadership (to a maximum of 2).\n\n - 2: Unnatural Quickness: To the Champion, time itself seems to slow around them. Until your next Start of Turn sub-phase, this model gains +1 modifier to their Initiative characteristic (to a maximum of 10).\n\n - 3: Iron Skin: Beneath their baroque armour, the Champion's skin becomes like iron.\n\n Until your next Start of Turn sub-phase, this model gains +1 modifier to their Toughness characteristic (to a maximum of 10).\n\n - 4: Murderous Mutations: Long tentacles whip from beneath this Champion's armour to grasp at their enemies. For the reminder of the game, this model gains +1 modifier to their Weapon Skill characteristic (to a maximum of 10).\n\n - 5: Dark Fury: A terrible rage grips the Champion. For the reminder of the game, this model gains +1 modifier to their Attacks characteristic (to a maximum of 10).\n\n - 6: Apotheosis: The Champion is blessed with Daemonic vitality. For the reminder of the game, this model gains +1 modifier to both their Strength and Leadership chracteristics (to a maximum of 10)."
+        },
+        {
+          "name": "Mark of Chaos Undivided",
+          "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "6",
+        "BS": "3",
+        "S": "5",
+        "T": "5",
+        "W": "3",
+        "I": "5",
+        "A": "4",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "wargor",
+      "name": "Wargor",
+      "category": "characters",
+      "pointsPerModel": 55,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Heavy Infantry",
+      "magicItems": true,
+      "command": [
+        {
+          "id": "battle-standard-bearer",
+          "name": "Battle Standard Bearer",
+          "points": 25
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "armour",
+          "name": "Armour",
+          "options": [
+            {
+              "id": "light-armour",
+              "name": "Light Armour",
+              "points": 2
+            },
+            {
+              "id": "heavy-armour",
+              "name": "Heavy Armour",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "mount",
+          "name": "Mount",
+          "options": [
+            {
+              "id": "tuskgor-chariot",
+              "name": "Tuskgor Chariot",
+              "points": 85,
+              "stats": {
+                "M": "-",
+                "WS": "-",
+                "BS": "-",
+                "S": "5",
+                "T": "4",
+                "W": "4",
+                "I": "-",
+                "A": "-",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Primal Fury",
+                  "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+                },
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Mark of Chaos Undivided",
+                  "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+                },
+                {
+                  "name": "Razor Tusks",
+                  "text": "During a turn in which it charged, the Armour Piercing characteristic of a Tuskgor\u2019s or Razorgor\u2019s tusks (hand weapon) is improved by 1.\n\n Note that this special rule only applies to attacks made by a Tuskgor or Razorgor, not to a chariot or its crew."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Warband",
+                  "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                }
+              ]
+            },
+            {
+              "id": "razorgor-chariot",
+              "name": "Razorgor Chariot",
+              "points": 120,
+              "stats": {
+                "M": "-",
+                "WS": "-",
+                "BS": "-",
+                "S": "5",
+                "T": "5",
+                "W": "4",
+                "I": "-",
+                "A": "-",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Primal Fury",
+                  "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+                },
+                {
+                  "name": "Armour Bane",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+                },
+                {
+                  "name": "Mark of Chaos Undivided",
+                  "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+                },
+                {
+                  "name": "Razor Tusks",
+                  "text": "During a turn in which it charged, the Armour Piercing characteristic of a Tuskgor\u2019s or Razorgor\u2019s tusks (hand weapon) is improved by 1.\n\n Note that this special rule only applies to attacks made by a Tuskgor or Razorgor, not to a chariot or its crew."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Foe render",
+                  "text": "Whilst subject to Primal Fury, a hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -2.\n\n Note that this special rule only applies to a single, non-magical hand weapon and does not apply to a model\u2019s mount (should it have one). If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "unit-options",
+          "name": "Unit Options",
+          "options": [
+            {
+              "id": "ambushers",
+              "name": "Ambushers",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Ambushers",
+                  "text": "A unit with this special rule may be held in reserve rather than be deployed at the start of the game. From the beginning of round two onwards, roll a D6 during each of your Start of Turn sub-phases for each unit of Ambushers in your army that is held in reserve.\n\n On a roll of 1-3, the unit is delayed until your next turn at least.\u00a0 On a roll of 4+, the unit arrives, entering the battle as reinforcements during the Compulsory Moves sub-phase. The unit may be placed on any edge of the battlefield, chosen by its controlling player, but cannot be placed within 8\" of an enemy model. If any Ambushers are still held in reserve by the start of round five, they arrive automatically."
+                }
+              ]
+            },
+            {
+              "id": "roaming-warband",
+              "name": "Roaming Warband",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Ambushers",
+                  "text": "A unit with this special rule may be held in reserve rather than be deployed at the start of the game. From the beginning of round two onwards, roll a D6 during each of your Start of Turn sub-phases for each unit of Ambushers in your army that is held in reserve.\n\n On a roll of 1-3, the unit is delayed until your next turn at least.\u00a0 On a roll of 4+, the unit arrives, entering the battle as reinforcements during the Compulsory Moves sub-phase. The unit may be placed on any edge of the battlefield, chosen by its controlling player, but cannot be placed within 8\" of an enemy model. If any Ambushers are still held in reserve by the start of round five, they arrive automatically."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 2
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Blood Rage",
+          "text": "If, when testing to see if it becomes subject to Primal Fury (see page 116), this unit passes its Leadership test with any roll of a natural double, it will also become Frenzied. A unit with this special rule may become Frenzied in this way even if it has lost Frenzy earlier in the game."
+        },
+        {
+          "name": "Brayhorn",
+          "text": "From the beginning of round 2 onwards, if your General is on the battlefield during the Command sub-phase of their turn, they may attempt to sound the Brayhorn by making a Leadership test. If this test is passed, you may immediately roll again for each unit of Ambushers in the army that is held in reserve and that did not arrive during the Start of Turn sub-phase of this turn.\n\n*Note that this special rule may only be used by a Beastlord or Wargor that has been selected to be the General of the army.*"
+        },
+        {
+          "name": "Foe render",
+          "text": "Whilst subject to Primal Fury, a hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -2.\n\n Note that this special rule only applies to a single, non-magical hand weapon and does not apply to a model\u2019s mount (should it have one). If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply."
+        },
+        {
+          "name": "Primal Fury",
+          "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+        },
+        {
+          "name": "Gaze of the Gods",
+          "text": "During the Command sub-phase of their turn, a character with this special rule may choose to roll on the Gaze of the Gods table:\n\n - 1: Damned by Chaos: The Champion is beset with visions of the Reals of Chaos. This model becomes subject to the Stupidity special rule for the reminder of the game. If they already have this special rule, they suffer a -1 modifier to their Leadership (to a maximum of 2).\n\n - 2: Unnatural Quickness: To the Champion, time itself seems to slow around them. Until your next Start of Turn sub-phase, this model gains +1 modifier to their Initiative characteristic (to a maximum of 10).\n\n - 3: Iron Skin: Beneath their baroque armour, the Champion's skin becomes like iron.\n\n Until your next Start of Turn sub-phase, this model gains +1 modifier to their Toughness characteristic (to a maximum of 10).\n\n - 4: Murderous Mutations: Long tentacles whip from beneath this Champion's armour to grasp at their enemies. For the reminder of the game, this model gains +1 modifier to their Weapon Skill characteristic (to a maximum of 10).\n\n - 5: Dark Fury: A terrible rage grips the Champion. For the reminder of the game, this model gains +1 modifier to their Attacks characteristic (to a maximum of 10).\n\n - 6: Apotheosis: The Champion is blessed with Daemonic vitality. For the reminder of the game, this model gains +1 modifier to both their Strength and Leadership chracteristics (to a maximum of 10)."
+        },
+        {
+          "name": "Mark of Chaos Undivided",
+          "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "5",
+        "BS": "3",
+        "S": "4",
+        "T": "5",
+        "W": "2",
+        "I": "4",
+        "A": "3",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "great-bray-shaman",
+      "name": "Great Bray-Shaman",
+      "category": "characters",
+      "pointsPerModel": 150,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-3",
+              "name": "Wizard Level 3",
+              "points": 0
+            },
+            {
+              "id": "wizard-level-4",
+              "name": "Wizard Level 4",
+              "points": 30
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "daemonology",
+              "name": "Daemonology",
+              "points": 0
+            },
+            {
+              "id": "dark-magic",
+              "name": "Dark Magic",
+              "points": 0
+            },
+            {
+              "id": "elementalism",
+              "name": "Elementalism",
+              "points": 0
+            },
+            {
+              "id": "primal-magic",
+              "name": "Primal Magic",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "mount",
+          "name": "Mount",
+          "options": [
+            {
+              "id": "tuskgor-chariot",
+              "name": "Tuskgor Chariot",
+              "points": 85,
+              "stats": {
+                "M": "-",
+                "WS": "-",
+                "BS": "-",
+                "S": "5",
+                "T": "4",
+                "W": "4",
+                "I": "-",
+                "A": "-",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Primal Fury",
+                  "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+                },
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Mark of Chaos Undivided",
+                  "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+                },
+                {
+                  "name": "Razor Tusks",
+                  "text": "During a turn in which it charged, the Armour Piercing characteristic of a Tuskgor\u2019s or Razorgor\u2019s tusks (hand weapon) is improved by 1.\n\n Note that this special rule only applies to attacks made by a Tuskgor or Razorgor, not to a chariot or its crew."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Warband",
+                  "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                }
+              ]
+            },
+            {
+              "id": "razorgor-chariot",
+              "name": "Razorgor Chariot",
+              "points": 120,
+              "stats": {
+                "M": "-",
+                "WS": "-",
+                "BS": "-",
+                "S": "5",
+                "T": "5",
+                "W": "4",
+                "I": "-",
+                "A": "-",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Primal Fury",
+                  "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+                },
+                {
+                  "name": "Armour Bane",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+                },
+                {
+                  "name": "Mark of Chaos Undivided",
+                  "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+                },
+                {
+                  "name": "Razor Tusks",
+                  "text": "During a turn in which it charged, the Armour Piercing characteristic of a Tuskgor\u2019s or Razorgor\u2019s tusks (hand weapon) is improved by 1.\n\n Note that this special rule only applies to attacks made by a Tuskgor or Razorgor, not to a chariot or its crew."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Foe render",
+                  "text": "Whilst subject to Primal Fury, a hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -2.\n\n Note that this special rule only applies to a single, non-magical hand weapon and does not apply to a model\u2019s mount (should it have one). If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "unit-options",
+          "name": "Unit Options",
+          "options": [
+            {
+              "id": "ambushers",
+              "name": "Ambushers",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Ambushers",
+                  "text": "A unit with this special rule may be held in reserve rather than be deployed at the start of the game. From the beginning of round two onwards, roll a D6 during each of your Start of Turn sub-phases for each unit of Ambushers in your army that is held in reserve.\n\n On a roll of 1-3, the unit is delayed until your next turn at least.\u00a0 On a roll of 4+, the unit arrives, entering the battle as reinforcements during the Compulsory Moves sub-phase. The unit may be placed on any edge of the battlefield, chosen by its controlling player, but cannot be placed within 8\" of an enemy model. If any Ambushers are still held in reserve by the start of round five, they arrive automatically."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Braystaff",
+          "text": "When this model\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must choose to use its Braystaff offensively or defensively. Used offensively, a Braystaff counts as a great weapon. Used defensively, a Braystaff counts as a hand weapon and gives its wielder an Armour Value of 5+."
+        },
+        {
+          "name": "Primal Fury",
+          "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+        },
+        {
+          "name": "Gaze of the Gods",
+          "text": "During the Command sub-phase of their turn, a character with this special rule may choose to roll on the Gaze of the Gods table:\n\n - 1: Damned by Chaos: The Champion is beset with visions of the Reals of Chaos. This model becomes subject to the Stupidity special rule for the reminder of the game. If they already have this special rule, they suffer a -1 modifier to their Leadership (to a maximum of 2).\n\n - 2: Unnatural Quickness: To the Champion, time itself seems to slow around them. Until your next Start of Turn sub-phase, this model gains +1 modifier to their Initiative characteristic (to a maximum of 10).\n\n - 3: Iron Skin: Beneath their baroque armour, the Champion's skin becomes like iron.\n\n Until your next Start of Turn sub-phase, this model gains +1 modifier to their Toughness characteristic (to a maximum of 10).\n\n - 4: Murderous Mutations: Long tentacles whip from beneath this Champion's armour to grasp at their enemies. For the reminder of the game, this model gains +1 modifier to their Weapon Skill characteristic (to a maximum of 10).\n\n - 5: Dark Fury: A terrible rage grips the Champion. For the reminder of the game, this model gains +1 modifier to their Attacks characteristic (to a maximum of 10).\n\n - 6: Apotheosis: The Champion is blessed with Daemonic vitality. For the reminder of the game, this model gains +1 modifier to both their Strength and Leadership chracteristics (to a maximum of 10)."
+        },
+        {
+          "name": "Mark of Chaos Undivided",
+          "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "Lore of Beasts",
+          "text": "A Wizard with the 'Lore of Beasts' special rule may discard one of their randomly generated spells as normal.\n\nWhen they do so, they may select instead the signature spell of their chose Lore of Magic, or one of the following spells:\n\n- Viletide\n- Devolve\u00a0\n- Mantle of Ghorgok"
+        },
+        {
+          "name": "Dark Coven",
+          "text": "Beastmen Shamans within a Wild Herd army may leach power from nearby Wizards when they attempt to cast a spell or when attempting a Wizardly Dispel. To do so, when a Bray-Shaman or Great Bray-Shaman makes a Casting or Dispel roll, they may apply a +1 modifier to the roll if one or more friendly Wizards that are not fleeing and have not succumbed to Stupidity are within their Command range. However, if they roll a natural double 1, something has gone horribly wrong. Roll immediately on the Miscast table as normal but apply the result to the Bray-Shaman or Great Bray-Shaman that made the attempt and to each friendly Wizard within their Command range."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "5",
+        "BS": "3",
+        "S": "4",
+        "T": "5",
+        "W": "3",
+        "I": "4",
+        "A": "2",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "bray-shaman",
+      "name": "Bray-Shaman",
+      "category": "characters",
+      "pointsPerModel": 65,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-1",
+              "name": "Wizard Level 1",
+              "points": 0
+            },
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 30
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "daemonology",
+              "name": "Daemonology",
+              "points": 0
+            },
+            {
+              "id": "dark-magic",
+              "name": "Dark Magic",
+              "points": 0
+            },
+            {
+              "id": "elementalism",
+              "name": "Elementalism",
+              "points": 0
+            },
+            {
+              "id": "primal-magic",
+              "name": "Primal Magic",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "mount",
+          "name": "Mount",
+          "options": [
+            {
+              "id": "tuskgor-chariot",
+              "name": "Tuskgor Chariot",
+              "points": 85,
+              "stats": {
+                "M": "-",
+                "WS": "-",
+                "BS": "-",
+                "S": "5",
+                "T": "4",
+                "W": "4",
+                "I": "-",
+                "A": "-",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Primal Fury",
+                  "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+                },
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Mark of Chaos Undivided",
+                  "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+                },
+                {
+                  "name": "Razor Tusks",
+                  "text": "During a turn in which it charged, the Armour Piercing characteristic of a Tuskgor\u2019s or Razorgor\u2019s tusks (hand weapon) is improved by 1.\n\n Note that this special rule only applies to attacks made by a Tuskgor or Razorgor, not to a chariot or its crew."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Warband",
+                  "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                }
+              ]
+            },
+            {
+              "id": "razorgor-chariot",
+              "name": "Razorgor Chariot",
+              "points": 120,
+              "stats": {
+                "M": "-",
+                "WS": "-",
+                "BS": "-",
+                "S": "5",
+                "T": "5",
+                "W": "4",
+                "I": "-",
+                "A": "-",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Primal Fury",
+                  "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+                },
+                {
+                  "name": "Armour Bane",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+                },
+                {
+                  "name": "Mark of Chaos Undivided",
+                  "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+                },
+                {
+                  "name": "Razor Tusks",
+                  "text": "During a turn in which it charged, the Armour Piercing characteristic of a Tuskgor\u2019s or Razorgor\u2019s tusks (hand weapon) is improved by 1.\n\n Note that this special rule only applies to attacks made by a Tuskgor or Razorgor, not to a chariot or its crew."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Foe render",
+                  "text": "Whilst subject to Primal Fury, a hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -2.\n\n Note that this special rule only applies to a single, non-magical hand weapon and does not apply to a model\u2019s mount (should it have one). If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "unit-options",
+          "name": "Unit Options",
+          "options": [
+            {
+              "id": "ambushers",
+              "name": "Ambushers",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Ambushers",
+                  "text": "A unit with this special rule may be held in reserve rather than be deployed at the start of the game. From the beginning of round two onwards, roll a D6 during each of your Start of Turn sub-phases for each unit of Ambushers in your army that is held in reserve.\n\n On a roll of 1-3, the unit is delayed until your next turn at least.\u00a0 On a roll of 4+, the unit arrives, entering the battle as reinforcements during the Compulsory Moves sub-phase. The unit may be placed on any edge of the battlefield, chosen by its controlling player, but cannot be placed within 8\" of an enemy model. If any Ambushers are still held in reserve by the start of round five, they arrive automatically."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Braystaff",
+          "text": "When this model\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must choose to use its Braystaff offensively or defensively. Used offensively, a Braystaff counts as a great weapon. Used defensively, a Braystaff counts as a hand weapon and gives its wielder an Armour Value of 5+."
+        },
+        {
+          "name": "Primal Fury",
+          "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+        },
+        {
+          "name": "Gaze of the Gods",
+          "text": "During the Command sub-phase of their turn, a character with this special rule may choose to roll on the Gaze of the Gods table:\n\n - 1: Damned by Chaos: The Champion is beset with visions of the Reals of Chaos. This model becomes subject to the Stupidity special rule for the reminder of the game. If they already have this special rule, they suffer a -1 modifier to their Leadership (to a maximum of 2).\n\n - 2: Unnatural Quickness: To the Champion, time itself seems to slow around them. Until your next Start of Turn sub-phase, this model gains +1 modifier to their Initiative characteristic (to a maximum of 10).\n\n - 3: Iron Skin: Beneath their baroque armour, the Champion's skin becomes like iron.\n\n Until your next Start of Turn sub-phase, this model gains +1 modifier to their Toughness characteristic (to a maximum of 10).\n\n - 4: Murderous Mutations: Long tentacles whip from beneath this Champion's armour to grasp at their enemies. For the reminder of the game, this model gains +1 modifier to their Weapon Skill characteristic (to a maximum of 10).\n\n - 5: Dark Fury: A terrible rage grips the Champion. For the reminder of the game, this model gains +1 modifier to their Attacks characteristic (to a maximum of 10).\n\n - 6: Apotheosis: The Champion is blessed with Daemonic vitality. For the reminder of the game, this model gains +1 modifier to both their Strength and Leadership chracteristics (to a maximum of 10)."
+        },
+        {
+          "name": "Mark of Chaos Undivided",
+          "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "Lore of Beasts",
+          "text": "A Wizard with the 'Lore of Beasts' special rule may discard one of their randomly generated spells as normal.\n\nWhen they do so, they may select instead the signature spell of their chose Lore of Magic, or one of the following spells:\n\n- Viletide\n- Devolve\u00a0\n- Mantle of Ghorgok"
+        },
+        {
+          "name": "Dark Coven",
+          "text": "Beastmen Shamans within a Wild Herd army may leach power from nearby Wizards when they attempt to cast a spell or when attempting a Wizardly Dispel. To do so, when a Bray-Shaman or Great Bray-Shaman makes a Casting or Dispel roll, they may apply a +1 modifier to the roll if one or more friendly Wizards that are not fleeing and have not succumbed to Stupidity are within their Command range. However, if they roll a natural double 1, something has gone horribly wrong. Roll immediately on the Miscast table as normal but apply the result to the Bray-Shaman or Great Bray-Shaman that made the attempt and to each friendly Wizard within their Command range."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "4",
+        "BS": "3",
+        "S": "3",
+        "T": "4",
+        "W": "2",
+        "I": "3",
+        "A": "1",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "doombull",
+      "name": "Doombull",
+      "category": "characters",
+      "pointsPerModel": 210,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Monstrous Infantry",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "armour",
+          "name": "Armour",
+          "options": [
+            {
+              "id": "light-armour",
+              "name": "Light Armour",
+              "points": 3
+            },
+            {
+              "id": "heavy-armour",
+              "name": "Heavy Armour",
+              "points": 6
+            }
+          ]
+        },
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-1",
+              "name": "Wizard Level 1",
+              "points": 35
+            },
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 65
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "dark-magic",
+              "name": "Dark Magic",
+              "points": 0
+            },
+            {
+              "id": "primal-magic",
+              "name": "Primal Magic",
+              "points": 0
+            },
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 5
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armour Bane",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+        },
+        {
+          "name": "Blood Greed",
+          "text": "Whilst Frenzied, this model has a +2 modifier to its Attacks characteristic (rather than the usual +1). However, such is this model\u2019s desperate need to feed upon flesh that it rolls only a single D6 when making a Pursuit roll (rather than the usual 2D6)."
+        },
+        {
+          "name": "Blood Rage",
+          "text": "If, when testing to see if it becomes subject to Primal Fury (see page 116), this unit passes its Leadership test with any roll of a natural double, it will also become Frenzied. A unit with this special rule may become Frenzied in this way even if it has lost Frenzy earlier in the game."
+        },
+        {
+          "name": "Foe render",
+          "text": "Whilst subject to Primal Fury, a hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -2.\n\n Note that this special rule only applies to a single, non-magical hand weapon and does not apply to a model\u2019s mount (should it have one). If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply."
+        },
+        {
+          "name": "Bull-gors",
+          "text": "Impact Hits caused by a model with this special rule have an Armour Piercing characteristic of -1."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Gaze of the Gods",
+          "text": "During the Command sub-phase of their turn, a character with this special rule may choose to roll on the Gaze of the Gods table:\n\n - 1: Damned by Chaos: The Champion is beset with visions of the Reals of Chaos. This model becomes subject to the Stupidity special rule for the reminder of the game. If they already have this special rule, they suffer a -1 modifier to their Leadership (to a maximum of 2).\n\n - 2: Unnatural Quickness: To the Champion, time itself seems to slow around them. Until your next Start of Turn sub-phase, this model gains +1 modifier to their Initiative characteristic (to a maximum of 10).\n\n - 3: Iron Skin: Beneath their baroque armour, the Champion's skin becomes like iron.\n\n Until your next Start of Turn sub-phase, this model gains +1 modifier to their Toughness characteristic (to a maximum of 10).\n\n - 4: Murderous Mutations: Long tentacles whip from beneath this Champion's armour to grasp at their enemies. For the reminder of the game, this model gains +1 modifier to their Weapon Skill characteristic (to a maximum of 10).\n\n - 5: Dark Fury: A terrible rage grips the Champion. For the reminder of the game, this model gains +1 modifier to their Attacks characteristic (to a maximum of 10).\n\n - 6: Apotheosis: The Champion is blessed with Daemonic vitality. For the reminder of the game, this model gains +1 modifier to both their Strength and Leadership chracteristics (to a maximum of 10)."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Primal Fury",
+          "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+        },
+        {
+          "name": "Mark of Chaos Undivided",
+          "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+        },
+        {
+          "name": "Slaughterer\u00b4s Call",
+          "text": "Whilist this model is Frenzied, any unit it has joined will also become Frenzied."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "Impetuous",
+          "text": "If during the Declare Charges & Charge Reactions sub-phase of its turn, a unit that includes one or more Impetuous models is able to declare a charge, it must make a Leadership test. If this test is failed, the unit must declare a charge. If this test is passed, the unit may act as normal."
+        },
+        {
+          "name": "Magics of the Dark Gods",
+          "text": "The General of a Minotaur Blood Herd must be a Doombull or Gorebull. For +35 points, this character may be a Level 1 Wizard, or for +65 points, this character may be a Level 2 Wizard. If so, this character knows spells from the Lore of Battle Magic or the Lore of Dark Magic. A Wizard with this special rule may wear armour without penalty."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "6",
+        "BS": "3",
+        "S": "6",
+        "T": "5",
+        "W": "5",
+        "I": "5",
+        "A": "5",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "gorebull",
+      "name": "Gorebull",
+      "category": "characters",
+      "pointsPerModel": 130,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Monstrous Infantry",
+      "magicItems": true,
+      "command": [
+        {
+          "id": "battle-standard-bearer",
+          "name": "Battle Standard Bearer",
+          "points": 25
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "armour",
+          "name": "Armour",
+          "options": [
+            {
+              "id": "light-armour",
+              "name": "Light Armour",
+              "points": 3
+            },
+            {
+              "id": "heavy-armour",
+              "name": "Heavy Armour",
+              "points": 6
+            }
+          ]
+        },
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-1",
+              "name": "Wizard Level 1",
+              "points": 35
+            },
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 65
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "dark-magic",
+              "name": "Dark Magic",
+              "points": 0
+            },
+            {
+              "id": "primal-magic",
+              "name": "Primal Magic",
+              "points": 0
+            },
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 5
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armour Bane",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+        },
+        {
+          "name": "Blood Greed",
+          "text": "Whilst Frenzied, this model has a +2 modifier to its Attacks characteristic (rather than the usual +1). However, such is this model\u2019s desperate need to feed upon flesh that it rolls only a single D6 when making a Pursuit roll (rather than the usual 2D6)."
+        },
+        {
+          "name": "Blood Rage",
+          "text": "If, when testing to see if it becomes subject to Primal Fury (see page 116), this unit passes its Leadership test with any roll of a natural double, it will also become Frenzied. A unit with this special rule may become Frenzied in this way even if it has lost Frenzy earlier in the game."
+        },
+        {
+          "name": "Foe render",
+          "text": "Whilst subject to Primal Fury, a hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -2.\n\n Note that this special rule only applies to a single, non-magical hand weapon and does not apply to a model\u2019s mount (should it have one). If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply."
+        },
+        {
+          "name": "Bull-gors",
+          "text": "Impact Hits caused by a model with this special rule have an Armour Piercing characteristic of -1."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Gaze of the Gods",
+          "text": "During the Command sub-phase of their turn, a character with this special rule may choose to roll on the Gaze of the Gods table:\n\n - 1: Damned by Chaos: The Champion is beset with visions of the Reals of Chaos. This model becomes subject to the Stupidity special rule for the reminder of the game. If they already have this special rule, they suffer a -1 modifier to their Leadership (to a maximum of 2).\n\n - 2: Unnatural Quickness: To the Champion, time itself seems to slow around them. Until your next Start of Turn sub-phase, this model gains +1 modifier to their Initiative characteristic (to a maximum of 10).\n\n - 3: Iron Skin: Beneath their baroque armour, the Champion's skin becomes like iron.\n\n Until your next Start of Turn sub-phase, this model gains +1 modifier to their Toughness characteristic (to a maximum of 10).\n\n - 4: Murderous Mutations: Long tentacles whip from beneath this Champion's armour to grasp at their enemies. For the reminder of the game, this model gains +1 modifier to their Weapon Skill characteristic (to a maximum of 10).\n\n - 5: Dark Fury: A terrible rage grips the Champion. For the reminder of the game, this model gains +1 modifier to their Attacks characteristic (to a maximum of 10).\n\n - 6: Apotheosis: The Champion is blessed with Daemonic vitality. For the reminder of the game, this model gains +1 modifier to both their Strength and Leadership chracteristics (to a maximum of 10)."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Primal Fury",
+          "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+        },
+        {
+          "name": "Mark of Chaos Undivided",
+          "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+        },
+        {
+          "name": "Slaughterer\u00b4s Call",
+          "text": "Whilist this model is Frenzied, any unit it has joined will also become Frenzied."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "Impetuous",
+          "text": "If during the Declare Charges & Charge Reactions sub-phase of its turn, a unit that includes one or more Impetuous models is able to declare a charge, it must make a Leadership test. If this test is failed, the unit must declare a charge. If this test is passed, the unit may act as normal."
+        },
+        {
+          "name": "Magics of the Dark Gods",
+          "text": "The General of a Minotaur Blood Herd must be a Doombull or Gorebull. For +35 points, this character may be a Level 1 Wizard, or for +65 points, this character may be a Level 2 Wizard. If so, this character knows spells from the Lore of Battle Magic or the Lore of Dark Magic. A Wizard with this special rule may wear armour without penalty."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "5",
+        "BS": "3",
+        "S": "5",
+        "T": "5",
+        "W": "4",
+        "I": "4",
+        "A": "4",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "centigor-chieftain",
+      "name": "Centigor Chieftain",
+      "category": "characters",
+      "pointsPerModel": 75,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Light cavalry (character)",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "melee-weapons",
+          "name": "Melee Weapons",
+          "options": [
+            {
+              "id": "cavalry-spear",
+              "name": "Cavalry Spear",
+              "points": 2
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "armour",
+          "name": "Armour",
+          "options": [
+            {
+              "id": "light-armour",
+              "name": "Light Armour",
+              "points": 2
+            },
+            {
+              "id": "heavy-armour",
+              "name": "Heavy Armour",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "ranged-weapon",
+          "name": "Ranged Weapon",
+          "options": [
+            {
+              "id": "javelin",
+              "name": "Javelin",
+              "points": 2
+            },
+            {
+              "id": "throwing-axe",
+              "name": "Throwing Axe",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "unit-options",
+          "name": "Unit Options",
+          "options": [
+            {
+              "id": "ambushers",
+              "name": "Ambushers",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Ambushers",
+                  "text": "A unit with this special rule may be held in reserve rather than be deployed at the start of the game. From the beginning of round two onwards, roll a D6 during each of your Start of Turn sub-phases for each unit of Ambushers in your army that is held in reserve.\n\n On a roll of 1-3, the unit is delayed until your next turn at least.\u00a0 On a roll of 4+, the unit arrives, entering the battle as reinforcements during the Compulsory Moves sub-phase. The unit may be placed on any edge of the battlefield, chosen by its controlling player, but cannot be placed within 8\" of an enemy model. If any Ambushers are still held in reserve by the start of round five, they arrive automatically."
+                }
+              ]
+            },
+            {
+              "id": "roaming-warband",
+              "name": "Roaming Warband",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Ambushers",
+                  "text": "A unit with this special rule may be held in reserve rather than be deployed at the start of the game. From the beginning of round two onwards, roll a D6 during each of your Start of Turn sub-phases for each unit of Ambushers in your army that is held in reserve.\n\n On a roll of 1-3, the unit is delayed until your next turn at least.\u00a0 On a roll of 4+, the unit arrives, entering the battle as reinforcements during the Compulsory Moves sub-phase. The unit may be placed on any edge of the battlefield, chosen by its controlling player, but cannot be placed within 8\" of an enemy model. If any Ambushers are still held in reserve by the start of round five, they arrive automatically."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 2
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Drunken",
+          "text": "During the Start of Turn sub-phase of each of your turns, roll on the Drunken table for each unit with this special rule that is not currently Frenzied, that is not engaged in combat and that is not fleeing:\n\n Drunken Table:\n\n \u25cf D6: Result \u25cf 1: Unsteady: The unit has become somewhat unsteady. Until its next Start of Turn sub-phase, the unit is subject to the Random Movement special rule and its Movement characteristic becomes D6+2.\n\n \u25cf 2-5: Sobering Up: The alcohol has no discernible effect upon the unit.\n\n \u25cf 6: Belligerent Drunks: The unit has turned quite belligerent. Until its next Start of Turn sub-phase, the unit is subject to the Frenzy special rule. A unit with this special rule may become Frenzied in this way even if it has lost Frenzy earlier in the game."
+        },
+        {
+          "name": "Fast Cavalry",
+          "text": "If all of the models (including characters) within a unit arrayed in an Open Order formation have this special rule, the unit may perform its Quick Turn (see page 183) even if it marched."
+        },
+        {
+          "name": "Gaze of the Gods",
+          "text": "During the Command sub-phase of their turn, a character with this special rule may choose to roll on the Gaze of the Gods table:\n\n - 1: Damned by Chaos: The Champion is beset with visions of the Reals of Chaos. This model becomes subject to the Stupidity special rule for the reminder of the game. If they already have this special rule, they suffer a -1 modifier to their Leadership (to a maximum of 2).\n\n - 2: Unnatural Quickness: To the Champion, time itself seems to slow around them. Until your next Start of Turn sub-phase, this model gains +1 modifier to their Initiative characteristic (to a maximum of 10).\n\n - 3: Iron Skin: Beneath their baroque armour, the Champion's skin becomes like iron.\n\n Until your next Start of Turn sub-phase, this model gains +1 modifier to their Toughness characteristic (to a maximum of 10).\n\n - 4: Murderous Mutations: Long tentacles whip from beneath this Champion's armour to grasp at their enemies. For the reminder of the game, this model gains +1 modifier to their Weapon Skill characteristic (to a maximum of 10).\n\n - 5: Dark Fury: A terrible rage grips the Champion. For the reminder of the game, this model gains +1 modifier to their Attacks characteristic (to a maximum of 10).\n\n - 6: Apotheosis: The Champion is blessed with Daemonic vitality. For the reminder of the game, this model gains +1 modifier to both their Strength and Leadership chracteristics (to a maximum of 10)."
+        },
+        {
+          "name": "Primal Fury",
+          "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Mark of Chaos Undivided",
+          "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Cavalry Spear",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1",
+          "specialRules": "Fight in Extra Rank"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        },
+        {
+          "name": "Javelin",
+          "range": "12\"",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Move & Shoot, Quick Shot"
+        },
+        {
+          "name": "Throwing Axe",
+          "range": "9\"",
+          "strength": "S+1",
+          "ap": "-",
+          "specialRules": "Quick Shot"
+        }
+      ],
+      "stats": {
+        "M": "8",
+        "WS": "5",
+        "BS": "3",
+        "S": "5",
+        "T": "4",
+        "W": "3",
+        "I": "3",
+        "A": "4",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "bestigor-herds",
+      "name": "Bestigor Herds",
+      "category": "special",
+      "pointsPerModel": 13,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Heavy infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "gouge-horn",
+          "name": "Gouge-horn",
+          "points": 8
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Blood Rage",
+          "text": "If, when testing to see if it becomes subject to Primal Fury (see page 116), this unit passes its Leadership test with any roll of a natural double, it will also become Frenzied. A unit with this special rule may become Frenzied in this way even if it has lost Frenzy earlier in the game."
+        },
+        {
+          "name": "Primal Fury",
+          "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+        },
+        {
+          "name": "Mark of Chaos Undivided",
+          "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "Furious Charge",
+          "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Attacks characteristic."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "4",
+        "BS": "3",
+        "S": "4",
+        "T": "4",
+        "W": "1",
+        "I": "4",
+        "A": "1",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "gor-herds",
+      "name": "Gor Herds",
+      "category": "core",
+      "pointsPerModel": 7,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular Infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "true-horn",
+          "name": "True-horn",
+          "points": 7
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 5
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 5
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 0
+            },
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 0
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Open Order",
+          "text": "A unit consisting of models with this special rule may adopt an Open Order formation."
+        },
+        {
+          "name": "Bestial Charge",
+          "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Strength characteristic."
+        },
+        {
+          "name": "Primal Fury",
+          "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+        },
+        {
+          "name": "Mark of Chaos Undivided",
+          "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "Blood Rage",
+          "text": "If, when testing to see if it becomes subject to Primal Fury (see page 116), this unit passes its Leadership test with any roll of a natural double, it will also become Frenzied. A unit with this special rule may become Frenzied in this way even if it has lost Frenzy earlier in the game."
+        },
+        {
+          "name": "Horde",
+          "text": "A unit with this special rule may increase the maximum Rank Bonus it can claim (as determined by its troop type) by one."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Impetuous",
+          "text": "If during the Declare Charges & Charge Reactions sub-phase of its turn, a unit that includes one or more Impetuous models is able to declare a charge, it must make a Leadership test. If this test is failed, the unit must declare a charge. If this test is passed, the unit may act as normal."
+        },
+        {
+          "name": "Furious Charge",
+          "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Attacks characteristic."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "4",
+        "BS": "2",
+        "S": "3",
+        "T": "4",
+        "W": "1",
+        "I": "3",
+        "A": "1",
+        "Ld": "6"
+      }
+    },
+    {
+      "id": "harpies",
+      "name": "Harpies",
+      "category": "special",
+      "pointsPerModel": 11,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Scouts",
+          "text": "Units with this special rule may be deployed after all other units from both armies. They can be deployed anywhere on the battlefield that is more than 12\" away from an enemy model. If deployed in this way, Scouts cannot declare a charge during their first turn.\n\n If both armies contain Scouts, a roll-off should determine which player deploys Scouts first. The players then alternate deploying their scouting units one at a time, starting with the player who won the roll-off."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "3",
+        "BS": "0",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "5",
+        "A": "2",
+        "Ld": "6"
+      }
+    },
+    {
+      "id": "minotaur-herds",
+      "name": "Minotaur Herds",
+      "category": "special",
+      "pointsPerModel": 44,
+      "minModels": 2,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous Infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        },
+        {
+          "id": "bloodkine",
+          "name": "Bloodkine",
+          "points": 6
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "special-rules",
+          "name": "Special Rules",
+          "options": [
+            {
+              "id": "ambushers",
+              "name": "Ambushers",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Ambushers",
+                  "text": "A unit with this special rule may be held in reserve rather than be deployed at the start of the game. From the beginning of round two onwards, roll a D6 during each of your Start of Turn sub-phases for each unit of Ambushers in your army that is held in reserve.\n\n On a roll of 1-3, the unit is delayed until your next turn at least.\u00a0 On a roll of 4+, the unit arrives, entering the battle as reinforcements during the Compulsory Moves sub-phase. The unit may be placed on any edge of the battlefield, chosen by its controlling player, but cannot be placed within 8\" of an enemy model. If any Ambushers are still held in reserve by the start of round five, they arrive automatically."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 2
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Blood Greed",
+          "text": "Whilst Frenzied, this model has a +2 modifier to its Attacks characteristic (rather than the usual +1). However, such is this model\u2019s desperate need to feed upon flesh that it rolls only a single D6 when making a Pursuit roll (rather than the usual 2D6)."
+        },
+        {
+          "name": "Blood Rage",
+          "text": "If, when testing to see if it becomes subject to Primal Fury (see page 116), this unit passes its Leadership test with any roll of a natural double, it will also become Frenzied. A unit with this special rule may become Frenzied in this way even if it has lost Frenzy earlier in the game."
+        },
+        {
+          "name": "Bull-gors",
+          "text": "Impact Hits caused by a model with this special rule have an Armour Piercing characteristic of -1."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Foe render",
+          "text": "Whilst subject to Primal Fury, a hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -2.\n\n Note that this special rule only applies to a single, non-magical hand weapon and does not apply to a model\u2019s mount (should it have one). If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "Mark of Chaos Undivided",
+          "text": ""
+        },
+        {
+          "name": "Primal Fury",
+          "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+        },
+        {
+          "name": "Motley Crew",
+          "text": "Units with this special rule may include models of the same type that are equipped differently to one another, and/or models of different types that fight together in a single unit. If necessary, the army list entry for such units will be accompanied by a brief explanation of the unit\u2019s composition.\n\n Different Weapons: The fighting rank of a Motley Crew may contain models that are armed with different weapons. In such cases, the controlling player must roll different batches of dice for the different models, making it clear to their opponent which model\u2019s attacks they represent and where they are being directed. These attacks are made in the Initiative order of the individual models, as usual.\n\n Different Armour: Models within a Motley Crew may have different armour values. In combat, use the armour value of the majority of the models in the fighting rank. Against enemy shooting, use the armour value of the majority of the models in the unit.\n\n Casualty Removal: Against enemy shooting, casualty removal should be divided as equally as possible between the different models within the unit. In combat, casualties should be removed from among the majority of the models that make up the fighting rank. In either case, available models are brought forward from rear ranks to fill any gaps, as chosen by the controlling player."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Impetuous",
+          "text": "If during the Declare Charges & Charge Reactions sub-phase of its turn, a unit that includes one or more Impetuous models is able to declare a charge, it must make a Leadership test. If this test is failed, the unit must declare a charge. If this test is passed, the unit may act as normal."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "4",
+        "BS": "3",
+        "S": "5",
+        "T": "4",
+        "W": "3",
+        "I": "3",
+        "A": "3",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "centigor-herds",
+      "name": "Centigor Herds",
+      "category": "special",
+      "pointsPerModel": 17,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Light cavalry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "gorehoof",
+          "name": "Gorehoof",
+          "points": 8
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "throwing-weapon",
+          "name": "Throwing Weapon",
+          "options": [
+            {
+              "id": "javelin",
+              "name": "Javelin",
+              "points": 1
+            },
+            {
+              "id": "throwing-axe",
+              "name": "Throwing Axe",
+              "points": 1
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 1
+            },
+            {
+              "id": "cavalry-spear",
+              "name": "Cavalry Spear",
+              "points": 1
+            },
+            {
+              "id": "throwing-spear",
+              "name": "Throwing Spear",
+              "points": 1
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Fast Cavalry",
+          "text": "If all of the models (including characters) within a unit arrayed in an Open Order formation have this special rule, the unit may perform its Quick Turn (see page 183) even if it marched."
+        },
+        {
+          "name": "Drunken",
+          "text": "During the Start of Turn sub-phase of each of your turns, roll on the Drunken table for each unit with this special rule that is not currently Frenzied, that is not engaged in combat and that is not fleeing:\n\n Drunken Table:\n\n \u25cf D6: Result \u25cf 1: Unsteady: The unit has become somewhat unsteady. Until its next Start of Turn sub-phase, the unit is subject to the Random Movement special rule and its Movement characteristic becomes D6+2.\n\n \u25cf 2-5: Sobering Up: The alcohol has no discernible effect upon the unit.\n\n \u25cf 6: Belligerent Drunks: The unit has turned quite belligerent. Until its next Start of Turn sub-phase, the unit is subject to the Frenzy special rule. A unit with this special rule may become Frenzied in this way even if it has lost Frenzy earlier in the game."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Mark of Chaos Undivided",
+          "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "Horde",
+          "text": "A unit with this special rule may increase the maximum Rank Bonus it can claim (as determined by its troop type) by one."
+        },
+        {
+          "name": "Primal Fury",
+          "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+        },
+        {
+          "name": "Open Order",
+          "text": "A unit consisting of models with this special rule may adopt an Open Order formation."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Javelin",
+          "range": "12\"",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Move & Shoot, Quick Shot"
+        },
+        {
+          "name": "Throwing Axe",
+          "range": "9\"",
+          "strength": "S+1",
+          "ap": "-",
+          "specialRules": "Quick Shot"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        },
+        {
+          "name": "Cavalry Spear",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1",
+          "specialRules": "Fight in Extra Rank"
+        },
+        {
+          "name": "Throwing Spear",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Fight in Extra Rank"
+        }
+      ],
+      "stats": {
+        "M": "8",
+        "WS": "4",
+        "BS": "3",
+        "S": "4",
+        "T": "4",
+        "W": "1",
+        "I": "2",
+        "A": "1",
+        "Ld": "6"
+      }
+    },
+    {
+      "id": "chaos-warhounds",
+      "name": "Chaos Warhounds",
+      "category": "core",
+      "pointsPerModel": 6,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "War beast",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "options",
+          "name": "Options",
+          "options": [
+            {
+              "id": "armour-hide-1",
+              "name": "Armour Hide (1)",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Armoured Hide",
+                  "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+                }
+              ]
+            },
+            {
+              "id": "poisoned-attacks",
+              "name": "Poisoned Attacks",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Poisoned Attacks",
+                  "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+                }
+              ]
+            },
+            {
+              "id": "vanguard",
+              "name": "Vanguard",
+              "points": 5,
+              "specialRules": [
+                {
+                  "name": "Vanguard",
+                  "text": "After deployment, units with this special rule may make a Vanguard move. A unit making a Vanguard move moves as described in the Basic Movement rules. It may manoeuvre normally but cannot march.\n\nIf both armies contain Vanguard units, a roll-off determines who moves first. The players then alternate moving their Vanguard units one at a time, starting with the player who won the roll-off. Units that make a Vanguard move cannot declare a charge during their first turn."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Loner",
+          "text": "A character with this special rule cannot be your General and cannot join a unit without this special rule. A unit with this special rule cannot be joined by a character without this special rule."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Open Order",
+          "text": "A unit consisting of models with this special rule may adopt an Open Order formation."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "7",
+        "WS": "4",
+        "BS": "0",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "3",
+        "A": "1",
+        "Ld": "6"
+      }
+    },
+    {
+      "id": "razorgor-herds",
+      "name": "Razorgor Herds",
+      "category": "core",
+      "pointsPerModel": 52,
+      "minModels": 1,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "War beast",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Armour Bane",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Foe render",
+          "text": "Whilst subject to Primal Fury, a hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -2.\n\n Note that this special rule only applies to a single, non-magical hand weapon and does not apply to a model\u2019s mount (should it have one). If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Loner",
+          "text": "A character with this special rule cannot be your General and cannot join a unit without this special rule. A unit with this special rule cannot be joined by a character without this special rule."
+        },
+        {
+          "name": "Open Order",
+          "text": "A unit consisting of models with this special rule may adopt an Open Order formation."
+        },
+        {
+          "name": "Primal Fury",
+          "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+        },
+        {
+          "name": "Razor Tusks",
+          "text": "During a turn in which it charged, the Armour Piercing characteristic of a Tuskgor\u2019s or Razorgor\u2019s tusks (hand weapon) is improved by 1.\n\n Note that this special rule only applies to attacks made by a Tuskgor or Razorgor, not to a chariot or its crew."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "7",
+        "WS": "3",
+        "BS": "0",
+        "S": "5",
+        "T": "5",
+        "W": "3",
+        "I": "2",
+        "A": "4",
+        "Ld": "6"
+      }
+    },
+    {
+      "id": "jabberslythe",
+      "name": "Jabberslythe",
+      "category": "rare",
+      "pointsPerModel": 185,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous creature",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Large Target",
+          "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Maddening Aura",
+          "text": "During the Command sub-phase of its turn, any enemy unit that is within 8\" of this model, including units that are fleeing or that are engaged in combat, must make a Leadership test. If this test is failed, the unit suffers D3 Strength 3 hits, with no armour or Regeneration saves permitted (Ward saves can be attempted as normal)."
+        },
+        {
+          "name": "Poisoned Attacks",
+          "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+        },
+        {
+          "name": "Spurting Bile Blood",
+          "text": "For each Wound this model loses during the Combat phase, the attacking enemy unit suffers a Strength 4 hit, with an AP of -1."
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Terror",
+          "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "5",
+        "BS": "4",
+        "S": "5",
+        "T": "5",
+        "W": "5",
+        "I": "3",
+        "A": "5",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "cockatrice",
+      "name": "Cockatrice",
+      "category": "special",
+      "pointsPerModel": 155,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous creature",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "acidic-vomit",
+              "name": "Acidic vomit",
+              "points": 20
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Large Target",
+          "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Stony Stare",
+          "text": "At the start of each Combat phase, enemy models in base contact with this model must make an Initiative test. If this test is failed, they suffer D3 Strength 2 hits, with no armour save permitted (Ward and Regeneration saves can be attempted as normal)."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Terror",
+          "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "4",
+        "BS": "5",
+        "S": "4",
+        "T": "5",
+        "W": "4",
+        "I": "6",
+        "A": "6",
+        "Ld": "6"
+      }
+    },
+    {
+      "id": "cygor",
+      "name": "Cygor",
+      "category": "rare",
+      "pointsPerModel": 205,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Behemoth",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Immune To Psychology",
+          "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+        },
+        {
+          "name": "Ghostsight",
+          "text": "During the Combat phase, a Cygor may re-roll any failed rolls To Hit made against enemy Wizards, enemy models or units equipped with any magic items, or enemy models or units with a Ward or Regeneration save."
+        },
+        {
+          "name": "Soul-eater",
+          "text": "Any enemy Wizard that wishes to cast a spell whilst within 12\" of one or more Cygors must first make a Leadership test. If this test is failed, the Wizard has lost their nerve and, should they fail to cast the spell (i.e., should their casting result be less than the casting value of the spell), the spell has been miscast and the active player immediately rolls on the Miscast table to see what fate befalls the unfortunate Wizard. If this test is passed, the Wizard can continue with their casting attempt as normal."
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        },
+        {
+          "name": "Timmm-Berrr!",
+          "text": "When this model is reduced to zero Wounds, the winner of a roll-off chooses one of its arcs (front, flank or rear) for it to fall into. Any units that are within the chosen arc and in base contact with this model suffer D6 hits, each using the Strength characteristic of this model, with an AP of -1. Once these hits are resolved, this model is removed from play."
+        },
+        {
+          "name": "Terror",
+          "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+        },
+        {
+          "name": "Large Target",
+          "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "7",
+        "WS": "2",
+        "BS": "1",
+        "S": "6",
+        "T": "6",
+        "W": "6",
+        "I": "3",
+        "A": "4",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "ghorgon",
+      "name": "Ghorgon",
+      "category": "rare",
+      "pointsPerModel": 245,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Behemoth",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Blood Greed",
+          "text": "Whilst Frenzied, this model has a +2 modifier to its Attacks characteristic (rather than the usual +1). However, such is this model\u2019s desperate need to feed upon flesh that it rolls only a single D6 when making a Pursuit roll (rather than the usual 2D6)."
+        },
+        {
+          "name": "Primal Fury",
+          "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+        },
+        {
+          "name": "Frenzy",
+          "text": "During a turn in which it made a charge move, or during the\u00a0turn after it made a follow up move, a Frenzied model has a +1\u00a0modifier to its Attacks characteristic. This modifier does not\u00a0apply to the model\u2019s mount (in the case of a cavalry model), to\u00a0the beasts that draw it (in the case of a chariot), or to its rider\u00a0(in the case of a monster).\n\nIn addition:\n- If the majority of the models in a unit are Frenzied, the unit automatically passes any Fear, Panic or Terror tests it is required to make.\n- If a unit that includes one or more Frenzied models is able to declare a charge during the Declare Charges & Charge Reactions sub-phase of its turn, it must do so.\n- If the majority of the models in a unit are Frenzied, it cannot choose to Flee as a charge reaction, nor can it ever choose to make a Restraint test.\n\n**Losing Frenzy:** Unlike other special rules, Frenzy can be lost during a game. Any model that loses a round of combat will immediately lose this special rule."
+        },
+        {
+          "name": "Regeneration",
+          "text": "Immediately after a Wound is lost, but before models with zero Wounds remaining are removed from play, a model with this special rule may make a \"Regeneration save\" roll by rolling a D6 and comparing the result to its \"Regeneration value\", shown in brackets after the name of this special rule (shown here as \"X+\"). If the Regeneration save roll equals or exceeds the model\u2019s Regeneration value, the lost Wound is recovered, but is still counted for the purposes of calculating the combat result. Rules that affect armour values do not affect Regeneration values unless stated otherwise."
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        },
+        {
+          "name": "Timmm-Berrr!",
+          "text": "When this model is reduced to zero Wounds, the winner of a roll-off chooses one of its arcs (front, flank or rear) for it to fall into. Any units that are within the chosen arc and in base contact with this model suffer D6 hits, each using the Strength characteristic of this model, with an AP of -1. Once these hits are resolved, this model is removed from play."
+        },
+        {
+          "name": "Swallow Whole",
+          "text": "During the Command sub-phase of its turn, a Ghorgon that is engaged in combat with one or more units of \u2018regular infantry\u2019 or \u2018heavy infantry\u2019 may choose to make a \u2018Swallow Whole\u2019 attack. To make a Swallow Whole attack, nominate an enemy unit of regular or heavy infantry that the Ghorgon is engaged in combat with. The unit must immediately make an Initiative test:\n\n \n\u2022 If this test is failed, the Ghorgon grabs a victim from the unit and stuffs them into its gullet. A single model belonging to the target unit is immediately removed from play as a casualty.\n\n \n\u2022 If this test is passed, the warriors manage to avoid the grasping Ghorgon. No one is picked up and the attack has no effect.\n\n Each time an enemy model is removed from play in this way, the Ghorgon recovers a single lost Wound."
+        },
+        {
+          "name": "Large Target",
+          "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Terror",
+          "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "7",
+        "WS": "4",
+        "BS": "0",
+        "S": "6",
+        "T": "7",
+        "W": "6",
+        "I": "4",
+        "A": "5",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "ungor-herds",
+      "name": "Ungor Herds",
+      "category": "core",
+      "pointsPerModel": 5,
+      "minModels": 10,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular Infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "half-horn",
+          "name": "Half-horn",
+          "points": 7
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 5
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 5
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 0
+            },
+            {
+              "id": "throwing-spear",
+              "name": "Throwing Spear",
+              "points": 1
+            },
+            {
+              "id": "thrusting-spear",
+              "name": "Thrusting Spear",
+              "points": 1
+            },
+            {
+              "id": "shortbow",
+              "name": "Shortbow",
+              "points": 0
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Open Order",
+          "text": "A unit consisting of models with this special rule may adopt an Open Order formation."
+        },
+        {
+          "name": "Chariot Runners",
+          "text": "Friendly models whose troop type is \u2018chariot\u2019 can draw a line of sight over or through models with this special rule and can move through friendly units if they are in Skirmish formation and if the majority of models have this special rule. If the chariot\u2019s move would result in it ending up \u2018on top\u2019 of a Chariot Runner, simply nudge the Chariot Runner aside, by the smallest amount possible, to make space for the chariot. Whilst in Skirmish formation units of Chariot Runners can treat friendly chariots that are within 1\" of one or more of the unit\u2019s models as a part of the unit for the purposes of unit coherency."
+        },
+        {
+          "name": "Primal Fury",
+          "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+        },
+        {
+          "name": "Mark of Chaos Undivided",
+          "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "Horde",
+          "text": "A unit with this special rule may increase the maximum Rank Bonus it can claim (as determined by its troop type) by one."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "3",
+        "BS": "3",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "3",
+        "A": "1",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "kralmaw-the-prophet-of-ruin",
+      "name": "Kralmaw, The Prophet of Ruin",
+      "category": "characters",
+      "pointsPerModel": 245,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry (named character)",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-4",
+              "name": "Wizard Level 4",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "dark-magic",
+              "name": "Dark Magic",
+              "points": 0
+            },
+            {
+              "id": "primal-magic",
+              "name": "Primal Magic",
+              "points": 0
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Braystaff",
+          "text": "When this model\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must choose to use its Braystaff offensively or defensively. Used offensively, a Braystaff counts as a great weapon. Used defensively, a Braystaff counts as a hand weapon and gives its wielder an Armour Value of 5+."
+        },
+        {
+          "name": "Primal Fury",
+          "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+        },
+        {
+          "name": "Gaze of the Gods",
+          "text": "During the Command sub-phase of their turn, a character with this special rule may choose to roll on the Gaze of the Gods table:\n\n - 1: Damned by Chaos: The Champion is beset with visions of the Reals of Chaos. This model becomes subject to the Stupidity special rule for the reminder of the game. If they already have this special rule, they suffer a -1 modifier to their Leadership (to a maximum of 2).\n\n - 2: Unnatural Quickness: To the Champion, time itself seems to slow around them. Until your next Start of Turn sub-phase, this model gains +1 modifier to their Initiative characteristic (to a maximum of 10).\n\n - 3: Iron Skin: Beneath their baroque armour, the Champion's skin becomes like iron.\n\n Until your next Start of Turn sub-phase, this model gains +1 modifier to their Toughness characteristic (to a maximum of 10).\n\n - 4: Murderous Mutations: Long tentacles whip from beneath this Champion's armour to grasp at their enemies. For the reminder of the game, this model gains +1 modifier to their Weapon Skill characteristic (to a maximum of 10).\n\n - 5: Dark Fury: A terrible rage grips the Champion. For the reminder of the game, this model gains +1 modifier to their Attacks characteristic (to a maximum of 10).\n\n - 6: Apotheosis: The Champion is blessed with Daemonic vitality. For the reminder of the game, this model gains +1 modifier to both their Strength and Leadership chracteristics (to a maximum of 10)."
+        },
+        {
+          "name": "Mark of Chaos Undivided",
+          "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "Lore of Beasts",
+          "text": "A Wizard with the 'Lore of Beasts' special rule may discard one of their randomly generated spells as normal.\n\nWhen they do so, they may select instead the signature spell of their chose Lore of Magic, or one of the following spells:\n\n- Viletide\n- Devolve\u00a0\n- Mantle of Ghorgok"
+        },
+        {
+          "name": "Future Sight",
+          "text": "Kralmaw has a 4+ Ward save against any wounds suffered."
+        },
+        {
+          "name": "Leering Spirit",
+          "text": "When Kralmaw is deployed, place a Leering Spirit marker anywhere on the battlefield that is not within 8\" of an enemy unit. Once placed, a Leering Spirit marker does not move but has a 360\u00b0 line of sight. The marker cannot be charged, targeted or attacked in any way. However, if Kralmaw is removed from play as a casualty, the Leering Spirit marker is also removed from play. During the Shooting phase of each of Kralmaw's turns, the Leering Spirit marker may cast the Devolve spell from the Lore of Beasts (see page 117 of the Ravening Hordes) as a Bound Spell with a Power Level of 3.\n\n\n*Note that the Leering Spirit marker is ignored for the purposes of movement, combat and line of sight, as if it was not there. Should the presence of it interfere with the position of units, simply make not of its position and move it aside, replacing it when convenient to do so.*"
+        },
+        {
+          "name": "Dark Coven",
+          "text": "Beastmen Shamans within a Wild Herd army may leach power from nearby Wizards when they attempt to cast a spell or when attempting a Wizardly Dispel. To do so, when a Bray-Shaman or Great Bray-Shaman makes a Casting or Dispel roll, they may apply a +1 modifier to the roll if one or more friendly Wizards that are not fleeing and have not succumbed to Stupidity are within their Command range. However, if they roll a natural double 1, something has gone horribly wrong. Roll immediately on the Miscast table as normal but apply the result to the Bray-Shaman or Great Bray-Shaman that made the attempt and to each friendly Wizard within their Command range."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "3",
+        "BS": "3",
+        "S": "4",
+        "T": "5",
+        "W": "4",
+        "I": "3",
+        "A": "2",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "ghorros-warhoof-sire-of-a-thousand-young",
+      "name": "Ghorros Warhoof, Sire of a Thousand Young",
+      "category": "characters",
+      "pointsPerModel": 155,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Heavy cavalry (named character)",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Drunken",
+          "text": "During the Start of Turn sub-phase of each of your turns, roll on the Drunken table for each unit with this special rule that is not currently Frenzied, that is not engaged in combat and that is not fleeing:\n\n Drunken Table:\n\n \u25cf D6: Result \u25cf 1: Unsteady: The unit has become somewhat unsteady. Until its next Start of Turn sub-phase, the unit is subject to the Random Movement special rule and its Movement characteristic becomes D6+2.\n\n \u25cf 2-5: Sobering Up: The alcohol has no discernible effect upon the unit.\n\n \u25cf 6: Belligerent Drunks: The unit has turned quite belligerent. Until its next Start of Turn sub-phase, the unit is subject to the Frenzy special rule. A unit with this special rule may become Frenzied in this way even if it has lost Frenzy earlier in the game."
+        },
+        {
+          "name": "Father of Beasts",
+          "text": "Whilst within Ghorros Warhoof's Command range, friendly Centigor Herds may re-roll the D6 when rolling on the Drunken table."
+        },
+        {
+          "name": "Gaze of the Gods",
+          "text": "During the Command sub-phase of their turn, a character with this special rule may choose to roll on the Gaze of the Gods table:\n\n - 1: Damned by Chaos: The Champion is beset with visions of the Reals of Chaos. This model becomes subject to the Stupidity special rule for the reminder of the game. If they already have this special rule, they suffer a -1 modifier to their Leadership (to a maximum of 2).\n\n - 2: Unnatural Quickness: To the Champion, time itself seems to slow around them. Until your next Start of Turn sub-phase, this model gains +1 modifier to their Initiative characteristic (to a maximum of 10).\n\n - 3: Iron Skin: Beneath their baroque armour, the Champion's skin becomes like iron.\n\n Until your next Start of Turn sub-phase, this model gains +1 modifier to their Toughness characteristic (to a maximum of 10).\n\n - 4: Murderous Mutations: Long tentacles whip from beneath this Champion's armour to grasp at their enemies. For the reminder of the game, this model gains +1 modifier to their Weapon Skill characteristic (to a maximum of 10).\n\n - 5: Dark Fury: A terrible rage grips the Champion. For the reminder of the game, this model gains +1 modifier to their Attacks characteristic (to a maximum of 10).\n\n - 6: Apotheosis: The Champion is blessed with Daemonic vitality. For the reminder of the game, this model gains +1 modifier to both their Strength and Leadership chracteristics (to a maximum of 10)."
+        },
+        {
+          "name": "Mark of Chaos Undivided",
+          "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Primal Fury",
+          "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        },
+        {
+          "name": "The Sons of Ghorros",
+          "text": "0-1 Centigor herd in the same muster list as Ghorros may be upgraded to Sons of Ghorros for +2 points per model. Sons of Ghorros have a +1 modifier to their Weapon Skill and Leadership characteristic (to a maximum of 10) and gain the Armour Bane (1) special rule."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "8",
+        "WS": "5",
+        "BS": "3",
+        "S": "5",
+        "T": "4",
+        "W": "3",
+        "I": "4",
+        "A": "4",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "preyton",
+      "name": "Preyton",
+      "category": "special",
+      "pointsPerModel": 160,
+      "minModels": 1,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous creature",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Crown of Antlers",
+          "text": "Impact Hits caused by a model with this special rule have the Armour Bane (1) special rule and an Armour Piercing characteristic of -1."
+        },
+        {
+          "name": "Endless Malice",
+          "text": "If this model wins a round of combat and chooses to restrain and reform (and passes its Leadership test to do so), enemy units within 6\" of it must make a Panic test as if a nearby friend had been destroyed."
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Large Target",
+          "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+        },
+        {
+          "name": "Terror",
+          "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Twisted Antlers",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1)"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "5",
+        "BS": "0",
+        "S": "5",
+        "T": "5",
+        "W": "5",
+        "I": "5",
+        "A": "4",
+        "Ld": "6"
+      }
+    },
+    {
+      "id": "herdstone",
+      "name": "Herdstone",
+      "category": "special",
+      "pointsPerModel": 100,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Special Feature",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Placing a Herdstone",
+          "text": "A Herdstone is an impassable terrain feature and must be fielded as presented here.\n\n\nAlternatively, if the players agree, a special feature specified by a scenario can be replaced with a Herdstone.\n\n\nOnce the players have finished placing terrain and have rolled for deployment a Beastman Breyherds player whose muster list included a Herdstone may place it on the battlefield. The Herdstone may be placed anywhere on the battlefield that is not within their opponent's deployment zone and not within 6\" of the centre of the battlefield.\n\n\nAlternatively, if the Herdstone is replacing a special feature specified by a scenario, it must be placed as described by the scenario."
+        },
+        {
+          "name": "Controlling a Herdstone",
+          "text": "A Herdstone can be controlled by a single unit that is within 6\" of it, that has a Unit Strength of five or more and that is not fleeing. If two or more eligible units belonging to opposing armies are within 6\", the unit closest to the Herdstone controls it. If two units belonging to opposing armies are equally close, a Herdstone is 'contested' and neither unit controls it."
+        },
+        {
+          "name": "Victory Points",
+          "text": "As with all special features, a Herdstone is an important landmark and controlling one at the end of a battle is a significant achievement. To represent this, if either player controls a Herdstone at the end of the battle, that player is awarded a bonus of 200 Victory Points."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "-",
+        "BS": "-",
+        "S": "-",
+        "T": "-",
+        "W": "-",
+        "I": "-",
+        "A": "-",
+        "Ld": "-"
+      }
+    },
+    {
+      "id": "chieftain-of-ruin",
+      "name": "Chieftain of Ruin",
+      "category": "characters",
+      "pointsPerModel": 70,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Heavy infantry",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            },
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "armour",
+          "name": "Armour",
+          "options": [
+            {
+              "id": "light-armour",
+              "name": "Light Armour",
+              "points": 2
+            },
+            {
+              "id": "heavy-armour",
+              "name": "Heavy Armour",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "mount",
+          "name": "Mount",
+          "options": [
+            {
+              "id": "tuskgor-chariot",
+              "name": "Tuskgor Chariot",
+              "points": 85,
+              "stats": {
+                "M": "-",
+                "WS": "-",
+                "BS": "-",
+                "S": "5",
+                "T": "4",
+                "W": "4",
+                "I": "-",
+                "A": "-",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Primal Fury",
+                  "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+                },
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Mark of Chaos Undivided",
+                  "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+                },
+                {
+                  "name": "Razor Tusks",
+                  "text": "During a turn in which it charged, the Armour Piercing characteristic of a Tuskgor\u2019s or Razorgor\u2019s tusks (hand weapon) is improved by 1.\n\n Note that this special rule only applies to attacks made by a Tuskgor or Razorgor, not to a chariot or its crew."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Warband",
+                  "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+                },
+                {
+                  "name": "Armour Value",
+                  "text": "Base Armour value"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Blood Rage",
+          "text": "If, when testing to see if it becomes subject to Primal Fury (see page 116), this unit passes its Leadership test with any roll of a natural double, it will also become Frenzied. A unit with this special rule may become Frenzied in this way even if it has lost Frenzy earlier in the game."
+        },
+        {
+          "name": "Brayhorn",
+          "text": "From the beginning of round 2 onwards, if your General is on the battlefield during the Command sub-phase of their turn, they may attempt to sound the Brayhorn by making a Leadership test. If this test is passed, you may immediately roll again for each unit of Ambushers in the army that is held in reserve and that did not arrive during the Start of Turn sub-phase of this turn.\n\n*Note that this special rule may only be used by a Beastlord or Wargor that has been selected to be the General of the army.*"
+        },
+        {
+          "name": "Foe render",
+          "text": "Whilst subject to Primal Fury, a hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -2.\n\n Note that this special rule only applies to a single, non-magical hand weapon and does not apply to a model\u2019s mount (should it have one). If the model is using two hand weapons or any other sort of weapon, this special rule ceases to apply."
+        },
+        {
+          "name": "Gaze of the Gods",
+          "text": "During the Command sub-phase of their turn, a character with this special rule may choose to roll on the Gaze of the Gods table:\n\n - 1: Damned by Chaos: The Champion is beset with visions of the Reals of Chaos. This model becomes subject to the Stupidity special rule for the reminder of the game. If they already have this special rule, they suffer a -1 modifier to their Leadership (to a maximum of 2).\n\n - 2: Unnatural Quickness: To the Champion, time itself seems to slow around them. Until your next Start of Turn sub-phase, this model gains +1 modifier to their Initiative characteristic (to a maximum of 10).\n\n - 3: Iron Skin: Beneath their baroque armour, the Champion's skin becomes like iron.\n\n Until your next Start of Turn sub-phase, this model gains +1 modifier to their Toughness characteristic (to a maximum of 10).\n\n - 4: Murderous Mutations: Long tentacles whip from beneath this Champion's armour to grasp at their enemies. For the reminder of the game, this model gains +1 modifier to their Weapon Skill characteristic (to a maximum of 10).\n\n - 5: Dark Fury: A terrible rage grips the Champion. For the reminder of the game, this model gains +1 modifier to their Attacks characteristic (to a maximum of 10).\n\n - 6: Apotheosis: The Champion is blessed with Daemonic vitality. For the reminder of the game, this model gains +1 modifier to both their Strength and Leadership chracteristics (to a maximum of 10)."
+        },
+        {
+          "name": "Mark of Chaos Undivided",
+          "text": "Models with the Mark of Chaos Undivided can re-roll any failed Fear, Panic or Terror tests."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Primal Fury",
+          "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is passed, the unit becomes subject to \u2018Primal Fury\u2019 until the end of this Combat phase. A unit subject to Primal Fury may re-roll any rolls To Hit of a natural 1."
+        },
+        {
+          "name": "Warband",
+          "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        }
+      ],
+      "stats": {
+        "M": "",
+        "WS": "",
+        "BS": "",
+        "S": "",
+        "T": "",
+        "W": "1",
+        "I": "",
+        "A": "",
+        "Ld": ""
+      }
+    }
+  ]
+}

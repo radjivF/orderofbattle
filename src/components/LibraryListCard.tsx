@@ -12,8 +12,10 @@ import {
   pathToGloryPacksLabel,
 } from "@/engine/pathToGlory";
 import { formatPoints } from "@/engine/pointsCap";
+import { isTowList, type StoredList } from "@/engine/storedList";
+import { getTowFaction } from "@/engine/tow/queries";
+import { towSummarize } from "@/engine/tow/validate";
 import { summarize } from "@/engine/validate";
-import type { ArmyList } from "@/engine/types";
 import { catalogueArtClass, catalogueArtSrc, factionArtSrc, preloadBackdropArt } from "@/lib/factionArt";
 import {
   rememberListNavigation,
@@ -29,7 +31,12 @@ import {
 } from "@/lib/builderUi";
 import { useListNav } from "./IosNavSlide";
 
-function rememberOpenList(list: ArmyList) {
+function rememberOpenList(list: StoredList) {
+  if (isTowList(list)) {
+    rememberListOpen(list.factionId, listOpenDisplayNameForHeader(list));
+    rememberListNavigation("forward");
+    return;
+  }
   const faction = getFaction(list.factionId);
   const artId =
     faction?.parentFactionIds?.[0] ??
@@ -40,19 +47,18 @@ function rememberOpenList(list: ArmyList) {
   rememberListNavigation("forward");
 }
 
-export function LibraryListCard({
-  list,
-  index,
-  onRename,
-  onDuplicate,
-  onDelete,
-}: {
-  list: ArmyList;
-  index: number;
-  onRename: (list: ArmyList, name: string) => void;
-  onDuplicate: (list: ArmyList) => void;
-  onDelete: (list: ArmyList) => void;
-}) {
+function cardMeta(list: StoredList) {
+  if (isTowList(list)) {
+    const faction = getTowFaction(list.factionId);
+    const totals = towSummarize(list);
+    return {
+      factionName: faction?.name ?? "Unknown faction",
+      pointsLine: `${formatPoints(totals.points)} / ${formatPoints(list.pointsCap)}`,
+      detail: "The Old World",
+      artSrc: null as string | null,
+      artClass: "",
+    };
+  }
   const faction = getFaction(list.factionId);
   const playCatalogue = catalogueForList(list);
   const totals = playCatalogue ? summarize(list, playCatalogue) : null;
@@ -62,7 +68,37 @@ export function LibraryListCard({
   const spearhead = isSpearheadList(list);
   const pathToGlory = isPathToGloryList(list);
   const packIds = pathToGloryPackIds(list);
-  const artSrc = catalogueArtSrc(faction);
+  return {
+    factionName: faction?.name ?? "Unknown faction",
+    pointsLine: spearhead
+      ? "Spearhead"
+      : pathToGlory
+        ? "Path to Glory"
+        : `${formatPoints(totals?.points ?? 0)} / ${formatPoints(list.pointsCap)}`,
+    detail: spearhead
+      ? (playCatalogue?.name ?? "Spearhead")
+      : pathToGlory && packIds.length > 0
+        ? `${pathToGloryPacksLabel(packIds)} · ${formatPoints(totals?.points ?? 0)} / ${formatPoints(list.pointsCap)}`
+        : (formation?.name ?? "No formation"),
+    artSrc: catalogueArtSrc(faction),
+    artClass: catalogueArtClass(faction),
+  };
+}
+
+export function LibraryListCard({
+  list,
+  index,
+  onRename,
+  onDuplicate,
+  onDelete,
+}: {
+  list: StoredList;
+  index: number;
+  onRename: (list: StoredList, name: string) => void;
+  onDuplicate: (list: StoredList) => void;
+  onDelete: (list: StoredList) => void;
+}) {
+  const meta = cardMeta(list);
   const pathname = usePathname();
   const { goForward } = useListNav();
   const [opening, setOpening] = useState(false);
@@ -103,7 +139,7 @@ export function LibraryListCard({
       />
       <div className="pointer-events-none relative z-[2] flex min-w-0 flex-col p-4 sm:p-5">
         <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-          {faction?.name ?? "Unknown faction"}
+          {meta.factionName}
         </p>
         <input
           aria-label="List name"
@@ -119,18 +155,10 @@ export function LibraryListCard({
         <div className="mt-2 flex w-full flex-1 items-center gap-2">
           <div className="min-w-0 flex-1">
             <p className="text-base font-semibold text-gold-deep">
-              {spearhead
-                ? "Spearhead"
-                : pathToGlory
-                  ? "Path to Glory"
-                : `${formatPoints(totals?.points ?? 0)} / ${formatPoints(list.pointsCap)}`}
+              {meta.pointsLine}
             </p>
             <p className="mt-0.5 text-sm text-sheet-muted sm:text-base">
-              {spearhead
-                ? (playCatalogue?.name ?? "Spearhead")
-                : pathToGlory && packIds.length > 0
-                  ? `${pathToGloryPacksLabel(packIds)} · ${formatPoints(totals?.points ?? 0)} / ${formatPoints(list.pointsCap)}`
-                : (formation?.name ?? "No formation")}
+              {meta.detail}
             </p>
           </div>
           <svg
@@ -171,10 +199,10 @@ export function LibraryListCard({
         </div>
       </div>
 
-      {artSrc ? (
+      {meta.artSrc ? (
         <div className="pointer-events-none relative min-h-[8.5rem] overflow-hidden border-l border-parchment-ink/10">
           <Image
-            src={artSrc}
+            src={meta.artSrc}
             alt=""
             aria-hidden
             fill
@@ -184,7 +212,7 @@ export function LibraryListCard({
             priority={index === 0}
             loading={index === 0 ? "eager" : "lazy"}
             fetchPriority={index === 0 ? "high" : undefined}
-            className={catalogueArtClass(faction)}
+            className={meta.artClass}
           />
           <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#efe6d2]/35" />
         </div>

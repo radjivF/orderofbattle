@@ -12,7 +12,10 @@ import {
 import { usePathname } from "next/navigation";
 import type { BuilderChromeValue } from "./BuilderChrome";
 import type { LibraryChromeValue } from "./LibraryChrome";
-import { listFlowHeaderMode, listFlowIsHome } from "@/lib/listFlowNav";
+import {
+  listFlowHeaderMode,
+  listFlowIsHome,
+} from "@/lib/listFlowNav";
 import { ListNavProvider } from "./IosNavSlide";
 import { ListFlowHeader } from "./ListFlowHeader";
 import { LibraryScreen } from "./LibraryScreen";
@@ -52,13 +55,12 @@ export function ListFlowShell({ children }: { children: ReactNode }) {
     setDecorState(next);
   }, [setDecorState]);
   const decorContext = useMemo(() => ({ setDecor }), [setDecor]);
-  const showBuilderHeader =
-    listFlowHeaderMode({
-      isBuilder,
-      showDetail: navState.showDetail,
-      animatingBack: navState.animatingBack,
-      settled: navState.settled,
-    }) === "builder";
+  const headerMode = listFlowHeaderMode({
+    isBuilder,
+    showDetail: navState.showDetail,
+    animatingBack: navState.animatingBack,
+    settled: navState.settled,
+  });
 
   useEffect(() => {
     if (!isBuilder) {
@@ -79,7 +81,7 @@ export function ListFlowShell({ children }: { children: ReactNode }) {
             onShowDetailChange={setNavState}
             header={
               <ListFlowHeader
-                mode={showBuilderHeader ? "builder" : "library"}
+                mode={headerMode}
                 listId={listId}
                 builderChrome={builderChrome}
                 libraryChrome={libraryChrome}

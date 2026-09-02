@@ -26,6 +26,9 @@ export const SITE_MAKER_URL = "https://zheat.xyz";
 
 export const SITE_GITHUB_URL = "https://github.com/radjivF/orderofbattle";
 
+/** Always shown on exported army lists (not tied to dev/preview host). */
+export const SITE_EXPORT_URL = "http://orderofbattle.app";
+
 export const SITE_PUBLISHED = "2026-08-27";
 
 export function getSiteUrl(): string {

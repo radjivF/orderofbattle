@@ -1,0 +1,1260 @@
+{
+  "id": "grand-cathay-jade-fleet",
+  "name": "Grand Cathay - Jade Fleet",
+  "game": "The Old World",
+  "source": "https://github.com/vflam/Warhammer-The-Old-World",
+  "pointsCapDefault": 2000,
+  "journal": true,
+  "units": [
+    {
+      "id": "miao-ying-the-storm-dragon",
+      "name": "Miao Ying, The Storm Dragon",
+      "category": "characters",
+      "pointsPerModel": 485,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Heavy Infantry (named character)/Behemoth (named character)",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            },
+            {
+              "id": "high-magic",
+              "name": "High Magic",
+              "points": 0
+            },
+            {
+              "id": "elementalism",
+              "name": "Elementalism",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 0
+            },
+            {
+              "id": "wizard-level-4",
+              "name": "Wizard Level 4",
+              "points": 0
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Rallying Cry",
+          "text": "During the Command sub-phase of their turn, if they are not engaged in combat, this character may nominate a single fleeing friendly unit that is within their Command range. The nominated unit immediately makes a Rally test. If this test is failed, the unit may attempt to rally again as normal during the Rally sub-phase."
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Large Target",
+          "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Terror",
+          "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+        },
+        {
+          "name": "Celestial Forged Armour",
+          "text": "A model with this special rule has a Ward save against any wounds suffered. The armour value of this Ward save is shown in brackets after the name of this special rule (shown here as 'X+'), in addition, a Wizard with this special rule may wear armour without penalty."
+        },
+        {
+          "name": "Disdain of the Dragons",
+          "text": "Enemy models that with to issue a challenge whilst within Miao Ying's Command range must first make a Leadership test (using their own Leadership). If the enemy model wishes to issue a challenge whilst engaged in a combat Miao Ying is also engaged in, it must apply a +1 modifier to the dice roll if she is in her Human form, and a +2 modifier if she is in her Dragon form:\n- If this test is passed, the challenge is issued as normal.\n- If this test if failed, the challenge dies on the enemy's lips and goes unissued.\n\n\nFinally, a challenge issued by Miao Ying cannot be refused."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Mastery of the Storm Winds",
+          "text": "Miao Ying may discard up to two of her randomly generated spells (rather than the usual one). When she does so, she may replace them with spells chosen from the Lore of Yang, The Lore of Yin, the signature spell of her chosen Lore of Magic or with The Storm Dragon's Fury."
+        },
+        {
+          "name": "Mastery of the Elemental Winds",
+          "text": "Once per turn, a Wizard within your army that has this special rule and that is within 6\" of one or more friendly Wizards that also have this special rule may apply a +1 modifier to a Casting roll.\n*Note that this is a modifier to the result of a roll - it does not negate a roll of a natural double 1.*"
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        },
+        {
+          "name": "Supreme Matriarch of Nan-Gau",
+          "text": "If your army includes Miao Ying, she must be the army's General. In addition, 0-1 unit of Jade Warriors or 0-1 unit of Jade lancers in her army may be upgraded to Celestial Dragon Guard for +2 point per model. Celestial Dragon Guard have a +1 modifier to their Weapon Skill and Leadership characteristic (to a maximum of 10) and gain the Celestial Armour (6+) special rule."
+        },
+        {
+          "name": "Will of the Dragons",
+          "text": "A unit with this special rule may re-roll a failed Panic test when a friendly unit is destroyed whilst within 6\" of it, or when it is fled through by a friendly unit."
+        },
+        {
+          "name": "Wrath of the Storm",
+          "text": "All units of Jade Warriors and Jade Lancers included in an army that is led by Miao Ying gain the Hatred (Warriors of Chaos & Daemonic models) special rule."
+        },
+        {
+          "name": "Transformation of the Dragon",
+          "text": "A Cathayan Dragon may adopt both Human and Dragon forms. To represent this, you may choose a Cathayan Dragon's form at the start of the game by simply placing the appropriate model on the battlefield during deployment. Each form has its own profile of characteristics.\n\n\nHuman Form,\u00a0Dragon Form, Death of a Dragon, Transformation"
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Dragon fire",
+          "range": "N/A",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Breath Weapon, Flaming Attacks"
+        }
+      ],
+      "stats": {
+        "M": "8",
+        "WS": "8",
+        "BS": "3",
+        "S": "7",
+        "T": "6",
+        "W": "7",
+        "I": "6",
+        "A": "6",
+        "Ld": "10"
+      }
+    },
+    {
+      "id": "shugengan-lord",
+      "name": "Shugengan Lord",
+      "category": "characters",
+      "pointsPerModel": 220,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous creature (character)",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "armour",
+          "name": "Armour",
+          "options": [
+            {
+              "id": "light-armour",
+              "name": "Light Armour",
+              "points": 0
+            },
+            {
+              "id": "heavy-armour",
+              "name": "Heavy Armour",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-3",
+              "name": "Wizard Level 3",
+              "points": 30
+            },
+            {
+              "id": "wizard-level-4",
+              "name": "Wizard Level 4",
+              "points": 60
+            },
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            },
+            {
+              "id": "elementalism",
+              "name": "Elementalism",
+              "points": 0
+            },
+            {
+              "id": "illusion",
+              "name": "Illusion",
+              "points": 0
+            },
+            {
+              "id": "high-magic",
+              "name": "High Magic",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "celestial-blade",
+              "name": "Celestial Blade",
+              "points": 6
+            },
+            {
+              "id": "cathayan-lance",
+              "name": "Cathayan Lance",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "dragon-fire-pistol",
+              "name": "Dragon Fire Pistol",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "cathayan-lore",
+          "name": "Cathayan Lore",
+          "options": [
+            {
+              "id": "lore-of-yang",
+              "name": "Lore of Yang",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Lore of Yang",
+                  "text": "A Wizard with the 'Lore of Yang' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below."
+                }
+              ]
+            },
+            {
+              "id": "lore-of-yin",
+              "name": "Lore of Yin",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Lore of Yin",
+                  "text": "A Wizard with the \u2018Lore of Yin\u2019 special rule may discard one\u00a0of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armoured Hide",
+          "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+        },
+        {
+          "name": "Celestial Forged Armour",
+          "text": "A model with this special rule has a Ward save against any wounds suffered. The armour value of this Ward save is shown in brackets after the name of this special rule (shown here as 'X+'), in addition, a Wizard with this special rule may wear armour without penalty."
+        },
+        {
+          "name": "Counter Charge",
+          "text": "This special rule can only be used by units that consist entirely of models with this special rule. When a unit with this special rule is charged in its front arc by an enemy unit whose troop type is \u2018cavalry,\u2019 \u2018chariot\u2019 or \u2018monster\u2019, it may declare a \u2018Counter Charge\u2019 charge reaction:\n\n Counter Charge: The unit surges forward to meet the enemy charge. Measure the distance between the two units. If the distance is less than the Movement characteristic of the charging unit, the charged unit has not enough time to meet the enemy charge and must either Hold or Flee instead.\n\n Otherwise, pivot the unit about its centre so that it is facing directly towards the centre of the charging enemy unit. After pivoting, the unit moves D3+1\" directly towards the enemy unit. Both units are considered to have charged during this turn.\n\n Fleeing units and units already engaged in combat when charged cannot Counter Charge. A unit can only Counter Charge in response to one charge per turn, even if charged by multiple units. Once all charges have been declared, the inactive player can choose which charging unit to Counter Charge. The unit will then Hold against the other charging units."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Mastery of the Elemental Winds",
+          "text": "Once per turn, a Wizard within your army that has this special rule and that is within 6\" of one or more friendly Wizards that also have this special rule may apply a +1 modifier to a Casting roll.\n*Note that this is a modifier to the result of a roll - it does not negate a roll of a natural double 1.*"
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Will of the Dragons",
+          "text": "A unit with this special rule may re-roll a failed Panic test when a friendly unit is destroyed whilst within 6\" of it, or when it is fled through by a friendly unit."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Celestial Blade",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1",
+          "specialRules": "Strike First"
+        },
+        {
+          "name": "Cathayan Lance",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Fight in Extra Rank"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "6",
+        "BS": "3",
+        "S": "4",
+        "T": "5",
+        "W": "7",
+        "I": "6",
+        "A": "4",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "shugengan-general",
+      "name": "Shugengan General",
+      "category": "characters",
+      "pointsPerModel": 145,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous creature (character)",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "armour",
+          "name": "Armour",
+          "options": [
+            {
+              "id": "light-armour",
+              "name": "Light Armour",
+              "points": 0
+            },
+            {
+              "id": "heavy-armour",
+              "name": "Heavy Armour",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 30
+            },
+            {
+              "id": "wizard-level-1",
+              "name": "Wizard Level 1",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            },
+            {
+              "id": "elementalism",
+              "name": "Elementalism",
+              "points": 0
+            },
+            {
+              "id": "illusion",
+              "name": "Illusion",
+              "points": 0
+            },
+            {
+              "id": "high-magic",
+              "name": "High Magic",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "celestial-blade",
+              "name": "Celestial Blade",
+              "points": 6
+            },
+            {
+              "id": "cathayan-lance",
+              "name": "Cathayan Lance",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "dragon-fire-pistol",
+              "name": "Dragon Fire Pistol",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "cathayan-lore",
+          "name": "Cathayan Lore",
+          "options": [
+            {
+              "id": "lore-of-yang",
+              "name": "Lore of Yang",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Lore of Yang",
+                  "text": "A Wizard with the 'Lore of Yang' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below."
+                }
+              ]
+            },
+            {
+              "id": "lore-of-yin",
+              "name": "Lore of Yin",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Lore of Yin",
+                  "text": "A Wizard with the \u2018Lore of Yin\u2019 special rule may discard one\u00a0of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armoured Hide",
+          "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+        },
+        {
+          "name": "Celestial Forged Armour",
+          "text": "A model with this special rule has a Ward save against any wounds suffered. The armour value of this Ward save is shown in brackets after the name of this special rule (shown here as 'X+'), in addition, a Wizard with this special rule may wear armour without penalty."
+        },
+        {
+          "name": "Counter Charge",
+          "text": "This special rule can only be used by units that consist entirely of models with this special rule. When a unit with this special rule is charged in its front arc by an enemy unit whose troop type is \u2018cavalry,\u2019 \u2018chariot\u2019 or \u2018monster\u2019, it may declare a \u2018Counter Charge\u2019 charge reaction:\n\n Counter Charge: The unit surges forward to meet the enemy charge. Measure the distance between the two units. If the distance is less than the Movement characteristic of the charging unit, the charged unit has not enough time to meet the enemy charge and must either Hold or Flee instead.\n\n Otherwise, pivot the unit about its centre so that it is facing directly towards the centre of the charging enemy unit. After pivoting, the unit moves D3+1\" directly towards the enemy unit. Both units are considered to have charged during this turn.\n\n Fleeing units and units already engaged in combat when charged cannot Counter Charge. A unit can only Counter Charge in response to one charge per turn, even if charged by multiple units. Once all charges have been declared, the inactive player can choose which charging unit to Counter Charge. The unit will then Hold against the other charging units."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Mastery of the Elemental Winds",
+          "text": "Once per turn, a Wizard within your army that has this special rule and that is within 6\" of one or more friendly Wizards that also have this special rule may apply a +1 modifier to a Casting roll.\n*Note that this is a modifier to the result of a roll - it does not negate a roll of a natural double 1.*"
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Will of the Dragons",
+          "text": "A unit with this special rule may re-roll a failed Panic test when a friendly unit is destroyed whilst within 6\" of it, or when it is fled through by a friendly unit."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Celestial Blade",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1",
+          "specialRules": "Strike First"
+        },
+        {
+          "name": "Cathayan Lance",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Fight in Extra Rank"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "5",
+        "BS": "3",
+        "S": "4",
+        "T": "5",
+        "W": "6",
+        "I": "5",
+        "A": "3",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "gate-master",
+      "name": "Gate Master",
+      "category": "characters",
+      "pointsPerModel": 80,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Heavy infantry (character)",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "celestial-blade",
+              "name": "Celestial Blade",
+              "points": 6
+            },
+            {
+              "id": "cathayan-lance",
+              "name": "Cathayan Lance",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "cathayan-warhorse",
+              "name": "Cathayan Warhorse",
+              "points": 16
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Harmony of Stone & Steel",
+          "text": "A unit joined by a character with this special rule may re-roll any failed Leadership test when attempting to reform after running down a foe, when attempting to redirect a charge, or when making a Restraint test."
+        },
+        {
+          "name": "Will of the Dragons",
+          "text": "A unit with this special rule may re-roll a failed Panic test when a friendly unit is destroyed whilst within 6\" of it, or when it is fled through by a friendly unit."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Celestial Blade",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1",
+          "specialRules": "Strike First"
+        },
+        {
+          "name": "Cathayan Lance",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Fight in Extra Rank"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "7",
+        "BS": "4",
+        "S": "4",
+        "T": "4",
+        "W": "3",
+        "I": "4",
+        "A": "3",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "gate-keeper",
+      "name": "Gate Keeper",
+      "category": "characters",
+      "pointsPerModel": 45,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Heavy infantry (character)",
+      "magicItems": true,
+      "command": [
+        {
+          "id": "battle-standard-bearer",
+          "name": "Battle Standard Bearer",
+          "points": 25
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "celestial-blade",
+              "name": "Celestial Blade",
+              "points": 6
+            },
+            {
+              "id": "cathayan-lance",
+              "name": "Cathayan Lance",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "cathayan-warhorse",
+              "name": "Cathayan Warhorse",
+              "points": 16
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Harmony of Stone & Steel",
+          "text": "A unit joined by a character with this special rule may re-roll any failed Leadership test when attempting to reform after running down a foe, when attempting to redirect a charge, or when making a Restraint test."
+        },
+        {
+          "name": "Will of the Dragons",
+          "text": "A unit with this special rule may re-roll a failed Panic test when a friendly unit is destroyed whilst within 6\" of it, or when it is fled through by a friendly unit."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Celestial Blade",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1",
+          "specialRules": "Strike First"
+        },
+        {
+          "name": "Cathayan Lance",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Fight in Extra Rank"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "6",
+        "BS": "4",
+        "S": "4",
+        "T": "4",
+        "W": "2",
+        "I": "4",
+        "A": "2",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "strategist",
+      "name": "Strategist",
+      "category": "characters",
+      "pointsPerModel": 40,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry (character)",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "bombs",
+          "name": "Bombs",
+          "options": [
+            {
+              "id": "gunpowder-bombs",
+              "name": "Gunpowder Bombs",
+              "points": 5
+            },
+            {
+              "id": "dragon-fire-bombs",
+              "name": "Dragon Fire Bombs",
+              "points": 10
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Grand Strategist",
+          "text": "Unless the character is fleeing, all friendly units within their Command range, except your General, can use this character's Leadership characteristic instead of their own. In addition, once per turn a friendly unit that wins a round of combat whilst within this character's Command range may choose to Fall Back in Good Order rather than making a follow up or pursuit move."
+        },
+        {
+          "name": "Harmony of Stone & Steel",
+          "text": "A unit joined by a character with this special rule may re-roll any failed Leadership test when attempting to reform after running down a foe, when attempting to redirect a charge, or when making a Restraint test."
+        },
+        {
+          "name": "Will of the Dragons",
+          "text": "A unit with this special rule may re-roll a failed Panic test when a friendly unit is destroyed whilst within 6\" of it, or when it is fled through by a friendly unit."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Gunpowder Bombs",
+          "range": "9\"",
+          "strength": "3",
+          "ap": "-",
+          "specialRules": "Armour Bane (1), Move & Shoot, Quick Shot"
+        },
+        {
+          "name": "Dragon Fire Bombs",
+          "range": "9\"",
+          "strength": "3",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Flaming Attacks, Move & Shoot, Quick Shot"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "4",
+        "BS": "4",
+        "S": "3",
+        "T": "3",
+        "W": "2",
+        "I": "3",
+        "A": "1",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "jade-warriors",
+      "name": "Jade Warriors",
+      "category": "core",
+      "pointsPerModel": 8,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": true,
+      "canJoinUnits": false,
+      "troopType": "Heavy infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "jade-officer",
+          "name": "Jade Officer",
+          "points": 6
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "halberd",
+              "name": "Halberd",
+              "points": 0
+            },
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 0
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Defensive Stance",
+          "text": "Unless it charged during the preceding Movement phase, or counts as having charged this turn, a unit with this special rule may re-roll any Armour Save rolls of a natural 1 made during the Combat phase."
+        },
+        {
+          "name": "Detachment",
+          "text": "A unit with this special rule can be fielded as a \u2018detachment\u2019 (see page 282)."
+        },
+        {
+          "name": "Regimental Unit",
+          "text": "A unit with this special rule can be accompanied by \u2018detachments\u2019 (see page 282)."
+        },
+        {
+          "name": "Will of the Dragons",
+          "text": "A unit with this special rule may re-roll a failed Panic test when a friendly unit is destroyed whilst within 6\" of it, or when it is fled through by a friendly unit."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Halberd",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1 (-2)",
+          "specialRules": "Armour Bane (1), Requires Two Hands"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "4",
+        "BS": "3",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "3",
+        "A": "1",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "jade-lancer",
+      "name": "Jade Lancer",
+      "category": "core",
+      "pointsPerModel": 20,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Heavy cavalry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "jade-lancer-officer",
+          "name": "Jade Lancer Officer",
+          "points": 6
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Cathayan Cataphracts",
+          "text": "When a unit in which the majority of the models have this special rule makes a follow up move, the unit counts as having charged during the next turn."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Counter Charge",
+          "text": "This special rule can only be used by units that consist entirely of models with this special rule. When a unit with this special rule is charged in its front arc by an enemy unit whose troop type is \u2018cavalry,\u2019 \u2018chariot\u2019 or \u2018monster\u2019, it may declare a \u2018Counter Charge\u2019 charge reaction:\n\n Counter Charge: The unit surges forward to meet the enemy charge. Measure the distance between the two units. If the distance is less than the Movement characteristic of the charging unit, the charged unit has not enough time to meet the enemy charge and must either Hold or Flee instead.\n\n Otherwise, pivot the unit about its centre so that it is facing directly towards the centre of the charging enemy unit. After pivoting, the unit moves D3+1\" directly towards the enemy unit. Both units are considered to have charged during this turn.\n\n Fleeing units and units already engaged in combat when charged cannot Counter Charge. A unit can only Counter Charge in response to one charge per turn, even if charged by multiple units. Once all charges have been declared, the inactive player can choose which charging unit to Counter Charge. The unit will then Hold against the other charging units."
+        },
+        {
+          "name": "Horde",
+          "text": "A unit with this special rule may increase the maximum Rank Bonus it can claim (as determined by its troop type) by one."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Will of the Dragons",
+          "text": "A unit with this special rule may re-roll a failed Panic test when a friendly unit is destroyed whilst within 6\" of it, or when it is fled through by a friendly unit."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "4",
+        "BS": "3",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "3",
+        "A": "1",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "fire-rain-rocket-battery",
+      "name": "Fire Rain Rocket Battery",
+      "category": "special",
+      "pointsPerModel": 130,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "War machine",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Bastion Rockets",
+          "range": "12-48\"",
+          "strength": "4(5)",
+          "ap": "-1(-3)",
+          "specialRules": "Armour Bane (1), Bombardment, Cumbersome, Move or Shoot, Multiple Wounds (D6)"
+        },
+        {
+          "name": "Rocket Battery",
+          "range": "12-48\"",
+          "strength": "3(4)",
+          "ap": "-1(-1)",
+          "specialRules": "Armour Bane (1), Bombardment, Cumbersome, Flaming Attacks, Move or Shoot, Wailing Spirits"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "-",
+        "BS": "-",
+        "S": "-",
+        "T": "6",
+        "W": "3",
+        "I": "-",
+        "A": "-",
+        "Ld": "-"
+      }
+    },
+    {
+      "id": "cathayan-grand-cannon",
+      "name": "Cathayan Grand Cannon",
+      "category": "special",
+      "pointsPerModel": 130,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "War machine",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Grand cannon",
+          "range": "48\"",
+          "strength": "10",
+          "ap": "-3",
+          "specialRules": "Armour Bane (3), Cannon Fire, Cumbersome, Move or Shoot, Multiple Wounds (D3+1), Thunderous Impact"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "-",
+        "BS": "-",
+        "S": "-",
+        "T": "6",
+        "W": "3",
+        "I": "-",
+        "A": "-",
+        "Ld": "-"
+      }
+    },
+    {
+      "id": "cathayan-sentinel",
+      "name": "Cathayan Sentinel",
+      "category": "rare",
+      "pointsPerModel": 230,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Behemoth",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "cathayan-sentinel-stone",
+          "name": "Cathayan Sentinel Stone",
+          "options": [
+            {
+              "id": "terracotta-sentinel",
+              "name": "Terracotta Sentinel",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Terracotta Sentinel",
+                  "text": "A Terracotta Sentinel has the Regeneration (6+) special rule."
+                }
+              ]
+            },
+            {
+              "id": "jade-sentinel",
+              "name": "Jade Sentinel",
+              "points": 20,
+              "specialRules": [
+                {
+                  "name": "Jade Sentinel",
+                  "text": "A Jade Sentinel knows a single spell (chosen by their controlling player before armies are deployed) from either the Battle Magic or Elementalism Lore of Magic. It may cast this spell as a Bound spell with a Power Level of 3."
+                }
+              ]
+            },
+            {
+              "id": "obsidian-sentinel",
+              "name": "Obsidian Sentinel",
+              "points": 25,
+              "specialRules": [
+                {
+                  "name": "Obsidian Sentinel",
+                  "text": "An Obsidian Sentinel has the Magic Resitance (-2) special rule. In addition, any enemy Wizard that wishes to cash a spell whilst within 12\" of one or more Obsidian Sentinels must first make a Leadership test. If this test is failed, the Wizard's Casting roll suffers a -3 modifier. If this test is passed, the Wizard's Casting roll suffers a -1 modifier."
+                }
+              ]
+            },
+            {
+              "id": "granite-sentinel",
+              "name": "Granite Sentinel",
+              "points": 35,
+              "specialRules": [
+                {
+                  "name": "Granite Sentinel",
+                  "text": "A Granite Sentinel improves its armour value by 1. In addition, a Granite Sentinel is immune to the Multiple Wounds (X) special rule. If a Granite Sentinel suffers an unsaved wound from an attack with this special rule, it loses a single Wound."
+                }
+              ]
+            },
+            {
+              "id": "warpstone-sentinel",
+              "name": "Warpstone Sentinel",
+              "points": 40,
+              "specialRules": [
+                {
+                  "name": "Warpstone Sentinel",
+                  "text": "A Warpstone Sentinel has the Magic Attacks special rule. In addition, whilst in base contact with one or more Warpstone Sentinels, enemy units suffer a -1 modifier to their Toughness characteristic (to a minimum of 1)."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Immune To Psychology",
+          "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+        },
+        {
+          "name": "Implacable",
+          "text": "Once per game, during a turn in which it was charged, this model may choose not to Give Ground should it lose a round of combat. In addition, once per game this model may re-roll its Charge roll."
+        },
+        {
+          "name": "Large Target",
+          "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Terror",
+          "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+        },
+        {
+          "name": "Timmm-Berrr!",
+          "text": "When this model is reduced to zero Wounds, the winner of a roll-off chooses one of its arcs (front, flank or rear) for it to fall into. Any units that are within the chosen arc and in base contact with this model suffer D6 hits, each using the Strength characteristic of this model, with an AP of -1. Once these hits are resolved, this model is removed from play."
+        },
+        {
+          "name": "Unbreakable",
+          "text": "If a unit with this special rule loses a round of combat, it is not required to make a Break test. Instead, it will automatically Give Ground as it is pushed back by the enemy. Characters that are not Unbreakable cannot join units that are, and vice versa."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Great Blade (Deadly Strike)",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-4",
+          "specialRules": "Killing Blow, Monster Slayer, Multiple Wounds (D3)"
+        },
+        {
+          "name": "Great Blade (Scything Blow)",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Extra Attacks (+2D3), Strike Last"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "5",
+        "BS": "1",
+        "S": "6",
+        "T": "6",
+        "W": "6",
+        "I": "3",
+        "A": "3",
+        "Ld": "10"
+      }
+    },
+    {
+      "id": "lord-magistrate",
+      "name": "Lord Magistrate",
+      "category": "characters",
+      "pointsPerModel": 65,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry (character)",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "bombs",
+          "name": "Bombs",
+          "options": [
+            {
+              "id": "gunpowder-bombs",
+              "name": "Gunpowder Bombs",
+              "points": 5
+            },
+            {
+              "id": "dragon-fire-bombs",
+              "name": "Dragon Fire Bombs",
+              "points": 10
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Grand Strategist",
+          "text": "Unless the character is fleeing, all friendly units within their Command range, except your General, can use this character's Leadership characteristic instead of their own. In addition, once per turn a friendly unit that wins a round of combat whilst within this character's Command range may choose to Fall Back in Good Order rather than making a follow up or pursuit move."
+        },
+        {
+          "name": "Harmony of Stone & Steel",
+          "text": "A unit joined by a character with this special rule may re-roll any failed Leadership test when attempting to reform after running down a foe, when attempting to redirect a charge, or when making a Restraint test."
+        },
+        {
+          "name": "Will of the Dragons",
+          "text": "A unit with this special rule may re-roll a failed Panic test when a friendly unit is destroyed whilst within 6\" of it, or when it is fled through by a friendly unit."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Gunpowder Bombs",
+          "range": "9\"",
+          "strength": "3",
+          "ap": "-",
+          "specialRules": "Armour Bane (1), Move & Shoot, Quick Shot"
+        },
+        {
+          "name": "Dragon Fire Bombs",
+          "range": "9\"",
+          "strength": "3",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Flaming Attacks, Move & Shoot, Quick Shot"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "5",
+        "BS": "4",
+        "S": "3",
+        "T": "3",
+        "W": "3",
+        "I": "4",
+        "A": "2",
+        "Ld": "9"
+      }
+    }
+  ]
+}

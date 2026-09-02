@@ -43,9 +43,25 @@ import type {
   Selection,
 } from "./types";
 
+export type ListIssueOptionsField =
+  | "points"
+  | "spell-lore"
+  | "prayer-lore"
+  | "tactics"
+  | "scourge";
+
+export type ListIssueTarget =
+  | { area: "add-regiment" }
+  | { area: "add-hero"; regimentId: string }
+  | { area: "regiment"; regimentId: string }
+  | { area: "unit"; selectionId: string }
+  | { area: "add-ror" }
+  | { area: "options"; field: ListIssueOptionsField };
+
 export type ListIssue = {
   tone: "ok" | "warn" | "bad";
   text: string;
+  target?: ListIssueTarget;
 };
 
 export type ListTotals = {
@@ -73,10 +89,18 @@ export function summarize(
   const uniqueSeen = new Set<string>();
   const issues: ListIssue[] = [];
 
-  const addSel = (selection: Selection, where: string) => {
+  const addSel = (
+    selection: Selection,
+    where: string,
+    target?: ListIssueTarget,
+  ) => {
     const unit = getUnit(faction, selection.unitId);
     if (!unit) {
-      issues.push({ tone: "bad", text: `Unknown unit in ${where}.` });
+      issues.push({
+        tone: "bad",
+        text: `Unknown unit in ${where}.`,
+        target,
+      });
       return;
     }
     points += selectionPoints(unit, selection.reinforced, selection);
@@ -84,6 +108,7 @@ export function summarize(
       issues.push({
         tone: "bad",
         text: `${unit.name} cannot be reinforced.`,
+        target,
       });
     }
     if (unit.unique) {
@@ -92,6 +117,7 @@ export function summarize(
         issues.push({
           tone: "bad",
           text: `${unitBaseName(unit.name)} is unique.`,
+          target,
         });
       }
       uniqueSeen.add(base);
@@ -100,22 +126,33 @@ export function summarize(
 
   for (const regiment of list.regiments) {
     if (!regiment.hero) {
-      issues.push({ tone: "bad", text: "A regiment needs a hero." });
+      issues.push({
+        tone: "bad",
+        text: "A regiment needs a hero.",
+        target: { area: "add-hero", regimentId: regiment.id },
+      });
       continue;
     }
     const hero = getUnit(faction, regiment.hero.unitId);
-    addSel(regiment.hero, "a regiment");
+    addSel(regiment.hero, "a regiment", {
+      area: "unit",
+      selectionId: regiment.hero.id,
+    });
     if (!isSpearheadList(list)) {
       const cap = regimentSlotCap(list, regiment.id);
       if (regiment.units.length > cap) {
         issues.push({
           tone: "bad",
           text: `${hero?.name ?? "A regiment"} has too many units.`,
+          target: { area: "regiment", regimentId: regiment.id },
         });
       }
     }
     for (const slot of regiment.units) {
-      addSel(slot, "a regiment");
+      addSel(slot, "a regiment", {
+        area: "unit",
+        selectionId: slot.id,
+      });
       const companion = getUnit(faction, slot.unitId);
       if (
         !isSpearheadList(list) &&
@@ -126,26 +163,35 @@ export function summarize(
         issues.push({
           tone: "bad",
           text: `${companion.name} cannot join ${hero.name}.`,
+          target: { area: "unit", selectionId: slot.id },
         });
       }
     }
   }
 
   for (const aux of list.auxiliaries) {
-    addSel(aux, "auxiliaries");
+    addSel(aux, "auxiliaries", {
+      area: "unit",
+      selectionId: aux.id,
+    });
   }
 
   const rorPick = list.regimentOfRenown;
   if (rorPick) {
     const ror = getRegimentOfRenown(rorPick.renownId);
     if (!ror) {
-      issues.push({ tone: "bad", text: "Unknown Regiment of Renown." });
+      issues.push({
+        tone: "bad",
+        text: "Unknown Regiment of Renown.",
+        target: { area: "add-ror" },
+      });
     } else if (
       !catalogueMatchIds(faction).some((id) => ror.factionIds.includes(id))
     ) {
       issues.push({
         tone: "bad",
         text: `${ror.name} is not available to this faction.`,
+        target: { area: "add-ror" },
       });
     } else {
       points += ror.points;
@@ -155,6 +201,7 @@ export function summarize(
           issues.push({
             tone: "bad",
             text: `Unknown unit in ${ror.name}.`,
+            target: { area: "add-ror" },
           });
           continue;
         }
@@ -164,6 +211,7 @@ export function summarize(
             issues.push({
               tone: "bad",
               text: `${unitBaseName(template.name)} is unique.`,
+              target: { area: "add-ror" },
             });
           }
           uniqueSeen.add(base);
@@ -213,15 +261,24 @@ export function summarize(
   }
 
   if (list.regiments.length === 0) {
-    issues.push({ tone: "warn", text: "Add a regiment to begin." });
+    issues.push({
+      tone: "warn",
+      text: "Add a regiment to begin.",
+      target: { area: "add-regiment" },
+    });
   } else if (list.regiments.length > 5) {
-    issues.push({ tone: "bad", text: "Maximum five regiments." });
+    issues.push({
+      tone: "bad",
+      text: "Maximum five regiments.",
+      target: { area: "add-regiment" },
+    });
   }
 
   if (points > list.pointsCap) {
     issues.push({
       tone: "bad",
       text: `${points - list.pointsCap} points over.`,
+      target: { area: "options", field: "points" },
     });
   }
 
@@ -244,6 +301,10 @@ export function summarize(
           warmasters.length === 1
             ? "The Warmaster must be your general."
             : "A Warmaster must be your general.",
+        target: {
+          area: "regiment",
+          regimentId: list.generalRegimentId ?? list.regiments[0]?.id ?? "",
+        },
       });
     }
   }
@@ -254,7 +315,11 @@ export function summarize(
     !isPathToGloryList(list) &&
     !list.spellLoreId
   ) {
-    issues.push({ tone: "warn", text: "Choose a spell lore." });
+    issues.push({
+      tone: "warn",
+      text: "Choose a spell lore.",
+      target: { area: "options", field: "spell-lore" },
+    });
   }
 
   if (
@@ -271,7 +336,11 @@ export function summarize(
     faction.prayerLores.length > 0 &&
     !list.prayerLoreId
   ) {
-    issues.push({ tone: "warn", text: "Choose a prayer lore." });
+    issues.push({
+      tone: "warn",
+      text: "Choose a prayer lore.",
+      target: { area: "options", field: "prayer-lore" },
+    });
   }
 
   warnUniqueEnhancement(list, faction, list.artefact, "artefact", issues);
@@ -288,12 +357,20 @@ export function summarize(
     !isPathToGloryList(list) &&
     (list.battleTacticCardIds ?? []).length === 0
   ) {
-    issues.push({ tone: "warn", text: "Pick up to 2 battle tactic cards." });
+    issues.push({
+      tone: "warn",
+      text: "Pick up to 2 battle tactic cards.",
+      target: { area: "options", field: "tactics" },
+    });
   } else if (
     !isPathToGloryList(list) &&
     (list.battleTacticCardIds ?? []).length > 2
   ) {
-    issues.push({ tone: "bad", text: "Maximum two battle tactic cards." });
+    issues.push({
+      tone: "bad",
+      text: "Maximum two battle tactic cards.",
+      target: { area: "options", field: "tactics" },
+    });
   }
 
   const remaining = list.pointsCap - points;
@@ -490,11 +567,15 @@ function warnScourgeSeason(
     issues.push({
       tone: "warn",
       text: "Choose Scourge of Aqshy or Scourge of Ghyran.",
+      target: { area: "options", field: "scourge" },
     });
     return;
   }
 
-  const checkUnit = (unit: { name: string } | undefined) => {
+  const checkUnit = (
+    unit: { name: string } | undefined,
+    selectionId?: string,
+  ) => {
     if (!unit) {
       return;
     }
@@ -503,20 +584,23 @@ function warnScourgeSeason(
       issues.push({
         tone: "bad",
         text: `${unit.name} does not match ${scourgeSeasonLabel(realm)}.`,
+        target: selectionId
+          ? { area: "unit", selectionId }
+          : { area: "options", field: "scourge" },
       });
     }
   };
 
   for (const regiment of list.regiments) {
     if (regiment.hero) {
-      checkUnit(getUnit(faction, regiment.hero.unitId));
+      checkUnit(getUnit(faction, regiment.hero.unitId), regiment.hero.id);
     }
     for (const slot of regiment.units) {
-      checkUnit(getUnit(faction, slot.unitId));
+      checkUnit(getUnit(faction, slot.unitId), slot.id);
     }
   }
   for (const aux of list.auxiliaries) {
-    checkUnit(getUnit(faction, aux.unitId));
+    checkUnit(getUnit(faction, aux.unitId), aux.id);
   }
   const rorPick = list.regimentOfRenown;
   if (rorPick) {
@@ -535,6 +619,7 @@ function warnScourgeSeason(
       issues.push({
         tone: "bad",
         text: `${card.name} is not a ${scourgeSeasonLabel(realm)} battle tactic card.`,
+        target: { area: "options", field: "tactics" },
       });
     }
   }
@@ -667,6 +752,7 @@ function warnUniqueEnhancement(
       issues.push({
         tone: "warn",
         text: `${rorHero.name} cannot take ${article.toLowerCase()} ${label}.`,
+        target: { area: "unit", selectionId: pick.heroSelectionId },
       });
     }
   } else {
@@ -675,6 +761,7 @@ function warnUniqueEnhancement(
       issues.push({
         tone: "warn",
         text: `Unique heroes cannot take ${article.toLowerCase()} ${label}.`,
+        target: { area: "unit", selectionId: pick.heroSelectionId },
       });
     }
   }
@@ -751,6 +838,7 @@ function warnMonstrousTrait(
     issues.push({
       tone: "warn",
       text: `${unit.name} cannot take a monstrous trait.`,
+      target: { area: "unit", selectionId: pick.heroSelectionId },
     });
   }
   if (!namedOption(faction.monstrousTraits ?? [], pick.optionId)) {
@@ -776,6 +864,7 @@ function warnVisionOfFate(
     issues.push({
       tone: "warn",
       text: `${unit.name} cannot take a Vision of Fate.`,
+      target: { area: "unit", selectionId: pick.heroSelectionId },
     });
   }
   if (!namedOption(faction.visionsOfFate ?? [], pick.optionId)) {
@@ -811,11 +900,13 @@ function warnSpecialEnhancements(
       issues.push({
         tone: "warn",
         text: `${table.name} is not available for this Scourge season.`,
+        target: { area: "unit", selectionId: pick.heroSelectionId },
       });
     } else if (unit && table && !canTakeSpecialEnhancement(unit, table)) {
       issues.push({
         tone: "warn",
         text: `${unit.name} cannot take ${table.name}.`,
+        target: { area: "unit", selectionId: pick.heroSelectionId },
       });
     }
     if (!table || !namedOption(table.options, pick.optionId)) {

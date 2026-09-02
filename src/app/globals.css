@@ -356,6 +356,13 @@ a {
   touch-action: pan-y;
 }
 
+.modal-sheet--page {
+  max-width: none;
+  width: 100%;
+  height: calc(100dvh - 0.5rem);
+  max-height: calc(100dvh - 0.5rem);
+}
+
 .modal-sheet-scroll {
   overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;
@@ -457,6 +464,23 @@ a {
   cursor: grab;
 }
 
+.modal-sheet--page .modal-grabber {
+  background:
+    linear-gradient(
+        to bottom,
+        transparent 0.625rem,
+        color-mix(in srgb, var(--parchment) 45%, transparent) 0.625rem,
+        color-mix(in srgb, var(--parchment) 45%, transparent) 0.9375rem,
+        transparent 0.9375rem
+      )
+      center / 2.25rem 100% no-repeat;
+}
+
+.modal-sheet--page .modal-sheet-scroll-host::before,
+.modal-sheet--page .modal-sheet-scroll-host::after {
+  display: none;
+}
+
 .modal-sheet--animating {
   transition: transform 280ms cubic-bezier(0.32, 0.72, 0, 1);
 }
@@ -485,6 +509,61 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .modal-sheet {
     animation: none;
+  }
+}
+
+.app-menu-drawer {
+  animation: app-menu-drawer-in 280ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.app-menu-nav {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* forwards holds the panel off-screen: the unmount timer matches the duration,
+   so without it the drawer snaps back to open for a frame before it leaves. */
+.app-menu-drawer--out {
+  animation: app-menu-drawer-out 280ms cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+.app-menu-scrim {
+  transition: opacity 280ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.app-menu-scrim--out {
+  opacity: 0;
+}
+
+@keyframes app-menu-drawer-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes app-menu-drawer-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-menu-drawer,
+  .app-menu-drawer--out {
+    animation: none;
+  }
+
+  .app-menu-scrim {
+    transition: none;
   }
 }
 
@@ -555,7 +634,7 @@ a {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: stretch;
-  gap: 8px;
+  gap: 12px;
 }
 
 .ios-sheet-actions-row > button {
@@ -675,6 +754,22 @@ a {
 .ios-tab-underline--parchment .ios-tab-underline-option--selected {
   border-bottom-color: var(--parchment-ink);
   color: var(--parchment-ink);
+}
+
+.ios-tab-underline--spread {
+  width: 100%;
+}
+
+.ios-tab-underline--spread .ios-tab-underline-option {
+  flex: 1 1 0;
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0 8px;
+  font-size: 15px;
+  text-align: center;
 }
 
 .ios-glass-button {

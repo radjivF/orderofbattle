@@ -1,10 +1,12 @@
 import { formatRuleListItem, parseRuleText } from "@/lib/ruleText";
+import { HighlightedText } from "./HighlightedText";
 
 type Props = {
   text: string;
   label?: string;
   className?: string;
   itemClassName?: string;
+  highlight?: string;
 };
 
 const BODY_CLASS = "text-sm leading-relaxed";
@@ -16,6 +18,7 @@ export function RuleText({
   label,
   className = "",
   itemClassName = "text-parchment-ink/75",
+  highlight,
 }: Props) {
   const parsed = parseRuleText(text);
   if (parsed.kind === "prose") {
@@ -26,7 +29,7 @@ export function RuleText({
       <div className={className}>
         <p className={`${BODY_CLASS} ${itemClassName}`}>
           {label ? <span className={LABEL_CLASS}>{label}</span> : null}
-          {parsed.text}
+          <HighlightedText text={parsed.text} query={highlight} />
         </p>
       </div>
     );
@@ -41,31 +44,43 @@ export function RuleText({
       {label || parsed.preface ? (
         <p className={`${BODY_CLASS} ${itemClassName}`}>
           {label ? <span className={LABEL_CLASS}>{label}</span> : null}
-          {parsed.preface}
+          {parsed.preface ? (
+            <HighlightedText text={parsed.preface} query={highlight} />
+          ) : null}
         </p>
       ) : null}
       <ul
         className={`list-disc space-y-1.5 pl-5 ${BODY_CLASS} ${itemClassName} ${label || parsed.preface ? "mt-1" : ""}`}
       >
         {parsed.items.map((item) => (
-          <RuleListItem key={item} text={item} />
+          <RuleListItem key={item} text={item} highlight={highlight} />
         ))}
       </ul>
     </div>
   );
 }
 
-function RuleListItem({ text }: { text: string }) {
+function RuleListItem({
+  text,
+  highlight,
+}: {
+  text: string;
+  highlight?: string;
+}) {
   const formatted = formatRuleListItem(text);
   if (formatted.title && formatted.body) {
     return (
       <li>
         <span className="font-semibold text-parchment-ink">
-          {formatted.title}
+          <HighlightedText text={formatted.title} query={highlight} />
         </span>
-        : {formatted.body}
+        : <HighlightedText text={formatted.body} query={highlight} />
       </li>
     );
   }
-  return <li>{formatted.plain}</li>;
+  return (
+    <li>
+      <HighlightedText text={formatted.plain} query={highlight} />
+    </li>
+  );
 }

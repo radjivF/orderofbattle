@@ -16,6 +16,17 @@ describe("sheetDismissEligible", () => {
     ).toBe(true);
   });
 
+  it("does not steal drags from buttons and other controls", () => {
+    expect(
+      sheetDismissEligible({
+        fromGrabber: false,
+        fromControl: true,
+        inScrollArea: true,
+        scrollTop: 0,
+      }),
+    ).toBe(false);
+  });
+
   it("allows dismiss from header chrome outside the scroll body", () => {
     expect(
       sheetDismissEligible({

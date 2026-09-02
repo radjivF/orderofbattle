@@ -1,0 +1,2605 @@
+{
+  "id": "ogre-kingdoms",
+  "name": "Ogre Kingdoms",
+  "game": "The Old World",
+  "source": "https://github.com/vflam/Warhammer-The-Old-World",
+  "pointsCapDefault": 2000,
+  "journal": false,
+  "units": [
+    {
+      "id": "tyrant",
+      "name": "Tyrant",
+      "category": "characters",
+      "pointsPerModel": 185,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Monstrous infantry (character)",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 4
+            },
+            {
+              "id": "ironfist",
+              "name": "Ironfist",
+              "points": 6
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "id": "ranged-weapons",
+          "name": "Ranged Weapons",
+          "options": [
+            {
+              "id": "ogre-pistol",
+              "name": "Ogre Pistol",
+              "points": 6
+            },
+            {
+              "id": "brace-of-ogre-pistols",
+              "name": "Brace Of Ogre Pistols",
+              "points": 12
+            }
+          ]
+        },
+        {
+          "id": "armour",
+          "name": "Armour",
+          "options": [
+            {
+              "id": "light-armour",
+              "name": "Light Armour",
+              "points": 0
+            },
+            {
+              "id": "heavy-armour",
+              "name": "Heavy Armour",
+              "points": 3
+            }
+          ]
+        },
+        {
+          "id": "mount",
+          "name": "Mount",
+          "options": [
+            {
+              "id": "stonehorn",
+              "name": "Stonehorn",
+              "points": 195,
+              "stats": {
+                "M": "7",
+                "WS": "3",
+                "BS": "-",
+                "S": "6",
+                "T": "(+1)",
+                "W": "(+4)",
+                "I": "2",
+                "A": "4",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armour Bane",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+                },
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Stone Skeleton",
+                  "text": "This model is less vulnerable to the Multiple Wounds (X) special rule. If it suffers an unsaved wound from an attack with this special rule, reduce the number of Wounds lost by 1, to a minimum of 1."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                },
+                {
+                  "name": "Thunderous Charge",
+                  "text": "Impact Hits caused by this model have an Armour Piercing characteristic of -2."
+                }
+              ]
+            },
+            {
+              "id": "thundertusk",
+              "name": "Thundertusk",
+              "points": 165,
+              "stats": {
+                "M": "6",
+                "WS": "3",
+                "BS": "-",
+                "S": "6",
+                "T": "(+1)",
+                "W": "(+4)",
+                "I": "2",
+                "A": "4",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Numbing Chill",
+                  "text": "Whilst in base contact with this model, enemy models suffer a -1 modifier to their Weapon Skill and Initiative characteristics, to a minimum of 1."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "big-name",
+          "name": "Big Name",
+          "options": [
+            {
+              "id": "mawseeker",
+              "name": "Mawseeker",
+              "points": 30
+            },
+            {
+              "id": "mountaineater",
+              "name": "Mountaineater",
+              "points": 25
+            },
+            {
+              "id": "longstrider",
+              "name": "Longstrider",
+              "points": 10
+            },
+            {
+              "id": "deathcheater",
+              "name": "Deathcheater",
+              "points": 5
+            },
+            {
+              "id": "giantbreaker",
+              "name": "Giantbreaker",
+              "points": 20
+            },
+            {
+              "id": "kineater",
+              "name": "Kineater",
+              "points": 15
+            },
+            {
+              "id": "beastkiller",
+              "name": "Beastkiller",
+              "points": 5
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armour Bane",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+        },
+        {
+          "name": "Bull Charge",
+          "text": "Impact Hits caused by this model (but not its mount) have an Armour Piercing characteristic of -1."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Ogre Charge",
+          "text": "The Armour Piercing characteristic of any Impact Hits caused by a model with this special rule (but not its mount) is improved by the current Rank Bonus of its unit (or, in the case of characters, the current Rank Bonus of any unit they have joined)."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Ironfist",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (1), Requires Two Hands"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        },
+        {
+          "name": "Ogre Pistol",
+          "range": "24\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Quick Shot"
+        },
+        {
+          "name": "Brace Of Ogre Pistols (Ranged)",
+          "range": "24\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Multiple Shots (2), Quick Shot"
+        },
+        {
+          "name": "Brace Of Ogre Pistols (Combat)",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (1), Requires Two Hands"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "6",
+        "BS": "4",
+        "S": "5",
+        "T": "5",
+        "W": "5",
+        "I": "5",
+        "A": "5",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "bruiser",
+      "name": "Bruiser",
+      "category": "characters",
+      "pointsPerModel": 110,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Monstrous infantry (character)",
+      "magicItems": true,
+      "command": [
+        {
+          "id": "battle-standard-bearer",
+          "name": "Battle Standard Bearer",
+          "points": 25
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "armour",
+          "name": "Armour",
+          "options": [
+            {
+              "id": "light-armour",
+              "name": "Light Armour",
+              "points": 0
+            },
+            {
+              "id": "heavy-armour",
+              "name": "Heavy Armour",
+              "points": 3
+            }
+          ]
+        },
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 4
+            },
+            {
+              "id": "ironfist",
+              "name": "Ironfist",
+              "points": 6
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "id": "ranged-weapons",
+          "name": "Ranged Weapons",
+          "options": [
+            {
+              "id": "ogre-pistol",
+              "name": "Ogre Pistol",
+              "points": 6
+            },
+            {
+              "id": "brace-of-ogre-pistols",
+              "name": "Brace Of Ogre Pistols",
+              "points": 12
+            }
+          ]
+        },
+        {
+          "id": "mount",
+          "name": "Mount",
+          "options": [
+            {
+              "id": "stonehorn",
+              "name": "Stonehorn",
+              "points": 195,
+              "stats": {
+                "M": "7",
+                "WS": "3",
+                "BS": "-",
+                "S": "6",
+                "T": "(+1)",
+                "W": "(+4)",
+                "I": "2",
+                "A": "4",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armour Bane",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+                },
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Stone Skeleton",
+                  "text": "This model is less vulnerable to the Multiple Wounds (X) special rule. If it suffers an unsaved wound from an attack with this special rule, reduce the number of Wounds lost by 1, to a minimum of 1."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                },
+                {
+                  "name": "Thunderous Charge",
+                  "text": "Impact Hits caused by this model have an Armour Piercing characteristic of -2."
+                }
+              ]
+            },
+            {
+              "id": "thundertusk",
+              "name": "Thundertusk",
+              "points": 165,
+              "stats": {
+                "M": "6",
+                "WS": "3",
+                "BS": "-",
+                "S": "6",
+                "T": "(+1)",
+                "W": "(+4)",
+                "I": "2",
+                "A": "4",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Numbing Chill",
+                  "text": "Whilst in base contact with this model, enemy models suffer a -1 modifier to their Weapon Skill and Initiative characteristics, to a minimum of 1."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "big-name",
+          "name": "Big Name",
+          "options": [
+            {
+              "id": "mawseeker",
+              "name": "Mawseeker",
+              "points": 30
+            },
+            {
+              "id": "mountaineater",
+              "name": "Mountaineater",
+              "points": 25
+            },
+            {
+              "id": "longstrider",
+              "name": "Longstrider",
+              "points": 10
+            },
+            {
+              "id": "deathcheater",
+              "name": "Deathcheater",
+              "points": 5
+            },
+            {
+              "id": "giantbreaker",
+              "name": "Giantbreaker",
+              "points": 20
+            },
+            {
+              "id": "kineater",
+              "name": "Kineater",
+              "points": 15
+            },
+            {
+              "id": "beastkiller",
+              "name": "Beastkiller",
+              "points": 5
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armour Bane",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+        },
+        {
+          "name": "Bull Charge",
+          "text": "Impact Hits caused by this model (but not its mount) have an Armour Piercing characteristic of -1."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Ogre Charge",
+          "text": "The Armour Piercing characteristic of any Impact Hits caused by a model with this special rule (but not its mount) is improved by the current Rank Bonus of its unit (or, in the case of characters, the current Rank Bonus of any unit they have joined)."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Ironfist",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (1), Requires Two Hands"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        },
+        {
+          "name": "Ogre Pistol",
+          "range": "24\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Quick Shot"
+        },
+        {
+          "name": "Brace Of Ogre Pistols (Ranged)",
+          "range": "24\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Multiple Shots (2), Quick Shot"
+        },
+        {
+          "name": "Brace Of Ogre Pistols (Combat)",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (1), Requires Two Hands"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "5",
+        "BS": "3",
+        "S": "5",
+        "T": "5",
+        "W": "4",
+        "I": "4",
+        "A": "4",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "slaughtermaster",
+      "name": "Slaughtermaster",
+      "category": "characters",
+      "pointsPerModel": 230,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Monstrous infantry (character)",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-3",
+              "name": "Wizard Level 3",
+              "points": 0
+            },
+            {
+              "id": "wizard-level-4",
+              "name": "Wizard Level 4",
+              "points": 35
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "butcher-s-cauldron",
+              "name": "Butcher's Cauldron",
+              "points": 30,
+              "specialRules": [
+                {
+                  "name": "Butcher's Cauldron",
+                  "text": "This character replaces the Impact Hits (2) special rule with the Impact Hits (D3+1) special rule. In addition, during the Command sub-phase of their turn, if they are not engaged in combat, a character with a Butcher\u2019s Cauldron may attempt to make an offering to the Great Maw by making a Leadership test (using their own Leadership). If this test is passed, until your next Start of Turn sub-phase this character and any unit they have joined gains the Regeneration (5+) special rule. However, if this test is failed, this character immediately loses a single Wound."
+                }
+              ]
+            },
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            },
+            {
+              "id": "elementalism",
+              "name": "Elementalism",
+              "points": 0
+            },
+            {
+              "id": "illusion",
+              "name": "Illusion",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "big-name",
+          "name": "Big Name",
+          "options": [
+            {
+              "id": "mawseeker",
+              "name": "Mawseeker",
+              "points": 30
+            },
+            {
+              "id": "mountaineater",
+              "name": "Mountaineater",
+              "points": 25
+            },
+            {
+              "id": "longstrider",
+              "name": "Longstrider",
+              "points": 10
+            },
+            {
+              "id": "deathcheater",
+              "name": "Deathcheater",
+              "points": 5
+            },
+            {
+              "id": "giantbreaker",
+              "name": "Giantbreaker",
+              "points": 20
+            },
+            {
+              "id": "kineater",
+              "name": "Kineater",
+              "points": 15
+            },
+            {
+              "id": "beastkiller",
+              "name": "Beastkiller",
+              "points": 5
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armour Bane",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Lore Of The Great Maw",
+          "text": "A Wizard with the \u2018Lore of the Great Maw\u2019 special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below \n\u2022 Toothcracker \n\u2022 Trollguts"
+        },
+        {
+          "name": "Ogre Charge",
+          "text": "The Armour Piercing characteristic of any Impact Hits caused by a model with this special rule (but not its mount) is improved by the current Rank Bonus of its unit (or, in the case of characters, the current Rank Bonus of any unit they have joined)."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "4",
+        "BS": "3",
+        "S": "4",
+        "T": "5",
+        "W": "5",
+        "I": "3",
+        "A": "4",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "butcher",
+      "name": "Butcher",
+      "category": "characters",
+      "pointsPerModel": 105,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Monstrous infantry (character)",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-1",
+              "name": "Wizard Level 1",
+              "points": 0
+            },
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 35
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            },
+            {
+              "id": "elementalism",
+              "name": "Elementalism",
+              "points": 0
+            },
+            {
+              "id": "illusion",
+              "name": "Illusion",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "butcher-s-cauldron",
+              "name": "Butcher's Cauldron",
+              "points": 30,
+              "specialRules": [
+                {
+                  "name": "Butcher's Cauldron",
+                  "text": "This character replaces the Impact Hits (2) special rule with the Impact Hits (D3+1) special rule. In addition, during the Command sub-phase of their turn, if they are not engaged in combat, a character with a Butcher\u2019s Cauldron may attempt to make an offering to the Great Maw by making a Leadership test (using their own Leadership). If this test is passed, until your next Start of Turn sub-phase this character and any unit they have joined gains the Regeneration (5+) special rule. However, if this test is failed, this character immediately loses a single Wound."
+                }
+              ]
+            },
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "big-name",
+          "name": "Big Name",
+          "options": [
+            {
+              "id": "mawseeker",
+              "name": "Mawseeker",
+              "points": 30
+            },
+            {
+              "id": "mountaineater",
+              "name": "Mountaineater",
+              "points": 25
+            },
+            {
+              "id": "longstrider",
+              "name": "Longstrider",
+              "points": 10
+            },
+            {
+              "id": "deathcheater",
+              "name": "Deathcheater",
+              "points": 5
+            },
+            {
+              "id": "giantbreaker",
+              "name": "Giantbreaker",
+              "points": 20
+            },
+            {
+              "id": "kineater",
+              "name": "Kineater",
+              "points": 15
+            },
+            {
+              "id": "beastkiller",
+              "name": "Beastkiller",
+              "points": 5
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armour Bane",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Lore Of The Great Maw",
+          "text": "A Wizard with the \u2018Lore of the Great Maw\u2019 special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead either the signature spell of their chosen Lore of Magic, or one of the spells listed below \n\u2022 Toothcracker \n\u2022 Trollguts"
+        },
+        {
+          "name": "Ogre Charge",
+          "text": "The Armour Piercing characteristic of any Impact Hits caused by a model with this special rule (but not its mount) is improved by the current Rank Bonus of its unit (or, in the case of characters, the current Rank Bonus of any unit they have joined)."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "3",
+        "BS": "2",
+        "S": "4",
+        "T": "5",
+        "W": "4",
+        "I": "2",
+        "A": "3",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "hunter",
+      "name": "Hunter",
+      "category": "characters",
+      "pointsPerModel": 115,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Monstrous infantry (character)",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 4
+            },
+            {
+              "id": "harpoon-launcher",
+              "name": "Harpoon Launcher",
+              "points": 10
+            }
+          ]
+        },
+        {
+          "id": "special-rules",
+          "name": "Special Rules",
+          "options": [
+            {
+              "id": "ambushers",
+              "name": "Ambushers",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Ambushers",
+                  "text": "A unit with this special rule may be held in reserve rather than be deployed at the start of the game. From the beginning of round two onwards, roll a D6 during each of your Start of Turn sub-phases for each unit of Ambushers in your army that is held in reserve.\n\n On a roll of 1-3, the unit is delayed until your next turn at least.\u00a0 On a roll of 4+, the unit arrives, entering the battle as reinforcements during the Compulsory Moves sub-phase. The unit may be placed on any edge of the battlefield, chosen by its controlling player, but cannot be placed within 8\" of an enemy model. If any Ambushers are still held in reserve by the start of round five, they arrive automatically."
+                }
+              ]
+            },
+            {
+              "id": "scouts",
+              "name": "Scouts",
+              "points": 5,
+              "specialRules": [
+                {
+                  "name": "Scouts",
+                  "text": "Units with this special rule may be deployed after all other units from both armies. They can be deployed anywhere on the battlefield that is more than 12\" away from an enemy model. If deployed in this way, Scouts cannot declare a charge during their first turn.\n\n If both armies contain Scouts, a roll-off should determine which player deploys Scouts first. The players then alternate deploying their scouting units one at a time, starting with the player who won the roll-off."
+                }
+              ]
+            },
+            {
+              "id": "vanguard",
+              "name": "Vanguard",
+              "points": 3,
+              "specialRules": [
+                {
+                  "name": "Vanguard",
+                  "text": "After deployment, units with this special rule may make a Vanguard move. A unit making a Vanguard move moves as described in the Basic Movement rules. It may manoeuvre normally but cannot march.\n\nIf both armies contain Vanguard units, a roll-off determines who moves first. The players then alternate moving their Vanguard units one at a time, starting with the player who won the roll-off. Units that make a Vanguard move cannot declare a charge during their first turn."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "big-name",
+          "name": "Big Name",
+          "options": [
+            {
+              "id": "mawseeker",
+              "name": "Mawseeker",
+              "points": 30
+            },
+            {
+              "id": "mountaineater",
+              "name": "Mountaineater",
+              "points": 25
+            },
+            {
+              "id": "longstrider",
+              "name": "Longstrider",
+              "points": 10
+            },
+            {
+              "id": "deathcheater",
+              "name": "Deathcheater",
+              "points": 5
+            },
+            {
+              "id": "giantbreaker",
+              "name": "Giantbreaker",
+              "points": 20
+            },
+            {
+              "id": "kineater",
+              "name": "Kineater",
+              "points": 15
+            },
+            {
+              "id": "beastkiller",
+              "name": "Beastkiller",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "id": "mount",
+          "name": "Mount",
+          "options": [
+            {
+              "id": "stonehorn",
+              "name": "Stonehorn",
+              "points": 195,
+              "stats": {
+                "M": "7",
+                "WS": "3",
+                "BS": "-",
+                "S": "6",
+                "T": "(+1)",
+                "W": "(+4)",
+                "I": "2",
+                "A": "4",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armour Bane",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+                },
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Stone Skeleton",
+                  "text": "This model is less vulnerable to the Multiple Wounds (X) special rule. If it suffers an unsaved wound from an attack with this special rule, reduce the number of Wounds lost by 1, to a minimum of 1."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                },
+                {
+                  "name": "Thunderous Charge",
+                  "text": "Impact Hits caused by this model have an Armour Piercing characteristic of -2."
+                }
+              ]
+            },
+            {
+              "id": "thundertusk",
+              "name": "Thundertusk",
+              "points": 165,
+              "stats": {
+                "M": "6",
+                "WS": "3",
+                "BS": "-",
+                "S": "6",
+                "T": "(+1)",
+                "W": "(+4)",
+                "I": "2",
+                "A": "4",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Numbing Chill",
+                  "text": "Whilst in base contact with this model, enemy models suffer a -1 modifier to their Weapon Skill and Initiative characteristics, to a minimum of 1."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armour Bane",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Loner",
+          "text": "A character with this special rule cannot be your General and cannot join a unit without this special rule. A unit with this special rule cannot be joined by a character without this special rule."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Ogre Charge",
+          "text": "The Armour Piercing characteristic of any Impact Hits caused by a model with this special rule (but not its mount) is improved by the current Rank Bonus of its unit (or, in the case of characters, the current Rank Bonus of any unit they have joined)."
+        },
+        {
+          "name": "Running With The Pack",
+          "text": "A Hunter that joins a unit of Sabretusks gains the Swiftstride special rule for as long as they remain with the unit. In addition, for as long as the Hunter remains with the unit, the Sabretusks lose the Impetuous special rule."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Harpoon Launcher",
+          "range": "36\"",
+          "strength": "6",
+          "ap": "-2",
+          "specialRules": "Multiple Wounds (D3), Ponderous"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "5",
+        "BS": "4",
+        "S": "5",
+        "T": "5",
+        "W": "4",
+        "I": "3",
+        "A": "4",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "firebelly",
+      "name": "Firebelly",
+      "category": "characters",
+      "pointsPerModel": 110,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Monstrous infantry (character)",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-1",
+              "name": "Wizard Level 1",
+              "points": 0
+            },
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 35
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 6
+            }
+          ]
+        },
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            },
+            {
+              "id": "elementalism",
+              "name": "Elementalism",
+              "points": 0
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armour Bane",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+        },
+        {
+          "name": "Blessings Of The Volcano God",
+          "text": "A model with this special rule has a 4+ Ward save against any wounds suffered that were caused by an attack that has the Flaming Attacks special rule."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Flaming Attacks",
+          "text": "Any attack made or hits caused by a model with this special rule, or made using a weapon or spell with this special rule, is a \u2018Flaming\u2019 attack. In addition, a model with this special rule causes Fear in models whose troop type is \u2018war beasts\u2019 or \u2018swarms\u2019.\n\n Unless otherwise stated, a model with this special rule makes Flaming attacks both when shooting and in combat (though any spells cast by the model are unaffected, as are any attacks made with magic weapons they might be wielding)."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Ogre Charge",
+          "text": "The Armour Piercing characteristic of any Impact Hits caused by a model with this special rule (but not its mount) is improved by the current Rank Bonus of its unit (or, in the case of characters, the current Rank Bonus of any unit they have joined)."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "3",
+        "BS": "2",
+        "S": "4",
+        "T": "5",
+        "W": "4",
+        "I": "2",
+        "A": "3",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "ogre-bulls",
+      "name": "Ogre Bulls",
+      "category": "core",
+      "pointsPerModel": 31,
+      "minModels": 3,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "crusher",
+          "name": "Crusher",
+          "points": 6
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "ironfist",
+              "name": "Ironfist",
+              "points": 4
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armour Bane",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Ogre Charge",
+          "text": "The Armour Piercing characteristic of any Impact Hits caused by a model with this special rule (but not its mount) is improved by the current Rank Bonus of its unit (or, in the case of characters, the current Rank Bonus of any unit they have joined)."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Ironfist",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (1), Requires Two Hands"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "3",
+        "BS": "2",
+        "S": "4",
+        "T": "4",
+        "W": "3",
+        "I": "2",
+        "A": "3",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "ironguts",
+      "name": "Ironguts",
+      "category": "core",
+      "pointsPerModel": 39,
+      "minModels": 3,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "gutlord",
+          "name": "Gutlord",
+          "points": 7
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 7
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 7
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "special-rules",
+          "name": "Special Rules",
+          "options": [
+            {
+              "id": "veteran",
+              "name": "Veteran",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Veteran",
+                  "text": "If the majority of the models in a unit have this special rule, the unit may re-roll any failed Leadership test.\n\n Note that a Break test is not a Leadership test."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Ogre Charge",
+          "text": "The Armour Piercing characteristic of any Impact Hits caused by a model with this special rule (but not its mount) is improved by the current Rank Bonus of its unit (or, in the case of characters, the current Rank Bonus of any unit they have joined)."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "3",
+        "BS": "2",
+        "S": "4",
+        "T": "4",
+        "W": "3",
+        "I": "2",
+        "A": "3",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "leadbelchers",
+      "name": "Leadbelchers",
+      "category": "special",
+      "pointsPerModel": 41,
+      "minModels": 2,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "thunderfist",
+          "name": "Thunderfist",
+          "points": 8
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "special-rules",
+          "name": "Special Rules",
+          "options": [
+            {
+              "id": "veteran",
+              "name": "Veteran",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Veteran",
+                  "text": "If the majority of the models in a unit have this special rule, the unit may re-roll any failed Leadership test.\n\n Note that a Break test is not a Leadership test."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Ogre Charge",
+          "text": "The Armour Piercing characteristic of any Impact Hits caused by a model with this special rule (but not its mount) is improved by the current Rank Bonus of its unit (or, in the case of characters, the current Rank Bonus of any unit they have joined)."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "3",
+        "BS": "3",
+        "S": "4",
+        "T": "4",
+        "W": "3",
+        "I": "2",
+        "A": "3",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "gnoblar-trappers",
+      "name": "Gnoblar Trappers",
+      "category": "core",
+      "pointsPerModel": 5,
+      "minModels": 10,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "snarefinger",
+          "name": "Snarefinger",
+          "points": 5
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Largely Insignificant",
+          "text": "Units with this special rule never cause friendly units to make Panic tests. However, a unit with this special rule cannot be joined by a character without this special rule."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Scouts",
+          "text": "Units with this special rule may be deployed after all other units from both armies. They can be deployed anywhere on the battlefield that is more than 12\" away from an enemy model. If deployed in this way, Scouts cannot declare a charge during their first turn.\n\n If both armies contain Scouts, a roll-off should determine which player deploys Scouts first. The players then alternate deploying their scouting units one at a time, starting with the player who won the roll-off."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Traps & Snares",
+          "text": "This habit can prove quite perilous to any enemy or predator that ventures too close.\n\nAny enemy model that ends its charge move in base contact with a model with this special rule must make a Dangerous Terrain test."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "2",
+        "BS": "3",
+        "S": "2",
+        "T": "3",
+        "W": "1",
+        "I": "3",
+        "A": "1",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "maneaters",
+      "name": "Maneaters",
+      "category": "special",
+      "pointsPerModel": 54,
+      "minModels": 2,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "maneater-captain",
+          "name": "Maneater Captain",
+          "points": 7
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 7
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 7
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "special-rules",
+          "name": "Special Rules",
+          "options": [
+            {
+              "id": "immune-to-psychology",
+              "name": "Immune to Psychology",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Immune To Psychology",
+                  "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+                }
+              ]
+            },
+            {
+              "id": "poisoned-attacks",
+              "name": "Poisoned Attacks",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Poisoned Attacks",
+                  "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+                }
+              ]
+            },
+            {
+              "id": "stubborn",
+              "name": "Stubborn",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Stubborn",
+                  "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+                }
+              ]
+            },
+            {
+              "id": "vanguard",
+              "name": "Vanguard",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Vanguard",
+                  "text": "After deployment, units with this special rule may make a Vanguard move. A unit making a Vanguard move moves as described in the Basic Movement rules. It may manoeuvre normally but cannot march.\n\nIf both armies contain Vanguard units, a roll-off determines who moves first. The players then alternate moving their Vanguard units one at a time, starting with the player who won the roll-off. Units that make a Vanguard move cannot declare a charge during their first turn."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "ironfist",
+              "name": "Ironfist",
+              "points": 4
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "ranged-weapons",
+          "name": "Ranged Weapons",
+          "options": [
+            {
+              "id": "ogre-pistol",
+              "name": "Ogre Pistol",
+              "points": 6
+            },
+            {
+              "id": "brace-of-ogre-pistols",
+              "name": "Brace Of Ogre Pistols",
+              "points": 12
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "light-armour",
+              "name": "Light Armour",
+              "points": 0
+            },
+            {
+              "id": "heavy-armour",
+              "name": "Heavy Armour",
+              "points": 3
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Motley Crew",
+          "text": "Units with this special rule may include models of the same type that are equipped differently to one another, and/or models of different types that fight together in a single unit. If necessary, the army list entry for such units will be accompanied by a brief explanation of the unit\u2019s composition.\n\n Different Weapons: The fighting rank of a Motley Crew may contain models that are armed with different weapons. In such cases, the controlling player must roll different batches of dice for the different models, making it clear to their opponent which model\u2019s attacks they represent and where they are being directed. These attacks are made in the Initiative order of the individual models, as usual.\n\n Different Armour: Models within a Motley Crew may have different armour values. In combat, use the armour value of the majority of the models in the fighting rank. Against enemy shooting, use the armour value of the majority of the models in the unit.\n\n Casualty Removal: Against enemy shooting, casualty removal should be divided as equally as possible between the different models within the unit. In combat, casualties should be removed from among the majority of the models that make up the fighting rank. In either case, available models are brought forward from rear ranks to fill any gaps, as chosen by the controlling player."
+        },
+        {
+          "name": "Ogre Charge",
+          "text": "The Armour Piercing characteristic of any Impact Hits caused by a model with this special rule (but not its mount) is improved by the current Rank Bonus of its unit (or, in the case of characters, the current Rank Bonus of any unit they have joined)."
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        },
+        {
+          "name": "Immune To Psychology",
+          "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+        },
+        {
+          "name": "Poisoned Attacks",
+          "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+        },
+        {
+          "name": "Vanguard",
+          "text": "After deployment, units with this special rule may make a Vanguard move. A unit making a Vanguard move moves as described in the Basic Movement rules. It may manoeuvre normally but cannot march.\n\nIf both armies contain Vanguard units, a roll-off determines who moves first. The players then alternate moving their Vanguard units one at a time, starting with the player who won the roll-off. Units that make a Vanguard move cannot declare a charge during their first turn."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Ironfist",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (1), Requires Two Hands"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        },
+        {
+          "name": "Ogre Pistol",
+          "range": "24\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Quick Shot"
+        },
+        {
+          "name": "Brace Of Ogre Pistols (Ranged)",
+          "range": "24\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Multiple Shots (2), Quick Shot"
+        },
+        {
+          "name": "Brace Of Ogre Pistols (Combat)",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (1), Requires Two Hands"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "4",
+        "BS": "4",
+        "S": "5",
+        "T": "4",
+        "W": "3",
+        "I": "3",
+        "A": "4",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "gnoblar-fighters",
+      "name": "Gnoblar Fighters",
+      "category": "core",
+      "pointsPerModel": 2,
+      "minModels": 20,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "groinbiter",
+          "name": "Groinbiter",
+          "points": 5
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Horde",
+          "text": "A unit with this special rule may increase the maximum Rank Bonus it can claim (as determined by its troop type) by one."
+        },
+        {
+          "name": "Largely Insignificant",
+          "text": "Units with this special rule never cause friendly units to make Panic tests. However, a unit with this special rule cannot be joined by a character without this special rule."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "4",
+        "WS": "2",
+        "BS": "3",
+        "S": "2",
+        "T": "3",
+        "W": "1",
+        "I": "3",
+        "A": "1",
+        "Ld": "5"
+      }
+    },
+    {
+      "id": "yhetees",
+      "name": "Yhetees",
+      "category": "special",
+      "pointsPerModel": 46,
+      "minModels": 3,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "greyback",
+          "name": "Greyback",
+          "points": 7
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "special-rules",
+          "name": "Special Rules",
+          "options": [
+            {
+              "id": "scouts",
+              "name": "Scouts",
+              "points": 3,
+              "specialRules": [
+                {
+                  "name": "Scouts",
+                  "text": "Units with this special rule may be deployed after all other units from both armies. They can be deployed anywhere on the battlefield that is more than 12\" away from an enemy model. If deployed in this way, Scouts cannot declare a charge during their first turn.\n\n If both armies contain Scouts, a roll-off should determine which player deploys Scouts first. The players then alternate deploying their scouting units one at a time, starting with the player who won the roll-off."
+                }
+              ]
+            },
+            {
+              "id": "vanguard",
+              "name": "Vanguard",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Vanguard",
+                  "text": "After deployment, units with this special rule may make a Vanguard move. A unit making a Vanguard move moves as described in the Basic Movement rules. It may manoeuvre normally but cannot march.\n\nIf both armies contain Vanguard units, a roll-off determines who moves first. The players then alternate moving their Vanguard units one at a time, starting with the player who won the roll-off. Units that make a Vanguard move cannot declare a charge during their first turn."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armoured Hide",
+          "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Flammable",
+          "text": "A model with this special rule cannot make a Regeneration save against a wound caused by a Flaming attack."
+        },
+        {
+          "name": "Loner",
+          "text": "A character with this special rule cannot be your General and cannot join a unit without this special rule. A unit with this special rule cannot be joined by a character without this special rule."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Numbing Chill",
+          "text": "Whilst in base contact with this model, enemy models suffer a -1 modifier to their Weapon Skill and Initiative characteristics, to a minimum of 1."
+        },
+        {
+          "name": "Open Order",
+          "text": "A unit consisting of models with this special rule may adopt an Open Order formation."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "7",
+        "WS": "3",
+        "BS": "0",
+        "S": "5",
+        "T": "4",
+        "W": "3",
+        "I": "4",
+        "A": "3",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "sabretusk-packs",
+      "name": "Sabretusk Packs",
+      "category": "core",
+      "pointsPerModel": 17,
+      "minModels": 2,
+      "maxModels": 10,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "War beasts",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "special-rules",
+          "name": "Special Rules",
+          "options": [
+            {
+              "id": "ambushers",
+              "name": "Ambushers",
+              "points": 3,
+              "specialRules": [
+                {
+                  "name": "Ambushers",
+                  "text": "A unit with this special rule may be held in reserve rather than be deployed at the start of the game. From the beginning of round two onwards, roll a D6 during each of your Start of Turn sub-phases for each unit of Ambushers in your army that is held in reserve.\n\n On a roll of 1-3, the unit is delayed until your next turn at least.\u00a0 On a roll of 4+, the unit arrives, entering the battle as reinforcements during the Compulsory Moves sub-phase. The unit may be placed on any edge of the battlefield, chosen by its controlling player, but cannot be placed within 8\" of an enemy model. If any Ambushers are still held in reserve by the start of round five, they arrive automatically."
+                }
+              ]
+            },
+            {
+              "id": "scouts",
+              "name": "Scouts",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Scouts",
+                  "text": "Units with this special rule may be deployed after all other units from both armies. They can be deployed anywhere on the battlefield that is more than 12\" away from an enemy model. If deployed in this way, Scouts cannot declare a charge during their first turn.\n\n If both armies contain Scouts, a roll-off should determine which player deploys Scouts first. The players then alternate deploying their scouting units one at a time, starting with the player who won the roll-off."
+                }
+              ]
+            },
+            {
+              "id": "vanguard",
+              "name": "Vanguard",
+              "points": 1,
+              "specialRules": [
+                {
+                  "name": "Vanguard",
+                  "text": "After deployment, units with this special rule may make a Vanguard move. A unit making a Vanguard move moves as described in the Basic Movement rules. It may manoeuvre normally but cannot march.\n\nIf both armies contain Vanguard units, a roll-off determines who moves first. The players then alternate moving their Vanguard units one at a time, starting with the player who won the roll-off. Units that make a Vanguard move cannot declare a charge during their first turn."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armour Bane",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Impetuous",
+          "text": "If during the Declare Charges & Charge Reactions sub-phase of its turn, a unit that includes one or more Impetuous models is able to declare a charge, it must make a Leadership test. If this test is failed, the unit must declare a charge. If this test is passed, the unit may act as normal."
+        },
+        {
+          "name": "Loner",
+          "text": "A character with this special rule cannot be your General and cannot join a unit without this special rule. A unit with this special rule cannot be joined by a character without this special rule."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Open Order",
+          "text": "A unit consisting of models with this special rule may adopt an Open Order formation."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "8",
+        "WS": "4",
+        "BS": "0",
+        "S": "4",
+        "T": "4",
+        "W": "2",
+        "I": "4",
+        "A": "2",
+        "Ld": "6"
+      }
+    },
+    {
+      "id": "mournfang-cavalry",
+      "name": "Mournfang Cavalry",
+      "category": "special",
+      "pointsPerModel": 64,
+      "minModels": 2,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous cavalry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "crusher",
+          "name": "Crusher",
+          "points": 7
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 7
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 7
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "armour",
+          "name": "Armour",
+          "options": [
+            {
+              "id": "light-armour",
+              "name": "Light Armour",
+              "points": 0
+            },
+            {
+              "id": "heavy-armour",
+              "name": "Heavy Armour",
+              "points": 3
+            }
+          ]
+        },
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            },
+            {
+              "id": "ironfist",
+              "name": "Ironfist",
+              "points": 4
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Armoured Hide",
+          "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Mournfang Charge",
+          "text": "Impact Hits caused by a model with this special rule have the Armour Bane (1) special rule and an Armour Piercing characteristic of -1."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        },
+        {
+          "name": "Ironfist",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (1), Requires Two Hands"
+        },
+        {
+          "name": "Brace Of Ogre Pistols (Ranged)",
+          "range": "24\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Multiple Shots (2), Quick Shot"
+        },
+        {
+          "name": "Brace Of Ogre Pistols (Combat)",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (1), Requires Two Hands"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "3",
+        "BS": "2",
+        "S": "4",
+        "T": "4",
+        "W": "4",
+        "I": "2",
+        "A": "3",
+        "Ld": "7"
+      }
+    },
+    {
+      "id": "stonehorn-riders",
+      "name": "Stonehorn Riders",
+      "category": "rare",
+      "pointsPerModel": 245,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Behemoth",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Armour Bane",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "First Charge",
+          "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+        },
+        {
+          "name": "Howdah",
+          "text": "To represent its howdah and crew, a behemoth with this special rule has a split profile and follows both the \u2018Split Profile (Chariots)\u2019 and \u2018Firing Platform\u2019 rules (see page 194). In all other respects, this model is a behemoth."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Large Target",
+          "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+        },
+        {
+          "name": "Stone Skeleton",
+          "text": "This model is less vulnerable to the Multiple Wounds (X) special rule. If it suffers an unsaved wound from an attack with this special rule, reduce the number of Wounds lost by 1, to a minimum of 1."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Terror",
+          "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+        },
+        {
+          "name": "Thunderous Charge",
+          "text": "Impact Hits caused by this model have an Armour Piercing characteristic of -2."
+        },
+        {
+          "name": "Armour Value",
+          "text": "Base Armour value"
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Chaintrap",
+          "range": "12\"",
+          "strength": "S+1",
+          "ap": "-",
+          "specialRules": "Killing Blow"
+        },
+        {
+          "name": "Blood vulture",
+          "range": "36\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Ignores Cover, Move & Shoot, Quick Shot"
+        }
+      ],
+      "stats": {
+        "M": "7",
+        "WS": "3",
+        "BS": "-",
+        "S": "6",
+        "T": "6",
+        "W": "6",
+        "I": "2",
+        "A": "4",
+        "Ld": "-"
+      }
+    },
+    {
+      "id": "thundertusk-riders",
+      "name": "Thundertusk Riders",
+      "category": "rare",
+      "pointsPerModel": 215,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Behemoth",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "First Charge",
+          "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+        },
+        {
+          "name": "Howdah",
+          "text": "To represent its howdah and crew, a behemoth with this special rule has a split profile and follows both the \u2018Split Profile (Chariots)\u2019 and \u2018Firing Platform\u2019 rules (see page 194). In all other respects, this model is a behemoth."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Large Target",
+          "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+        },
+        {
+          "name": "Numbing Chill",
+          "text": "Whilst in base contact with this model, enemy models suffer a -1 modifier to their Weapon Skill and Initiative characteristics, to a minimum of 1."
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Terror",
+          "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+        },
+        {
+          "name": "Armour Value",
+          "text": "Base Armour value"
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Chaintrap",
+          "range": "12\"",
+          "strength": "S+1",
+          "ap": "-",
+          "specialRules": "Killing Blow"
+        },
+        {
+          "name": "Blood vulture",
+          "range": "36\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Ignores Cover, Move & Shoot, Quick Shot"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "3",
+        "BS": "-",
+        "S": "6",
+        "T": "6",
+        "W": "6",
+        "I": "2",
+        "A": "4",
+        "Ld": "-"
+      }
+    },
+    {
+      "id": "giants",
+      "name": "Giants",
+      "category": "rare",
+      "pointsPerModel": 200,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Behemoth",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Immune To Psychology",
+          "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+        },
+        {
+          "name": "Large Target",
+          "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+        },
+        {
+          "name": "*Pick Up And\u2026",
+          "text": "Instead of attacking normally during the Combat phase or making a Giant Attack, a Giant that is engaged in combat with one or more units whose troop type is \u2018regular infantry\u2019 or \u2018heavy infantry\u2019 may choose to make a \u2018Pick Up And\u2026\u2019 attack. To make a Pick Up And\u2026 attack, nominate an enemy unit of regular or heavy infantry that the Giant is engaged in combat with. The unit must immediately make an Initiative test:\n\n\u2022 If this test is failed, a victim is picked up by the Giant. What happens next does not bear thinking about but, whatever it is, a single model belonging to the target unit is immediately removed from play as a casualty.\n\u2022 If this test is passed, the warriors manage to duck and dodge away from the Giant\u2019s grasping hands. No one is picked up and the attack has no effect.\n\nNext, roll a D6:\n\u2022 On a roll of 1-3, the Giant forgets what it is doing and makes no further attacks.\n\u2022 On a roll of 4+, the Giant attempts to pick up another enemy. The target unit must make another Initiative test.\n\nThis continues until the Giant forgets what it is doing and stops making attacks, or until the target unit is destroyed.\n\nEnemy models removed from play are considered to have been removed from the fighting rank of the enemy unit."
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Terror",
+          "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+        },
+        {
+          "name": "Timmm-Berrr!",
+          "text": "When this model is reduced to zero Wounds, the winner of a roll-off chooses one of its arcs (front, flank or rear) for it to fall into. Any units that are within the chosen arc and in base contact with this model suffer D6 hits, each using the Strength characteristic of this model, with an AP of -1. Once these hits are resolved, this model is removed from play."
+        },
+        {
+          "name": "Unbreakable",
+          "text": "If a unit with this special rule loses a round of combat, it is not required to make a Break test. Instead, it will automatically Give Ground as it is pushed back by the enemy. Characters that are not Unbreakable cannot join units that are, and vice versa."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "3",
+        "BS": "1",
+        "S": "6",
+        "T": "7",
+        "W": "6",
+        "I": "2",
+        "A": "*",
+        "Ld": "10"
+      }
+    },
+    {
+      "id": "gorgers",
+      "name": "Gorgers",
+      "category": "rare",
+      "pointsPerModel": 90,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous creature",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "special-rules",
+          "name": "Special Rules",
+          "options": [
+            {
+              "id": "scouts",
+              "name": "Scouts",
+              "points": 3,
+              "specialRules": [
+                {
+                  "name": "Scouts",
+                  "text": "Units with this special rule may be deployed after all other units from both armies. They can be deployed anywhere on the battlefield that is more than 12\" away from an enemy model. If deployed in this way, Scouts cannot declare a charge during their first turn.\n\n If both armies contain Scouts, a roll-off should determine which player deploys Scouts first. The players then alternate deploying their scouting units one at a time, starting with the player who won the roll-off."
+                }
+              ]
+            },
+            {
+              "id": "vanguard",
+              "name": "Vanguard",
+              "points": 3,
+              "specialRules": [
+                {
+                  "name": "Vanguard",
+                  "text": "After deployment, units with this special rule may make a Vanguard move. A unit making a Vanguard move moves as described in the Basic Movement rules. It may manoeuvre normally but cannot march.\n\nIf both armies contain Vanguard units, a roll-off determines who moves first. The players then alternate moving their Vanguard units one at a time, starting with the player who won the roll-off. Units that make a Vanguard move cannot declare a charge during their first turn."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Ambushers",
+          "text": "A unit with this special rule may be held in reserve rather than be deployed at the start of the game. From the beginning of round two onwards, roll a D6 during each of your Start of Turn sub-phases for each unit of Ambushers in your army that is held in reserve.\n\n On a roll of 1-3, the unit is delayed until your next turn at least.\u00a0 On a roll of 4+, the unit arrives, entering the battle as reinforcements during the Compulsory Moves sub-phase. The unit may be placed on any edge of the battlefield, chosen by its controlling player, but cannot be placed within 8\" of an enemy model. If any Ambushers are still held in reserve by the start of round five, they arrive automatically."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Frenzy",
+          "text": "During a turn in which it made a charge move, or during the\u00a0turn after it made a follow up move, a Frenzied model has a +1\u00a0modifier to its Attacks characteristic. This modifier does not\u00a0apply to the model\u2019s mount (in the case of a cavalry model), to\u00a0the beasts that draw it (in the case of a chariot), or to its rider\u00a0(in the case of a monster).\n\nIn addition:\n- If the majority of the models in a unit are Frenzied, the unit automatically passes any Fear, Panic or Terror tests it is required to make.\n- If a unit that includes one or more Frenzied models is able to declare a charge during the Declare Charges & Charge Reactions sub-phase of its turn, it must do so.\n- If the majority of the models in a unit are Frenzied, it cannot choose to Flee as a charge reaction, nor can it ever choose to make a Restraint test.\n\n**Losing Frenzy:** Unlike other special rules, Frenzy can be lost during a game. Any model that loses a round of combat will immediately lose this special rule."
+        },
+        {
+          "name": "Ravenous Hunger",
+          "text": "When a Gorger declares a charge, it may re-roll its Charge roll."
+        },
+        {
+          "name": "Regeneration",
+          "text": "Immediately after a Wound is lost, but before models with zero Wounds remaining are removed from play, a model with this special rule may make a \"Regeneration save\" roll by rolling a D6 and comparing the result to its \"Regeneration value\", shown in brackets after the name of this special rule (shown here as \"X+\"). If the Regeneration save roll equals or exceeds the model\u2019s Regeneration value, the lost Wound is recovered, but is still counted for the purposes of calculating the combat result. Rules that affect armour values do not affect Regeneration values unless stated otherwise."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Unbreakable",
+          "text": "If a unit with this special rule loses a round of combat, it is not required to make a Break test. Instead, it will automatically Give Ground as it is pushed back by the enemy. Characters that are not Unbreakable cannot join units that are, and vice versa."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "6",
+        "WS": "3",
+        "BS": "0",
+        "S": "5",
+        "T": "5",
+        "W": "4",
+        "I": "2",
+        "A": "4",
+        "Ld": "8"
+      }
+    }
+  ]
+}

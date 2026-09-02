@@ -10,7 +10,9 @@ import {
   libraryCreatingSplashVisible,
   listCreateBackdropFactionId,
   listCreateFactionBackdropStartsRevealed,
+  listFlowBackHref,
   listFlowHeaderMode,
+  listFlowIsDetail,
   listFlowIsHome,
   listFlowSkipsPostRouteSlide,
   listFlowTrackClass,
@@ -152,6 +154,23 @@ describe("listFlowHeaderMode", () => {
     ).toBe("builder");
   });
 
+  it("keeps the library header on a live battle so back lives next to the match title", () => {
+    expect(
+      listFlowHeaderMode({
+        isBuilder: false,
+        showDetail: false,
+        animatingBack: true,
+      }),
+    ).toBe("library");
+    expect(
+      listFlowHeaderMode({
+        isBuilder: false,
+        showDetail: true,
+        animatingBack: false,
+      }),
+    ).toBe("library");
+  });
+
   it("keeps the builder header once the list detail pane is showing", () => {
     expect(
       listFlowHeaderMode({
@@ -179,6 +198,17 @@ describe("listFlowIsHome", () => {
     expect(listFlowIsHome("/")).toBe(true);
     expect(listFlowIsHome("/dashboard")).toBe(false);
     expect(listFlowIsHome("/lists/abc")).toBe(false);
+  });
+});
+
+describe("listFlowIsDetail", () => {
+  it("slides a battle the same way as a list", () => {
+    expect(listFlowIsDetail("/dashboard")).toBe(false);
+    expect(listFlowIsDetail("/battle-record")).toBe(false);
+    expect(listFlowIsDetail("/lists/abc")).toBe(true);
+    expect(listFlowIsDetail("/battle-record/game-1")).toBe(true);
+    expect(listFlowBackHref("/lists/abc")).toBe("/dashboard");
+    expect(listFlowBackHref("/battle-record/game-1")).toBe("/battle-record");
   });
 });
 
@@ -247,6 +277,10 @@ describe("listFlowPendingRouteSplash", () => {
     expect(listFlowPendingRouteSplash(true, false)).toBe(true);
     expect(listFlowPendingRouteSplash(true, true)).toBe(false);
     expect(listFlowPendingRouteSplash(false, false)).toBe(false);
+  });
+
+  it("does not cover a battle open with the list spinner", () => {
+    expect(listFlowPendingRouteSplash(true, false, false)).toBe(false);
   });
 });
 
@@ -368,7 +402,7 @@ describe("listFlowWindowScrollY", () => {
 
 describe("list flow navigation wiring", () => {
   it("stores the list name when opening from the library", () => {
-    const library = readSource("components/LibraryScreen.tsx");
+    const library = readSource("components/LibraryCreateFlow.tsx");
     const libraryCard = readSource("components/LibraryListCard.tsx");
     expect(libraryCard).toContain("listOpenDisplayNameForHeader(list)");
     expect(libraryCard).toContain("rememberOpenList(list)");
@@ -381,7 +415,7 @@ describe("list flow navigation wiring", () => {
   });
 
   it("create splash uses the list art frame so the picture does not jump or shake", () => {
-    const library = readSource("components/LibraryScreen.tsx");
+    const library = readSource("components/LibraryCreateFlow.tsx");
     const nav = readSource("components/IosNavSlide.tsx");
     expect(library).toContain("listCreateBackdropFactionId");
     expect(library).toContain("LIST_CREATE_BACKDROP_SCOURGE");
@@ -414,11 +448,33 @@ describe("list flow navigation wiring", () => {
     expect(nav).toContain("listFlowIsHome");
     expect(nav).toContain("listFlowTrackClass");
     expect(nav).toContain("listFlowTrackClass(showDetail, settled)");
+    expect(nav).toContain("listFlowIsDetail");
+    expect(nav).toContain("listFlowBackHref");
+    const battlePage = readSource("app/(flow)/battle-record/[id]/page.tsx");
+    const battleList = readSource("components/BattleRecordScreen.tsx");
+    const battleHost = readSource("components/BattleRecordHost.tsx");
+    const appMenu = readSource("components/AppMenuSheet.tsx");
+    expect(battlePage).toContain("BattleRecordGameScreen");
+    expect(battleList).toContain("goForward");
+    expect(battleList).toContain("goForward(`/battle-record/${game.id}`)");
+    expect(battleList).not.toContain("rememberListNavigation");
+    expect(battleList).not.toContain("useRouter");
+    expect(battleList).toContain("listOpenUsesInAppSlide");
+    expect(battleHost).not.toContain("BattleRecordGameScreen");
+    expect(appMenu).toContain("pathname !== entry.href");
+    expect(appMenu).not.toContain(
+      '!pathname.startsWith("/battle-record")',
+    );
+    const battleGame = readSource("components/BattleRecordGameScreen.tsx");
+    expect(battleGame).toContain("listFlowTrackClass(editOpen, editSettled)");
+    expect(battleGame).toContain("openEditSetup");
+    expect(battleGame).not.toContain("setEditingSetup(true)");
     expect(nav).toContain("goForward");
     expect(nav).toContain("listFlowSkipsPostRouteSlide");
     expect(nav).toContain("leavingBuilder");
     expect(nav).toContain("wasBuilderRef");
     expect(nav).toContain("startForwardSlide");
+
     expect(nav).toContain("LIST_FLOW_HEADER_OFFSET_CLASS");
     expect(nav).not.toContain(
       "overflow-x-hidden ${listFlowHeaderOffsetClass",
@@ -451,6 +507,7 @@ describe("list flow navigation wiring", () => {
     expect(nav).not.toContain("optimisticBackdrop");
     expect(nav).not.toContain("FactionArtLayers");
     expect(nav).toContain("listFlowPendingRouteSplash");
+    expect(nav).toContain("openingList");
     expect(nav).toContain("listFlowShowsFactionBackdrop");
     expect(nav).toContain("listFlowFactionBackdropFaded");
     expect(nav).toContain("cachedBackdrop");
@@ -464,7 +521,7 @@ describe("list flow navigation wiring", () => {
     expect(nav).toMatch(
       /settled: false[\s\S]*requestAnimationFrame[\s\S]*scrollToPane\(true/,
     );
-    expect(nav).toContain('router.push("/dashboard", { scroll: false });');
+    expect(nav).toContain("router.push(backHref, { scroll: false })");
     expect(nav).not.toContain(
       'router.push("/dashboard", { scroll: false });\n      animatingBackRef.current = false;',
     );
@@ -473,6 +530,8 @@ describe("list flow navigation wiring", () => {
   it("resolves header fallback from storage before chrome loads", () => {
     const header = readSource("components/ListFlowHeader.tsx");
     expect(header).toContain("resolveBuilderHeaderDisplay");
+    expect(header).not.toContain('mode === "battle"');
+    expect(header).not.toContain('label="Battle record"');
     expect(header).not.toContain("builderHeaderShowsListStats");
   });
 

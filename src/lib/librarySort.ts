@@ -1,5 +1,7 @@
-import type { ArmyList } from "@/engine/types";
+import type { StoredList } from "@/engine/storedList";
+import { isTowList } from "@/engine/storedList";
 import { getFaction } from "@/engine/queries";
+import { getTowFaction } from "@/engine/tow/queries";
 
 export type LibrarySortMode = "recent" | "alphabetic";
 
@@ -45,23 +47,26 @@ export function setLibrarySortMode(mode: LibrarySortMode) {
   emit();
 }
 
-export function libraryListRecency(list: ArmyList): number {
+export function libraryListRecency(list: StoredList): number {
   return list.lastOpenedAt ?? list.updatedAt;
 }
 
 /** A–Z key: default "My …" lists by faction; custom names by list title. */
-export function libraryAlphabeticSortLabel(list: ArmyList): string {
+export function libraryAlphabeticSortLabel(list: StoredList): string {
   const name = list.name.trim();
   if (/^my\s/i.test(name)) {
+    if (isTowList(list)) {
+      return getTowFaction(list.factionId)?.name ?? "Unknown faction";
+    }
     return getFaction(list.factionId)?.name ?? "Unknown faction";
   }
   return name;
 }
 
 export function sortLibraryLists(
-  lists: ArmyList[],
+  lists: StoredList[],
   mode: LibrarySortMode,
-): ArmyList[] {
+): StoredList[] {
   const copy = [...lists];
   if (mode === "alphabetic") {
     return copy.sort((a, b) => {

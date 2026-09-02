@@ -11,6 +11,7 @@ import {
 import { getFaction } from "@/engine/queries";
 import { catalogueForList } from "@/engine/spearhead";
 import type { ArmyList } from "@/engine/types";
+import { isTowList } from "@/engine/storedList";
 import {
   LIST_LANDING_CONTENT_CLASS,
   LIST_LANDING_CONTENT_HIDDEN_CLASS,
@@ -50,9 +51,10 @@ import { ListLoadingSplash } from "./ListLoadingSplash";
 
 type Props = {
   listId: string;
+  openPlay?: boolean;
 };
 
-export function BuilderScreen({ listId }: Props) {
+export function BuilderScreen({ listId, openPlay = false }: Props) {
   const lists = useSyncExternalStore(
     subscribeArmies,
     getArmiesSnapshot,
@@ -63,7 +65,8 @@ export function BuilderScreen({ listId }: Props) {
     getListOpenFactionSnapshot,
     getListOpenFactionServerSnapshot,
   );
-  const list = lists?.find((item) => item.id === listId);
+  const stored = lists?.find((item) => item.id === listId);
+  const list = stored && !isTowList(stored) ? stored : undefined;
   const faction = list ? catalogueForList(list) : undefined;
   const artFactionId =
     (faction ? faction.parentFactionIds?.[0] ?? faction.id : null) ??
@@ -204,7 +207,7 @@ export function BuilderScreen({ listId }: Props) {
             : LIST_LANDING_CONTENT_HIDDEN_CLASS
         }`}
       >
-        <BuilderReady list={list} faction={faction} />
+        <BuilderReady list={list} faction={faction} openPlay={openPlay} />
       </div>
     </FactionBackdrop>
   );

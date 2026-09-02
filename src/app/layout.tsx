@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import { Cinzel, Instrument_Sans } from "next/font/google";
 import { AnalyticsScripts } from "@/components/AnalyticsScripts";
+import { AppziScript } from "@/components/AppziScript";
 import { CookieConsent } from "@/components/CookieConsent";
 import { WhatsNewNotice } from "@/components/WhatsNewNotice";
 import { JsonLd } from "@/components/JsonLd";
@@ -104,8 +105,12 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         <link rel="alternate" type="text/plain" href="/llms-full.txt" title="llms-full.txt" />
         <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
       </head>
-      <body className="min-h-full font-sans" suppressHydrationWarning>
+      <body
+        className="min-h-full bg-ink font-sans text-parchment"
+        suppressHydrationWarning
+      >
         <AnalyticsScripts consentRequired={consentRequired} />
+        <AppziScript consentRequired={consentRequired} />
         <JsonLd data={graph([softwareApplicationNode()])} />
         {children}
         <CookieConsent consentRequired={consentRequired} />

@@ -13,6 +13,7 @@ export function normalizeArmyList(list: ArmyList): ArmyList {
   const scourgeRealm = pathToGlory ? null : inferScourgeRealm(list);
   return pruneOrphanEnhancements({
     ...list,
+    game: "aos",
     regimentOfRenown: list.regimentOfRenown ?? null,
     powerBinds: list.powerBinds ?? {},
     monstrousTrait: list.monstrousTrait ?? null,
@@ -74,6 +75,7 @@ export function blankArmy(
     createdAt: now,
     updatedAt: now,
     lastOpenedAt: now,
+    game: "aos",
   };
 }
 
@@ -167,10 +169,19 @@ export function blankSpearhead(spearheadId: string, name?: string): ArmyList {
     createdAt: now,
     updatedAt: now,
     lastOpenedAt: now,
+    game: "aos",
   };
 }
 
-export function duplicateArmy(list: ArmyList): ArmyList {
+export function duplicateArmy<
+  T extends {
+    id: string;
+    name: string;
+    createdAt: number;
+    updatedAt: number;
+    lastOpenedAt?: number;
+  },
+>(list: T): T {
   const now = Date.now();
   return {
     ...structuredClone(list),

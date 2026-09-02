@@ -53,6 +53,7 @@ describe("exportArmyListText", () => {
     expect(text).toMatch(/2[,.]?000 pts · \d+ used/);
     expect(text).toContain("=== Order of Battle ===");
     expect(text).toContain("Built with Order of Battle");
+    expect(text).toContain("http://orderofbattle.app");
     expect(text).not.toContain("Validation");
   });
 

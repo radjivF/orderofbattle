@@ -181,3 +181,59 @@ export function battleTacticsForRealm(
   }
   return battleTactics.filter((card) => card.realm === realm);
 }
+
+export function battleTacticById(id: string): BattleTacticCard | undefined {
+  return battleTactics.find((card) => card.id === id);
+}
+
+/** Season for the setup picker: linked list, else a selected card, else Aqshy. */
+export function battleTacticRealmForPicker(
+  listRealm: "aqshy" | "ghyran" | null | undefined,
+  selectedIds: string[],
+): "aqshy" | "ghyran" {
+  if (listRealm === "aqshy" || listRealm === "ghyran") {
+    return listRealm;
+  }
+  for (const id of selectedIds) {
+    const realm = battleTacticById(id)?.realm;
+    if (realm === "aqshy" || realm === "ghyran") {
+      return realm;
+    }
+  }
+  return "aqshy";
+}
+
+function unknownTacticStub(
+  id: string,
+  realm: "aqshy" | "ghyran",
+): BattleTacticCard {
+  return {
+    id,
+    name: id,
+    setup: "",
+    affray: "",
+    strike: "",
+    domination: "",
+    realm,
+  };
+}
+
+/** Realm deck plus any already-picked cards so prefilled IDs stay visible and editable. */
+export function battleTacticPickerCards(
+  realm: "aqshy" | "ghyran" | null,
+  selectedIds: string[],
+): BattleTacticCard[] {
+  const poolRealm = realm === "ghyran" ? "ghyran" : "aqshy";
+  const base = battleTacticsForRealm(poolRealm);
+  const seen = new Set(base.map((card) => card.id));
+  const extras: BattleTacticCard[] = [];
+  for (const id of selectedIds) {
+    if (seen.has(id)) {
+      continue;
+    }
+    const card = battleTacticById(id) ?? unknownTacticStub(id, poolRealm);
+    extras.push(card);
+    seen.add(id);
+  }
+  return extras.length === 0 ? base : [...extras, ...base];
+}

@@ -11,6 +11,8 @@ describe("keywordChipClass", () => {
     const fly = keywordChipClass("FLY");
     const wizard = keywordChipClass("WIZARD");
     const priest = keywordChipClass("PRIEST");
+    const guarded = keywordChipClass("Guarded Hero");
+    const champion = keywordChipClass("Champion");
     const faction = keywordChipClass("CASTELITE");
 
     expect(hero).toContain("gold-deep");
@@ -21,6 +23,9 @@ describe("keywordChipClass", () => {
     expect(fly).toContain("sky");
     expect(wizard).toContain("arcane");
     expect(priest).toContain("sigmarite");
+    expect(guarded).toContain("illegal-lit");
+    expect(champion).toContain("steel");
+    expect(guarded).not.toContain("gold-deep");
     expect(faction).toContain("parchment-ink");
 
     const colors = [
@@ -32,6 +37,8 @@ describe("keywordChipClass", () => {
       fly,
       wizard,
       priest,
+      guarded,
+      champion,
       faction,
     ];
     expect(new Set(colors).size).toBe(colors.length);

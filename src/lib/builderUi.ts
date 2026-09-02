@@ -1,6 +1,7 @@
 /** Header / builder chrome presentation used by ListFlowHeader and related UI. */
 
 import { formatPoints } from "@/engine/pointsCap";
+import type { ListIssueTarget } from "@/engine/validate";
 
 export function dropCountLabel(drops: number): string {
   return `${drops} ${drops === 1 ? "drop" : "drops"}`;
@@ -125,9 +126,44 @@ export const HEADER_DROPS_LINE_CLASS = "mt-0.5 text-[11px] text-ink-muted";
 export const LIST_ISSUE_BANNER_CLASS =
   "flex items-center gap-2 rounded-xl bg-illegal/25 px-4 py-2.5 text-sm font-bold text-illegal-lit ring-1 ring-illegal/40";
 
-/** Battle tactic warnings live under Options. Tapping the banner should open that panel. */
-export function listIssueOpensOptions(text: string): boolean {
-  return text.toLowerCase().includes("battle tactic");
+export const LIST_ISSUE_HIGHLIGHT_CLASS =
+  "scroll-mt-28 bg-illegal/25 ring-2 ring-illegal ring-offset-2 ring-offset-ink";
+
+export function listIssueAnchorId(target: ListIssueTarget): string {
+  if (target.area === "add-regiment") {
+    return "list-issue-add-regiment";
+  }
+  if (target.area === "add-hero") {
+    return `list-issue-regiment-${target.regimentId}-hero`;
+  }
+  if (target.area === "regiment") {
+    return `list-issue-regiment-${target.regimentId}`;
+  }
+  if (target.area === "unit") {
+    return `list-issue-unit-${target.selectionId}`;
+  }
+  if (target.area === "add-ror") {
+    return "list-issue-add-ror";
+  }
+  return `list-issue-${target.field}`;
+}
+
+export function listIssueOpensOptions(target: ListIssueTarget): boolean;
+export function listIssueOpensOptions(text: string): boolean;
+export function listIssueOpensOptions(
+  input: ListIssueTarget | string,
+): boolean {
+  if (typeof input === "string") {
+    return input.toLowerCase().includes("battle tactic");
+  }
+  return input.area === "options";
+}
+
+export function listIssueHighlightClass(
+  anchorId: string,
+  highlightedId: string | null,
+): string {
+  return highlightedId === anchorId ? LIST_ISSUE_HIGHLIGHT_CLASS : "";
 }
 
 export function listIssueOpensAddRegiment(text: string): boolean {
@@ -159,17 +195,31 @@ export const PLAY_SHEET_LINK_CLASS =
 export const IOS_NAV_ICON_BUTTON_CLASS =
   "ios-liquid-glass pressable inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full text-black";
 
+/** Bare parchment glyph — library hamburger only, not the liquid-glass add/back discs. */
+export const IOS_NAV_MENU_ICON_CLASS = "h-8 w-8 text-parchment";
+
+export const IOS_NAV_MENU_BUTTON_CLASS =
+  "pressable inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center text-parchment";
+
+export const LIBRARY_BRAND_HEADER_ROW_CLASS =
+  "flex min-w-0 flex-1 items-center gap-0.5";
+
+export const APP_MENU_DRAWER_MS = 280;
+
+export const APP_MENU_DRAWER_PANEL_CLASS =
+  "flex h-full w-[min(20rem,88vw)] flex-col overflow-hidden bg-parchment text-parchment-ink shadow-[8px_0_32px_rgba(0,0,0,0.35)]";
+
 /** Options over library art — translucent ink disc with a gold rim. */
 export const LIBRARY_HEADER_OPTIONS_BUTTON_CLASS =
   "pressable inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full border border-sigmarite/70 bg-ink/50 text-parchment shadow-[0_2px_12px_rgba(0,0,0,0.4)] backdrop-blur-sm";
 
 /** My lists heading: options leading, New list trailing. */
 export const LIBRARY_TITLE_ROW_CLASS =
-  "flex items-center gap-3";
+  "flex min-h-11 items-center gap-3";
 
 /** Page title over index art — shadow for contrast on busy backdrops. */
 export const LIBRARY_TITLE_CLASS =
-  "min-w-0 flex-1 font-serif text-3xl font-semibold text-parchment [text-shadow:0_2px_16px_rgba(0,0,0,0.95),0_1px_3px_rgba(0,0,0,1)]";
+  "min-w-0 flex-1 font-serif text-3xl font-semibold leading-none text-parchment [text-shadow:0_2px_16px_rgba(0,0,0,0.95),0_1px_3px_rgba(0,0,0,1)]";
 
 export const IOS_NAV_ADD_BUTTON_CLASS = IOS_NAV_ICON_BUTTON_CLASS;
 
@@ -177,6 +227,10 @@ export const IOS_NAV_BACK_BUTTON_CLASS = IOS_NAV_ICON_BUTTON_CLASS;
 
 export const IOS_NAV_PLAY_BUTTON_CLASS =
   "ios-liquid-glass pressable inline-flex h-11 shrink-0 cursor-pointer items-center justify-center rounded-full px-4 text-[15px] font-semibold leading-none text-black";
+
+/** Scoreboard play affordance — aether datasheet mark, same as unit sheet links. */
+export const SCOREBOARD_PLAY_BUTTON_CLASS =
+  "h-6 w-6 shrink-0 text-aether";
 
 /** In-app primary CTA — same parchment glass as the nav +. */
 export const IOS_LIQUID_CTA_CLASS =
@@ -201,6 +255,18 @@ export const MODAL_SHEET_SCROLL_HOST_CLASS =
 export const MODAL_SHEET_FOOTER_CLASS =
   "modal-sheet-footer ios-sheet-actions shrink-0 px-5 pb-5";
 
+/** Same pinned footer, Cancel + Continue on one row instead of stacked. */
+export const MODAL_SHEET_FOOTER_ROW_CLASS =
+  "modal-sheet-footer ios-sheet-actions-row shrink-0 flex-wrap px-5 pt-3 pb-5";
+
+/** Dismiss shares the row 50-50 with the primary, on a chip so it reads as a control. */
+export const SHEET_FOOTER_CANCEL_CLASS =
+  "pressable inline-flex min-h-11 min-w-0 flex-1 cursor-pointer items-center justify-center rounded-xl bg-parchment-ink/8 px-4 text-[15px] font-semibold text-parchment-ink";
+
+/** Primary footer action — fills the rest of the row; stays readable when disabled. */
+export const SHEET_FOOTER_PRIMARY_CLASS =
+  "ios-liquid-glass pressable inline-flex min-h-11 min-w-0 flex-1 cursor-pointer items-center justify-center rounded-xl px-4 text-[15px] font-semibold text-black disabled:cursor-not-allowed disabled:text-black/45";
+
 /** Secondary sheet action — file pick, download, etc. */
 export const SHEET_SECONDARY_BUTTON_CLASS =
   "pressable inline-flex min-h-11 w-full cursor-pointer items-center justify-center rounded-xl bg-parchment-ink/8 px-4 text-[15px] font-semibold text-parchment-ink ring-1 ring-parchment-ink/15 transition hover:bg-parchment-ink/12";
@@ -218,6 +284,13 @@ export const BUILDER_ADD_ACTION_CLASS =
 export const BUILDER_ADD_ACTION_EMPHASIS_CLASS =
   "pressable min-h-11 cursor-pointer px-2 text-sm text-sigmarite";
 
+/** Category label over list art — iOS dark material so serif type stays readable. */
+export const TOW_CATEGORY_ROW_CLASS =
+  "flex items-center justify-between gap-3 rounded-xl bg-ink/90 px-3 py-1.5 backdrop-blur-md ring-1 ring-parchment/15";
+
+export const TOW_CATEGORY_HEADING_CLASS =
+  "font-serif text-xl text-parchment";
+
 /** Primary + quiet secondary actions in form sheets (Create / Back, etc.). */
 export const SHEET_FORM_ACTIONS_CLASS =
   "ios-sheet-actions mt-2 shrink-0 pt-2";
@@ -229,9 +302,13 @@ export const HOME_CTA_CLASS =
 export const HOME_CTA_QUIET_CLASS =
   "home-cta-quiet pressable inline-flex min-h-11 items-center justify-center rounded-xl px-6 text-sm font-semibold";
 
+/** Shared page column — keep in sync with the site header so library chrome lines up with the menu. */
+export const SITE_COLUMN_CLASS =
+  "mx-auto w-full max-w-3xl px-3 sm:px-4";
+
 /** Shared inner row for library, builder, home, and content headers. */
 export const SITE_HEADER_ROW_CLASS =
-  "mx-auto flex min-h-[3.5rem] w-full max-w-3xl items-center gap-2 px-3 py-1.5 sm:min-h-[3.75rem] sm:px-4";
+  `${SITE_COLUMN_CLASS} flex min-h-[3.5rem] items-center gap-2 py-1.5 sm:min-h-[3.75rem]`;
 
 /** Full-width bar behind every site header — solid ink, no art showing through. */
 export const SITE_HEADER_BAR_CLASS = "ios-nav-bar";
@@ -288,6 +365,10 @@ export const SHEET_PANEL_CLASS =
 export const LIBRARY_OPTIONS_SHEET_PANEL_CLASS =
   `${SHEET_PANEL_CLASS} h-[85vh] sm:h-auto sm:min-h-[32rem]`;
 
+/** Full-page play sheet — faction art + play-mode chrome, not a parchment card. */
+export const PLAY_SHEET_PANEL_CLASS =
+  "relative flex w-full flex-col overflow-hidden bg-ink text-parchment";
+
 /** Rule between sort and Import/Export in list options. */
 export const LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS =
   "mx-5 border-t border-parchment-ink/20";
@@ -332,8 +413,12 @@ export const EMPTY_LIBRARY_CTA_CLASS = `mt-5 ${IOS_LIQUID_CTA_CLASS}`;
 export const EMPTY_LIBRARY_SECONDARY_CLASS =
   "pressable mt-3 inline-flex min-h-11 w-full cursor-pointer items-center justify-center rounded-full bg-ink-raised/90 px-4 text-base font-semibold text-parchment ring-1 ring-parchment/20 backdrop-blur-sm";
 
+/** Shared shape only — pair with idle or selected so ring/bg never stack. */
 export const SHEET_CHECKLIST_ITEM_CLASS =
-  "flex cursor-pointer items-start gap-3 rounded-xl px-3 py-3 ring-1 ring-parchment-ink/10 bg-parchment-ink/5 transition hover:bg-parchment-ink/8";
+  "flex cursor-pointer items-start gap-3 rounded-xl px-3 py-3 ring-1 transition";
+
+export const SHEET_CHECKLIST_ITEM_IDLE_CLASS =
+  "ring-parchment-ink/10 bg-parchment-ink/5 hover:bg-parchment-ink/8";
 
 export const SHEET_CHECKLIST_ITEM_SELECTED_CLASS =
   "ring-aether/35 bg-aether/10";

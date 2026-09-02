@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import { HighlightedText } from "./HighlightedText";
 import { RuleText } from "./RuleText";
 
 type Props = {
@@ -12,6 +13,10 @@ type Props = {
   meta?: string;
   trailing?: ReactNode;
   nested?: boolean;
+  /** Reference lists: no resting fill, so 20+ rows read as a page not a stack of buttons. */
+  flush?: boolean;
+  open?: boolean;
+  highlight?: string;
 };
 
 export function ExpandableRuleCard({
@@ -23,11 +28,19 @@ export function ExpandableRuleCard({
   meta,
   trailing,
   nested = false,
+  flush = false,
+  open: openProp,
+  highlight,
 }: Props) {
-  const [open, setOpen] = useState(false);
+  const [toggled, setToggled] = useState(false);
+  const expanded = openProp ?? toggled;
   const expandable = Boolean(declareText || effect || meta);
   const pad = nested ? "px-2.5 py-2.5" : "px-3 py-3";
   const shell = nested ? "rounded-lg" : "rounded-xl";
+  const resting = flush ? "" : "bg-parchment-ink/5";
+  /** Flush rows sit on hairline dividers, so an open one needs air to read as its own block. */
+  const openGap = flush && expanded ? "my-2" : "";
+  const bodyPad = flush ? "pt-3 pb-4" : "pt-2 pb-3";
 
   const header = (
     <div className="flex items-start justify-between gap-2">
@@ -41,12 +54,12 @@ export function ExpandableRuleCard({
           <p
             className={`font-serif text-lg leading-tight ${kicker ? "mt-1" : ""}`}
           >
-            {title}
+            <HighlightedText text={title} query={highlight} />
           </p>
         ) : null}
         {timing ? (
           <p className="mt-1 font-serif text-base leading-snug text-parchment-ink">
-            {timing}
+            <HighlightedText text={timing} query={highlight} />
           </p>
         ) : null}
       </div>
@@ -54,7 +67,7 @@ export function ExpandableRuleCard({
         {trailing}
         {expandable ? (
           <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center">
-            <CollapseChevron open={open} />
+            <CollapseChevron open={expanded} />
           </span>
         ) : null}
       </div>
@@ -63,7 +76,7 @@ export function ExpandableRuleCard({
 
   if (!expandable) {
     return (
-      <article className={`w-full ${shell} bg-parchment-ink/5 ${pad} text-left`}>
+      <article className={`w-full ${shell} ${resting} ${pad} text-left`}>
         {header}
       </article>
     );
@@ -71,23 +84,28 @@ export function ExpandableRuleCard({
 
   return (
     <div
-      className={`w-full ${shell} bg-parchment-ink/5 ${open ? "bg-parchment-ink/[0.07]" : ""}`}
+      className={`w-full ${shell} ${resting} ${expanded ? "bg-parchment-ink/[0.07]" : ""} ${openGap}`}
     >
       <button
         type="button"
-        aria-expanded={open}
+        aria-expanded={expanded}
         className={`w-full ${pad} text-left active:opacity-80`}
-        onClick={() => setOpen((value) => !value)}
+        onClick={() => {
+          if (openProp !== undefined) {
+            return;
+          }
+          setToggled((value) => !value);
+        }}
       >
         {header}
       </button>
-      {open ? (
+      {expanded ? (
         <div
-          className={`border-t border-parchment-ink/10 ${nested ? "px-2.5" : "px-3"} pb-3 pt-2`}
+          className={`border-t border-parchment-ink/10 ${nested ? "px-2.5" : "px-3"} ${bodyPad}`}
         >
           {meta ? (
             <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-              {meta}
+              <HighlightedText text={meta} query={highlight} />
             </p>
           ) : null}
           {declareText ? (
@@ -95,6 +113,7 @@ export function ExpandableRuleCard({
               text={declareText}
               label="Declare · "
               className="mt-2 text-sm"
+              highlight={highlight}
             />
           ) : null}
           {effect ? (
@@ -102,6 +121,7 @@ export function ExpandableRuleCard({
               text={effect}
               label="Effect · "
               className={declareText ? "mt-1 text-sm" : "mt-2 text-sm"}
+              highlight={highlight}
             />
           ) : null}
         </div>

@@ -96,7 +96,7 @@ describe("article CTAs", () => {
 
   it("library applies the new-list query on open", () => {
     const screen = readFileSync(
-      path.join(here, "../components/LibraryScreen.tsx"),
+      path.join(here, "../components/LibraryCreateFlow.tsx"),
       "utf8",
     );
     const createSheet = readFileSync(
