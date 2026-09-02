@@ -9,6 +9,7 @@ import {
   setActiveMenu,
   subscribeActiveMenu,
 } from "@/lib/activeMenu";
+import { useLeftEdgeSwipe } from "@/lib/edgeSwipe";
 import { AppMenuSheet } from "./AppMenuSheet";
 import { IosNavMenuButton } from "./ios/IosNavIconButton";
 
@@ -21,6 +22,8 @@ export function AppHeaderMenu() {
   );
   const menu = menuIdForPathname(pathname, storedMenu);
   const [open, setOpen] = useState(false);
+
+  useLeftEdgeSwipe(() => setOpen(true));
 
   useEffect(() => {
     setOpen(false);
