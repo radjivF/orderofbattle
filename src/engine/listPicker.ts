@@ -71,11 +71,17 @@ export function availablePickerUnits(
 ): CatalogueUnit[] {
   const taken = takenUniqueBases(list, faction, exceptUnitId);
   const pathToGlory = isPathToGloryList(list);
+  const isDaKingsGitz = list.regimentOfRenown?.renownId === "da-king-s-gitz";
+  
   return units.filter((unit) => {
     if (isAnvilOfApotheosis(unit) && !pathToGlory) {
       return false;
     }
     if (pathToGlory && unitScourgeRealm(unit.name)) {
+      return false;
+    }
+    // Da King's Gitz: no TROGGOTH units in auxiliaries
+    if (pathToGlory && isDaKingsGitz && unit.categories.includes("TROGGOTH")) {
       return false;
     }
     return !unit.unique || !taken.has(unitBaseName(unit.name));

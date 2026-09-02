@@ -281,6 +281,7 @@ export function summarize(
   warnSpecialEnhancements(list, faction, issues);
   warnAnvilForge(list, faction, issues);
   warnWarlord(list, faction, issues);
+  warnGloomspiteMix(list, faction, issues);
 
   if (
     !isPathToGloryList(list) &&
@@ -865,5 +866,41 @@ function warnWarlord(
 
   if (!warlord.pathToGlory?.pathId) {
     issues.push({ tone: "warn", text: "Warlord needs a Path." });
+  }
+}
+
+function warnGloomspiteMix(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  issues: ListIssue[],
+) {
+  if (!isPathToGloryList(list) || faction.id !== "gloomspite-gitz") {
+    return;
+  }
+
+  const allUnits: CatalogueUnit[] = [];
+  for (const regiment of list.regiments) {
+    if (regiment.hero) {
+      const unit = getUnit(faction, regiment.hero.unitId);
+      if (unit) allUnits.push(unit);
+    }
+    for (const slot of regiment.units) {
+      const unit = getUnit(faction, slot.unitId);
+      if (unit) allUnits.push(unit);
+    }
+  }
+  for (const aux of list.auxiliaries) {
+    const unit = getUnit(faction, aux.unitId);
+    if (unit) allUnits.push(unit);
+  }
+
+  const hasTrogg = allUnits.some((u) => u.categories.includes("TROGGOTH"));
+  const hasGrot = allUnits.some((u) => !u.categories.includes("TROGGOTH"));
+
+  if (hasTrogg && hasGrot) {
+    issues.push({
+      tone: "bad",
+      text: "Gloomspite PTG: choose Troggoth OR grot, not both.",
+    });
   }
 }
