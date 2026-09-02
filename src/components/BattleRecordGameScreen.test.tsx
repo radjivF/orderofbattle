@@ -140,6 +140,24 @@ describe("BattleRecordGameScreen", () => {
     scrollTo.mockRestore();
   });
 
+  it("keeps underdog fixed for the turn even after scoring catches up", async () => {
+    const user = userEvent.setup();
+    vi.mocked(gameStorage.getGame).mockResolvedValue(
+      activeFixture({ skipRoundVp: true }),
+    );
+
+    render(<BattleRecordGameScreen gameId="game-1" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    expect(screen.getByText("No underdog while scores are tied")).toBeInTheDocument();
+
+    await user.click(
+      screen.getByRole("button", { name: "Rad scored point 1" }),
+    );
+    expect(screen.getByText("No underdog while scores are tied")).toBeInTheDocument();
+    expect(screen.queryByText(/Assigned to Alex \(underdog\)/)).toBeNull();
+  });
+
   it("scores mission points one by one and shows twist for underdog", async () => {
     const user = userEvent.setup();
     vi.mocked(gameStorage.getGame).mockResolvedValue(

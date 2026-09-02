@@ -123,16 +123,19 @@ describe("VP and match totals", () => {
     expect(matchTotal(game, "opponent")).toBe(0);
   });
 
-  it("marks underdog when scores diverge", () => {
+  it("marks underdog from the score at the start of each round", () => {
     let game = fresh();
+    expect(underdog(game, 0)).toBeNull();
     game = setRoundVp(game, 0, "you", 10);
-    expect(underdog(game)).toBe("opponent");
-    game = setRoundVp(game, 0, "opponent", 20);
-    expect(underdog(game)).toBe("you");
+    expect(underdog(game, 0)).toBeNull();
+    expect(underdog(game, 1)).toBe("opponent");
+    game = setRoundVp(game, 1, "opponent", 20);
+    expect(underdog(game, 1)).toBe("opponent");
+    expect(underdog(game, 2)).toBe("you");
   });
 
-  it("has no underdog when tied", () => {
-    expect(underdog(fresh())).toBeNull();
+  it("has no underdog when tied at the start of a round", () => {
+    expect(underdog(fresh(), 0)).toBeNull();
   });
 });
 
@@ -232,13 +235,14 @@ describe("mission primary claims", () => {
     expect(game.rounds[0]!.primaryClaims["primary-0"]?.you).toBe(true);
   });
 
-  it("assigns twist application only when there is an underdog", () => {
+  it("assigns twist application only when there is an underdog at the round start", () => {
     let game = fresh();
     expect(setTwistApplied(game, 0, true).rounds[0]!.twistApplied).toBe(false);
     game = setRoundVp(game, 0, "you", 5);
-    game = setTwistApplied(game, 0, true);
-    expect(game.rounds[0]!.twistApplied).toBe(true);
-    expect(underdog(game)).toBe("opponent");
+    expect(setTwistApplied(game, 0, true).rounds[0]!.twistApplied).toBe(false);
+    game = setTwistApplied(game, 1, true);
+    expect(game.rounds[1]!.twistApplied).toBe(true);
+    expect(underdog(game, 1)).toBe("opponent");
   });
 });
 
