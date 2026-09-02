@@ -241,20 +241,14 @@ describe("listPicker", () => {
     ).toBe(true);
   });
 
-  it("excludes TROGGOTH units from Da King's Gitz PTG auxiliaries", () => {
-    const faction = getFaction("gloomspite-gitz");
-    expect(faction).toBeTruthy();
-    if (!faction) return;
+  it("excludes TROGGOTH units from Da King's Gitz (Army of Renown) PTG auxiliaries", () => {
+    const daKingsFaction = getFaction("gloomspite-gitz-da-king-s-gitz");
+    expect(daKingsFaction).toBeTruthy();
+    if (!daKingsFaction) return;
 
-    const ptgList = {
-      ...blankPathToGlory(faction.id, "ascension"),
-      regimentOfRenown: {
-        renownId: "da-king-s-gitz",
-        units: [],
-      },
-    };
+    const ptgList = blankPathToGlory(daKingsFaction.id, "ascension");
 
-    const auxUnits = pickerUnitsFor(ptgList, faction, { kind: "aux" });
+    const auxUnits = pickerUnitsFor(ptgList, daKingsFaction, { kind: "aux" });
     expect(auxUnits).toBeTruthy();
     expect(
       auxUnits?.some((unit) => unit.name === "Dankhold Troggoth"),
@@ -265,6 +259,21 @@ describe("listPicker", () => {
     expect(
       auxUnits?.some((unit) => unit.name === "Rockgut Troggoths"),
     ).toBe(false);
+
+    // Base gloomspite-gitz should still show TROGGOTHs (not globally hidden)
+    const baseFaction = getFaction("gloomspite-gitz");
+    expect(baseFaction).toBeTruthy();
+    if (!baseFaction) return;
+
+    const baseList = blankPathToGlory(baseFaction.id, "ascension");
+    const baseAuxUnits = pickerUnitsFor(baseList, baseFaction, { kind: "aux" });
+    expect(baseAuxUnits).toBeTruthy();
+    expect(
+      baseAuxUnits?.some((unit) => unit.name === "Dankhold Troggoth"),
+    ).toBe(true);
+    expect(
+      baseAuxUnits?.some((unit) => unit.name === "Fellwater Troggoths"),
+    ).toBe(true);
   });
 
   it("blocks non-TROGGOTH units when Gloomspite PTG already has TROGGOTHs", () => {
