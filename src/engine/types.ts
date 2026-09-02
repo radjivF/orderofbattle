@@ -258,6 +258,12 @@ export type PathToGloryState = {
   manifestationIds: string[];
   /** Selection id of the warlord hero. */
   warlordSelectionId?: string | null;
+  /** Embarked quest id. */
+  questId?: string | null;
+  /** Quest points earned toward quest. */
+  questPoints?: number;
+  /** Battleplan for the next battle. */
+  battleplanId?: string | null;
 };
 
 export type PathToGlorySelectionState = {

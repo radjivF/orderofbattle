@@ -37,9 +37,13 @@ import {
   applyPathToGloryPacks,
   assignPathToGloryHeroEnhancement,
   canBeWarlord,
+  findBattleplan,
+  findQuest,
   getWarlordSelection,
   isPathToGloryList,
   isWarlord,
+  PATH_TO_GLORY_BATTLEPLANS,
+  PATH_TO_GLORY_QUESTS,
   pathToGloryPackIds,
   patchSelection,
   selectionArtefactOptionId,
@@ -697,13 +701,90 @@ export function BuilderReady({
               />
 
               {isPathToGloryList(list) ? (
-                <PathToGloryBattlepackPicker
-                  packIds={pathToGloryPackIds(list)}
-                  onChange={(packIds) =>
-                    void commit(applyPathToGloryPacks(list, packIds))
-                  }
-                  variant="ink"
-                />
+                <>
+                  <PathToGloryBattlepackPicker
+                    packIds={pathToGloryPackIds(list)}
+                    onChange={(packIds) =>
+                      void commit(applyPathToGloryPacks(list, packIds))
+                    }
+                    variant="ink"
+                  />
+                  <label className="flex flex-col gap-2 text-sm text-parchment/80">
+                    Quest
+                    <select
+                      value={list.pathToGlory?.questId ?? ""}
+                      onChange={(event) =>
+                        void commit({
+                          ...list,
+                          pathToGlory: {
+                            ...list.pathToGlory!,
+                            questId: event.target.value || null,
+                            questPoints: list.pathToGlory?.questPoints ?? 0,
+                          },
+                        })
+                      }
+                      className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
+                    >
+                      <option value="">None</option>
+                      {PATH_TO_GLORY_QUESTS.map((quest) => (
+                        <option key={quest.id} value={quest.id}>
+                          {quest.name}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  {list.pathToGlory?.questId ? (
+                    <label className="flex flex-col gap-2 text-sm text-parchment/80">
+                      Quest points
+                      <input
+                        type="number"
+                        min={0}
+                        max={99}
+                        value={list.pathToGlory?.questPoints ?? 0}
+                        onChange={(event) =>
+                          void commit({
+                            ...list,
+                            pathToGlory: {
+                              ...list.pathToGlory!,
+                              questPoints: Math.max(0, Number(event.target.value)),
+                            },
+                          })
+                        }
+                        className="min-h-11 w-full max-w-32 rounded-xl bg-parchment px-3 text-parchment-ink"
+                      />
+                    </label>
+                  ) : null}
+                  <label className="flex flex-col gap-2 text-sm text-parchment/80">
+                    Battleplan
+                    <select
+                      value={list.pathToGlory?.battleplanId ?? ""}
+                      onChange={(event) =>
+                        void commit({
+                          ...list,
+                          pathToGlory: {
+                            ...list.pathToGlory!,
+                            battleplanId: event.target.value || null,
+                          },
+                        })
+                      }
+                      className="min-h-11 w-full max-w-full rounded-xl bg-parchment px-3 text-parchment-ink"
+                    >
+                      <option value="">None</option>
+                      {PATH_TO_GLORY_BATTLEPLANS.map((plan) => (
+                        <option key={plan.id} value={plan.id}>
+                          {plan.name}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  {list.pathToGlory?.battleplanId ? (
+                    <div className="text-xs text-parchment/70">
+                      {findBattleplan(list.pathToGlory.battleplanId)?.twists.map((twist, i) => (
+                        <div key={i}>Twist {i + 1}: {twist}</div>
+                      ))}
+                    </div>
+                  ) : null}
+                </>
               ) : null}
 
               {faction.spellLores.length > 0 && !pathToGlory ? (
