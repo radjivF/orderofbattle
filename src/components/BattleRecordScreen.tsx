@@ -123,7 +123,7 @@ export function BattleRecordScreen() {
                         event.preventDefault();
                         goForward(`/battle-record/${game.id}`);
                       }}
-                      className="pressable flex cursor-pointer select-none gap-3 text-left text-parchment-ink"
+                      className="pressable flex cursor-pointer select-none items-stretch gap-3 text-left text-parchment-ink"
                     >
                       <span className="min-w-0 flex-1 flex flex-col gap-1">
                         {plan ? (
@@ -138,17 +138,18 @@ export function BattleRecordScreen() {
                           {game.yourArmy} vs {game.opponentArmy}
                         </span>
                       </span>
-                      <span className="flex shrink-0 flex-col items-end gap-0.5">
+                      <span className="flex min-h-full shrink-0 flex-col items-end self-stretch">
                         <span
                           className={`text-xs font-semibold tracking-wide uppercase ${statusToneClass(game.status)}`}
                         >
                           {statusLabel(game.status)}
                         </span>
-                        <span className="flex items-center gap-2">
-                          <span className="font-serif text-2xl font-semibold tabular-nums leading-none text-parchment-ink sm:text-3xl">
-                            {matchTotal(game, "you")} –{" "}
-                            {matchTotal(game, "opponent")}
-                          </span>
+                        <span className="flex flex-1 items-center justify-end">
+                          <span className="flex items-center gap-2">
+                            <span className="font-serif text-2xl font-semibold tabular-nums leading-none text-parchment-ink sm:text-3xl">
+                              {matchTotal(game, "you")} –{" "}
+                              {matchTotal(game, "opponent")}
+                            </span>
                           <svg
                             aria-hidden="true"
                             viewBox="0 0 12 20"
@@ -163,6 +164,7 @@ export function BattleRecordScreen() {
                               strokeLinejoin="round"
                             />
                           </svg>
+                          </span>
                         </span>
                       </span>
                     </Link>
