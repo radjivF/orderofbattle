@@ -3,11 +3,8 @@
 import type { MissionPrimaryPoint } from "@/engine/battleplanLayout";
 import type { BattlePlayer } from "@/engine/gameSession";
 import type { BattleTacticCard, BattleTacticStage } from "@/engine/types";
-import { useState } from "react";
 import { BattleRecordTacticTracker } from "./BattleRecordTacticTracker";
 import { IosUnderlineTabs } from "./ios/IosUnderlineTabs";
-import { ScourgeOfAqshyChip } from "./ScourgeOfAqshyChip";
-import { ScourgeOfAqshySheet } from "./ScourgeOfAqshySheet";
 
 export function turnPlayerOrder(
   firstPlayer: BattlePlayer | null,
@@ -37,13 +34,6 @@ type Props = {
     cardId: string,
     stage: BattleTacticStage,
   ) => void;
-  showScourge: boolean;
-  yourFury: number;
-  opponentFury: number;
-  yourRage: number;
-  opponentRage: number;
-  onChangeFury: (player: BattlePlayer, fury: number) => void;
-  onChangeRage: (player: BattlePlayer, rage: number) => void;
 };
 
 export function BattleRecordTurnScore({
@@ -61,22 +51,11 @@ export function BattleRecordTurnScore({
   yourStages,
   opponentStages,
   onStageChange,
-  showScourge,
-  yourFury,
-  opponentFury,
-  yourRage,
-  opponentRage,
-  onChangeFury,
-  onChangeRage,
 }: Props) {
   const order = turnPlayerOrder(firstPlayer);
   const playerName = activePlayer === "you" ? yourName : opponentName;
   const cards = activePlayer === "you" ? yourCards : opponentCards;
   const stages = activePlayer === "you" ? yourStages : opponentStages;
-  const [scourgeSheetOpen, setScourgeSheetOpen] = useState(false);
-
-  const fury = activePlayer === "you" ? yourFury : opponentFury;
-  const rage = activePlayer === "you" ? yourRage : opponentRage;
 
   return (
     <section className="parchment-card rounded-2xl px-4 py-4 text-parchment-ink">
@@ -144,26 +123,7 @@ export function BattleRecordTurnScore({
             />
           </div>
         ) : null}
-        {showScourge ? (
-          <div className="mt-4 flex justify-center">
-            <ScourgeOfAqshyChip
-              fury={fury}
-              rage={rage}
-              onClick={() => setScourgeSheetOpen(true)}
-            />
-          </div>
-        ) : null}
       </div>
-      {scourgeSheetOpen && showScourge ? (
-        <ScourgeOfAqshySheet
-          fury={fury}
-          rage={rage}
-          playerName={playerName}
-          onChangeFury={(newFury) => onChangeFury(activePlayer, newFury)}
-          onChangeRage={(newRage) => onChangeRage(activePlayer, newRage)}
-          onClose={() => setScourgeSheetOpen(false)}
-        />
-      ) : null}
     </section>
   );
 }
