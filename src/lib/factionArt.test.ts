@@ -70,7 +70,7 @@ describe("faction art LCP", () => {
     expect(builder).not.toContain("scrimOn");
 
     const library = readFileSync(
-      path.resolve(dir, "../components/LibraryScreen.tsx"),
+      path.resolve(dir, "../components/LibraryCreateFlow.tsx"),
       "utf8",
     );
     const libraryCard = readFileSync(

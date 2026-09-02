@@ -1,0 +1,3442 @@
+{
+  "id": "wood-elf-realms-orion-s-wild-hunt",
+  "name": "Wood Elf Realms - Orion's Wild Hunt",
+  "game": "The Old World",
+  "source": "https://github.com/vflam/Warhammer-The-Old-World",
+  "pointsCapDefault": 2000,
+  "journal": true,
+  "units": [
+    {
+      "id": "glade-lord",
+      "name": "Glade Lord",
+      "category": "characters",
+      "pointsPerModel": 135,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "mounts",
+          "name": "Mounts",
+          "options": [
+            {
+              "id": "elven-steed",
+              "name": "Elven Steed",
+              "points": 14,
+              "stats": {
+                "M": "9",
+                "WS": "3",
+                "BS": "-",
+                "S": "3",
+                "T": "-",
+                "W": "-",
+                "I": "4",
+                "A": "1",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Fast Cavalry",
+                  "text": "If all of the models (including characters) within a unit arrayed in an Open Order formation have this special rule, the unit may perform its Quick Turn (see page 183) even if it marched."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "great-stag",
+              "name": "Great Stag",
+              "points": 50,
+              "stats": {
+                "M": "8",
+                "WS": "4",
+                "BS": "-",
+                "S": "5",
+                "T": "(+1)",
+                "W": "(+1)",
+                "I": "4",
+                "A": "2",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armoured Hide",
+                  "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+                },
+                {
+                  "name": "Move Through Cover",
+                  "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+                },
+                {
+                  "name": "Crown Of Antlers",
+                  "text": "Impact Hits caused by a model with this special rule have the Armour Bane (1) special rule and an Armour Piercing characteristic of -1."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "warhawk",
+              "name": "Warhawk",
+              "points": 30,
+              "stats": {
+                "M": "2",
+                "WS": "3",
+                "BS": "-",
+                "S": "4",
+                "T": "-",
+                "W": "-",
+                "I": "4",
+                "A": "2",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Evasive",
+                  "text": "Once per turn, when a unit in which the majority of models have this special rule is declared the target during the enemy Shooting phase, it may choose to Fall Back in Good Order, fleeing directly away from the enemy unit shooting at it. Once this unit has completed its move, the enemy unit may continue with its shooting as declared."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Feigned Flight",
+                  "text": "If this unit chooses to Flee (or Fire & Flee) as a charge reaction, it automatically rallies at the end of its move."
+                },
+                {
+                  "name": "Fly",
+                  "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "forest-dragon",
+              "name": "Forest Dragon",
+              "points": 275,
+              "stats": {
+                "M": "6",
+                "WS": "6",
+                "BS": "-",
+                "S": "7",
+                "T": "(+3)",
+                "W": "(+6)",
+                "I": "4",
+                "A": "6",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Large Target",
+                  "text": "Large Targets do not benefit from partial or full cover. In addition, a unit can draw a line of sight to a Large Target over or through another unit, and vice versa, provided that unit is not also a Large Target. Finally, a unit that shoots at a Large Target can shoot with one additional rank. For example, a unit armed with crossbows can shoot with its first two ranks when shooting at a Large Target, or with its first three if also standing on a hill."
+                },
+                {
+                  "name": "Fly",
+                  "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Terror",
+                  "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+                }
+              ]
+            },
+            {
+              "id": "great-eagle",
+              "name": "Great Eagle",
+              "points": 60,
+              "stats": {
+                "M": "2",
+                "WS": "5",
+                "BS": "0",
+                "S": "4",
+                "T": "4",
+                "W": "3",
+                "I": "4",
+                "A": "3",
+                "Ld": "6"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Fly",
+                  "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "cavalry-spear",
+              "name": "Cavalry Spear",
+              "points": 2
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            },
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "enchanted-arrows",
+          "name": "Enchanted Arrows",
+          "options": [
+            {
+              "id": "arcane-bodkins",
+              "name": "Arcane Bodkins",
+              "points": 6,
+              "specialRules": [
+                {
+                  "name": "Arcane Bodkins",
+                  "text": "Armour offers no protection against these ensorcelled arrows. An Asrai Longbow with Arcane Bodkins has an AP of -2."
+                }
+              ]
+            },
+            {
+              "id": "hagbane-tips",
+              "name": "Hagbane Tips",
+              "points": 6,
+              "specialRules": [
+                {
+                  "name": "Hagbane Tips",
+                  "text": "Even a scratch from an arrow dipped in Hagbane sap can prove fatal. An Asrai Longbow with Hagbane Tips has the Poisoned Attacks special rule."
+                }
+              ]
+            },
+            {
+              "id": "moonfire-shot",
+              "name": "Moonfire Shot",
+              "points": 3,
+              "specialRules": [
+                {
+                  "name": "Moonfire Shot",
+                  "text": "Glowing eerily with pale light, the touch of these arrows bring searing agony. An Asrai Longbow with the Moonfire Shot has the Flaming Attacks and Magical Attacks special rules."
+                }
+              ]
+            },
+            {
+              "id": "swiftshiver-shards",
+              "name": "Swiftshiver Shards",
+              "points": 6,
+              "specialRules": [
+                {
+                  "name": "Swiftshiver Shards",
+                  "text": "These arrows seems to fly from the bow of their own accord. An Asrai Longbow with the Swiftshiver Shards has the Multiple Shots (2) special rule."
+                }
+              ]
+            },
+            {
+              "id": "trueflight-arrows",
+              "name": "Trueflight Arrows",
+              "points": 3,
+              "specialRules": [
+                {
+                  "name": "Trueflight Arrows",
+                  "text": "These enchanted arrows seek out their targets with unerring accuracy. An Asrai Longbow with Trueflight Arrows has the Ignores Covers and Quick Shot special rules."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "forest-sprites",
+          "name": "Forest Sprites",
+          "options": [
+            {
+              "id": "a-blight-of-terrors",
+              "name": "A Blight of Terrors",
+              "points": 50,
+              "specialRules": [
+                {
+                  "name": "A Blight of Terrors",
+                  "text": "This model and any\n                  unit it has joined gains the Terror special rule."
+                }
+              ]
+            },
+            {
+              "id": "a-muster-of-malevolents",
+              "name": "A Muster of Malevolents",
+              "points": 40,
+              "specialRules": [
+                {
+                  "name": "A Muster of Malevolents",
+                  "text": "Wood Elf Nobles and\n                  Waystalkers only. An enemy model hit by one or more shooting attacks made by this\n                  model\u2019s Asrai Longbow suffers an additional D3 Strength 2 hits, each with an AP of\n                  -. These hits have the Armour Bane (1) special rule"
+                }
+              ]
+            },
+            {
+              "id": "a-befuddlement-of-mischiefs",
+              "name": "A Befuddlement of Mischiefs",
+              "points": 30,
+              "specialRules": [
+                {
+                  "name": "A Befuddlement of Mischiefs",
+                  "text": "During the Combat\n                  phase, a single enemy unit that is in base contact with this model suffers a -1\n                  modifier to both its Weapon Skill and Initiative characteristics."
+                }
+              ]
+            },
+            {
+              "id": "a-murder-of-spites",
+              "name": "A Murder of Spites",
+              "points": 25,
+              "specialRules": [
+                {
+                  "name": "A Murder of Spites",
+                  "text": "When this model\u2019s\n                  combat is chosen during Step 1 of the Combat phase, a single enemy unit it is\n                  engaged with suffers D3 Strength 2 hits, each with an AP of -1."
+                }
+              ]
+            },
+            {
+              "id": "a-lamentation-of-despairs",
+              "name": "A Lamentation of Despairs",
+              "points": 20,
+              "specialRules": [
+                {
+                  "name": "A Lamentation of Despairs",
+                  "text": "Unless this model is\n                  fleeing, enemy units that are within 6\u2019\u2019 of this model suffer a -1 modifier to\n                  their Leadership characteristic when making a Fear, Panic or Terror test (to a\n                  minimum of 2)"
+                }
+              ]
+            },
+            {
+              "id": "an-annoyance-of-netlings",
+              "name": "An Annoyance of Netlings",
+              "points": 15,
+              "specialRules": [
+                {
+                  "name": "An Annoyance of Netlings",
+                  "text": "Whilst this model is\n                  engaged in a challenge, its opponent in the challenge suffers a -1 modifier to its\n                  rolls To Hit."
+                }
+              ]
+            },
+            {
+              "id": "a-resplendence-of-luminescents",
+              "name": "A Resplendence of Luminescents",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "A Resplendence of Luminescents",
+                  "text": "This model and any\n                  unit it has joined gains the Magical Attacks special rule"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "kindreds",
+          "name": "Kindreds",
+          "options": [
+            {
+              "id": "aspect-of-the-hound",
+              "name": "Aspect of the Hound",
+              "points": 20,
+              "specialRules": [
+                {
+                  "name": "Aspect of the Hound",
+                  "text": "A character who adopts the Aspect of the Hound, and any unit they have joined, may re-roll any rolls To hit of a natural 1 during the Combat Phase. However, units that have been joined by the Character cannot use that character's Leadership."
+                }
+              ]
+            },
+            {
+              "id": "aspect-of-the-bear",
+              "name": "Aspect of the Bear",
+              "points": 15,
+              "specialRules": [
+                {
+                  "name": "Aspect of the Bear",
+                  "text": "'Infantry' or 'calvalry' only. A character who adopts the Aspect of the Bear increases their Strength and Toughness characteristic by 1. However, units that have been joined by the Character cannot use that character's Leadership."
+                }
+              ]
+            },
+            {
+              "id": "aspect-of-the-boar",
+              "name": "Aspect of the Boar",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Aspect of the Boar",
+                  "text": "A character who adopts the Aspect of the Boar improves the Armour Piercing characteristics of its weapon(s) by 1 during a turn in which it charged and gains the Impact Hits (1) special rule. However, units that have been joined by the Character cannot use that character's Leadership."
+                }
+              ]
+            },
+            {
+              "id": "aspect-of-the-cat",
+              "name": "Aspect of the Cat",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Aspect of the Cat",
+                  "text": "A character who adopts the Aspect of the Cat gains the Armour Bane (1) special rule and may re-roll any failed rolls To Hit during a challenge. However, units that have been joined by the Character cannot use that character's Leadership."
+                }
+              ]
+            },
+            {
+              "id": "glamour-weave-kindred",
+              "name": "Glamour Weave Kindred",
+              "points": 25,
+              "specialRules": [
+                {
+                  "name": "Glamour Weave Kindred",
+                  "text": "Wood Elf Mages only. A character belonging to the Glamour Weave Kindred has a 5+ Ward save and gains the Tree Spirit special rule."
+                }
+              ]
+            },
+            {
+              "id": "eternal-kindred",
+              "name": "Eternal Kindred",
+              "points": 20,
+              "specialRules": [
+                {
+                  "name": "Eternal Kindred",
+                  "text": "'Infantry' only. A character belonging to the Eternal Kindred and any unit they have joined, may re-roll any rolls To Hit of a natural 1 during the Combat phase. In addition, a character belonging to the Eternal Kindred, and any unit they have joined, may re-roll and failed rolls To wound during the Combat phase while within 6\" of a special feature."
+                }
+              ]
+            },
+            {
+              "id": "wild-rider-kindred",
+              "name": "Wild Rider Kindred",
+              "points": 20,
+              "specialRules": [
+                {
+                  "name": "Wild Rider Kindred",
+                  "text": "Wood Elf Nobles only. A character belonging to the Wild Rider Kindred must be mounted on an Elven Steed or Great Stag and may only wear light armour. In addition, they gain the Counter Charge, Frenzy, Furious Charge, and Talismanic Tattoos special rules."
+                }
+              ]
+            },
+            {
+              "id": "scout-kindred",
+              "name": "Scout Kindred",
+              "points": 15,
+              "specialRules": [
+                {
+                  "name": "Scout Kindred",
+                  "text": "'Infantry' only. A character belonging to the Scout Kindred gains the Quick Shot and Scouts special rules."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Fire & Flee",
+          "text": "If the majority of the models in a unit armed armed with missile weapons have this special rule, the unit may declare that it will \u2018Fire & Flee\u2019 as a charge reaction:\n\nFire & Flee: The unit launches a volley of weapons fire before turning to flee from the enemy. If a unit with this special rule is armed with missile weapons and can draw a line of sight to the charging unit, it may declare that it will Fire & Flee. The unit will Stand & Shoot before turning tail and fleeing from the charge. However, due to the time spent shooting at the charging foe, when making its Flee roll the unit rolls two D6 and discards the lowest result. If both dice roll the same result, discard either.\n\nNote that, if the distance between this unit and the charging unit is less than the Movement characteristic of the charging unit, this unit must either Hold or Flee."
+        },
+        {
+          "name": "Ignores Cover",
+          "text": "If a model making a shooting attack has this special rule, it ignores any To Hit modifiers caused by partial or full cover."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Rallying Cry",
+          "text": "During the Command sub-phase of their turn, if they are not engaged in combat, this character may nominate a single fleeing friendly unit that is within their Command range. The nominated unit immediately makes a Rally test. If this test is failed, the unit may attempt to rally again as normal during the Rally sub-phase."
+        },
+        {
+          "name": "Strike First",
+          "text": "During the Combat phase, a model with this special rule that is engaged in combat improves its Initiative characteristic to 10 (before any other modifiers are applied). If a model has both this rule and Strike Last, the two rules cancel one another out."
+        },
+        {
+          "name": "The Arrow Of Kurnous",
+          "text": "Once deployment is complete, but before the roll-off to determine which player takes the first turn, if the General of your opponent\u2019s army is within 36\" of one or more models in your army that has this special rule, one of those models may fire the Arrow of Kurnous. If the Arrow of Kurnous is fired, the General of your opponent\u2019s army immediately suffers a single Strength 3 hit, with no armour or Regeneration saves permitted (Ward saves can be attempted as normal).\n\nHowever, if the Arrow of Kurnous is fired, your opponent adds +1 to their roll when rolling off to determine who takes the first turn."
+        },
+        {
+          "name": "Evasive",
+          "text": "Once per turn, when a unit in which the majority of models have this special rule is declared the target during the enemy Shooting phase, it may choose to Fall Back in Good Order, fleeing directly away from the enemy unit shooting at it. Once this unit has completed its move, the enemy unit may continue with its shooting as declared."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Cavalry Spear",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1",
+          "specialRules": "Fight in Extra Rank"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "7",
+        "BS": "7",
+        "S": "4",
+        "T": "3",
+        "W": "3",
+        "I": "6",
+        "A": "4",
+        "Ld": "10"
+      }
+    },
+    {
+      "id": "orion-the-king-in-the-woods",
+      "name": "Orion, the King in the Woods",
+      "category": "characters",
+      "pointsPerModel": 405,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous infantry (named character, Orion)",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Frenzy",
+          "text": "During a turn in which it made a charge move, or during the\u00a0turn after it made a follow up move, a Frenzied model has a +1\u00a0modifier to its Attacks characteristic. This modifier does not\u00a0apply to the model\u2019s mount (in the case of a cavalry model), to\u00a0the beasts that draw it (in the case of a chariot), or to its rider\u00a0(in the case of a monster).\n\nIn addition:\n- If the majority of the models in a unit are Frenzied, the unit automatically passes any Fear, Panic or Terror tests it is required to make.\n- If a unit that includes one or more Frenzied models is able to declare a charge during the Declare Charges & Charge Reactions sub-phase of its turn, it must do so.\n- If the majority of the models in a unit are Frenzied, it cannot choose to Flee as a charge reaction, nor can it ever choose to make a Restraint test.\n\n**Losing Frenzy:** Unlike other special rules, Frenzy can be lost during a game. Any model that loses a round of combat will immediately lose this special rule."
+        },
+        {
+          "name": "Immune To Psychology",
+          "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Open Order",
+          "text": "A unit consisting of models with this special rule may adopt an Open Order formation."
+        },
+        {
+          "name": "Unbreakable",
+          "text": "If a unit with this special rule loses a round of combat, it is not required to make a Break test. Instead, it will automatically Give Ground as it is pushed back by the enemy. Characters that are not Unbreakable cannot join units that are, and vice versa."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Strike First",
+          "text": "During the Combat phase, a model with this special rule that is engaged in combat improves its Initiative characteristic to 10 (before any other modifiers are applied). If a model has both this rule and Strike Last, the two rules cancel one another out."
+        },
+        {
+          "name": "Terror",
+          "text": "Models with this special rule cause Terror. Models that cause Terror also cause Fear:\n- When a unit that causes Terror declares a charge, the charge target must immediately make a Leadership test. If this test is failed, it must Flee. If this test is passed, it can declare its charge reaction normally.\n- If the winning side of a combat includes one or more units that cause Terror, each unit that belongs to the losing side must apply a -1 modifier to its Leadership characteristic when making its Break test.\n\nNote that if a charged unit cannot choose to Flee, it does not make this Leadership test.\n\nModels with the Fear special rule Fear models that cause Terror. Models that cause Terror are immune to Terror. A unit that does not cause Terror does not become immune to Terror when joined by a character that does."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Magical Attacks",
+          "text": "Any attack made or hit caused by a model with this special rule, or made using a weapon with this special rule, is a \u2018Magical\u2019 attack.\n\n Note that all spells are considered to have this special rule, as are any hits caused by magic items."
+        },
+        {
+          "name": "Spectral Hounds",
+          "text": "Hounds of Orion can only be wounded by Magical attacks. In addition, whilst one or more Hounds of Orion remains,\u00a0Orion himself cannot be targeted by enemy shooting."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "9",
+        "WS": "8",
+        "BS": "6",
+        "S": "5",
+        "T": "6",
+        "W": "5",
+        "I": "8",
+        "A": "5",
+        "Ld": "10"
+      }
+    },
+    {
+      "id": "shadowdancers",
+      "name": "Shadowdancers",
+      "category": "characters",
+      "pointsPerModel": 85,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            },
+            {
+              "id": "illusion",
+              "name": "Illusion",
+              "points": 0
+            },
+            {
+              "id": "lore-of-the-wilds",
+              "name": "Lore of the Wilds",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "spear-of-loec",
+              "name": "Spear of Loec",
+              "points": 0
+            },
+            {
+              "id": "trickster-s-blade",
+              "name": "Trickster's Blade",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-1",
+              "name": "Wizard Level 1",
+              "points": 35
+            }
+          ]
+        },
+        {
+          "id": "forest-sprites",
+          "name": "Forest Sprites",
+          "options": [
+            {
+              "id": "a-blight-of-terrors",
+              "name": "A Blight of Terrors",
+              "points": 50,
+              "specialRules": [
+                {
+                  "name": "A Blight of Terrors",
+                  "text": "This model and any\n                  unit it has joined gains the Terror special rule."
+                }
+              ]
+            },
+            {
+              "id": "a-muster-of-malevolents",
+              "name": "A Muster of Malevolents",
+              "points": 40,
+              "specialRules": [
+                {
+                  "name": "A Muster of Malevolents",
+                  "text": "Wood Elf Nobles and\n                  Waystalkers only. An enemy model hit by one or more shooting attacks made by this\n                  model\u2019s Asrai Longbow suffers an additional D3 Strength 2 hits, each with an AP of\n                  -. These hits have the Armour Bane (1) special rule"
+                }
+              ]
+            },
+            {
+              "id": "a-befuddlement-of-mischiefs",
+              "name": "A Befuddlement of Mischiefs",
+              "points": 30,
+              "specialRules": [
+                {
+                  "name": "A Befuddlement of Mischiefs",
+                  "text": "During the Combat\n                  phase, a single enemy unit that is in base contact with this model suffers a -1\n                  modifier to both its Weapon Skill and Initiative characteristics."
+                }
+              ]
+            },
+            {
+              "id": "a-murder-of-spites",
+              "name": "A Murder of Spites",
+              "points": 25,
+              "specialRules": [
+                {
+                  "name": "A Murder of Spites",
+                  "text": "When this model\u2019s\n                  combat is chosen during Step 1 of the Combat phase, a single enemy unit it is\n                  engaged with suffers D3 Strength 2 hits, each with an AP of -1."
+                }
+              ]
+            },
+            {
+              "id": "a-lamentation-of-despairs",
+              "name": "A Lamentation of Despairs",
+              "points": 20,
+              "specialRules": [
+                {
+                  "name": "A Lamentation of Despairs",
+                  "text": "Unless this model is\n                  fleeing, enemy units that are within 6\u2019\u2019 of this model suffer a -1 modifier to\n                  their Leadership characteristic when making a Fear, Panic or Terror test (to a\n                  minimum of 2)"
+                }
+              ]
+            },
+            {
+              "id": "an-annoyance-of-netlings",
+              "name": "An Annoyance of Netlings",
+              "points": 15,
+              "specialRules": [
+                {
+                  "name": "An Annoyance of Netlings",
+                  "text": "Whilst this model is\n                  engaged in a challenge, its opponent in the challenge suffers a -1 modifier to its\n                  rolls To Hit."
+                }
+              ]
+            },
+            {
+              "id": "a-resplendence-of-luminescents",
+              "name": "A Resplendence of Luminescents",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "A Resplendence of Luminescents",
+                  "text": "This model and any\n                  unit it has joined gains the Magical Attacks special rule"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Evasive",
+          "text": "Once per turn, when a unit in which the majority of models have this special rule is declared the target during the enemy Shooting phase, it may choose to Fall Back in Good Order, fleeing directly away from the enemy unit shooting at it. Once this unit has completed its move, the enemy unit may continue with its shooting as declared."
+        },
+        {
+          "name": "Furious Charge",
+          "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Attacks characteristic."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Immune To Psychology",
+          "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+        },
+        {
+          "name": "Loner",
+          "text": "A character with this special rule cannot be your General and cannot join a unit without this special rule. A unit with this special rule cannot be joined by a character without this special rule."
+        },
+        {
+          "name": "Strike First",
+          "text": "During the Combat phase, a model with this special rule that is engaged in combat improves its Initiative characteristic to 10 (before any other modifiers are applied). If a model has both this rule and Strike Last, the two rules cancel one another out."
+        },
+        {
+          "name": "Talismanic Tattoos",
+          "text": "Talismanic Tattoos give their wearer a 6+ Ward save against any wounds suffered."
+        },
+        {
+          "name": "Troubadour of Loec",
+          "text": "A Shadowdancer that joins a unit of Wardancers is considered to have the Dances of Loec special rule for as long as they remain with the unit (see page 131)."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Spear of Loec",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1",
+          "specialRules": "Armour Bane (2), Killing Blow"
+        },
+        {
+          "name": "Trickster's Blades",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+D3), Require Two Hands"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "8",
+        "BS": "6",
+        "S": "4",
+        "T": "3",
+        "W": "2",
+        "I": "7",
+        "A": "3",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "spellsinger",
+      "name": "Spellsinger",
+      "category": "characters",
+      "pointsPerModel": 80,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "lores-of-magic",
+          "name": "Lores of Magic",
+          "options": [
+            {
+              "id": "high-magic",
+              "name": "High Magic",
+              "points": 0
+            },
+            {
+              "id": "battle-magic",
+              "name": "Battle Magic",
+              "points": 0
+            },
+            {
+              "id": "elementalism",
+              "name": "Elementalism",
+              "points": 0
+            },
+            {
+              "id": "illusion",
+              "name": "Illusion",
+              "points": 0
+            },
+            {
+              "id": "lore-of-the-wilds",
+              "name": "Lore of the Wilds",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "mounts",
+          "name": "Mounts",
+          "options": [
+            {
+              "id": "elven-steed",
+              "name": "Elven Steed",
+              "points": 14,
+              "stats": {
+                "M": "9",
+                "WS": "3",
+                "BS": "-",
+                "S": "3",
+                "T": "-",
+                "W": "-",
+                "I": "4",
+                "A": "1",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Fast Cavalry",
+                  "text": "If all of the models (including characters) within a unit arrayed in an Open Order formation have this special rule, the unit may perform its Quick Turn (see page 183) even if it marched."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "warhawk",
+              "name": "Warhawk",
+              "points": 30,
+              "stats": {
+                "M": "2",
+                "WS": "3",
+                "BS": "-",
+                "S": "4",
+                "T": "-",
+                "W": "-",
+                "I": "4",
+                "A": "2",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Evasive",
+                  "text": "Once per turn, when a unit in which the majority of models have this special rule is declared the target during the enemy Shooting phase, it may choose to Fall Back in Good Order, fleeing directly away from the enemy unit shooting at it. Once this unit has completed its move, the enemy unit may continue with its shooting as declared."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Feigned Flight",
+                  "text": "If this unit chooses to Flee (or Fire & Flee) as a charge reaction, it automatically rallies at the end of its move."
+                },
+                {
+                  "name": "Fly",
+                  "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "great-eagle",
+              "name": "Great Eagle",
+              "points": 60,
+              "stats": {
+                "M": "2",
+                "WS": "5",
+                "BS": "0",
+                "S": "4",
+                "T": "4",
+                "W": "3",
+                "I": "4",
+                "A": "3",
+                "Ld": "6"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Fly",
+                  "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "unicorn",
+              "name": "Unicorn",
+              "points": 35,
+              "stats": {
+                "M": "10",
+                "WS": "4",
+                "BS": "-",
+                "S": "4",
+                "T": "-",
+                "W": "(+1)",
+                "I": "5",
+                "A": "2",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armour Bane",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+                },
+                {
+                  "name": "Armoured Hide",
+                  "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+                },
+                {
+                  "name": "Beguiling Aura",
+                  "text": "Enemy models must take a Leadership test before making any rolls To Hit against this model during the Combat phase.\n\nIf this test is failed, only rolls of natural 6 will hit."
+                },
+                {
+                  "name": "Counter Charge",
+                  "text": "This special rule can only be used by units that consist entirely of models with this special rule. When a unit with this special rule is charged in its front arc by an enemy unit whose troop type is \u2018cavalry,\u2019 \u2018chariot\u2019 or \u2018monster\u2019, it may declare a \u2018Counter Charge\u2019 charge reaction:\n\n Counter Charge: The unit surges forward to meet the enemy charge. Measure the distance between the two units. If the distance is less than the Movement characteristic of the charging unit, the charged unit has not enough time to meet the enemy charge and must either Hold or Flee instead.\n\n Otherwise, pivot the unit about its centre so that it is facing directly towards the centre of the charging enemy unit. After pivoting, the unit moves D3+1\" directly towards the enemy unit. Both units are considered to have charged during this turn.\n\n Fleeing units and units already engaged in combat when charged cannot Counter Charge. A unit can only Counter Charge in response to one charge per turn, even if charged by multiple units. Once all charges have been declared, the inactive player can choose which charging unit to Counter Charge. The unit will then Hold against the other charging units."
+                },
+                {
+                  "name": "Magical Attacks",
+                  "text": "Any attack made or hit caused by a model with this special rule, or made using a weapon with this special rule, is a \u2018Magical\u2019 attack.\n\n Note that all spells are considered to have this special rule, as are any hits caused by magic items."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wizard-level",
+          "name": "Wizard Level",
+          "options": [
+            {
+              "id": "wizard-level-1",
+              "name": "Wizard Level 1",
+              "points": 0
+            },
+            {
+              "id": "wizard-level-2",
+              "name": "Wizard Level 2",
+              "points": 30
+            }
+          ]
+        },
+        {
+          "id": "forest-sprites",
+          "name": "Forest Sprites",
+          "options": [
+            {
+              "id": "a-blight-of-terrors",
+              "name": "A Blight of Terrors",
+              "points": 50,
+              "specialRules": [
+                {
+                  "name": "A Blight of Terrors",
+                  "text": "This model and any\n                  unit it has joined gains the Terror special rule."
+                }
+              ]
+            },
+            {
+              "id": "a-muster-of-malevolents",
+              "name": "A Muster of Malevolents",
+              "points": 40,
+              "specialRules": [
+                {
+                  "name": "A Muster of Malevolents",
+                  "text": "Wood Elf Nobles and\n                  Waystalkers only. An enemy model hit by one or more shooting attacks made by this\n                  model\u2019s Asrai Longbow suffers an additional D3 Strength 2 hits, each with an AP of\n                  -. These hits have the Armour Bane (1) special rule"
+                }
+              ]
+            },
+            {
+              "id": "a-befuddlement-of-mischiefs",
+              "name": "A Befuddlement of Mischiefs",
+              "points": 30,
+              "specialRules": [
+                {
+                  "name": "A Befuddlement of Mischiefs",
+                  "text": "During the Combat\n                  phase, a single enemy unit that is in base contact with this model suffers a -1\n                  modifier to both its Weapon Skill and Initiative characteristics."
+                }
+              ]
+            },
+            {
+              "id": "a-murder-of-spites",
+              "name": "A Murder of Spites",
+              "points": 25,
+              "specialRules": [
+                {
+                  "name": "A Murder of Spites",
+                  "text": "When this model\u2019s\n                  combat is chosen during Step 1 of the Combat phase, a single enemy unit it is\n                  engaged with suffers D3 Strength 2 hits, each with an AP of -1."
+                }
+              ]
+            },
+            {
+              "id": "a-lamentation-of-despairs",
+              "name": "A Lamentation of Despairs",
+              "points": 20,
+              "specialRules": [
+                {
+                  "name": "A Lamentation of Despairs",
+                  "text": "Unless this model is\n                  fleeing, enemy units that are within 6\u2019\u2019 of this model suffer a -1 modifier to\n                  their Leadership characteristic when making a Fear, Panic or Terror test (to a\n                  minimum of 2)"
+                }
+              ]
+            },
+            {
+              "id": "an-annoyance-of-netlings",
+              "name": "An Annoyance of Netlings",
+              "points": 15,
+              "specialRules": [
+                {
+                  "name": "An Annoyance of Netlings",
+                  "text": "Whilst this model is\n                  engaged in a challenge, its opponent in the challenge suffers a -1 modifier to its\n                  rolls To Hit."
+                }
+              ]
+            },
+            {
+              "id": "a-resplendence-of-luminescents",
+              "name": "A Resplendence of Luminescents",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "A Resplendence of Luminescents",
+                  "text": "This model and any\n                  unit it has joined gains the Magical Attacks special rule"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "kindreds",
+          "name": "Kindreds",
+          "options": [
+            {
+              "id": "aspect-of-the-hound",
+              "name": "Aspect of the Hound",
+              "points": 20,
+              "specialRules": [
+                {
+                  "name": "Aspect of the Hound",
+                  "text": "A character who adopts the Aspect of the Hound, and any unit they have joined, may re-roll any rolls To hit of a natural 1 during the Combat Phase. However, units that have been joined by the Character cannot use that character's Leadership."
+                }
+              ]
+            },
+            {
+              "id": "aspect-of-the-bear",
+              "name": "Aspect of the Bear",
+              "points": 15,
+              "specialRules": [
+                {
+                  "name": "Aspect of the Bear",
+                  "text": "'Infantry' or 'calvalry' only. A character who adopts the Aspect of the Bear increases their Strength and Toughness characteristic by 1. However, units that have been joined by the Character cannot use that character's Leadership."
+                }
+              ]
+            },
+            {
+              "id": "aspect-of-the-boar",
+              "name": "Aspect of the Boar",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Aspect of the Boar",
+                  "text": "A character who adopts the Aspect of the Boar improves the Armour Piercing characteristics of its weapon(s) by 1 during a turn in which it charged and gains the Impact Hits (1) special rule. However, units that have been joined by the Character cannot use that character's Leadership."
+                }
+              ]
+            },
+            {
+              "id": "aspect-of-the-cat",
+              "name": "Aspect of the Cat",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Aspect of the Cat",
+                  "text": "A character who adopts the Aspect of the Cat gains the Armour Bane (1) special rule and may re-roll any failed rolls To Hit during a challenge. However, units that have been joined by the Character cannot use that character's Leadership."
+                }
+              ]
+            },
+            {
+              "id": "glamour-weave-kindred",
+              "name": "Glamour Weave Kindred",
+              "points": 25,
+              "specialRules": [
+                {
+                  "name": "Glamour Weave Kindred",
+                  "text": "Wood Elf Mages only. A character belonging to the Glamour Weave Kindred has a 5+ Ward save and gains the Tree Spirit special rule."
+                }
+              ]
+            },
+            {
+              "id": "eternal-kindred",
+              "name": "Eternal Kindred",
+              "points": 20,
+              "specialRules": [
+                {
+                  "name": "Eternal Kindred",
+                  "text": "'Infantry' only. A character belonging to the Eternal Kindred and any unit they have joined, may re-roll any rolls To Hit of a natural 1 during the Combat phase. In addition, a character belonging to the Eternal Kindred, and any unit they have joined, may re-roll and failed rolls To wound during the Combat phase while within 6\" of a special feature."
+                }
+              ]
+            },
+            {
+              "id": "wild-rider-kindred",
+              "name": "Wild Rider Kindred",
+              "points": 20,
+              "specialRules": [
+                {
+                  "name": "Wild Rider Kindred",
+                  "text": "Wood Elf Nobles only. A character belonging to the Wild Rider Kindred must be mounted on an Elven Steed or Great Stag and may only wear light armour. In addition, they gain the Counter Charge, Frenzy, Furious Charge, and Talismanic Tattoos special rules."
+                }
+              ]
+            },
+            {
+              "id": "scout-kindred",
+              "name": "Scout Kindred",
+              "points": 15,
+              "specialRules": [
+                {
+                  "name": "Scout Kindred",
+                  "text": "'Infantry' only. A character belonging to the Scout Kindred gains the Quick Shot and Scouts special rules."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Elven Reflexes",
+          "text": "A model with this special rule (but not its mount) has a +1 modifier to its Initiative characteristic (to a maximum of 10) during the first round of any combat."
+        },
+        {
+          "name": "Magical Attacks",
+          "text": "Any attack made or hit caused by a model with this special rule, or made using a weapon with this special rule, is a \u2018Magical\u2019 attack.\n\n Note that all spells are considered to have this special rule, as are any hits caused by magic items."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Lore of Athel Loren",
+          "text": "A Wizard with the 'Lore of Athel Loren' special rule may discard one of their randomly generated spells as normal. When they do so, they may select instead the signature spell of their chose Lore of Magic, or one of the following spells:\n\n- Tree Singing - Forest Walker - Flock of Doom"
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "4",
+        "BS": "4",
+        "S": "3",
+        "T": "3",
+        "W": "2",
+        "I": "4",
+        "A": "1",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "waystalkers",
+      "name": "Waystalkers",
+      "category": "characters",
+      "pointsPerModel": 85,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry",
+      "magicItems": true,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "enchanted-arrows",
+          "name": "Enchanted Arrows",
+          "options": [
+            {
+              "id": "arcane-bodkins",
+              "name": "Arcane Bodkins",
+              "points": 6,
+              "specialRules": [
+                {
+                  "name": "Arcane Bodkins",
+                  "text": "Armour offers no protection against these ensorcelled arrows. An Asrai Longbow with Arcane Bodkins has an AP of -2."
+                }
+              ]
+            },
+            {
+              "id": "hagbane-tips",
+              "name": "Hagbane Tips",
+              "points": 6,
+              "specialRules": [
+                {
+                  "name": "Hagbane Tips",
+                  "text": "Even a scratch from an arrow dipped in Hagbane sap can prove fatal. An Asrai Longbow with Hagbane Tips has the Poisoned Attacks special rule."
+                }
+              ]
+            },
+            {
+              "id": "moonfire-shot",
+              "name": "Moonfire Shot",
+              "points": 3,
+              "specialRules": [
+                {
+                  "name": "Moonfire Shot",
+                  "text": "Glowing eerily with pale light, the touch of these arrows bring searing agony. An Asrai Longbow with the Moonfire Shot has the Flaming Attacks and Magical Attacks special rules."
+                }
+              ]
+            },
+            {
+              "id": "swiftshiver-shards",
+              "name": "Swiftshiver Shards",
+              "points": 6,
+              "specialRules": [
+                {
+                  "name": "Swiftshiver Shards",
+                  "text": "These arrows seems to fly from the bow of their own accord. An Asrai Longbow with the Swiftshiver Shards has the Multiple Shots (2) special rule."
+                }
+              ]
+            },
+            {
+              "id": "trueflight-arrows",
+              "name": "Trueflight Arrows",
+              "points": 3,
+              "specialRules": [
+                {
+                  "name": "Trueflight Arrows",
+                  "text": "These enchanted arrows seek out their targets with unerring accuracy. An Asrai Longbow with Trueflight Arrows has the Ignores Covers and Quick Shot special rules."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "forest-sprites",
+          "name": "Forest Sprites",
+          "options": [
+            {
+              "id": "a-blight-of-terrors",
+              "name": "A Blight of Terrors",
+              "points": 50,
+              "specialRules": [
+                {
+                  "name": "A Blight of Terrors",
+                  "text": "This model and any\n                  unit it has joined gains the Terror special rule."
+                }
+              ]
+            },
+            {
+              "id": "a-muster-of-malevolents",
+              "name": "A Muster of Malevolents",
+              "points": 40,
+              "specialRules": [
+                {
+                  "name": "A Muster of Malevolents",
+                  "text": "Wood Elf Nobles and\n                  Waystalkers only. An enemy model hit by one or more shooting attacks made by this\n                  model\u2019s Asrai Longbow suffers an additional D3 Strength 2 hits, each with an AP of\n                  -. These hits have the Armour Bane (1) special rule"
+                }
+              ]
+            },
+            {
+              "id": "a-befuddlement-of-mischiefs",
+              "name": "A Befuddlement of Mischiefs",
+              "points": 30,
+              "specialRules": [
+                {
+                  "name": "A Befuddlement of Mischiefs",
+                  "text": "During the Combat\n                  phase, a single enemy unit that is in base contact with this model suffers a -1\n                  modifier to both its Weapon Skill and Initiative characteristics."
+                }
+              ]
+            },
+            {
+              "id": "a-murder-of-spites",
+              "name": "A Murder of Spites",
+              "points": 25,
+              "specialRules": [
+                {
+                  "name": "A Murder of Spites",
+                  "text": "When this model\u2019s\n                  combat is chosen during Step 1 of the Combat phase, a single enemy unit it is\n                  engaged with suffers D3 Strength 2 hits, each with an AP of -1."
+                }
+              ]
+            },
+            {
+              "id": "a-lamentation-of-despairs",
+              "name": "A Lamentation of Despairs",
+              "points": 20,
+              "specialRules": [
+                {
+                  "name": "A Lamentation of Despairs",
+                  "text": "Unless this model is\n                  fleeing, enemy units that are within 6\u2019\u2019 of this model suffer a -1 modifier to\n                  their Leadership characteristic when making a Fear, Panic or Terror test (to a\n                  minimum of 2)"
+                }
+              ]
+            },
+            {
+              "id": "an-annoyance-of-netlings",
+              "name": "An Annoyance of Netlings",
+              "points": 15,
+              "specialRules": [
+                {
+                  "name": "An Annoyance of Netlings",
+                  "text": "Whilst this model is\n                  engaged in a challenge, its opponent in the challenge suffers a -1 modifier to its\n                  rolls To Hit."
+                }
+              ]
+            },
+            {
+              "id": "a-resplendence-of-luminescents",
+              "name": "A Resplendence of Luminescents",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "A Resplendence of Luminescents",
+                  "text": "This model and any\n                  unit it has joined gains the Magical Attacks special rule"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "light-armour",
+              "name": "Light Armour",
+              "points": 3
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Elven Reflexes",
+          "text": "A model with this special rule (but not its mount) has a +1 modifier to its Initiative characteristic (to a maximum of 10) during the first round of any combat."
+        },
+        {
+          "name": "Evasive",
+          "text": "Once per turn, when a unit in which the majority of models have this special rule is declared the target during the enemy Shooting phase, it may choose to Fall Back in Good Order, fleeing directly away from the enemy unit shooting at it. Once this unit has completed its move, the enemy unit may continue with its shooting as declared."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Feigned Flight",
+          "text": "If this unit chooses to Flee (or Fire & Flee) as a charge reaction, it automatically rallies at the end of its move."
+        },
+        {
+          "name": "Fire & Flee",
+          "text": "If the majority of the models in a unit armed armed with missile weapons have this special rule, the unit may declare that it will \u2018Fire & Flee\u2019 as a charge reaction:\n\nFire & Flee: The unit launches a volley of weapons fire before turning to flee from the enemy. If a unit with this special rule is armed with missile weapons and can draw a line of sight to the charging unit, it may declare that it will Fire & Flee. The unit will Stand & Shoot before turning tail and fleeing from the charge. However, due to the time spent shooting at the charging foe, when making its Flee roll the unit rolls two D6 and discards the lowest result. If both dice roll the same result, discard either.\n\nNote that, if the distance between this unit and the charging unit is less than the Movement characteristic of the charging unit, this unit must either Hold or Flee."
+        },
+        {
+          "name": "Hawk-eyed Archer",
+          "text": "A model with this special rule can target any enemy character it can draw a line of sight to, regardless of the usual rules for targeting Lone characters. In addition, a model with this special rule can target a specific model within its target unit, such as a champion or a character."
+        },
+        {
+          "name": "Ignores Cover",
+          "text": "If a model making a shooting attack has this special rule, it ignores any To Hit modifiers caused by partial or full cover."
+        },
+        {
+          "name": "Scouts",
+          "text": "Units with this special rule may be deployed after all other units from both armies. They can be deployed anywhere on the battlefield that is more than 12\" away from an enemy model. If deployed in this way, Scouts cannot declare a charge during their first turn.\n\n If both armies contain Scouts, a roll-off should determine which player deploys Scouts first. The players then alternate deploying their scouting units one at a time, starting with the player who won the roll-off."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "6",
+        "BS": "7",
+        "S": "4",
+        "T": "3",
+        "W": "2",
+        "I": "5",
+        "A": "2",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "glade-captain",
+      "name": "Glade Captain",
+      "category": "characters",
+      "pointsPerModel": 70,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry",
+      "magicItems": true,
+      "command": [
+        {
+          "id": "battle-standard-bearer",
+          "name": "Battle Standard Bearer",
+          "points": 25
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "cavalry-spear",
+              "name": "Cavalry Spear",
+              "points": 2
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            },
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "mounts",
+          "name": "Mounts",
+          "options": [
+            {
+              "id": "elven-steed",
+              "name": "Elven Steed",
+              "points": 14,
+              "stats": {
+                "M": "9",
+                "WS": "3",
+                "BS": "-",
+                "S": "3",
+                "T": "-",
+                "W": "-",
+                "I": "4",
+                "A": "1",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Fast Cavalry",
+                  "text": "If all of the models (including characters) within a unit arrayed in an Open Order formation have this special rule, the unit may perform its Quick Turn (see page 183) even if it marched."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "great-stag",
+              "name": "Great Stag",
+              "points": 50,
+              "stats": {
+                "M": "8",
+                "WS": "4",
+                "BS": "-",
+                "S": "5",
+                "T": "(+1)",
+                "W": "(+1)",
+                "I": "4",
+                "A": "2",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Armoured Hide",
+                  "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+                },
+                {
+                  "name": "Move Through Cover",
+                  "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+                },
+                {
+                  "name": "Crown Of Antlers",
+                  "text": "Impact Hits caused by a model with this special rule have the Armour Bane (1) special rule and an Armour Piercing characteristic of -1."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "First Charge",
+                  "text": "If this unit\u2019s first charge of the game is successful (i.e., if the unit makes contact with the charge target), the charge target becomes Disrupted until the end of the Combat phase of that turn."
+                },
+                {
+                  "name": "Impact Hits",
+                  "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "warhawk",
+              "name": "Warhawk",
+              "points": 30,
+              "stats": {
+                "M": "2",
+                "WS": "3",
+                "BS": "-",
+                "S": "4",
+                "T": "-",
+                "W": "-",
+                "I": "4",
+                "A": "2",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Evasive",
+                  "text": "Once per turn, when a unit in which the majority of models have this special rule is declared the target during the enemy Shooting phase, it may choose to Fall Back in Good Order, fleeing directly away from the enemy unit shooting at it. Once this unit has completed its move, the enemy unit may continue with its shooting as declared."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Feigned Flight",
+                  "text": "If this unit chooses to Flee (or Fire & Flee) as a charge reaction, it automatically rallies at the end of its move."
+                },
+                {
+                  "name": "Fly",
+                  "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            },
+            {
+              "id": "great-eagle",
+              "name": "Great Eagle",
+              "points": 60,
+              "stats": {
+                "M": "2",
+                "WS": "5",
+                "BS": "0",
+                "S": "4",
+                "T": "4",
+                "W": "3",
+                "I": "4",
+                "A": "3",
+                "Ld": "6"
+              },
+              "specialRules": [
+                {
+                  "name": "Close Order",
+                  "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+                },
+                {
+                  "name": "Fear",
+                  "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+                },
+                {
+                  "name": "Fly",
+                  "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+                },
+                {
+                  "name": "Stomp Attacks",
+                  "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+                },
+                {
+                  "name": "Swiftstride",
+                  "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "enchanted-arrows",
+          "name": "Enchanted Arrows",
+          "options": [
+            {
+              "id": "arcane-bodkins",
+              "name": "Arcane Bodkins",
+              "points": 6,
+              "specialRules": [
+                {
+                  "name": "Arcane Bodkins",
+                  "text": "Armour offers no protection against these ensorcelled arrows. An Asrai Longbow with Arcane Bodkins has an AP of -2."
+                }
+              ]
+            },
+            {
+              "id": "hagbane-tips",
+              "name": "Hagbane Tips",
+              "points": 6,
+              "specialRules": [
+                {
+                  "name": "Hagbane Tips",
+                  "text": "Even a scratch from an arrow dipped in Hagbane sap can prove fatal. An Asrai Longbow with Hagbane Tips has the Poisoned Attacks special rule."
+                }
+              ]
+            },
+            {
+              "id": "moonfire-shot",
+              "name": "Moonfire Shot",
+              "points": 3,
+              "specialRules": [
+                {
+                  "name": "Moonfire Shot",
+                  "text": "Glowing eerily with pale light, the touch of these arrows bring searing agony. An Asrai Longbow with the Moonfire Shot has the Flaming Attacks and Magical Attacks special rules."
+                }
+              ]
+            },
+            {
+              "id": "swiftshiver-shards",
+              "name": "Swiftshiver Shards",
+              "points": 6,
+              "specialRules": [
+                {
+                  "name": "Swiftshiver Shards",
+                  "text": "These arrows seems to fly from the bow of their own accord. An Asrai Longbow with the Swiftshiver Shards has the Multiple Shots (2) special rule."
+                }
+              ]
+            },
+            {
+              "id": "trueflight-arrows",
+              "name": "Trueflight Arrows",
+              "points": 3,
+              "specialRules": [
+                {
+                  "name": "Trueflight Arrows",
+                  "text": "These enchanted arrows seek out their targets with unerring accuracy. An Asrai Longbow with Trueflight Arrows has the Ignores Covers and Quick Shot special rules."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "forest-sprites",
+          "name": "Forest Sprites",
+          "options": [
+            {
+              "id": "a-blight-of-terrors",
+              "name": "A Blight of Terrors",
+              "points": 50,
+              "specialRules": [
+                {
+                  "name": "A Blight of Terrors",
+                  "text": "This model and any\n                  unit it has joined gains the Terror special rule."
+                }
+              ]
+            },
+            {
+              "id": "a-muster-of-malevolents",
+              "name": "A Muster of Malevolents",
+              "points": 40,
+              "specialRules": [
+                {
+                  "name": "A Muster of Malevolents",
+                  "text": "Wood Elf Nobles and\n                  Waystalkers only. An enemy model hit by one or more shooting attacks made by this\n                  model\u2019s Asrai Longbow suffers an additional D3 Strength 2 hits, each with an AP of\n                  -. These hits have the Armour Bane (1) special rule"
+                }
+              ]
+            },
+            {
+              "id": "a-befuddlement-of-mischiefs",
+              "name": "A Befuddlement of Mischiefs",
+              "points": 30,
+              "specialRules": [
+                {
+                  "name": "A Befuddlement of Mischiefs",
+                  "text": "During the Combat\n                  phase, a single enemy unit that is in base contact with this model suffers a -1\n                  modifier to both its Weapon Skill and Initiative characteristics."
+                }
+              ]
+            },
+            {
+              "id": "a-murder-of-spites",
+              "name": "A Murder of Spites",
+              "points": 25,
+              "specialRules": [
+                {
+                  "name": "A Murder of Spites",
+                  "text": "When this model\u2019s\n                  combat is chosen during Step 1 of the Combat phase, a single enemy unit it is\n                  engaged with suffers D3 Strength 2 hits, each with an AP of -1."
+                }
+              ]
+            },
+            {
+              "id": "a-lamentation-of-despairs",
+              "name": "A Lamentation of Despairs",
+              "points": 20,
+              "specialRules": [
+                {
+                  "name": "A Lamentation of Despairs",
+                  "text": "Unless this model is\n                  fleeing, enemy units that are within 6\u2019\u2019 of this model suffer a -1 modifier to\n                  their Leadership characteristic when making a Fear, Panic or Terror test (to a\n                  minimum of 2)"
+                }
+              ]
+            },
+            {
+              "id": "an-annoyance-of-netlings",
+              "name": "An Annoyance of Netlings",
+              "points": 15,
+              "specialRules": [
+                {
+                  "name": "An Annoyance of Netlings",
+                  "text": "Whilst this model is\n                  engaged in a challenge, its opponent in the challenge suffers a -1 modifier to its\n                  rolls To Hit."
+                }
+              ]
+            },
+            {
+              "id": "a-resplendence-of-luminescents",
+              "name": "A Resplendence of Luminescents",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "A Resplendence of Luminescents",
+                  "text": "This model and any\n                  unit it has joined gains the Magical Attacks special rule"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "kindreds",
+          "name": "Kindreds",
+          "options": [
+            {
+              "id": "aspect-of-the-hound",
+              "name": "Aspect of the Hound",
+              "points": 20,
+              "specialRules": [
+                {
+                  "name": "Aspect of the Hound",
+                  "text": "A character who adopts the Aspect of the Hound, and any unit they have joined, may re-roll any rolls To hit of a natural 1 during the Combat Phase. However, units that have been joined by the Character cannot use that character's Leadership."
+                }
+              ]
+            },
+            {
+              "id": "aspect-of-the-bear",
+              "name": "Aspect of the Bear",
+              "points": 15,
+              "specialRules": [
+                {
+                  "name": "Aspect of the Bear",
+                  "text": "'Infantry' or 'calvalry' only. A character who adopts the Aspect of the Bear increases their Strength and Toughness characteristic by 1. However, units that have been joined by the Character cannot use that character's Leadership."
+                }
+              ]
+            },
+            {
+              "id": "aspect-of-the-boar",
+              "name": "Aspect of the Boar",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Aspect of the Boar",
+                  "text": "A character who adopts the Aspect of the Boar improves the Armour Piercing characteristics of its weapon(s) by 1 during a turn in which it charged and gains the Impact Hits (1) special rule. However, units that have been joined by the Character cannot use that character's Leadership."
+                }
+              ]
+            },
+            {
+              "id": "aspect-of-the-cat",
+              "name": "Aspect of the Cat",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Aspect of the Cat",
+                  "text": "A character who adopts the Aspect of the Cat gains the Armour Bane (1) special rule and may re-roll any failed rolls To Hit during a challenge. However, units that have been joined by the Character cannot use that character's Leadership."
+                }
+              ]
+            },
+            {
+              "id": "glamour-weave-kindred",
+              "name": "Glamour Weave Kindred",
+              "points": 25,
+              "specialRules": [
+                {
+                  "name": "Glamour Weave Kindred",
+                  "text": "Wood Elf Mages only. A character belonging to the Glamour Weave Kindred has a 5+ Ward save and gains the Tree Spirit special rule."
+                }
+              ]
+            },
+            {
+              "id": "eternal-kindred",
+              "name": "Eternal Kindred",
+              "points": 20,
+              "specialRules": [
+                {
+                  "name": "Eternal Kindred",
+                  "text": "'Infantry' only. A character belonging to the Eternal Kindred and any unit they have joined, may re-roll any rolls To Hit of a natural 1 during the Combat phase. In addition, a character belonging to the Eternal Kindred, and any unit they have joined, may re-roll and failed rolls To wound during the Combat phase while within 6\" of a special feature."
+                }
+              ]
+            },
+            {
+              "id": "wild-rider-kindred",
+              "name": "Wild Rider Kindred",
+              "points": 20,
+              "specialRules": [
+                {
+                  "name": "Wild Rider Kindred",
+                  "text": "Wood Elf Nobles only. A character belonging to the Wild Rider Kindred must be mounted on an Elven Steed or Great Stag and may only wear light armour. In addition, they gain the Counter Charge, Frenzy, Furious Charge, and Talismanic Tattoos special rules."
+                }
+              ]
+            },
+            {
+              "id": "scout-kindred",
+              "name": "Scout Kindred",
+              "points": 15,
+              "specialRules": [
+                {
+                  "name": "Scout Kindred",
+                  "text": "'Infantry' only. A character belonging to the Scout Kindred gains the Quick Shot and Scouts special rules."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "The Arrow Of Kurnous",
+          "text": "Once deployment is complete, but before the roll-off to determine which player takes the first turn, if the General of your opponent\u2019s army is within 36\" of one or more models in your army that has this special rule, one of those models may fire the Arrow of Kurnous. If the Arrow of Kurnous is fired, the General of your opponent\u2019s army immediately suffers a single Strength 3 hit, with no armour or Regeneration saves permitted (Ward saves can be attempted as normal).\n\nHowever, if the Arrow of Kurnous is fired, your opponent adds +1 to their roll when rolling off to determine who takes the first turn."
+        },
+        {
+          "name": "Evasive",
+          "text": "Once per turn, when a unit in which the majority of models have this special rule is declared the target during the enemy Shooting phase, it may choose to Fall Back in Good Order, fleeing directly away from the enemy unit shooting at it. Once this unit has completed its move, the enemy unit may continue with its shooting as declared."
+        },
+        {
+          "name": "Fire & Flee",
+          "text": "If the majority of the models in a unit armed armed with missile weapons have this special rule, the unit may declare that it will \u2018Fire & Flee\u2019 as a charge reaction:\n\nFire & Flee: The unit launches a volley of weapons fire before turning to flee from the enemy. If a unit with this special rule is armed with missile weapons and can draw a line of sight to the charging unit, it may declare that it will Fire & Flee. The unit will Stand & Shoot before turning tail and fleeing from the charge. However, due to the time spent shooting at the charging foe, when making its Flee roll the unit rolls two D6 and discards the lowest result. If both dice roll the same result, discard either.\n\nNote that, if the distance between this unit and the charging unit is less than the Movement characteristic of the charging unit, this unit must either Hold or Flee."
+        },
+        {
+          "name": "Ignores Cover",
+          "text": "If a model making a shooting attack has this special rule, it ignores any To Hit modifiers caused by partial or full cover."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Rallying Cry",
+          "text": "During the Command sub-phase of their turn, if they are not engaged in combat, this character may nominate a single fleeing friendly unit that is within their Command range. The nominated unit immediately makes a Rally test. If this test is failed, the unit may attempt to rally again as normal during the Rally sub-phase."
+        },
+        {
+          "name": "Strike First",
+          "text": "During the Combat phase, a model with this special rule that is engaged in combat improves its Initiative characteristic to 10 (before any other modifiers are applied). If a model has both this rule and Strike Last, the two rules cancel one another out."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Cavalry Spear",
+          "range": "Combat",
+          "strength": "S+1",
+          "ap": "-1",
+          "specialRules": "Fight in Extra Rank"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "6",
+        "BS": "6",
+        "S": "4",
+        "T": "3",
+        "W": "2",
+        "I": "5",
+        "A": "3",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "wild-riders",
+      "name": "Wild Riders",
+      "category": "core",
+      "pointsPerModel": 26,
+      "minModels": 4,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Light cavalry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "wild-hunter",
+          "name": "Wild Hunter",
+          "points": 7
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 7
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 7
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 1
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Frenzy",
+          "text": "During a turn in which it made a charge move, or during the\u00a0turn after it made a follow up move, a Frenzied model has a +1\u00a0modifier to its Attacks characteristic. This modifier does not\u00a0apply to the model\u2019s mount (in the case of a cavalry model), to\u00a0the beasts that draw it (in the case of a chariot), or to its rider\u00a0(in the case of a monster).\n\nIn addition:\n- If the majority of the models in a unit are Frenzied, the unit automatically passes any Fear, Panic or Terror tests it is required to make.\n- If a unit that includes one or more Frenzied models is able to declare a charge during the Declare Charges & Charge Reactions sub-phase of its turn, it must do so.\n- If the majority of the models in a unit are Frenzied, it cannot choose to Flee as a charge reaction, nor can it ever choose to make a Restraint test.\n\n**Losing Frenzy:** Unlike other special rules, Frenzy can be lost during a game. Any model that loses a round of combat will immediately lose this special rule."
+        },
+        {
+          "name": "Counter Charge",
+          "text": "This special rule can only be used by units that consist entirely of models with this special rule. When a unit with this special rule is charged in its front arc by an enemy unit whose troop type is \u2018cavalry,\u2019 \u2018chariot\u2019 or \u2018monster\u2019, it may declare a \u2018Counter Charge\u2019 charge reaction:\n\n Counter Charge: The unit surges forward to meet the enemy charge. Measure the distance between the two units. If the distance is less than the Movement characteristic of the charging unit, the charged unit has not enough time to meet the enemy charge and must either Hold or Flee instead.\n\n Otherwise, pivot the unit about its centre so that it is facing directly towards the centre of the charging enemy unit. After pivoting, the unit moves D3+1\" directly towards the enemy unit. Both units are considered to have charged during this turn.\n\n Fleeing units and units already engaged in combat when charged cannot Counter Charge. A unit can only Counter Charge in response to one charge per turn, even if charged by multiple units. Once all charges have been declared, the inactive player can choose which charging unit to Counter Charge. The unit will then Hold against the other charging units."
+        },
+        {
+          "name": "Fast Cavalry",
+          "text": "If all of the models (including characters) within a unit arrayed in an Open Order formation have this special rule, the unit may perform its Quick Turn (see page 183) even if it marched."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Furious Charge",
+          "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Attacks characteristic."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Elven Reflexes",
+          "text": "A model with this special rule (but not its mount) has a +1 modifier to its Initiative characteristic (to a maximum of 10) during the first round of any combat."
+        },
+        {
+          "name": "Open Order",
+          "text": "A unit consisting of models with this special rule may adopt an Open Order formation."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Talismanic Tattoos",
+          "text": "Talismanic Tattoos give their wearer a 6+ Ward save against any wounds suffered."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "5",
+        "BS": "4",
+        "S": "4",
+        "T": "3",
+        "W": "1",
+        "I": "5",
+        "A": "1",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "glade-riders",
+      "name": "Glade Riders",
+      "category": "core",
+      "pointsPerModel": 17,
+      "minModels": 4,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Light cavalry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "glade-knight",
+          "name": "Glade Knight",
+          "points": 6
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "unit-options",
+          "name": "Unit Options",
+          "options": [
+            {
+              "id": "drilled",
+              "name": "Drilled",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Drilled",
+                  "text": "Unless it is fleeing, a Drilled unit may perform a free redress the ranks manoeuvre immediately before moving. Once this manoeuvre is complete, the unit moves as normal. In addition, a Drilled unit can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n Note that any character that joins a Drilled unit is considered to be Drilled as well."
+                }
+              ]
+            },
+            {
+              "id": "ambushers",
+              "name": "Ambushers",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Ambushers",
+                  "text": "A unit with this special rule may be held in reserve rather than be deployed at the start of the game. From the beginning of round two onwards, roll a D6 during each of your Start of Turn sub-phases for each unit of Ambushers in your army that is held in reserve.\n\n On a roll of 1-3, the unit is delayed until your next turn at least.\u00a0 On a roll of 4+, the unit arrives, entering the battle as reinforcements during the Compulsory Moves sub-phase. The unit may be placed on any edge of the battlefield, chosen by its controlling player, but cannot be placed within 8\" of an enemy model. If any Ambushers are still held in reserve by the start of round five, they arrive automatically."
+                }
+              ]
+            },
+            {
+              "id": "reserve-move",
+              "name": "Reserve Move",
+              "points": 1,
+              "specialRules": [
+                {
+                  "name": "Reserve Move",
+                  "text": "Unless it charged, marched or fled during the Movement phase, a unit in which the majority of the models have this special rule may make a Reserve move at the end of the Shooting phase of its turn, after all shooting has been resolved. A unit making a Reserve move moves as described in the Basic Movement rules. It may manoeuvre normally, but cannot march."
+                }
+              ]
+            },
+            {
+              "id": "the-spirit-of-kurnous",
+              "name": "The Spirit of Kurnous",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Furious Charge",
+                  "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Attacks characteristic."
+                },
+                {
+                  "name": "Impetuous",
+                  "text": "If during the Declare Charges & Charge Reactions sub-phase of its turn, a unit that includes one or more Impetuous models is able to declare a charge, it must make a Leadership test. If this test is failed, the unit must declare a charge. If this test is passed, the unit may act as normal."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "enchanted-arrows",
+          "name": "Enchanted Arrows",
+          "options": [
+            {
+              "id": "arcane-bodkins",
+              "name": "Arcane Bodkins",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Arcane Bodkins",
+                  "text": "Armour offers no protection against these ensorcelled arrows. An Asrai Longbow with Arcane Bodkins has an AP of -2."
+                }
+              ]
+            },
+            {
+              "id": "hagbane-tips",
+              "name": "Hagbane Tips",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Hagbane Tips",
+                  "text": "Even a scratch from an arrow dipped in Hagbane sap can prove fatal. An Asrai Longbow with Hagbane Tips has the Poisoned Attacks special rule."
+                }
+              ]
+            },
+            {
+              "id": "moonfire-shot",
+              "name": "Moonfire Shot",
+              "points": 1,
+              "specialRules": [
+                {
+                  "name": "Moonfire Shot",
+                  "text": "Glowing eerily with pale light, the touch of these arrows bring searing agony. An Asrai Longbow with the Moonfire Shot has the Flaming Attacks and Magical Attacks special rules."
+                }
+              ]
+            },
+            {
+              "id": "swiftshiver-shards",
+              "name": "Swiftshiver Shards",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Swiftshiver Shards",
+                  "text": "These arrows seems to fly from the bow of their own accord. An Asrai Longbow with the Swiftshiver Shards has the Multiple Shots (2) special rule."
+                }
+              ]
+            },
+            {
+              "id": "trueflight-arrows",
+              "name": "Trueflight Arrows",
+              "points": 1,
+              "specialRules": [
+                {
+                  "name": "Trueflight Arrows",
+                  "text": "These enchanted arrows seek out their targets with unerring accuracy. An Asrai Longbow with Trueflight Arrows has the Ignores Covers and Quick Shot special rules."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Open Order",
+          "text": "A unit consisting of models with this special rule may adopt an Open Order formation."
+        },
+        {
+          "name": "Elven Reflexes",
+          "text": "A model with this special rule (but not its mount) has a +1 modifier to its Initiative characteristic (to a maximum of 10) during the first round of any combat."
+        },
+        {
+          "name": "Fast Cavalry",
+          "text": "If all of the models (including characters) within a unit arrayed in an Open Order formation have this special rule, the unit may perform its Quick Turn (see page 183) even if it marched."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Fire & Flee",
+          "text": "If the majority of the models in a unit armed armed with missile weapons have this special rule, the unit may declare that it will \u2018Fire & Flee\u2019 as a charge reaction:\n\nFire & Flee: The unit launches a volley of weapons fire before turning to flee from the enemy. If a unit with this special rule is armed with missile weapons and can draw a line of sight to the charging unit, it may declare that it will Fire & Flee. The unit will Stand & Shoot before turning tail and fleeing from the charge. However, due to the time spent shooting at the charging foe, when making its Flee roll the unit rolls two D6 and discards the lowest result. If both dice roll the same result, discard either.\n\nNote that, if the distance between this unit and the charging unit is less than the Movement characteristic of the charging unit, this unit must either Hold or Flee."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "4",
+        "BS": "4",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "4",
+        "A": "1",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "sisters-of-the-thorn",
+      "name": "Sisters Of The Thorn",
+      "category": "special",
+      "pointsPerModel": 22,
+      "minModels": 4,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Light cavalry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "handmaiden-of-the-thorn",
+          "name": "Handmaiden of the Thorn",
+          "points": 8
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        }
+      ],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Open Order",
+          "text": "A unit consisting of models with this special rule may adopt an Open Order formation."
+        },
+        {
+          "name": "Elven Reflexes",
+          "text": "A model with this special rule (but not its mount) has a +1 modifier to its Initiative characteristic (to a maximum of 10) during the first round of any combat."
+        },
+        {
+          "name": "Fast Cavalry",
+          "text": "If all of the models (including characters) within a unit arrayed in an Open Order formation have this special rule, the unit may perform its Quick Turn (see page 183) even if it marched."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Fire & Flee",
+          "text": "If the majority of the models in a unit armed armed with missile weapons have this special rule, the unit may declare that it will \u2018Fire & Flee\u2019 as a charge reaction:\n\nFire & Flee: The unit launches a volley of weapons fire before turning to flee from the enemy. If a unit with this special rule is armed with missile weapons and can draw a line of sight to the charging unit, it may declare that it will Fire & Flee. The unit will Stand & Shoot before turning tail and fleeing from the charge. However, due to the time spent shooting at the charging foe, when making its Flee roll the unit rolls two D6 and discards the lowest result. If both dice roll the same result, discard either.\n\nNote that, if the distance between this unit and the charging unit is less than the Movement characteristic of the charging unit, this unit must either Hold or Flee."
+        },
+        {
+          "name": "Daughters Of Eternity",
+          "text": "Models with this special rule have a 4+ Ward save against any wounds suffered."
+        },
+        {
+          "name": "Deepwood Covern",
+          "text": "A unit of Sisters of the Thorn knows a single, randomly generated spell from either the Battle Magic or Elementalism Lore of Magic. If you wish, this spell may be discarded and the unit may instead select the signature spell of its chosen Lore of Magic. The unit may cast this spell as a Bound spell.\n- If the unit includes a Handmaiden of the Thorn, it may cast this Bound spell with a Power Level of 1.\n- If is included both a Handmaiden of the Thorn and a standard bearer, it may cast this Bound spell with a Power Level of 2.\n- Otherwise, the unit may cast this Bound Spell with Power Level of 0."
+        },
+        {
+          "name": "Poisoned Attacks",
+          "text": "If a model with Poisoned Attacks rolls a natural 6 when\u00a0making a roll To Hit, it may apply a +2 modifier to that hit\u2019s\u00a0roll To Wound. Unless otherwise stated, a model with this special rule may use it when making both shooting and combat attacks. Any spells cast by the model are unaffected, as are any attacks made with magic weapons. Note that if an attack needs a To Hit roll of 7+, or hits automatically, this special rule cannot be used."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "4",
+        "BS": "5",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "4",
+        "A": "1",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "wardancers",
+      "name": "Wardancers",
+      "category": "special",
+      "pointsPerModel": 16,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular Infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "bladesinger",
+          "name": "Bladesinger",
+          "points": 6
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 1
+            },
+            {
+              "id": "throwing-spear",
+              "name": "Throwing Spear",
+              "points": 0
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Immune To Psychology",
+          "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+        },
+        {
+          "name": "Dances of Loec",
+          "text": "When this unit\u2019s combat is chosen during Step 1.1 of any Choose & Fight Combat sub-phase, choose one of the following Dances of Loec for it to perform. Every model within the unit performs the same Dance:\n\n\u2022 Whirling Death: Until the end of this Combat phase, the Armour Piercing characteristic of this unit\u2019s weapons is improved by 2.\n\n\u2022 Storm of Blades: Until the end of this Combat phase, this unit gains the Extra Attacks (+1) special rule.\n\n\u2022 The Shadows Coil: Until the end of this Combat phase, this unit has a 4+ ward save against any wounds suffered.\n\n\u2022 Woven Mist: Any enemy model that directs its attacks against this unit during this Combat phase suffers a -1 modifier to its rolls To Hit.\n\nNote that a Shadowdancer that joins this unit is considered to have this special rule as well."
+        },
+        {
+          "name": "Evasive",
+          "text": "Once per turn, when a unit in which the majority of models have this special rule is declared the target during the enemy Shooting phase, it may choose to Fall Back in Good Order, fleeing directly away from the enemy unit shooting at it. Once this unit has completed its move, the enemy unit may continue with its shooting as declared."
+        },
+        {
+          "name": "Furious Charge",
+          "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Attacks characteristic."
+        },
+        {
+          "name": "Motley Crew",
+          "text": "Units with this special rule may include models of the same type that are equipped differently to one another, and/or models of different types that fight together in a single unit. If necessary, the army list entry for such units will be accompanied by a brief explanation of the unit\u2019s composition.\n\n Different Weapons: The fighting rank of a Motley Crew may contain models that are armed with different weapons. In such cases, the controlling player must roll different batches of dice for the different models, making it clear to their opponent which model\u2019s attacks they represent and where they are being directed. These attacks are made in the Initiative order of the individual models, as usual.\n\n Different Armour: Models within a Motley Crew may have different armour values. In combat, use the armour value of the majority of the models in the fighting rank. Against enemy shooting, use the armour value of the majority of the models in the unit.\n\n Casualty Removal: Against enemy shooting, casualty removal should be divided as equally as possible between the different models within the unit. In combat, casualties should be removed from among the majority of the models that make up the fighting rank. In either case, available models are brought forward from rear ranks to fill any gaps, as chosen by the controlling player."
+        },
+        {
+          "name": "Loner",
+          "text": "A character with this special rule cannot be your General and cannot join a unit without this special rule. A unit with this special rule cannot be joined by a character without this special rule."
+        },
+        {
+          "name": "Open Order",
+          "text": "A unit consisting of models with this special rule may adopt an Open Order formation."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Strike First",
+          "text": "During the Combat phase, a model with this special rule that is engaged in combat improves its Initiative characteristic to 10 (before any other modifiers are applied). If a model has both this rule and Strike Last, the two rules cancel one another out."
+        },
+        {
+          "name": "Talismanic Tattoos",
+          "text": "Talismanic Tattoos give their wearer a 6+ Ward save against any wounds suffered."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        },
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Throwing Spear",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Fight in Extra Rank"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "6",
+        "BS": "4",
+        "S": "4",
+        "T": "3",
+        "W": "1",
+        "I": "6",
+        "A": "2",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "warhawk-riders",
+      "name": "Warhawk Riders",
+      "category": "special",
+      "pointsPerModel": 41,
+      "minModels": 3,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous Cavalry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "wind-rider",
+          "name": "Wind Rider",
+          "points": 8
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "enchanted-arrows",
+          "name": "Enchanted Arrows",
+          "options": [
+            {
+              "id": "arcane-bodkins",
+              "name": "Arcane Bodkins",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Arcane Bodkins",
+                  "text": "Armour offers no protection against these ensorcelled arrows. An Asrai Longbow with Arcane Bodkins has an AP of -2."
+                }
+              ]
+            },
+            {
+              "id": "hagbane-tips",
+              "name": "Hagbane Tips",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Hagbane Tips",
+                  "text": "Even a scratch from an arrow dipped in Hagbane sap can prove fatal. An Asrai Longbow with Hagbane Tips has the Poisoned Attacks special rule."
+                }
+              ]
+            },
+            {
+              "id": "moonfire-shot",
+              "name": "Moonfire Shot",
+              "points": 1,
+              "specialRules": [
+                {
+                  "name": "Moonfire Shot",
+                  "text": "Glowing eerily with pale light, the touch of these arrows bring searing agony. An Asrai Longbow with the Moonfire Shot has the Flaming Attacks and Magical Attacks special rules."
+                }
+              ]
+            },
+            {
+              "id": "swiftshiver-shards",
+              "name": "Swiftshiver Shards",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Swiftshiver Shards",
+                  "text": "These arrows seems to fly from the bow of their own accord. An Asrai Longbow with the Swiftshiver Shards has the Multiple Shots (2) special rule."
+                }
+              ]
+            },
+            {
+              "id": "trueflight-arrows",
+              "name": "Trueflight Arrows",
+              "points": 1,
+              "specialRules": [
+                {
+                  "name": "Trueflight Arrows",
+                  "text": "These enchanted arrows seek out their targets with unerring accuracy. An Asrai Longbow with Trueflight Arrows has the Ignores Covers and Quick Shot special rules."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Feigned Flight",
+          "text": "If this unit chooses to Flee (or Fire & Flee) as a charge reaction, it automatically rallies at the end of its move."
+        },
+        {
+          "name": "Evasive",
+          "text": "Once per turn, when a unit in which the majority of models have this special rule is declared the target during the enemy Shooting phase, it may choose to Fall Back in Good Order, fleeing directly away from the enemy unit shooting at it. Once this unit has completed its move, the enemy unit may continue with its shooting as declared."
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Fire & Flee",
+          "text": "If the majority of the models in a unit armed armed with missile weapons have this special rule, the unit may declare that it will \u2018Fire & Flee\u2019 as a charge reaction:\n\nFire & Flee: The unit launches a volley of weapons fire before turning to flee from the enemy. If a unit with this special rule is armed with missile weapons and can draw a line of sight to the charging unit, it may declare that it will Fire & Flee. The unit will Stand & Shoot before turning tail and fleeing from the charge. However, due to the time spent shooting at the charging foe, when making its Flee roll the unit rolls two D6 and discards the lowest result. If both dice roll the same result, discard either.\n\nNote that, if the distance between this unit and the charging unit is less than the Movement characteristic of the charging unit, this unit must either Hold or Flee."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Elven Reflexes",
+          "text": "A model with this special rule (but not its mount) has a +1 modifier to its Initiative characteristic (to a maximum of 10) during the first round of any combat."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "4",
+        "BS": "4",
+        "S": "3",
+        "T": "4",
+        "W": "2",
+        "I": "4",
+        "A": "1",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "wood-elf-beast-packs",
+      "name": "Wood Elf Beast Packs",
+      "category": "special",
+      "pointsPerModel": 11,
+      "minModels": 1,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular Infantry",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "beast-pack",
+          "name": "Beast Pack",
+          "options": [
+            {
+              "id": "deepwood-hound",
+              "name": "Deepwood Hound",
+              "points": 8,
+              "stats": {
+                "M": "9",
+                "WS": "4",
+                "BS": "-",
+                "S": "3",
+                "T": "3",
+                "W": "1",
+                "I": "3",
+                "A": "1",
+                "Ld": "5"
+              },
+              "specialRules": [
+                {
+                  "name": "Warband",
+                  "text": "Unless it is fleeing, a Warband gains a positive (+) modifier to its Leadership characteristic equal to its current Rank Bonus, up to a maximum of Leadership 10.However, a Warband cannot use this modifier to its Leadership should it ever choose to make a Restraint test or, if it is Impetuous, when testing to see if it must declare a charge or may act as normal. In addition, if the majority of the models in a unit have this special rule, it may re-roll its Charge roll.\n\nNote that unless a character also has this special rule, their Leadership cannot be modified by this special rule. A Warband can use either its own modified Leadership, the modified Leadership of a Warband character, or the unmodified Leadership of a non-Warband character, whichever is the higher."
+                }
+              ]
+            },
+            {
+              "id": "forest-cat",
+              "name": "Forest Cat",
+              "points": 6,
+              "stats": {
+                "M": "7",
+                "WS": "4",
+                "BS": "-",
+                "S": "3",
+                "T": "3",
+                "W": "1",
+                "I": "4",
+                "A": "1",
+                "Ld": "5"
+              },
+              "specialRules": [
+                {
+                  "name": "Armour Bane",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+                }
+              ]
+            },
+            {
+              "id": "sylvan-boar",
+              "name": "Sylvan Boar",
+              "points": 11,
+              "stats": {
+                "M": "6",
+                "WS": "3",
+                "BS": "-",
+                "S": "4",
+                "T": "4",
+                "W": "1",
+                "I": "3",
+                "A": "1",
+                "Ld": "5"
+              },
+              "specialRules": [
+                {
+                  "name": "Furious Charge",
+                  "text": "During a turn in which it made a charge move of 3\" or more, a model with this special rule gains a +1 modifier to its Attacks characteristic."
+                },
+                {
+                  "name": "Razor Tusks",
+                  "text": "During a turn in which it charged, the Armour Piercing characteristic of a boar's tusks (hand weapon) is improved by1."
+                }
+              ]
+            },
+            {
+              "id": "bear-of-loren",
+              "name": "Bear of Loren",
+              "points": 20,
+              "stats": {
+                "M": "5",
+                "WS": "4",
+                "BS": "-",
+                "S": "4",
+                "T": "4",
+                "W": "2",
+                "I": "3",
+                "A": "2",
+                "Ld": "6"
+              },
+              "specialRules": [
+                {
+                  "name": "Armoured Hide",
+                  "text": "The hide of some creatures forms natural armour and improves their armour value ( and that of their rider). By how much armour value is improved varies from model to model, as shown in brackets after the name of this special rule.\n\n Note that a model that wears no armour is considerer to have an armour value of 7+ for the purposes of rules that improve armour value."
+                },
+                {
+                  "name": "Cleaving Blow",
+                  "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound for an attack made in combat, it has struck a 'Cleaving Blow.' Enemy models whose troops type is 'regular infantry,' 'heavy infantry,' 'light cavalry,' 'heavy cavalry,' or 'war beasts' are not permitted an armour or Regeneration save against a Cleaving blow (Ward saves can be attempted as normal).\n\n\n*Note that if an attack wounds automatically, this special rule cannot be used.*"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "the-spirit-of-kurnous",
+              "name": "The Spirit of Kurnous",
+              "points": 10
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Motley Crew",
+          "text": "Units with this special rule may include models of the same type that are equipped differently to one another, and/or models of different types that fight together in a single unit. If necessary, the army list entry for such units will be accompanied by a brief explanation of the unit\u2019s composition.\n\n Different Weapons: The fighting rank of a Motley Crew may contain models that are armed with different weapons. In such cases, the controlling player must roll different batches of dice for the different models, making it clear to their opponent which model\u2019s attacks they represent and where they are being directed. These attacks are made in the Initiative order of the individual models, as usual.\n\n Different Armour: Models within a Motley Crew may have different armour values. In combat, use the armour value of the majority of the models in the fighting rank. Against enemy shooting, use the armour value of the majority of the models in the unit.\n\n Casualty Removal: Against enemy shooting, casualty removal should be divided as equally as possible between the different models within the unit. In combat, casualties should be removed from among the majority of the models that make up the fighting rank. In either case, available models are brought forward from rear ranks to fill any gaps, as chosen by the controlling player."
+        },
+        {
+          "name": "Run with the Pack",
+          "text": "Whilst one or more Beast Keeper remains within this unit, the unit is not subject to the Undisciplined rule and 'war beasts' within this unit do not fear models with the Flaming Attacks special rule. In addition, a unit with this special rule may use the movement characteristic of the majority of the models in the unit."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Elven Reflexes",
+          "text": "A model with this special rule (but not its mount) has a +1 modifier to its Initiative characteristic (to a maximum of 10) during the first round of any combat."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "4",
+        "BS": "4",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "4",
+        "A": "1",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "waywatchers",
+      "name": "Waywatchers",
+      "category": "rare",
+      "pointsPerModel": 16,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular Infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "sentinel",
+          "name": "Sentinel",
+          "points": 6
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "unit-options",
+          "name": "Unit Options",
+          "options": [
+            {
+              "id": "vanguard",
+              "name": "Vanguard",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Vanguard",
+                  "text": "After deployment, units with this special rule may make a Vanguard move. A unit making a Vanguard move moves as described in the Basic Movement rules. It may manoeuvre normally but cannot march.\n\nIf both armies contain Vanguard units, a roll-off determines who moves first. The players then alternate moving their Vanguard units one at a time, starting with the player who won the roll-off. Units that make a Vanguard move cannot declare a charge during their first turn."
+                }
+              ]
+            },
+            {
+              "id": "ambushers",
+              "name": "Ambushers",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Ambushers",
+                  "text": "A unit with this special rule may be held in reserve rather than be deployed at the start of the game. From the beginning of round two onwards, roll a D6 during each of your Start of Turn sub-phases for each unit of Ambushers in your army that is held in reserve.\n\n On a roll of 1-3, the unit is delayed until your next turn at least.\u00a0 On a roll of 4+, the unit arrives, entering the battle as reinforcements during the Compulsory Moves sub-phase. The unit may be placed on any edge of the battlefield, chosen by its controlling player, but cannot be placed within 8\" of an enemy model. If any Ambushers are still held in reserve by the start of round five, they arrive automatically."
+                }
+              ]
+            },
+            {
+              "id": "veteran",
+              "name": "Veteran",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Veteran",
+                  "text": "If the majority of the models in a unit have this special rule, the unit may re-roll any failed Leadership test.\n\n Note that a Break test is not a Leadership test."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "enchanted-arrows",
+          "name": "Enchanted Arrows",
+          "options": [
+            {
+              "id": "arcane-bodkins",
+              "name": "Arcane Bodkins",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Arcane Bodkins",
+                  "text": "Armour offers no protection against these ensorcelled arrows. An Asrai Longbow with Arcane Bodkins has an AP of -2."
+                }
+              ]
+            },
+            {
+              "id": "hagbane-tips",
+              "name": "Hagbane Tips",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Hagbane Tips",
+                  "text": "Even a scratch from an arrow dipped in Hagbane sap can prove fatal. An Asrai Longbow with Hagbane Tips has the Poisoned Attacks special rule."
+                }
+              ]
+            },
+            {
+              "id": "moonfire-shot",
+              "name": "Moonfire Shot",
+              "points": 1,
+              "specialRules": [
+                {
+                  "name": "Moonfire Shot",
+                  "text": "Glowing eerily with pale light, the touch of these arrows bring searing agony. An Asrai Longbow with the Moonfire Shot has the Flaming Attacks and Magical Attacks special rules."
+                }
+              ]
+            },
+            {
+              "id": "swiftshiver-shards",
+              "name": "Swiftshiver Shards",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Swiftshiver Shards",
+                  "text": "These arrows seems to fly from the bow of their own accord. An Asrai Longbow with the Swiftshiver Shards has the Multiple Shots (2) special rule."
+                }
+              ]
+            },
+            {
+              "id": "trueflight-arrows",
+              "name": "Trueflight Arrows",
+              "points": 1,
+              "specialRules": [
+                {
+                  "name": "Trueflight Arrows",
+                  "text": "These enchanted arrows seek out their targets with unerring accuracy. An Asrai Longbow with Trueflight Arrows has the Ignores Covers and Quick Shot special rules."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Elven Reflexes",
+          "text": "A model with this special rule (but not its mount) has a +1 modifier to its Initiative characteristic (to a maximum of 10) during the first round of any combat."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Scouts",
+          "text": "Units with this special rule may be deployed after all other units from both armies. They can be deployed anywhere on the battlefield that is more than 12\" away from an enemy model. If deployed in this way, Scouts cannot declare a charge during their first turn.\n\n If both armies contain Scouts, a roll-off should determine which player deploys Scouts first. The players then alternate deploying their scouting units one at a time, starting with the player who won the roll-off."
+        },
+        {
+          "name": "Evasive",
+          "text": "Once per turn, when a unit in which the majority of models have this special rule is declared the target during the enemy Shooting phase, it may choose to Fall Back in Good Order, fleeing directly away from the enemy unit shooting at it. Once this unit has completed its move, the enemy unit may continue with its shooting as declared."
+        },
+        {
+          "name": "Feigned Flight",
+          "text": "If this unit chooses to Flee (or Fire & Flee) as a charge reaction, it automatically rallies at the end of its move."
+        },
+        {
+          "name": "Fire & Flee",
+          "text": "If the majority of the models in a unit armed armed with missile weapons have this special rule, the unit may declare that it will \u2018Fire & Flee\u2019 as a charge reaction:\n\nFire & Flee: The unit launches a volley of weapons fire before turning to flee from the enemy. If a unit with this special rule is armed with missile weapons and can draw a line of sight to the charging unit, it may declare that it will Fire & Flee. The unit will Stand & Shoot before turning tail and fleeing from the charge. However, due to the time spent shooting at the charging foe, when making its Flee roll the unit rolls two D6 and discards the lowest result. If both dice roll the same result, discard either.\n\nNote that, if the distance between this unit and the charging unit is less than the Movement characteristic of the charging unit, this unit must either Hold or Flee."
+        },
+        {
+          "name": "Ignores Cover",
+          "text": "If a model making a shooting attack has this special rule, it ignores any To Hit modifiers caused by partial or full cover."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "4",
+        "BS": "5",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "5",
+        "A": "1",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "great-eagles",
+      "name": "Great Eagles",
+      "category": "rare",
+      "pointsPerModel": 60,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous creature",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "great-eagle",
+              "name": "Great Eagle",
+              "points": 60
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Fear",
+          "text": "Models with this special rule cause Fear:\n\n \n\u2022 \tIf a unit wishes to declare a charge against an enemy unit that both causes Fear and has a higher Unit Strength, it must first make a Leadership test. If this test is failed, the unit cannot charge. It does not move and is considered to have made a failed charge. If this test is passed, the unit can charge as normal.\n\n \n\u2022 \tIf a unit is engaged with an enemy unit that both causes Fear and has a higher Unit Strength when its combat is chosen during any Choose & Fight Combat sub-phase, it must make a Leadership test. If this test is failed, any models in the unit that direct their attacks against the Fear-causing enemy suffer a -1 modifier to their rolls To Hit.\n\n A unit only needs to make one Fear test per turn. Models that cause Fear are immune to Fear. A unit that does not cause Fear does not become immune to Fear when joined by a character that does."
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Stomp Attacks",
+          "text": "The number of Stomp Attacks caused varies from model to model and will be shown in brackets after the name of this special rule. Often, this is determined by the roll of a dice.\n\n**Resolving Stomp Attacks:** Stomp Attacks can only be made by a model that is in base contact with the enemy. Stomp Attacks are attacks made in combat that must be made last, after all other attacks have been made, including attacks made at Initiative 1. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "",
+        "WS": "",
+        "BS": "",
+        "S": "",
+        "T": "",
+        "W": "1",
+        "I": "",
+        "A": "",
+        "Ld": ""
+      }
+    },
+    {
+      "id": "deepwood-scouts",
+      "name": "Deepwood Scouts",
+      "category": "rare",
+      "pointsPerModel": 13,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular Infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "lord-s-bowman",
+          "name": "Lord's Bowman",
+          "points": 6
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "enchanted-arrows",
+          "name": "Enchanted Arrows",
+          "options": [
+            {
+              "id": "arcane-bodkins",
+              "name": "Arcane Bodkins",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Arcane Bodkins",
+                  "text": "Armour offers no protection against these ensorcelled arrows. An Asrai Longbow with Arcane Bodkins has an AP of -2."
+                }
+              ]
+            },
+            {
+              "id": "hagbane-tips",
+              "name": "Hagbane Tips",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Hagbane Tips",
+                  "text": "Even a scratch from an arrow dipped in Hagbane sap can prove fatal. An Asrai Longbow with Hagbane Tips has the Poisoned Attacks special rule."
+                }
+              ]
+            },
+            {
+              "id": "moonfire-shot",
+              "name": "Moonfire Shot",
+              "points": 1,
+              "specialRules": [
+                {
+                  "name": "Moonfire Shot",
+                  "text": "Glowing eerily with pale light, the touch of these arrows bring searing agony. An Asrai Longbow with the Moonfire Shot has the Flaming Attacks and Magical Attacks special rules."
+                }
+              ]
+            },
+            {
+              "id": "swiftshiver-shards",
+              "name": "Swiftshiver Shards",
+              "points": 2,
+              "specialRules": [
+                {
+                  "name": "Swiftshiver Shards",
+                  "text": "These arrows seems to fly from the bow of their own accord. An Asrai Longbow with the Swiftshiver Shards has the Multiple Shots (2) special rule."
+                }
+              ]
+            },
+            {
+              "id": "trueflight-arrows",
+              "name": "Trueflight Arrows",
+              "points": 1,
+              "specialRules": [
+                {
+                  "name": "Trueflight Arrows",
+                  "text": "These enchanted arrows seek out their targets with unerring accuracy. An Asrai Longbow with Trueflight Arrows has the Ignores Covers and Quick Shot special rules."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Elven Reflexes",
+          "text": "A model with this special rule (but not its mount) has a +1 modifier to its Initiative characteristic (to a maximum of 10) during the first round of any combat."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Evasive",
+          "text": "Once per turn, when a unit in which the majority of models have this special rule is declared the target during the enemy Shooting phase, it may choose to Fall Back in Good Order, fleeing directly away from the enemy unit shooting at it. Once this unit has completed its move, the enemy unit may continue with its shooting as declared."
+        },
+        {
+          "name": "Fire & Flee",
+          "text": "If the majority of the models in a unit armed armed with missile weapons have this special rule, the unit may declare that it will \u2018Fire & Flee\u2019 as a charge reaction:\n\nFire & Flee: The unit launches a volley of weapons fire before turning to flee from the enemy. If a unit with this special rule is armed with missile weapons and can draw a line of sight to the charging unit, it may declare that it will Fire & Flee. The unit will Stand & Shoot before turning tail and fleeing from the charge. However, due to the time spent shooting at the charging foe, when making its Flee roll the unit rolls two D6 and discards the lowest result. If both dice roll the same result, discard either.\n\nNote that, if the distance between this unit and the charging unit is less than the Movement characteristic of the charging unit, this unit must either Hold or Flee."
+        },
+        {
+          "name": "Scouts",
+          "text": "Units with this special rule may be deployed after all other units from both armies. They can be deployed anywhere on the battlefield that is more than 12\" away from an enemy model. If deployed in this way, Scouts cannot declare a charge during their first turn.\n\n If both armies contain Scouts, a roll-off should determine which player deploys Scouts first. The players then alternate deploying their scouting units one at a time, starting with the player who won the roll-off."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "4",
+        "BS": "4",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "4",
+        "A": "1",
+        "Ld": "8"
+      }
+    },
+    {
+      "id": "wildwood-rangers",
+      "name": "Wildwood Rangers",
+      "category": "rare",
+      "pointsPerModel": 14,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Regular Infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "wildwood-warden",
+          "name": "Wildwood Warden",
+          "points": 6
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 1
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Elven Reflexes",
+          "text": "A model with this special rule (but not its mount) has a +1 modifier to its Initiative characteristic (to a maximum of 10) during the first round of any combat."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Guardians Of The Wildwood",
+          "text": "Whilst it is in base contact with an enemy model that causes Fear or Terror, a model with this special rule gains a +1 modifier to its Attacks characteristics (to a maximum of 10) and the Multiple Wounds (2) special rule."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Immune To Psychology",
+          "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "5",
+        "BS": "4",
+        "S": "3",
+        "T": "3",
+        "W": "1",
+        "I": "4",
+        "A": "1",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "araloth-lord-of-talsyn",
+      "name": "Araloth, Lord of Talsyn",
+      "category": "characters",
+      "pointsPerModel": 150,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Regular infantry",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Boldest of the Bold",
+          "text": "Araloth ignores all negative modifiers to his Leadership characteristic."
+        },
+        {
+          "name": "Evasive",
+          "text": "Once per turn, when a unit in which the majority of models have this special rule is declared the target during the enemy Shooting phase, it may choose to Fall Back in Good Order, fleeing directly away from the enemy unit shooting at it. Once this unit has completed its move, the enemy unit may continue with its shooting as declared."
+        },
+        {
+          "name": "Favour of the Goddess",
+          "text": "Araloth has a 5+ Ward save against any wounds suffered."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Rallying Cry",
+          "text": "During the Command sub-phase of their turn, if they are not engaged in combat, this character may nominate a single fleeing friendly unit that is within their Command range. The nominated unit immediately makes a Rally test. If this test is failed, the unit may attempt to rally again as normal during the Rally sub-phase."
+        },
+        {
+          "name": "Skaryn the Eye Thief",
+          "text": "During the Command sub-phase of his turn, Araloth may attempt to dispatch Skaryn to strike from the skies by rolling a D6. On a roll of 1-2, Skaryn lingers out of reach of the enemy and nothing happens. On a roll of 3+, Skaryn descends from the skies to strike at his master's mark. Nominate a single enemy model within 18\" of Araloth. That model suffers a single Strength 4 hit with an AP of -1. If the target suffers an unsaved wound, its Weapon Skill and Initiative characteristics are reduced by D3 (to a minimum of 1) for the remainder of the game."
+        },
+        {
+          "name": "Strike First",
+          "text": "During the Combat phase, a model with this special rule that is engaged in combat improves its Initiative characteristic to 10 (before any other modifiers are applied). If a model has both this rule and Strike Last, the two rules cancel one another out."
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "5",
+        "WS": "8",
+        "BS": "7",
+        "S": "4",
+        "T": "3",
+        "W": "3",
+        "I": "8",
+        "A": "4",
+        "Ld": "10"
+      }
+    }
+  ]
+}

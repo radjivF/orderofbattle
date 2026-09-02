@@ -1,0 +1,2168 @@
+{
+  "id": "magic-items",
+  "name": "Magic Items",
+  "game": "The Old World",
+  "source": "https://github.com/vflam/Warhammer-The-Old-World",
+  "categories": [
+    {
+      "id": "arcane-items",
+      "name": "Arcane Items",
+      "options": [
+        {
+          "id": "spell-familiar",
+          "name": "Spell Familiar",
+          "points": 15
+        },
+        {
+          "id": "dispel-scroll",
+          "name": "Dispel Scroll",
+          "points": 20
+        },
+        {
+          "id": "power-scroll",
+          "name": "Power Scroll",
+          "points": 20
+        },
+        {
+          "id": "hieratic-jar",
+          "name": "Hieratic Jar",
+          "points": 25
+        },
+        {
+          "id": "sacrament-of-the-lady",
+          "name": "Sacrament of the Lady",
+          "points": 30
+        },
+        {
+          "id": "scroll-of-transmogrification",
+          "name": "Scroll of Transmogrification",
+          "points": 50
+        },
+        {
+          "id": "sigil-of-asuryan",
+          "name": "Sigil of Asuryan",
+          "points": 40
+        },
+        {
+          "id": "scroll-of-binding",
+          "name": "Scroll of Binding",
+          "points": 30
+        },
+        {
+          "id": "warpstone-tokens",
+          "name": "Warpstone Tokens",
+          "points": 15
+        },
+        {
+          "id": "focus-familiar",
+          "name": "Focus Familiar",
+          "points": 10
+        },
+        {
+          "id": "cube-of-darkness",
+          "name": "Cube Of Darkness",
+          "points": 50
+        },
+        {
+          "id": "itxi-grub",
+          "name": "Itxi Grub",
+          "points": 30
+        },
+        {
+          "id": "itxi-grub-v2",
+          "name": "Itxi Grub v2",
+          "points": 20
+        },
+        {
+          "id": "tablets-of-tahoth",
+          "name": "Tablets Of Tahoth",
+          "points": 20
+        },
+        {
+          "id": "wizard-s-familiar",
+          "name": "Wizard's Familiar",
+          "points": 35
+        },
+        {
+          "id": "wizard-s-staff",
+          "name": "Wizard's Staff",
+          "points": 20
+        },
+        {
+          "id": "heartwood-pendant",
+          "name": "Heartwood Pendant",
+          "points": 15
+        },
+        {
+          "id": "blood-of-the-shadowgave",
+          "name": "Blood of the Shadowgave",
+          "points": 35
+        },
+        {
+          "id": "goretooth",
+          "name": "Goretooth",
+          "points": 15
+        },
+        {
+          "id": "learned-feng-shi-bo",
+          "name": "Learned Feng Shi Bo",
+          "points": 15
+        },
+        {
+          "id": "guardian-feng-shi-bo",
+          "name": "Guardian Feng Shi Bo",
+          "points": 35
+        },
+        {
+          "id": "seal-of-xin-po",
+          "name": "Seal of Xin Po",
+          "points": 35
+        },
+        {
+          "id": "scroll-of-invocation",
+          "name": "Scroll Of Invocation",
+          "points": 30
+        },
+        {
+          "id": "scroll-of-fiery-convocation",
+          "name": "Scroll Of Fiery Convocation",
+          "points": 15
+        },
+        {
+          "id": "scroll-of-deathly-whispers",
+          "name": "Scroll Of Deathly Whispers",
+          "points": 10
+        },
+        {
+          "id": "scroll-of-obfuscation",
+          "name": "Scroll Of Obfuscation",
+          "points": 5
+        },
+        {
+          "id": "book-of-ashur",
+          "name": "Book of Ashur",
+          "points": 85
+        },
+        {
+          "id": "skull-of-katam",
+          "name": "Skull of Katam",
+          "points": 60
+        },
+        {
+          "id": "feedback-scroll",
+          "name": "Feedback Scroll",
+          "points": 60
+        },
+        {
+          "id": "infernal-puppet",
+          "name": "Infernal Puppet",
+          "points": 50
+        },
+        {
+          "id": "wand-of-jet",
+          "name": "Wand of Jet",
+          "points": 45
+        },
+        {
+          "id": "deepwood-sphere",
+          "name": "Deepwood Sphere",
+          "points": 45
+        },
+        {
+          "id": "the-plague-chalice",
+          "name": "The Plague Chalice",
+          "points": 40
+        },
+        {
+          "id": "oaken-stave",
+          "name": "Oaken Stave",
+          "points": 40
+        },
+        {
+          "id": "jagged-dagger",
+          "name": "Jagged Dagger",
+          "points": 15
+        },
+        {
+          "id": "silver-mirror",
+          "name": "Silver Mirror",
+          "points": 35
+        },
+        {
+          "id": "wand-of-wych-elm",
+          "name": "Wand of Wych Elm",
+          "points": 30
+        },
+        {
+          "id": "lore-familiar",
+          "name": "Lore Familiar",
+          "points": 30
+        },
+        {
+          "id": "hagtree-fetish",
+          "name": "Hagtree Fetish",
+          "points": 30
+        },
+        {
+          "id": "enkhil-s-kanopi",
+          "name": "Enkhil\u2019s Kanopi",
+          "points": 30
+        },
+        {
+          "id": "annulian-crystal",
+          "name": "Annulian Crystal",
+          "points": 30
+        },
+        {
+          "id": "prayer-icon-of-quenelles",
+          "name": "Prayer Icon of Quenelles",
+          "points": 25
+        },
+        {
+          "id": "scarab-brooch",
+          "name": "Scarab Brooch",
+          "points": 20
+        },
+        {
+          "id": "silvery-wand",
+          "name": "Silvery Wand",
+          "points": 15
+        },
+        {
+          "id": "arcane-familiar",
+          "name": "Arcane Familiar",
+          "points": 15
+        },
+        {
+          "id": "earthing-rod",
+          "name": "Earthing Rod",
+          "points": 5
+        },
+        {
+          "id": "glittering-wotnots",
+          "name": "Glittering Wotnots",
+          "points": 40
+        },
+        {
+          "id": "buzgob-s-knobbly-staff",
+          "name": "Buzgob\u2019s Knobbly Staff",
+          "points": 35
+        },
+        {
+          "id": "idol-of-mork",
+          "name": "Idol of Mork",
+          "points": 30
+        },
+        {
+          "id": "daemon-flask",
+          "name": "Daemon Flask",
+          "points": 50
+        },
+        {
+          "id": "vial-of-lammasu-blood",
+          "name": "Vial of Lammasu Blood",
+          "points": 40
+        },
+        {
+          "id": "warp-condenser",
+          "name": "Warp Condenser",
+          "points": 50
+        },
+        {
+          "id": "storm-daemon",
+          "name": "Storm Daemon",
+          "points": 30
+        },
+        {
+          "id": "halfling-cookbook",
+          "name": "Halfling Cookbook",
+          "points": 30
+        },
+        {
+          "id": "hellheart",
+          "name": "Hellheart",
+          "points": 20
+        },
+        {
+          "id": "grut-s-sickle",
+          "name": "Grut\u2019s Sickle",
+          "points": 40
+        },
+        {
+          "id": "tome-of-furion",
+          "name": "Tome Of Furion",
+          "points": 15
+        },
+        {
+          "id": "black-staff",
+          "name": "Black Staff",
+          "points": 55
+        },
+        {
+          "id": "cupped-hands-of-the-old-ones",
+          "name": "Cupped Hands Of The Old Ones",
+          "points": 55
+        },
+        {
+          "id": "skull-staff",
+          "name": "Skull Staff",
+          "points": 50
+        },
+        {
+          "id": "sceptre-of-de-noirot",
+          "name": "Sceptre Of De Noirot",
+          "points": 35
+        },
+        {
+          "id": "heart-of-the-wilds",
+          "name": "Heart Of The Wilds",
+          "points": 40
+        },
+        {
+          "id": "diadem-of-power",
+          "name": "Diadem Of Power",
+          "points": 35
+        },
+        {
+          "id": "flamestrike-wand",
+          "name": "Flamestrike Wand",
+          "points": 15
+        },
+        {
+          "id": "ph-zerakt-s-kanopi",
+          "name": "Ph\u00e2zerakt\u2019s Kanopi",
+          "points": 40
+        },
+        {
+          "id": "curse-weaver-wand",
+          "name": "Curse-Weaver Wand",
+          "points": 20
+        },
+        {
+          "id": "staff-of-baduumm",
+          "name": "Staff Of Baduumm",
+          "points": 55
+        },
+        {
+          "id": "idol-of-gork",
+          "name": "Idol Of Gork",
+          "points": 40
+        },
+        {
+          "id": "da-hag-s-brew",
+          "name": "Da Hag\u2019s Brew",
+          "points": 25
+        },
+        {
+          "id": "sceptre-of-power",
+          "name": "Sceptre of Power",
+          "points": 55
+        },
+        {
+          "id": "grimoire-of-ogvold",
+          "name": "Grimoire of Ogvold",
+          "points": 50
+        },
+        {
+          "id": "tome-of-the-dark-gods",
+          "name": "Tome of the Dark Gods",
+          "points": 35
+        },
+        {
+          "id": "twin-tailed-wand",
+          "name": "Twin-Tailed Wand",
+          "points": 40
+        },
+        {
+          "id": "crystal-ball",
+          "name": "Crystal Ball",
+          "points": 20
+        },
+        {
+          "id": "tome-of-midnight",
+          "name": "Tome of Midnight",
+          "points": 30
+        },
+        {
+          "id": "the-vortex-shard",
+          "name": "The Vortex Shard",
+          "points": 50
+        },
+        {
+          "id": "the-trickster-s-pendant",
+          "name": "The Trickster's Pendant",
+          "points": 40
+        },
+        {
+          "id": "staff-of-solidity",
+          "name": "Staff of Solidity",
+          "points": 15
+        },
+        {
+          "id": "sigil-of-the-mage-queen",
+          "name": "Sigil of the Mage Queen",
+          "points": 25
+        },
+        {
+          "id": "orb-of-midsummer",
+          "name": "Orb of Midsummer",
+          "points": 35
+        },
+        {
+          "id": "daemon-heart",
+          "name": "Daemon Heart",
+          "points": 30
+        },
+        {
+          "id": "cloak-of-po-mei",
+          "name": "Cloak of Po Mei",
+          "points": 50
+        },
+        {
+          "id": "clockwork-compass",
+          "name": "Clockwork Compass",
+          "points": 50
+        },
+        {
+          "id": "scrolls-of-wei-jin",
+          "name": "Scrolls of Wei-jin",
+          "points": 10
+        },
+        {
+          "id": "staff-of-quietude",
+          "name": "Staff Of Quietude",
+          "points": 35
+        },
+        {
+          "id": "scroll-of-disruption",
+          "name": "Scroll Of Disruption",
+          "points": 30
+        },
+        {
+          "id": "tome-of-spellcraft",
+          "name": "Tome Of Spellcraft",
+          "points": 30
+        },
+        {
+          "id": "rod-of-might",
+          "name": "Rod Of Might",
+          "points": 50
+        },
+        {
+          "id": "infernal-familiar",
+          "name": "Infernal Familiar",
+          "points": 25
+        },
+        {
+          "id": "wyrdstone-shard",
+          "name": "Wyrdstone Shard",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "magic-armour",
+      "name": "Magic Armour",
+      "options": [
+        {
+          "id": "dragon-helm",
+          "name": "Dragon Helm",
+          "points": 10
+        },
+        {
+          "id": "gromril-great-helm",
+          "name": "Gromril Great Helm",
+          "points": 40
+        },
+        {
+          "id": "pelt-of-the-dark-young",
+          "name": "Pelt of the Dark Young",
+          "points": 40
+        },
+        {
+          "id": "royal-mantle",
+          "name": "Royal Mantle",
+          "points": 40
+        },
+        {
+          "id": "helm-of-the-hunt",
+          "name": "Helm of the Hunt",
+          "points": 50
+        },
+        {
+          "id": "bedazzling-helm",
+          "name": "Bedazzling Helm",
+          "points": 60
+        },
+        {
+          "id": "the-mask-of-the-furnace",
+          "name": "The Mask of the Furnace",
+          "points": 40
+        },
+        {
+          "id": "hide-of-the-cold-ones",
+          "name": "Hide Of The Cold Ones",
+          "points": 20
+        },
+        {
+          "id": "the-fur-of-sharggu",
+          "name": "The Fur of Sharggu",
+          "points": 20
+        },
+        {
+          "id": "the-mantle-of-heaven",
+          "name": "The Mantle of Heaven",
+          "points": 20
+        },
+        {
+          "id": "trollhide-trousers",
+          "name": "Trollhide Trousers",
+          "points": 40
+        },
+        {
+          "id": "helm-of-courage",
+          "name": "Helm Of Courage",
+          "points": 25
+        },
+        {
+          "id": "spellshield",
+          "name": "Spellshield",
+          "points": 25
+        },
+        {
+          "id": "enchanted-shield",
+          "name": "Enchanted Shield",
+          "points": 10
+        },
+        {
+          "id": "charmed-shield",
+          "name": "Charmed Shield",
+          "points": 5
+        },
+        {
+          "id": "warpstone-armour",
+          "name": "Warpstone Armour",
+          "points": 25
+        },
+        {
+          "id": "full-plate-chaos-armour",
+          "name": "Full Plate Chaos Armour",
+          "points": 40
+        },
+        {
+          "id": "heavy-chaos-armour",
+          "name": "Heavy Chaos Armour",
+          "points": 30
+        },
+        {
+          "id": "ironspike-shield",
+          "name": "Ironspike Shield",
+          "points": 20
+        },
+        {
+          "id": "cautious-shield",
+          "name": "Cautious Shield",
+          "points": 20
+        },
+        {
+          "id": "shield-of-the-warrior-true",
+          "name": "Shield of the Warrior True",
+          "points": 30
+        },
+        {
+          "id": "shield-of-ptra",
+          "name": "Shield of Ptra",
+          "points": 25
+        },
+        {
+          "id": "shield-of-ghrond",
+          "name": "Shield Of Ghrond",
+          "points": 40
+        },
+        {
+          "id": "shield-of-the-mirror-pool",
+          "name": "Shield Of The Mirror Pool",
+          "points": 40
+        },
+        {
+          "id": "spiteful-shield",
+          "name": "Spiteful Shield",
+          "points": 20
+        },
+        {
+          "id": "shield-of-the-gorgon",
+          "name": "Shield of the Gorgon",
+          "points": 40
+        },
+        {
+          "id": "the-golden-shield",
+          "name": "The Golden Shield",
+          "points": 30
+        },
+        {
+          "id": "shield-of-nan-gau",
+          "name": "Shield of Nan-Gau",
+          "points": 20
+        },
+        {
+          "id": "levitating-shield",
+          "name": "Levitating Shield",
+          "points": 25
+        },
+        {
+          "id": "iron-rimmed-shield",
+          "name": "Iron-rimmed Shield",
+          "points": 15
+        },
+        {
+          "id": "anointed-armour",
+          "name": "Anointed Armour",
+          "points": 45
+        },
+        {
+          "id": "armour-of-meteoric-iron",
+          "name": "Armour of Meteoric Iron",
+          "points": 20
+        },
+        {
+          "id": "the-blackened-plate",
+          "name": "The Blackened Plate",
+          "points": 25
+        },
+        {
+          "id": "armour-of-mork",
+          "name": "Armour of Mork",
+          "points": 30
+        },
+        {
+          "id": "blood-armour",
+          "name": "Blood Armour",
+          "points": 30
+        },
+        {
+          "id": "the-accursed-armour",
+          "name": "The Accursed Armour",
+          "points": 30
+        },
+        {
+          "id": "armour-of-caledor",
+          "name": "Armour of Caledor",
+          "points": 35
+        },
+        {
+          "id": "armour-of-tarnus",
+          "name": "Armour of Tarnus",
+          "points": 35
+        },
+        {
+          "id": "armour-of-the-ages",
+          "name": "Armour of the Ages",
+          "points": 50
+        },
+        {
+          "id": "armour-of-bazherak-the-cruel",
+          "name": "Armour of Bazherak the Cruel",
+          "points": 50
+        },
+        {
+          "id": "armour-of-destiny",
+          "name": "Armour of Destiny",
+          "points": 70
+        },
+        {
+          "id": "armour-of-the-damned",
+          "name": "Armour of the Damned",
+          "points": 70
+        },
+        {
+          "id": "gilded-cuirass",
+          "name": "Gilded Cuirass",
+          "points": 60
+        },
+        {
+          "id": "gut-maw",
+          "name": "Gut Maw",
+          "points": 45
+        },
+        {
+          "id": "mastodon-armour",
+          "name": "Mastodon Armour",
+          "points": 40
+        },
+        {
+          "id": "armour-of-fortune",
+          "name": "Armour of Fortune",
+          "points": 45
+        },
+        {
+          "id": "glittering-scales",
+          "name": "Glittering Scales",
+          "points": 35
+        },
+        {
+          "id": "armour-of-silvered-steel",
+          "name": "Armour of Silvered Steel",
+          "points": 40
+        },
+        {
+          "id": "warding-splint",
+          "name": "Warding Splint",
+          "points": 35
+        },
+        {
+          "id": "the-flayed-hauberk",
+          "name": "The Flayed Hauberk",
+          "points": 35
+        },
+        {
+          "id": "railarian-s-mantle",
+          "name": "Railarian's Mantle",
+          "points": 35
+        },
+        {
+          "id": "crimson-armour-of-dragon",
+          "name": "Crimson Armour of Dragon",
+          "points": 40
+        },
+        {
+          "id": "dead-ard-armour",
+          "name": "Dead \u2019Ard Armour",
+          "points": 35
+        },
+        {
+          "id": "daemonic-platemail",
+          "name": "Daemonic Platemail",
+          "points": 50
+        },
+        {
+          "id": "mighty-serpent-s-scalemail",
+          "name": "Mighty Serpent's Scalemail",
+          "points": 40
+        },
+        {
+          "id": "twice-blessed-armour",
+          "name": "Twice-Blessed Armour",
+          "points": 25
+        },
+        {
+          "id": "armour-of-stars",
+          "name": "Armour of Stars",
+          "points": 40
+        },
+        {
+          "id": "mantle-of-rebirth",
+          "name": "Mantle of Rebirth",
+          "points": 40
+        },
+        {
+          "id": "cloak-of-tumbling-leaves",
+          "name": "Cloak of Tumbling Leaves",
+          "points": 30
+        },
+        {
+          "id": "the-armour-of-the-warbird",
+          "name": "The Armour of the Warbird",
+          "points": 45
+        },
+        {
+          "id": "jade-armour-of-beichai",
+          "name": "Jade Armour of Beichai",
+          "points": 40
+        },
+        {
+          "id": "trailblazer-s-hauberk",
+          "name": "Trailblazer's Hauberk",
+          "points": 20
+        },
+        {
+          "id": "armour-of-dark-faith",
+          "name": "Armour Of Dark Faith",
+          "points": 40
+        },
+        {
+          "id": "scale-of-false-promise",
+          "name": "Scale Of False Promise",
+          "points": 35
+        },
+        {
+          "id": "mantle-of-drifting-shadow",
+          "name": "Mantle Of Drifting Shadow",
+          "points": 20
+        },
+        {
+          "id": "padded-hauberk",
+          "name": "Padded Hauberk",
+          "points": 20
+        },
+        {
+          "id": "shadowed-mantle",
+          "name": "Shadowed Mantle",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "magic-weapons",
+      "name": "Magic Weapons",
+      "options": [
+        {
+          "id": "runefang",
+          "name": "Runefang",
+          "points": 100
+        },
+        {
+          "id": "black-hammer-of-hashut",
+          "name": "Black Hammer of Hashut",
+          "points": 60
+        },
+        {
+          "id": "dagger-of-malice",
+          "name": "Dagger of Malice",
+          "points": 35
+        },
+        {
+          "id": "dark-maul",
+          "name": "Dark Maul",
+          "points": 50
+        },
+        {
+          "id": "filth-mace",
+          "name": "Filth Mace",
+          "points": 40
+        },
+        {
+          "id": "the-graven-sceptre",
+          "name": "The Graven Sceptre",
+          "points": 30
+        },
+        {
+          "id": "asyendi-s-bane",
+          "name": "Asyendi's Bane",
+          "points": 10
+        },
+        {
+          "id": "biting-blade",
+          "name": "Biting Blade",
+          "points": 15
+        },
+        {
+          "id": "wollopa-s-one-hit-wunda",
+          "name": "Wollopa's One Hit Wunda",
+          "points": 15
+        },
+        {
+          "id": "berserker-blade",
+          "name": "Berserker Blade",
+          "points": 20
+        },
+        {
+          "id": "foe-bane",
+          "name": "Foe Bane",
+          "points": 20
+        },
+        {
+          "id": "serpent-staff",
+          "name": "Serpent Staff",
+          "points": 20
+        },
+        {
+          "id": "spellthieving-sword",
+          "name": "Spellthieving Sword",
+          "points": 20
+        },
+        {
+          "id": "dragon-bow",
+          "name": "Dragon Bow",
+          "points": 25
+        },
+        {
+          "id": "sword-of-swiftness",
+          "name": "Sword of Swiftness",
+          "points": 25
+        },
+        {
+          "id": "giant-blade",
+          "name": "Giant Blade",
+          "points": 30
+        },
+        {
+          "id": "da-choppiest-choppa",
+          "name": "Da Choppiest Choppa",
+          "points": 35
+        },
+        {
+          "id": "flail-of-skulls",
+          "name": "Flail of Skulls",
+          "points": 35
+        },
+        {
+          "id": "hunter-s-spear",
+          "name": "Hunter's Spear",
+          "points": 35
+        },
+        {
+          "id": "spelleater-axe",
+          "name": "Spelleater Axe",
+          "points": 35
+        },
+        {
+          "id": "bow-of-loren",
+          "name": "Bow of Loren",
+          "points": 40
+        },
+        {
+          "id": "mangelder",
+          "name": "Mangelder",
+          "points": 40
+        },
+        {
+          "id": "morning-star-of-fracasse",
+          "name": "Morning Star of Fracasse",
+          "points": 40
+        },
+        {
+          "id": "porko-s-pigstikka",
+          "name": "Porko's Pigstikka",
+          "points": 40
+        },
+        {
+          "id": "reaver-bow",
+          "name": "Reaver Bow",
+          "points": 40
+        },
+        {
+          "id": "blades-of-loec",
+          "name": "Blades of Loec",
+          "points": 45
+        },
+        {
+          "id": "chaos-runesword",
+          "name": "Chaos Runesword",
+          "points": 45
+        },
+        {
+          "id": "headsman-s-axe",
+          "name": "Headsman's Axe",
+          "points": 45
+        },
+        {
+          "id": "axe-of-men",
+          "name": "Axe of Men",
+          "points": 50
+        },
+        {
+          "id": "crook-flail-of-radiance",
+          "name": "Crook & Flail of Radiance",
+          "points": 50
+        },
+        {
+          "id": "dragon-slaying-sword",
+          "name": "Dragon Slaying Sword",
+          "points": 50
+        },
+        {
+          "id": "heartwood-lance",
+          "name": "Heartwood Lance",
+          "points": 50
+        },
+        {
+          "id": "sword-of-justice",
+          "name": "Sword of Justice",
+          "points": 50
+        },
+        {
+          "id": "the-blade-of-leaping-gold",
+          "name": "The Blade of Leaping Gold",
+          "points": 50
+        },
+        {
+          "id": "duellist-s-blades",
+          "name": "Duellist's Blades",
+          "points": 55
+        },
+        {
+          "id": "primeval-club",
+          "name": "Primeval Club",
+          "points": 60
+        },
+        {
+          "id": "sword-of-battle",
+          "name": "Sword of Battle",
+          "points": 60
+        },
+        {
+          "id": "blood-drinker",
+          "name": "Blood Drinker",
+          "points": 45
+        },
+        {
+          "id": "dreadlance",
+          "name": "Dreadlance",
+          "points": 40
+        },
+        {
+          "id": "frostblade",
+          "name": "Frostblade",
+          "points": 60
+        },
+        {
+          "id": "sword-of-heroes",
+          "name": "Sword of Heroes",
+          "points": 60
+        },
+        {
+          "id": "sword-of-kings",
+          "name": "Sword of Kings",
+          "points": 55
+        },
+        {
+          "id": "mace-of-helsturm",
+          "name": "Mace of Helsturm",
+          "points": 65
+        },
+        {
+          "id": "ogre-blade",
+          "name": "Ogre Blade",
+          "points": 75
+        },
+        {
+          "id": "spear-of-twilight",
+          "name": "Spear of Twilight",
+          "points": 65
+        },
+        {
+          "id": "sword-of-the-quest",
+          "name": "Sword of the Quest",
+          "points": 70
+        },
+        {
+          "id": "the-white-sword",
+          "name": "The White Sword",
+          "points": 70
+        },
+        {
+          "id": "battleaxe-of-the-last-big-waaagh",
+          "name": "Battleaxe of the Last Big Waaagh!",
+          "points": 75
+        },
+        {
+          "id": "demonsword",
+          "name": "Demonsword",
+          "points": 75
+        },
+        {
+          "id": "destroyer-of-eternities",
+          "name": "Destroyer of Eternities",
+          "points": 75
+        },
+        {
+          "id": "blade-of-nurglitch",
+          "name": "Blade Of Nurglitch",
+          "points": 35
+        },
+        {
+          "id": "weeping-blade",
+          "name": "Weeping Blade",
+          "points": 50
+        },
+        {
+          "id": "the-fellblade",
+          "name": "The Fellblade",
+          "points": 100
+        },
+        {
+          "id": "thundermace",
+          "name": "Thundermace",
+          "points": 90
+        },
+        {
+          "id": "skullplucker",
+          "name": "Skullplucker",
+          "points": 45
+        },
+        {
+          "id": "tenderiser",
+          "name": "Tenderiser",
+          "points": 70
+        },
+        {
+          "id": "bloodcleaver",
+          "name": "Bloodcleaver",
+          "points": 30
+        },
+        {
+          "id": "whip-of-agony",
+          "name": "Whip Of Agony",
+          "points": 30
+        },
+        {
+          "id": "executioner-s-axe",
+          "name": "Executioner\u2019s Axe",
+          "points": 70
+        },
+        {
+          "id": "sword-of-ruin",
+          "name": "Sword Of Ruin",
+          "points": 65
+        },
+        {
+          "id": "lifetaker",
+          "name": "Lifetaker",
+          "points": 35
+        },
+        {
+          "id": "staff-of-the-lost-sun",
+          "name": "Staff Of The Lost Sun",
+          "points": 40
+        },
+        {
+          "id": "piranha-blade",
+          "name": "Piranha Blade",
+          "points": 35
+        },
+        {
+          "id": "scimitar-of-the-sun-resplendent",
+          "name": "Scimitar Of The Sun Resplendent",
+          "points": 50
+        },
+        {
+          "id": "blade-of-revered-tzunki",
+          "name": "Blade Of Revered Tzunki",
+          "points": 65
+        },
+        {
+          "id": "blade-of-antarhak",
+          "name": "Blade Of Antarhak",
+          "points": 45
+        },
+        {
+          "id": "the-conqueror-s-blade",
+          "name": "The Conqueror\u2019s Blade",
+          "points": 55
+        },
+        {
+          "id": "phakth-s-blades-of-justice",
+          "name": "Phakth\u2019s Blades Of Justice",
+          "points": 35
+        },
+        {
+          "id": "staff-of-aeons",
+          "name": "Staff Of Aeons",
+          "points": 30
+        },
+        {
+          "id": "foebreaker",
+          "name": "Foebreaker",
+          "points": 20
+        },
+        {
+          "id": "crusader-s-lance",
+          "name": "Crusader's Lance",
+          "points": 60
+        },
+        {
+          "id": "frontier-axe",
+          "name": "Frontier Axe",
+          "points": 30
+        },
+        {
+          "id": "sword-of-the-stout-hearted",
+          "name": "Sword Of The Stout Hearted",
+          "points": 25
+        },
+        {
+          "id": "bigger-choppier-axe",
+          "name": "Bigger, Choppier Axe",
+          "points": 55
+        },
+        {
+          "id": "martog-s-best-basha",
+          "name": "Martog\u2019s Best Basha",
+          "points": 50
+        },
+        {
+          "id": "da-akrit-axe",
+          "name": "Da Akrit Axe",
+          "points": 30
+        },
+        {
+          "id": "taskmaster-s-scourge",
+          "name": "Taskmaster's Scourge",
+          "points": 25
+        },
+        {
+          "id": "dagger-of-the-dark-pantheon",
+          "name": "Dagger of the Dark Pantheon",
+          "points": 35
+        },
+        {
+          "id": "chieftain-s-blade",
+          "name": "Chieftain's Blade",
+          "points": 30
+        },
+        {
+          "id": "obisidian-dread-glaive",
+          "name": "Obisidian Dread-Glaive",
+          "points": 55
+        },
+        {
+          "id": "blade-of-silvered-steel",
+          "name": "Blade of Silvered Steel",
+          "points": 30
+        },
+        {
+          "id": "pearl-daggers",
+          "name": "Pearl Daggers",
+          "points": 35
+        },
+        {
+          "id": "hammer-of-righteousness",
+          "name": "Hammer of Righteousness",
+          "points": 50
+        },
+        {
+          "id": "von-trickschotte-s-wondrous-arquebus",
+          "name": "Von Trickschotte's Wondrous Arquebus",
+          "points": 25
+        },
+        {
+          "id": "woodsman-s-axe",
+          "name": "Woodsman's Axe",
+          "points": 90
+        },
+        {
+          "id": "bow-of-the-seafarer",
+          "name": "Bow of the Seafarer",
+          "points": 50
+        },
+        {
+          "id": "star-lance",
+          "name": "Star Lance",
+          "points": 45
+        },
+        {
+          "id": "blade-of-sea-gold",
+          "name": "Blade of Sea Gold",
+          "points": 40
+        },
+        {
+          "id": "vaul-s-wrath",
+          "name": "Vaul's Wrath",
+          "points": 55
+        },
+        {
+          "id": "daith-s-reaper",
+          "name": "Daith's Reaper",
+          "points": 40
+        },
+        {
+          "id": "hunt-master-s-pride",
+          "name": "Hunt Master's Pride",
+          "points": 35
+        },
+        {
+          "id": "blades-of-endless-flame",
+          "name": "Blades of Endless Flame",
+          "points": 25
+        },
+        {
+          "id": "the-brass-cleaver",
+          "name": "The Brass Cleaver",
+          "points": 30
+        },
+        {
+          "id": "the-axes-of-khorgor",
+          "name": "The Axes of Khorgor",
+          "points": 40
+        },
+        {
+          "id": "the-black-maul",
+          "name": "The Black Maul",
+          "points": 80
+        },
+        {
+          "id": "scimitar-of-skultar",
+          "name": "Scimitar of Skultar",
+          "points": 25
+        },
+        {
+          "id": "the-monkey-king-s-wisdom",
+          "name": "The Monkey King's Wisdom",
+          "points": 75
+        },
+        {
+          "id": "spirit-longma-spear",
+          "name": "Spirit Longma Spear",
+          "points": 25
+        },
+        {
+          "id": "sun-moon-blades",
+          "name": "Sun & Moon Blades",
+          "points": 20
+        },
+        {
+          "id": "jade-blade-of-the-great-fleet",
+          "name": "Jade Blade of the Great Fleet",
+          "points": 70
+        },
+        {
+          "id": "the-sword-of-reason",
+          "name": "The Sword of Reason",
+          "points": 65
+        },
+        {
+          "id": "the-brazen-blade",
+          "name": "The Brazen Blade",
+          "points": 50
+        },
+        {
+          "id": "the-wrath-of-xen-yang",
+          "name": "The Wrath Of Xen Yang",
+          "points": 45
+        },
+        {
+          "id": "the-sword-of-nan-gau",
+          "name": "The Sword of Nan-Gau",
+          "points": 35
+        },
+        {
+          "id": "cackling-blade",
+          "name": "Cackling Blade",
+          "points": 65
+        },
+        {
+          "id": "meteor-hammer",
+          "name": "Meteor Hammer",
+          "points": 50
+        },
+        {
+          "id": "hell-forged-axe",
+          "name": "Hell-Forged Axe",
+          "points": 30
+        },
+        {
+          "id": "sword-of-sorrow",
+          "name": "Sword Of Sorrow",
+          "points": 30
+        },
+        {
+          "id": "sword-of-reaving",
+          "name": "Sword Of Reaving",
+          "points": 50
+        },
+        {
+          "id": "flail-of-wrecks",
+          "name": "Flail Of Wrecks",
+          "points": 45
+        },
+        {
+          "id": "grim-verdict",
+          "name": "Grim Verdict",
+          "points": 40
+        },
+        {
+          "id": "hunter-s-scorn",
+          "name": "Hunter's Scorn",
+          "points": 20
+        },
+        {
+          "id": "skirmisher-s-blade",
+          "name": "Skirmisher's Blade",
+          "points": 25
+        },
+        {
+          "id": "thornspitter-stave",
+          "name": "Thornspitter Stave",
+          "points": 20
+        },
+        {
+          "id": "trailblazer-s-hatchet",
+          "name": "Trailblazer's Hatchet",
+          "points": 15
+        },
+        {
+          "id": "diestro-s-blade",
+          "name": "Diestro's Blade",
+          "points": 10
+        },
+        {
+          "id": "sword-of-striking",
+          "name": "Sword of Striking",
+          "points": 15
+        },
+        {
+          "id": "sword-of-might",
+          "name": "Sword of Might",
+          "points": 20
+        },
+        {
+          "id": "burning-blade",
+          "name": "Burning Blade",
+          "points": 5
+        },
+        {
+          "id": "death-globe",
+          "name": "Death Globe",
+          "points": 25
+        },
+        {
+          "id": "backstabber-s-blade",
+          "name": "Backstabber's Blade",
+          "points": 25
+        }
+      ]
+    },
+    {
+      "id": "enchanted-items",
+      "name": "Enchanted Items",
+      "options": [
+        {
+          "id": "null-stone",
+          "name": "Null Stone",
+          "points": 75
+        },
+        {
+          "id": "laurels-of-victory",
+          "name": "Laurels of Victory",
+          "points": 40
+        },
+        {
+          "id": "wraithstone",
+          "name": "Wraithstone",
+          "points": 50
+        },
+        {
+          "id": "cloak-of-the-dunes",
+          "name": "Cloak of the Dunes",
+          "points": 50
+        },
+        {
+          "id": "wizarding-hat",
+          "name": "Wizarding Hat",
+          "points": 45
+        },
+        {
+          "id": "stone-of-spite",
+          "name": "Stone of Spite",
+          "points": 45
+        },
+        {
+          "id": "flying-carpet",
+          "name": "Flying Carpet",
+          "points": 40
+        },
+        {
+          "id": "falcon-horn-of-fredemund",
+          "name": "Falcon-horn of Fredemund",
+          "points": 40
+        },
+        {
+          "id": "the-cloak-of-beards",
+          "name": "The Cloak of Beards",
+          "points": 30
+        },
+        {
+          "id": "ruby-ring-of-ruin",
+          "name": "Ruby Ring of Ruin",
+          "points": 35
+        },
+        {
+          "id": "pendant-of-damnation",
+          "name": "Pendant of Damnation",
+          "points": 30
+        },
+        {
+          "id": "horn-of-the-first-beast",
+          "name": "Horn of the First Beast",
+          "points": 30
+        },
+        {
+          "id": "antlers-of-the-great-hunt",
+          "name": "Antlers of the Great Hunt",
+          "points": 25
+        },
+        {
+          "id": "helm-of-many-eyes",
+          "name": "Helm of Many Eyes",
+          "points": 20
+        },
+        {
+          "id": "death-mask-of-kharnutt",
+          "name": "Death Mask of Kharnutt",
+          "points": 20
+        },
+        {
+          "id": "the-silver-horn",
+          "name": "The Silver Horn",
+          "points": 15
+        },
+        {
+          "id": "skin-of-man",
+          "name": "Skin of Man",
+          "points": 15
+        },
+        {
+          "id": "shroud-of-iron",
+          "name": "Shroud of Iron",
+          "points": 10
+        },
+        {
+          "id": "big-boss-at",
+          "name": "Big Boss 'At",
+          "points": 50
+        },
+        {
+          "id": "skalm",
+          "name": "Skalm",
+          "points": 35
+        },
+        {
+          "id": "brass-orb",
+          "name": "Brass Orb",
+          "points": 50
+        },
+        {
+          "id": "jade-lion",
+          "name": "Jade Lion",
+          "points": 25
+        },
+        {
+          "id": "black-dragon-egg",
+          "name": "Black Dragon Egg",
+          "points": 35
+        },
+        {
+          "id": "the-guiding-eye",
+          "name": "The Guiding Eye",
+          "points": 25
+        },
+        {
+          "id": "hydra-s-tooth",
+          "name": "Hydra's Tooth",
+          "points": 30
+        },
+        {
+          "id": "venom-of-the-firefly-frog",
+          "name": "Venom Of The Firefly Frog",
+          "points": 15
+        },
+        {
+          "id": "cloak-of-feathers",
+          "name": "Cloak Of Feathers",
+          "points": 40
+        },
+        {
+          "id": "helm-of-commandment",
+          "name": "Helm Of Commandment",
+          "points": 40
+        },
+        {
+          "id": "hand-of-dust",
+          "name": "Hand Of Dust",
+          "points": 35
+        },
+        {
+          "id": "cloak-of-mist-shadows",
+          "name": "Cloak Of Mist & Shadows",
+          "points": 30
+        },
+        {
+          "id": "the-seal-of-parravon",
+          "name": "The Seal Of Parravon",
+          "points": 35
+        },
+        {
+          "id": "crusader-s-clarion",
+          "name": "Crusader\u2019s Clarion",
+          "points": 25
+        },
+        {
+          "id": "wyrmbreath-vial",
+          "name": "Wyrmbreath Vial",
+          "points": 20
+        },
+        {
+          "id": "staff-of-awakening",
+          "name": "Staff Of Awakening",
+          "points": 50
+        },
+        {
+          "id": "orb-of-ptra",
+          "name": "Orb Of Ptra",
+          "points": 40
+        },
+        {
+          "id": "daemonic-familiar",
+          "name": "Daemonic Familiar",
+          "points": 30
+        },
+        {
+          "id": "breath-of-hashut",
+          "name": "Breath of Hashut",
+          "points": 25
+        },
+        {
+          "id": "obsidian-vambraces",
+          "name": "Obsidian Vambraces",
+          "points": 15
+        },
+        {
+          "id": "necklace-of-blessed-teef",
+          "name": "Necklace Of Blessed Teef",
+          "points": 50
+        },
+        {
+          "id": "grisly-trophy-rack",
+          "name": "Grisly Trophy Rack",
+          "points": 30
+        },
+        {
+          "id": "da-thinkin-orc-s-at",
+          "name": "Da Thinkin\u2019 Orc\u2019s \u2019At",
+          "points": 25
+        },
+        {
+          "id": "bloodskull-pendant",
+          "name": "Bloodskull Pendant",
+          "points": 45
+        },
+        {
+          "id": "rod-of-the-damned",
+          "name": "Rod of the Damned",
+          "points": 40
+        },
+        {
+          "id": "daemon-forged-barding",
+          "name": "Daemon-Forged Barding",
+          "points": 35
+        },
+        {
+          "id": "ring-of-fortune",
+          "name": "Ring of Fortune",
+          "points": 20
+        },
+        {
+          "id": "ring-of-taal",
+          "name": "Ring of Taal",
+          "points": 20
+        },
+        {
+          "id": "amulet-of-the-tempest",
+          "name": "Amulet of the Tempest",
+          "points": 50
+        },
+        {
+          "id": "crown-of-antlers",
+          "name": "Crown of Antlers",
+          "points": 35
+        },
+        {
+          "id": "moonstone-of-the-hidden-ways",
+          "name": "Moonstone of the Hidden Ways",
+          "points": 30
+        },
+        {
+          "id": "horn-of-the-great-hunt",
+          "name": "Horn of the Great Hunt",
+          "points": 35
+        },
+        {
+          "id": "scourge-of-the-burdened",
+          "name": "Scourge of the Burdened",
+          "points": 25
+        },
+        {
+          "id": "cacophonous-dirge",
+          "name": "Cacophonous Dirge",
+          "points": 15
+        },
+        {
+          "id": "alchemist-s-mask",
+          "name": "Alchemist's Mask",
+          "points": 35
+        },
+        {
+          "id": "maw-shard",
+          "name": "Maw Shard",
+          "points": 50
+        },
+        {
+          "id": "golden-lion",
+          "name": "Golden Lion",
+          "points": 25
+        },
+        {
+          "id": "arch-lightning-rod",
+          "name": "Arch-Lightning Rod",
+          "points": 40
+        },
+        {
+          "id": "potion-of-fervour",
+          "name": "Potion Of Fervour",
+          "points": 30
+        },
+        {
+          "id": "becalming-orb",
+          "name": "Becalming Orb",
+          "points": 20
+        },
+        {
+          "id": "ring-of-jet",
+          "name": "Ring of Jet",
+          "points": 30
+        },
+        {
+          "id": "seed-of-rebirth",
+          "name": "Seed of Rebirth",
+          "points": 20
+        },
+        {
+          "id": "squintsoffen-s-marvellous-magnifier",
+          "name": "Squintsoffen's Marvellous Magnifier",
+          "points": 35
+        },
+        {
+          "id": "ring-of-doom",
+          "name": "Ring Of Doom",
+          "points": 25
+        },
+        {
+          "id": "daemon-blooded-steed",
+          "name": "Daemon-Blooded Steed",
+          "points": 15
+        },
+        {
+          "id": "elixir-of-power",
+          "name": "Elixir Of Power",
+          "points": 15
+        },
+        {
+          "id": "the-ranger-s-glass",
+          "name": "The Ranger's Glass",
+          "points": 20
+        },
+        {
+          "id": "the-all-seeing-eye-of-numas",
+          "name": "The All-Seeing Eye Of Numas",
+          "points": 15
+        },
+        {
+          "id": "enchanted-almanack",
+          "name": "Enchanted Almanack",
+          "points": 5
+        },
+        {
+          "id": "healing-potion",
+          "name": "Healing Potion",
+          "points": 35
+        },
+        {
+          "id": "potion-of-foolhardiness",
+          "name": "Potion of Foolhardiness",
+          "points": 5
+        },
+        {
+          "id": "potion-of-speed",
+          "name": "Potion of Speed",
+          "points": 10
+        },
+        {
+          "id": "potion-of-toughness",
+          "name": "Potion of Toughness",
+          "points": 20
+        },
+        {
+          "id": "potion-of-strength",
+          "name": "Potion of Strength",
+          "points": 25
+        },
+        {
+          "id": "favour-of-the-gods",
+          "name": "Favour of the Gods",
+          "points": 5
+        },
+        {
+          "id": "gauntlet-of-the-duel",
+          "name": "Gauntlet of the Duel",
+          "points": 5
+        },
+        {
+          "id": "wailing-arrow",
+          "name": "Wailing Arrow",
+          "points": 20
+        },
+        {
+          "id": "hail-of-doom-arrow",
+          "name": "Hail of Doom Arrow",
+          "points": 35
+        },
+        {
+          "id": "icon-of-rulership",
+          "name": "Icon of Rulership",
+          "points": 35
+        },
+        {
+          "id": "eadbuttin-at",
+          "name": "'Eadbuttin''At",
+          "points": 15
+        },
+        {
+          "id": "fungus-wine",
+          "name": "Fungus Wine",
+          "points": 10
+        },
+        {
+          "id": "skavenbrew",
+          "name": "Skavenbrew",
+          "points": 20
+        },
+        {
+          "id": "daemon-slayer-scars",
+          "name": "Daemon-Slayer Scars",
+          "points": 20
+        },
+        {
+          "id": "fistful-of-laurels",
+          "name": "Fistful Of Laurels",
+          "points": 15
+        },
+        {
+          "id": "horned-one",
+          "name": "Horned One",
+          "points": 10
+        },
+        {
+          "id": "ring-of-fury",
+          "name": "Ring of Fury",
+          "points": 25
+        },
+        {
+          "id": "gem-of-courage",
+          "name": "Gem of Courage",
+          "points": 15
+        },
+        {
+          "id": "blight-tipped-arrows",
+          "name": "Blight-Tipped Arrows",
+          "points": 15
+        },
+        {
+          "id": "spirit-lantern",
+          "name": "Spirit Lantern",
+          "points": 25
+        },
+        {
+          "id": "the-fires-of-nan-gau",
+          "name": "The Fires of Nan-Gau",
+          "points": 20
+        },
+        {
+          "id": "wilderness-map",
+          "name": "Wilderness Map",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "talismans",
+      "name": "Talismans",
+      "options": [
+        {
+          "id": "opal-amulet",
+          "name": "Opal Amulet",
+          "points": 20
+        },
+        {
+          "id": "mantle-of-stone",
+          "name": "Mantle of Stone",
+          "points": 30
+        },
+        {
+          "id": "brazen-collar",
+          "name": "Brazen Collar",
+          "points": 20
+        },
+        {
+          "id": "obsidian-lodestone",
+          "name": "Obsidian Lodestone",
+          "points": 20
+        },
+        {
+          "id": "paymaster-s-coin",
+          "name": "Paymaster's Coin",
+          "points": 25
+        },
+        {
+          "id": "luckstone",
+          "name": "Luckstone",
+          "points": 15
+        },
+        {
+          "id": "cathayan-jet-pendant",
+          "name": "Cathayan Jet Pendant",
+          "points": 10
+        },
+        {
+          "id": "lucky-heirloom",
+          "name": "Lucky Heirloom",
+          "points": 25
+        },
+        {
+          "id": "crown-of-kings",
+          "name": "Crown of Kings",
+          "points": 30
+        },
+        {
+          "id": "jade-amulet",
+          "name": "Jade Amulet",
+          "points": 25
+        },
+        {
+          "id": "dark-heart",
+          "name": "Dark Heart",
+          "points": 25
+        },
+        {
+          "id": "witch-hunter-s-ward",
+          "name": "Witch Hunter's Ward",
+          "points": 20
+        },
+        {
+          "id": "vermilion-quills",
+          "name": "Vermilion Quills",
+          "points": 25
+        },
+        {
+          "id": "crown-of-everlasting-conquest",
+          "name": "Crown of Everlasting Conquest",
+          "points": 40
+        },
+        {
+          "id": "merciw-s-locus",
+          "name": "Merciw's Locus",
+          "points": 35
+        },
+        {
+          "id": "glowy-green-amulet",
+          "name": "Glowy Green Amulet",
+          "points": 35
+        },
+        {
+          "id": "dawnstone",
+          "name": "Dawnstone",
+          "points": 35
+        },
+        {
+          "id": "the-white-cloak",
+          "name": "The White Cloak",
+          "points": 30
+        },
+        {
+          "id": "talisman-of-protection",
+          "name": "Talisman Of Protection",
+          "points": 30
+        },
+        {
+          "id": "rune-of-the-true-beast",
+          "name": "Rune of the True Beast",
+          "points": 30
+        },
+        {
+          "id": "glamourweave",
+          "name": "Glamourweave",
+          "points": 30
+        },
+        {
+          "id": "amulet-of-the-serpent",
+          "name": "Amulet of the Serpent",
+          "points": 30
+        },
+        {
+          "id": "the-loremaster-s-cloak",
+          "name": "The Loremaster's Cloak",
+          "points": 25
+        },
+        {
+          "id": "sirienne-s-locket",
+          "name": "Sirienne's Locket",
+          "points": 25
+        },
+        {
+          "id": "relic-of-the-desert-sun",
+          "name": "Relic of The Desert Sun",
+          "points": 25
+        },
+        {
+          "id": "mantle-of-the-damsel-elena",
+          "name": "Mantle of the Damsel Elena",
+          "points": 25
+        },
+        {
+          "id": "collar-of-shapesh",
+          "name": "Collar of Shapesh",
+          "points": 25
+        },
+        {
+          "id": "the-collar-of-zorga",
+          "name": "The Collar of Zorga",
+          "points": 20
+        },
+        {
+          "id": "crown-of-the-damned",
+          "name": "Crown of the Damned",
+          "points": 35
+        },
+        {
+          "id": "von-carstein-ring",
+          "name": "Von Carstein Ring",
+          "points": 40
+        },
+        {
+          "id": "hellshard",
+          "name": "Hellshard",
+          "points": 20
+        },
+        {
+          "id": "shadow-magnet",
+          "name": "Shadow Magnet",
+          "points": 40
+        },
+        {
+          "id": "warpstone-amulet",
+          "name": "Warpstone Amulet",
+          "points": 35
+        },
+        {
+          "id": "spangleshard",
+          "name": "Spangleshard",
+          "points": 35
+        },
+        {
+          "id": "pearl-of-infinite-bleakness",
+          "name": "Pearl Of Infinite Bleakness",
+          "points": 15
+        },
+        {
+          "id": "pendant-of-khaeleth",
+          "name": "Pendant Of Khaeleth",
+          "points": 40
+        },
+        {
+          "id": "aura-of-quetzl",
+          "name": "Aura Of Quetzl",
+          "points": 40
+        },
+        {
+          "id": "glyph-necklace",
+          "name": "Glyph Necklace",
+          "points": 45
+        },
+        {
+          "id": "grail-pendant",
+          "name": "Grail Pendant",
+          "points": 40
+        },
+        {
+          "id": "sparkly-wizard-finda",
+          "name": "Sparkly Wizard Finda",
+          "points": 45
+        },
+        {
+          "id": "effigy-of-mork",
+          "name": "Effigy Of Mork",
+          "points": 35
+        },
+        {
+          "id": "talisman-of-the-carrion-crow",
+          "name": "Talisman of the Carrion Crow",
+          "points": 45
+        },
+        {
+          "id": "talisman-of-the-soaring-eagle",
+          "name": "Talisman of the Soaring Eagle",
+          "points": 35
+        },
+        {
+          "id": "slayer-s-hourglass",
+          "name": "Slayer's Hourglass",
+          "points": 10
+        },
+        {
+          "id": "circlet-of-atrazar",
+          "name": "Circlet of Atrazar",
+          "points": 55
+        },
+        {
+          "id": "sacred-incense",
+          "name": "Sacred Incense",
+          "points": 35
+        },
+        {
+          "id": "ariel-s-favour",
+          "name": "Ariel's Favour",
+          "points": 30
+        },
+        {
+          "id": "orion-s-favour",
+          "name": "Orion's Favour",
+          "points": 25
+        },
+        {
+          "id": "chalice-of-dark-rain",
+          "name": "Chalice of Dark Rain",
+          "points": 50
+        },
+        {
+          "id": "cornucopia-of-corpulence",
+          "name": "Cornucopia of Corpulence",
+          "points": 30
+        },
+        {
+          "id": "crystal-of-kunlan",
+          "name": "Crystal of Kunlan",
+          "points": 35
+        },
+        {
+          "id": "crown-of-jade",
+          "name": "Crown of Jade",
+          "points": 20
+        },
+        {
+          "id": "sigil-of-smoke-powder",
+          "name": "Sigil of Smoke & Powder",
+          "points": 35
+        },
+        {
+          "id": "icon-of-fortitude",
+          "name": "Icon Of Fortitude",
+          "points": 35
+        },
+        {
+          "id": "ironhide-talisman",
+          "name": "Ironhide Talisman",
+          "points": 30
+        },
+        {
+          "id": "amulet-of-spell-attraction",
+          "name": "Amulet Of Spell Attraction",
+          "points": 25
+        },
+        {
+          "id": "periapt-of-soul-exchange",
+          "name": "Periapt Of Soul Exchange",
+          "points": 20
+        },
+        {
+          "id": "talisman-of-authority",
+          "name": "Talisman Of Authority",
+          "points": 30
+        },
+        {
+          "id": "the-warding-talisman",
+          "name": "The Warding Talisman",
+          "points": 15
+        }
+      ]
+    }
+  ]
+}

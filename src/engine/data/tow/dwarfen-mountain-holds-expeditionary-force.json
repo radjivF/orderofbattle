@@ -1,0 +1,2109 @@
+{
+  "id": "dwarfen-mountain-holds-expeditionary-force",
+  "name": "Dwarfen Mountain Holds - Expeditionary Force",
+  "game": "The Old World",
+  "source": "https://github.com/vflam/Warhammer-The-Old-World",
+  "pointsCapDefault": 2000,
+  "journal": true,
+  "units": [
+    {
+      "id": "dwarf-engineer",
+      "name": "Dwarf Engineer",
+      "category": "characters",
+      "pointsPerModel": 50,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Heavy infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "battle-standard-bearer",
+          "name": "Battle Standard Bearer",
+          "points": 25
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "pistol",
+          "name": "Pistol",
+          "options": [
+            {
+              "id": "pistol",
+              "name": "Pistol",
+              "points": 6
+            },
+            {
+              "id": "brace-of-pistols",
+              "name": "Brace of Pistols",
+              "points": 10
+            }
+          ]
+        },
+        {
+          "id": "extra-weapon",
+          "name": "Extra Weapon",
+          "options": [
+            {
+              "id": "handgun",
+              "name": "Handgun",
+              "points": 8
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "unit-options",
+          "name": "Unit Options",
+          "options": [
+            {
+              "id": "expeditionary-marksmen",
+              "name": "Expeditionary Marksmen",
+              "points": 10,
+              "specialRules": [
+                {
+                  "name": "Expeditionary Marksmen",
+                  "text": "Expeditionary Marksmen do not suffer any negative To Hit modifiers for Moving and Shooting."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Dwarf Crafted",
+          "text": "Models with this special rule do not suffer the usual -1 To Hit modifier when making a Stand & Shoot charge reaction."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Resolute",
+          "text": "Models with this special rule suffer a -1 modifier to the result of any Flee roll or Pursuit roll they make (to a minimum of 1)."
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        },
+        {
+          "name": "Artillery Master",
+          "text": "Unless this character is fleeing or engaged in combat, once per turn, during the Shooting phase, a friendly unit of Quarrellers, unit of Thunderers or Dwarf war machine that is within its Command range can either re-roll any rolls To Hit of a natural 1, or re-roll a single Artillery dice."
+        },
+        {
+          "name": "Gromril Armour",
+          "text": "A model with this special rule may re-roll any roll of a natural 1 made when making an Armour Save roll"
+        },
+        {
+          "name": "Entrenchment",
+          "text": "During deployment, you may \u2018Entrench\u2019 a single non-character model whose troop type is \u2018war machine\u2019 for each character in your army with this special rule. An Entrenched war machine is considered to be behind partial cover and to be defending a low linear obstacle. Should the war machine move for any reason, it is no longer Entrenched."
+        },
+        {
+          "name": "\"Stand Back Chief\"",
+          "text": "A character with this special rule cannot be targeted by enemy shooting or by enemy spells whilst it is within 3\" of a friendly unit whose troop type is 'war machine'."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Pistol",
+          "range": "12\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Quick Shot"
+        },
+        {
+          "name": "Brace of Pistols",
+          "range": "12\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane(1), Multiple Shots (2), Quick Shot"
+        },
+        {
+          "name": "Handgun",
+          "range": "24\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Ponderous"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        }
+      ],
+      "stats": {
+        "M": "3",
+        "WS": "4",
+        "BS": "5",
+        "S": "4",
+        "T": "4",
+        "W": "2",
+        "I": "2",
+        "A": "2",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "dwarf-engineer-sappers",
+      "name": "Dwarf Engineer Sappers",
+      "category": "characters",
+      "pointsPerModel": 70,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Heavy infantry (character)",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "pistol",
+          "name": "Pistol",
+          "options": [
+            {
+              "id": "pistol",
+              "name": "Pistol",
+              "points": 6
+            },
+            {
+              "id": "brace-of-pistols",
+              "name": "Brace of Pistols",
+              "points": 10
+            }
+          ]
+        },
+        {
+          "id": "extra-weapon",
+          "name": "Extra Weapon",
+          "options": [
+            {
+              "id": "handgun",
+              "name": "Handgun",
+              "points": 8
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "\"Dig In!\"",
+          "text": "During any Command sub-phase, if they are not engaged in combat, this character may attempt to lead their unit in the digging of some fieldworks by making a Leadership test (using their own Leadership). If this test is passed, this character and any unit they have joined becomes \"Entranched\". An Entrenched unit is considered to be behind partial cover and to be defending a low linear obstacle. Should the unit move for any reason, it is no longer Entrenched."
+        },
+        {
+          "name": "Dwarf Crafted",
+          "text": "Models with this special rule do not suffer the usual -1 To Hit modifier when making a Stand & Shoot charge reaction."
+        },
+        {
+          "name": "Gromril Armour",
+          "text": "A model with this special rule may re-roll any roll of a natural 1 made when making an Armour Save roll"
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Resolute",
+          "text": "Models with this special rule suffer a -1 modifier to the result of any Flee roll or Pursuit roll they make (to a minimum of 1)."
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        },
+        {
+          "name": "Hostile Terrain",
+          "text": "Any enemy model that ends its movement within the Command range of one or more characters with this special rule (that are not fleeing or engaged in combat) must make a Dangerous Terrain test."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Pistol",
+          "range": "12\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Quick Shot"
+        },
+        {
+          "name": "Brace of Pistols",
+          "range": "12\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane(1), Multiple Shots (2), Quick Shot"
+        },
+        {
+          "name": "Handgun",
+          "range": "24\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Ponderous"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        }
+      ],
+      "stats": {
+        "M": "3",
+        "WS": "4",
+        "BS": "5",
+        "S": "4",
+        "T": "4",
+        "W": "2",
+        "I": "2",
+        "A": "2",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "daemon-slayer",
+      "name": "Daemon Slayer",
+      "category": "characters",
+      "pointsPerModel": 130,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Heavy infantry",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Unbreakable",
+          "text": "If a unit with this special rule loses a round of combat, it is not required to make a Break test. Instead, it will automatically Give Ground as it is pushed back by the enemy. Characters that are not Unbreakable cannot join units that are, and vice versa."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Resolute",
+          "text": "Models with this special rule suffer a -1 modifier to the result of any Flee roll or Pursuit roll they make (to a minimum of 1)."
+        },
+        {
+          "name": "Slayer of Deamons",
+          "text": "When this character makes a roll To Wound, a roll of 4+ is always a success regardless of the target's Toughness. In addition, each unsaved wound inflicted by this character against an enemy model with the Warp-spawned special rule, or whose troop type is 'behemoth' has the Multiple Wounds(D3) special rule."
+        },
+        {
+          "name": "Deathblow",
+          "text": "When a model with this special rule is reduced to zero Wounds by an enemy attack during the Combat phase, the unit that made the attack suffers a Strength 3 hit, with an AP of -1.\n\nNote that if this model is reduced to zero Wounds whilst engaged in a challenge, it is the model that made the attack that suffers this hit, rather than its unit."
+        },
+        {
+          "name": "Immune To Psychology",
+          "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+        },
+        {
+          "name": "Gromril Weapons",
+          "text": "A hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -1.\n\nNote that this special rule only applies to a single, ordinary hand weapon. If the model is using two hand weapons or any other sort of weapon, or if their hand weapon is inscribed with any Weapon runes, this special rule ceases to apply."
+        },
+        {
+          "name": "Killing Blow",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound for an attack made in combat, it has struck a \u2018Killing Blow\u2019. Enemy models whose troop type is \u2018infantry\u2019 or \u2018cavalry\u2019 are not permitted an armour or Regeneration save (see page 176) against a Killing Blow (Ward saves can be attempted as normal). If an enemy model whose troop type is \u2018infantry\u2019 or \u2018cavalry\u2019 suffers an unsaved wound from a Killing Blow, it loses all of its remaining Wounds.\n\n Note that if an attack wounds automatically, this special rule cannot be used."
+        },
+        {
+          "name": "Loner",
+          "text": "A character with this special rule cannot be your General and cannot join a unit without this special rule. A unit with this special rule cannot be joined by a character without this special rule."
+        },
+        {
+          "name": "Vanguard",
+          "text": "After deployment, units with this special rule may make a Vanguard move. A unit making a Vanguard move moves as described in the Basic Movement rules. It may manoeuvre normally but cannot march.\n\nIf both armies contain Vanguard units, a roll-off determines who moves first. The players then alternate moving their Vanguard units one at a time, starting with the player who won the roll-off. Units that make a Vanguard move cannot declare a charge during their first turn."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        }
+      ],
+      "stats": {
+        "M": "3",
+        "WS": "7",
+        "BS": "3",
+        "S": "4",
+        "T": "5",
+        "W": "3",
+        "I": "5",
+        "A": "4",
+        "Ld": "10"
+      }
+    },
+    {
+      "id": "dragon-slayer",
+      "name": "Dragon Slayer",
+      "category": "characters",
+      "pointsPerModel": 70,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Heavy infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "battle-standard-bearer",
+          "name": "Battle Standard Bearer",
+          "points": 25
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "additional-hand-weapon",
+              "name": "Additional Hand Weapon",
+              "points": 3
+            },
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            },
+            {
+              "id": "wards-of-grimnir",
+              "name": "Wards of Grimnir",
+              "points": 1
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Unbreakable",
+          "text": "If a unit with this special rule loses a round of combat, it is not required to make a Break test. Instead, it will automatically Give Ground as it is pushed back by the enemy. Characters that are not Unbreakable cannot join units that are, and vice versa."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Resolute",
+          "text": "Models with this special rule suffer a -1 modifier to the result of any Flee roll or Pursuit roll they make (to a minimum of 1)."
+        },
+        {
+          "name": "Slayer of Dragons",
+          "text": "When this character makes a roll To Wound, a roll of 4+ is always a success, regardless of the target\u2019s Toughness. In addition, each unsaved wound inflicted by this character against an enemy model whose troop type is \u2018behemoth\u2019 has the Multiple Wounds (D3) special rule."
+        },
+        {
+          "name": "Deathblow",
+          "text": "When a model with this special rule is reduced to zero Wounds by an enemy attack during the Combat phase, the unit that made the attack suffers a Strength 3 hit, with an AP of -1.\n\nNote that if this model is reduced to zero Wounds whilst engaged in a challenge, it is the model that made the attack that suffers this hit, rather than its unit."
+        },
+        {
+          "name": "Immune To Psychology",
+          "text": "If the majority of the models in a unit are Immune to Psychology, the unit automatically passes any Fear, Panic or Terror tests it is required to make. However, if the majority of the models in a unit have this special rule, the unit cannot choose to Flee as a charge reaction.\n\n Note that this special rule does not make a unit immune to any test made against Leadership not stated here."
+        },
+        {
+          "name": "Gromril Weapons",
+          "text": "A hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -1.\n\nNote that this special rule only applies to a single, ordinary hand weapon. If the model is using two hand weapons or any other sort of weapon, or if their hand weapon is inscribed with any Weapon runes, this special rule ceases to apply."
+        },
+        {
+          "name": "Killing Blow",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound for an attack made in combat, it has struck a \u2018Killing Blow\u2019. Enemy models whose troop type is \u2018infantry\u2019 or \u2018cavalry\u2019 are not permitted an armour or Regeneration save (see page 176) against a Killing Blow (Ward saves can be attempted as normal). If an enemy model whose troop type is \u2018infantry\u2019 or \u2018cavalry\u2019 suffers an unsaved wound from a Killing Blow, it loses all of its remaining Wounds.\n\n Note that if an attack wounds automatically, this special rule cannot be used."
+        },
+        {
+          "name": "Loner",
+          "text": "A character with this special rule cannot be your General and cannot join a unit without this special rule. A unit with this special rule cannot be joined by a character without this special rule."
+        },
+        {
+          "name": "Vanguard",
+          "text": "After deployment, units with this special rule may make a Vanguard move. A unit making a Vanguard move moves as described in the Basic Movement rules. It may manoeuvre normally but cannot march.\n\nIf both armies contain Vanguard units, a roll-off determines who moves first. The players then alternate moving their Vanguard units one at a time, starting with the player who won the roll-off. Units that make a Vanguard move cannot declare a charge during their first turn."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Additional Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "Extra Attacks (+1), Requires Two Hands"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        }
+      ],
+      "stats": {
+        "M": "3",
+        "WS": "6",
+        "BS": "3",
+        "S": "4",
+        "T": "5",
+        "W": "2",
+        "I": "4",
+        "A": "3",
+        "Ld": "10"
+      }
+    },
+    {
+      "id": "thane",
+      "name": "Thane",
+      "category": "characters",
+      "pointsPerModel": 60,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Heavy infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "battle-standard-bearer",
+          "name": "Battle Standard Bearer",
+          "points": 25
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "pistol",
+              "name": "Pistol",
+              "points": 5
+            },
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "weapons",
+          "name": "Weapons",
+          "options": [
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            },
+            {
+              "id": "crossbow",
+              "name": "Crossbow",
+              "points": 6
+            },
+            {
+              "id": "handgun",
+              "name": "Handgun",
+              "points": 6
+            }
+          ]
+        },
+        {
+          "id": "options",
+          "name": "Options",
+          "options": [
+            {
+              "id": "oathstone",
+              "name": "Oathstone",
+              "points": 15,
+              "specialRules": [
+                {
+                  "name": "Oathstone",
+                  "text": "Challenges issued by a character with an Oathstone cannot be refused. In addition, a character with an Oathstone and any unit they have joined automatically passes any Panic tests they are required to make, but cannot chose to Flee as a charge reaction."
+                }
+              ]
+            },
+            {
+              "id": "shieldbearers",
+              "name": "Shieldbearers",
+              "points": 60,
+              "stats": {
+                "M": "3",
+                "WS": "5",
+                "BS": "-",
+                "S": "4",
+                "T": "-",
+                "W": "(+3)",
+                "I": "2",
+                "A": "3",
+                "Ld": "-"
+              },
+              "specialRules": [
+                {
+                  "name": "Hatred",
+                  "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+                },
+                {
+                  "name": "Resolute",
+                  "text": "Models with this special rule suffer a -1 modifier to the result of any Flee roll or Pursuit roll they make (to a minimum of 1)."
+                },
+                {
+                  "name": "Borne Aloft",
+                  "text": "A model with Shieldbearers consists of not one, but four models \u2013 the character and three loyal retainers \u2013 occupying a single base and acting together as a single entity. To represent this, a model with Shieldbearers has a split profile and follows the \u2018Split Profile (Cavalry)\u2019 rule. In all other respects, this model is heavy infantry."
+                },
+                {
+                  "name": "Gromril Weapons",
+                  "text": "A hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -1.\n\nNote that this special rule only applies to a single, ordinary hand weapon. If the model is using two hand weapons or any other sort of weapon, or if their hand weapon is inscribed with any Weapon runes, this special rule ceases to apply."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Dwarf Crafted",
+          "text": "Models with this special rule do not suffer the usual -1 To Hit modifier when making a Stand & Shoot charge reaction."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Resolute",
+          "text": "Models with this special rule suffer a -1 modifier to the result of any Flee roll or Pursuit roll they make (to a minimum of 1)."
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        },
+        {
+          "name": "Ancestral Grudge",
+          "text": "A model with this special rule has the Hatred (enemy characters) special rule, meaning it hates all characters in the opposing army. If this character joins a unit of Longbeards or Hammerers, that unit will also gain this special rule. Should this character leave a unit of Longbeards or Hammerers they have joined for any reason, that unit loses this special rule."
+        },
+        {
+          "name": "Gromril Armour",
+          "text": "A model with this special rule may re-roll any roll of a natural 1 made when making an Armour Save roll"
+        },
+        {
+          "name": "Gromril Weapons",
+          "text": "A hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -1.\n\nNote that this special rule only applies to a single, ordinary hand weapon. If the model is using two hand weapons or any other sort of weapon, or if their hand weapon is inscribed with any Weapon runes, this special rule ceases to apply."
+        },
+        {
+          "name": "Rallying Cry",
+          "text": "During the Command sub-phase of their turn, if they are not engaged in combat, this character may nominate a single fleeing friendly unit that is within their Command range. The nominated unit immediately makes a Rally test. If this test is failed, the unit may attempt to rally again as normal during the Rally sub-phase."
+        },
+        {
+          "name": "Ancestral Fury",
+          "text": "During a turn in which a unit in a Royal Clan army makes a charge move of 3\" or more, or made a follow up move, it gains a +1 modifier to its Strength characteristic."
+        },
+        {
+          "name": "Riches & Heirlooms",
+          "text": "Character models in this army may spend an additional 25 points on runes. In addition, unit that are able to purchase Standard runes may spend an additional 25 points on Standard runes (with the exception of Royal Clan Warriors, who already have this bonus included on their profile)."
+        },
+        {
+          "name": "Striking a Grudge",
+          "text": "After deployment but before the first turn begins, nominate a single enemy character. For one reason or another, this individual has earned themselves a place in the Clan's Book of Grudges and must be brought to justice. All friendly models gain the Hatred (nominated enemy character) special rule. In addition, you win a bonus of 75 Victory Points if the nominated character is slain, has fled the battlefield or is fleeing when the game ends."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Pistol",
+          "range": "12\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Quick Shot"
+        },
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        },
+        {
+          "name": "Crossbow",
+          "range": "30\"",
+          "strength": "4",
+          "ap": "-",
+          "specialRules": "Armour Bane (2), Ponderous"
+        },
+        {
+          "name": "Handgun",
+          "range": "24\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Ponderous"
+        }
+      ],
+      "stats": {
+        "M": "3",
+        "WS": "6",
+        "BS": "4",
+        "S": "4",
+        "T": "5",
+        "W": "2",
+        "I": "3",
+        "A": "3",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "runesmith",
+      "name": "Runesmith",
+      "category": "characters",
+      "pointsPerModel": 65,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Heavy infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "battle-standard-bearer",
+          "name": "Battle Standard Bearer",
+          "points": 25
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 4
+            },
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 2
+            },
+            {
+              "id": "oathstone",
+              "name": "Oathstone",
+              "points": 15,
+              "specialRules": [
+                {
+                  "name": "Oathstone",
+                  "text": "Challenges issued by a character with an Oathstone cannot be refused. In addition, a character with an Oathstone and any unit they have joined automatically passes any Panic tests they are required to make, but cannot chose to Flee as a charge reaction."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "armour",
+          "name": "Armour",
+          "options": [
+            {
+              "id": "full-plate-armour",
+              "name": "Full Plate Armour",
+              "points": 3
+            },
+            {
+              "id": "heavy-armour",
+              "name": "Heavy Armour",
+              "points": 0
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Forgefire",
+          "text": "If this character joins a unit, that unit will gain the Armour Bane (2) and Flaming Attacks special rules. Should this character leave a unit it has joined for any reason, that unit loses these special rules."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Resolute",
+          "text": "Models with this special rule suffer a -1 modifier to the result of any Flee roll or Pursuit roll they make (to a minimum of 1)."
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        },
+        {
+          "name": "Armour Bane",
+          "text": "If a model with this special rule rolls a natural 6 when making a roll To Wound, the Armour Piercing characteristic of its weapon is improved by the amount shown in brackets after the name of this special rule.\n\n For example, if a natural 6 is rolled when rolling To Wound with a weapon that has an AP of \"-\" and the Armour Bane (1) special rule its AP counts as being -1 when making an Armour Save roll against that wound."
+        },
+        {
+          "name": "Gromril Armour",
+          "text": "A model with this special rule may re-roll any roll of a natural 1 made when making an Armour Save roll"
+        },
+        {
+          "name": "Gromril Weapons",
+          "text": "A hand weapon carried by a model with this special rule has an Armour Piercing characteristic of -1.\n\nNote that this special rule only applies to a single, ordinary hand weapon. If the model is using two hand weapons or any other sort of weapon, or if their hand weapon is inscribed with any Weapon runes, this special rule ceases to apply."
+        },
+        {
+          "name": "Rune Lore",
+          "text": "A model with this special rule may be nominated to attempt a Wizardly Dispel as if it were a Wizard. However, unlike regular Wizards, models with this special rule do not have Levels of Wizardry with which to determine their Dispel range or modify their Dispel rolls. Instead:\n- An Anvil of Doom has a Dispel range of 24\" and may apply a +3 modifier to its Dispel rolls.\n- A Runelord has a Dispel range of 21\" and may apply a +2 modifier to their Dispel rolls.\n- A Runesmith has a Dispel range of 18\" and may apply a +1 modifier to their Dispel rolls."
+        },
+        {
+          "name": "Ancestral Fury",
+          "text": "During a turn in which a unit in a Royal Clan army makes a charge move of 3\" or more, or made a follow up move, it gains a +1 modifier to its Strength characteristic."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        }
+      ],
+      "stats": {
+        "M": "3",
+        "WS": "5",
+        "BS": "4",
+        "S": "4",
+        "T": "4",
+        "W": "2",
+        "I": "2",
+        "A": "2",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "thorgrim-ulleksson",
+      "name": "Thorgrim Ulleksson",
+      "category": "characters",
+      "pointsPerModel": 250,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Heavy infantry (named character)",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Gromril Armour",
+          "text": "A model with this special rule may re-roll any roll of a natural 1 made when making an Armour Save roll"
+        },
+        {
+          "name": "Grudgelore",
+          "text": "Once Thorgrim has set the Grudgestone, both he and any unit he has joined replaces the Hates (Orcs & Goblins) special rule with Hatred (all enemies) special rule."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Rallying Cry",
+          "text": "During the Command sub-phase of their turn, if they are not engaged in combat, this character may nominate a single fleeing friendly unit that is within their Command range. The nominated unit immediately makes a Rally test. If this test is failed, the unit may attempt to rally again as normal during the Rally sub-phase."
+        },
+        {
+          "name": "Resolute",
+          "text": "Models with this special rule suffer a -1 modifier to the result of any Flee roll or Pursuit roll they make (to a minimum of 1)."
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        },
+        {
+          "name": "Ancestral Fury",
+          "text": "During a turn in which a unit in a Royal Clan army makes a charge move of 3\" or more, or made a follow up move, it gains a +1 modifier to its Strength characteristic."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "3",
+        "WS": "6",
+        "BS": "4",
+        "S": "4",
+        "T": "5",
+        "W": "3",
+        "I": "3",
+        "A": "3",
+        "Ld": "10"
+      }
+    },
+    {
+      "id": "dwarf-warriors",
+      "name": "Dwarf Warriors",
+      "category": "core",
+      "pointsPerModel": 8,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Heavy infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "veteran",
+          "name": "Veteran",
+          "points": 5
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 5
+        },
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 5
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 1
+            },
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 1
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Resolute",
+          "text": "Models with this special rule suffer a -1 modifier to the result of any Flee roll or Pursuit roll they make (to a minimum of 1)."
+        },
+        {
+          "name": "Shieldwall",
+          "text": "Once per game, during a turn in which it was charged, a unit with this special rule that is arrayed in a Close Order formation, and that is equipped with and chooses to use shields, may Give Ground rather than Fall Back in Good Order."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        }
+      ],
+      "stats": {
+        "M": "3",
+        "WS": "4",
+        "BS": "3",
+        "S": "3",
+        "T": "4",
+        "W": "1",
+        "I": "2",
+        "A": "1",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "thunderers",
+      "name": "Thunderers",
+      "category": "core",
+      "pointsPerModel": 10,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Heavy infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 5
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 5
+        },
+        {
+          "id": "veteran",
+          "name": "Veteran",
+          "points": 5
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "unit-options",
+          "name": "Unit Options",
+          "options": [
+            {
+              "id": "expeditionary-marksmen",
+              "name": "Expeditionary Marksmen",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Expeditionary Marksmen",
+                  "text": "Expeditionary Marksmen do not suffer any negative To Hit modifiers for Moving and Shooting."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 2
+            },
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 1
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Dwarf Crafted",
+          "text": "Models with this special rule do not suffer the usual -1 To Hit modifier when making a Stand & Shoot charge reaction."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Resolute",
+          "text": "Models with this special rule suffer a -1 modifier to the result of any Flee roll or Pursuit roll they make (to a minimum of 1)."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        },
+        {
+          "name": "Brace of Pistols",
+          "range": "12\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane(1), Multiple Shots (2), Quick Shot"
+        },
+        {
+          "name": "Handgun",
+          "range": "24\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Ponderous"
+        },
+        {
+          "name": "Pistol",
+          "range": "12\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Quick Shot"
+        }
+      ],
+      "stats": {
+        "M": "3",
+        "WS": "3",
+        "BS": "3",
+        "S": "3",
+        "T": "4",
+        "W": "1",
+        "I": "2",
+        "A": "1",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "dwarf-cart",
+      "name": "Dwarf Cart",
+      "category": "core",
+      "pointsPerModel": 65,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Light chariot",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "cart-option",
+          "name": "Cart Option",
+          "options": [
+            {
+              "id": "bugman-s-cart",
+              "name": "Bugman's Cart",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Bugman's Cart",
+                  "text": "During the Command sub-phase of their turn, any Dwarf unit that is not fleeing or engaged in combat and that is within 6\" of a friendly Bugman's Cart (that is itself not fleeing or engaged) gains a +1 modifier to its Movement characteristic until the end of the turn.\n\n\nNote that this modifier is not cumulative."
+                }
+              ]
+            },
+            {
+              "id": "miner-s-cart",
+              "name": "Miner's Cart",
+              "points": 0,
+              "specialRules": [
+                {
+                  "name": "Miner's Cart",
+                  "text": "Any Dwarf unit that is within 3\" of a friendly Miner's Cart that is not fleeing or engaged in combat may make a Stand & Shoot charge reaction and/or a shooting attack as if it were equipped with Blasting Charges (see page 26 of Forces of Fantasy). Additionally, when a Miner's Cart loses its last Wound to an enemy attack during the Combat phase, roll a D6. On a roll of 4+, the Miner's Cart explodes and every unit (friend or foe) within 3\" suffers D6 Strength 3 hits, each with an AP of -1 and with the Flaming Attacks special rule."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Open Order",
+          "text": "A unit consisting of models with this special rule may adopt an Open Order formation."
+        },
+        {
+          "name": "Resolute",
+          "text": "Models with this special rule suffer a -1 modifier to the result of any Flee roll or Pursuit roll they make (to a minimum of 1)."
+        },
+        {
+          "name": "Armour Value",
+          "text": "Base Armour value"
+        },
+        {
+          "name": "Ancestral Fury",
+          "text": "During a turn in which a unit in a Royal Clan army makes a charge move of 3\" or more, or made a follow up move, it gains a +1 modifier to its Strength characteristic."
+        },
+        {
+          "name": "Striking a Grudge",
+          "text": "After deployment but before the first turn begins, nominate a single enemy character. For one reason or another, this individual has earned themselves a place in the Clan's Book of Grudges and must be brought to justice. All friendly models gain the Hatred (nominated enemy character) special rule. In addition, you win a bonus of 75 Victory Points if the nominated character is slain, has fled the battlefield or is fleeing when the game ends."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "-",
+        "BS": "-",
+        "S": "4",
+        "T": "5",
+        "W": "3",
+        "I": "-",
+        "A": "-",
+        "Ld": "-"
+      }
+    },
+    {
+      "id": "rangers",
+      "name": "Rangers",
+      "category": "core",
+      "pointsPerModel": 11,
+      "minModels": 5,
+      "maxModels": 20,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Heavy infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "ol-deadeye",
+          "name": "Ol Deadeye",
+          "points": 6
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "great-weapon",
+              "name": "Great Weapon",
+              "points": 2
+            },
+            {
+              "id": "shield",
+              "name": "Shield",
+              "points": 1
+            }
+          ]
+        },
+        {
+          "id": "ranged-weapon",
+          "name": "Ranged Weapon",
+          "options": [
+            {
+              "id": "crossbow",
+              "name": "Crossbow",
+              "points": 0
+            },
+            {
+              "id": "throwing-axe",
+              "name": "Throwing Axe",
+              "points": 0
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Dwarf Crafted",
+          "text": "Models with this special rule do not suffer the usual -1 To Hit modifier when making a Stand & Shoot charge reaction."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Resolute",
+          "text": "Models with this special rule suffer a -1 modifier to the result of any Flee roll or Pursuit roll they make (to a minimum of 1)."
+        },
+        {
+          "name": "Move Through Cover",
+          "text": "Models with this special rule do not suffer any modifiers to their Movement characteristic for moving through difficult or dangerous terrain. In addition, a model with this special rule may re-roll any rolls of 1 when making Dangerous Terrain tests."
+        },
+        {
+          "name": "Scouts",
+          "text": "Units with this special rule may be deployed after all other units from both armies. They can be deployed anywhere on the battlefield that is more than 12\" away from an enemy model. If deployed in this way, Scouts cannot declare a charge during their first turn.\n\n If both armies contain Scouts, a roll-off should determine which player deploys Scouts first. The players then alternate deploying their scouting units one at a time, starting with the player who won the roll-off."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Open Order",
+          "text": "A unit consisting of models with this special rule may adopt an Open Order formation."
+        },
+        {
+          "name": "Ancestral Fury",
+          "text": "During a turn in which a unit in a Royal Clan army makes a charge move of 3\" or more, or made a follow up move, it gains a +1 modifier to its Strength characteristic."
+        },
+        {
+          "name": "Striking a Grudge",
+          "text": "After deployment but before the first turn begins, nominate a single enemy character. For one reason or another, this individual has earned themselves a place in the Clan's Book of Grudges and must be brought to justice. All friendly models gain the Hatred (nominated enemy character) special rule. In addition, you win a bonus of 75 Victory Points if the nominated character is slain, has fled the battlefield or is fleeing when the game ends."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Great Weapon",
+          "range": "Combat",
+          "strength": "S+2",
+          "ap": "-2",
+          "specialRules": "Armour Bane (1), Requires Two Hands, Strike Last"
+        },
+        {
+          "name": "Crossbow",
+          "range": "30\"",
+          "strength": "4",
+          "ap": "-",
+          "specialRules": "Armour Bane (2), Ponderous"
+        },
+        {
+          "name": "Throwing Axe",
+          "range": "9\"",
+          "strength": "S+1",
+          "ap": "-",
+          "specialRules": "Quick Shot"
+        },
+        {
+          "name": "Brace of Pistols",
+          "range": "12\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane(1), Multiple Shots (2), Quick Shot"
+        },
+        {
+          "name": "Pistol",
+          "range": "12\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Quick Shot"
+        }
+      ],
+      "stats": {
+        "M": "3",
+        "WS": "4",
+        "BS": "4",
+        "S": "3",
+        "T": "4",
+        "W": "1",
+        "I": "2",
+        "A": "1",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "scout-gyrocopters",
+      "name": "Scout Gyrocopters",
+      "category": "core",
+      "pointsPerModel": 60,
+      "minModels": 1,
+      "maxModels": 2,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous Cavalry",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Fire & Flee",
+          "text": "If the majority of the models in a unit armed armed with missile weapons have this special rule, the unit may declare that it will \u2018Fire & Flee\u2019 as a charge reaction:\n\nFire & Flee: The unit launches a volley of weapons fire before turning to flee from the enemy. If a unit with this special rule is armed with missile weapons and can draw a line of sight to the charging unit, it may declare that it will Fire & Flee. The unit will Stand & Shoot before turning tail and fleeing from the charge. However, due to the time spent shooting at the charging foe, when making its Flee roll the unit rolls two D6 and discards the lowest result. If both dice roll the same result, discard either.\n\nNote that, if the distance between this unit and the charging unit is less than the Movement characteristic of the charging unit, this unit must either Hold or Flee."
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Hit & Run",
+          "text": "Should it win a round of combat, a unit with this special rule may choose to Fall Back in Good Order rather than making a follow up or pursuit move."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Vanguard",
+          "text": "After deployment, units with this special rule may make a Vanguard move. A unit making a Vanguard move moves as described in the Basic Movement rules. It may manoeuvre normally but cannot march.\n\nIf both armies contain Vanguard units, a roll-off determines who moves first. The players then alternate moving their Vanguard units one at a time, starting with the player who won the roll-off. Units that make a Vanguard move cannot declare a charge during their first turn."
+        },
+        {
+          "name": "Dispersed Formation",
+          "text": "*Units that fly high above the battlefield adopt dispersed formations to prevent calamity.*\nTo maintain Skirmish formation, every model in this unit must be within 3\" of another model belonging to the same unit, rather than the usual 1\". However, unlike most Skirmishers, models with this special rule do not have a 360\u00b0 vision arc; they instead have a 90\u00b0 vision arc, corresponding to their front arc."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "1",
+        "WS": "4",
+        "BS": "4",
+        "S": "4",
+        "T": "4",
+        "W": "3",
+        "I": "2",
+        "A": "2",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "miners",
+      "name": "Miners",
+      "category": "special",
+      "pointsPerModel": 12,
+      "minModels": 5,
+      "maxModels": 40,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Heavy infantry",
+      "magicItems": false,
+      "command": [
+        {
+          "id": "musician",
+          "name": "Musician",
+          "points": 6
+        },
+        {
+          "id": "standard-bearer",
+          "name": "Standard Bearer",
+          "points": 6
+        },
+        {
+          "id": "prospector",
+          "name": "Prospector",
+          "points": 6
+        }
+      ],
+      "optionGroups": [
+        {
+          "id": "equipment",
+          "name": "Equipment",
+          "options": [
+            {
+              "id": "blasting-charges",
+              "name": "Blasting Charges",
+              "points": 1
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Resolute",
+          "text": "Models with this special rule suffer a -1 modifier to the result of any Flee roll or Pursuit roll they make (to a minimum of 1)."
+        },
+        {
+          "name": "Ambushers",
+          "text": "A unit with this special rule may be held in reserve rather than be deployed at the start of the game. From the beginning of round two onwards, roll a D6 during each of your Start of Turn sub-phases for each unit of Ambushers in your army that is held in reserve.\n\n On a roll of 1-3, the unit is delayed until your next turn at least.\u00a0 On a roll of 4+, the unit arrives, entering the battle as reinforcements during the Compulsory Moves sub-phase. The unit may be placed on any edge of the battlefield, chosen by its controlling player, but cannot be placed within 8\" of an enemy model. If any Ambushers are still held in reserve by the start of round five, they arrive automatically."
+        },
+        {
+          "name": "Vanguard",
+          "text": "After deployment, units with this special rule may make a Vanguard move. A unit making a Vanguard move moves as described in the Basic Movement rules. It may manoeuvre normally but cannot march.\n\nIf both armies contain Vanguard units, a roll-off determines who moves first. The players then alternate moving their Vanguard units one at a time, starting with the player who won the roll-off. Units that make a Vanguard move cannot declare a charge during their first turn."
+        },
+        {
+          "name": "Subterranean Ambush",
+          "text": "If your army includes a unit of Miners you may, after both sides have deployed but before the first turn of the game begins, deploy two 32mm round Mine markers, plus one additional marker for each additional unit of Miners your army includes. These markers can be deployed anywhere on the battlefield that is not within:\n\n\n- The enemy player's deployment zone\n- 12\" of another friendly Mine marker\n- 6\" of an enemy unit\n- 3\" of a special feature of an objective marker\n\n\nWhen a unit of Miners would arrive onto the battlefield as Reserves, it can be placed anywhere on the battlefield within 6\" of a Mine marker, but not within 6\" of an enemy unit. The unit cannot charge during this turn and counts as having moved for the purpose of shooting, but can otherwise act as normal."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Blasting Charges",
+          "range": "6\"",
+          "strength": "3",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Flaming Attacks, Quick Shot"
+        }
+      ],
+      "stats": {
+        "M": "3",
+        "WS": "4",
+        "BS": "3",
+        "S": "3",
+        "T": "4",
+        "W": "1",
+        "I": "2",
+        "A": "1",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "gyrocopters",
+      "name": "Gyrocopters",
+      "category": "special",
+      "pointsPerModel": 60,
+      "minModels": 1,
+      "maxModels": 6,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous Cavalry",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "weapon",
+          "name": "Weapon",
+          "options": [
+            {
+              "id": "brimstone-gun",
+              "name": "Brimstone Gun",
+              "points": 5
+            },
+            {
+              "id": "clattergun",
+              "name": "Clattergun",
+              "points": 10
+            },
+            {
+              "id": "steam-gun",
+              "name": "Steam Gun",
+              "points": 0
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Dive Bomb",
+          "text": "Once per game, a unit with this special rule may perform a \u2018Dive Bomb\u2019 attack against a single enemy unit that is not engaged in combat. To do so, this unit must move (by flying) over the unit it wishes to attack during the Remaining Moves sub-phase. Once this unit\u2019s movement is complete, the enemy unit suffers D6 Strength 3 hits, each with an AP of -1, for each model in this unit that moved over it. However, for each roll of a natural 1 made when determining the number of hits, a bomb has misfired and this unit loses a single Wound instead."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Fire & Flee",
+          "text": "If the majority of the models in a unit armed armed with missile weapons have this special rule, the unit may declare that it will \u2018Fire & Flee\u2019 as a charge reaction:\n\nFire & Flee: The unit launches a volley of weapons fire before turning to flee from the enemy. If a unit with this special rule is armed with missile weapons and can draw a line of sight to the charging unit, it may declare that it will Fire & Flee. The unit will Stand & Shoot before turning tail and fleeing from the charge. However, due to the time spent shooting at the charging foe, when making its Flee roll the unit rolls two D6 and discards the lowest result. If both dice roll the same result, discard either.\n\nNote that, if the distance between this unit and the charging unit is less than the Movement characteristic of the charging unit, this unit must either Hold or Flee."
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Vanguard",
+          "text": "After deployment, units with this special rule may make a Vanguard move. A unit making a Vanguard move moves as described in the Basic Movement rules. It may manoeuvre normally but cannot march.\n\nIf both armies contain Vanguard units, a roll-off determines who moves first. The players then alternate moving their Vanguard units one at a time, starting with the player who won the roll-off. Units that make a Vanguard move cannot declare a charge during their first turn."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Dispersed Formation",
+          "text": "*Units that fly high above the battlefield adopt dispersed formations to prevent calamity.*\nTo maintain Skirmish formation, every model in this unit must be within 3\" of another model belonging to the same unit, rather than the usual 1\". However, unlike most Skirmishers, models with this special rule do not have a 360\u00b0 vision arc; they instead have a 90\u00b0 vision arc, corresponding to their front arc."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Brimstone Gun",
+          "range": "18\"",
+          "strength": "5",
+          "ap": "-2",
+          "specialRules": "Dwarf Crafted, Flaming Attacks, Multiple Shots (D3+1), Quick Shot"
+        },
+        {
+          "name": "Clattergun",
+          "range": "24\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Dwarf Crafted, Move & Shoot, Multiple Shots (D6), Quick Shot"
+        },
+        {
+          "name": "Steam Gun",
+          "range": "N/A",
+          "strength": "3",
+          "ap": "-1",
+          "specialRules": "Breath Weapon"
+        }
+      ],
+      "stats": {
+        "M": "1",
+        "WS": "4",
+        "BS": "3",
+        "S": "4",
+        "T": "5",
+        "W": "3",
+        "I": "2",
+        "A": "2",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "bolt-thrower",
+      "name": "Bolt Thrower",
+      "category": "special",
+      "pointsPerModel": 55,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "War Machine",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        },
+        {
+          "name": "Ancestral Fury",
+          "text": "During a turn in which a unit in a Royal Clan army makes a charge move of 3\" or more, or made a follow up move, it gains a +1 modifier to its Strength characteristic."
+        },
+        {
+          "name": "Striking a Grudge",
+          "text": "After deployment but before the first turn begins, nominate a single enemy character. For one reason or another, this individual has earned themselves a place in the Clan's Book of Grudges and must be brought to justice. All friendly models gain the Hatred (nominated enemy character) special rule. In addition, you win a bonus of 75 Victory Points if the nominated character is slain, has fled the battlefield or is fleeing when the game ends."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "-",
+        "BS": "-",
+        "S": "-",
+        "T": "6",
+        "W": "3",
+        "I": "-",
+        "A": "-",
+        "Ld": "-"
+      }
+    },
+    {
+      "id": "grudge-thrower",
+      "name": "Grudge Thrower",
+      "category": "special",
+      "pointsPerModel": 95,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "War Machine",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        },
+        {
+          "name": "Ancestral Fury",
+          "text": "During a turn in which a unit in a Royal Clan army makes a charge move of 3\" or more, or made a follow up move, it gains a +1 modifier to its Strength characteristic."
+        },
+        {
+          "name": "Striking a Grudge",
+          "text": "After deployment but before the first turn begins, nominate a single enemy character. For one reason or another, this individual has earned themselves a place in the Clan's Book of Grudges and must be brought to justice. All friendly models gain the Hatred (nominated enemy character) special rule. In addition, you win a bonus of 75 Victory Points if the nominated character is slain, has fled the battlefield or is fleeing when the game ends."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "-",
+        "BS": "-",
+        "S": "-",
+        "T": "7",
+        "W": "3",
+        "I": "-",
+        "A": "-",
+        "Ld": "-"
+      }
+    },
+    {
+      "id": "cannon",
+      "name": "Cannon",
+      "category": "special",
+      "pointsPerModel": 95,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "War Machine",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "-",
+        "BS": "-",
+        "S": "-",
+        "T": "7",
+        "W": "3",
+        "I": "-",
+        "A": "-",
+        "Ld": "-"
+      }
+    },
+    {
+      "id": "gyrobomber",
+      "name": "Gyrobomber",
+      "category": "rare",
+      "pointsPerModel": 95,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "Monstrous Creature",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [
+        {
+          "id": "weapon",
+          "name": "Weapon",
+          "options": [
+            {
+              "id": "brimstone-gun",
+              "name": "Brimstone Gun",
+              "points": 5
+            },
+            {
+              "id": "steam-gun",
+              "name": "Steam Gun",
+              "points": 0
+            },
+            {
+              "id": "clattergun",
+              "name": "Clattergun",
+              "points": 10
+            }
+          ]
+        }
+      ],
+      "specialRules": [
+        {
+          "name": "Bombing Run",
+          "text": "This model may perform a \u2018Bombing Run\u2019 attack against a single enemy unit that is not engaged in combat. To do so, this model must move (by flying) over the unit it wishes to attack during the Remaining Moves sub-phase. Once this model\u2019s movement is complete, roll on the Bombing Run table below:\n\nBombing Run Table:\n\n\u25cf D6:\tResult \u25cf 1:\tPremature Detonation: The release mechanism jams and a bomb explodes prematurely. This model loses a single Wound.\n\n\u25cf 2:\tDud: A solitary bomb is released, but fails to detonate before landing squarely upon the head of an unfortunate enemy. The enemy unit loses a single Wound.\n\n\u25cf 3-4:\tDirect Hit: A cluster of bombs lands directly on-target. Place a large (5\") blast template so that its central hole is directly over the centre of the enemy unit. Once placed, the template will scatter D6\". Any model whose base lies underneath the template\u2019s final position risks being hit and suffering a single Strength 4 hit with an AP of -1.\n\n\u25cf 5-6:\tBombs Away: A cluster of bombs is released, falling over a wide area. Place two small (3\") blast templates so that their central hole is over the enemy unit. Once placed, each template will scatter D6\". Any model whose base lies underneath a template\u2019s final position risks being hit and suffering a single Strength 4 hit with an AP of -1."
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Swiftstride",
+          "text": "A unit which consists entirely of models with this special rule increases its maximum possible charge range by 3\" and, before making a Charge, Flee or Pursuit roll, may choose to apply a +D6 modifier to the result."
+        },
+        {
+          "name": "Fly",
+          "text": "Except when following up or pursuing, a model with this special rule can choose to move by flying through the air, rather than moving across the ground as normal. When a model flies it uses a special \u2018Fly Movement\u2019 characteristic, shown in brackets after the name of this special rule (shown here as \u2018X\u2019). Models that choose to move by flying:\n\n- May move as normal (i.e. they may charge, march and manoeuvre as if moving on the ground), except that they are able to pass freely above other models, units and terrain features without any penalty, and they can march whilst within 8\" of an enemy unit without first having to make a Leadership test.\n\n- May end their movement in terrain, but will suffer its effects if they do. They cannot end their movement 'on top' of impassable terrain or another unit, or within 1\" of an enemy unit.\n\nModels that can Fly must begin and end all their movement on the ground. A character with this special rule cannot join a unit without this special rule, and vice versa."
+        },
+        {
+          "name": "Impact Hits",
+          "text": "The number of Impact Hits caused varies from model to model, and will be shown in brackets after the name of this special rile. Often, this is determined by the roll of a dice.\n\n**Resolving Impact Hits:** Impact Hits can only be made by a charging model that moved 3\" or more and that is in base contact with the enemy. Impact Hits are resolved against the charged unit when the combat is chosen during Step 1.1 of the Choose Combat & Fight sub-phase, before issuing challenges. They hit automatically and use the unmodified Strength of the model making them."
+        },
+        {
+          "name": "Close Order",
+          "text": "A unit consisting of models with this special rule may adopt a Close Order formation."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Brimstone Gun",
+          "range": "18\"",
+          "strength": "5",
+          "ap": "-2",
+          "specialRules": "Dwarf Crafted, Flaming Attacks, Multiple Shots (D3+1), Quick Shot"
+        },
+        {
+          "name": "Steam Gun",
+          "range": "N/A",
+          "strength": "3",
+          "ap": "-1",
+          "specialRules": "Breath Weapon"
+        },
+        {
+          "name": "Clattergun",
+          "range": "24\"",
+          "strength": "4",
+          "ap": "-1",
+          "specialRules": "Armour Bane (1), Dwarf Crafted, Move & Shoot, Multiple Shots (D6), Quick Shot"
+        }
+      ],
+      "stats": {
+        "M": "1",
+        "WS": "4",
+        "BS": "3",
+        "S": "4",
+        "T": "5",
+        "W": "4",
+        "I": "2",
+        "A": "2",
+        "Ld": "9"
+      }
+    },
+    {
+      "id": "organ-gun",
+      "name": "Organ Gun",
+      "category": "rare",
+      "pointsPerModel": 115,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "War Machine",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "-",
+        "BS": "-",
+        "S": "-",
+        "T": "7",
+        "W": "3",
+        "I": "-",
+        "A": "-",
+        "Ld": "-"
+      }
+    },
+    {
+      "id": "flame-cannon",
+      "name": "Flame Cannon",
+      "category": "rare",
+      "pointsPerModel": 120,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": false,
+      "canTakeDetachments": false,
+      "canJoinUnits": false,
+      "troopType": "War Machine",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Skirmishers",
+          "text": "A unit consisting of models with this special rule may adopt a Skirmish formation."
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "-",
+        "WS": "-",
+        "BS": "-",
+        "S": "-",
+        "T": "6",
+        "W": "3",
+        "I": "-",
+        "A": "-",
+        "Ld": "-"
+      }
+    },
+    {
+      "id": "burlok-damminson",
+      "name": "Burlok Damminson",
+      "category": "characters",
+      "pointsPerModel": 85,
+      "minModels": 1,
+      "maxModels": 1,
+      "character": true,
+      "canTakeDetachments": false,
+      "canJoinUnits": true,
+      "troopType": "Heavy infantry (named character)",
+      "magicItems": false,
+      "command": [],
+      "optionGroups": [],
+      "specialRules": [
+        {
+          "name": "Dwarf Crafted",
+          "text": "Models with this special rule do not suffer the usual -1 To Hit modifier when making a Stand & Shoot charge reaction."
+        },
+        {
+          "name": "Gromril Armour",
+          "text": "A model with this special rule may re-roll any roll of a natural 1 made when making an Armour Save roll"
+        },
+        {
+          "name": "Hatred",
+          "text": "A model with this special rule may re-roll any failed rolls To Hit made against a hatred enemy during the first round of combat.\n\n Which enemies are hated varies from model to model and will be shown in brackets after the name of this special rule. Some models hate 'all enemies' meaning they hate all enemy models equally."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "The Casting roll of any enemy spell (including Bound Spells) that targets a unit that includes one or more models with this special rule suffers a modifier, as shown in brackets after the name of this special rule (-X).\n\nNote that this special rule is not cumulative. If two or more models in a unit have this special rule, use the highest modifier."
+        },
+        {
+          "name": "Prepared Positions",
+          "text": "During deployment, you may \"Entrench\" a single non-character model whose troop type is \"war machine\" and a single unit of Quarrellers or Thunderers. An Entrenched unit is considered to be behind partial cover and to be defending a low linear obstacle. Should an Entrenched unit move for any reason, it is no longer Entrenched."
+        },
+        {
+          "name": "Range Finding Optics",
+          "text": "Unless Burlok is fleeing or engaged in combat, once per turn, during the Shooting phase, a friendly unit of Quarrellers, Thunderers or a Dwarf war machine that is within his Command range can either re-roll any rolls To Hit of a natural 1, or re-roll a single Artillery dice. In addtion, Burlok and any unit he has joined do not suffer the usual -1 To Hit modifier when shooting at Long Range."
+        },
+        {
+          "name": "Resolute",
+          "text": "Models with this special rule suffer a -1 modifier to the result of any Flee roll or Pursuit roll they make (to a minimum of 1)."
+        },
+        {
+          "name": "\"Stand Back Chief\"",
+          "text": "A character with this special rule cannot be targeted by enemy shooting or by enemy spells whilst it is within 3\" of a friendly unit whose troop type is 'war machine'."
+        },
+        {
+          "name": "Stubborn",
+          "text": "The first time this unit is required to make a Break test it may choose not to and will automatically Fall Back in Good Order instead, even if the Unit Strength of the winning side is more than twice that of the losing side. A unit that is not Stubborn does not become Stubborn when joined by a character that is. A Stubborn character cannot use this special rule whilst part of a unit that is not Stubborn."
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Hand Weapon",
+          "range": "Combat",
+          "strength": "S",
+          "ap": "-",
+          "specialRules": "-"
+        }
+      ],
+      "stats": {
+        "M": "3",
+        "WS": "5",
+        "BS": "5",
+        "S": "4",
+        "T": "4",
+        "W": "2",
+        "I": "2",
+        "A": "3",
+        "Ld": "10"
+      }
+    }
+  ]
+}

@@ -19,8 +19,10 @@ import {
   SITE_HEADER_BAR_CLASS,
 } from "@/lib/builderUi";
 import {
+  listFlowBackHref,
   listFlowFactionBackdropFaded,
   listFlowIndexBackdropRevealed,
+  listFlowIsDetail,
   listFlowIsHome,
   listFlowPendingRouteSplash,
   listFlowShowsFactionBackdrop,
@@ -99,6 +101,7 @@ export function ListNavProvider({
   const pathname = usePathname();
   const isHome = listFlowIsHome(pathname);
   const isBuilder = pathname.startsWith("/lists/");
+  const isDetail = listFlowIsDetail(pathname);
   const [showDetail, setShowDetailState] = useState(false);
   const [settled, setSettled] = useState(true);
   const [animatingBack, setAnimatingBack] = useState(false);
@@ -106,9 +109,11 @@ export function ListNavProvider({
   const timers = useRef<number[]>([]);
   const animatingBackRef = useRef(false);
   const pendingForwardRef = useRef(false);
-  const wasBuilderRef = useRef(isBuilder);
+  const pendingFromRef = useRef<string | null>(null);
+  const wasBuilderRef = useRef(isDetail);
   const forwardGenRef = useRef(0);
   const libraryScrollYRef = useRef<number | null>(null);
+  const [openingList, setOpeningList] = useState(false);
 
   useEffect(() => {
     if (backdrop) {
@@ -174,29 +179,34 @@ export function ListNavProvider({
   }
 
   useEffect(() => {
-    if (!isBuilder) {
+    if (!isDetail) {
       return;
     }
-    router.prefetch("/dashboard");
-  }, [isBuilder, router]);
+    router.prefetch(listFlowBackHref(pathname));
+  }, [isDetail, pathname, router]);
 
   useLayoutEffect(() => {
     if (isHome) {
       wasBuilderRef.current = false;
       pendingForwardRef.current = false;
+      pendingFromRef.current = null;
+      setOpeningList(false);
       animatingBackRef.current = false;
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
       return;
     }
-    if (!isBuilder) {
+    if (!isDetail) {
       const leavingBuilder = wasBuilderRef.current;
       wasBuilderRef.current = false;
       if (
-        listFlowSkipsPostRouteSlide(pendingForwardRef.current, leavingBuilder)
+        listFlowSkipsPostRouteSlide(pendingForwardRef.current, leavingBuilder) &&
+        pathname === pendingFromRef.current
       ) {
         return;
       }
       pendingForwardRef.current = false;
+      pendingFromRef.current = null;
+      setOpeningList(false);
       animatingBackRef.current = false;
       clearListNavigationDirection();
       clearListOpenSplash();
@@ -209,6 +219,8 @@ export function ListNavProvider({
     wasBuilderRef.current = true;
     if (listFlowSkipsPostRouteSlide(pendingForwardRef.current)) {
       pendingForwardRef.current = false;
+      pendingFromRef.current = null;
+      setOpeningList(false);
       clearListNavigationDirection();
       return;
     }
@@ -253,23 +265,32 @@ export function ListNavProvider({
 
     publishNavState({ showDetail: true, animatingBack: false, settled: true });
     scrollToPane(true, libraryScrollYRef);
-  }, [isBuilder, isHome, pathname, publishNavState]);
+  }, [isDetail, isHome, pathname, publishNavState]);
 
   function goForward(href: string) {
-    if (animatingBackRef.current || isBuilder || pendingForwardRef.current) {
+    if (animatingBackRef.current || isDetail || pendingForwardRef.current) {
       return;
     }
     pendingForwardRef.current = true;
+    pendingFromRef.current = pathname;
+    const openingAList = href.startsWith("/lists/");
+    setOpeningList(openingAList);
     rememberListNavigation("forward");
+    if (!openingAList) {
+      clearListOpenSplash();
+    }
     startForwardSlide();
     router.push(href, { scroll: false });
   }
 
   function goBack() {
-    if (animatingBackRef.current || !isBuilder) {
+    if (animatingBackRef.current || !isDetail) {
       return;
     }
+    const backHref = listFlowBackHref(pathname);
     pendingForwardRef.current = false;
+    pendingFromRef.current = null;
+    setOpeningList(false);
     forwardGenRef.current += 1;
     rememberListNavigation("back");
     clearListOpenSplash();
@@ -278,7 +299,7 @@ export function ListNavProvider({
     if (prefersReducedMotion()) {
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
       scrollToPane(false, libraryScrollYRef);
-      router.push("/dashboard", { scroll: false });
+      router.push(backHref, { scroll: false });
       return;
     }
     animatingBackRef.current = true;
@@ -286,7 +307,7 @@ export function ListNavProvider({
     scrollToPane(false, libraryScrollYRef);
     schedule(() => {
       clearListNavigationDirection();
-      router.push("/dashboard", { scroll: false });
+      router.push(backHref, { scroll: false });
     }, LIST_FLOW_SLIDE_MS);
   }
 
@@ -301,7 +322,11 @@ export function ListNavProvider({
     returningToLibrary: animatingBack,
   });
   const factionFaded = listFlowFactionBackdropFaded(animatingBack);
-  const pendingRouteSplash = listFlowPendingRouteSplash(showDetail, isBuilder);
+  const pendingRouteSplash = listFlowPendingRouteSplash(
+    showDetail,
+    isDetail,
+    openingList,
+  );
 
   return (
     <ListNavContext.Provider value={{ goBack, goForward }}>
@@ -339,10 +364,10 @@ export function ListNavProvider({
             </div>
             <div
               className="list-flow-pane relative min-h-dvh"
-              aria-hidden={!showDetail && !isBuilder}
+              aria-hidden={!showDetail && !isDetail}
             >
               <div className={`relative z-10 ${LIST_FLOW_HEADER_OFFSET_CLASS}`}>
-                {isBuilder ? children : null}
+                {isDetail ? children : null}
               </div>
             </div>
           </div>

@@ -3,7 +3,8 @@ import Link from "next/link";
 import { listFactions } from "@/engine/queries";
 import { GEO_FAQS } from "@/lib/geoContent";
 import { SITE_DESCRIPTION, SITE_GITHUB_URL } from "@/lib/site";
-import { HOME_CTA_CLASS, HOME_CTA_QUIET_CLASS, SITE_HEADER_BAR_CLASS, SITE_HEADER_ROW_CLASS } from "@/lib/builderUi";
+import { HOME_CTA_CLASS, HOME_CTA_QUIET_CLASS, LIBRARY_BRAND_HEADER_ROW_CLASS, SITE_HEADER_BAR_CLASS, SITE_HEADER_ROW_CLASS } from "@/lib/builderUi";
+import { AppHeaderMenu } from "./AppHeaderMenu";
 import { SiteBrandLockup } from "./BrandMark";
 import { IndexBackdrop } from "./IndexBackdrop";
 import { LandingMotion } from "./LandingMotion";
@@ -41,7 +42,10 @@ export function TryLanding() {
       <IndexBackdrop veil="hero">
         <header className={`${SITE_HEADER_BAR_CLASS} relative z-20 pt-[env(safe-area-inset-top)]`}>
           <div className={`${SITE_HEADER_ROW_CLASS} lg:max-w-5xl`}>
-            <SiteBrandLockup />
+            <div className={LIBRARY_BRAND_HEADER_ROW_CLASS}>
+              <AppHeaderMenu />
+              <SiteBrandLockup />
+            </div>
             <Link
               href="/dashboard"
               className={`${HOME_CTA_CLASS} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sigmarite`}

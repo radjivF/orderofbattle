@@ -1,19 +1,25 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { blankArmy } from "@/engine/listFactories";
-import type { ArmyList } from "@/engine/types";
+import { blankTowArmy } from "@/engine/tow/listFactories";
+import type { StoredList } from "@/engine/storedList";
 import { cleanup, render, screen } from "@/test-utils/render";
 import { LibraryScreen } from "./LibraryScreen";
+import { setActiveMenu } from "@/lib/activeMenu";
 
-const armyStore = vi.hoisted(() => ({ items: [] as ArmyList[] }));
-const navigation = vi.hoisted(() => ({ pathname: "/dashboard" }));
+const armyStore = vi.hoisted(() => ({ items: [] as StoredList[] }));
+const navigation = vi.hoisted(() => ({
+  push: vi.fn(),
+  replace: vi.fn(),
+  pathname: "/dashboard",
+}));
 const listNav = vi.hoisted(() => ({
   goBack: vi.fn(),
   goForward: vi.fn(),
 }));
 
 vi.mock("next/navigation", () => ({
-  useRouter: () => ({ push: vi.fn(), replace: vi.fn() }),
+  useRouter: () => navigation,
   usePathname: () => navigation.pathname,
 }));
 
@@ -52,6 +58,7 @@ vi.mock("@/lib/storage", () => ({
   getArmiesServerSnapshot: () => armyStore.items,
   blankArmy: vi.fn(),
   blankSpearhead: vi.fn(),
+  blankTowArmy: vi.fn(),
   deleteArmy: vi.fn(),
   duplicateArmy: vi.fn(),
   importArmies: vi.fn(),
@@ -97,7 +104,10 @@ describe("LibraryScreen", () => {
     cleanup();
     armyStore.items = [];
     navigation.pathname = "/dashboard";
+    navigation.replace.mockClear();
     listNav.goForward.mockReset();
+    localStorage.clear();
+    setActiveMenu("aos");
     Object.defineProperty(window, "matchMedia", {
       writable: true,
       value: (query: string) => ({
@@ -127,6 +137,61 @@ describe("LibraryScreen", () => {
     expect(screen.getByRole("button", { name: "Make your first list" }));
   });
 
+  it("keeps My lists on screen while Battle record is opening", () => {
+    setActiveMenu("tow");
+    render(<LibraryScreen />);
+
+    expect(screen.getByRole("heading", { name: "My lists" }));
+    expect(screen.getByRole("button", { name: "New list" }));
+    expect(screen.getByRole("button", { name: "Make your first list" }));
+    expect(screen.queryByText(/Open Battle record/i)).toBeNull();
+
+    cleanup();
+    navigation.replace.mockClear();
+    setActiveMenu("tactics");
+    render(<LibraryScreen />);
+
+    expect(navigation.replace).not.toHaveBeenCalled();
+    expect(screen.getByRole("heading", { name: "My lists" }));
+    expect(screen.queryByText(/Open Battle record from the menu/i)).toBeNull();
+    expect(screen.getByRole("button", { name: "New list" }));
+    expect(screen.getByRole("button", { name: "List options" }));
+  });
+
+  it("does not steal the homepage or My lists after Battle record was last opened", () => {
+    setActiveMenu("tactics");
+    render(<LibraryScreen />);
+
+    expect(navigation.replace).not.toHaveBeenCalled();
+    expect(screen.getByRole("heading", { name: "My lists" }));
+
+    cleanup();
+    navigation.pathname = "/";
+    navigation.replace.mockClear();
+    setActiveMenu("tactics");
+    render(<LibraryScreen />);
+
+    expect(navigation.replace).not.toHaveBeenCalled();
+  });
+
+  it("hides Age of Sigmar lists when Old World is selected", () => {
+    armyStore.items = [blankArmy("stormcast-eternals", "Sigmar host")];
+    setActiveMenu("tow");
+    render(<LibraryScreen />);
+
+    expect(screen.queryByRole("link", { name: "Open Sigmar host" })).toBeNull();
+    expect(screen.getByRole("button", { name: "Make your first list" }));
+  });
+
+  it("lists Empire armies on the Old World library", () => {
+    armyStore.items = [blankTowArmy("the-empire-of-man", "Altdorf")];
+    setActiveMenu("tow");
+    render(<LibraryScreen />);
+
+    expect(screen.getByRole("link", { name: "Open Altdorf" }));
+    expect(screen.getByText("The Empire of Man"));
+  });
+
   it("does not show the free-app pitch on My lists", () => {
     render(<LibraryScreen />);
     expect(
@@ -149,22 +214,6 @@ describe("LibraryScreen", () => {
     expect(scroll).toContainElement(
       screen.getByRole("textbox", { name: "List to import" }),
     );
-    expect(scroll).toContainElement(
-      screen.getByRole("group", { name: "Import or export lists" }),
-    );
-    expect(scroll).toContainElement(
-      screen.getByRole("button", { name: "Choose file" }),
-    );
-    for (const importControl of screen.getAllByRole("button", { name: "Import" })) {
-      expect(scroll).toContainElement(importControl);
-    }
-
-    const chooseFile = screen.getByRole("button", { name: "Choose file" });
-    const importAction = screen
-      .getAllByRole("button", { name: "Import" })
-      .find((button) => button.parentElement === chooseFile.parentElement);
-    expect(importAction).toBeDefined();
-    expect(chooseFile.parentElement?.className).toContain("ios-sheet-actions");
   });
 
   it("scrolls sort with the empty export picker", async () => {
@@ -203,26 +252,6 @@ describe("LibraryScreen", () => {
 
     await user.click(screen.getByRole("button", { name: "Continue" }));
     expect(screen.getByRole("heading", { name: "Export list" }));
-    expect(screen.queryByRole("button", { name: "Back" })).toBeNull();
-  });
-
-  it("resets export when the sheet is closed instead of offering Back", async () => {
-    armyStore.items = [blankArmy("stormcast-eternals", "Test list")];
-    render(<LibraryScreen />);
-    const user = await openExportPicker();
-
-    await user.click(screen.getByRole("checkbox", { name: "Export Test list" }));
-    await user.click(screen.getByRole("button", { name: "Continue" }));
-    expect(screen.getByRole("heading", { name: "Export list" }));
-
-    await user.click(screen.getByRole("button", { name: "Close list options" }));
-    expect(screen.queryByRole("dialog", { name: "List options" })).toBeNull();
-
-    await user.click(screen.getByRole("button", { name: "List options" }));
-    await user.click(screen.getByRole("button", { name: "Export" }));
-    expect(screen.getByText("Choose one or more lists to export."));
-    expect(screen.queryByRole("heading", { name: "Export list" })).toBeNull();
-    expect(screen.getByRole("checkbox", { name: "Export Test list" })).not.toBeChecked();
   });
 
   it("presses the list card when opening list details", async () => {

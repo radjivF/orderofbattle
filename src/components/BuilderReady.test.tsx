@@ -56,6 +56,7 @@ function khorneListWithHero() {
 describe("BuilderReady issue banner", () => {
   beforeEach(() => {
     cleanup();
+    HTMLElement.prototype.scrollIntoView = vi.fn();
     Object.defineProperty(window, "matchMedia", {
       writable: true,
       value: (query: string) => ({

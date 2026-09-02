@@ -1,0 +1,15 @@
+---
+description: Check Sentry preview errors before merging dev to main.
+alwaysApply: true
+---
+
+# Sentry before merge
+
+Before opening or merging a PR from `dev` to `main`:
+
+1. Search Sentry (`zheat` / `orderofbattle`) for `is:unresolved environment:preview`.
+2. Also check `is:unresolved environment:production`.
+3. Tell the user every matching issue (id, title, link, environment). Do not merge until they confirm.
+4. Ignore `environment:development` / localhost — those are local noise, not merge blockers.
+
+If Sentry MCP is available, use it. Do not wait for the user to paste the issue.

@@ -1,6 +1,9 @@
 "use client";
 
 import {
+  createContext,
+  useCallback,
+  useContext,
   useEffect,
   useLayoutEffect,
   useRef,
@@ -14,10 +17,17 @@ import {
   releaseModalLayer,
 } from "@/lib/modalLock";
 import {
+  isSheetDragControl,
   shouldBeginSheetDrag,
   shouldCommitSheetDismiss,
   sheetDismissEligible,
 } from "@/lib/sheetDismiss";
+
+const ModalDismissContext = createContext<() => void>(() => {});
+
+export function useModalDismiss() {
+  return useContext(ModalDismissContext);
+}
 
 type Props = {
   label: string;
@@ -28,6 +38,8 @@ type Props = {
   zClass?: string;
   /** "sheet" pins to the bottom edge on phones (iOS style); "center" always floats. */
   variant?: "sheet" | "center";
+  /** Full-page sheet: one rise from the bottom, tiny peek of the screen behind. */
+  fullPage?: boolean;
 };
 
 type SheetDragState = {
@@ -38,6 +50,12 @@ type SheetDragState = {
   dismissEligible: boolean;
   scrollEl: HTMLElement | null;
 };
+
+function prefersReducedMotion() {
+  return Boolean(window.matchMedia?.("(prefers-reduced-motion: reduce)").matches);
+}
+
+const SHEET_SLIDE_MS = 280;
 
 function emptyDragState(): SheetDragState {
   return {
@@ -58,12 +76,26 @@ function isMobileSheet(variant: Props["variant"]) {
   );
 }
 
+function sheetDragEnabled(
+  variant: Props["variant"],
+  fullPage: boolean,
+): boolean {
+  if (variant !== "sheet") {
+    return false;
+  }
+  if (fullPage) {
+    return true;
+  }
+  return isMobileSheet(variant);
+}
+
 export function ModalFrame({
   label,
   onClose,
   children,
   panelClassName,
   variant = "sheet",
+  fullPage = false,
 }: Props) {
   const panelRef = useRef<HTMLDivElement>(null);
   const onCloseRef = useRef(onClose);
@@ -74,6 +106,8 @@ export function ModalFrame({
   const [dragAnimating, setDragAnimating] = useState(false);
   const dragOffsetRef = useRef(0);
   const dragRef = useRef<SheetDragState>(emptyDragState());
+  const dismissingRef = useRef(false);
+  const requestCloseRef = useRef<() => void>(() => {});
 
   useEffect(() => {
     onCloseRef.current = onClose;
@@ -87,13 +121,44 @@ export function ModalFrame({
     );
   }
 
-  function dismissSheet() {
-    const height = panelRef.current?.offsetHeight ?? 400;
-    dragOffsetRef.current = height;
-    setDragAnimating(true);
-    setDragOffset(height);
-    window.setTimeout(() => onCloseRef.current(), 240);
-  }
+  const requestClose = useCallback(() => {
+    if (variant !== "sheet") {
+      onCloseRef.current();
+      return;
+    }
+    if (dismissingRef.current) {
+      return;
+    }
+    dismissingRef.current = true;
+    if (prefersReducedMotion()) {
+      onCloseRef.current();
+      return;
+    }
+    const height = panelRef.current?.offsetHeight || 400;
+    const fromRest = dragOffsetRef.current === 0;
+    const slideOut = () => {
+      dragOffsetRef.current = height;
+      setDragAnimating(true);
+      setDragOffset(height);
+    };
+    if (fromRest) {
+      setDragAnimating(true);
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(slideOut);
+      });
+    } else {
+      slideOut();
+    }
+    window.setTimeout(() => onCloseRef.current(), SHEET_SLIDE_MS);
+  }, [variant]);
+
+  useLayoutEffect(() => {
+    requestCloseRef.current = requestClose;
+  }, [requestClose]);
+
+  const dismiss = useCallback(() => {
+    requestCloseRef.current();
+  }, []);
 
   function resetSheetDrag() {
     const scrollEl = dragRef.current.scrollEl;
@@ -113,7 +178,7 @@ export function ModalFrame({
     }
     drag.dragging = true;
     setDragAnimating(false);
-    panelRef.current?.setPointerCapture(pointerId);
+    panelRef.current?.setPointerCapture?.(pointerId);
     const scrollEl = drag.scrollEl;
     if (scrollEl) {
       scrollEl.style.overflow = "hidden";
@@ -122,17 +187,22 @@ export function ModalFrame({
   }
 
   function primeSheetDrag(event: React.PointerEvent<HTMLDivElement>) {
-    if (!isMobileSheet(variant) || !isTopModal(closeHandlerRef.current)) {
+    if (
+      !sheetDragEnabled(variant, fullPage) ||
+      !isTopModal(closeHandlerRef.current)
+    ) {
       return;
     }
 
     const target = event.target as HTMLElement;
     const scrollEl = sheetScrollEl();
     const fromGrabber = Boolean(target.closest(".modal-grabber"));
+    const fromControl = isSheetDragControl(target);
     const inScrollArea = Boolean(scrollEl?.contains(target));
     const scrollTop = scrollEl?.scrollTop ?? 0;
     const dismissEligible = sheetDismissEligible({
       fromGrabber,
+      fromControl,
       inScrollArea,
       scrollTop,
     });
@@ -186,7 +256,7 @@ export function ModalFrame({
       return;
     }
 
-    if (panelRef.current?.hasPointerCapture(event.pointerId)) {
+    if (panelRef.current?.hasPointerCapture?.(event.pointerId)) {
       panelRef.current.releasePointerCapture(event.pointerId);
     }
 
@@ -195,7 +265,7 @@ export function ModalFrame({
       if (
         shouldCommitSheetDismiss(dragOffsetRef.current, threshold)
       ) {
-        dismissSheet();
+        requestClose();
       } else {
         dragOffsetRef.current = 0;
         resetSheetDrag();
@@ -206,7 +276,7 @@ export function ModalFrame({
   }
 
   useLayoutEffect(() => {
-    closeHandlerRef.current = () => onCloseRef.current();
+    closeHandlerRef.current = () => requestCloseRef.current();
     const layer = acquireModalLayer(closeHandlerRef.current);
     setZIndex(layer);
 
@@ -221,7 +291,7 @@ export function ModalFrame({
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
         if (isTopModal(closeHandlerRef.current)) {
-          onCloseRef.current();
+          requestCloseRef.current();
         }
         return;
       }
@@ -263,7 +333,11 @@ export function ModalFrame({
   useLayoutEffect(() => {
     const sheetPanel = panelRef.current;
     const scrollContainer = sheetScrollEl();
-    if (!sheetPanel || !scrollContainer || !isMobileSheet(variant)) {
+    if (
+      !sheetPanel ||
+      !scrollContainer ||
+      !sheetDragEnabled(variant, fullPage)
+    ) {
       return;
     }
     const panel: HTMLDivElement = sheetPanel;
@@ -279,6 +353,7 @@ export function ModalFrame({
       }
       const target = event.target as HTMLElement;
       const fromGrabber = Boolean(target.closest(".modal-grabber"));
+      const fromControl = isSheetDragControl(target);
       const inScrollArea = scrollEl.contains(target);
       const scrollTop = scrollEl.scrollTop;
       dragRef.current = {
@@ -288,6 +363,7 @@ export function ModalFrame({
         dragging: fromGrabber,
         dismissEligible: sheetDismissEligible({
           fromGrabber,
+          fromControl,
           inScrollArea,
           scrollTop,
         }),
@@ -346,7 +422,7 @@ export function ModalFrame({
       if (drag.dragging) {
         const threshold = panel.offsetHeight;
         if (shouldCommitSheetDismiss(dragOffsetRef.current, threshold)) {
-          dismissSheet();
+          requestCloseRef.current();
         } else {
           dragOffsetRef.current = 0;
           resetSheetDrag();
@@ -367,7 +443,7 @@ export function ModalFrame({
       panel.removeEventListener("touchend", onTouchEnd);
       panel.removeEventListener("touchcancel", onTouchEnd);
     };
-  }, [variant, zIndex]);
+  }, [variant, fullPage, zIndex]);
 
   if (typeof document === "undefined" || zIndex === null) {
     return null;
@@ -375,7 +451,9 @@ export function ModalFrame({
 
   const sheet = variant === "sheet";
   const frameClass = sheet
-    ? "flex items-end justify-center pt-10 sm:items-center sm:p-4"
+    ? fullPage
+      ? "flex items-end justify-center pt-2"
+      : "flex items-end justify-center pt-10 sm:items-center sm:p-4"
     : "flex items-center justify-center p-4";
 
   return createPortal(
@@ -392,7 +470,7 @@ export function ModalFrame({
         }}
         onClick={() => {
           if (backdropArmed.current && isTopModal(closeHandlerRef.current)) {
-            onClose();
+            requestCloseRef.current();
           }
         }}
       />
@@ -402,7 +480,7 @@ export function ModalFrame({
         aria-modal="true"
         aria-label={label}
         tabIndex={-1}
-        className={`relative z-10 outline-none ${sheet ? "modal-sheet" : ""} ${dragAnimating ? "modal-sheet--animating" : ""} ${panelClassName}`}
+        className={`relative z-10 outline-none ${sheet ? "modal-sheet" : ""} ${fullPage ? "modal-sheet--page" : ""} ${dragAnimating ? "modal-sheet--animating" : ""} ${panelClassName}`}
         style={
           sheet && dragOffset > 0
             ? { transform: `translateY(${dragOffset}px)` }
@@ -420,11 +498,13 @@ export function ModalFrame({
         {sheet ? (
           <div
             aria-hidden="true"
-            className="modal-grabber sm:hidden"
+            className={`modal-grabber relative z-10 ${fullPage ? "" : "sm:hidden"}`}
             style={{ touchAction: "none" }}
           />
         ) : null}
-        {children}
+        <ModalDismissContext.Provider value={dismiss}>
+          {children}
+        </ModalDismissContext.Provider>
       </div>
     </div>,
     document.body,

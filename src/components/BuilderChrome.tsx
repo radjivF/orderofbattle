@@ -1,8 +1,8 @@
-import type { ArmyList, FactionCatalogue } from "@/engine/types";
+import type { FactionCatalogue } from "@/engine/types";
 
 export type BuilderChromeValue = {
-  list: ArmyList;
-  faction: FactionCatalogue;
+  list: { name: string };
+  faction?: FactionCatalogue;
   playMode: boolean;
   enterPlay: () => void;
   exitPlay: () => void;
@@ -12,4 +12,5 @@ export type BuilderChromeValue = {
   drops: number;
   issue: { text: string; tone: "ok" | "warn" | "bad" };
   spearhead?: boolean;
+  hideDrops?: boolean;
 };

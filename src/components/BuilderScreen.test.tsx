@@ -2,42 +2,52 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { cleanup, render, screen } from "@/test-utils/render";
 import {
+  LIST_ISSUE_HIGHLIGHT_CLASS,
   LIST_LANDING_CONTENT_HIDDEN_CLASS,
   LIST_LANDING_CONTENT_VISIBLE_CLASS,
 } from "@/lib/builderUi";
 import { BuilderScreen } from "./BuilderScreen";
 
-const { list, art, listOpen } = vi.hoisted(() => {
+const { list, noHeroList, art, listOpen } = vi.hoisted(() => {
   const now = Date.now();
+  const shared = {
+    name: "Test list",
+    factionId: "stormcast-eternals",
+    pointsCap: 2000,
+    formationId: null,
+    spellLoreId: null,
+    prayerLoreId: null,
+    manifestationLoreId: null,
+    artefact: null,
+    heroicTrait: null,
+    monstrousTrait: null,
+    visionOfFate: null,
+    specialEnhancements: [],
+    battleTacticCardIds: [],
+    battleTacticStage: {},
+    scourgeRealm: "aqshy" as const,
+    auxiliaries: [],
+    regimentOfRenown: null,
+    powerBinds: {},
+    kind: "matched" as const,
+    spearheadId: null,
+    regimentAbilityId: null,
+    createdAt: now,
+    updatedAt: now,
+    lastOpenedAt: now,
+  };
   return {
     list: {
+      ...shared,
       id: "builder-test-list",
-      name: "Test list",
-      factionId: "stormcast-eternals",
-      pointsCap: 2000,
-      formationId: null,
-      spellLoreId: null,
-      prayerLoreId: null,
-      manifestationLoreId: null,
-      artefact: null,
-      heroicTrait: null,
-      monstrousTrait: null,
-      visionOfFate: null,
-      specialEnhancements: [],
-      battleTacticCardIds: [],
-      battleTacticStage: {},
-      scourgeRealm: "aqshy",
       generalRegimentId: null,
       regiments: [],
-      auxiliaries: [],
-      regimentOfRenown: null,
-      powerBinds: {},
-      kind: "matched" as const,
-      spearheadId: null,
-      regimentAbilityId: null,
-      createdAt: now,
-      updatedAt: now,
-      lastOpenedAt: now,
+    },
+    noHeroList: {
+      ...shared,
+      id: "builder-no-hero",
+      generalRegimentId: "r1",
+      regiments: [{ id: "r1", hero: null, units: [] }],
     },
     art: {
       src: null as string | null,
@@ -70,7 +80,7 @@ vi.mock("next/link", () => ({
   ),
 }));
 
-const mockLists = [list];
+const mockLists = [list, noHeroList];
 
 vi.mock("@/lib/storage", () => ({
   subscribeArmies: () => () => {},
@@ -129,6 +139,7 @@ function landing() {
 describe("BuilderScreen", () => {
   beforeEach(() => {
     cleanup();
+    HTMLElement.prototype.scrollIntoView = vi.fn();
     art.src = null;
     art.ready = true;
     art.preload.mockReset();
@@ -151,7 +162,6 @@ describe("BuilderScreen", () => {
   afterEach(() => {
     vi.useRealTimers();
   });
-
   it("renders build pane for an existing list", () => {
     render(<BuilderScreen listId={list.id} />);
     expect(screen.getByText("Battle formation")).toBeInTheDocument();
@@ -194,7 +204,7 @@ describe("BuilderScreen", () => {
 
     render(<BuilderScreen listId={list.id} />);
     await user.click(
-      screen.getByRole("button", { name: /Add a regiment to begin/i }),
+      screen.getAllByRole("button", { name: /Add a regiment to begin/i })[0],
     );
 
     expect(
@@ -206,10 +216,24 @@ describe("BuilderScreen", () => {
     const user = userEvent.setup();
 
     render(<BuilderScreen listId={list.id} />);
-    await user.click(screen.getByRole("button", { name: "+ Regiment" }));
+    await user.click(screen.getAllByRole("button", { name: "+ Regiment" })[0]);
 
     expect(
       screen.getByRole("dialog", { name: "Choose a hero" }),
     ).toBeInTheDocument();
+  });
+
+  it("highlights Choose a hero when a regiment is missing one", async () => {
+    const user = userEvent.setup();
+    HTMLElement.prototype.scrollIntoView = vi.fn();
+
+    render(<BuilderScreen listId={noHeroList.id} />);
+    await user.click(
+      screen.getAllByRole("button", { name: /A regiment needs a hero/i })[0],
+    );
+
+    expect(
+      screen.getAllByRole("button", { name: "Choose a hero" })[0],
+    ).toHaveClass(...LIST_ISSUE_HIGHLIGHT_CLASS.split(" "));
   });
 });
