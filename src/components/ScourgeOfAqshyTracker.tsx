@@ -69,83 +69,98 @@ export function ScourgeOfAqshyTracker({
 
     return (
       <div className="flex-1 min-w-0">
-        <p className="text-xs text-sheet-muted mb-2">
+        <p className="text-sm font-medium text-parchment-ink mb-3">
           {name}
-          {role ? ` · ${role}` : ""}
+          {role ? (
+            <span className="ml-2 text-xs text-sheet-muted font-normal">
+              {role}
+            </span>
+          ) : null}
         </p>
         
         {/* Fury row */}
-        <div className="flex items-center gap-2 mb-2">
-          <span className="text-xs text-sheet-muted w-12">Fury</span>
-          <div className="flex gap-0.5">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="text-xs text-sheet-muted w-10">Fury</span>
+          <div className="flex gap-1">
             {Array.from({ length: 7 }, (_, i) => (
               <div
                 key={i}
-                className={`h-1.5 w-1.5 rounded-full ${
+                className={`h-2.5 w-2.5 rounded-full ${
                   i < fury
-                    ? "bg-ember ring-1 ring-ember/30"
+                    ? "bg-ember ring-1 ring-ember/30 shadow-sm"
                     : "bg-parchment-ink/10"
                 }`}
               />
             ))}
           </div>
-          <span className="text-sm font-semibold tabular-nums w-4">{fury}</span>
-          <button
-            type="button"
-            onClick={() => adjustFury(player, -1)}
-            disabled={fury <= 0}
-            className="flex h-6 w-6 items-center justify-center rounded-full bg-parchment-ink/5 text-xs font-semibold ring-1 ring-parchment-ink/10 hover:bg-parchment-ink/10 disabled:opacity-30"
-          >
-            −
-          </button>
-          <button
-            type="button"
-            onClick={() => adjustFury(player, 1)}
-            disabled={fury >= 7}
-            className="flex h-6 w-6 items-center justify-center rounded-full bg-parchment-ink/5 text-xs font-semibold ring-1 ring-parchment-ink/10 hover:bg-parchment-ink/10 disabled:opacity-30"
-          >
-            +
-          </button>
+          <span className="text-base font-semibold tabular-nums w-5">{fury}</span>
+          <div className="flex gap-1.5">
+            <button
+              type="button"
+              onClick={() => adjustFury(player, -1)}
+              disabled={fury <= 0}
+              aria-label="Decrease fury"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-parchment-ink/5 text-base font-semibold ring-1 ring-parchment-ink/10 hover:bg-parchment-ink/10 active:bg-parchment-ink/15 disabled:opacity-30"
+            >
+              −
+            </button>
+            <button
+              type="button"
+              onClick={() => adjustFury(player, 1)}
+              disabled={fury >= 7}
+              aria-label="Increase fury"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-parchment-ink/5 text-base font-semibold ring-1 ring-parchment-ink/10 hover:bg-parchment-ink/10 active:bg-parchment-ink/15 disabled:opacity-30"
+            >
+              +
+            </button>
+          </div>
         </div>
 
         {/* Rage row */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={() => setExpandedPlayer(isExpanded ? null : player)}
-            className="pressable text-xs text-sheet-muted w-12 text-left"
+            className="pressable text-xs text-sheet-muted w-10 text-left min-h-11 flex items-center"
+            aria-label="Toggle rage actions"
           >
             Rage
           </button>
-          <span className="text-sm font-semibold tabular-nums flex-1">{rage}</span>
-          <span className="text-[10px] text-sheet-muted/60">this round</span>
-          <button
-            type="button"
-            onClick={() => adjustRage(player, -1)}
-            disabled={rage <= 0}
-            className="flex h-6 w-6 items-center justify-center rounded-full bg-parchment-ink/5 text-xs font-semibold ring-1 ring-parchment-ink/10 hover:bg-parchment-ink/10 disabled:opacity-30"
-          >
-            −
-          </button>
-          <button
-            type="button"
-            onClick={() => adjustRage(player, 1)}
-            className="flex h-6 w-6 items-center justify-center rounded-full bg-parchment-ink/5 text-xs font-semibold ring-1 ring-parchment-ink/10 hover:bg-parchment-ink/10"
-          >
-            +
-          </button>
+          <div className="flex-1 flex items-center gap-2">
+            <span className="text-base font-semibold tabular-nums">{rage}</span>
+            <span className="text-[11px] text-sheet-muted/70">this round</span>
+          </div>
+          <div className="flex gap-1.5">
+            <button
+              type="button"
+              onClick={() => adjustRage(player, -1)}
+              disabled={rage <= 0}
+              aria-label="Decrease rage"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-parchment-ink/5 text-base font-semibold ring-1 ring-parchment-ink/10 hover:bg-parchment-ink/10 active:bg-parchment-ink/15 disabled:opacity-30"
+            >
+              −
+            </button>
+            <button
+              type="button"
+              onClick={() => adjustRage(player, 1)}
+              aria-label="Increase rage"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-parchment-ink/5 text-base font-semibold ring-1 ring-parchment-ink/10 hover:bg-parchment-ink/10 active:bg-parchment-ink/15"
+            >
+              +
+            </button>
+          </div>
         </div>
 
         {/* Expanded spends */}
         {isExpanded && (
-          <div className="mt-3 space-y-2 p-3 rounded-xl bg-parchment-ink/5 ring-1 ring-parchment-ink/10">
+          <div className="mt-4 space-y-2 p-4 rounded-xl bg-parchment-ink/5 ring-1 ring-parchment-ink/10">
             {!erupting ? (
               <>
                 <button
                   type="button"
                   onClick={() => setErupting(true)}
                   disabled={rage < 1}
-                  className={`${SHEET_SECONDARY_BUTTON_CLASS} w-full !py-2 !text-xs disabled:opacity-40`}
+                  className={`${SHEET_SECONDARY_BUTTON_CLASS} w-full !py-3 !text-sm disabled:opacity-40`}
                 >
                   Eruption of Fury · spend 1–3
                 </button>
@@ -153,21 +168,21 @@ export function ScourgeOfAqshyTracker({
                   type="button"
                   onClick={() => spendFight(player)}
                   disabled={rage < 1}
-                  className={`${SHEET_SECONDARY_BUTTON_CLASS} w-full !py-2 !text-xs disabled:opacity-40`}
+                  className={`${SHEET_SECONDARY_BUTTON_CLASS} w-full !py-3 !text-sm disabled:opacity-40`}
                 >
                   Fight through pain · spend 1, fury −1
                 </button>
                 <button
                   type="button"
                   onClick={() => setExpandedPlayer(null)}
-                  className={`${SHEET_SECONDARY_BUTTON_CLASS} w-full !py-2 !text-xs`}
+                  className={`${SHEET_SECONDARY_BUTTON_CLASS} w-full !py-3 !text-sm`}
                 >
                   Close
                 </button>
               </>
             ) : (
               <>
-                <p className="text-xs text-parchment-ink/70">Spend how many?</p>
+                <p className="text-xs text-parchment-ink/70 mb-2">Spend how many?</p>
                 <div className="grid grid-cols-3 gap-2">
                   {([1, 2, 3] as const).map((amount) => (
                     <button
@@ -175,7 +190,7 @@ export function ScourgeOfAqshyTracker({
                       type="button"
                       onClick={() => spendEruption(player, amount)}
                       disabled={rage < amount}
-                      className={`${IOS_LIQUID_CTA_CLASS} !min-h-9 !text-sm disabled:opacity-40`}
+                      className={`${IOS_LIQUID_CTA_CLASS} !min-h-11 !text-base disabled:opacity-40`}
                     >
                       {amount}
                     </button>
@@ -184,7 +199,7 @@ export function ScourgeOfAqshyTracker({
                 <button
                   type="button"
                   onClick={() => setErupting(false)}
-                  className={`${SHEET_SECONDARY_BUTTON_CLASS} w-full !py-2 !text-xs`}
+                  className={`${SHEET_SECONDARY_BUTTON_CLASS} w-full !py-3 !text-sm`}
                 >
                   Cancel
                 </button>
@@ -197,31 +212,31 @@ export function ScourgeOfAqshyTracker({
   }
 
   return (
-    <section className="parchment-card rounded-2xl px-4 py-4 text-parchment-ink">
-      <div className="flex items-center justify-between mb-3">
+    <section className="parchment-card rounded-2xl px-5 py-5 text-parchment-ink">
+      <div className="flex items-center justify-between mb-4">
         <h3 className="text-xs font-semibold tracking-wide uppercase text-sheet-muted">
           Scourge of Aqshy
         </h3>
         {!game.furyInitialized && (
-          <div className="flex gap-1">
+          <div className="flex gap-2">
             <button
               type="button"
               onClick={() => onSetAttacker("you")}
-              className="px-2 py-1 text-[10px] rounded bg-parchment-ink/5 ring-1 ring-parchment-ink/10 hover:bg-parchment-ink/10"
+              className="px-3 py-1.5 text-xs rounded bg-parchment-ink/5 ring-1 ring-parchment-ink/10 hover:bg-parchment-ink/10"
             >
               You = attacker
             </button>
             <button
               type="button"
               onClick={() => onSetAttacker("opponent")}
-              className="px-2 py-1 text-[10px] rounded bg-parchment-ink/5 ring-1 ring-parchment-ink/10 hover:bg-parchment-ink/10"
+              className="px-3 py-1.5 text-xs rounded bg-parchment-ink/5 ring-1 ring-parchment-ink/10 hover:bg-parchment-ink/10"
             >
               Opp = attacker
             </button>
           </div>
         )}
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-6">
         {renderPlayerColumn("you")}
         <div className="w-px bg-parchment-ink/10 self-stretch" />
         {renderPlayerColumn("opponent")}

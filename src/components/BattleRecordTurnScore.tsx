@@ -59,7 +59,7 @@ export function BattleRecordTurnScore({
 
   return (
     <section className="parchment-card rounded-2xl px-4 py-4 text-parchment-ink">
-      <h2 className="font-serif text-xl">Primary · {battleplanName}</h2>
+      <h2 className="font-serif text-xl">Score · {battleplanName}</h2>
       <IosUnderlineTabs
         variant="parchment"
         ariaLabel="Turn players"
