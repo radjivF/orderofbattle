@@ -118,8 +118,15 @@ export function pathToGloryPackIds(list: ArmyList): PathToGloryPackId[] {
   return packIdsFromState(list.pathToGlory);
 }
 
+/** Always true for PTG (Battle Wounds + Drained always visible). */
 export function showsBattleWoundsAndScars(list: ArmyList): boolean {
-  return pathToGloryPackIds(list).includes("ravaged-coast");
+  return isPathToGloryList(list);
+}
+
+/** True if Ravaged Coast or Blighted Wilds pack is on (Scar field visible). */
+export function showsScars(list: ArmyList): boolean {
+  const packIds = pathToGloryPackIds(list);
+  return packIds.includes("ravaged-coast") || packIds.includes("blighted-wilds");
 }
 
 export function packLabel(id: PathToGloryPackId): string {

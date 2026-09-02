@@ -48,6 +48,7 @@ import {
   patchSelection,
   selectionArtefactOptionId,
   selectionHeroicTraitOptionId,
+  resolvePathToGloryUnit,
   showsBattleWoundsAndScars,
 } from "@/engine/pathToGlory";
 import { hideSelectionFromPhase, playAfterDamage } from "@/engine/playHide";
@@ -162,7 +163,11 @@ export function BuilderReady({
   }
 
   function toggleWarlord(selectionId: string) {
-    const currentWarlord = list.pathToGlory?.warlordSelectionId;
+    if (!list.pathToGlory) {
+      return;
+    }
+    
+    const currentWarlord = list.pathToGlory.warlordSelectionId;
     const isCurrentlyWarlord = currentWarlord === selectionId;
     
     if (isCurrentlyWarlord) {
@@ -170,63 +175,70 @@ export function BuilderReady({
       void commit({
         ...list,
         pathToGlory: {
-          ...list.pathToGlory!,
+          ...list.pathToGlory,
           warlordSelectionId: null,
         },
       });
-    } else {
-      // Mark as warlord and initialize with 5 renown if not already set
-      const selection = list.regiments
-        .flatMap((r) => (r.hero ? [r.hero] : []))
-        .concat(list.auxiliaries)
-        .find((s) => s.id === selectionId);
-      
-      if (selection) {
-        const needsInit = !selection.pathToGlory || selection.pathToGlory.renown < 5;
-        void commit({
-          ...list,
-          pathToGlory: {
-            ...list.pathToGlory!,
-            warlordSelectionId: selectionId,
-          },
-          regiments: list.regiments.map((r) => {
-            if (r.hero?.id === selectionId && needsInit) {
-              return {
-                ...r,
-                hero: {
-                  ...r.hero,
-                  pathToGlory: {
-                    ...(r.hero.pathToGlory ?? {}),
-                    renown: 5,
-                    pathId: r.hero.pathToGlory?.pathId ?? null,
-                    pathOptionIds: r.hero.pathToGlory?.pathOptionIds ?? [],
-                    battleWoundId: r.hero.pathToGlory?.battleWoundId ?? null,
-                    scarId: r.hero.pathToGlory?.scarId ?? null,
-                  },
-                },
-              };
-            }
-            return r;
-          }),
-          auxiliaries: list.auxiliaries.map((aux) => {
-            if (aux.id === selectionId && needsInit) {
-              return {
-                ...aux,
-                pathToGlory: {
-                  ...(aux.pathToGlory ?? {}),
-                  renown: 5,
-                  pathId: aux.pathToGlory?.pathId ?? null,
-                  pathOptionIds: aux.pathToGlory?.pathOptionIds ?? [],
-                  battleWoundId: aux.pathToGlory?.battleWoundId ?? null,
-                  scarId: aux.pathToGlory?.scarId ?? null,
-                },
-              };
-            }
-            return aux;
-          }),
-        });
-      }
+      return;
     }
+    
+    // Mark as warlord and initialize with 5 renown if not already set
+    const selection = list.regiments
+      .flatMap((r) => (r.hero ? [r.hero] : []))
+      .concat(list.auxiliaries)
+      .find((s) => s.id === selectionId);
+    
+    if (!selection) {
+      return;
+    }
+    
+    const needsInit = !selection.pathToGlory || selection.pathToGlory.renown < 5;
+    void commit({
+      ...list,
+      pathToGlory: {
+        ...list.pathToGlory,
+        warlordSelectionId: selectionId,
+      },
+      regiments: list.regiments.map((r) => {
+        if (r.hero?.id === selectionId && needsInit) {
+          return {
+            ...r,
+            hero: {
+              ...r.hero,
+              pathToGlory: {
+                ...(r.hero.pathToGlory ?? {
+                  renown: 0,
+                  pathId: null,
+                  pathOptionIds: [],
+                  battleWoundId: null,
+                  scarId: null,
+                }),
+                renown: 5,
+              },
+            },
+          };
+        }
+        return r;
+      }),
+      auxiliaries: list.auxiliaries.map((aux) => {
+        if (aux.id === selectionId && needsInit) {
+          return {
+            ...aux,
+            pathToGlory: {
+              ...(aux.pathToGlory ?? {
+                renown: 0,
+                pathId: null,
+                pathOptionIds: [],
+                battleWoundId: null,
+                scarId: null,
+              }),
+              renown: 5,
+            },
+          };
+        }
+        return aux;
+      }),
+    });
   }
 
   useEffect(() => {
@@ -1374,22 +1386,23 @@ export function BuilderReady({
                 }
                 const heroGear = listHeroGearSlots(list, faction, slot);
                 if (forPlayMode) {
-                  const track = selectionPlayState(slot, unit);
-                  const warning = battleDamagedWarning(unit, track.damage);
+                  const resolvedUnit = resolvePathToGloryUnit(unit, slot);
+                  const track = selectionPlayState(slot, resolvedUnit);
+                  const warning = battleDamagedWarning(resolvedUnit, track.damage);
                   return (
                     <li key={slot.id}>
                       <div className="rounded-xl bg-parchment-ink/5 px-3 py-2.5">
                         <div className="flex items-center gap-3">
                           <button
                             type="button"
-                            onClick={() => setDatasheet(unit)}
+                            onClick={() => setDatasheet(resolvedUnit)}
                             className="min-w-0 w-fit max-w-full text-left"
                           >
                             <span className="font-serif text-lg leading-tight">
-                              {unit.name}
+                              {resolvedUnit.name}
                             </span>
                             <span className="mt-0.5 block text-sm text-parchment-ink/60">
-                              {battleStatLine(unit)}
+                              {battleStatLine(resolvedUnit)}
                             </span>
                           </button>
                           <PlayHealthTrack

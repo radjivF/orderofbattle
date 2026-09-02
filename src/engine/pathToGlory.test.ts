@@ -110,7 +110,7 @@ describe("blankPathToGlory", () => {
     expect(showsBattleWoundsAndScars(list)).toBe(true);
     expect(isPathToGloryList(blankArmy("stormcast-eternals"))).toBe(false);
     expect(showsBattleWoundsAndScars(blankPathToGlory("stormcast-eternals", "ascension"))).toBe(
-      false,
+      true, // Battle Wounds always visible for PTG
     );
   });
 });

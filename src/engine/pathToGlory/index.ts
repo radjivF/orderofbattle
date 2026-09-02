@@ -15,6 +15,7 @@ export {
   pathToGloryPacksLabel,
   resolveBattlepacks,
   showsBattleWoundsAndScars,
+  showsScars,
   toggleLearnedId,
   togglePathToGloryPack,
 } from "./packs";

@@ -23,6 +23,7 @@ import {
   rankLabel,
   renownToUnlockRank,
   scarSeverityLabel,
+  showsScars,
 } from "@/engine/pathToGlory";
 import type { PathToGloryPackId } from "@/engine/pathToGlory";
 import { PathToGloryAnvilForge } from "./PathToGloryAnvilForge";
@@ -318,7 +319,7 @@ export function PathToGloryUnitExtras({
               <span className="font-medium text-sheet-muted">Drained</span>
             </label>
           ) : null}
-          {packIds.some((id) => id === "ravaged-coast" || id === "blighted-wilds") ? (
+          {showsScars({ kind: "pathToGlory", pathToGlory: { packIds } } as any) ? (
             <label className="flex flex-col gap-1 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
               Scar
               <select

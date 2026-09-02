@@ -212,24 +212,23 @@ export function RegimentCard({
             onToggleWarlord={onToggleWarlord}
             onOpenDatasheet={onOpenDatasheet}
           >
-            {(toggle) => (
-              <SlotLine
-                unit={hero}
-                selection={heroSelection}
-                points={selectionPoints(hero, false, heroSelection)}
-                playMode={playMode}
-                hidePoints={locked}
-                bindNotes={bindNotes}
-                onReplace={locked ? undefined : onPickHero}
-                onOpenDatasheet={() =>
-                  onOpenDatasheet(
-                    resolvePathToGloryUnit(hero, heroSelection),
-                  )
-                }
-                onPlayHealth={onPlayHealth}
-                extraTrailing={toggle}
-              />
-            )}
+            {(toggle) => {
+              const resolvedHero = resolvePathToGloryUnit(hero, heroSelection);
+              return (
+                <SlotLine
+                  unit={resolvedHero}
+                  selection={heroSelection}
+                  points={selectionPoints(hero, false, heroSelection)}
+                  playMode={playMode}
+                  hidePoints={locked}
+                  bindNotes={bindNotes}
+                  onReplace={locked ? undefined : onPickHero}
+                  onOpenDatasheet={() => onOpenDatasheet(resolvedHero)}
+                  onPlayHealth={onPlayHealth}
+                  extraTrailing={toggle}
+                />
+              );
+            }}
           </PathToGlorySlot>
           <SlotEnhancements
             selectionId={heroSelection.id}
@@ -291,32 +290,33 @@ export function RegimentCard({
                 onChange={(next) => onPatchSelection?.(next.id, next)}
                 onOpenDatasheet={onOpenDatasheet}
               >
-                {(toggle) => (
-                  <SlotLine
-                    unit={unit}
-                    selection={slot}
-                    points={selectionPoints(unit, slot.reinforced, slot)}
-                    reinforced={slot.reinforced}
-                    canReinforce={unit.reinforce}
-                    playMode={playMode}
-                    hidePoints={locked}
-                    bindNotes={bindNotes}
-                    onToggleReinforce={
-                      locked ? undefined : () => onToggleReinforce(slot.id)
-                    }
-                    onDuplicate={
-                      locked || unit.unique || openSlots <= 0
-                        ? undefined
-                        : () => onDuplicateUnit(slot.id)
-                    }
-                    onRemove={locked ? undefined : () => onRemoveUnit(slot.id)}
-                    onOpenDatasheet={() =>
-                      onOpenDatasheet(resolvePathToGloryUnit(unit, slot))
-                    }
-                    onPlayHealth={onPlayHealth}
-                    extraTrailing={toggle}
-                  />
-                )}
+                {(toggle) => {
+                  const resolvedUnit = resolvePathToGloryUnit(unit, slot);
+                  return (
+                    <SlotLine
+                      unit={resolvedUnit}
+                      selection={slot}
+                      points={selectionPoints(unit, slot.reinforced, slot)}
+                      reinforced={slot.reinforced}
+                      canReinforce={unit.reinforce}
+                      playMode={playMode}
+                      hidePoints={locked}
+                      bindNotes={bindNotes}
+                      onToggleReinforce={
+                        locked ? undefined : () => onToggleReinforce(slot.id)
+                      }
+                      onDuplicate={
+                        locked || unit.unique || openSlots <= 0
+                          ? undefined
+                          : () => onDuplicateUnit(slot.id)
+                      }
+                      onRemove={locked ? undefined : () => onRemoveUnit(slot.id)}
+                      onOpenDatasheet={() => onOpenDatasheet(resolvedUnit)}
+                      onPlayHealth={onPlayHealth}
+                      extraTrailing={toggle}
+                    />
+                  );
+                }}
               </PathToGlorySlot>
               <SlotEnhancements
                 selectionId={slot.id}
