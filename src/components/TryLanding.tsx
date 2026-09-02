@@ -99,7 +99,7 @@ export function TryLanding() {
                   className="mx-auto h-auto w-[min(100%,18rem)] drop-shadow-[0_6px_20px_rgba(0,0,0,0.8)] sm:w-[min(100%,28rem)]"
                 />
                 <h1 className="mx-auto mt-3 max-w-xl font-serif text-[1.5rem] leading-snug font-semibold text-parchment [text-shadow:0_2px_16px_rgba(0,0,0,0.95),0_1px_3px_rgba(0,0,0,1)] sm:mt-5 sm:text-4xl">
-                  Free Age of Sigmar 4ed army builder
+                  Free AoS list builder for Age of Sigmar 4th
                 </h1>
               </div>
 

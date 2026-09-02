@@ -30,7 +30,7 @@ const cinzel = Cinzel({
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: `${SITE_NAME} | Free Age of Sigmar Army Builder`,
+    default: `Free AoS List Builder | Age of Sigmar 4th | ${SITE_NAME}`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: `${SITE_NAME} | Free Age of Sigmar Army Builder`,
+    title: `Free AoS List Builder | Age of Sigmar 4th | ${SITE_NAME}`,
     description: SITE_DESCRIPTION,
     type: "website",
     siteName: SITE_NAME,
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} | Free Age of Sigmar Army Builder`,
+    title: `Free AoS List Builder | Age of Sigmar 4th | ${SITE_NAME}`,
     description: SITE_SHORT_DESCRIPTION,
     images: ["/brand/og.jpg"],
   },
