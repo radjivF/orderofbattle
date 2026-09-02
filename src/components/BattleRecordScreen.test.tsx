@@ -178,12 +178,28 @@ describe("BattleRecordScreen", () => {
     );
   });
 
-  it("shows Done on a finished game card", () => {
+  it("shows Done in green above the score on a finished game card", () => {
     games.push(finishBattle(seededGame()));
     render(<BattleRecordScreen />);
 
-    expect(screen.getByText(/Done · Into the Fire/i)).toBeInTheDocument();
+    const done = screen.getByText("Done");
+    expect(done.className).toContain("text-olive");
+    expect(screen.getByText("Into the Fire")).toBeInTheDocument();
+    expect(done.compareDocumentPosition(screen.getByText("10 – 10"))).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    );
     expect(screen.queryByText(/In progress/i)).toBeNull();
+  });
+
+  it("shows In progress in red above the score on an active game card", () => {
+    games.push(seededGame());
+    render(<BattleRecordScreen />);
+
+    const status = screen.getByText("In progress");
+    expect(status.className).toContain("text-illegal");
+    expect(status.compareDocumentPosition(screen.getByText("10 – 10"))).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    );
   });
 
   it("opens the battle from the status line, not only the title", async () => {
