@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { formatPoints } from "@/engine/pointsCap";
 import { catalogueForList, isSpearheadList } from "@/engine/spearhead";
 import type { ArmyList } from "@/engine/types";
@@ -14,34 +13,18 @@ import {
   PLAY_SHEET_PANEL_CLASS,
   SITE_HEADER_ROW_CLASS,
 } from "@/lib/builderUi";
-import { saveArmy } from "@/lib/storage";
 import { BuilderReady } from "./BuilderReady";
 import { FactionArtLayers } from "./FactionArtBackground";
 import { IosNavCloseButton } from "./ios/IosNavIconButton";
 import { ModalFrame, useModalDismiss } from "./ModalFrame";
-import { ScourgeOfAqshyChip } from "./ScourgeOfAqshyChip";
-import { ScourgeOfAqshySheet } from "./ScourgeOfAqshySheet";
 
 type Props = {
   list: ArmyList;
   playerName: string;
   onClose: () => void;
-  /** When opened from battle record, use game session fury/rage. */
-  gameFury?: number;
-  gameRage?: number;
-  onGameFuryChange?: (fury: number) => void;
-  onGameRageChange?: (rage: number) => void;
 };
 
-export function BattleRecordPlaySheet({
-  list,
-  playerName,
-  onClose,
-  gameFury,
-  gameRage,
-  onGameFuryChange,
-  onGameRageChange,
-}: Props) {
+export function BattleRecordPlaySheet({ list, playerName, onClose }: Props) {
   const faction = catalogueForList(list);
   if (!faction) {
     return null;
@@ -49,28 +32,6 @@ export function BattleRecordPlaySheet({
 
   const totals = summarize(list, faction);
   const spearhead = isSpearheadList(list);
-
-  const fromBattle = gameFury !== undefined && gameRage !== undefined;
-  const fury = fromBattle ? gameFury : list.playFury ?? 0;
-  const rage = fromBattle ? gameRage : list.playRage ?? 0;
-
-  async function updateListFury(newFury: number) {
-    if (fromBattle && onGameFuryChange) {
-      onGameFuryChange(newFury);
-    } else {
-      const updated = { ...list, playFury: newFury };
-      await saveArmy(updated);
-    }
-  }
-
-  async function updateListRage(newRage: number) {
-    if (fromBattle && onGameRageChange) {
-      onGameRageChange(newRage);
-    } else {
-      const updated = { ...list, playRage: newRage };
-      await saveArmy(updated);
-    }
-  }
 
   return (
     <ModalFrame
@@ -84,10 +45,6 @@ export function BattleRecordPlaySheet({
         totals={totals}
         spearhead={spearhead}
         faction={faction}
-        fury={fury}
-        rage={rage}
-        onFuryChange={updateListFury}
-        onRageChange={updateListRage}
       />
     </ModalFrame>
   );
@@ -98,23 +55,13 @@ function PlaySheetBody({
   totals,
   spearhead,
   faction,
-  fury,
-  rage,
-  onFuryChange,
-  onRageChange,
 }: {
   list: ArmyList;
   totals: ReturnType<typeof summarize>;
   spearhead: boolean;
   faction: NonNullable<ReturnType<typeof catalogueForList>>;
-  fury: number;
-  rage: number;
-  onFuryChange: (fury: number) => void;
-  onRageChange: (rage: number) => void;
 }) {
   const close = useModalDismiss();
-  const [scourgeSheetOpen, setScourgeSheetOpen] = useState(false);
-  const showScourge = list.scourgeRealm === "aqshy";
 
   return (
     <>
@@ -132,13 +79,6 @@ function PlaySheetBody({
           {list.name}
         </p>
         <div className="flex shrink-0 items-center gap-2.5">
-          {showScourge ? (
-            <ScourgeOfAqshyChip
-              fury={fury}
-              rage={rage}
-              onClick={() => setScourgeSheetOpen(true)}
-            />
-          ) : null}
           <div className={HEADER_STATS_STACK_CLASS}>
             <p className="flex items-center justify-end gap-1.5 text-[13px] text-sigmarite sm:text-sm">
               {spearhead ? (
@@ -167,15 +107,6 @@ function PlaySheetBody({
           <BuilderReady list={list} faction={faction} openPlay embedded />
         </div>
       </div>
-      {scourgeSheetOpen && showScourge ? (
-        <ScourgeOfAqshySheet
-          fury={fury}
-          rage={rage}
-          onChangeFury={onFuryChange}
-          onChangeRage={onRageChange}
-          onClose={() => setScourgeSheetOpen(false)}
-        />
-      ) : null}
     </>
   );
 }
