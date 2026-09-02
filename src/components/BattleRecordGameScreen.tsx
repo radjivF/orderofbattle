@@ -58,7 +58,6 @@ import {
 import { IosNavBackButton, IosNavEditButton } from "./ios/IosNavIconButton";
 import { IosDatasheetIcon } from "./ios/SheetIconButton";
 import { useListNav } from "./IosNavSlide";
-import { ScourgeOfAqshyTracker } from "./ScourgeOfAqshyTracker";
 import { SiteFooter } from "./SiteFooter";
 
 type Props = { gameId: string };
@@ -405,19 +404,6 @@ export function BattleRecordGameScreen({ gameId }: Props) {
           </div>
         </section>
 
-        {usesScourgeOfAqshy(game) ? (
-          <ScourgeOfAqshyTracker
-            game={game}
-            roundIndex={roundIndex}
-            onChangeFury={(player, fury) => void commit(setFury(game, player, fury))}
-            onChangeRage={(player, rage) => void commit(setRage(game, roundIndex, player, rage))}
-            onSetAttacker={(attacker) => {
-              const next = setRoundFirstPlayer(game, 0, attacker);
-              void commit(initializeFury(next));
-            }}
-          />
-        ) : null}
-
         <nav
           aria-label="Battle timeline"
           className="parchment-card rounded-2xl px-3 py-3"
@@ -538,6 +524,15 @@ export function BattleRecordGameScreen({ gameId }: Props) {
             onStageChange={(player, cardId, stage) =>
               void commit(advanceTacticStage(game, player, cardId, stage))
             }
+            showScourge={usesScourgeOfAqshy(game)}
+            game={game}
+            roundIndex={roundIndex}
+            onChangeFury={(player, fury) => void commit(setFury(game, player, fury))}
+            onChangeRage={(player, rage) => void commit(setRage(game, roundIndex, player, rage))}
+            onSetAttacker={(attacker) => {
+              const next = setRoundFirstPlayer(game, 0, attacker);
+              void commit(initializeFury(next));
+            }}
           />
         ) : null}
 
