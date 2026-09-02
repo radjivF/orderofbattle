@@ -342,7 +342,7 @@ describe("RegimentCard", () => {
     expect(screen.getByText("Path of the Attacker")).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /full-on attack/i })).toBeNull();
     expect(screen.queryByLabelText(/^renown$/i)).toBeNull();
-    expect(screen.queryByLabelText(/^battle wound$/i)).toBeNull();
+    expect(screen.queryByLabelText(/^battle wounds$/i)).toBeNull();
     expect(screen.queryByLabelText(/^scar$/i)).toBeNull();
 
     await user.click(extras);
@@ -350,7 +350,7 @@ describe("RegimentCard", () => {
     expect(extras).toHaveAttribute("aria-expanded", "true");
     expect(screen.getByRole("button", { name: /full-on attack/i })).toBeInTheDocument();
     expect(screen.getByLabelText(/^renown$/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/^battle wound$/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/^battle wounds$/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/^scar$/i)).toBeInTheDocument();
   });
 

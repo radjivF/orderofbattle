@@ -264,7 +264,11 @@ export type PathToGlorySelectionState = {
   renown: number;
   pathId: string | null;
   pathOptionIds: string[];
+  /** Leftover campaign wounds (not Play damage). */
+  battleWounds?: number;
+  /** Hero-only: Drained status. */
   battleWoundId: string | null;
+  /** Scar (only when Ravaged Coast or Blighted Wilds is on). */
   scarId: string | null;
   /** Destiny Point Limit rank on an Anvil of Apotheosis hero. */
   anvilRankId?: string | null;

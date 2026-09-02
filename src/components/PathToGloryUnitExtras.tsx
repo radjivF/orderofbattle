@@ -290,41 +290,54 @@ export function PathToGloryUnitExtras({
       {showBattleWounds ? (
         <>
           <label className="flex flex-col gap-1 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
-            Battle Wound
-            <select
-              aria-label="Battle Wound"
-              value={state?.battleWoundId ?? ""}
+            Battle Wounds
+            <input
+              aria-label="Battle Wounds"
+              type="number"
+              min={0}
+              max={99}
+              value={state?.battleWounds ?? 0}
               onChange={(event) =>
-                patchPath({ battleWoundId: event.target.value || null })
+                patchPath({ battleWounds: Math.max(0, Number(event.target.value)) })
               }
-              className={fieldClass}
-            >
-              <option value="">None</option>
-              {PATH_TO_GLORY_WOUNDS.map((wound) => (
-                <option key={wound.id} value={wound.id}>
-                  {wound.name}
-                </option>
-              ))}
-            </select>
+              className={`${fieldClass} max-w-24`}
+            />
           </label>
-          <label className="flex flex-col gap-1 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
-            Scar
-            <select
-              aria-label="Scar"
-              value={state?.scarId ?? ""}
-              onChange={(event) =>
-                patchPath({ scarId: event.target.value || null })
-              }
-              className={fieldClass}
-            >
-              <option value="">None</option>
-              {PATH_TO_GLORY_SCARS.map((scar) => (
-                <option key={scar.id} value={scar.id}>
-                  {scarSeverityLabel(scar.severity)} · {scar.name}
-                </option>
-              ))}
-            </select>
-          </label>
+          {unit?.hero ? (
+            <label className="flex items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                checked={state?.battleWoundId === "drained"}
+                onChange={(event) =>
+                  patchPath({
+                    battleWoundId: event.target.checked ? "drained" : null,
+                  })
+                }
+                className="h-4 w-4 cursor-pointer"
+              />
+              <span className="font-medium text-sheet-muted">Drained</span>
+            </label>
+          ) : null}
+          {packIds.some((id) => id === "ravaged-coast" || id === "blighted-wilds") ? (
+            <label className="flex flex-col gap-1 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
+              Scar
+              <select
+                aria-label="Scar"
+                value={state?.scarId ?? ""}
+                onChange={(event) =>
+                  patchPath({ scarId: event.target.value || null })
+                }
+                className={fieldClass}
+              >
+                <option value="">None</option>
+                {PATH_TO_GLORY_SCARS.map((scar) => (
+                  <option key={scar.id} value={scar.id}>
+                    {scarSeverityLabel(scar.severity)} · {scar.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          ) : null}
         </>
       ) : null}
     </div>
