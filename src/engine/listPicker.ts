@@ -1,5 +1,6 @@
 import {
   auxiliaryPickerUnits,
+  getListUnit,
   getRegimentOfRenown,
   getUnit,
   heroesOf,
@@ -73,6 +74,39 @@ export function availablePickerUnits(
   const pathToGlory = isPathToGloryList(list);
   const isDaKingsGitz = list.regimentOfRenown?.renownId === "da-king-s-gitz";
   
+  // Gloomspite XOR: detect if list already has TROGGOTH or non-TROGGOTH units
+  let gloomspiteHasTrogg = false;
+  let gloomspiteHasGrot = false;
+  if (pathToGlory && faction.id === "gloomspite-gitz") {
+    const allUnits: CatalogueUnit[] = [];
+    for (const regiment of list.regiments) {
+      const hero = regiment.hero
+        ? getListUnit(list, faction, regiment.hero.unitId)
+        : null;
+      if (hero) {
+        allUnits.push(hero);
+      }
+      for (const slot of regiment.units) {
+        const unit = getListUnit(list, faction, slot.unitId);
+        if (unit) {
+          allUnits.push(unit);
+        }
+      }
+    }
+    for (const slot of list.auxiliaries) {
+      const unit = getListUnit(list, faction, slot.unitId);
+      if (unit) {
+        allUnits.push(unit);
+      }
+    }
+    gloomspiteHasTrogg = allUnits.some((u) =>
+      u.id !== exceptUnitId && u.categories.includes("TROGGOTH"),
+    );
+    gloomspiteHasGrot = allUnits.some((u) =>
+      u.id !== exceptUnitId && !u.categories.includes("TROGGOTH"),
+    );
+  }
+  
   return units.filter((unit) => {
     if (isAnvilOfApotheosis(unit) && !pathToGlory) {
       return false;
@@ -83,6 +117,16 @@ export function availablePickerUnits(
     // Da King's Gitz: no TROGGOTH units in auxiliaries
     if (pathToGlory && isDaKingsGitz && unit.categories.includes("TROGGOTH")) {
       return false;
+    }
+    // Gloomspite XOR: once a type is chosen, block the other
+    if (pathToGlory && faction.id === "gloomspite-gitz") {
+      const isTrogg = unit.categories.includes("TROGGOTH");
+      if (gloomspiteHasTrogg && !isTrogg) {
+        return false; // Already have TROGGOTHs, block non-TROGGOTHs
+      }
+      if (gloomspiteHasGrot && isTrogg) {
+        return false; // Already have grots, block TROGGOTHs
+      }
     }
     return !unit.unique || !taken.has(unitBaseName(unit.name));
   });

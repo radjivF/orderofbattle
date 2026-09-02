@@ -240,4 +240,85 @@ describe("listPicker", () => {
       ),
     ).toBe(true);
   });
+
+  it("excludes TROGGOTH units from Da King's Gitz PTG auxiliaries", () => {
+    const faction = getFaction("gloomspite-gitz");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const ptgList = {
+      ...blankPathToGlory(faction.id, "ascension"),
+      regimentOfRenown: {
+        renownId: "da-king-s-gitz",
+        units: [],
+      },
+    };
+
+    const auxUnits = pickerUnitsFor(ptgList, faction, { kind: "aux" });
+    expect(auxUnits).toBeTruthy();
+    expect(
+      auxUnits?.some((unit) => unit.name === "Dankhold Troggoth"),
+    ).toBe(false);
+    expect(
+      auxUnits?.some((unit) => unit.name === "Fellwater Troggoths"),
+    ).toBe(false);
+    expect(
+      auxUnits?.some((unit) => unit.name === "Rockgut Troggoths"),
+    ).toBe(false);
+  });
+
+  it("blocks non-TROGGOTH units when Gloomspite PTG already has TROGGOTHs", () => {
+    const faction = getFaction("gloomspite-gitz");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const troggUnit = faction.units.find((u) =>
+      u.categories.includes("TROGGOTH"),
+    );
+    expect(troggUnit).toBeTruthy();
+    if (!troggUnit) return;
+
+    const ptgList = {
+      ...blankPathToGlory(faction.id, "ascension"),
+      auxiliaries: [
+        { id: createId(), unitId: troggUnit.id, reinforced: false },
+      ],
+    };
+
+    const auxUnits = pickerUnitsFor(ptgList, faction, { kind: "aux" });
+    expect(auxUnits).toBeTruthy();
+    // Should only show TROGGOTH units
+    expect(auxUnits?.every((u) => u.categories.includes("TROGGOTH"))).toBe(
+      true,
+    );
+  });
+
+  it("blocks TROGGOTH units when Gloomspite PTG already has grot units", () => {
+    const faction = getFaction("gloomspite-gitz");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const grotUnit = faction.units.find(
+      (u) =>
+        u.categories.includes("GLOOMSPITE GITZ") &&
+        !u.categories.includes("TROGGOTH") &&
+        !u.hero,
+    );
+    expect(grotUnit).toBeTruthy();
+    if (!grotUnit) return;
+
+    const ptgList = {
+      ...blankPathToGlory(faction.id, "ascension"),
+      auxiliaries: [
+        { id: createId(), unitId: grotUnit.id, reinforced: false },
+      ],
+    };
+
+    const auxUnits = pickerUnitsFor(ptgList, faction, { kind: "aux" });
+    expect(auxUnits).toBeTruthy();
+    // Should not show any TROGGOTH units
+    expect(auxUnits?.some((u) => u.categories.includes("TROGGOTH"))).toBe(
+      false,
+    );
+  });
 });
