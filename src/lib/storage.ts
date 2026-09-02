@@ -1,9 +1,8 @@
 import type { ArmyList } from "@/engine/types";
+import type { StoredList } from "@/engine/storedList";
+import { isTowList, normalizeStoredList } from "@/engine/storedList";
 import { partitionPortableLists } from "@/engine/listPortable";
-import {
-  normalizeArmyList,
-  prepareImportedArmy,
-} from "@/engine/listFactories";
+import { prepareImportedArmy } from "@/engine/listFactories";
 
 export {
   appendRegimentWithHero,
@@ -12,17 +11,21 @@ export {
   duplicateArmy,
   prepareImportedArmy,
 } from "@/engine/listFactories";
+export { blankTowArmy, isTowList } from "@/engine/tow/listFactories";
+export type { StoredList } from "@/engine/storedList";
 
 const DB_NAME = "orderofbattle";
 const STORE = "lists";
-const VERSION = 1;
+export const GAMES_STORE = "games";
+/** Bumped for Battle record `games` object store. */
+const VERSION = 2;
 const READY_KEY = "orderofbattle:idb-ready";
 
 /** Legacy browser keys from the pre-rename project; keep for one-time migration. */
 const LEGACY_DB_NAME = "enlist";
 const LEGACY_LOCAL_KEYS = ["orderofbattle:lists", "enlist:lists"] as const;
 
-let cache: ArmyList[] | undefined;
+let cache: StoredList[] | undefined;
 const listeners = new Set<() => void>();
 
 function emit() {
@@ -35,16 +38,20 @@ function isBrowser() {
   return typeof window !== "undefined";
 }
 
-function normalizeList(list: ArmyList): ArmyList {
-  return normalizeArmyList(list);
+function normalizeList(list: StoredList): StoredList {
+  return normalizeStoredList(list);
 }
 
-function listRecency(list: ArmyList) {
+function listRecency(list: StoredList) {
   return list.lastOpenedAt ?? list.updatedAt;
 }
 
-function sortLists(lists: ArmyList[]) {
+function sortLists(lists: StoredList[]) {
   return [...lists].sort((a, b) => listRecency(b) - listRecency(a));
+}
+
+export function openOrderOfBattleDb(): Promise<IDBDatabase> {
+  return openDb(DB_NAME, VERSION);
 }
 
 function openDb(name: string, version: number): Promise<IDBDatabase> {
@@ -54,6 +61,9 @@ function openDb(name: string, version: number): Promise<IDBDatabase> {
       const db = request.result;
       if (!db.objectStoreNames.contains(STORE)) {
         db.createObjectStore(STORE, { keyPath: "id" });
+      }
+      if (name === DB_NAME && !db.objectStoreNames.contains(GAMES_STORE)) {
+        db.createObjectStore(GAMES_STORE, { keyPath: "id" });
       }
     };
     request.onsuccess = () => resolve(request.result);
@@ -68,11 +78,11 @@ function idbReq<T>(request: IDBRequest<T>): Promise<T> {
   });
 }
 
-async function readFromIndexedDB(name: string): Promise<ArmyList[]> {
+async function readFromIndexedDB(name: string): Promise<StoredList[]> {
   if (!isBrowser() || !("indexedDB" in window)) return [];
   try {
     const db = await openDb(name, VERSION);
-    const rows = await idbReq<ArmyList[]>(
+    const rows = await idbReq<StoredList[]>(
       db.transaction(STORE, "readonly").objectStore(STORE).getAll(),
     );
     db.close();
@@ -82,7 +92,7 @@ async function readFromIndexedDB(name: string): Promise<ArmyList[]> {
   }
 }
 
-async function writeAllToIndexedDB(lists: ArmyList[]): Promise<void> {
+async function writeAllToIndexedDB(lists: StoredList[]): Promise<void> {
   if (!isBrowser() || !("indexedDB" in window)) return;
   const db = await openDb(DB_NAME, VERSION);
   const tx = db.transaction(STORE, "readwrite");
@@ -97,12 +107,12 @@ async function writeAllToIndexedDB(lists: ArmyList[]): Promise<void> {
   db.close();
 }
 
-function readFromLocalStorage(key: string): ArmyList[] | null {
+function readFromLocalStorage(key: string): StoredList[] | null {
   if (!isBrowser()) return null;
   try {
     const raw = localStorage.getItem(key);
     if (raw === null) return null;
-    const parsed = JSON.parse(raw) as ArmyList[];
+    const parsed = JSON.parse(raw) as StoredList[];
     if (!Array.isArray(parsed)) return null;
     return sortLists(parsed.map(normalizeList));
   } catch {
@@ -126,7 +136,7 @@ function isReady() {
   return isBrowser() && localStorage.getItem(READY_KEY) === "1";
 }
 
-async function readAll(): Promise<ArmyList[]> {
+async function readAll(): Promise<StoredList[]> {
   if (!isBrowser()) return [];
 
   const primary = await readFromIndexedDB(DB_NAME);
@@ -172,13 +182,13 @@ export function getArmiesSnapshot() {
   return cache;
 }
 
-export function getArmiesServerSnapshot(): ArmyList[] | undefined {
+export function getArmiesServerSnapshot(): StoredList[] | undefined {
   return undefined;
 }
 
-export async function saveArmy(list: ArmyList): Promise<ArmyList> {
+export async function saveArmy(list: StoredList): Promise<StoredList> {
   const stored = {
-    ...normalizeArmyList(list),
+    ...normalizeStoredList(list),
     updatedAt: Date.now(),
   };
   const current = cache ?? (await readAll());
@@ -223,7 +233,10 @@ export async function deleteArmy(id: string): Promise<void> {
 
 export async function importArmies(lists: ArmyList[]): Promise<ArmyList[]> {
   const current = cache ?? (await readAll());
-  const { novel } = partitionPortableLists(lists, current);
+  const { novel } = partitionPortableLists(
+    lists,
+    current.filter((item): item is ArmyList => !isTowList(item)),
+  );
   const imported = novel.map((list) => prepareImportedArmy(list));
   if (imported.length === 0) {
     return [];

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BuilderScreen } from "@/components/BuilderScreen";
+import { ListScreen } from "@/components/ListScreen";
 
 export async function generateMetadata({
   params,
@@ -14,7 +14,12 @@ export async function generateMetadata({
 
 export default async function ListPage({
   params,
+  searchParams,
 }: PageProps<"/lists/[id]">) {
   const { id } = await params;
-  return <BuilderScreen listId={id} />;
+  const query = await searchParams;
+  const play = query.play;
+  const openPlay =
+    play === "1" || (Array.isArray(play) && play.includes("1"));
+  return <ListScreen listId={id} openPlay={openPlay} />;
 }

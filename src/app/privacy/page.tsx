@@ -64,6 +64,11 @@ export default function PrivacyPage() {
             cookies. It does not read IndexedDB.
           </li>
           <li>Cloudflare for hosting, security, and browser insights.</li>
+          <li>
+            Appzi for the feedback widget. It only receives what you type into a
+            feedback form, plus the page you sent it from. It does not read
+            IndexedDB and it follows the same cookie banner as Clarity.
+          </li>
         </ul>
         <p className="mt-3">
           Host and CDN logs can include IP address, browser, and request
@@ -88,7 +93,8 @@ export default function PrivacyPage() {
           The site may be hosted by a standard web host or CDN (Cloudflare).
           Those providers process request data under their own terms in order to
           deliver the pages. We use Microsoft Clarity and Ahrefs Web Analytics
-          for site usage; those are governed by Microsoft&apos;s and Ahrefs&apos; privacy
+          for site usage, and Appzi for feedback; those are governed by
+          Microsoft&apos;s, Ahrefs&apos;, and Appzi&apos;s privacy
           policies. Catalogue content is derived from the community BSData
           project on GitHub; visiting external links (for example GitHub) is
           governed by those sites&apos; policies.

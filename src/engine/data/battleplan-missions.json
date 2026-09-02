@@ -1,0 +1,102 @@
+{
+  "into-the-fire": {
+    "twistEffect": "Both players’ armies have the 'Secure the Gateway' ability. While you are the underdog, your army has the 'Determined Defenders' ability.\n\nPassive\nSECURE THE GATEWAY\nEffect: While you control the Place of Power wholly within friendly territory, friendly units’ melee weapons have Anti-charge (+1 Rend) while they are contesting an objective you control.\n\nPassive\nDETERMINED DEFENDERS\nEffect: Add 3 to the control scores of friendly units while they are wholly outside enemy territory.",
+    "primaryScoring": [
+      "Score 3 victory points if you control at least 1 objective.",
+      "Score 3 victory points if you control 2 or more objectives.",
+      "Score 4 victory points if you control more objectives than your opponent."
+    ]
+  },
+  "bloodstained-coasts": {
+    "twistEffect": "From the second battle round onwards, both players can use the following abilities:\n\nAny Combat Phase\nEMBERSTONE-AUGMENTED WEAPONS\nDeclare: Pick a friendly unit that charged this turn and has any emberstone slivers to be the target.\nEffect: Pick 1 of the following effects to apply for the rest of the turn:\nAdd 1 to hit rolls for the target’s combat attacks.Add 1 to wound rolls for the target’s combat attacks.Then, if you are the underdog, remove all of the target’s emberstone slivers. Otherwise, remove all emberstone slivers from each friendly unit.\n\nOnce Per Turn (Army),\n\nYour Hero Phase\nEMBERSTONE CACHE\nDeclare: Pick a friendly unit contesting an objective you control to be the target.\nEffect: Give the target an emberstone sliver.",
+    "primaryScoring": [
+      "Score 3 victory points if you control at least 1 objective.",
+      "Score 3 victory points if you control 2 or more objectives.",
+      "In the first battle round, score 4 victory points if you control more objectives than your opponent.",
+      "From the second battle round onwards, score 4 victory points if you control an objective that was controlled by your opponent at the start of the turn."
+    ]
+  },
+  "avalanche-of-ash": {
+    "twistEffect": "If you are the underdog, you must use the following ability.\n\nOnce Per Battle Round,\n\nStart of Battle Round\nCOLLAPSING PASS\nDeclare: Pick each objective to be the targets. Then, pick 1 of the targets to be the focus.\nEffect: Roll a dice for each target. Add 1 to the roll for each unit (friendly and enemy) that is contesting it. If the target is the focus, you can add 3 to or subtract 3 from the roll. On a 8+, remove the target from the battlefield.",
+    "primaryScoring": [
+      "Score 3 victory points if you control at least 1 objective.",
+      "Score 3 victory points if you control 2 or more objectives.",
+      "Score 4 victory points if you control more objectives than your opponent.",
+      "Score 3 victory points if there is no more than 1 objective on the battlefield and you control a non-FACTION TERRAIN terrain feature within enemy territory.",
+      "Score 7 victory points if there are no objectives on the battlefield and you control more non-FACTION TERRAIN terrain features than your opponent."
+    ]
+  },
+  "caverns-of-slaughter": {
+    "twistEffect": "If you are the underdog, you can use the ’Shifting Passages’ ability. Both players can use the \"Navigate the Tunnels\" ability\n\nOnce Per Battle Round,\n\nStart of Battle Round\nSHIFTING PASSAGES\nDeclare: Pick 2 non-FACTION TERRAIN terrain features to be the targets.\nEffect: Remove all hidden passage tokens from the battlefield (if any). Then, give each target a hidden passage token.\n\nOnce Per Turn (Army), Your Movement Phase\nNAVIGATE THE TUNNELS\nDeclare: Pick a friendly unit wholly within 6\" of a terrain feature that has a hidden passage token to be the target.\nEffect: Remove the target from the battlefield and set it up again wholly within 6\" of a different terrain feature that has a hidden passage token and more than 9\" from all enemy units.",
+    "primaryScoring": [
+      "Score 3 victory points if you control at least 1 objective.",
+      "Score 3 victory points if you control 2 or more objectives.",
+      "Score 4 victory points if you control any pairs of objectives."
+    ]
+  },
+  "whats-yours-is-ours": {
+    "twistEffect": "While the battle round number is odd, the pair of Golden Lions objectives is the coveted pair of objectives.While the battle round number is even, the pair of Sun Seekers objectives is the coveted pair of objectives.If you are the underdog, you can use the following ability:\n\nOnce Per Battle Round,\n\nStart of Battle Round\nALL THE RAGE\nDeclare: Pick a pair of objectives to be the target.\nEffect: For the rest of the battle round, the target is the coveted pair of objectives instead of the other pair of objectives.",
+    "primaryScoring": [
+      "Score 3 victory points if you control at least 1 objective.",
+      "Score 3 victory points if you control the coveted pair of objectives.",
+      "Score 4 victory points if you control more objectives than your opponent."
+    ]
+  },
+  "hidden-under-ash-clouds": {
+    "twistEffect": "At the start of each battle round, the underdog must pick whether or not the ash-clouds are low-lying. If there is no underdog, the ash-clouds are low-lying.The following passive ability applies this battle:\n\nPassive\nROLLING ASH-CLOUDS\nEffect: While the ash-clouds are low-lying:Units and MANIFESTATIONS cannot be set up in neutral territory.Units and MANIFESTATIONS cannot end a move within neutral territory unless they started that move wholly within neutral territory.Models and MANIFESTATIONS are not visible to other models more than 3\" away unless a straight line can be drawn between any points on their bases that does not cross neutral territory.",
+    "primaryScoring": [
+      "Score 3 victory points if you control at least 1 objective.",
+      "Score 3 victory points if you control 2 or more objectives.",
+      "Score 4 victory points if you control more objectives than your opponent."
+    ]
+  },
+  "warped-ruins": {
+    "twistEffect": "If you are the underdog, you must use the following ability.\n\nOnce Per Battle Round,\n\nStart of Battle Round\nSPREADING WARPFIRE\nDeclare: If there are no flaming terrain features on the battlefield, pick a non-FACTION TERRAIN terrain feature to be the target. Otherwise, pick a non-FACTION TERRAIN terrain feature that is not flaming and that is within 12\" of a flaming terrain feature to be the target.\nEffect: The target is flaming for the rest of the battle. Then, inflict D3 mortal damage on each unit (friendly and enemy) within 6\" of any flaming terrain features.",
+    "primaryScoring": [
+      "Score 3 victory points if you control at least 1 objective.",
+      "Score 3 victory points if you control any pairs of objectives.",
+      "Score 4 victory points if you control more objectives than your opponent."
+    ]
+  },
+  "curse-of-the-gnaw": {
+    "twistEffect": "At the start of the battle, the instability level is 1\\. Each time either player uses the 'Activate Place of Power' ability, add 1 to the instability level, to a maximum of 6.After deciding who will take the first turn, the underdog can use the following ability.\n\nOnce Per Battle Round,\n\nStart of Battle Round\nECHOES OF BLIGHT CITY\nDeclare: Pick an objective to be the target.\nEffect: Inflict an amount of mortal damage on each unit (friendly and enemy) contesting the target equal to the Instability level. Then, reset the Instability level to 1.",
+    "primaryScoring": [
+      "Score 3 victory points if you control the Golden Lions objective.",
+      "Score 3 victory points if you control the Sun Seekers objective.",
+      "Score 4 victory points if you control more objectives than your opponent."
+    ]
+  },
+  "seize-the-embers": {
+    "twistEffect": "Both players can use the following abilities:\n\nEnd of Your Turn\nSEARCH THE RUIN\nDeclare: Pick a friendly unit that does not have an emberstone nugget and is contesting a Sun Seekers objective to be the target.\nEffect: Give the target an emberstone nugget. If you are the underdog, the target can immediately move 6\" but cannot end that move in combat. The target cannot use the ‘Back to Base Camp’ or ‘Power Through’ ability for the rest of the turn.\n\nOnce Per Turn (Army),\n\nEnd of Your Turn\nBACK TO BASE CAMP\nDeclare: Pick a friendly unit that has an emberstone nugget, was not set up this turn and is contesting a Golden Lions objective to be the target.\nEffect: Remove the target’s emberstone nugget.",
+    "primaryScoring": [
+      "Score 3 victory points if you control at least 1 objective.",
+      "In the first battle round, score 3 victory points if you control 2 or more objectives.",
+      "From the second battle round onwards, score 3 victory points if you used the 'Back to Base Camp' ability this turn.",
+      "Score 4 victory points if you control more objectives than your opponent."
+    ]
+  },
+  "treacherous-ground": {
+    "twistEffect": "At the start of the battle, all objectives are stable.Both players must use the 'Tread Carefully' ability. Then, from the second battle round onwards, if you are the underdog, you can use the 'Violent Tremor' ability.\n\nOnce Per Battle (Army),\n\nStart of First Battle Round\nTREAD CAREFULLY\nDeclare: Pick an objective within friendly territory to be the target.\nEffect: The target is no longer stable.\n\nOnce Per Battle Round,\n\nStart of Battle Round\nVIOLENT TREMOR\nDeclare: Pick a pair of objectives to be the targets.\nEffect: The stable target objective is no longer stable. The other target objective is stable instead.",
+    "primaryScoring": [
+      "Score 3 victory points if you control at least 1 stable objective.",
+      "Score 3 victory points if you control 2 or more stable objectives.",
+      "Score 4 victory points if you control more stable objectives than your opponent."
+    ]
+  },
+  "escape-from-the-coast": {
+    "twistEffect": "If you are the underdog, you can use the following ability.\n\nOnce Per Battle Round,\n\nStart of Battle Round\nTO THE SHIPS!\nDeclare: Pick the Heldenhain or a Sun Seekers objective to be the target.\nEffect: Remove the target from the battlefield.",
+    "primaryScoring": [
+      "Score 3 victory points if you control at least 1 objective.",
+      "Score 3 victory points if you control 2 or more objectives.",
+      "Score 4 victory points if you control more objectives than your opponent."
+    ]
+  },
+  "power-of-the-realms": {
+    "twistEffect": "At the start of the battle, the Sun Seekers objective is the primary objective and the other objectives are secondary objectives.If you are the underdog, you can use the following ability.\n\nOnce Per Battle Round,\n\nStart of Battle Round\nARCANE CHARGE\nDeclare: Pick a Place of Power you control to be the target.\nEffect: Draw a straight line from the centre of the primary objective to the target. If that line crosses any secondary objectives, the first secondary objective that the line crosses is now the primary objective and all other objectives are now secondary objectives.",
+    "primaryScoring": [
+      "Score 3 victory points if you control the primary objective.",
+      "Score 3 victory points if you control 2 or more secondary objectives.",
+      "Score 4 victory points if you control more objectives than your opponent."
+    ]
+  }
+}

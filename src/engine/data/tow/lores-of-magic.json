@@ -1,0 +1,64 @@
+{
+  "id": "lores-of-magic",
+  "name": "The Lores of Magic",
+  "game": "The Old World",
+  "source": "https://github.com/vflam/Warhammer-The-Old-World",
+  "lores": [
+    {
+      "id": "battle-magic",
+      "name": "Battle Magic"
+    },
+    {
+      "id": "daemonology",
+      "name": "Daemonology"
+    },
+    {
+      "id": "dark-magic",
+      "name": "Dark Magic"
+    },
+    {
+      "id": "elementalism",
+      "name": "Elementalism"
+    },
+    {
+      "id": "high-magic",
+      "name": "High Magic"
+    },
+    {
+      "id": "illusion",
+      "name": "Illusion"
+    },
+    {
+      "id": "lore-of-the-shadowlands",
+      "name": "Lore of the Shadowlands"
+    },
+    {
+      "id": "lore-of-the-wilds",
+      "name": "Lore of the Wilds"
+    },
+    {
+      "id": "necromancy",
+      "name": "Necromancy"
+    },
+    {
+      "id": "prayers",
+      "name": "Prayers"
+    },
+    {
+      "id": "primal-magic",
+      "name": "Primal Magic"
+    },
+    {
+      "id": "rune-lore",
+      "name": "Rune Lore"
+    },
+    {
+      "id": "troll-magic",
+      "name": "Troll Magic"
+    },
+    {
+      "id": "waaagh-magic",
+      "name": "Waaagh! Magic"
+    }
+  ]
+}

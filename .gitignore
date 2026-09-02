@@ -28,6 +28,7 @@
 *.pem
 
 # debug
+.cursor/debug-*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -46,6 +47,9 @@ next-env.d.ts
 # BSData XML (contains transcribed rules text)
 /data/aos4/*.cat
 /data/aos4/*.gst
+
+# New Recruit / BattleScribe catalogues for The Old World
+/data/tow/*.json
 
 # local knowledge graph (regenerate with `graphify update .`)
 /graphify-out/

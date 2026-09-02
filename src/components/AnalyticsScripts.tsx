@@ -26,13 +26,27 @@ function loadClarity() {
   first?.parentNode?.insertBefore(tag, first);
 }
 
+function loadAppzi() {
+  const token = process.env.NEXT_PUBLIC_APPZI_TOKEN;
+  if (!token) return;
+
+  if (document.querySelector('script[data-analytics="appzi"]')) return;
+
+  const tag = document.createElement("script");
+  tag.async = true;
+  tag.src = `https://w.appzi.io/strict.js?token=${token}`;
+  tag.dataset.analytics = "appzi";
+  const first = document.getElementsByTagName("script")[0];
+  first?.parentNode?.insertBefore(tag, first);
+}
+
 /**
  * Inject third-party analytics via DOM (not React <script> / next/script).
  * React 19 warns and skips execution for script tags rendered by components.
  * Skipped on localhost — Ahrefs logs "Ignoring Event: localhost" otherwise.
  *
  * Ahrefs is cookie-less and always loads.
- * Clarity loads immediately outside consent regions; elsewhere only after accept.
+ * Clarity and Appzi load immediately outside consent regions; elsewhere only after accept.
  */
 export function AnalyticsScripts({ consentRequired }: { consentRequired: boolean }) {
   useEffect(() => {
@@ -54,10 +68,12 @@ export function AnalyticsScripts({ consentRequired }: { consentRequired: boolean
 
     if (clarityAllowed) {
       loadClarity();
+      loadAppzi();
     }
 
     const handleConsent = () => {
       loadClarity();
+      loadAppzi();
     };
 
     if (consentRequired) {

@@ -1,14 +1,14 @@
 import { expect, test } from "@playwright/test";
 
 const pages: Array<{ path: string; heading: string | RegExp }> = [
-  { path: "/", heading: /Free Age of Sigmar 4ed army builder/i },
+  { path: "/", heading: /Free AoS list builder for Age of Sigmar 4th/i },
   { path: "/factions", heading: "Age of Sigmar 4th edition factions" },
   {
     path: "/factions/stormcast-eternals",
     heading: /Stormcast Eternals/i,
   },
   { path: "/faq", heading: "Age of Sigmar army builder questions" },
-  { path: "/try", heading: /Free Age of Sigmar 4ed army builder/i },
+  { path: "/try", heading: /Free AoS list builder for Age of Sigmar 4th/i },
   { path: "/play", heading: "Age of Sigmar wound tracker: Play mode" },
   { path: "/about", heading: "A free Age of Sigmar hobby helper" },
   { path: "/updates", heading: "What's new in Order of Battle" },

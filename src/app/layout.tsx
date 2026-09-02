@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import { Cinzel, Instrument_Sans } from "next/font/google";
 import { AnalyticsScripts } from "@/components/AnalyticsScripts";
+import { AppziScript } from "@/components/AppziScript";
 import { CookieConsent } from "@/components/CookieConsent";
 import { WhatsNewNotice } from "@/components/WhatsNewNotice";
 import { JsonLd } from "@/components/JsonLd";
@@ -30,7 +31,7 @@ const cinzel = Cinzel({
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: `${SITE_NAME} | Free Age of Sigmar Army Builder`,
+    default: `Free AoS List Builder | Age of Sigmar 4th | ${SITE_NAME}`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: `${SITE_NAME} | Free Age of Sigmar Army Builder`,
+    title: `Free AoS List Builder | Age of Sigmar 4th | ${SITE_NAME}`,
     description: SITE_DESCRIPTION,
     type: "website",
     siteName: SITE_NAME,
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} | Free Age of Sigmar Army Builder`,
+    title: `Free AoS List Builder | Age of Sigmar 4th | ${SITE_NAME}`,
     description: SITE_SHORT_DESCRIPTION,
     images: ["/brand/og.jpg"],
   },
@@ -104,8 +105,12 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         <link rel="alternate" type="text/plain" href="/llms-full.txt" title="llms-full.txt" />
         <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
       </head>
-      <body className="min-h-full font-sans" suppressHydrationWarning>
+      <body
+        className="min-h-full bg-ink font-sans text-parchment"
+        suppressHydrationWarning
+      >
         <AnalyticsScripts consentRequired={consentRequired} />
+        <AppziScript consentRequired={consentRequired} />
         <JsonLd data={graph([softwareApplicationNode()])} />
         {children}
         <CookieConsent consentRequired={consentRequired} />

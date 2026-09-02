@@ -5,12 +5,13 @@ const contentSecurityPolicy = [
   "default-src 'self'",
   // Clarity load-balances across https://[a-z].clarity.ms (e.g. h.clarity.ms/collect).
   // vercel.live: Vercel Toolbar / preview comments (feedback.js).
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.clarity.ms https://scripts.clarity.ms https://analytics.ahrefs.com https://vercel.live",
-  "style-src 'self' 'unsafe-inline' https://vercel.live",
-  "img-src 'self' data: blob: https://*.clarity.ms https://c.bing.com https://vercel.live https://vercel.com",
-  "font-src 'self' data: https://vercel.live https://assets.vercel.com",
-  "connect-src 'self' https://*.clarity.ms https://scripts.clarity.ms https://c.bing.com https://analytics.ahrefs.com https://*.ingest.sentry.io https://*.ingest.us.sentry.io https://vercel.live wss://ws-us3.pusher.com",
-  "frame-src 'self' https://vercel.live",
+  // Appzi (w.appzi.io strict.js, api.appzi.io XHR, w.appzi.io frames, survey-assets.appzi.io).
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.clarity.ms https://scripts.clarity.ms https://analytics.ahrefs.com https://vercel.live https://w.appzi.io",
+  "style-src 'self' 'unsafe-inline' https://vercel.live https://w.appzi.io https://survey-assets.appzi.io",
+  "img-src 'self' data: blob: https://*.clarity.ms https://c.bing.com https://vercel.live https://vercel.com https://w.appzi.io https://survey-assets.appzi.io",
+  "font-src 'self' data: https://vercel.live https://assets.vercel.com https://survey-assets.appzi.io",
+  "connect-src 'self' https://*.clarity.ms https://scripts.clarity.ms https://c.bing.com https://analytics.ahrefs.com https://*.ingest.sentry.io https://*.ingest.us.sentry.io https://vercel.live wss://ws-us3.pusher.com https://api.appzi.io https://w.appzi.io",
+  "frame-src 'self' https://vercel.live https://w.appzi.io",
   "worker-src 'self' blob:",
   "object-src 'none'",
   "base-uri 'self'",
