@@ -16,6 +16,7 @@ import { IosTrashIcon } from "./ios/SheetIconButton";
 import { SlotEnhancements, SlotLine } from "./RegimentCardSlots";
 import { PathToGlorySlot } from "./PathToGloryUnitExtras";
 import {
+  canBeWarlord,
   resolvePathToGloryUnit,
   selectionDisplayName,
   type PathToGloryPackId,
@@ -33,6 +34,7 @@ type Props = {
   selected: boolean;
   playMode: boolean;
   list?: ArmyList;
+  warlordSelectionId?: string | null;
   artefactBearerId?: string | null;
   artefactLabel?: string;
   artefactAbilities?: UnitAbility[];
@@ -62,6 +64,7 @@ type Props = {
   onRemoveUnit: (selectionId: string) => void;
   onRemoveRegiment: () => void;
   onPlayHealth?: (selectionId: string, damage: number) => void;
+  onToggleWarlord?: (selectionId: string) => void;
   bindNotes?: CombatModifierNote[];
   locked?: boolean;
   pathToGloryPackIds?: PathToGloryPackId[] | null;
@@ -81,6 +84,7 @@ export function RegimentCard({
   selected,
   playMode,
   list,
+  warlordSelectionId,
   artefactBearerId,
   artefactLabel,
   artefactAbilities,
@@ -110,6 +114,7 @@ export function RegimentCard({
   onRemoveUnit,
   onRemoveRegiment,
   onPlayHealth,
+  onToggleWarlord,
   bindNotes,
   locked = false,
   pathToGloryPackIds = null,
@@ -201,7 +206,10 @@ export function RegimentCard({
             unit={hero}
             packIds={pathToGloryPackIds ?? []}
             showBattleWounds={showBattleWounds}
+            isWarlord={warlordSelectionId === heroSelection.id}
+            canBeWarlord={hero && canBeWarlord(hero, heroSelection, faction)}
             onChange={(next) => onPatchSelection?.(next.id, next)}
+            onToggleWarlord={onToggleWarlord}
             onOpenDatasheet={onOpenDatasheet}
           >
             {(toggle) => (

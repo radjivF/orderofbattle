@@ -36,7 +36,10 @@ import { isSpearheadList } from "@/engine/spearhead";
 import {
   applyPathToGloryPacks,
   assignPathToGloryHeroEnhancement,
+  canBeWarlord,
+  getWarlordSelection,
   isPathToGloryList,
+  isWarlord,
   pathToGloryPackIds,
   patchSelection,
   selectionArtefactOptionId,
@@ -154,6 +157,74 @@ export function BuilderReady({
     await saveArmy(next);
   }
 
+  function toggleWarlord(selectionId: string) {
+    const currentWarlord = list.pathToGlory?.warlordSelectionId;
+    const isCurrentlyWarlord = currentWarlord === selectionId;
+    
+    if (isCurrentlyWarlord) {
+      // Unmark warlord
+      void commit({
+        ...list,
+        pathToGlory: {
+          ...list.pathToGlory!,
+          warlordSelectionId: null,
+        },
+      });
+    } else {
+      // Mark as warlord and initialize with 5 renown if not already set
+      const selection = list.regiments
+        .flatMap((r) => (r.hero ? [r.hero] : []))
+        .concat(list.auxiliaries)
+        .find((s) => s.id === selectionId);
+      
+      if (selection) {
+        const needsInit = !selection.pathToGlory || selection.pathToGlory.renown < 5;
+        void commit({
+          ...list,
+          pathToGlory: {
+            ...list.pathToGlory!,
+            warlordSelectionId: selectionId,
+          },
+          regiments: list.regiments.map((r) => {
+            if (r.hero?.id === selectionId && needsInit) {
+              return {
+                ...r,
+                hero: {
+                  ...r.hero,
+                  pathToGlory: {
+                    ...(r.hero.pathToGlory ?? {}),
+                    renown: 5,
+                    pathId: r.hero.pathToGlory?.pathId ?? null,
+                    pathOptionIds: r.hero.pathToGlory?.pathOptionIds ?? [],
+                    battleWoundId: r.hero.pathToGlory?.battleWoundId ?? null,
+                    scarId: r.hero.pathToGlory?.scarId ?? null,
+                  },
+                },
+              };
+            }
+            return r;
+          }),
+          auxiliaries: list.auxiliaries.map((aux) => {
+            if (aux.id === selectionId && needsInit) {
+              return {
+                ...aux,
+                pathToGlory: {
+                  ...(aux.pathToGlory ?? {}),
+                  renown: 5,
+                  pathId: aux.pathToGlory?.pathId ?? null,
+                  pathOptionIds: aux.pathToGlory?.pathOptionIds ?? [],
+                  battleWoundId: aux.pathToGlory?.battleWoundId ?? null,
+                  scarId: aux.pathToGlory?.scarId ?? null,
+                },
+              };
+            }
+            return aux;
+          }),
+        });
+      }
+    }
+  }
+
   useEffect(() => {
     const nextPrayer =
       !list.prayerLoreId && faction.prayerLores.length === 1
@@ -165,7 +236,21 @@ export function BuilderReady({
         : !list.spellLoreId && faction.spellLores.length === 1
           ? faction.spellLores[0].id
           : list.spellLoreId;
-    const nextGeneral = resolveGeneralRegimentId(list, faction);
+    
+    // For PTG, if warlord is in a regiment, that regiment must be general
+    let nextGeneral = resolveGeneralRegimentId(list, faction);
+    if (pathToGlory) {
+      const warlord = getWarlordSelection(list);
+      if (warlord) {
+        const warlordRegiment = list.regiments.find(
+          (r) => r.hero?.id === warlord.id,
+        );
+        if (warlordRegiment) {
+          nextGeneral = warlordRegiment.id;
+        }
+      }
+    }
+    
     const nextScourgeRealm = spearhead
       ? list.scourgeRealm
       : pathToGlory
@@ -886,6 +971,7 @@ export function BuilderReady({
             regiment={regiment}
             faction={faction}
             list={list}
+            warlordSelectionId={list.pathToGlory?.warlordSelectionId}
             isGeneral={regimentIsGeneral}
             canBeGeneral={canBeGeneral(list, faction, regiment.id)}
             slotCap={totals.slotCap(regiment.id)}
@@ -897,6 +983,7 @@ export function BuilderReady({
             onPatchSelection={(selectionId, next) =>
               void commit(patchSelection(list, selectionId, next))
             }
+            onToggleWarlord={pathToGlory ? toggleWarlord : undefined}
             allowUniqueHeroTrait={spearhead && regimentIsGeneral}
             traitKind={spearhead ? "Enhancement" : undefined}
             onSelect={() => setSelectedRegimentId(regiment.id)}

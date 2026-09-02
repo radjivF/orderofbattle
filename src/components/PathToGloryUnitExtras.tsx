@@ -36,7 +36,10 @@ type Props = {
   unit?: CatalogueUnit;
   packIds: PathToGloryPackId[];
   showBattleWounds: boolean;
+  isWarlord?: boolean;
+  canBeWarlord?: boolean;
   onChange: (next: Selection) => void;
+  onToggleWarlord?: (selectionId: string) => void;
   onOpenDatasheet?: (unit: CatalogueUnit) => void;
 };
 
@@ -46,7 +49,10 @@ export function PathToGlorySlot({
   unit,
   packIds,
   showBattleWounds,
+  isWarlord,
+  canBeWarlord,
   onChange,
+  onToggleWarlord,
   onOpenDatasheet,
   children,
 }: {
@@ -55,7 +61,10 @@ export function PathToGlorySlot({
   unit?: CatalogueUnit;
   packIds: PathToGloryPackId[];
   showBattleWounds: boolean;
+  isWarlord?: boolean;
+  canBeWarlord?: boolean;
   onChange: (next: Selection) => void;
+  onToggleWarlord?: (selectionId: string) => void;
   onOpenDatasheet?: (unit: CatalogueUnit) => void;
   children: (toggle: ReactNode) => ReactNode;
 }) {
@@ -88,7 +97,10 @@ export function PathToGlorySlot({
           unit={unit}
           packIds={packIds}
           showBattleWounds={showBattleWounds}
+          isWarlord={isWarlord}
+          canBeWarlord={canBeWarlord}
           onChange={onChange}
+          onToggleWarlord={onToggleWarlord}
           onOpenDatasheet={onOpenDatasheet}
         />
       ) : null}
@@ -101,7 +113,10 @@ export function PathToGloryUnitExtras({
   unit,
   packIds,
   showBattleWounds,
+  isWarlord,
+  canBeWarlord,
   onChange,
+  onToggleWarlord,
   onOpenDatasheet,
 }: Props) {
   const state = selection.pathToGlory;
@@ -123,6 +138,17 @@ export function PathToGloryUnitExtras({
       className="mt-2 flex flex-col gap-2 px-1 py-1"
       onClick={(event) => event.stopPropagation()}
     >
+      {canBeWarlord && onToggleWarlord ? (
+        <label className="flex items-center gap-2 text-sm">
+          <input
+            type="checkbox"
+            checked={isWarlord ?? false}
+            onChange={() => onToggleWarlord(selection.id)}
+            className="h-4 w-4 cursor-pointer"
+          />
+          <span className="font-medium text-sheet-muted">Warlord</span>
+        </label>
+      ) : null}
       {unit && isAnvilOfApotheosis(unit) ? (
         <PathToGloryAnvilForge
           selection={selection}
