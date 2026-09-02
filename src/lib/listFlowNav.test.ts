@@ -227,6 +227,11 @@ describe("listFlowSkipsPostRouteSlide", () => {
     expect(listFlowSkipsPostRouteSlide(true)).toBe(true);
     expect(listFlowSkipsPostRouteSlide(false)).toBe(false);
   });
+
+  it("does not keep a pending forward slide after leaving a list", () => {
+    expect(listFlowSkipsPostRouteSlide(true, true)).toBe(false);
+    expect(listFlowSkipsPostRouteSlide(true, false)).toBe(true);
+  });
 });
 
 describe("libraryCardPressHoldsOn", () => {
@@ -402,6 +407,8 @@ describe("list flow navigation wiring", () => {
     expect(battleGame).not.toContain("setEditingSetup(true)");
     expect(nav).toContain("goForward");
     expect(nav).toContain("listFlowSkipsPostRouteSlide");
+    expect(nav).toContain("leavingBuilder");
+    expect(nav).toContain("wasBuilderRef");
     expect(nav).toContain("startForwardSlide");
 
     expect(nav).toContain("LIST_FLOW_HEADER_OFFSET_CLASS");

@@ -37,5 +37,7 @@ jobs:
       - name: Comment on PR and fail if preview still has errors
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: bash scripts/sentry-preview-watch-github.sh

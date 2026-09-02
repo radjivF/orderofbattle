@@ -25,14 +25,6 @@ export function SheetFormActions({
 }: Props) {
   return (
     <div className={SHEET_FORM_ACTIONS_CLASS}>
-      <button
-        type="button"
-        onClick={onPrimary}
-        disabled={primaryDisabled}
-        className={`${IOS_LIQUID_CTA_CLASS} disabled:opacity-60`}
-      >
-        {primaryLabel}
-      </button>
       {onSecondary ? (
         <button
           type="button"
@@ -43,6 +35,14 @@ export function SheetFormActions({
           {secondaryLabel}
         </button>
       ) : null}
+      <button
+        type="button"
+        onClick={onPrimary}
+        disabled={primaryDisabled}
+        className={`${IOS_LIQUID_CTA_CLASS} disabled:opacity-60`}
+      >
+        {primaryLabel}
+      </button>
     </div>
   );
 }

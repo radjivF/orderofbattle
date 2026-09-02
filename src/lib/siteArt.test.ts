@@ -20,8 +20,23 @@ describe("index backdrop", () => {
     expect(layer).toContain("LIST_LANDING_CONTENT_CLASS");
     expect(layer).toContain("revealed");
     expect(layer).toContain("<Image");
-    expect(layer).toContain("unoptimized");
+    expect(layer).not.toContain("unoptimized");
+    expect(layer).toContain('sizes="100vw"');
+    expect(layer).toContain("priority={eager}");
     expect(layer).not.toContain("backgroundAttachment");
     expect(layer).not.toContain("backgroundImage");
+  });
+
+  it("does not let crest and wordmark steal homepage LCP from the backdrop", () => {
+    const landing = readFileSync(
+      path.resolve(root, "../components/TryLanding.tsx"),
+      "utf8",
+    );
+    const motion = readFileSync(
+      path.resolve(root, "../components/LandingMotion.tsx"),
+      "utf8",
+    );
+    expect(landing).not.toContain("priority");
+    expect(motion).not.toContain("opacity: 0");
   });
 });

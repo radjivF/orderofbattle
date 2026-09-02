@@ -151,13 +151,13 @@ export function BattleRecordGameScreen({ gameId }: Props) {
 
   useEffect(() => {
     if (!game) {
+      prevStatusRef.current = undefined;
       return;
     }
-    const prev = prevStatusRef.current;
-    prevStatusRef.current = game.status;
-    if (prev === "setup" && game.status === "active") {
+    if (prevStatusRef.current === "setup" && game.status === "active") {
       window.scrollTo(0, 0);
     }
+    prevStatusRef.current = game.status;
   }, [game]);
 
   async function commit(

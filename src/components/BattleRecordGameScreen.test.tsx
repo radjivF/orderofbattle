@@ -308,6 +308,39 @@ describe("BattleRecordGameScreen", () => {
     });
   });
 
+  it("scrolls to top when starting the battle from setup", async () => {
+    const user = userEvent.setup();
+    const scrollTo = vi.fn();
+    Object.defineProperty(window, "scrollTo", {
+      configurable: true,
+      writable: true,
+      value: scrollTo,
+    });
+
+    const game = setBattleplan(
+      createBattleRecord({
+        yourName: "Rad",
+        yourArmy: "Stormcast",
+        opponentName: "Alex",
+        opponentArmy: "Khorne",
+        allowDoubleTurn: true,
+      }),
+      "into-the-fire",
+    );
+    vi.mocked(gameStorage.getGame).mockResolvedValue(game);
+
+    render(<BattleRecordGameScreen gameId="game-setup" />);
+    await screen.findByRole("heading", { name: "Set up battle" });
+    await user.click(screen.getByRole("button", { name: "Start game" }));
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole("heading", { name: /Rad vs Alex/ }),
+      ).toBeInTheDocument();
+    });
+    expect(scrollTo).toHaveBeenCalledWith(0, 0);
+  });
+
   it("puts back next to the match title and returns to Battle record", async () => {
     const user = userEvent.setup();
     vi.mocked(gameStorage.getGame).mockResolvedValue(activeFixture());
