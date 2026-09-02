@@ -212,4 +212,63 @@ describe("CoreRulesScreen", () => {
     expect(screen.queryByText(/Not affiliated with Games Workshop/i)).toBeNull();
     expect(screen.queryByRole("link", { name: /Free army builder/i })).toBeNull();
   });
+
+  it("shows the how-this-works intro on the Scourge pack only", () => {
+    render(<CoreRulesScreen pack="scourge" />);
+
+    expect(screen.getByRole("heading", { name: "How this works" })).toBeTruthy();
+    expect(screen.getByText(/Fury is a level from 0 to 7/i)).toBeTruthy();
+    expect(screen.getByText(/Rage dice are the pile you spend/i)).toBeTruthy();
+
+    cleanup();
+    render(<CoreRulesScreen />);
+    expect(screen.queryByRole("heading", { name: "How this works" })).toBeNull();
+    expect(screen.queryByText(/Fury is a level from 0 to 7/i)).toBeNull();
+  });
+
+  it("shows the intro above the five Scourge abilities", () => {
+    render(<CoreRulesScreen pack="scourge" />);
+
+    const intro = screen.getByRole("heading", { name: "How this works" });
+    const firstAbility = screen.getByRole("button", { name: /Raising the Heat/i });
+
+    const introCard = intro.closest("section.parchment-card");
+    const abilityCard = firstAbility.closest("section.parchment-card");
+
+    expect(introCard).toBeTruthy();
+    expect(abilityCard).toBeTruthy();
+    expect(introCard).not.toBe(abilityCard);
+
+    const allCards = document.querySelectorAll("section.parchment-card");
+    const introIndex = Array.from(allCards).indexOf(introCard!);
+    const abilityIndex = Array.from(allCards).indexOf(abilityCard!);
+    expect(introIndex).toBeLessThan(abilityIndex);
+  });
+
+  it("keeps the intro visible when search is empty", () => {
+    render(<CoreRulesScreen pack="scourge" />);
+
+    expect(screen.getByRole("heading", { name: "How this works" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: /Raising the Heat/i })).toBeTruthy();
+  });
+
+  it("contains the exact intro copy with all paragraphs", () => {
+    render(<CoreRulesScreen pack="scourge" />);
+
+    expect(
+      screen.getByText("Fury is a level from 0 to 7. It does not go up just because the round number did."),
+    ).toBeTruthy();
+    expect(
+      screen.getByText(/End of the round, leftovers are gone\. Next round you draw again\. You do not keep a stash\./),
+    ).toBeTruthy();
+    expect(
+      screen.getByText(/Once, in deployment: attacker Fury 1, defender Fury 2/),
+    ).toBeTruthy();
+    expect(
+      screen.getByText(/If nobody changes Fury: attacker stays at 1/),
+    ).toBeTruthy();
+    expect(
+      screen.getByText(/A 6 on Eruption of Fury raises the opponent's Fury\. Fight Through the Pain drops yours/),
+    ).toBeTruthy();
+  });
 });
