@@ -89,6 +89,7 @@ export {
 export {
   canBeWarlord,
   getWarlordSelection,
+  initializeWarlordState,
   isWarlord,
   warlordCount,
 } from "./warlord";

@@ -38,6 +38,7 @@ import {
   assignPathToGloryHeroEnhancement,
   findBattleplan,
   getWarlordSelection,
+  initializeWarlordState,
   isPathToGloryList,
   PATH_TO_GLORY_BATTLEPLANS,
   PATH_TO_GLORY_QUESTS,
@@ -179,7 +180,7 @@ export function BuilderReady({
       return;
     }
     
-    // Mark as warlord and initialize with 5 renown if not already set
+    // Mark as warlord and initialize with Path + first aspiring ability
     const selection = list.regiments
       .flatMap((r) => (r.hero ? [r.hero] : []))
       .concat(list.auxiliaries)
@@ -189,7 +190,13 @@ export function BuilderReady({
       return;
     }
     
-    const needsInit = !selection.pathToGlory || selection.pathToGlory.renown < 5;
+    const unit = getListUnit(list, faction, selection.unitId);
+    if (!unit) {
+      return;
+    }
+    
+    const initialized = initializeWarlordState(list, unit, selection);
+    
     void commit({
       ...list,
       pathToGlory: {
@@ -197,41 +204,17 @@ export function BuilderReady({
         warlordSelectionId: selectionId,
       },
       regiments: list.regiments.map((r) => {
-        if (r.hero?.id === selectionId && needsInit) {
+        if (r.hero?.id === selectionId) {
           return {
             ...r,
-            hero: {
-              ...r.hero,
-              pathToGlory: {
-                ...(r.hero.pathToGlory ?? {
-                  renown: 0,
-                  pathId: null,
-                  pathOptionIds: [],
-                  battleWoundId: null,
-                  scarId: null,
-                }),
-                renown: 5,
-              },
-            },
+            hero: initialized,
           };
         }
         return r;
       }),
       auxiliaries: list.auxiliaries.map((aux) => {
-        if (aux.id === selectionId && needsInit) {
-          return {
-            ...aux,
-            pathToGlory: {
-              ...(aux.pathToGlory ?? {
-                renown: 0,
-                pathId: null,
-                pathOptionIds: [],
-                battleWoundId: null,
-                scarId: null,
-              }),
-              renown: 5,
-            },
-          };
+        if (aux.id === selectionId) {
+          return initialized;
         }
         return aux;
       }),

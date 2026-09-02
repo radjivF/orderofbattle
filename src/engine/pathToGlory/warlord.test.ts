@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { getFaction } from "../queries";
 import { blankPathToGlory } from "../listFactories";
-import { canBeWarlord, getWarlordSelection, isWarlord } from "./warlord";
+import { canBeWarlord, getWarlordSelection, initializeWarlordState, isWarlord } from "./warlord";
 import { createId } from "@/lib/id";
 import type { Selection } from "../types";
 
@@ -154,5 +154,63 @@ describe("warlord", () => {
 
     expect(isWarlord(list, heroId)).toBe(true);
     expect(isWarlord(list, "other-id")).toBe(false);
+  });
+
+  it("initializes warlord with first Path and aspiring ability", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const anvil = faction.units.find((u) => 
+      u.name.startsWith("Anvil of Apotheosis") && u.hero
+    );
+    expect(anvil).toBeTruthy();
+    if (!anvil) return;
+
+    const list = blankPathToGlory(faction.id, "ascension");
+    const selection: Selection = {
+      id: createId(),
+      unitId: anvil.id,
+      reinforced: false,
+    };
+
+    const initialized = initializeWarlordState(list, anvil, selection);
+    
+    expect(initialized.pathToGlory?.renown).toBe(5);
+    expect(initialized.pathToGlory?.pathId).toBeTruthy();
+    expect(initialized.pathToGlory?.pathId).not.toBeNull();
+    expect(initialized.pathToGlory?.pathOptionIds).toHaveLength(1);
+  });
+
+  it("keeps existing Path when initializing warlord", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const hero = faction.units.find((u) => u.hero && u.models === 1 && !u.unique);
+    expect(hero).toBeTruthy();
+    if (!hero) return;
+
+    const list = blankPathToGlory(faction.id, "ascension");
+    const existingPathId = "path-of-the-warrior";
+    const existingOptionId = "some-option";
+    const selection: Selection = {
+      id: createId(),
+      unitId: hero.id,
+      reinforced: false,
+      pathToGlory: {
+        renown: 3,
+        pathId: existingPathId,
+        pathOptionIds: [existingOptionId],
+        battleWoundId: null,
+        scarId: null,
+      },
+    };
+
+    const initialized = initializeWarlordState(list, hero, selection);
+    
+    expect(initialized.pathToGlory?.renown).toBeGreaterThanOrEqual(5);
+    expect(initialized.pathToGlory?.pathId).toBe(existingPathId);
+    expect(initialized.pathToGlory?.pathOptionIds).toEqual([existingOptionId]);
   });
 });

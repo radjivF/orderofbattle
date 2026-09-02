@@ -1,6 +1,8 @@
 import type { ArmyList, CatalogueUnit, FactionCatalogue, Selection } from "../types";
-import { selectionPoints } from "../queries";
+import { selectionPoints, unitHasKeyword } from "../queries";
 import { isAnvilOfApotheosis } from "./anvil";
+import { pathsForPacks } from "./catalogue";
+import { pathOptionsForRank } from "./pathOptions";
 
 const WARLORD_POINTS_CAP = 350;
 
@@ -77,4 +79,77 @@ export function isWarlord(list: ArmyList, selectionId: string): boolean {
 export function warlordCount(list: ArmyList): number {
   const warlord = getWarlordSelection(list);
   return warlord ? 1 : 0;
+}
+
+/**
+ * Initialize warlord state: 5 renown, first eligible Path, and first aspiring ability.
+ * Only applies Path if selection doesn't already have one.
+ */
+export function initializeWarlordState(
+  list: ArmyList,
+  unit: CatalogueUnit,
+  selection: Selection,
+): Selection {
+  const packIds = list.pathToGlory?.packIds ?? [];
+  const currentPathId = selection.pathToGlory?.pathId;
+  
+  // If already has a Path, keep it (don't overwrite player's choice)
+  if (currentPathId) {
+    return {
+      ...selection,
+      pathToGlory: {
+        ...(selection.pathToGlory ?? {
+          renown: 0,
+          pathId: null,
+          pathOptionIds: [],
+          battleWoundId: null,
+          scarId: null,
+        }),
+        renown: Math.max(5, selection.pathToGlory?.renown ?? 0),
+      },
+    };
+  }
+
+  // Pick first eligible Path
+  const isWizard = unitHasKeyword(unit, "WIZARD");
+  const isPriest = unitHasKeyword(unit, "PRIEST");
+  const eligiblePaths = pathsForPacks(packIds, unit.hero, isWizard, isPriest);
+  const firstPath = eligiblePaths[0];
+  
+  if (!firstPath) {
+    // No eligible paths, just set renown
+    return {
+      ...selection,
+      pathToGlory: {
+        ...(selection.pathToGlory ?? {
+          renown: 0,
+          pathId: null,
+          pathOptionIds: [],
+          battleWoundId: null,
+          scarId: null,
+        }),
+        renown: 5,
+      },
+    };
+  }
+
+  // Get first aspiring ability
+  const aspiringOptions = pathOptionsForRank(firstPath, "aspiring");
+  const firstOption = aspiringOptions[0];
+
+  return {
+    ...selection,
+    pathToGlory: {
+      ...(selection.pathToGlory ?? {
+        renown: 0,
+        pathId: null,
+        pathOptionIds: [],
+        battleWoundId: null,
+        scarId: null,
+      }),
+      renown: 5,
+      pathId: firstPath.id,
+      pathOptionIds: firstOption ? [firstOption.id] : [],
+    },
+  };
 }

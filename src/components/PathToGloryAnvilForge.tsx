@@ -31,6 +31,12 @@ import { SheetCloseButton, SheetLinkButton } from "./ios/SheetIconButton";
 const fieldClass =
   "min-h-10 w-full rounded-lg bg-parchment-ink/5 px-2.5 text-sm text-parchment-ink";
 
+/** Returns "an" if word starts with vowel sound, otherwise "a" */
+function article(word: string): string {
+  const firstChar = word.charAt(0).toLowerCase();
+  return "aeiou".includes(firstChar) ? "an" : "a";
+}
+
 type Props = {
   selection: Selection;
   unit: CatalogueUnit;
@@ -191,7 +197,7 @@ function ForgeGroup({
   const selectedId = selected[0]?.id ?? "";
   const summary =
     group.max === 1
-      ? selected[0]?.name ?? (group.min < 1 ? "None" : "Pick")
+      ? selected[0]?.name ?? (group.min < 1 ? "None" : `Pick ${article(group.name)} ${group.name}`)
       : selected.length
         ? `${selected.length} picked`
         : "None";
