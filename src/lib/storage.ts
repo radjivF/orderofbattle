@@ -26,6 +26,9 @@ const LEGACY_LOCAL_KEYS = ["orderofbattle:lists", "enlist:lists"] as const;
 let cache: ArmyList[] | undefined;
 const listeners = new Set<() => void>();
 
+// Serialize IDB writes to prevent interleaving clear+put operations
+let writeQueue: Promise<void> = Promise.resolve();
+
 function emit() {
   for (const listener of listeners) {
     listener();
@@ -85,17 +88,23 @@ async function readFromIndexedDB(name: string): Promise<ArmyList[]> {
 
 async function writeAllToIndexedDB(lists: ArmyList[]): Promise<void> {
   if (!isBrowser() || !("indexedDB" in window)) return;
-  const db = await openDb(DB_NAME, VERSION);
-  const tx = db.transaction(STORE, "readwrite");
-  const store = tx.objectStore(STORE);
-  await idbReq(store.clear());
-  await Promise.all(lists.map((list) => idbReq(store.put(list))));
-  await new Promise<void>((resolve, reject) => {
-    tx.oncomplete = () => resolve();
-    tx.onerror = () => reject(tx.error);
-    tx.onabort = () => reject(tx.error);
+  
+  // Serialize writes: wait for previous write to complete before starting new one
+  writeQueue = writeQueue.then(async () => {
+    const db = await openDb(DB_NAME, VERSION);
+    const tx = db.transaction(STORE, "readwrite");
+    const store = tx.objectStore(STORE);
+    await idbReq(store.clear());
+    await Promise.all(lists.map((list) => idbReq(store.put(list))));
+    await new Promise<void>((resolve, reject) => {
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+      tx.onabort = () => reject(tx.error);
+    });
+    db.close();
   });
-  db.close();
+  
+  await writeQueue;
 }
 
 function readFromLocalStorage(key: string): ArmyList[] | null {
@@ -195,11 +204,13 @@ export async function saveArmy(list: ArmyList): Promise<ArmyList> {
 
 /** Bump recency for library ordering without treating open as an edit. */
 export async function recordArmyOpened(id: string): Promise<void> {
+  // Re-read cache immediately before composing to get latest state (e.g. from saveArmy)
   const current = cache ?? (await readAll());
   const list = current.find((item) => item.id === id);
   if (!list) {
     return;
   }
+  // Don't overwrite a more recent updatedAt with stale data
   const withTimestamps = {
     ...list,
     lastOpenedAt: Date.now(),

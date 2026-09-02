@@ -72,7 +72,8 @@ export function availablePickerUnits(
 ): CatalogueUnit[] {
   const taken = takenUniqueBases(list, faction, exceptUnitId);
   const pathToGlory = isPathToGloryList(list);
-  const isDaKingsGitz = list.regimentOfRenown?.renownId === "da-king-s-gitz";
+  // Da King's Gitz is an Army of Renown (faction), not a Regiment of Renown
+  const isDaKingsGitz = faction.id === "gloomspite-gitz-da-king-s-gitz";
   
   // Gloomspite XOR: detect if list already has TROGGOTH or non-TROGGOTH units
   let gloomspiteHasTrogg = false;
