@@ -105,22 +105,106 @@ describe("BattleRecordCreateSheet", () => {
     expect(within(dialog).queryByLabelText("Battleplan")).toBeNull();
     expect(
       within(dialog).getByRole("button", { name: "Continue" }),
-    ).toBeDisabled();
-    const heading = within(dialog).getByRole("heading", {
-      name: "New battle record",
-    });
-    const hint = within(dialog).getByRole("status");
-    expect(hint).toHaveTextContent(
-      /Still need your name, your army, opponent name, opponent army/,
-    );
-    expect(heading.parentElement).toContainElement(hint);
-    expect(hint.className).toContain("text-[11px]");
+    ).toBeEnabled();
+    expect(within(dialog).queryByText("Put a name")).toBeNull();
+    expect(within(dialog).queryByText("Your army is not selected")).toBeNull();
+    expect(within(dialog).queryByText("Put an opponent name")).toBeNull();
     expect(
-      within(dialog).getByRole("button", { name: "Continue" }).parentElement,
-    ).not.toContainElement(hint);
+      within(dialog).queryByText("Opponent army is not selected"),
+    ).toBeNull();
+    const footer = within(dialog).getByRole("button", {
+      name: "Continue",
+    }).parentElement;
+    expect(footer?.className).toMatch(/\bpt-/);
   });
 
-  it("puts a quiet Cancel on the left and Continue as the primary action", () => {
+  it("warns about both missing names, armies stay optional", async () => {
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    const onCreated = vi.fn();
+    render(
+      <BattleRecordCreateSheet
+        open
+        onClose={() => undefined}
+        onCreated={onCreated}
+      />,
+    );
+
+    const dialog = screen.getByRole("dialog", { name: "New battle record" });
+    await user.click(within(dialog).getByRole("button", { name: "Continue" }));
+
+    expect(onCreated).not.toHaveBeenCalled();
+    expect(within(dialog).getByText("Put a name")).toBeTruthy();
+    expect(within(dialog).getByText("Put an opponent name")).toBeTruthy();
+    expect(within(dialog).queryByText("Your army is not selected")).toBeNull();
+    expect(
+      within(dialog).queryByText("Opponent army is not selected"),
+    ).toBeNull();
+
+    const name = within(dialog).getByLabelText("Your name");
+    expect(name).toHaveAttribute("aria-invalid", "true");
+    const describedBy = name.getAttribute("aria-describedby");
+    expect(describedBy).toBeTruthy();
+    expect(document.getElementById(describedBy as string)?.textContent).toBe(
+      "Put a name",
+    );
+
+    expect(within(dialog).getByLabelText("Opponent name")).toHaveAttribute(
+      "aria-invalid",
+      "true",
+    );
+    const army = within(dialog).getByRole("button", { name: "Your army" });
+    expect(army).not.toHaveAttribute("aria-invalid", "true");
+    expect(
+      within(dialog).getByRole("button", { name: "Opponent army" }),
+    ).not.toHaveAttribute("aria-invalid", "true");
+  });
+
+  it("creates the record from the two names alone", async () => {
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    const onCreated = vi.fn();
+    render(
+      <BattleRecordCreateSheet
+        open
+        onClose={() => undefined}
+        onCreated={onCreated}
+      />,
+    );
+
+    const dialog = screen.getByRole("dialog", { name: "New battle record" });
+    await user.type(within(dialog).getByLabelText("Your name"), "Rad");
+    await user.type(within(dialog).getByLabelText("Opponent name"), "Alex");
+    await user.click(within(dialog).getByRole("button", { name: "Continue" }));
+
+    expect(onCreated).toHaveBeenCalledTimes(1);
+    const game = onCreated.mock.calls[0]![0];
+    expect(game.yourName).toBe("Rad");
+    expect(game.opponentName).toBe("Alex");
+    expect(game.yourArmy).toBe("");
+    expect(game.opponentArmy).toBe("");
+    expect(game.yourTacticCardIds).toEqual([]);
+    expect(game.yourListId).toBeUndefined();
+  });
+
+  it("keeps the warnings out of the footer action row", async () => {
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    render(
+      <BattleRecordCreateSheet
+        open
+        onClose={() => undefined}
+        onCreated={() => undefined}
+      />,
+    );
+
+    const dialog = screen.getByRole("dialog", { name: "New battle record" });
+    await user.click(within(dialog).getByRole("button", { name: "Continue" }));
+
+    const footer = within(dialog).getByRole("button", {
+      name: "Continue",
+    }).parentElement;
+    expect(footer).not.toContainElement(within(dialog).getByText("Put a name"));
+  });
+
+  it("splits Cancel and Continue 50-50 with space above the row", () => {
     render(
       <BattleRecordCreateSheet
         open
@@ -134,12 +218,14 @@ describe("BattleRecordCreateSheet", () => {
     const continueBtn = within(dialog).getByRole("button", { name: "Continue" });
     expect(cancel.parentElement).toBe(continueBtn.parentElement);
     expect(cancel.parentElement?.className).toContain("ios-sheet-actions-row");
-    expect(cancel.className).toContain("text-sheet-muted");
-    expect(cancel.className).not.toContain("bg-parchment-ink/8");
-    expect(continueBtn.className).toContain("ios-liquid-glass");
+    expect(cancel.parentElement?.className).toMatch(/\bpt-/);
+    expect(cancel.className).toContain("flex-1");
     expect(continueBtn.className).toContain("flex-1");
-    expect(continueBtn.className).not.toContain("opacity-40");
-    expect(continueBtn).toBeDisabled();
+    expect(cancel.className).toContain("min-h-11");
+    expect(continueBtn.className).toContain("min-h-11");
+    expect(cancel.className).toMatch(/bg-parchment-ink/);
+    expect(continueBtn.className).toContain("ios-liquid-glass");
+    expect(continueBtn).toBeEnabled();
     expect(
       cancel.compareDocumentPosition(continueBtn) &
         Node.DOCUMENT_POSITION_FOLLOWING,
@@ -164,6 +250,92 @@ describe("BattleRecordCreateSheet", () => {
       ),
     );
     expect(onClose).toHaveBeenCalled();
+  });
+
+  it("drops a warning as soon as that field is filled", async () => {
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    render(
+      <BattleRecordCreateSheet
+        open
+        onClose={() => undefined}
+        onCreated={() => undefined}
+      />,
+    );
+
+    const dialog = screen.getByRole("dialog", { name: "New battle record" });
+    await user.click(within(dialog).getByRole("button", { name: "Continue" }));
+    expect(within(dialog).getByText("Put a name")).toBeTruthy();
+
+    const name = within(dialog).getByLabelText("Your name");
+    await user.type(name, "Rad");
+    expect(within(dialog).queryByText("Put a name")).toBeNull();
+    expect(name).not.toHaveAttribute("aria-invalid", "true");
+    expect(within(dialog).getByText("Put an opponent name")).toBeTruthy();
+  });
+
+  it("comes back empty and usable after a record was created", async () => {
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    const onCreated = vi.fn();
+    armyStore.items = [blankArmy("sylvaneth", "My Sylvaneth")];
+
+    const view = render(
+      <BattleRecordCreateSheet
+        open
+        onClose={() => undefined}
+        onCreated={onCreated}
+      />,
+    );
+
+    const dialog = screen.getByRole("dialog", { name: "New battle record" });
+    await user.type(within(dialog).getByLabelText("Your name"), "Rad");
+    await user.click(within(dialog).getByLabelText("Your army"));
+    await user.click(
+      within(
+        await screen.findByRole("dialog", { name: "Choose your army" }),
+      ).getByRole("button", { name: /My Sylvaneth/ }),
+    );
+    await user.type(within(dialog).getByLabelText("Opponent name"), "Alex");
+    await user.click(within(dialog).getByLabelText("Opponent army"));
+    await user.click(
+      within(
+        await screen.findByRole("dialog", { name: "Choose opponent army" }),
+      ).getByRole("button", { name: "Factions" }),
+    );
+    await user.click(
+      within(
+        screen.getByRole("dialog", { name: "Choose opponent army" }),
+      ).getByRole("button", { name: "Stormcast Eternals" }),
+    );
+    await user.click(within(dialog).getByRole("button", { name: "Continue" }));
+    expect(onCreated).toHaveBeenCalledTimes(1);
+
+    view.rerender(
+      <BattleRecordCreateSheet
+        open={false}
+        onClose={() => undefined}
+        onCreated={onCreated}
+      />,
+    );
+    view.rerender(
+      <BattleRecordCreateSheet
+        open
+        onClose={() => undefined}
+        onCreated={onCreated}
+      />,
+    );
+
+    const reopened = screen.getByRole("dialog", { name: "New battle record" });
+    expect(
+      within(reopened).queryByRole("button", { name: "Starting…" }),
+    ).toBeNull();
+    expect(
+      within(reopened).getByRole("button", { name: "Continue" }),
+    ).toBeEnabled();
+    expect(within(reopened).getByLabelText("Your name")).toHaveValue("");
+    expect(within(reopened).getByLabelText("Opponent name")).toHaveValue("");
+    expect(within(reopened).getByLabelText("Your army")).toHaveTextContent(
+      "Choose army…",
+    );
   });
 
   it("lets you pick a saved list and preloads its battle tactics", async () => {

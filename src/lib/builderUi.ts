@@ -239,11 +239,11 @@ export const MODAL_SHEET_FOOTER_CLASS =
 
 /** Same pinned footer, Cancel + Continue on one row instead of stacked. */
 export const MODAL_SHEET_FOOTER_ROW_CLASS =
-  "modal-sheet-footer ios-sheet-actions-row shrink-0 px-5 pb-5";
+  "modal-sheet-footer ios-sheet-actions-row shrink-0 flex-wrap px-5 pt-3 pb-5";
 
-/** Quiet dismiss on the left of a footer row — not a competing chip. */
+/** Dismiss shares the row 50-50 with the primary, on a chip so it reads as a control. */
 export const SHEET_FOOTER_CANCEL_CLASS =
-  "pressable inline-flex min-h-11 shrink-0 cursor-pointer items-center justify-center rounded-xl px-3 text-[15px] font-semibold text-sheet-muted";
+  "pressable inline-flex min-h-11 min-w-0 flex-1 cursor-pointer items-center justify-center rounded-xl bg-parchment-ink/8 px-4 text-[15px] font-semibold text-parchment-ink";
 
 /** Primary footer action — fills the rest of the row; stays readable when disabled. */
 export const SHEET_FOOTER_PRIMARY_CLASS =

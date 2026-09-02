@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useSyncExternalStore } from "react";
+import { useId, useMemo, useState, useSyncExternalStore } from "react";
 import type { BattleArmyPick } from "@/engine/gameSession";
 import { getFaction } from "@/engine/queries";
 import { isTowList } from "@/engine/storedList";
@@ -25,6 +25,18 @@ type PickerTarget = "you" | "opponent";
 const SELECT_CLASS =
   "min-h-11 w-full rounded-xl bg-parchment-ink/5 px-3 font-serif text-xl text-parchment-ink outline-none";
 const PICK_BUTTON_CLASS = `${SELECT_CLASS} text-left`;
+const FIELD_WARN_RING_CLASS = "ring-1 ring-illegal/45";
+
+function FieldWarning({ id, message }: { id: string; message?: string }) {
+  if (!message) {
+    return null;
+  }
+  return (
+    <p id={id} className="text-sm leading-snug text-illegal">
+      {message}
+    </p>
+  );
+}
 
 type Values = {
   yourName: string;
@@ -36,8 +48,13 @@ type Values = {
   paintedOpponent: boolean;
 };
 
+export type MatchFieldWarnings = Partial<
+  Record<"yourName" | "yourArmy" | "opponentName" | "opponentArmy", string>
+>;
+
 type Props = {
   values: Values;
+  warnings?: MatchFieldWarnings;
   onYourName: (value: string) => void;
   onOpponentName: (value: string) => void;
   onAllowDoubleTurn: (value: boolean) => void;
@@ -48,6 +65,7 @@ type Props = {
 
 export function BattleRecordMatchFields({
   values,
+  warnings,
   onYourName,
   onOpponentName,
   onAllowDoubleTurn,
@@ -66,46 +84,72 @@ export function BattleRecordMatchFields({
     [lists],
   );
   const [picking, setPicking] = useState<PickerTarget | null>(null);
+  const warnPrefix = useId();
+  const warnId = (field: keyof MatchFieldWarnings) => `${warnPrefix}-${field}`;
+  const fieldProps = (field: keyof MatchFieldWarnings) =>
+    warnings?.[field]
+      ? { "aria-invalid": true, "aria-describedby": warnId(field) }
+      : {};
+  const fieldClass = (field: keyof MatchFieldWarnings, base: string) =>
+    warnings?.[field] ? `${base} ${FIELD_WARN_RING_CLASS}` : base;
 
   return (
     <>
-      <label className="flex flex-col gap-2 text-base text-sheet-muted">
-        Your name
-        <input
-          value={values.yourName}
-          onChange={(event) => onYourName(event.target.value)}
-          className={SELECT_CLASS}
-        />
-      </label>
+      <div className="flex flex-col gap-2">
+        <label className="flex flex-col gap-2 text-base text-sheet-muted">
+          Your name
+          <input
+            value={values.yourName}
+            onChange={(event) => onYourName(event.target.value)}
+            className={fieldClass("yourName", SELECT_CLASS)}
+            {...fieldProps("yourName")}
+          />
+        </label>
+        <FieldWarning id={warnId("yourName")} message={warnings?.yourName} />
+      </div>
       <div className="flex flex-col gap-2 text-base text-sheet-muted">
         Your army
         <button
           type="button"
           aria-label="Your army"
           onClick={() => setPicking("you")}
-          className={PICK_BUTTON_CLASS}
+          className={fieldClass("yourArmy", PICK_BUTTON_CLASS)}
+          {...fieldProps("yourArmy")}
         >
           {values.yourArmyLabel || "Choose army…"}
         </button>
+        <FieldWarning id={warnId("yourArmy")} message={warnings?.yourArmy} />
       </div>
-      <label className="flex flex-col gap-2 text-base text-sheet-muted">
-        Opponent name
-        <input
-          value={values.opponentName}
-          onChange={(event) => onOpponentName(event.target.value)}
-          className={SELECT_CLASS}
+      <div className="flex flex-col gap-2">
+        <label className="flex flex-col gap-2 text-base text-sheet-muted">
+          Opponent name
+          <input
+            value={values.opponentName}
+            onChange={(event) => onOpponentName(event.target.value)}
+            className={fieldClass("opponentName", SELECT_CLASS)}
+            {...fieldProps("opponentName")}
+          />
+        </label>
+        <FieldWarning
+          id={warnId("opponentName")}
+          message={warnings?.opponentName}
         />
-      </label>
+      </div>
       <div className="flex flex-col gap-2 text-base text-sheet-muted">
         Opponent army
         <button
           type="button"
           aria-label="Opponent army"
           onClick={() => setPicking("opponent")}
-          className={PICK_BUTTON_CLASS}
+          className={fieldClass("opponentArmy", PICK_BUTTON_CLASS)}
+          {...fieldProps("opponentArmy")}
         >
           {values.opponentArmyLabel || "Choose army…"}
         </button>
+        <FieldWarning
+          id={warnId("opponentArmy")}
+          message={warnings?.opponentArmy}
+        />
       </div>
 
       <div className="flex flex-col gap-2">

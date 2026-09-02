@@ -51,6 +51,16 @@ const PANEL = "parchment-card rounded-2xl px-4 py-4 text-parchment-ink";
 const SELECT_CLASS =
   "min-h-11 w-full rounded-xl bg-parchment-ink/5 px-3 font-serif text-xl text-parchment-ink outline-none";
 
+/** Only season pack with battleplans in the app — GHB 2026–27. */
+const SCOURGE_BATTLEPACK_ID = "scourge-aqshy";
+
+/** Official Path to Glory packs, listed so the roadmap is visible but not selectable. */
+const PATH_TO_GLORY_PACKS = [
+  { id: "ptg-ravaged-coast", name: "Ravaged Coast" },
+  { id: "ptg-blighted-wilds", name: "Blighted Wilds" },
+  { id: "ptg-ascension", name: "Ascension" },
+] as const;
+
 function toggleCard(selected: string[], id: string): string[] {
   if (selected.includes(id)) {
     return selected.filter((item) => item !== id);
@@ -161,9 +171,10 @@ export function BattleRecordSetupScreen({
       </div>
 
       <main className={`${SITE_COLUMN_CLASS} flex flex-col gap-4 pb-20`}>
-        <section className={`${PANEL} flex flex-col gap-5`}>
-          <h2 className="font-serif text-xl">Match</h2>
-          <BattleRecordMatchFields
+        {editing ? (
+          <section className={`${PANEL} flex flex-col gap-5`}>
+            <h2 className="font-serif text-xl">Match</h2>
+            <BattleRecordMatchFields
             values={{
               yourName: game.yourName,
               yourArmyLabel: game.yourArmy,
@@ -196,17 +207,32 @@ export function BattleRecordSetupScreen({
                 patchBattleRecord(prev, { paintedOpponent: value }),
               )
             }
-            onPickArmy={(side, pick) =>
-              onChange((prev) => setBattleArmy(prev, side, pick))
-            }
-          />
-        </section>
+              onPickArmy={(side, pick) =>
+                onChange((prev) => setBattleArmy(prev, side, pick))
+              }
+            />
+          </section>
+        ) : null}
 
         <section className={PANEL}>
           <h2 className="font-serif text-xl">Battleplan</h2>
-          <p className="mt-1 text-sm text-sheet-muted">
-            Scourge of Aqshy · GHB 2026–27
-          </p>
+          <label className="mt-3 flex flex-col gap-2 text-base text-sheet-muted">
+            Battlepack
+            <select
+              value={SCOURGE_BATTLEPACK_ID}
+              onChange={() => undefined}
+              className={SELECT_CLASS}
+            >
+              <option value={SCOURGE_BATTLEPACK_ID}>Scourge of Aqshy</option>
+              <optgroup label="Path to Glory">
+                {PATH_TO_GLORY_PACKS.map((pack) => (
+                  <option key={pack.id} value={pack.id} disabled>
+                    {pack.name} — coming soon
+                  </option>
+                ))}
+              </optgroup>
+            </select>
+          </label>
           <label className="mt-3 flex flex-col gap-2 text-base text-sheet-muted">
             Choose battleplan
             <select
@@ -290,7 +316,7 @@ export function BattleRecordSetupScreen({
         ) : null}
 
         <TacticPick
-          title={`${game.yourName} · battle tactics`}
+          title={`${game.yourName.trim() || "You"} · battle tactics`}
           selected={game.yourTacticCardIds}
           cards={yourCards}
           onToggle={(id) =>
@@ -304,7 +330,7 @@ export function BattleRecordSetupScreen({
           }
         />
         <TacticPick
-          title={`${game.opponentName} · battle tactics`}
+          title={`${game.opponentName.trim() || "Opponent"} · battle tactics`}
           selected={game.opponentTacticCardIds}
           cards={opponentCards}
           onToggle={(id) =>
@@ -341,13 +367,6 @@ export function BattleRecordSetupScreen({
                 className={`${IOS_LIQUID_CTA_CLASS} w-full disabled:cursor-not-allowed disabled:opacity-40`}
               >
                 Start game
-              </button>
-              <button
-                type="button"
-                onClick={onBack}
-                className={`${SHEET_SECONDARY_BUTTON_CLASS} w-full`}
-              >
-                Cancel
               </button>
             </>
           )}

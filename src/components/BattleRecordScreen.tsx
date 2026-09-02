@@ -174,7 +174,7 @@ export function BattleRecordScreen() {
       <BattleRecordCreateSheet
         open={creating}
         onClose={() => setCreating(false)}
-        onCreated={(game) => void onCreated(game)}
+        onCreated={onCreated}
       />
 
       {deleteTarget ? (

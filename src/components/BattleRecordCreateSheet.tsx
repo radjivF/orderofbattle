@@ -15,14 +15,17 @@ import {
   SHEET_FOOTER_PRIMARY_CLASS,
   SHEET_HEADER_CLASS,
 } from "@/lib/builderUi";
-import { BattleRecordMatchFields } from "./BattleRecordMatchFields";
+import {
+  BattleRecordMatchFields,
+  type MatchFieldWarnings,
+} from "./BattleRecordMatchFields";
 import { ModalFrame } from "./ModalFrame";
 import { SheetCloseButton } from "./ios/SheetIconButton";
 
 type Props = {
   open: boolean;
   onClose: () => void;
-  onCreated: (game: GameSession) => void;
+  onCreated: (game: GameSession) => void | Promise<void>;
 };
 
 export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
@@ -34,36 +37,63 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
   const [paintedYou, setPaintedYou] = useState(false);
   const [paintedOpponent, setPaintedOpponent] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [showWarnings, setShowWarnings] = useState(false);
+  const [wasOpen, setWasOpen] = useState(open);
+
+  /** The sheet stays mounted while closed, so a reopen has to start from scratch. */
+  if (open !== wasOpen) {
+    setWasOpen(open);
+    if (open) {
+      setYourName("");
+      setYourArmy(null);
+      setOpponentName("");
+      setOpponentArmy(null);
+      setAllowDoubleTurn(true);
+      setPaintedYou(false);
+      setPaintedOpponent(false);
+      setSaving(false);
+      setShowWarnings(false);
+    }
+  }
 
   if (!open) {
     return null;
   }
 
-  const gaps: string[] = [];
-  if (yourName.trim().length === 0) gaps.push("your name");
-  if (!yourArmy) gaps.push("your army");
-  if (opponentName.trim().length === 0) gaps.push("opponent name");
-  if (!opponentArmy) gaps.push("opponent army");
+  /** Both names are required — armies can be picked later on the setup screen. */
+  const gaps: MatchFieldWarnings = {};
+  if (yourName.trim().length === 0) gaps.yourName = "Put a name";
+  if (opponentName.trim().length === 0)
+    gaps.opponentName = "Put an opponent name";
+  const complete = Object.keys(gaps).length === 0;
 
-  const canCreate = !saving && gaps.length === 0;
-
-  function create() {
-    if (!canCreate || !yourArmy || !opponentArmy) return;
+  async function create() {
+    if (saving) return;
+    if (!complete) {
+      setShowWarnings(true);
+      return;
+    }
     setSaving(true);
     const input: CreateBattleRecordInput = {
       yourName,
-      yourArmy: yourArmy.label,
+      yourArmy: yourArmy?.label ?? "",
       opponentName,
-      opponentArmy: opponentArmy.label,
+      opponentArmy: opponentArmy?.label ?? "",
       allowDoubleTurn,
       paintedYou,
       paintedOpponent,
-      yourTacticCardIds: yourArmy.tacticIds,
-      opponentTacticCardIds: opponentArmy.tacticIds,
-      yourListId: yourArmy.listId,
-      opponentListId: opponentArmy.listId,
+      yourTacticCardIds: yourArmy?.tacticIds ?? [],
+      opponentTacticCardIds: opponentArmy?.tacticIds ?? [],
+      yourListId: yourArmy?.listId,
+      opponentListId: opponentArmy?.listId,
     };
-    onCreated(createBattleRecord(input));
+    try {
+      await onCreated(createBattleRecord(input));
+    } catch {
+      /* Keep the sheet open with the entries intact so the save can be retried. */
+    } finally {
+      setSaving(false);
+    }
   }
 
   return (
@@ -76,14 +106,6 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
       <div className={SHEET_HEADER_CLASS}>
         <div className="min-w-0 flex-1">
           <h2 className="font-serif text-2xl">New battle record</h2>
-          {gaps.length > 0 ? (
-            <p
-              role="status"
-              className="mt-0.5 text-[11px] leading-snug text-sheet-muted"
-            >
-              Still need {gaps.join(", ")}
-            </p>
-          ) : null}
         </div>
         <SheetCloseButton label="Close new battle record" onClick={onClose} />
       </div>
@@ -99,6 +121,7 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
               paintedYou,
               paintedOpponent,
             }}
+            warnings={showWarnings ? gaps : undefined}
             onYourName={setYourName}
             onOpponentName={setOpponentName}
             onAllowDoubleTurn={setAllowDoubleTurn}
@@ -121,8 +144,8 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
         </button>
         <button
           type="button"
-          disabled={!canCreate}
-          onClick={create}
+          disabled={saving}
+          onClick={() => void create()}
           className={SHEET_FOOTER_PRIMARY_CLASS}
         >
           {saving ? "Starting…" : "Continue"}
