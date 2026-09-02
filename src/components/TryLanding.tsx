@@ -82,7 +82,7 @@ export function TryLanding() {
                   height={436}
                   sizes="(max-width: 640px) 152px, 224px"
                   quality={82}
-                  priority
+                  loading="eager"
                   className="mx-auto h-[7.25rem] w-auto drop-shadow-[0_8px_28px_rgba(0,0,0,0.75)] sm:h-56"
                 />
               </div>
@@ -95,7 +95,7 @@ export function TryLanding() {
                   height={253}
                   sizes="(max-width: 640px) 320px, 448px"
                   quality={82}
-                  priority
+                  loading="eager"
                   className="mx-auto h-auto w-[min(100%,18rem)] drop-shadow-[0_6px_20px_rgba(0,0,0,0.8)] sm:w-[min(100%,28rem)]"
                 />
                 <h1 className="mx-auto mt-3 max-w-xl font-serif text-[1.5rem] leading-snug font-semibold text-parchment [text-shadow:0_2px_16px_rgba(0,0,0,0.95),0_1px_3px_rgba(0,0,0,1)] sm:mt-5 sm:text-4xl">

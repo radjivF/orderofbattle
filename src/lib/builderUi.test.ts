@@ -36,10 +36,12 @@ import {
   PLAY_SHEET_LINK_CLASS,
   PLAY_UNIT_NAME_ROW_CLASS,
   CONFIRM_CANCEL_BUTTON_CLASS,
+  CONFIRM_SHEET_ACTIONS_CLASS,
   CONFIRM_SHEET_PANEL_CLASS,
   LIBRARY_OPTIONS_SHEET_PANEL_CLASS,
   LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS,
   SHEET_FOOTER_ACTIONS_CLASS,
+  SHEET_FORM_ACTIONS_CLASS,
   SHEET_PANEL_CLASS,
   SHEET_SECONDARY_BUTTON_CLASS,
   builderHeaderShowsListStats,
@@ -647,6 +649,26 @@ describe("iOS polish contracts", () => {
     expect(modal).toContain("isTopModal");
     expect(modal).toContain("modal-scrim");
     expect(modal).toContain("pointer-events-auto");
+  });
+
+  it("puts paired sheet actions beside each other, not stacked full width", () => {
+    const css = readFileSync(
+      path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        "../app/globals.css",
+      ),
+      "utf8",
+    );
+    const start = css.indexOf(".ios-sheet-actions {");
+    const block = css.slice(start, css.indexOf("}", start) + 1);
+    expect(block).toContain("flex-direction: row");
+    expect(block).not.toContain("flex-direction: column");
+    expect(css).toContain(".ios-sheet-actions > button");
+    expect(CONFIRM_SHEET_ACTIONS_CLASS).toContain("ios-sheet-actions");
+    expect(CONFIRM_SHEET_ACTIONS_CLASS).not.toContain("flex-col");
+    expect(SHEET_FORM_ACTIONS_CLASS).toContain("ios-sheet-actions");
+    expect(SHEET_FORM_ACTIONS_CLASS).not.toContain("flex-col");
+    expect(SHEET_FOOTER_ACTIONS_CLASS).toContain("ios-sheet-actions");
   });
 
   it("uses sheet panel classes without hard-coded rounded-2xl on modals", () => {

@@ -106,6 +106,7 @@ export function ListNavProvider({
   const timers = useRef<number[]>([]);
   const animatingBackRef = useRef(false);
   const pendingForwardRef = useRef(false);
+  const wasBuilderRef = useRef(isBuilder);
   const forwardGenRef = useRef(0);
   const libraryScrollYRef = useRef<number | null>(null);
 
@@ -181,23 +182,33 @@ export function ListNavProvider({
 
   useLayoutEffect(() => {
     if (isHome) {
+      wasBuilderRef.current = false;
       pendingForwardRef.current = false;
       animatingBackRef.current = false;
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
       return;
     }
     if (!isBuilder) {
-      if (listFlowSkipsPostRouteSlide(pendingForwardRef.current)) {
+      const leavingBuilder = wasBuilderRef.current;
+      wasBuilderRef.current = false;
+      if (
+        listFlowSkipsPostRouteSlide(pendingForwardRef.current, leavingBuilder)
+      ) {
         return;
       }
+      pendingForwardRef.current = false;
       animatingBackRef.current = false;
       clearListNavigationDirection();
+      clearListOpenSplash();
+      clearListCreateSplash();
       publishNavState({ showDetail: false, animatingBack: false, settled: true });
       scrollToPane(false, libraryScrollYRef);
       return;
     }
 
+    wasBuilderRef.current = true;
     if (listFlowSkipsPostRouteSlide(pendingForwardRef.current)) {
+      pendingForwardRef.current = false;
       clearListNavigationDirection();
       return;
     }
