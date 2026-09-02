@@ -129,6 +129,28 @@ export function CoreRulesScreen({ pack = "core" }: { pack?: Pack }) {
               : `${matchCount} ${matchCount === 1 ? "rule matches" : "rules match"}`}
           </p>
         ) : null}
+        {scourge && !needle ? (
+          <section className="parchment-card rounded-2xl p-4 text-parchment-ink">
+            <h2 className="font-serif text-xl font-semibold mb-3">How this works</h2>
+            <div className="space-y-3 text-[15px] leading-relaxed">
+              <p>
+                Fury is a level from 0 to 7. It does not go up just because the round number did.
+              </p>
+              <p>
+                Rage dice are the pile you spend. Start of every battle round: gain Rage equal to your current Fury. End of the round: leftovers are gone. Next round you draw again — you do not keep a stash.
+              </p>
+              <p>
+                Once, in deployment: attacker Fury 1, defender Fury 2. That&apos;s the roll-off (attacker/defender), not who takes the first turn.
+              </p>
+              <p>
+                If nobody changes Fury: attacker stays at 1 and gets 1 Rage each round. Defender stays at 2 and gets 2. Round 2 is not &quot;now you are 2 and they are 3.&quot;
+              </p>
+              <p>
+                Fury only moves when an ability below says so. Typical: a 6 on Eruption of Fury raises the opponent&apos;s Fury; Fight Through the Pain drops yours when you spend Rage; Ignite Fury at a Place of Power is +2 Fury and +2 Rage.
+              </p>
+            </div>
+          </section>
+        ) : null}
         {matchCount > 0 ? (
           <section className="parchment-card divide-y divide-parchment-ink/10 rounded-2xl text-parchment-ink">
             {visibleGroups.map((group) => (
