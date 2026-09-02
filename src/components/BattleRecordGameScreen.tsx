@@ -461,11 +461,13 @@ export function BattleRecordGameScreen({ gameId }: Props) {
                 {(["you", "opponent"] as BattlePlayer[]).map((player) => {
                   const allowed = canSetFirstPlayer(game, roundIndex, player);
                   const selected = round.firstPlayer === player;
+                  const playerName = player === "you" ? game.yourName : game.opponentName;
                   return (
                     <button
                       key={player}
                       type="button"
                       disabled={!allowed && !selected}
+                      aria-label={`Set first player: ${playerName}`}
                       onClick={() =>
                         void commit(
                           setRoundFirstPlayer(game, roundIndex, player),
@@ -477,7 +479,7 @@ export function BattleRecordGameScreen({ gameId }: Props) {
                           : "bg-parchment-ink/5 ring-parchment-ink/12 text-parchment-ink"
                       } ${!allowed && !selected ? "opacity-40" : ""}`}
                     >
-                      {player === "you" ? game.yourName : game.opponentName}
+                      {playerName}
                     </button>
                   );
                 })}

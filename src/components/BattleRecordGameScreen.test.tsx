@@ -631,7 +631,7 @@ describe("BattleRecordGameScreen", () => {
     ).getAllByRole("tab");
     expect(firstTabs.map((tab) => tab.textContent)).toEqual(["Alex", "Rad"]);
 
-    await user.click(screen.getByRole("button", { name: "Rad" }));
+    await user.click(screen.getByRole("button", { name: "Set first player: Rad" }));
 
     const flipped = within(
       screen.getByRole("tablist", { name: "Turn players" }),
