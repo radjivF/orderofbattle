@@ -90,6 +90,7 @@ export function PathToGlorySpellCard({
             })),
           )}
           selectedIds={selected}
+          maxPerLore={6}
           onToggle={(id) =>
             onChange(
               patchPathToGloryState(list, {
@@ -190,6 +191,7 @@ export function PathToGloryManifestationCard({
             })),
           )}
           selectedIds={selected}
+          maxPerLore={6}
           onToggle={(id) =>
             onChange(
               patchPathToGloryState(list, {
@@ -228,10 +230,12 @@ function groupByLore(rows: PickRow[]): { loreName: string; items: PickRow[] }[] 
 function LearnedGroups({
   groups,
   selectedIds,
+  maxPerLore = 99,
   onToggle,
 }: {
   groups: { loreName: string; items: PickRow[] }[];
   selectedIds: string[];
+  maxPerLore?: number;
   onToggle: (id: string) => void;
 }) {
   return (
@@ -241,6 +245,7 @@ function LearnedGroups({
           <LoreGroup
             group={group}
             selectedIds={selectedIds}
+            maxPerLore={maxPerLore}
             onToggle={onToggle}
           />
         </li>
@@ -252,16 +257,19 @@ function LearnedGroups({
 function LoreGroup({
   group,
   selectedIds,
+  maxPerLore = 99,
   onToggle,
 }: {
   group: { loreName: string; items: PickRow[] };
   selectedIds: string[];
+  maxPerLore?: number;
   onToggle: (id: string) => void;
 }) {
   const [open, setOpen] = useState(false);
   const learned = group.items.filter((item) =>
     selectedIds.includes(item.id),
   ).length;
+  const atCap = learned >= maxPerLore;
 
   return (
     <div className="rounded-xl bg-parchment-ink/5">
@@ -286,15 +294,24 @@ function LoreGroup({
       </button>
       {open ? (
         <ul className="flex flex-col gap-2 border-t border-parchment-ink/10 px-2 pb-2 pt-2">
-          {group.items.map((item) => (
-            <li key={item.id}>
-              <LearnedPick
-                item={item}
-                checked={selectedIds.includes(item.id)}
-                onToggle={() => onToggle(item.id)}
-              />
-            </li>
-          ))}
+          {atCap ? (
+            <p className="px-2 py-1 text-xs text-aether">
+              Cap of {maxPerLore} reached. Uncheck one to add another.
+            </p>
+          ) : null}
+          {group.items.map((item) => {
+            const isChecked = selectedIds.includes(item.id);
+            return (
+              <li key={item.id}>
+                <LearnedPick
+                  item={item}
+                  checked={isChecked}
+                  disabled={atCap && !isChecked}
+                  onToggle={() => onToggle(item.id)}
+                />
+              </li>
+            );
+          })}
         </ul>
       ) : null}
     </div>
@@ -304,10 +321,12 @@ function LoreGroup({
 function LearnedPick({
   item,
   checked,
+  disabled = false,
   onToggle,
 }: {
   item: PickRow;
   checked: boolean;
+  disabled?: boolean;
   onToggle: () => void;
 }) {
   const [rulesOpen, setRulesOpen] = useState(false);
@@ -320,17 +339,20 @@ function LearnedPick({
       className={`rounded-xl ring-1 ${
         checked
           ? "bg-aether/15 ring-aether/40"
-          : "bg-parchment-ink/5 ring-parchment-ink/10"
+          : disabled
+            ? "bg-parchment-ink/5 ring-parchment-ink/10 opacity-50"
+            : "bg-parchment-ink/5 ring-parchment-ink/10"
       }`}
     >
       <div className="flex items-start gap-2 px-2 py-1">
-        <label className="flex min-h-11 min-w-0 flex-1 cursor-pointer items-start gap-2 py-2">
+        <label className={`flex min-h-11 min-w-0 flex-1 ${disabled ? "cursor-not-allowed" : "cursor-pointer"} items-start gap-2 py-2`}>
           <input
             type="checkbox"
             checked={checked}
+            disabled={disabled}
             onChange={onToggle}
             aria-label={item.name}
-            className="mt-1 size-5 shrink-0 accent-aether"
+            className="mt-1 size-5 shrink-0 accent-aether disabled:cursor-not-allowed"
           />
           <span className="min-w-0">
             <span className="block font-serif text-lg leading-tight text-parchment-ink">
