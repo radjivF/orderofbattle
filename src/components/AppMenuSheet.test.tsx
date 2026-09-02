@@ -1,3 +1,6 @@
+import { readFileSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -12,12 +15,13 @@ vi.mock("next/navigation", () => ({
   useRouter: () => ({ push }),
 }));
 
+import type { ActiveMenu } from "@/lib/activeMenu";
 import { AppMenuSheet } from "./AppMenuSheet";
 
 function Harness({
   onSelect,
 }: {
-  onSelect: (menu: "aos" | "tow" | "tactics") => void;
+  onSelect: (menu: ActiveMenu) => void;
 }) {
   const [open, setOpen] = useState(true);
   if (!open) {
@@ -40,7 +44,21 @@ afterEach(() => {
 });
 
 describe("AppMenuSheet", () => {
-  it("titles List builder and Battle record, with games as rows", () => {
+  it("holds the closing drawer off-screen until it unmounts", () => {
+    const root = path.dirname(fileURLToPath(import.meta.url));
+    const css = readFileSync(
+      path.resolve(root, "../app/globals.css"),
+      "utf8",
+    );
+    const rule = css.match(/\.app-menu-drawer--out\s*\{[^}]*\}/)?.[0];
+
+    // Without a fill mode the panel snaps back to open when the animation
+    // ends, which lands a frame before the matching unmount timer.
+    expect(rule).toBeTruthy();
+    expect(rule).toMatch(/forwards|both/);
+  });
+
+  it("groups AOS features, then 40k and The old world", () => {
     render(<Harness onSelect={vi.fn()} />);
 
     const dialog = screen.getByRole("dialog", { name: "Menu" });
@@ -49,17 +67,21 @@ describe("AppMenuSheet", () => {
 
     expect(classes).toContain("bg-ink/70");
     expect(classes).not.toContain("bg-ink");
-    expect(screen.getByRole("heading", { name: "List builder" })).toBeTruthy();
-    expect(screen.getByRole("heading", { name: "Battle record" })).toBeTruthy();
-    expect(screen.getByRole("button", { name: "AOS lists" })).toBeEnabled();
+    expect(screen.getByRole("heading", { name: "AOS" })).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "40k" })).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "The old world" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "List builder" })).toBeEnabled();
     expect(screen.queryByRole("button", { name: "The old world lists" })).toBeNull();
-    expect(screen.getByRole("button", { name: "AOS battle record" })).toBeEnabled();
+    expect(screen.getByRole("button", { name: "Battle record" })).toBeEnabled();
+    expect(screen.getByRole("button", { name: "Core rules" })).toBeEnabled();
+    expect(screen.getByRole("button", { name: "Scourge of Aqshy rules" })).toBeEnabled();
     expect(screen.queryByRole("button", { name: "40k lists" })).toBeNull();
     expect(screen.queryByRole("button", { name: "40k battle record" })).toBeNull();
-    expect(screen.queryByRole("button", { name: "Spearhead battle record" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Spearhead record" })).toBeNull();
+    expect(screen.queryByRole("heading", { name: "List builder" })).toBeNull();
     expect(screen.queryByRole("heading", { name: "Age of Sigmar" })).toBeNull();
     expect(dialog).toHaveTextContent("Coming soon");
-    expect(dialog).toHaveTextContent("Spearhead");
+    expect(dialog).toHaveTextContent("Spearhead record");
     expect(dialog).not.toHaveTextContent("Games");
     expect(dialog).not.toHaveTextContent("Track a game");
   });
@@ -67,68 +89,79 @@ describe("AppMenuSheet", () => {
   it("keeps list rows in a plain stack, not a card", () => {
     render(<Harness onSelect={vi.fn()} />);
 
-    const lists = screen.getByRole("button", { name: "AOS lists" });
+    const lists = screen.getByRole("button", { name: "List builder" });
     const group = lists.closest("ul");
     expect(group?.className).not.toContain("rounded-xl");
     expect(group?.className).not.toContain("gap-");
-    expect(group).toHaveTextContent("The old world");
-    expect(group).toHaveTextContent("40k");
-    expect(group).not.toContainElement(
-      screen.getByRole("button", { name: "AOS battle record" }),
+    expect(group).toHaveTextContent("Spearhead record");
+    expect(group).toContainElement(
+      screen.getByRole("button", { name: "Battle record" }),
     );
+    expect(group).not.toHaveTextContent("40k");
   });
 
   it("does not drill into a nested game menu", () => {
     render(<Harness onSelect={vi.fn()} />);
 
     expect(screen.getByRole("dialog", { name: "Menu" }).querySelector(".app-menu-nav-track")).toBeNull();
-    expect(screen.getByRole("button", { name: "AOS lists" })).toBeEnabled();
+    expect(screen.getByRole("button", { name: "List builder" })).toBeEnabled();
     expect(screen.queryByRole("button", { name: "40k lists" })).toBeNull();
   });
 
-  it("titles List builder and Battle record the same way", () => {
+  it("titles AOS live and mutes games that are not out yet", () => {
     render(<Harness onSelect={vi.fn()} />);
 
-    const lists = screen.getByRole("heading", { name: "List builder" });
-    const battle = screen.getByRole("heading", { name: "Battle record" });
-    expect(lists.tagName).toBe("H3");
-    expect(battle.tagName).toBe("H3");
-    expect(battle.className).toBe(lists.className);
-    expect(lists.className).toContain("font-serif");
+    const aos = screen.getByRole("heading", { name: "AOS" });
+    const fortyK = screen.getByRole("heading", { name: "40k" });
+    const tow = screen.getByRole("heading", { name: "The old world" });
+    expect(aos.tagName).toBe("H3");
+    expect(fortyK.tagName).toBe("H3");
+    expect(tow.tagName).toBe("H3");
+    expect(aos.className).toContain("font-serif");
+    expect(fortyK.className).toContain("sheet-muted");
+    expect(tow.className).toContain("sheet-muted");
+    expect(fortyK.className).not.toBe(aos.className);
   });
 
-  it("keeps hamburger order: list games, then battle record games", () => {
+  it("keeps hamburger order: AOS features, then 40k, then The old world", () => {
     render(<Harness onSelect={vi.fn()} />);
 
-    const listTitle = screen.getByRole("heading", { name: "List builder" });
-    const aosLists = screen.getByRole("button", { name: "AOS lists" });
-    const listSection = listTitle.closest("section");
-    const towComingSoon = listSection
-      ? within(listSection).getByText("The old world")
+    const aosTitle = screen.getByRole("heading", { name: "AOS" });
+    const listBuilder = screen.getByRole("button", { name: "List builder" });
+    const battle = screen.getByRole("button", { name: "Battle record" });
+    const core = screen.getByRole("button", { name: "Core rules" });
+    const scourge = screen.getByRole("button", { name: "Scourge of Aqshy rules" });
+    const fortyK = screen.getByRole("heading", { name: "40k" });
+    const tow = screen.getByRole("heading", { name: "The old world" });
+    const aosSection = aosTitle.closest("section");
+    const spearhead = aosSection
+      ? within(aosSection).getByText("Spearhead record")
       : null;
-    const battleTitle = screen.getByRole("heading", { name: "Battle record" });
-    const aosBattle = screen.getByRole("button", { name: "AOS battle record" });
 
-    expect(towComingSoon).toBeTruthy();
+    expect(spearhead).toBeTruthy();
     expect(
-      listTitle.compareDocumentPosition(aosLists) & Node.DOCUMENT_POSITION_FOLLOWING,
+      aosTitle.compareDocumentPosition(listBuilder) & Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy();
     expect(
-      aosLists.compareDocumentPosition(towComingSoon!) &
-        Node.DOCUMENT_POSITION_FOLLOWING,
+      listBuilder.compareDocumentPosition(battle) & Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy();
     expect(
-      towComingSoon!.compareDocumentPosition(battleTitle) &
-        Node.DOCUMENT_POSITION_FOLLOWING,
+      battle.compareDocumentPosition(spearhead!) & Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy();
     expect(
-      battleTitle.compareDocumentPosition(aosBattle) & Node.DOCUMENT_POSITION_FOLLOWING,
+      spearhead!.compareDocumentPosition(core) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+    expect(
+      core.compareDocumentPosition(scourge) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+    expect(
+      scourge.compareDocumentPosition(fortyK) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+    expect(
+      fortyK.compareDocumentPosition(tow) & Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy();
 
-    const battleSection = battleTitle.closest("section");
-    expect(battleSection).toHaveTextContent("Coming soon");
-    expect(battleSection).toHaveTextContent("Spearhead");
-    expect(battleSection).not.toContainElement(aosLists);
+    expect(aosSection).not.toContainElement(fortyK);
   });
 
   it("does not treat coming-soon games as links", () => {
@@ -139,7 +172,7 @@ describe("AppMenuSheet", () => {
     expect(screen.queryByRole("button", { name: /coming soon/i })).toBeNull();
     expect(screen.queryByRole("button", { name: "The old world lists" })).toBeNull();
     expect(screen.queryByRole("button", { name: "40k lists" })).toBeNull();
-    expect(screen.queryByRole("button", { name: "Spearhead battle record" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Spearhead record" })).toBeNull();
     expect(onSelect).not.toHaveBeenCalled();
     expect(push).not.toHaveBeenCalled();
   });
@@ -147,7 +180,7 @@ describe("AppMenuSheet", () => {
   it("mutes coming-soon rows so they do not look like links", () => {
     render(<Harness onSelect={vi.fn()} />);
 
-    const row = screen.getByText("Spearhead").closest("div");
+    const row = screen.getByText("Spearhead record").closest("div");
     const classes = row?.className.split(/\s+/) ?? [];
     expect(classes).toContain("opacity-40");
     expect(classes).toContain("pointer-events-none");
@@ -167,7 +200,7 @@ describe("AppMenuSheet", () => {
 
     render(<Harness onSelect={onSelect} />);
 
-    await user.click(screen.getByRole("button", { name: "AOS lists" }));
+    await user.click(screen.getByRole("button", { name: "List builder" }));
 
     expect(onSelect).toHaveBeenCalledWith("aos");
     expect(push).toHaveBeenCalledWith("/dashboard", { scroll: false });
@@ -198,7 +231,7 @@ describe("AppMenuSheet", () => {
 
     render(<Harness onSelect={onSelect} />);
 
-    await user.click(screen.getByRole("button", { name: "AOS battle record" }));
+    await user.click(screen.getByRole("button", { name: "Battle record" }));
 
     expect(onSelect).toHaveBeenCalledWith("tactics");
     expect(push).toHaveBeenCalledWith("/battle-record", { scroll: false });
@@ -218,12 +251,12 @@ describe("AppMenuSheet", () => {
 
     render(<Harness onSelect={onSelect} />);
 
-    expect(screen.getByRole("button", { name: "AOS lists" })).toHaveAttribute(
+    expect(screen.getByRole("button", { name: "List builder" })).toHaveAttribute(
       "aria-pressed",
       "false",
     );
 
-    await user.click(screen.getByRole("button", { name: "AOS lists" }));
+    await user.click(screen.getByRole("button", { name: "List builder" }));
 
     expect(onSelect).toHaveBeenCalledWith("aos");
     expect(push).toHaveBeenCalledWith("/dashboard", { scroll: false });
@@ -233,11 +266,11 @@ describe("AppMenuSheet", () => {
     navigation.pathname = "/battle-record";
     render(<Harness onSelect={vi.fn()} />);
 
-    expect(screen.getByRole("button", { name: "AOS lists" })).toHaveAttribute(
+    expect(screen.getByRole("button", { name: "List builder" })).toHaveAttribute(
       "aria-pressed",
       "false",
     );
-    expect(screen.getByRole("button", { name: "AOS battle record" })).toHaveAttribute(
+    expect(screen.getByRole("button", { name: "Battle record" })).toHaveAttribute(
       "aria-pressed",
       "true",
     );
@@ -249,7 +282,7 @@ describe("AppMenuSheet", () => {
 
     render(<Harness onSelect={vi.fn()} />);
 
-    await user.click(screen.getByRole("button", { name: "AOS battle record" }));
+    await user.click(screen.getByRole("button", { name: "Battle record" }));
 
     expect(push).toHaveBeenCalledWith("/battle-record", { scroll: false });
   });
@@ -260,9 +293,62 @@ describe("AppMenuSheet", () => {
 
     render(<Harness onSelect={vi.fn()} />);
 
-    await user.click(screen.getByRole("button", { name: "AOS battle record" }));
+    await user.click(screen.getByRole("button", { name: "Battle record" }));
 
     expect(push).not.toHaveBeenCalled();
+  });
+
+  it("opens Core rules under Age of Sigmar", async () => {
+    navigation.pathname = "/dashboard";
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    const onSelect = vi.fn();
+
+    render(<Harness onSelect={onSelect} />);
+
+    await user.click(screen.getByRole("button", { name: "Core rules" }));
+
+    expect(onSelect).toHaveBeenCalledWith("core-rules");
+    expect(push).toHaveBeenCalledWith("/core-rules", { scroll: false });
+  });
+
+  it("marks Core Rules current on the core rules page", () => {
+    navigation.pathname = "/core-rules";
+    render(<Harness onSelect={vi.fn()} />);
+
+    expect(screen.getByRole("button", { name: "List builder" })).toHaveAttribute(
+      "aria-pressed",
+      "false",
+    );
+    expect(screen.getByRole("button", { name: "Core rules" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+  });
+
+  it("opens Scourge of Aqshy rules under Age of Sigmar", async () => {
+    navigation.pathname = "/dashboard";
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    const onSelect = vi.fn();
+
+    render(<Harness onSelect={onSelect} />);
+
+    await user.click(screen.getByRole("button", { name: "Scourge of Aqshy rules" }));
+
+    expect(onSelect).toHaveBeenCalledWith("scourge-rules");
+    expect(push).toHaveBeenCalledWith("/scourge-rules", { scroll: false });
+  });
+
+  it("marks Scourge of Aqshy rules current on that page", () => {
+    navigation.pathname = "/scourge-rules";
+    render(<Harness onSelect={vi.fn()} />);
+
+    expect(screen.getByRole("button", { name: "Core rules" })).toHaveAttribute(
+      "aria-pressed",
+      "false",
+    );
+    expect(
+      screen.getByRole("button", { name: "Scourge of Aqshy rules" }),
+    ).toHaveAttribute("aria-pressed", "true");
   });
 
   it("does not open The old world lists before release", () => {

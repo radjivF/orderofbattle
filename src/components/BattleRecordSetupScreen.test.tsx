@@ -46,6 +46,81 @@ afterEach(() => {
 });
 
 describe("BattleRecordSetupScreen", () => {
+  it("defaults the battlepack to Scourge of Aqshy and parks Path to Glory as coming soon", () => {
+    const game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+    });
+
+    render(
+      <BattleRecordSetupScreen
+        game={game}
+        onChange={() => undefined}
+        onBack={() => undefined}
+      />,
+    );
+
+    const pack = screen.getByLabelText("Battlepack");
+    expect(pack.tagName).toBe("SELECT");
+    expect(pack).toHaveValue("scourge-aqshy");
+    expect(
+      screen.queryByText("Scourge of Aqshy · GHB 2026–27"),
+    ).toBeNull();
+
+    const scourge = within(pack).getByRole("option", {
+      name: "Scourge of Aqshy",
+    });
+    expect(scourge).toBeEnabled();
+
+    const pathGroup = screen.getByRole("group", { name: "Path to Glory" });
+    const ravaged = within(pathGroup).getByRole("option", {
+      name: /Ravaged Coast/i,
+    });
+    const wilds = within(pathGroup).getByRole("option", {
+      name: /Blighted Wilds/i,
+    });
+    const ascension = within(pathGroup).getByRole("option", {
+      name: /Ascension/i,
+    });
+    expect(ravaged).toBeDisabled();
+    expect(wilds).toBeDisabled();
+    expect(ascension).toBeDisabled();
+    expect(ravaged).toHaveTextContent(/coming soon/i);
+    expect(wilds).toHaveTextContent(/coming soon/i);
+    expect(ascension).toHaveTextContent(/coming soon/i);
+  });
+
+  it("does not switch battlepack when a coming-soon Path to Glory row is chosen", async () => {
+    const user = userEvent.setup();
+    const onChange = vi.fn();
+    const game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+    });
+
+    render(
+      <BattleRecordSetupScreen
+        game={game}
+        onChange={onChange}
+        onBack={() => undefined}
+      />,
+    );
+
+    const pack = screen.getByLabelText("Battlepack");
+    const ravaged = within(pack).getByRole("option", {
+      name: /Ravaged Coast/i,
+    });
+    await user.selectOptions(pack, ravaged);
+    expect(pack).toHaveValue("scourge-aqshy");
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
   it("lists battleplans and keeps Start game disabled until a plan is chosen", async () => {
     const user = userEvent.setup();
     const onChange = vi.fn();
@@ -150,7 +225,7 @@ describe("BattleRecordSetupScreen", () => {
     expect(next.status).toBe("active");
   });
 
-  it("places Start and Cancel centered in the main flow, not a fixed footer", () => {
+  it("places Start game centered in the main flow, not a fixed footer", () => {
     const game = setBattleplan(
       createBattleRecord({
         yourName: "Rad",
@@ -178,9 +253,141 @@ describe("BattleRecordSetupScreen", () => {
     expect(
       within(main).getByRole("button", { name: "Start game" }),
     ).toBeEnabled();
+  });
+
+  it("leaves the match fields out of first-run setup", () => {
+    const game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+    });
+
+    render(
+      <BattleRecordSetupScreen
+        game={game}
+        onChange={() => undefined}
+        onBack={() => undefined}
+      />,
+    );
+
+    expect(screen.queryByRole("heading", { name: "Match" })).toBeNull();
+    expect(screen.queryByLabelText("Your name")).toBeNull();
+    expect(screen.queryByRole("button", { name: "Your army" })).toBeNull();
+    expect(screen.queryByLabelText("Opponent name")).toBeNull();
+    expect(screen.queryByRole("button", { name: "Opponent army" })).toBeNull();
+    expect(screen.getByRole("heading", { name: "Battleplan" })).toBeTruthy();
+  });
+
+  it("brings the match fields back when reopening setup for a live battle", () => {
+    const game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+    });
+
+    render(
+      <BattleRecordSetupScreen
+        game={game}
+        editing
+        onChange={() => undefined}
+        onBack={() => undefined}
+      />,
+    );
+
+    expect(screen.getByRole("heading", { name: "Match" })).toBeTruthy();
+    expect(screen.getByLabelText("Your name")).toHaveValue("Rad");
+    expect(screen.getByRole("button", { name: "Your army" })).toHaveTextContent(
+      "Stormcast",
+    );
+    expect(screen.getByRole("heading", { name: "Battleplan" })).toBeTruthy();
+  });
+
+  it("puts Start game at the bottom, after the battleplan, with no Cancel", () => {
+    const game = setBattleplan(
+      createBattleRecord({
+        yourName: "Rad",
+        yourArmy: "Stormcast",
+        opponentName: "Alex",
+        opponentArmy: "Khorne",
+        allowDoubleTurn: true,
+      }),
+      "into-the-fire",
+    );
+
+    render(
+      <BattleRecordSetupScreen
+        game={game}
+        onChange={() => undefined}
+        onBack={() => undefined}
+      />,
+    );
+
+    const start = screen.getByRole("button", { name: "Start game" });
+    const battleplan = screen.getByRole("heading", { name: "Battleplan" });
+
+    expect(screen.queryByRole("button", { name: "Cancel" })).toBeNull();
     expect(
-      within(main).getByRole("button", { name: "Cancel" }),
-    ).toBeInTheDocument();
+      battleplan.compareDocumentPosition(start) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+  });
+
+  it("keeps the battleplan hint with Start game at the bottom", () => {
+    const game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+    });
+
+    render(
+      <BattleRecordSetupScreen
+        game={game}
+        onChange={() => undefined}
+        onBack={() => undefined}
+      />,
+    );
+
+    const hint = screen.getByText("Still need a battleplan");
+    const battleplan = screen.getByRole("heading", { name: "Battleplan" });
+    expect(screen.getByRole("button", { name: "Start game" })).toBeDisabled();
+    expect(
+      battleplan.compareDocumentPosition(hint) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+  });
+
+  it("names the tactic cards even when a player was left blank", () => {
+    const game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "",
+      opponentName: "",
+      opponentArmy: "",
+      allowDoubleTurn: true,
+    });
+
+    render(
+      <BattleRecordSetupScreen
+        game={game}
+        onChange={() => undefined}
+        onBack={() => undefined}
+      />,
+    );
+
+    expect(
+      screen.getByRole("heading", { name: /^Rad · battle tactics/ }),
+    ).toBeTruthy();
+    expect(
+      screen.getByRole("heading", { name: /^Opponent · battle tactics/ }),
+    ).toBeTruthy();
+    expect(
+      screen.queryByRole("heading", { name: /^· battle tactics/ }),
+    ).toBeNull();
   });
 
   it("aligns the back button with the title and the match card gutter", () => {

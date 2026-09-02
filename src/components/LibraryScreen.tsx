@@ -39,7 +39,10 @@ import { LibraryOptionsSheet } from "./LibraryOptionsSheet";
 import {
   BattleRecordHost,
   isBattleRecordPath,
+  isCoreRulesPath,
+  isScourgeRulesPath,
 } from "./BattleRecordHost";
+import { CoreRulesScreen } from "./CoreRulesScreen";
 import { ModalFrame } from "./ModalFrame";
 import { ConfirmSheetActions } from "./ConfirmSheetActions";
 import { IosNavAddButton, IosNavOptionsButton } from "./ios/IosNavIconButton";
@@ -71,6 +74,8 @@ export function LibraryScreen() {
     return sortLibraryLists(scoped, sortMode);
   }, [activeMenu, lists, sortMode]);
   const onBattleRecord = isBattleRecordPath(pathname);
+  const onCoreRules = isCoreRulesPath(pathname);
+  const onScourgeRules = isScourgeRulesPath(pathname);
 
   async function onDuplicate(list: StoredList) {
     await saveArmy(duplicateArmy(list));
@@ -187,7 +192,15 @@ export function LibraryScreen() {
       <div hidden={!onBattleRecord}>
         <BattleRecordHost />
       </div>
-      <div hidden={onBattleRecord}>{listsPane}</div>
+      <div hidden={!onCoreRules}>
+        <CoreRulesScreen />
+      </div>
+      <div hidden={!onScourgeRules}>
+        <CoreRulesScreen pack="scourge" />
+      </div>
+      <div hidden={onBattleRecord || onCoreRules || onScourgeRules}>
+        {listsPane}
+      </div>
     </>
   );
 }

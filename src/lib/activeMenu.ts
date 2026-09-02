@@ -1,4 +1,10 @@
-export const ACTIVE_MENU_IDS = ["aos", "tow", "tactics"] as const;
+export const ACTIVE_MENU_IDS = [
+  "aos",
+  "tow",
+  "tactics",
+  "core-rules",
+  "scourge-rules",
+] as const;
 
 export type ActiveMenu = (typeof ACTIVE_MENU_IDS)[number];
 
@@ -29,13 +35,24 @@ export const GAME_MENU_ROWS: readonly {
   },
 ];
 
-export type GameFeatureId = "lists" | "battle-record";
+export type GameFeatureId =
+  | "lists"
+  | "battle-record"
+  | "spearhead-record"
+  | "core-rules"
+  | "scourge-rules";
 
-export type MenuGameId = GameSystemId | "spearhead";
+export type MenuEntryId = GameFeatureId | "coming-soon";
 
 export const LISTS_MENU_LABEL = "List builder";
 
 export const BATTLE_RECORD_MENU_LABEL = "Battle record";
+
+export const SPEARHEAD_RECORD_MENU_LABEL = "Spearhead record";
+
+export const CORE_RULES_MENU_LABEL = "Core rules";
+
+export const SCOURGE_RULES_MENU_LABEL = "Scourge of Aqshy rules";
 
 export const GAME_FEATURE_ROWS: readonly {
   id: GameFeatureId;
@@ -43,74 +60,90 @@ export const GAME_FEATURE_ROWS: readonly {
 }[] = [
   { id: "lists", label: LISTS_MENU_LABEL },
   { id: "battle-record", label: BATTLE_RECORD_MENU_LABEL },
+  { id: "spearhead-record", label: SPEARHEAD_RECORD_MENU_LABEL },
+  { id: "core-rules", label: CORE_RULES_MENU_LABEL },
+  { id: "scourge-rules", label: SCOURGE_RULES_MENU_LABEL },
 ];
 
 export type MenuSectionEntry = {
-  id: MenuGameId;
+  id: MenuEntryId;
   label: string;
   actionName: string;
   comingSoon?: boolean;
   menu?: ActiveMenu;
-  href?: "/dashboard" | "/battle-record";
+  href?: "/dashboard" | "/battle-record" | "/core-rules" | "/scourge-rules";
 };
 
+const MUTED_MENU_TITLE_CLASS = "font-serif text-lg text-sheet-muted";
+
 export const MENU_SECTIONS: readonly {
-  id: GameFeatureId;
+  id: GameSystemId;
   label: string;
+  titleClass?: string;
   entries: readonly MenuSectionEntry[];
 }[] = [
   {
-    id: "lists",
-    label: LISTS_MENU_LABEL,
+    id: "aos",
+    label: "AOS",
     entries: [
       {
-        id: "aos",
-        label: "AOS",
-        actionName: "AOS lists",
+        id: "lists",
+        label: LISTS_MENU_LABEL,
+        actionName: LISTS_MENU_LABEL,
         menu: "aos",
         href: "/dashboard",
       },
       {
-        id: "tow",
-        label: "The old world",
-        actionName: "The old world lists",
+        id: "battle-record",
+        label: BATTLE_RECORD_MENU_LABEL,
+        actionName: BATTLE_RECORD_MENU_LABEL,
+        menu: "tactics",
+        href: "/battle-record",
+      },
+      {
+        id: "spearhead-record",
+        label: SPEARHEAD_RECORD_MENU_LABEL,
+        actionName: SPEARHEAD_RECORD_MENU_LABEL,
         comingSoon: true,
       },
       {
-        id: "40k",
-        label: "40k",
-        actionName: "40k lists",
+        id: "core-rules",
+        label: CORE_RULES_MENU_LABEL,
+        actionName: CORE_RULES_MENU_LABEL,
+        menu: "core-rules",
+        href: "/core-rules",
+      },
+      {
+        id: "scourge-rules",
+        label: SCOURGE_RULES_MENU_LABEL,
+        actionName: SCOURGE_RULES_MENU_LABEL,
+        menu: "scourge-rules",
+        href: "/scourge-rules",
+      },
+    ],
+  },
+  {
+    id: "40k",
+    label: "40k",
+    titleClass: MUTED_MENU_TITLE_CLASS,
+    entries: [
+      {
+        id: "coming-soon",
+        label: "Coming soon",
+        actionName: "40k coming soon",
         comingSoon: true,
       },
     ],
   },
   {
-    id: "battle-record",
-    label: BATTLE_RECORD_MENU_LABEL,
+    id: "tow",
+    label: "The old world",
+    titleClass: MUTED_MENU_TITLE_CLASS,
     entries: [
       {
-        id: "aos",
-        label: "AOS",
-        actionName: "AOS battle record",
-        menu: "tactics",
-        href: "/battle-record",
-      },
-      {
-        id: "tow",
-        label: "The old world",
-        actionName: "The old world battle record",
-        comingSoon: true,
-      },
-      {
-        id: "40k",
-        label: "40k",
-        actionName: "40k battle record",
-        comingSoon: true,
-      },
-      {
-        id: "spearhead",
-        label: "Spearhead",
-        actionName: "Spearhead battle record",
+        id: "coming-soon",
+        label: "Coming soon",
+        actionName: "The old world coming soon",
         comingSoon: true,
       },
     ],
@@ -125,6 +158,26 @@ export const TRACK_GAME_MENU_ROW: {
   id: "tactics",
   label: "Battle record",
   brandSubtitle: "Score a live game",
+};
+
+export const CORE_RULES_MENU_ROW: {
+  id: Extract<ActiveMenu, "core-rules">;
+  label: string;
+  brandSubtitle: string;
+} = {
+  id: "core-rules",
+  label: CORE_RULES_MENU_LABEL,
+  brandSubtitle: "Core rules for Age of Sigmar",
+};
+
+export const SCOURGE_RULES_MENU_ROW: {
+  id: Extract<ActiveMenu, "scourge-rules">;
+  label: string;
+  brandSubtitle: string;
+} = {
+  id: "scourge-rules",
+  label: SCOURGE_RULES_MENU_LABEL,
+  brandSubtitle: "Scourge of Aqshy for Age of Sigmar",
 };
 
 export const MENU_ROWS: readonly {
@@ -143,6 +196,8 @@ export const MENU_ROWS: readonly {
     brandSubtitle: GAME_MENU_ROWS[1].brandSubtitle,
   },
   TRACK_GAME_MENU_ROW,
+  CORE_RULES_MENU_ROW,
+  SCOURGE_RULES_MENU_ROW,
 ];
 
 const STORAGE_KEY = "oob:active-menu";
@@ -166,7 +221,12 @@ function canUseStorage() {
 }
 
 function parseActiveMenu(value: string | null): ActiveMenu {
-  if (value === "tow" || value === "tactics") {
+  if (
+    value === "tow" ||
+    value === "tactics" ||
+    value === "core-rules" ||
+    value === "scourge-rules"
+  ) {
     return value;
   }
   return "aos";
@@ -203,19 +263,40 @@ export function menuShowsListLibrary(menu: ActiveMenu): boolean {
   return menu === "aos" || menu === "tow";
 }
 
+export function menuIdForPathname(
+  pathname: string | null | undefined,
+  stored: ActiveMenu,
+): ActiveMenu {
+  if (!pathname) {
+    return stored;
+  }
+  if (pathname === "/battle-record" || pathname.startsWith("/battle-record/")) {
+    return "tactics";
+  }
+  if (pathname === "/core-rules") {
+    return "core-rules";
+  }
+  if (pathname === "/scourge-rules") {
+    return "scourge-rules";
+  }
+  return stored;
+}
+
 export function gameComingSoon(gameId: GameSystemId): boolean {
-  const entries = MENU_SECTIONS.flatMap((section) =>
-    section.entries.filter((entry) => entry.id === gameId),
+  const section = MENU_SECTIONS.find((item) => item.id === gameId);
+  return Boolean(
+    section &&
+      section.entries.length > 0 &&
+      section.entries.every((entry) => entry.comingSoon),
   );
-  return entries.length > 0 && entries.every((entry) => entry.comingSoon);
 }
 
 export function gameFeatureEnabled(
   gameId: GameSystemId,
   feature: GameFeatureId,
 ): boolean {
-  const entry = MENU_SECTIONS.find((section) => section.id === feature)?.entries.find(
-    (item) => item.id === gameId,
+  const entry = MENU_SECTIONS.find((section) => section.id === gameId)?.entries.find(
+    (item) => item.id === feature,
   );
   return Boolean(entry && !entry.comingSoon);
 }
@@ -227,7 +308,9 @@ export function gameRootSelected(
 ): boolean {
   return (
     gameListsSelected(pathname, gameId) ||
-    gameBattleRecordSelected(pathname, gameId)
+    gameBattleRecordSelected(pathname, gameId) ||
+    gameCoreRulesSelected(pathname, gameId) ||
+    gameScourgeRulesSelected(pathname, gameId)
   );
 }
 
@@ -263,28 +346,58 @@ export function gameBattleRecordSelected(
   );
 }
 
-export function menuEntrySelected(
+export function gameCoreRulesSelected(
   pathname: string,
-  activeMenu: ActiveMenu,
-  feature: GameFeatureId,
-  gameId: MenuGameId,
+  gameId: GameSystemId,
 ): boolean {
-  if (feature === "lists") {
-    if (gameId !== "aos" && gameId !== "tow") {
-      return false;
-    }
-    return gameListsSelected(pathname, gameId, activeMenu);
-  }
   if (gameId !== "aos") {
     return false;
   }
-  return gameBattleRecordSelected(pathname, "aos");
+  return pathname === "/core-rules";
+}
+
+export function gameScourgeRulesSelected(
+  pathname: string,
+  gameId: GameSystemId,
+): boolean {
+  if (gameId !== "aos") {
+    return false;
+  }
+  return pathname === "/scourge-rules";
+}
+
+export function menuEntrySelected(
+  pathname: string,
+  activeMenu: ActiveMenu,
+  gameId: GameSystemId,
+  feature: MenuEntryId,
+): boolean {
+  if (gameId !== "aos") {
+    return false;
+  }
+  if (feature === "lists") {
+    return gameListsSelected(pathname, "aos", activeMenu);
+  }
+  if (feature === "battle-record") {
+    return gameBattleRecordSelected(pathname, "aos");
+  }
+  if (feature === "core-rules") {
+    return gameCoreRulesSelected(pathname, "aos");
+  }
+  if (feature === "scourge-rules") {
+    return gameScourgeRulesSelected(pathname, "aos");
+  }
+  return false;
 }
 
 export function menuPlaceholderCopy(
   menu: ActiveMenu,
 ): { title: string; body: string } | null {
-  if (menuShowsListLibrary(menu)) {
+  if (
+    menuShowsListLibrary(menu) ||
+    menu === "core-rules" ||
+    menu === "scourge-rules"
+  ) {
     return null;
   }
   return {

@@ -11,6 +11,7 @@ import {
   brandSubtitleForMenu,
   getActiveMenuServerSnapshot,
   getActiveMenuSnapshot,
+  menuIdForPathname,
   subscribeActiveMenu,
 } from "@/lib/activeMenu";
 import {
@@ -37,7 +38,6 @@ import {
 } from "@/lib/storage";
 import type { BuilderChromeValue } from "./BuilderChrome";
 import type { LibraryChromeValue } from "./LibraryChrome";
-import { isBattleRecordPath } from "./BattleRecordHost";
 import { useListNav } from "./IosNavSlide";
 import { AppHeaderMenu } from "./AppHeaderMenu";
 import { IosNavBackButton } from "./ios/IosNavIconButton";
@@ -50,7 +50,7 @@ function LibraryHeaderRow() {
     getActiveMenuSnapshot,
     getActiveMenuServerSnapshot,
   );
-  const menu = isBattleRecordPath(pathname) ? "tactics" : storedMenu;
+  const menu = menuIdForPathname(pathname, storedMenu);
 
   return (
     <div className={SITE_HEADER_ROW_CLASS}>

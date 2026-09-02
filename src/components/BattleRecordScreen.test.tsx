@@ -3,6 +3,7 @@ import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {
   createBattleRecord,
+  finishBattle,
   setBattleplan,
   setRoundVp,
   startBattle,
@@ -174,6 +175,30 @@ describe("BattleRecordScreen", () => {
     expect(screen.getByRole("link", { name: /Rad vs Alex/ })).toHaveAttribute(
       "href",
       "/battle-record/game-delete-me",
+    );
+  });
+
+  it("shows Done in green above the score on a finished game card", () => {
+    games.push(finishBattle(seededGame()));
+    render(<BattleRecordScreen />);
+
+    const done = screen.getByText("Done");
+    expect(done.className).toContain("text-olive");
+    expect(screen.getByText("Into the Fire")).toBeInTheDocument();
+    expect(done.compareDocumentPosition(screen.getByText("10 – 10"))).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    );
+    expect(screen.queryByText(/In progress/i)).toBeNull();
+  });
+
+  it("shows In progress in red above the score on an active game card", () => {
+    games.push(seededGame());
+    render(<BattleRecordScreen />);
+
+    const status = screen.getByText("In progress");
+    expect(status.className).toContain("text-illegal");
+    expect(status.compareDocumentPosition(screen.getByText("10 – 10"))).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
     );
   });
 

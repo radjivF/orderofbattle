@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import userEvent from "@testing-library/user-event";
 import type { CatalogueUnit } from "@/engine/types";
 import { listRegimentsOfRenown } from "@/engine/queries";
 import { cleanup, render, screen } from "@/test-utils/render";
@@ -65,6 +66,33 @@ describe("DatasheetSheet keywords", () => {
     expect(keywords).toHaveTextContent("WIZARD (1)");
     expect(keywords).toHaveTextContent("CASTELITE");
     expect(keywords).not.toHaveTextContent("WARD");
+  });
+
+  it("lets you tap Guarded Hero and HERO to read the core text", async () => {
+    const user = userEvent.setup({ pointerEventsCheck: 0 });
+    render(<DatasheetSheet sheet={unit()} onClose={vi.fn()} />);
+
+    await user.click(screen.getByRole("button", { name: "Guarded Hero" }));
+    expect(screen.getByRole("dialog", { name: "Guarded Hero" })).toBeTruthy();
+    expect(screen.getByText(/12"/)).toBeTruthy();
+
+    await user.click(screen.getByRole("button", { name: "Got it" }));
+    await user.click(screen.getByRole("button", { name: "HERO" }));
+    expect(screen.getByRole("dialog", { name: "HERO" })).toBeTruthy();
+  });
+
+  it("does not show Guarded Hero on a monster hero", () => {
+    render(
+      <DatasheetSheet
+        sheet={unit({
+          categories: ["HERO", "MONSTER"],
+        })}
+        onClose={vi.fn()}
+      />,
+    );
+
+    expect(screen.queryByRole("button", { name: "Guarded Hero" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Eruption of Fury" })).toBeNull();
   });
 });
 

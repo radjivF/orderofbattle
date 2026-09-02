@@ -275,7 +275,7 @@ export function BattleRecordGameScreen({ gameId }: Props) {
   }
 
   const round = game.rounds[roundIndex]!;
-  const dog = underdog(game);
+  const dog = underdog(game, roundIndex);
   const double = isDoubleTurn(game, roundIndex);
   const underdogName =
     dog === "you"

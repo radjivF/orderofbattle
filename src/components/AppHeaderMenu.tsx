@@ -5,11 +5,11 @@ import { usePathname } from "next/navigation";
 import {
   getActiveMenuServerSnapshot,
   getActiveMenuSnapshot,
+  menuIdForPathname,
   setActiveMenu,
   subscribeActiveMenu,
 } from "@/lib/activeMenu";
 import { AppMenuSheet } from "./AppMenuSheet";
-import { isBattleRecordPath } from "./BattleRecordHost";
 import { IosNavMenuButton } from "./ios/IosNavIconButton";
 
 export function AppHeaderMenu() {
@@ -19,7 +19,7 @@ export function AppHeaderMenu() {
     getActiveMenuSnapshot,
     getActiveMenuServerSnapshot,
   );
-  const menu = isBattleRecordPath(pathname) ? "tactics" : storedMenu;
+  const menu = menuIdForPathname(pathname, storedMenu);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {

@@ -35,6 +35,12 @@ function statusLabel(status: GameSession["status"]): string {
   return "Done";
 }
 
+function statusToneClass(status: GameSession["status"]): string {
+  if (status === "done") return "text-olive";
+  if (status === "active") return "text-illegal";
+  return "text-sheet-muted";
+}
+
 export function BattleRecordScreen() {
   const { goForward } = useListNav();
   const games = useSyncExternalStore(
@@ -117,21 +123,33 @@ export function BattleRecordScreen() {
                         event.preventDefault();
                         goForward(`/battle-record/${game.id}`);
                       }}
-                      className="pressable flex cursor-pointer select-none flex-col gap-1 text-left text-parchment-ink"
+                      className="pressable flex cursor-pointer select-none items-stretch gap-3 text-left text-parchment-ink"
                     >
-                      <span className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-                        {statusLabel(game.status)}
-                        {plan ? ` · ${plan.name}` : ""}
-                      </span>
-                      <span className="flex items-center justify-between gap-3">
-                        <span className="min-w-0 flex-1 font-serif text-xl leading-tight">
+                      <span className="min-w-0 flex-1 flex flex-col gap-1">
+                        {plan ? (
+                          <span className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
+                            {plan.name}
+                          </span>
+                        ) : null}
+                        <span className="font-serif text-xl leading-tight">
                           {game.yourName} vs {game.opponentName}
                         </span>
-                        <span className="flex shrink-0 items-center gap-2">
-                          <span className="font-serif text-2xl font-semibold tabular-nums leading-none text-parchment-ink sm:text-3xl">
-                            {matchTotal(game, "you")} –{" "}
-                            {matchTotal(game, "opponent")}
-                          </span>
+                        <span className="text-sm text-sheet-muted">
+                          {game.yourArmy} vs {game.opponentArmy}
+                        </span>
+                      </span>
+                      <span className="flex min-h-full shrink-0 flex-col items-end self-stretch">
+                        <span
+                          className={`text-xs font-semibold tracking-wide uppercase ${statusToneClass(game.status)}`}
+                        >
+                          {statusLabel(game.status)}
+                        </span>
+                        <span className="flex flex-1 items-center justify-end">
+                          <span className="flex items-center gap-2">
+                            <span className="font-serif text-2xl font-semibold tabular-nums leading-none text-parchment-ink sm:text-3xl">
+                              {matchTotal(game, "you")} –{" "}
+                              {matchTotal(game, "opponent")}
+                            </span>
                           <svg
                             aria-hidden="true"
                             viewBox="0 0 12 20"
@@ -146,10 +164,8 @@ export function BattleRecordScreen() {
                               strokeLinejoin="round"
                             />
                           </svg>
+                          </span>
                         </span>
-                      </span>
-                      <span className="text-sm text-sheet-muted">
-                        {game.yourArmy} vs {game.opponentArmy}
                       </span>
                     </Link>
                     <div className="mt-1.5 flex justify-end">
@@ -174,7 +190,7 @@ export function BattleRecordScreen() {
       <BattleRecordCreateSheet
         open={creating}
         onClose={() => setCreating(false)}
-        onCreated={(game) => void onCreated(game)}
+        onCreated={onCreated}
       />
 
       {deleteTarget ? (

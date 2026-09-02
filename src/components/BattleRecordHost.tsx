@@ -15,3 +15,11 @@ export function isBattleRecordPath(pathname: string | null | undefined): boolean
     pathname === "/battle-record" || pathname.startsWith("/battle-record/")
   );
 }
+
+export function isCoreRulesPath(pathname: string | null | undefined): boolean {
+  return pathname === "/core-rules";
+}
+
+export function isScourgeRulesPath(pathname: string | null | undefined): boolean {
+  return pathname === "/scourge-rules";
+}

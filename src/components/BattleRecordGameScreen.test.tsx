@@ -111,6 +111,53 @@ beforeEach(() => {
 });
 
 describe("BattleRecordGameScreen", () => {
+  it("scrolls to the top when starting the battle from setup", async () => {
+    const user = userEvent.setup();
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    vi.mocked(gameStorage.getGame).mockResolvedValue(game);
+    const scrollTo = vi
+      .spyOn(window, "scrollTo")
+      .mockImplementation(() => undefined);
+    Object.defineProperty(window, "scrollY", {
+      configurable: true,
+      value: 640,
+      writable: true,
+    });
+
+    render(<BattleRecordGameScreen gameId="game-1" />);
+    await screen.findByRole("heading", { name: "Set up battle" });
+    await user.click(screen.getByRole("button", { name: "Start game" }));
+
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+    expect(scrollTo).toHaveBeenCalledWith(0, 0);
+    scrollTo.mockRestore();
+  });
+
+  it("keeps underdog fixed for the turn even after scoring catches up", async () => {
+    const user = userEvent.setup();
+    vi.mocked(gameStorage.getGame).mockResolvedValue(
+      activeFixture({ skipRoundVp: true }),
+    );
+
+    render(<BattleRecordGameScreen gameId="game-1" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    expect(screen.getByText("No underdog while scores are tied")).toBeInTheDocument();
+
+    await user.click(
+      screen.getByRole("button", { name: "Rad scored point 1" }),
+    );
+    expect(screen.getByText("No underdog while scores are tied")).toBeInTheDocument();
+    expect(screen.queryByText(/Assigned to Alex \(underdog\)/)).toBeNull();
+  });
+
   it("scores mission points one by one and shows twist for underdog", async () => {
     const user = userEvent.setup();
     vi.mocked(gameStorage.getGame).mockResolvedValue(

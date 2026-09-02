@@ -164,9 +164,36 @@ export function matchTotal(
   );
 }
 
-export function underdog(session: GameSession): BattlePlayer | null {
-  const yours = matchTotal(session, "you");
-  const theirs = matchTotal(session, "opponent");
+/** Match total before this round's VP is counted — the snapshot used for underdog. */
+export function matchTotalAtRoundStart(
+  session: GameSession,
+  roundIndex: number,
+  player: BattlePlayer,
+): number {
+  const priorRoundVp = session.rounds
+    .slice(0, roundIndex)
+    .reduce(
+      (sum, round) =>
+        sum + (player === "you" ? round.yourVp : round.opponentVp),
+      0,
+    );
+  return (
+    priorRoundVp +
+    paintedBonus(session, player) +
+    tacticVpTotal(session, player)
+  );
+}
+
+/** Underdog for a battle round — whoever had fewer VP at the start of that round. */
+export function underdog(
+  session: GameSession,
+  roundIndex: number,
+): BattlePlayer | null {
+  if (roundIndex < 0 || roundIndex >= session.rounds.length) {
+    return null;
+  }
+  const yours = matchTotalAtRoundStart(session, roundIndex, "you");
+  const theirs = matchTotalAtRoundStart(session, roundIndex, "opponent");
   if (yours === theirs) return null;
   return yours < theirs ? "you" : "opponent";
 }
@@ -282,7 +309,7 @@ export function setTwistApplied(
   if (roundIndex < 0 || roundIndex >= session.rounds.length) {
     return session;
   }
-  const dog = underdog(session);
+  const dog = underdog(session, roundIndex);
   if (applied && !dog) {
     return session;
   }

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import { Cinzel, Instrument_Sans } from "next/font/google";
 import { AnalyticsScripts } from "@/components/AnalyticsScripts";
+import { AppziScript } from "@/components/AppziScript";
 import { CookieConsent } from "@/components/CookieConsent";
 import { WhatsNewNotice } from "@/components/WhatsNewNotice";
 import { JsonLd } from "@/components/JsonLd";
@@ -109,6 +110,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         suppressHydrationWarning
       >
         <AnalyticsScripts consentRequired={consentRequired} />
+        <AppziScript consentRequired={consentRequired} />
         <JsonLd data={graph([softwareApplicationNode()])} />
         {children}
         <CookieConsent consentRequired={consentRequired} />
