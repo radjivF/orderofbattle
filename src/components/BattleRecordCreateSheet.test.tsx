@@ -40,7 +40,7 @@ afterEach(() => {
 });
 
 describe("BattleRecordCreateSheet", () => {
-  it("opens as a full-page sheet so the keyboard has room to type a name", () => {
+  it("opens as a centered sheet on large screens", () => {
     render(
       <BattleRecordCreateSheet
         open
@@ -50,15 +50,17 @@ describe("BattleRecordCreateSheet", () => {
     );
 
     const dialog = screen.getByRole("dialog", { name: "New battle record" });
-    expect(dialog.className).toContain("modal-sheet--page");
-    expect(dialog.className).not.toContain("max-h-[85vh]");
+    expect(dialog.className).toContain("modal-sheet");
+    expect(dialog.className).not.toContain("modal-sheet--page");
+    expect(dialog.className).toContain("max-h-[85vh]");
+    expect(dialog.className).toContain("max-w-lg");
     expect(within(dialog).getByLabelText("Your name")).toBeTruthy();
     expect(
       within(dialog).getByRole("button", { name: "Continue" }),
     ).toBeTruthy();
   });
 
-  it("opens the army picker full-page too", async () => {
+  it("opens the army picker as a centered sheet too", async () => {
     const user = userEvent.setup({ pointerEventsCheck: 0 });
     render(
       <BattleRecordCreateSheet
@@ -72,8 +74,9 @@ describe("BattleRecordCreateSheet", () => {
     const picker = await screen.findByRole("dialog", {
       name: "Choose your army",
     });
-    expect(picker.className).toContain("modal-sheet--page");
-    expect(picker.className).not.toContain("max-h-[85vh]");
+    expect(picker.className).toContain("modal-sheet");
+    expect(picker.className).not.toContain("modal-sheet--page");
+    expect(picker.className).toContain("max-h-[85vh]");
   });
 
   it("asks for names, armies, priority mode, and painted only", () => {

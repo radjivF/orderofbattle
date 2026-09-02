@@ -14,6 +14,7 @@ import {
   SHEET_FOOTER_CANCEL_CLASS,
   SHEET_FOOTER_PRIMARY_CLASS,
   SHEET_HEADER_CLASS,
+  SHEET_PANEL_CLASS,
 } from "@/lib/builderUi";
 import {
   BattleRecordMatchFields,
@@ -100,8 +101,7 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
     <ModalFrame
       label="New battle record"
       onClose={onClose}
-      fullPage
-      panelClassName="parchment-card flex h-full w-full flex-col overflow-hidden text-parchment-ink"
+      panelClassName={SHEET_PANEL_CLASS}
     >
       <div className={SHEET_HEADER_CLASS}>
         <div className="min-w-0 flex-1">
