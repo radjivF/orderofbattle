@@ -126,7 +126,7 @@ export function LibraryListCard({
         }}
         className="library-card-open absolute inset-0 z-[1]"
       />
-      <div className="pointer-events-none relative z-[2] flex min-w-0 flex-col p-4 sm:p-5">
+      <div className="pointer-events-none relative z-[2] flex h-full min-w-0 flex-col p-4 sm:p-5">
         <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
           {meta.factionName}
         </p>
@@ -146,7 +146,7 @@ export function LibraryListCard({
             <p className="text-base font-semibold text-gold-deep">
               {meta.pointsLine}
             </p>
-            <p className="mt-0.5 text-sm text-sheet-muted sm:text-base">
+            <p className="mt-0.5 line-clamp-2 text-sm text-sheet-muted sm:text-base">
               {meta.detail}
             </p>
           </div>
@@ -166,7 +166,7 @@ export function LibraryListCard({
           </svg>
         </div>
         <div
-          className={`pointer-events-auto relative ${LIBRARY_CARD_ACTIONS_CLASS}`}
+          className={`pointer-events-auto relative mt-auto ${LIBRARY_CARD_ACTIONS_CLASS}`}
         >
           <button
             type="button"
@@ -189,7 +189,7 @@ export function LibraryListCard({
       </div>
 
       {meta.artSrc ? (
-        <div className="pointer-events-none relative min-h-[8.5rem] overflow-hidden border-l border-parchment-ink/10">
+        <div className="pointer-events-none relative h-full min-h-[8.5rem] overflow-hidden border-l border-parchment-ink/10">
           <Image
             src={meta.artSrc}
             alt=""
@@ -206,7 +206,7 @@ export function LibraryListCard({
           <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#efe6d2]/35" />
         </div>
       ) : (
-        <div className="pointer-events-none min-h-[8.5rem] border-l border-parchment-ink/10 bg-parchment-ink/5" />
+        <div className="pointer-events-none h-full min-h-[8.5rem] border-l border-parchment-ink/10 bg-parchment-ink/5" />
       )}
     </article>
   );

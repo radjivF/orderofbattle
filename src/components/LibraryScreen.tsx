@@ -139,9 +139,9 @@ export function LibraryScreen() {
             onImport={() => setLibrarySheetOpen(true)}
           />
         ) : (
-          <ul className="grid grid-cols-1 gap-4 pt-2 lg:grid-cols-2 lg:gap-5">
+          <ul className="grid grid-cols-1 items-stretch gap-4 pt-2 lg:grid-cols-2 lg:gap-5">
             {displayedLists.map((list, index) => (
-              <li key={list.id}>
+              <li key={list.id} className="min-h-0">
                 <LibraryListCard
                   list={list}
                   index={index}
