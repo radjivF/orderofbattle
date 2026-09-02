@@ -22,7 +22,7 @@ describe("spearhead warscrolls", () => {
     expect(catalogueForList(list)?.id).toBe("cities-of-sigmar-fusil-platoon");
     expect(catalogueForList(list)?.game).toMatch(/Spearhead/i);
     expect(list.regiments[0]?.hero).toBeTruthy();
-    expect(builderPlayTabs(true).map((item) => item.value)).not.toContain(
+    expect(builderPlayTabs(true, false).map((item) => item.value)).not.toContain(
       "magic",
     );
     expect(playPhaseShowsCommandTab(true)).toBe(false);

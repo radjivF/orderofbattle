@@ -141,18 +141,23 @@ describe("builder header stats", () => {
 
 describe("builder play tabs", () => {
   it("keeps Magic and tactics out of Spearhead play", () => {
-    expect(builderPlayTabs(true).map((item) => item.value)).toEqual([
+    expect(builderPlayTabs(true, false).map((item) => item.value)).toEqual([
       "units",
       "phases",
     ]);
-    expect(builderPlayTabs(true).map((item) => item.label)).toEqual([
+    expect(builderPlayTabs(true, false).map((item) => item.label)).toEqual([
       "Units",
       "Phases",
     ]);
-    expect(builderPlayTabs(false).map((item) => item.value)).toEqual([
+    expect(builderPlayTabs(false, false).map((item) => item.value)).toEqual([
       "units",
       "magic",
       "phases",
+    ]);
+    expect(builderPlayTabs(false, true).map((item) => item.label)).toEqual([
+      "Units",
+      "Magic",
+      "Phases",
     ]);
     expect(playPhaseShowsCommandTab(true)).toBe(false);
     expect(playPhaseShowsCommandTab(false)).toBe(true);
@@ -176,11 +181,11 @@ describe("builder play tabs", () => {
       ),
       "utf8",
     );
-    expect(builder).toContain("builderPlayTabs(spearhead)");
+    expect(builder).toContain("builderPlayTabs(spearhead, pathToGlory)");
     expect(builder).toContain(
       'forPlayMode && playTab === "phases" && !spearhead && !pathToGlory',
     );
-    expect(builder).toContain("Points · Battlepacks · Lores");
+    expect(builder).toContain("Battlepacks · Lores · Quest");
     expect(builder).not.toContain("Points · Battlepacks · Lores · Tactics");
     expect(builder).toContain(
       'forPlayMode && playTab === "magic" && !spearhead',

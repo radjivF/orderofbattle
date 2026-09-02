@@ -26,7 +26,7 @@ describe("matched-play lists", () => {
   });
 
   it("keeps Magic, Commands, and points chrome for matched play", () => {
-    expect(builderPlayTabs(false).map((item) => item.value)).toEqual([
+    expect(builderPlayTabs(false, false).map((item) => item.value)).toEqual([
       "units",
       "magic",
       "phases",

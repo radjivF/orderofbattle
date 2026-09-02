@@ -538,7 +538,7 @@ export function BuilderReady({
             onChange={(next) =>
               setPlayTab(next as "units" | "magic" | "phases")
             }
-            options={builderPlayTabs(spearhead)}
+            options={builderPlayTabs(spearhead, pathToGlory)}
           />
         ) : null}
         {!forPlayMode && issue.tone !== "ok" ? (
@@ -591,7 +591,7 @@ export function BuilderReady({
                 {!optionsOpen ? (
                   <span>
                     {isPathToGloryList(list)
-                      ? "Points · Battlepacks · Lores"
+                      ? "Battlepacks · Lores · Quest"
                       : "Points · Lores · Tactics"}
                   </span>
                 ) : null}
