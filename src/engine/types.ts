@@ -270,6 +270,9 @@ export type ArmyList = {
   regimentOfRenown: RegimentOfRenownPick | null;
   /** Play mode: spell/prayer → friendly selection id, or enemy unit name. */
   powerBinds: Record<string, string>;
+  /** Standalone Play mode: Scourge of Aqshy fury (0-7) and rage dice. */
+  playFury?: number;
+  playRage?: number;
   createdAt: number;
   updatedAt: number;
   /** Last time the list was opened in the builder; drives library recency order. */

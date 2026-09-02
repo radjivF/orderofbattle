@@ -10,17 +10,22 @@ import {
   advanceTacticStage,
   canSetFirstPlayer,
   finishBattle,
+  grantRageForRound,
+  initializeFury,
   isDoubleTurn,
   matchTotal,
   paintedBonus,
   reopenBattle,
   roundVpTotal,
+  setFury,
   setPrimaryClaim,
+  setRage,
   setRoundFirstPlayer,
   setTwistApplied,
   syncPrimaryVp,
   tacticVpTotal,
   underdog,
+  usesScourgeOfAqshy,
   type BattlePlayer,
   type GameSession,
 } from "@/engine/gameSession";
@@ -148,6 +153,26 @@ export function BattleRecordGameScreen({ gameId }: Props) {
   useEffect(() => {
     setTurnTab(turnPlayerOrder(firstPlayerOfRound)[0]!);
   }, [roundIndex, firstPlayerOfRound]);
+
+  useEffect(() => {
+    if (!game || game.status !== "active") {
+      return;
+    }
+    const initialized = initializeFury(game);
+    if (initialized !== game) {
+      void commit(initialized);
+    }
+  }, [game]);
+
+  useEffect(() => {
+    if (!game || game.status !== "active") {
+      return;
+    }
+    const withRage = grantRageForRound(game, roundIndex);
+    if (withRage !== game) {
+      void commit(withRage);
+    }
+  }, [game, roundIndex]);
 
   useEffect(() => {
     if (!game) {
@@ -436,11 +461,13 @@ export function BattleRecordGameScreen({ gameId }: Props) {
                 {(["you", "opponent"] as BattlePlayer[]).map((player) => {
                   const allowed = canSetFirstPlayer(game, roundIndex, player);
                   const selected = round.firstPlayer === player;
+                  const playerName = player === "you" ? game.yourName : game.opponentName;
                   return (
                     <button
                       key={player}
                       type="button"
                       disabled={!allowed && !selected}
+                      aria-label={`Set first player: ${playerName}`}
                       onClick={() =>
                         void commit(
                           setRoundFirstPlayer(game, roundIndex, player),
@@ -452,7 +479,7 @@ export function BattleRecordGameScreen({ gameId }: Props) {
                           : "bg-parchment-ink/5 ring-parchment-ink/12 text-parchment-ink"
                       } ${!allowed && !selected ? "opacity-40" : ""}`}
                     >
-                      {player === "you" ? game.yourName : game.opponentName}
+                      {playerName}
                     </button>
                   );
                 })}
@@ -499,6 +526,15 @@ export function BattleRecordGameScreen({ gameId }: Props) {
             onStageChange={(player, cardId, stage) =>
               void commit(advanceTacticStage(game, player, cardId, stage))
             }
+            showScourge={usesScourgeOfAqshy(game)}
+            game={game}
+            roundIndex={roundIndex}
+            onChangeFury={(player, fury) => void commit(setFury(game, player, fury))}
+            onChangeRage={(player, rage) => void commit(setRage(game, roundIndex, player, rage))}
+            onSetAttacker={(attacker) => {
+              const next = setRoundFirstPlayer(game, 0, attacker);
+              void commit(initializeFury(next));
+            }}
           />
         ) : null}
 
