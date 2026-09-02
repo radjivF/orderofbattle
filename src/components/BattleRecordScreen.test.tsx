@@ -3,6 +3,7 @@ import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {
   createBattleRecord,
+  finishBattle,
   setBattleplan,
   setRoundVp,
   startBattle,
@@ -175,6 +176,14 @@ describe("BattleRecordScreen", () => {
       "href",
       "/battle-record/game-delete-me",
     );
+  });
+
+  it("shows Done on a finished game card", () => {
+    games.push(finishBattle(seededGame()));
+    render(<BattleRecordScreen />);
+
+    expect(screen.getByText(/Done · Into the Fire/i)).toBeInTheDocument();
+    expect(screen.queryByText(/In progress/i)).toBeNull();
   });
 
   it("opens the battle from the status line, not only the title", async () => {

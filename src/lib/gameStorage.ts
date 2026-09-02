@@ -84,8 +84,8 @@ export async function saveGame(game: GameSession): Promise<GameSession> {
     stored,
     ...current.filter((item) => item.id !== stored.id),
   ]);
-  await writeAll(cache);
   emit();
+  await writeAll(cache);
   return stored;
 }
 
@@ -93,8 +93,8 @@ export async function deleteGame(id: string): Promise<void> {
   cache = sortGames(
     (cache ?? (await readAll())).filter((item) => item.id !== id),
   );
-  await writeAll(cache);
   emit();
+  await writeAll(cache);
 }
 
 export async function getGame(id: string): Promise<GameSession | undefined> {
