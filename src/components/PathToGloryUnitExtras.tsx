@@ -9,7 +9,6 @@ import type {
 import {
   PATH_ABILITY_RANKS,
   PATH_TO_GLORY_SCARS,
-  PATH_TO_GLORY_WOUNDS,
   clampRenown,
   findPath,
   isAnvilOfApotheosis,
@@ -319,7 +318,7 @@ export function PathToGloryUnitExtras({
               <span className="font-medium text-sheet-muted">Drained</span>
             </label>
           ) : null}
-          {showsScars({ kind: "pathToGlory", pathToGlory: { packIds } } as any) ? (
+          {(packIds.includes("ravaged-coast") || packIds.includes("blighted-wilds")) ? (
             <label className="flex flex-col gap-1 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
               Scar
               <select

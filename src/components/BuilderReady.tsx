@@ -36,12 +36,9 @@ import { isSpearheadList } from "@/engine/spearhead";
 import {
   applyPathToGloryPacks,
   assignPathToGloryHeroEnhancement,
-  canBeWarlord,
   findBattleplan,
-  findQuest,
   getWarlordSelection,
   isPathToGloryList,
-  isWarlord,
   PATH_TO_GLORY_BATTLEPLANS,
   PATH_TO_GLORY_QUESTS,
   pathToGloryPackIds,

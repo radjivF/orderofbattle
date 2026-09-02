@@ -3,7 +3,7 @@ import { getFaction } from "../queries";
 import { blankPathToGlory } from "../listFactories";
 import { canBeWarlord, getWarlordSelection, isWarlord } from "./warlord";
 import { createId } from "@/lib/id";
-import type { CatalogueUnit, Selection } from "../types";
+import type { Selection } from "../types";
 
 describe("warlord", () => {
   it("rejects unique heroes as warlord", () => {

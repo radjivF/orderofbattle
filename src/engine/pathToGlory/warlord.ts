@@ -1,5 +1,5 @@
 import type { ArmyList, CatalogueUnit, FactionCatalogue, Selection } from "../types";
-import { getUnit, selectionPoints } from "../queries";
+import { selectionPoints } from "../queries";
 import { isAnvilOfApotheosis } from "./anvil";
 
 const WARLORD_POINTS_CAP = 350;
