@@ -34,7 +34,7 @@ function loadAppzi() {
 
   const tag = document.createElement("script");
   tag.async = true;
-  tag.src = `https://w.appzi.io/w.js?token=${token}`;
+  tag.src = `https://w.appzi.io/strict.js?token=${token}`;
   tag.dataset.analytics = "appzi";
   const first = document.getElementsByTagName("script")[0];
   first?.parentNode?.insertBefore(tag, first);
