@@ -23,6 +23,10 @@ export type LegacyPathToGloryState = {
   battlepackPreset?: PathToGloryBattlepackPreset;
   spellIds?: string[];
   manifestationIds?: string[];
+  warlordSelectionId?: string | null;
+  questId?: string | null;
+  questPoints?: number;
+  battleplanId?: string | null;
 };
 
 export function isPathToGloryPackId(
@@ -104,6 +108,10 @@ export function normalizePathToGloryState(
     packIds: packIdsFromState(state),
     spellIds: uniqueLearnedIds(state?.spellIds),
     manifestationIds: uniqueLearnedIds(state?.manifestationIds),
+    warlordSelectionId: state?.warlordSelectionId ?? null,
+    questId: state?.questId ?? null,
+    questPoints: state?.questPoints ?? 0,
+    battleplanId: state?.battleplanId ?? null,
   };
 }
 

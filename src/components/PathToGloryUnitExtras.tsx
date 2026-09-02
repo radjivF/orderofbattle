@@ -22,7 +22,6 @@ import {
   rankLabel,
   renownToUnlockRank,
   scarSeverityLabel,
-  showsScars,
 } from "@/engine/pathToGlory";
 import type { PathToGloryPackId } from "@/engine/pathToGlory";
 import { PathToGloryAnvilForge } from "./PathToGloryAnvilForge";

@@ -14,6 +14,7 @@ import {
   learnedManifestationsForList,
   learnedSpellKey,
   learnedSpellsForList,
+  normalizePathToGloryState,
   packLabel,
   packsFromImportText,
   pathsForPacks,
@@ -112,6 +113,25 @@ describe("blankPathToGlory", () => {
     expect(showsBattleWoundsAndScars(blankPathToGlory("stormcast-eternals", "ascension"))).toBe(
       true, // Battle Wounds always visible for PTG
     );
+  });
+
+  it("normalizePathToGloryState preserves warlordSelectionId, questId, questPoints, battleplanId", () => {
+    const state = normalizePathToGloryState({
+      packIds: ["ascension"],
+      spellIds: ["spell-1"],
+      manifestationIds: ["manifest-1"],
+      warlordSelectionId: "hero-123",
+      questId: "quest-456",
+      questPoints: 5,
+      battleplanId: "plan-789",
+    });
+    expect(state.packIds).toEqual(["ascension"]);
+    expect(state.spellIds).toEqual(["spell-1"]);
+    expect(state.manifestationIds).toEqual(["manifest-1"]);
+    expect(state.warlordSelectionId).toBe("hero-123");
+    expect(state.questId).toBe("quest-456");
+    expect(state.questPoints).toBe(5);
+    expect(state.battleplanId).toBe("plan-789");
   });
 });
 
