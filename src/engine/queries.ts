@@ -16,6 +16,7 @@ import type {
 import { factions, regimentsOfRenown } from "./data/load";
 import {
   anvilRankForSelection,
+  isAnvilOfApotheosis,
   uniqueKeywordBlocksEnhancements,
 } from "./pathToGlory/anvil";
 import {
@@ -283,6 +284,79 @@ export function optionMatches(
   return unit.categories.includes(option.name);
 }
 
+function effectiveRegimentOptions(
+  hero: CatalogueUnit,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  faction?: FactionCatalogue,
+): RegimentOption[] {
+  if (hero.regimentOptions.length > 0) {
+    return hero.regimentOptions;
+  }
+  
+  if (!isAnvilOfApotheosis(hero)) {
+    return hero.regimentOptions;
+  }
+
+  const derived: RegimentOption[] = [];
+
+  for (const category of hero.categories) {
+    const upper = category.toUpperCase();
+    if (
+      upper === "TROGGOTH" ||
+      upper === "MOONCLAN" ||
+      upper === "SPIDERFANG"
+    ) {
+      derived.push({
+        type: "category",
+        id: `derived-${category}`,
+        name: category,
+      });
+    }
+  }
+
+  if (derived.length > 0) {
+    return derived;
+  }
+
+  for (const category of hero.categories) {
+    const upper = category.toUpperCase();
+    if (
+      upper.includes("STORMCAST") ||
+      upper.includes("SOULBLIGHT") ||
+      upper.includes("GLOOMSPITE") ||
+      upper.includes("MAGGOTKIN") ||
+      upper.includes("FLESH-EATER") ||
+      upper.includes("OSSIARCH") ||
+      upper.includes("NIGHTHAUNT") ||
+      upper.includes("KHORNE") ||
+      upper.includes("TZEENTCH") ||
+      upper.includes("NURGLE") ||
+      upper.includes("SLAANESH") ||
+      upper.includes("SKAVEN") ||
+      upper.includes("DAUGHTERS") ||
+      upper.includes("LUMINETH") ||
+      upper.includes("IDONETH") ||
+      upper.includes("SYLVANETH") ||
+      upper.includes("SERAPHON") ||
+      upper.includes("OGOR") ||
+      upper.includes("ORRUK") ||
+      upper.includes("CITIES") ||
+      upper.includes("KRULEBOYZ") ||
+      upper.includes("IRONJAWZ") ||
+      upper.includes("BONESPLITTERZ")
+    ) {
+      derived.push({
+        type: "category",
+        id: `derived-${category}`,
+        name: category,
+      });
+      break;
+    }
+  }
+
+  return derived;
+}
+
 export function canJoinRegiment(
   hero: CatalogueUnit,
   unit: CatalogueUnit,
@@ -293,7 +367,7 @@ export function canJoinRegiment(
   }
   const slots = unit.hero
     ? (hero.regimentHeroes ?? [])
-    : hero.regimentOptions;
+    : effectiveRegimentOptions(hero, faction);
   return slots.some((option) => optionMatches(unit, option, faction));
 }
 

@@ -76,4 +76,145 @@ describe("listPicker", () => {
       units?.some((unit) => unit.id === anvil?.id),
     ).toBe(true);
   });
+
+  it("returns legal units for Anvil of Apotheosis regiment slots", () => {
+    const faction = getFaction("stormcast-eternals");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const anvil = faction.units.find((unit) =>
+      unit.name.startsWith("Anvil of Apotheosis"),
+    );
+    expect(anvil).toBeTruthy();
+    if (!anvil) return;
+
+    const list = {
+      ...blankPathToGlory(faction.id, "ascension"),
+      regiments: [
+        {
+          id: "reg-1",
+          hero: { id: createId(), unitId: anvil.id, reinforced: false },
+          units: [],
+        },
+      ],
+    };
+
+    const companions = pickerUnitsFor(list, faction, {
+      kind: "unit",
+      regimentId: "reg-1",
+    });
+    expect(companions).toBeTruthy();
+    expect(companions!.length).toBeGreaterThan(0);
+    expect(
+      companions?.some((unit) => unit.name.includes("Liberators")),
+    ).toBe(true);
+  });
+
+  it("returns legal units for Soulblight Anvil regiment slots", () => {
+    const faction = getFaction("soulblight-gravelords");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const anvil = faction.units.find((unit) =>
+      unit.name.startsWith("Anvil of Apotheosis"),
+    );
+    expect(anvil).toBeTruthy();
+    if (!anvil) return;
+
+    const list = {
+      ...blankPathToGlory(faction.id, "ascension"),
+      regiments: [
+        {
+          id: "reg-1",
+          hero: { id: createId(), unitId: anvil.id, reinforced: false },
+          units: [],
+        },
+      ],
+    };
+
+    const companions = pickerUnitsFor(list, faction, {
+      kind: "unit",
+      regimentId: "reg-1",
+    });
+    expect(companions).toBeTruthy();
+    expect(companions!.length).toBeGreaterThan(0);
+    expect(
+      companions?.some((unit) => 
+        unit.categories.includes("SOULBLIGHT GRAVELORDS") &&
+        !unit.hero
+      ),
+    ).toBe(true);
+  });
+
+  it("returns legal Troggoth units for Gloomspite Troggoth Anvil", () => {
+    const faction = getFaction("gloomspite-gitz");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const anvil = faction.units.find((unit) =>
+      unit.name === "Anvil of Apotheosis: Troggoth Hero",
+    );
+    expect(anvil).toBeTruthy();
+    if (!anvil) return;
+
+    const list = {
+      ...blankPathToGlory(faction.id, "ascension"),
+      regiments: [
+        {
+          id: "reg-1",
+          hero: { id: createId(), unitId: anvil.id, reinforced: false },
+          units: [],
+        },
+      ],
+    };
+
+    const companions = pickerUnitsFor(list, faction, {
+      kind: "unit",
+      regimentId: "reg-1",
+    });
+    expect(companions).toBeTruthy();
+    expect(companions!.length).toBeGreaterThan(0);
+    expect(
+      companions?.some((unit) => unit.categories.includes("TROGGOTH")),
+    ).toBe(true);
+    expect(
+      companions?.some((unit) => unit.name.includes("Troggoth")),
+    ).toBe(true);
+  });
+
+  it("returns legal Grot units for Gloomspite Grot Anvil", () => {
+    const faction = getFaction("gloomspite-gitz");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const anvil = faction.units.find((unit) =>
+      unit.name === "Anvil of Apotheosis: Grot Hero",
+    );
+    expect(anvil).toBeTruthy();
+    if (!anvil) return;
+
+    const list = {
+      ...blankPathToGlory(faction.id, "ascension"),
+      regiments: [
+        {
+          id: "reg-1",
+          hero: { id: createId(), unitId: anvil.id, reinforced: false },
+          units: [],
+        },
+      ],
+    };
+
+    const companions = pickerUnitsFor(list, faction, {
+      kind: "unit",
+      regimentId: "reg-1",
+    });
+    expect(companions).toBeTruthy();
+    expect(companions!.length).toBeGreaterThan(0);
+    expect(
+      companions?.some((unit) => 
+        unit.categories.includes("GLOOMSPITE GITZ") &&
+        !unit.hero
+      ),
+    ).toBe(true);
+  });
 });
