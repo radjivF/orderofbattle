@@ -1,6 +1,6 @@
 import { getListUnit, getRegimentOfRenown, getSelection } from "./queries";
 import { isSpearheadList } from "./spearhead";
-import { findPath, findPathOption, isPathToGloryList, learnedManifestationsForList, resolveAnvilUnit, selectionDisplayName } from "./pathToGlory";
+import { findPath, findPathOption, isPathToGloryList, learnedManifestationsForList, resolvePathToGloryUnit, selectionDisplayName } from "./pathToGlory";
 import { isUniversalCoreAbility, warscrollAbilities } from "./coreRules";
 import type {
   ArmyList,
@@ -80,6 +80,7 @@ export function armyRoster(
   faction: FactionCatalogue,
 ): RosterEntry[] {
   const rows: RosterEntry[] = [];
+  const pathToGlory = isPathToGloryList(list);
   const add = (selection: Selection) => {
     const unit = getListUnit(list, faction, selection.unitId);
     if (!unit) {
@@ -87,7 +88,7 @@ export function armyRoster(
     }
     rows.push({
       selectionId: selection.id,
-      unit: resolveAnvilUnit(unit, selection),
+      unit: pathToGlory ? resolvePathToGloryUnit(unit, selection) : unit,
       reinforced: selection.reinforced,
     });
   };
