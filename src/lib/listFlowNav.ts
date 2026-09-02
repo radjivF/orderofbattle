@@ -37,8 +37,11 @@ export function listOpenUsesInAppSlide(event: {
 }
 
 /** Skip the post-route slide when the library already started it on press. */
-export function listFlowSkipsPostRouteSlide(pendingForward: boolean): boolean {
-  return pendingForward;
+export function listFlowSkipsPostRouteSlide(
+  pendingForward: boolean,
+  leavingBuilder = false,
+): boolean {
+  return pendingForward && !leavingBuilder;
 }
 
 /** Keep the library card pressed only while list details are on screen. */

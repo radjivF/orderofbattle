@@ -52,7 +52,6 @@ import {
   type LibrarySortMode,
 } from "@/lib/librarySort";
 import {
-  CONFIRM_CANCEL_BUTTON_CLASS,
   CONFIRM_SHEET_ACTIONS_CLASS,
   CONFIRM_SHEET_PANEL_CLASS,
   IOS_LIQUID_CTA_CLASS,
@@ -288,12 +287,6 @@ export function LibraryScreen() {
     setExportPhase("preview");
   }
 
-  function backToExportPicker() {
-    setExportFormat("text");
-    setExportCopied(false);
-    setExportPhase("pick");
-  }
-
   async function copyExport() {
     if (!exportContent) {
       return;
@@ -508,37 +501,37 @@ export function LibraryScreen() {
             />
           </div>
           <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
-            <div className="shrink-0 px-5 pb-4">
-              <p className="pb-2 text-sm font-medium text-sheet-muted">
-                Sort lists by
-              </p>
-              <IosSegmentedControl
-                ariaLabel="Sort lists"
-                value={sortMode}
-                onChange={onSortModeChange}
-                options={[
-                  { value: "recent", label: "Recent" },
-                  { value: "alphabetic", label: "A–Z" },
-                ]}
-              />
-            </div>
-            <div
-              role="separator"
-              className={LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS}
-            />
-            <div className="shrink-0 px-5 pb-4 pt-4">
-              <IosSegmentedControl
-                ariaLabel="Import or export lists"
-                value={librarySheetTab}
-                onChange={onLibrarySheetTabChange}
-                options={[
-                  { value: "import", label: "Import" },
-                  { value: "export", label: "Export" },
-                ]}
-              />
-            </div>
             <div className={MODAL_SHEET_SCROLL_HOST_CLASS}>
               <div className={MODAL_SHEET_SCROLL_CLASS}>
+                <div className="px-5 pb-4">
+                  <p className="pb-2 text-sm font-medium text-sheet-muted">
+                    Sort lists by
+                  </p>
+                  <IosSegmentedControl
+                    ariaLabel="Sort lists"
+                    value={sortMode}
+                    onChange={onSortModeChange}
+                    options={[
+                      { value: "recent", label: "Recent" },
+                      { value: "alphabetic", label: "A–Z" },
+                    ]}
+                  />
+                </div>
+                <div
+                  role="separator"
+                  className={LIBRARY_OPTIONS_SECTION_DIVIDER_CLASS}
+                />
+                <div className="px-5 pb-4 pt-4">
+                  <IosSegmentedControl
+                    ariaLabel="Import or export lists"
+                    value={librarySheetTab}
+                    onChange={onLibrarySheetTabChange}
+                    options={[
+                      { value: "import", label: "Import" },
+                      { value: "export", label: "Export" },
+                    ]}
+                  />
+                </div>
                 {librarySheetTab === "import" ? (
                   <>
                     <p className="px-5 pb-3 text-sm leading-relaxed text-sheet-muted">
@@ -551,6 +544,23 @@ export function LibraryScreen() {
                       aria-label="List to import"
                       className="mx-5 mb-4 block min-h-[16rem] w-[calc(100%-2.5rem)] resize-none rounded-xl bg-parchment-ink/5 px-3 py-3 font-mono text-xs leading-relaxed text-parchment-ink outline-none ring-1 ring-parchment-ink/10 placeholder:text-sheet-muted/70"
                     />
+                    <div className={MODAL_SHEET_FOOTER_CLASS}>
+                      <button
+                        type="button"
+                        disabled={importDraft.trim().length === 0}
+                        onClick={importFromDraft}
+                        className={IOS_LIQUID_CTA_CLASS}
+                      >
+                        Import
+                      </button>
+                      <button
+                        type="button"
+                        onClick={chooseImportFile}
+                        className={SHEET_SECONDARY_BUTTON_CLASS}
+                      >
+                        Choose file
+                      </button>
+                    </div>
                   </>
                 ) : exportPhase === "pick" ? (
                   <>
@@ -619,6 +629,20 @@ export function LibraryScreen() {
                         No lists to export yet.
                       </p>
                     )}
+                    <div className={MODAL_SHEET_FOOTER_CLASS}>
+                      {exportPickError ? (
+                        <p role="alert" className={LIST_ISSUE_BANNER_CLASS}>
+                          {exportPickError}
+                        </p>
+                      ) : null}
+                      <button
+                        type="button"
+                        onClick={confirmExportSelection}
+                        className={IOS_LIQUID_CTA_CLASS}
+                      >
+                        Continue
+                      </button>
+                    </div>
                   </>
                 ) : (
                   <>
@@ -647,68 +671,26 @@ export function LibraryScreen() {
                       aria-label="Exported list"
                       className="mx-5 mb-4 block min-h-[16rem] w-[calc(100%-2.5rem)] resize-none rounded-xl bg-parchment-ink/5 px-3 py-3 font-mono text-xs leading-relaxed text-parchment-ink outline-none ring-1 ring-parchment-ink/10"
                     />
+                    <div className={MODAL_SHEET_FOOTER_CLASS}>
+                      <button
+                        type="button"
+                        onClick={() => void copyExport()}
+                        className={IOS_LIQUID_CTA_CLASS}
+                      >
+                        {exportCopied ? "Copied" : "Copy"}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={downloadExport}
+                        className={SHEET_SECONDARY_BUTTON_CLASS}
+                      >
+                        {exportFormat === "json" ? "Download .json" : "Download .txt"}
+                      </button>
+                    </div>
                   </>
                 )}
               </div>
             </div>
-            {librarySheetTab === "import" ? (
-              <div className={MODAL_SHEET_FOOTER_CLASS}>
-                <button
-                  type="button"
-                  disabled={importDraft.trim().length === 0}
-                  onClick={importFromDraft}
-                  className={IOS_LIQUID_CTA_CLASS}
-                >
-                  Import
-                </button>
-                <button
-                  type="button"
-                  onClick={chooseImportFile}
-                  className={SHEET_SECONDARY_BUTTON_CLASS}
-                >
-                  Choose file
-                </button>
-              </div>
-            ) : exportPhase === "pick" ? (
-              <div className={MODAL_SHEET_FOOTER_CLASS}>
-                {exportPickError ? (
-                  <p role="alert" className={LIST_ISSUE_BANNER_CLASS}>
-                    {exportPickError}
-                  </p>
-                ) : null}
-                <button
-                  type="button"
-                  onClick={confirmExportSelection}
-                  className={IOS_LIQUID_CTA_CLASS}
-                >
-                  Continue
-                </button>
-              </div>
-            ) : (
-              <div className={MODAL_SHEET_FOOTER_CLASS}>
-                <button
-                  type="button"
-                  onClick={() => void copyExport()}
-                  className={IOS_LIQUID_CTA_CLASS}
-                >
-                  {exportCopied ? "Copied" : "Copy"}
-                </button>
-                <button
-                  type="button"
-                  onClick={downloadExport}
-                  className={SHEET_SECONDARY_BUTTON_CLASS}
-                >
-                  {exportFormat === "json" ? "Download .json" : "Download .txt"}
-                </button>
-                <button
-                  type="button"
-                  onClick={backToExportPicker}
-                  className={CONFIRM_CANCEL_BUTTON_CLASS}
-                >
-                  Back
-                </button>
-              </div>
-            )}
           </div>
         </ModalFrame>
       ) : null}

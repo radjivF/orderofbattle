@@ -52,7 +52,6 @@ export function IndexBackdropLayer({
         quality={75}
         priority={eager}
         loading="eager"
-        unoptimized
         className={INDEX_BACKDROP_ART_CLASS}
       />
       <div className={`absolute inset-0 ${scrub}`} />
