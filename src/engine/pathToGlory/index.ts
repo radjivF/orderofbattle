@@ -85,3 +85,9 @@ export {
   pathToGloryExportBits,
   selectionDisplayName,
 } from "./roster";
+export {
+  canBeWarlord,
+  getWarlordSelection,
+  isWarlord,
+  warlordCount,
+} from "./warlord";

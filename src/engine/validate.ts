@@ -27,6 +27,8 @@ import {
   anvilDestinyRemaining,
   anvilForgeGroups,
   anvilPickIds,
+  canBeWarlord,
+  getWarlordSelection,
   isAnvilOfApotheosis,
   isPathToGloryList,
   pathToGloryManifestationPoints,
@@ -278,6 +280,7 @@ export function summarize(
   warnVisionOfFate(list, faction, issues);
   warnSpecialEnhancements(list, faction, issues);
   warnAnvilForge(list, faction, issues);
+  warnWarlord(list, faction, issues);
 
   if (
     !isPathToGloryList(list) &&
@@ -830,4 +833,37 @@ function unitForSelection(
     return rorUnitAsCatalogue(rorHero);
   }
   return getListUnit(list, faction, unitId);
+}
+
+function warnWarlord(
+  list: ArmyList,
+  faction: FactionCatalogue,
+  issues: ListIssue[],
+) {
+  if (!isPathToGloryList(list)) {
+    return;
+  }
+
+  const warlord = getWarlordSelection(list);
+  if (!warlord) {
+    issues.push({ tone: "warn", text: "Mark a warlord hero." });
+    return;
+  }
+
+  const unit = getUnit(faction, warlord.unitId);
+  if (!unit) {
+    issues.push({ tone: "bad", text: "Warlord unit not found." });
+    return;
+  }
+
+  if (!canBeWarlord(unit, warlord, faction)) {
+    issues.push({
+      tone: "bad",
+      text: "Warlord must be a non-unique single-model hero ≤ 350 pts.",
+    });
+  }
+
+  if (!warlord.pathToGlory?.pathId) {
+    issues.push({ tone: "warn", text: "Warlord needs a Path." });
+  }
 }

@@ -256,6 +256,8 @@ export type PathToGloryState = {
   spellIds: string[];
   /** Manifestations learned in campaign — model ids, not a whole lore. */
   manifestationIds: string[];
+  /** Selection id of the warlord hero. */
+  warlordSelectionId?: string | null;
 };
 
 export type PathToGlorySelectionState = {
