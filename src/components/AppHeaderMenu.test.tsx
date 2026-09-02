@@ -24,13 +24,16 @@ describe("AppHeaderMenu", () => {
 
     const menu = screen.getByRole("dialog", { name: "Menu" });
     expect(menu).not.toHaveTextContent("Games");
-    expect(screen.getByRole("heading", { name: "List builder" }));
-    expect(screen.getByRole("heading", { name: "Battle record" }));
-    expect(screen.getByRole("button", { name: "AOS lists" })).toBeEnabled();
-    expect(screen.getByRole("button", { name: "AOS battle record" })).toBeEnabled();
+    expect(screen.getByRole("heading", { name: "AOS" }));
+    expect(screen.getByRole("heading", { name: "40k" }));
+    expect(screen.getByRole("heading", { name: "The old world" }));
+    expect(screen.getByRole("button", { name: "List builder" })).toBeEnabled();
+    expect(screen.getByRole("button", { name: "Battle record" })).toBeEnabled();
+    expect(screen.getByRole("button", { name: "Core rules" })).toBeEnabled();
+    expect(screen.getByRole("button", { name: "Scourge of Aqshy rules" })).toBeEnabled();
     expect(screen.queryByRole("button", { name: "The old world lists" })).toBeNull();
     expect(screen.queryByRole("button", { name: "40k lists" })).toBeNull();
-    expect(screen.queryByRole("button", { name: "Spearhead battle record" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Spearhead record" })).toBeNull();
   });
 
   it("drops the drawer when the route changes so a hidden shell cannot reopen it", async () => {

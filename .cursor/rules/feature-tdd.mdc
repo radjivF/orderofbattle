@@ -1,0 +1,26 @@
+---
+description: Feature work is test-first. Plan, write tests, run them, wait for user OK, then implement.
+alwaysApply: true
+---
+
+# Feature TDD gate
+
+When the user proposes a feature (or a behavior change), do **not** implement until they validate the tests.
+
+## Loop
+
+1. **Plan** — short: intent, files, cases (happy path, empty, error, edge).
+2. **Tests first** — colocate Vitest (`*.test.ts` / `*.test.tsx` next to the module). Add Playwright `e2e/*.spec.ts` only if the feature is a user flow.
+3. **Run** — `yarn vitest run <file>` (and e2e if added). Tests should **fail** (red) because the feature does not exist yet.
+4. **Stop.** Show the plan + test file + run output. Ask the user to validate.
+5. **Implement only after** they confirm the tests. Then make tests pass. Do not expand scope.
+
+## Tests
+
+- Follow Rocky `tests.mdc` and existing neighbors (AAA, `getByRole` first, behavior not internals).
+- Cover every case from the plan. No smoke-only "renders" tests.
+- Do not edit production code in the test-writing step except the minimum needed for the test to compile (types, empty stubs). Prefer tests that fail on missing behavior.
+
+## Exceptions
+
+Skip this gate for trivial typo/copy/style-only edits, or when the user explicitly says to implement without tests.

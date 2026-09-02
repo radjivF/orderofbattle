@@ -163,11 +163,11 @@ export function AppMenuSheet({ active, onSelect, onClose }: Props) {
                 <section
                   key={section.id}
                   className={index === 0 ? undefined : "mt-8"}
-                  aria-labelledby={`menu-feature-${section.id}`}
+                  aria-labelledby={`menu-game-${section.id}`}
                 >
                   <h3
-                    id={`menu-feature-${section.id}`}
-                    className={MENU_GAME_TITLE_CLASS}
+                    id={`menu-game-${section.id}`}
+                    className={section.titleClass ?? MENU_GAME_TITLE_CLASS}
                   >
                     {section.label}
                   </h3>
@@ -228,6 +228,7 @@ function MenuCheck({ selected }: { selected: boolean }) {
 }
 
 function ComingSoonRow({ label }: { label: string }) {
+  const soonOnly = /^coming soon$/i.test(label);
   return (
     <li>
       <div
@@ -235,7 +236,9 @@ function ComingSoonRow({ label }: { label: string }) {
         className="pointer-events-none flex min-h-11 w-full cursor-default select-none items-center gap-3 py-2 text-left text-sheet-muted opacity-40"
       >
         <span className="min-w-0 flex-1 font-medium">{label}</span>
-        <span className="shrink-0 text-[13px] font-normal">Coming soon</span>
+        {soonOnly ? null : (
+          <span className="shrink-0 text-[13px] font-normal">Coming soon</span>
+        )}
       </div>
     </li>
   );

@@ -524,8 +524,10 @@ a {
   overflow-y: auto;
 }
 
+/* forwards holds the panel off-screen: the unmount timer matches the duration,
+   so without it the drawer snaps back to open for a frame before it leaves. */
 .app-menu-drawer--out {
-  animation: app-menu-drawer-out 280ms cubic-bezier(0.32, 0.72, 0, 1);
+  animation: app-menu-drawer-out 280ms cubic-bezier(0.32, 0.72, 0, 1) forwards;
 }
 
 .app-menu-scrim {

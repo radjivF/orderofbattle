@@ -99,7 +99,10 @@ export function DatasheetSheet({ sheet, hidePoints, onClose }: Props) {
             {banishment ? <Stat label="Banish" value={banishment} /> : null}
             {ward ? <Stat label="Ward" value={ward} /> : null}
           </dl>
-          <KeywordChips categories={sheet.categories} />
+          <KeywordChips
+            categories={sheet.categories}
+            unit={isUnit(sheet) ? sheet : undefined}
+          />
 
           {ranged.length > 0 ? (
             <WeaponBlock title="Ranged weapons" weapons={ranged} ranged />

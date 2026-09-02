@@ -579,8 +579,10 @@ describe("empty library CTA", () => {
     expect(SHEET_FOOTER_ACTIONS_CLASS).toContain("px-5");
     expect(SHEET_SECONDARY_BUTTON_CLASS).toContain("ring-1");
     expect(SHEET_SECONDARY_BUTTON_CLASS).toContain("rounded-xl");
-    expect(SHEET_FOOTER_CANCEL_CLASS).toContain("text-sheet-muted");
-    expect(SHEET_FOOTER_CANCEL_CLASS).not.toContain("bg-parchment-ink");
+    expect(SHEET_FOOTER_CANCEL_CLASS).toContain("flex-1");
+    expect(SHEET_FOOTER_CANCEL_CLASS).toContain("bg-parchment-ink");
+    expect(SHEET_FOOTER_PRIMARY_CLASS).toContain("flex-1");
+    expect(MODAL_SHEET_FOOTER_ROW_CLASS).toMatch(/\bpt-/);
     expect(SHEET_FOOTER_PRIMARY_CLASS).toContain("ios-liquid-glass");
     expect(SHEET_FOOTER_PRIMARY_CLASS).toContain("flex-1");
     expect(SHEET_FOOTER_PRIMARY_CLASS).not.toContain("opacity-40");
