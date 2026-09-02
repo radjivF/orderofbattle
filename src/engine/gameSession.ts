@@ -12,6 +12,11 @@ export type GameRound = {
   primaryClaims: Record<string, { you: boolean; opponent: boolean }>;
   /** Twist applied this round for the underdog. */
   twistApplied: boolean;
+  /** Scourge of Aqshy: Rage dice granted to this player at start of this round. */
+  yourRage: number;
+  opponentRage: number;
+  /** Flag to prevent double-granting rage when switching between turn tabs. */
+  rageGranted: boolean;
 };
 
 export type GameSession = {
@@ -37,6 +42,11 @@ export type GameSession = {
   status: "setup" | "active" | "done";
   createdAt: number;
   updatedAt: number;
+  /** Scourge of Aqshy: Fury level 0–7, persists across all rounds. */
+  yourFury: number;
+  opponentFury: number;
+  /** Flag: fury initialized from attacker/defender during deployment. */
+  furyInitialized: boolean;
 };
 
 export type CreateBattleRecordInput = {
@@ -63,6 +73,9 @@ function emptyRound(): GameRound {
     opponentVp: 0,
     primaryClaims: {},
     twistApplied: false,
+    yourRage: 0,
+    opponentRage: 0,
+    rageGranted: false,
   };
 }
 
@@ -119,6 +132,9 @@ export function createBattleRecord(
     status: "setup",
     createdAt: now,
     updatedAt: now,
+    yourFury: 0,
+    opponentFury: 0,
+    furyInitialized: false,
   };
 }
 
@@ -453,4 +469,130 @@ export function reopenBattle(session: GameSession): GameSession {
     return session;
   }
   return touch({ ...session, status: "active" });
+}
+
+/** True when this game uses Scourge of Aqshy battlepack (all current battleplans). */
+export function usesScourgeOfAqshy(session: GameSession): boolean {
+  return session.battleplanId.length > 0;
+}
+
+/** Initialize fury from attacker/defender when battle starts. */
+export function initializeFury(session: GameSession): GameSession {
+  if (session.furyInitialized || session.status !== "active") {
+    return session;
+  }
+  if (!usesScourgeOfAqshy(session)) {
+    return session;
+  }
+  const round0 = session.rounds[0];
+  if (!round0?.firstPlayer) {
+    return session;
+  }
+  const attacker = round0.firstPlayer;
+  const defender = attacker === "you" ? "opponent" : "you";
+  return touch({
+    ...session,
+    yourFury: defender === "you" ? 2 : 1,
+    opponentFury: defender === "opponent" ? 2 : 1,
+    furyInitialized: true,
+  });
+}
+
+/** Grant rage at start of round if not already granted. */
+export function grantRageForRound(
+  session: GameSession,
+  roundIndex: number,
+): GameSession {
+  if (!usesScourgeOfAqshy(session)) {
+    return session;
+  }
+  if (roundIndex < 0 || roundIndex >= session.rounds.length) {
+    return session;
+  }
+  const round = session.rounds[roundIndex];
+  if (!round || round.rageGranted) {
+    return session;
+  }
+  const rounds = session.rounds.map((r, index) =>
+    index === roundIndex
+      ? {
+          ...r,
+          yourRage: session.yourFury,
+          opponentRage: session.opponentFury,
+          rageGranted: true,
+        }
+      : r,
+  );
+  return touch({ ...session, rounds });
+}
+
+/** Update fury level for a player (0-7). */
+export function setFury(
+  session: GameSession,
+  player: BattlePlayer,
+  fury: number,
+): GameSession {
+  const clamped = Math.max(0, Math.min(7, Math.floor(fury)));
+  const key = player === "you" ? "yourFury" : "opponentFury";
+  if (session[key] === clamped) {
+    return session;
+  }
+  return touch({ ...session, [key]: clamped });
+}
+
+/** Update rage dice for a player in a specific round. */
+export function setRage(
+  session: GameSession,
+  roundIndex: number,
+  player: BattlePlayer,
+  rage: number,
+): GameSession {
+  if (roundIndex < 0 || roundIndex >= session.rounds.length) {
+    return session;
+  }
+  const safeRage = Math.max(0, Math.floor(rage));
+  const rounds = session.rounds.map((round, index) => {
+    if (index !== roundIndex) return round;
+    return player === "you"
+      ? { ...round, yourRage: safeRage }
+      : { ...round, opponentRage: safeRage };
+  });
+  return touch({ ...session, rounds });
+}
+
+/** Spend rage dice (Eruption of Fury: spend 1-3). */
+export function spendRageEruption(
+  session: GameSession,
+  roundIndex: number,
+  player: BattlePlayer,
+  amount: number,
+): GameSession {
+  if (roundIndex < 0 || roundIndex >= session.rounds.length) {
+    return session;
+  }
+  const round = session.rounds[roundIndex];
+  if (!round) return session;
+  const currentRage = player === "you" ? round.yourRage : round.opponentRage;
+  const spend = Math.max(1, Math.min(3, Math.min(amount, currentRage)));
+  return setRage(session, roundIndex, player, currentRage - spend);
+}
+
+/** Fight through the pain: spend 1 rage and reduce fury by 1. */
+export function spendRageFight(
+  session: GameSession,
+  roundIndex: number,
+  player: BattlePlayer,
+): GameSession {
+  if (roundIndex < 0 || roundIndex >= session.rounds.length) {
+    return session;
+  }
+  const round = session.rounds[roundIndex];
+  if (!round) return session;
+  const currentRage = player === "you" ? round.yourRage : round.opponentRage;
+  if (currentRage < 1) {
+    return session;
+  }
+  const afterRage = setRage(session, roundIndex, player, currentRage - 1);
+  const currentFury = player === "you" ? afterRage.yourFury : afterRage.opponentFury;
+  return setFury(afterRage, player, currentFury - 1);
 }

@@ -10,17 +10,22 @@ import {
   advanceTacticStage,
   canSetFirstPlayer,
   finishBattle,
+  grantRageForRound,
+  initializeFury,
   isDoubleTurn,
   matchTotal,
   paintedBonus,
   reopenBattle,
   roundVpTotal,
+  setFury,
   setPrimaryClaim,
+  setRage,
   setRoundFirstPlayer,
   setTwistApplied,
   syncPrimaryVp,
   tacticVpTotal,
   underdog,
+  usesScourgeOfAqshy,
   type BattlePlayer,
   type GameSession,
 } from "@/engine/gameSession";
@@ -53,6 +58,8 @@ import {
 import { IosNavBackButton, IosNavEditButton } from "./ios/IosNavIconButton";
 import { IosDatasheetIcon } from "./ios/SheetIconButton";
 import { useListNav } from "./IosNavSlide";
+import { ScourgeOfAqshyChip } from "./ScourgeOfAqshyChip";
+import { ScourgeOfAqshySheet } from "./ScourgeOfAqshySheet";
 import { SiteFooter } from "./SiteFooter";
 
 type Props = { gameId: string };
@@ -82,6 +89,7 @@ export function BattleRecordGameScreen({ gameId }: Props) {
   } | null>(null);
   const [turnTab, setTurnTab] = useState<BattlePlayer>("you");
   const prevStatusRef = useRef<GameSession["status"] | undefined>(undefined);
+  const [scourgeSheetOpen, setScourgeSheetOpen] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -148,6 +156,26 @@ export function BattleRecordGameScreen({ gameId }: Props) {
   useEffect(() => {
     setTurnTab(turnPlayerOrder(firstPlayerOfRound)[0]!);
   }, [roundIndex, firstPlayerOfRound]);
+
+  useEffect(() => {
+    if (!game || game.status !== "active") {
+      return;
+    }
+    const initialized = initializeFury(game);
+    if (initialized !== game) {
+      void commit(initialized);
+    }
+  }, [game]);
+
+  useEffect(() => {
+    if (!game || game.status !== "active") {
+      return;
+    }
+    const withRage = grantRageForRound(game, roundIndex);
+    if (withRage !== game) {
+      void commit(withRage);
+    }
+  }, [game, roundIndex]);
 
   useEffect(() => {
     if (!game) {
@@ -379,6 +407,16 @@ export function BattleRecordGameScreen({ gameId }: Props) {
           </div>
         </section>
 
+        {usesScourgeOfAqshy(game) ? (
+          <div className="flex justify-center">
+            <ScourgeOfAqshyChip
+              fury={turnTab === "you" ? game.yourFury : game.opponentFury}
+              rage={turnTab === "you" ? round.yourRage : round.opponentRage}
+              onClick={() => setScourgeSheetOpen(true)}
+            />
+          </div>
+        ) : null}
+
         <nav
           aria-label="Battle timeline"
           className="parchment-card rounded-2xl px-3 py-3"
@@ -579,7 +617,27 @@ export function BattleRecordGameScreen({ gameId }: Props) {
         <BattleRecordPlaySheet
           list={playList}
           playerName={playSide.playerName}
+          gameFury={playSide.listId === game.yourListId ? game.yourFury : game.opponentFury}
+          gameRage={playSide.listId === game.yourListId ? round.yourRage : round.opponentRage}
+          onGameFuryChange={(fury) => {
+            const player = playSide.listId === game.yourListId ? "you" : "opponent";
+            void commit(setFury(game, player, fury));
+          }}
+          onGameRageChange={(rage) => {
+            const player = playSide.listId === game.yourListId ? "you" : "opponent";
+            void commit(setRage(game, roundIndex, player, rage));
+          }}
           onClose={() => setPlaySide(null)}
+        />
+      ) : null}
+      {scourgeSheetOpen && usesScourgeOfAqshy(game) ? (
+        <ScourgeOfAqshySheet
+          fury={turnTab === "you" ? game.yourFury : game.opponentFury}
+          rage={turnTab === "you" ? round.yourRage : round.opponentRage}
+          playerName={turnTab === "you" ? game.yourName : game.opponentName}
+          onChangeFury={(fury) => void commit(setFury(game, turnTab, fury))}
+          onChangeRage={(rage) => void commit(setRage(game, roundIndex, turnTab, rage))}
+          onClose={() => setScourgeSheetOpen(false)}
         />
       ) : null}
     </div>
