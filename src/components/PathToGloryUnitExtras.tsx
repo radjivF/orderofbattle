@@ -120,7 +120,10 @@ export function PathToGloryUnitExtras({
   onOpenDatasheet,
 }: Props) {
   const state = selection.pathToGlory;
-  const paths = pathsForPacks(packIds);
+  const isHero = unit?.hero;
+  const isWizard = unit?.categories.includes("WIZARD");
+  const isPriest = unit?.categories.includes("PRIEST");
+  const paths = pathsForPacks(packIds, isHero, isWizard, isPriest);
   const rank = rankLabel(rankForRenown(state?.renown ?? 0));
   const path = findPath(state?.pathId);
   const optionIds = prunePathOptionIds(

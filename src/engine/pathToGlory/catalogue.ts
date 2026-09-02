@@ -55,11 +55,50 @@ export const PATH_TO_GLORY_SCARS: PathToGloryScar[] = [
   },
 ];
 
+/**
+ * Filter paths based on pack availability and unit eligibility.
+ * - Heroes: Warrior, Leader, Mage (WIZARD), Devout (PRIEST)
+ * - Non-heroes: Attacker, Defender
+ * - Pack-specific paths only show when that pack is enabled
+ */
 export function pathsForPacks(
   packIds: PathToGloryPackId[],
+  isHero?: boolean,
+  isWizard?: boolean,
+  isPriest?: boolean,
 ): PathToGloryPath[] {
   const packs = new Set(normalizePackIds(packIds));
-  return PATH_TO_GLORY_PATHS.filter((path) => packs.has(path.pack));
+  
+  return PATH_TO_GLORY_PATHS.filter((path) => {
+    // Must be in an active pack
+    if (!packs.has(path.pack)) {
+      return false;
+    }
+    
+    // No unit context? Show all paths for the pack
+    if (isHero === undefined) {
+      return true;
+    }
+    
+    const pathName = path.name.toLowerCase();
+    
+    if (isHero) {
+      // Heroes can pick: Warrior, Leader, Mage (if Wizard), Devout (if Priest)
+      if (pathName.includes("warrior") || pathName.includes("leader")) {
+        return true;
+      }
+      if (isWizard && pathName.includes("mage")) {
+        return true;
+      }
+      if (isPriest && pathName.includes("devout")) {
+        return true;
+      }
+      return false;
+    } else {
+      // Non-heroes can pick: Attacker, Defender
+      return pathName.includes("attacker") || pathName.includes("defender");
+    }
+  });
 }
 
 export function pathsForPreset(
