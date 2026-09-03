@@ -1,15 +1,13 @@
 const SEEN_KEY = "oob-whats-new";
 
-export const WHATS_NEW_VERSION = "2026-08-31-play-abilities";
+export const WHATS_NEW_VERSION = "2026-09-03-battle-record-fury";
 
 /** Collapsed toast hides itself after this. */
 export const WHATS_NEW_AUTO_DISMISS_MS = 8_000;
 
 export const WHATS_NEW_ITEMS = [
-  "Play shows each unit's abilities on the phase they happen — Hero, Combat, End of turn — not only army traits.",
-  "Dead units stay on the board until you remove them from that phase.",
-  "Export Continue tells you to pick a list.",
-  "Play health shows remaining wounds, not just damage taken.",
+  "Battle record lets you score a game (You vs opponent, VP, tactics). Lists stay on the device.",
+  "Scourge of Aqshy: fury and rage on the scoreboard. Use +/− if something extra grants rage.",
 ] as const;
 
 export function getSeenWhatsNewVersion(): string | null {

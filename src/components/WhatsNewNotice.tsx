@@ -59,7 +59,7 @@ export function WhatsNewNotice() {
     >
       <div className="ios-glass pointer-events-auto flex max-w-sm flex-col gap-2 rounded-lg px-3 py-2.5 shadow-lg">
         <p className="text-center text-xs leading-snug text-parchment/80">
-          We fixed a few bugs. Want to see?
+          Score a live game from the menu. Scourge of Aqshy has fury dice now.
         </p>
         <div className="flex items-center justify-center gap-1.5">
           <button
