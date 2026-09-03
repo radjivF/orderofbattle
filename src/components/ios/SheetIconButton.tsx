@@ -199,18 +199,22 @@ export function BuildSlotRow({
   }
 
   return (
-    <div className="flex min-h-11 items-center gap-1 rounded-xl bg-parchment-ink/5 pl-1">
-      <OpenSheetButton
-        name={name}
-        subtitle={subtitle}
-        sheetLabel={sheetLabel}
-        onOpenSheet={openSheet}
-        reinforced={reinforced}
-        iconClassName={SHEET_LINK_ICON_WRAP_CLASS}
-        nameClassName="font-serif text-lg leading-tight"
-      />
+    <div className="flex min-h-11 items-center gap-1 rounded-xl bg-parchment-ink/5 cursor-pointer" onClick={onOpenSheet}>
+      <div className="flex min-w-0 flex-1 items-center pl-1">
+        <OpenSheetButton
+          name={name}
+          subtitle={subtitle}
+          sheetLabel={sheetLabel}
+          onOpenSheet={openSheet}
+          reinforced={reinforced}
+          iconClassName={SHEET_LINK_ICON_WRAP_CLASS}
+          nameClassName="font-serif text-lg leading-tight"
+        />
+      </div>
       {trailing ? (
-        <div className="ml-auto flex shrink-0 items-stretch">{trailing}</div>
+        <div className="ml-auto flex shrink-0 items-stretch" onClick={(e) => e.stopPropagation()}>
+          {trailing}
+        </div>
       ) : null}
     </div>
   );

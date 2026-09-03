@@ -261,10 +261,10 @@ export const CONFIRM_CANCEL_BUTTON_CLASS =
   "pressable inline-flex min-h-11 w-full cursor-pointer items-center justify-center rounded-xl bg-parchment-ink/5 px-4 text-[15px] font-semibold text-sheet-muted ring-1 ring-parchment-ink/10 transition hover:bg-parchment-ink/8";
 
 export const BUILDER_ADD_ACTION_CLASS =
-  "pressable min-h-11 cursor-pointer px-2 text-sm text-ink-muted";
+  "pressable inline-flex min-h-11 cursor-pointer items-center px-2 text-sm text-ink-muted";
 
 export const BUILDER_ADD_ACTION_EMPHASIS_CLASS =
-  "pressable min-h-11 cursor-pointer px-2 text-sm text-sigmarite";
+  "pressable inline-flex min-h-11 cursor-pointer items-center px-2 text-sm text-sigmarite";
 
 /** Category label over list art — iOS dark material so serif type stays readable. */
 export const TOW_CATEGORY_ROW_CLASS =
