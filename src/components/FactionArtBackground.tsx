@@ -12,7 +12,7 @@ import { LIST_DETAIL_BACKDROP_TRANSITION_CLASS } from "@/lib/builderUi";
 type Props = {
   factionId: string | null | undefined;
   scourgeRealm?: ScourgeRealmBackdrop;
-  /** Dark scrim for builder UI — off while the opening splash is visible. */
+  /** Dark scrim over the art — same weight as the list backdrop. */
   scrim?: boolean;
 };
 
@@ -33,15 +33,17 @@ export function FactionArtLayers({
 
   return (
     <>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={src}
-        alt=""
-        decoding="sync"
-        loading="eager"
-        fetchPriority="high"
-        className={`absolute inset-0 h-full w-full ${artClass}`}
-      />
+      <div className="absolute inset-0 overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={src}
+          alt=""
+          decoding="sync"
+          loading="eager"
+          fetchPriority="high"
+          className={`block size-full ${artClass}`}
+        />
+      </div>
       <div className={`absolute inset-0 ${veilClass}`} />
       <div
         className={`absolute inset-0 ${scrimClass} ${LIST_DETAIL_BACKDROP_TRANSITION_CLASS} ${

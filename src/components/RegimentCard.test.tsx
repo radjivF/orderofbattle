@@ -42,8 +42,96 @@ describe("RegimentCard", () => {
       />,
     );
 
-    expect(screen.getByRole("heading", { name: "Arch-Revenant" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /add unit/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Arch-Revenant" }).closest("button")?.className).toContain(
+      "cursor-pointer",
+    );
+    expect(screen.getByRole("button", { name: /add unit/i }).className).toContain(
+      "cursor-pointer",
+    );
+  });
+
+  it("opens the datasheet from the hero name", async () => {
+    const user = userEvent.setup();
+    const faction = getFaction("sylvaneth");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const hero = faction.units.find((unit) => unit.name === "Arch-Revenant");
+    expect(hero).toBeTruthy();
+    if (!hero) return;
+
+    const onOpenDatasheet = vi.fn();
+    render(
+      <RegimentCard
+        regiment={{
+          id: "reg-1",
+          hero: { id: createId(), unitId: hero.id, reinforced: false },
+          units: [],
+        }}
+        faction={faction}
+        isGeneral
+        canBeGeneral
+        slotCap={4}
+        selected
+        playMode={false}
+        onSelect={vi.fn()}
+        onMakeGeneral={vi.fn()}
+        onPickHero={vi.fn()}
+        onPickUnit={vi.fn()}
+        onOpenDatasheet={onOpenDatasheet}
+        onToggleReinforce={vi.fn()}
+        onDuplicateUnit={vi.fn()}
+        onRemoveUnit={vi.fn()}
+        onRemoveRegiment={vi.fn()}
+      />,
+    );
+
+    await user.click(screen.getByRole("heading", { name: "Arch-Revenant" }));
+    expect(onOpenDatasheet).toHaveBeenCalledWith(hero);
+  });
+
+  it("puts a pointer cursor on empty artefact and trait picks", () => {
+    const faction = getFaction("sylvaneth");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const hero = faction.units.find((unit) => unit.name === "Arch-Revenant");
+    expect(hero).toBeTruthy();
+    if (!hero) return;
+
+    render(
+      <RegimentCard
+        regiment={{
+          id: "reg-1",
+          hero: { id: createId(), unitId: hero.id, reinforced: false },
+          units: [],
+        }}
+        faction={faction}
+        isGeneral
+        canBeGeneral
+        slotCap={4}
+        selected
+        playMode={false}
+        onSelect={vi.fn()}
+        onMakeGeneral={vi.fn()}
+        onPickHero={vi.fn()}
+        onPickUnit={vi.fn()}
+        onPickArtefact={vi.fn()}
+        onPickTrait={vi.fn()}
+        onOpenDatasheet={vi.fn()}
+        onToggleReinforce={vi.fn()}
+        onDuplicateUnit={vi.fn()}
+        onRemoveUnit={vi.fn()}
+        onRemoveRegiment={vi.fn()}
+      />,
+    );
+
+    expect(screen.getByRole("button", { name: "Artefact" }).className).toContain(
+      "cursor-pointer",
+    );
+    expect(
+      screen.getByRole("button", { name: "Heroic trait" }).className,
+    ).toContain("cursor-pointer");
   });
 
   it("expands a chosen artefact when the title is pressed", async () => {

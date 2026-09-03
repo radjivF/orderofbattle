@@ -124,7 +124,7 @@ export function RegimentCard({
   return (
     <article
       id={regimentAnchor}
-      className={`cursor-default rounded-2xl bg-parchment p-5 text-parchment-ink shadow-sm ${
+      className={`cursor-default [&_button]:cursor-pointer rounded-2xl bg-parchment p-5 text-parchment-ink shadow-sm ${
         selected && !playMode ? "ring-2 ring-aether" : ""
       } ${listIssueHighlightClass(regimentAnchor, highlightedAnchorId)}`}
       onClick={playMode ? undefined : onSelect}
@@ -155,9 +155,20 @@ export function RegimentCard({
               Regiment
             </p>
           )}
-          <h2 className="font-serif text-2xl leading-tight">
-            {hero?.name ?? "Empty regiment"}
-          </h2>
+          {hero ? (
+            <button
+              type="button"
+              className="pressable cursor-pointer text-left"
+              onClick={(event) => {
+                event.stopPropagation();
+                onOpenDatasheet(hero);
+              }}
+            >
+              <h2 className="font-serif text-2xl leading-tight">{hero.name}</h2>
+            </button>
+          ) : (
+            <h2 className="font-serif text-2xl leading-tight">Empty regiment</h2>
+          )}
         </div>
         {!playMode && !locked ? (
           <button
@@ -330,7 +341,7 @@ export function RegimentCard({
             event.stopPropagation();
             onPickUnit();
           }}
-          className="mt-3 flex min-h-11 w-full items-center justify-center rounded-xl border border-dashed border-parchment-ink/20 text-sm"
+          className="pressable mt-3 flex min-h-11 w-full cursor-pointer items-center justify-center rounded-xl border border-dashed border-parchment-ink/20 text-sm"
         >
           Add unit · {openSlots} open
         </button>

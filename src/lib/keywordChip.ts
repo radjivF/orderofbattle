@@ -1,5 +1,5 @@
 const PILL_CLASS =
-  "inline-flex rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide uppercase";
+  "inline-flex h-5 min-h-0 items-center rounded-full border px-2.5 text-xs font-semibold leading-none tracking-wide uppercase";
 
 const CODED_ORDER = [
   "GUARDED HERO",
@@ -16,7 +16,7 @@ const CODED_ORDER = [
 ] as const;
 
 const COLOR_CLASS: Record<(typeof CODED_ORDER)[number], string> = {
-  "GUARDED HERO": "border-illegal-lit/40 bg-illegal-lit/20 text-illegal-lit",
+  "GUARDED HERO": "border-illegal/40 bg-illegal-lit/40 text-illegal",
   CHAMPION: "border-steel/40 bg-steel/20 text-steel",
   HERO: "border-gold-deep/35 bg-gold-deep/18 text-gold-deep",
   INFANTRY: "border-olive/40 bg-olive/20 text-olive",
