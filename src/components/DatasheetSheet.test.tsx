@@ -50,6 +50,7 @@ describe("DatasheetSheet keywords", () => {
     expect(keywords).toHaveTextContent("HERO");
     expect(keywords).toHaveTextContent("INFANTRY");
     expect(keywords).toHaveTextContent("CASTELITE");
+    expect(keywords?.className).toBe("mt-4");
   });
 
   it("keeps Wizard rank and hides Ward", () => {

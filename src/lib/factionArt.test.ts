@@ -77,10 +77,20 @@ describe("faction art LCP", () => {
       path.resolve(dir, "../components/LibraryListCard.tsx"),
       "utf8",
     );
-    expect(library).toContain("scrim={false}");
+    expect(library).not.toContain("scrim={false}");
+    expect(library).toContain("createPortal");
+    expect(library).toContain("towBackdropFactionId");
+    expect(library).toContain("preloadBackdropArt");
     expect(library).not.toMatch(
       /libraryCreatingSplashVisible[\s\S]*bg-ink/,
     );
+    expect(library).toMatch(
+      /libraryCreatingSplashVisible[\s\S]*overflow-hidden/,
+    );
+
+    expect(backdrop).toContain("overflow-hidden");
+    expect(backdrop).toContain("size-full");
+    expect(backdrop).not.toContain("absolute inset-0 h-full w-full");
 
     const factions = readFileSync(
       path.resolve(dir, "../app/factions/page.tsx"),

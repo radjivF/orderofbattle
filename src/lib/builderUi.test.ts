@@ -229,7 +229,7 @@ describe("builder play tabs", () => {
     );
     expect(card).toContain("onPickTrait={locked ? undefined : onPickTrait}");
     expect(card).toContain("allowUniqueHeroTrait");
-    expect(card).toContain("cursor-default rounded-2xl");
+    expect(card).toContain("cursor-default [&_button]:cursor-pointer rounded-2xl");
     expect(cardSlots).toContain(
       "(canReinforce && onToggleReinforce) || onDuplicate || onRemove",
     );
@@ -904,6 +904,9 @@ describe("iOS polish contracts", () => {
     );
     expect(sheet).toContain("w-fit");
     expect(sheet).toContain("max-w-full");
+    expect(sheet).toContain(
+      "pressable flex max-w-full min-w-0 cursor-pointer items-start gap-0 text-left",
+    );
     expect(sheet).not.toContain("min-w-0 flex-1 py-2 pr-2 text-left");
     expect(sheet).not.toContain("min-w-0 flex-1 text-left active:opacity-60");
   });

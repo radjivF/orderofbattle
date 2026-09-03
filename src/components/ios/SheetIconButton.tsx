@@ -64,7 +64,7 @@ export function SheetLinkIcon({ className = "h-4 w-4" }: { className?: string })
 }
 
 const OPEN_SHEET_BUTTON_CLASS =
-  "flex max-w-full min-w-0 items-start gap-0 text-left active:opacity-60";
+  "pressable flex max-w-full min-w-0 cursor-pointer items-start gap-0 text-left";
 
 function OpenSheetButton({
   name,

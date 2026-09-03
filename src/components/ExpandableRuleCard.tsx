@@ -89,7 +89,7 @@ export function ExpandableRuleCard({
       <button
         type="button"
         aria-expanded={expanded}
-        className={`w-full ${pad} text-left active:opacity-80`}
+        className={`pressable w-full cursor-pointer ${pad} text-left`}
         onClick={() => {
           if (openProp !== undefined) {
             return;
