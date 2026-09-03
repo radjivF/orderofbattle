@@ -83,4 +83,139 @@ describe("PathToGloryUnitExtras Anvil forge", () => {
     const next = onChange.mock.calls.at(-1)?.[0];
     expect(next?.pathToGlory?.anvilPickIds).toContain(vanguard!.id);
   });
+
+  it("has no details or collapse chevron on forge groups", async () => {
+    const user = userEvent.setup();
+    const faction = getFaction("stormcast-eternals");
+    const anvil = faction?.units.find(
+      (unit) => unit.name === "Anvil of Apotheosis: Stormcast Eternals Hero",
+    );
+    expect(anvil).toBeTruthy();
+    if (!anvil) {
+      return;
+    }
+    render(
+      <PathToGloryUnitExtras
+        selection={{
+          id: "hero-1",
+          unitId: anvil.id,
+          reinforced: false,
+          pathToGlory: {
+            renown: 5,
+            pathId: null,
+            pathOptionIds: [],
+            battleWoundId: null,
+            scarId: null,
+            anvilRankId: anvil.anvilRanks?.[0]?.id ?? null,
+            anvilPickIds: [],
+          },
+        }}
+        unit={anvil}
+        packIds={["ascension"]}
+        showBattleWounds={false}
+        onChange={vi.fn()}
+        onOpenDatasheet={vi.fn()}
+      />,
+    );
+
+    await user.click(screen.getByRole("button", { name: /go to forge/i }));
+
+    const container = screen.getByText(/destiny/i).closest("div");
+    const details = container?.querySelector("details");
+    expect(details).toBeNull();
+  });
+
+  it("shows single-pick group select immediately without expand", async () => {
+    const user = userEvent.setup();
+    const faction = getFaction("stormcast-eternals");
+    const anvil = faction?.units.find(
+      (unit) => unit.name === "Anvil of Apotheosis: Stormcast Eternals Hero",
+    );
+    expect(anvil).toBeTruthy();
+    if (!anvil) {
+      return;
+    }
+    render(
+      <PathToGloryUnitExtras
+        selection={{
+          id: "hero-1",
+          unitId: anvil.id,
+          reinforced: false,
+          pathToGlory: {
+            renown: 5,
+            pathId: null,
+            pathOptionIds: [],
+            battleWoundId: null,
+            scarId: null,
+            anvilRankId: anvil.anvilRanks?.[0]?.id ?? null,
+            anvilPickIds: [],
+          },
+        }}
+        unit={anvil}
+        packIds={["ascension"]}
+        showBattleWounds={false}
+        onChange={vi.fn()}
+        onOpenDatasheet={vi.fn()}
+      />,
+    );
+
+    await user.click(screen.getByRole("button", { name: /go to forge/i }));
+
+    const chamber = screen.getByLabelText(/^chamber$/i);
+    expect(chamber.tagName).toBe("SELECT");
+    expect(chamber).toBeVisible();
+  });
+
+  it("changing select updates picks for single-pick groups", async () => {
+    const user = userEvent.setup();
+    const faction = getFaction("stormcast-eternals");
+    const anvil = faction?.units.find(
+      (unit) => unit.name === "Anvil of Apotheosis: Stormcast Eternals Hero",
+    );
+    expect(anvil).toBeTruthy();
+    if (!anvil) {
+      return;
+    }
+    const onChange = vi.fn();
+    render(
+      <PathToGloryUnitExtras
+        selection={{
+          id: "hero-1",
+          unitId: anvil.id,
+          reinforced: false,
+          pathToGlory: {
+            renown: 5,
+            pathId: null,
+            pathOptionIds: [],
+            battleWoundId: null,
+            scarId: null,
+            anvilRankId: anvil.anvilRanks?.[0]?.id ?? null,
+            anvilPickIds: [],
+          },
+        }}
+        unit={anvil}
+        packIds={["ascension"]}
+        showBattleWounds={false}
+        onChange={onChange}
+        onOpenDatasheet={vi.fn()}
+      />,
+    );
+
+    await user.click(screen.getByRole("button", { name: /go to forge/i }));
+    const origins = screen.getByLabelText(/^origins$/i);
+    expect(origins.tagName).toBe("SELECT");
+
+    const firstOrigin = anvil.anvilForge
+      ?.find((group) => group.name === "Origins")
+      ?.options[0];
+    expect(firstOrigin).toBeTruthy();
+    if (!firstOrigin) {
+      return;
+    }
+
+    await user.selectOptions(origins, firstOrigin.id);
+    expect(onChange).toHaveBeenCalled();
+    const next = onChange.mock.calls.at(-1)?.[0];
+    expect(next?.pathToGlory?.anvilPickIds).toContain(firstOrigin.id);
+  });
 });

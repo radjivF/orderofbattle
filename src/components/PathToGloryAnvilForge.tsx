@@ -23,19 +23,12 @@ import {
   SHEET_HEADER_START_CLASS,
   SHEET_PANEL_CLASS,
 } from "@/lib/builderUi";
-import { CollapseChevron } from "./ExpandableRuleCard";
 import { ModalFrame } from "./ModalFrame";
 import { RuleText } from "./RuleText";
 import { SheetCloseButton, SheetLinkButton } from "./ios/SheetIconButton";
 
 const fieldClass =
   "min-h-10 w-full rounded-lg bg-parchment-ink/5 px-2.5 text-sm text-parchment-ink";
-
-/** Returns "an" if word starts with vowel sound, otherwise "a" */
-function article(word: string): string {
-  const firstChar = word.charAt(0).toLowerCase();
-  return "aeiou".includes(firstChar) ? "an" : "a";
-}
 
 type Props = {
   selection: Selection;
@@ -195,76 +188,60 @@ function ForgeGroup({
 }) {
   const selected = group.options.filter((option) => picked.has(option.id));
   const selectedId = selected[0]?.id ?? "";
-  const summary =
-    group.max === 1
-      ? selected[0]?.name ?? (group.min < 1 ? "None" : `Pick ${article(group.name)} ${group.name}`)
-      : selected.length
-        ? `${selected.length} picked`
-        : "None";
+
+  if (group.max === 1) {
+    return (
+      <div className="flex flex-col gap-2">
+        <label className="flex flex-col gap-1 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
+          {group.name}
+          <select
+            value={selectedId}
+            onChange={(event) => {
+              const nextId = event.target.value;
+              if (!nextId) {
+                onPicks(
+                  pickIds.filter(
+                    (id) => !group.options.some((option) => option.id === id),
+                  ),
+                );
+                return;
+              }
+              onPicks(pickAnvilOption(unit, pickIds, group.id, nextId));
+            }}
+            className={fieldClass}
+          >
+            {group.min < 1 ? <option value="">None</option> : (
+              <option value="">Pick</option>
+            )}
+            {group.options.map((option) => (
+              <option key={option.id} value={option.id}>
+                {option.name}
+                {destinyLabel(option.destiny)}
+              </option>
+            ))}
+          </select>
+        </label>
+        {selected[0] ? <OptionRules option={selected[0]} /> : null}
+      </div>
+    );
+  }
 
   return (
-    <details className="group rounded-xl bg-parchment-ink/5">
-      <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-2 px-3 py-2 text-left text-xs font-semibold tracking-wide uppercase text-sheet-muted [&::-webkit-details-marker]:hidden">
-        <span>{group.name}</span>
-        <span className="flex min-w-0 items-center gap-2 font-sans font-normal normal-case tracking-normal">
-          <span className="truncate text-sm text-parchment-ink">{summary}</span>
-          <span
-            aria-hidden="true"
-            className="inline-flex size-11 shrink-0 items-center justify-center"
-          >
-            <CollapseChevron />
-          </span>
-        </span>
-      </summary>
-      <div className="flex flex-col gap-2 border-t border-parchment-ink/10 px-2 pb-2 pt-2">
-        {group.max === 1 ? (
-          <label className="flex flex-col gap-1 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
-            {group.name}
-            <select
-              value={selectedId}
-              onChange={(event) => {
-                const nextId = event.target.value;
-                if (!nextId) {
-                  onPicks(
-                    pickIds.filter(
-                      (id) =>
-                        !group.options.some((option) => option.id === id),
-                    ),
-                  );
-                  return;
-                }
-                onPicks(pickAnvilOption(unit, pickIds, group.id, nextId));
-              }}
-              className={fieldClass}
-            >
-              {group.min < 1 ? <option value="">None</option> : (
-                <option value="">Pick</option>
-              )}
-              {group.options.map((option) => (
-                <option key={option.id} value={option.id}>
-                  {option.name}
-                  {destinyLabel(option.destiny)}
-                </option>
-              ))}
-            </select>
-          </label>
-        ) : (
-          group.options.map((option) => (
-            <ForgeOption
-              key={option.id}
-              option={option}
-              checked={picked.has(option.id)}
-              onToggle={() =>
-                onPicks(pickAnvilOption(unit, pickIds, group.id, option.id))
-              }
-            />
-          ))
-        )}
-        {group.max === 1 && selected[0] ? (
-          <OptionRules option={selected[0]} />
-        ) : null}
-      </div>
-    </details>
+    <div className="flex flex-col gap-2">
+      <p className="text-xs font-semibold tracking-wide uppercase text-sheet-muted">
+        {group.name}
+      </p>
+      {group.options.map((option) => (
+        <ForgeOption
+          key={option.id}
+          option={option}
+          checked={picked.has(option.id)}
+          onToggle={() =>
+            onPicks(pickAnvilOption(unit, pickIds, group.id, option.id))
+          }
+        />
+      ))}
+    </div>
   );
 }
 
