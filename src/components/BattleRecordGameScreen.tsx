@@ -558,7 +558,21 @@ export function BattleRecordGameScreen({ gameId }: Props) {
 
         {layout ? (
           <details className={PANEL}>
-            <summary className="pressable cursor-pointer list-none text-xs font-semibold tracking-wide uppercase text-sheet-muted">
+            <summary className="pressable cursor-pointer flex items-center gap-2 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
+              <svg
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+                className="h-3 w-3 transition-transform [[open]>&]:rotate-90"
+              >
+                <path
+                  d="M7 5l5 5-5 5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
               Twist · underdog
             </summary>
             <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-parchment-ink/85">

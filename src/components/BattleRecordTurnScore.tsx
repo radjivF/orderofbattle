@@ -162,46 +162,51 @@ export function BattleRecordTurnScore({
               )}
             </div>
             
-            {/* Fury row */}
+            {/* Command row */}
+            {game.showCp && cp !== null ? (
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-xs text-sheet-muted w-12">Command</span>
+                <div className="flex gap-1">
+                  {Array.from({ length: 7 }, (_, i) => (
+                    <div
+                      key={i}
+                      className={`h-2.5 w-2.5 rounded-full ${
+                        i < Math.min(cp, 7)
+                          ? "bg-ember ring-1 ring-ember/30 shadow-sm"
+                          : "bg-parchment-ink/10"
+                      }`}
+                    />
+                  ))}
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-base font-semibold tabular-nums">{cp}</span>
+                  <span className="text-[11px] text-sheet-muted/70">this round</span>
+                </div>
+                <div className="ml-auto flex gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => adjustCp(-1)}
+                    disabled={cp <= 0}
+                    aria-label="Decrease command points"
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-parchment-ink/10 text-base font-semibold ring-1 ring-parchment-ink/20 hover:bg-parchment-ink/15 active:bg-parchment-ink/20 disabled:opacity-30"
+                  >
+                    −
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => adjustCp(1)}
+                    disabled={cp >= 99}
+                    aria-label="Increase command points"
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-parchment-ink/10 text-base font-semibold ring-1 ring-parchment-ink/20 hover:bg-parchment-ink/15 active:bg-parchment-ink/20 disabled:opacity-30"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            ) : null}
+
             {showScourge ? (
               <>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-xs text-sheet-muted w-12">Fury</span>
-              <div className="flex gap-1">
-                {Array.from({ length: 7 }, (_, i) => (
-                  <div
-                    key={i}
-                    className={`h-2.5 w-2.5 rounded-full ${
-                      i < fury
-                        ? "bg-ember ring-1 ring-ember/30 shadow-sm"
-                        : "bg-parchment-ink/10"
-                    }`}
-                  />
-                ))}
-              </div>
-              <span className="text-base font-semibold tabular-nums w-6">{fury}</span>
-              <div className="ml-auto flex gap-1.5">
-                <button
-                  type="button"
-                  onClick={() => adjustFury(-1)}
-                  disabled={fury <= 0}
-                  aria-label="Decrease fury"
-                  className="flex h-11 w-11 items-center justify-center rounded-full bg-parchment-ink/10 text-base font-semibold ring-1 ring-parchment-ink/20 hover:bg-parchment-ink/15 active:bg-parchment-ink/20 disabled:opacity-30"
-                >
-                  −
-                </button>
-                <button
-                  type="button"
-                  onClick={() => adjustFury(1)}
-                  disabled={fury >= 7}
-                  aria-label="Increase fury"
-                  className="flex h-11 w-11 items-center justify-center rounded-full bg-parchment-ink/10 text-base font-semibold ring-1 ring-parchment-ink/20 hover:bg-parchment-ink/15 active:bg-parchment-ink/20 disabled:opacity-30"
-                >
-                  +
-                </button>
-              </div>
-            </div>
-
             {/* Rage row */}
             <div className="flex items-center gap-3 mb-4">
               <button
@@ -293,45 +298,66 @@ export function BattleRecordTurnScore({
                 )}
               </div>
             )}
-              </>
-            ) : null}
 
-            {/* Command row */}
-            {game.showCp && cp !== null ? (
-              <div className="flex items-center gap-3">
-                <span className="text-xs text-sheet-muted w-12">Command</span>
-                <div className="flex items-center gap-2">
-                  <span className="text-base font-semibold tabular-nums">{cp}</span>
-                  <span className="text-[11px] text-sheet-muted/70">this round</span>
-                </div>
-                <div className="ml-auto flex gap-1.5">
-                  <button
-                    type="button"
-                    onClick={() => adjustCp(-1)}
-                    disabled={cp <= 0}
-                    aria-label="Decrease command points"
-                    className="flex h-11 w-11 items-center justify-center rounded-full bg-parchment-ink/10 text-base font-semibold ring-1 ring-parchment-ink/20 hover:bg-parchment-ink/15 active:bg-parchment-ink/20 disabled:opacity-30"
-                  >
-                    −
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => adjustCp(1)}
-                    disabled={cp >= 99}
-                    aria-label="Increase command points"
-                    className="flex h-11 w-11 items-center justify-center rounded-full bg-parchment-ink/10 text-base font-semibold ring-1 ring-parchment-ink/20 hover:bg-parchment-ink/15 active:bg-parchment-ink/20 disabled:opacity-30"
-                  >
-                    +
-                  </button>
-                </div>
+            {/* Fury row */}
+            <div className="flex items-center gap-3">
+              <span className="text-xs text-sheet-muted w-12">Fury</span>
+              <div className="flex gap-1">
+                {Array.from({ length: 7 }, (_, i) => (
+                  <div
+                    key={i}
+                    className={`h-2.5 w-2.5 rounded-full ${
+                      i < fury
+                        ? "bg-ember ring-1 ring-ember/30 shadow-sm"
+                        : "bg-parchment-ink/10"
+                    }`}
+                  />
+                ))}
               </div>
+              <span className="text-base font-semibold tabular-nums w-6">{fury}</span>
+              <div className="ml-auto flex gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => adjustFury(-1)}
+                  disabled={fury <= 0}
+                  aria-label="Decrease fury"
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-parchment-ink/10 text-base font-semibold ring-1 ring-parchment-ink/20 hover:bg-parchment-ink/15 active:bg-parchment-ink/20 disabled:opacity-30"
+                >
+                  −
+                </button>
+                <button
+                  type="button"
+                  onClick={() => adjustFury(1)}
+                  disabled={fury >= 7}
+                  aria-label="Increase fury"
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-parchment-ink/10 text-base font-semibold ring-1 ring-parchment-ink/20 hover:bg-parchment-ink/15 active:bg-parchment-ink/20 disabled:opacity-30"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+              </>
             ) : null}
           </div>
         ) : null}
 
         {/* 2. Primary points */}
         <details open>
-          <summary className="pressable cursor-pointer list-none text-xs font-semibold tracking-wide uppercase text-sheet-muted mb-2">
+          <summary className="pressable cursor-pointer flex items-center gap-2 text-xs font-semibold tracking-wide uppercase text-sheet-muted mb-2">
+            <svg
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+              className="h-3 w-3 transition-transform [[open]>&]:rotate-90"
+            >
+              <path
+                d="M7 5l5 5-5 5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
             Primary objectives
           </summary>
           <ul className="flex flex-col gap-2">
@@ -376,7 +402,21 @@ export function BattleRecordTurnScore({
         {/* 3. Battle tactics */}
         {cards.length > 0 ? (
           <details open className="mt-4">
-            <summary className="pressable cursor-pointer list-none text-xs font-semibold tracking-wide uppercase text-sheet-muted mb-2">
+            <summary className="pressable cursor-pointer flex items-center gap-2 text-xs font-semibold tracking-wide uppercase text-sheet-muted mb-2">
+              <svg
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+                className="h-3 w-3 transition-transform [[open]>&]:rotate-90"
+              >
+                <path
+                  d="M7 5l5 5-5 5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
               Battle tactics
             </summary>
             <BattleRecordTacticTracker
