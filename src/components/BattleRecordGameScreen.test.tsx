@@ -752,8 +752,13 @@ describe("BattleRecordGameScreen", () => {
     render(<BattleRecordGameScreen gameId="game-no-cp" />);
     await screen.findByRole("heading", { name: /Rad vs Alex/ });
 
-    expect(screen.queryByLabelText("Increase CP")).not.toBeInTheDocument();
+    // No Command row when showCp is false
+    expect(screen.queryByText("Command")).not.toBeInTheDocument();
+    // No CP controls with either old or new labels
     expect(screen.queryByLabelText("Decrease CP")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Increase CP")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Decrease command points")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Increase command points")).not.toBeInTheDocument();
   });
 
   it("shows Command row and grants 4/4 when tied", async () => {
@@ -772,15 +777,15 @@ describe("BattleRecordGameScreen", () => {
     render(<BattleRecordGameScreen gameId="game-cp-tied" />);
     await screen.findByRole("heading", { name: /Rad vs Alex/ });
 
+    // Wait for Command row to appear after grantCpForRound runs
+    await waitFor(() => {
+      expect(screen.getByText("Command")).toBeInTheDocument();
+    });
+
     // CP controls are in the Command row in player tabs, not ScoreIdentity
     const decreaseButtons = screen.getAllByLabelText("Decrease command points");
     const increaseButtons = screen.getAllByLabelText("Increase command points");
     expect(decreaseButtons.length).toBeGreaterThanOrEqual(1);
     expect(increaseButtons.length).toBeGreaterThanOrEqual(1);
-
-    // Command row should show 4 CP when tied
-    await waitFor(() => {
-      expect(screen.getByText("Command")).toBeInTheDocument();
-    });
   });
 });
