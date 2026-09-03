@@ -24,11 +24,14 @@ export function shouldShowWhatsNew({
   lists,
   seenVersion,
   version = WHATS_NEW_VERSION,
+  allowEmptyLibrary = false,
 }: {
   lists: unknown[] | undefined;
   seenVersion: string | null;
   version?: string;
+  allowEmptyLibrary?: boolean;
 }): boolean {
-  if (!lists || lists.length === 0) return false;
+  if (!lists) return false;
+  if (lists.length === 0 && !allowEmptyLibrary) return false;
   return seenVersion !== version;
 }

@@ -44,6 +44,11 @@ describe("WhatsNewNotice", () => {
     localStorage.clear();
     armyStore.items = undefined;
     vi.useRealTimers();
+    Object.defineProperty(window, "location", {
+      value: { hostname: "www.orderofbattle.app" },
+      writable: true,
+      configurable: true,
+    });
   });
 
   it("does not show while lists are loading", () => {
@@ -67,6 +72,21 @@ describe("WhatsNewNotice", () => {
     );
     expect(screen.queryByRole("dialog")).toBeNull();
     expect(screen.queryByRole("list")).toBeNull();
+  });
+
+  it("shows for preview/staging even with empty library", () => {
+    Object.defineProperty(window, "location", {
+      value: { hostname: "preview.vercel.app" },
+      writable: true,
+      configurable: true,
+    });
+    armyStore.items = [];
+    render(<WhatsNewNotice />);
+
+    const notice = screen.getByRole("status", { name: "What's new" });
+    expect(notice).toHaveTextContent(
+      "Score a live game from the menu. Scourge of Aqshy has fury dice now.",
+    );
   });
 
   it("sends See to the updates page instead of stuffing the list in the toast", () => {

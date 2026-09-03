@@ -19,6 +19,26 @@ describe("shouldShowWhatsNew", () => {
     expect(shouldShowWhatsNew({ lists: [], seenVersion: null })).toBe(false);
   });
 
+  it("shows on preview/staging when allowEmptyLibrary is true even with empty lists", () => {
+    expect(
+      shouldShowWhatsNew({
+        lists: [],
+        seenVersion: null,
+        allowEmptyLibrary: true,
+      }),
+    ).toBe(true);
+  });
+
+  it("still hides with allowEmptyLibrary if version was already seen", () => {
+    expect(
+      shouldShowWhatsNew({
+        lists: [],
+        seenVersion: WHATS_NEW_VERSION,
+        allowEmptyLibrary: true,
+      }),
+    ).toBe(false);
+  });
+
   it("shows for a returning user who has a list and has not seen this version", () => {
     expect(
       shouldShowWhatsNew({ lists: [{ id: "list-1" }], seenVersion: null }),

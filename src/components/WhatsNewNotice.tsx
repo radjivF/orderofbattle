@@ -16,6 +16,12 @@ import {
   shouldShowWhatsNew,
 } from "@/lib/whatsNew";
 
+function isProductionHostname(hostname: string): boolean {
+  return (
+    hostname === "orderofbattle.app" || hostname === "www.orderofbattle.app"
+  );
+}
+
 export function WhatsNewNotice() {
   const lists = useSyncExternalStore(
     subscribeArmies,
@@ -24,14 +30,19 @@ export function WhatsNewNotice() {
   );
   const [seenVersion, setSeenVersion] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
+  const [allowEmptyLibrary, setAllowEmptyLibrary] = useState(false);
 
   useEffect(() => {
     setSeenVersion(getSeenWhatsNewVersion());
+    setAllowEmptyLibrary(
+      typeof window !== "undefined" &&
+        !isProductionHostname(window.location.hostname),
+    );
     setReady(true);
   }, []);
 
   const visible =
-    ready && shouldShowWhatsNew({ lists, seenVersion });
+    ready && shouldShowWhatsNew({ lists, seenVersion, allowEmptyLibrary });
 
   useEffect(() => {
     if (!visible) {
