@@ -169,7 +169,7 @@ describe("BattleRecordGameScreen", () => {
     expect(
       await screen.findByRole("heading", { name: /Rad vs Alex/ }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/Primary · Into the Fire/)).toBeInTheDocument();
+    expect(screen.getByText(/Score · Into the Fire/)).toBeInTheDocument();
     expect(screen.getByText(/Twist · underdog/)).toBeInTheDocument();
     expect(screen.getByText("Point 1 · 3 VP")).toBeInTheDocument();
     expect(
@@ -446,7 +446,7 @@ describe("BattleRecordGameScreen", () => {
     render(<BattleRecordGameScreen gameId="game-1" />);
 
     await screen.findByRole("heading", { name: /Rad vs Alex/ });
-    expect(screen.getByText(/Primary · Into the Fire/)).toBeInTheDocument();
+    expect(screen.getByText(/Score · Into the Fire/)).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: "Edit" }));
     expect(
@@ -462,7 +462,7 @@ describe("BattleRecordGameScreen", () => {
     expect(
       await screen.findByRole("heading", { name: /Rad vs Alex/ }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/Primary · Seize the Embers/)).toBeInTheDocument();
+    expect(screen.getByText(/Score · Seize the Embers/)).toBeInTheDocument();
     await waitFor(() => {
       const saved = vi.mocked(gameStorage.saveGame).mock.calls.at(-1)?.[0];
       expect(saved?.battleplanId).toBe("seize-the-embers");
@@ -631,7 +631,7 @@ describe("BattleRecordGameScreen", () => {
     ).getAllByRole("tab");
     expect(firstTabs.map((tab) => tab.textContent)).toEqual(["Alex", "Rad"]);
 
-    await user.click(screen.getByRole("button", { name: "Rad" }));
+    await user.click(screen.getByRole("button", { name: "Set first player: Rad" }));
 
     const flipped = within(
       screen.getByRole("tablist", { name: "Turn players" }),

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { shouldLoadAnalytics } from "@/lib/analyticsEnv";
+import { shouldLoadAnalytics, shouldLoadClarity } from "@/lib/analyticsEnv";
 import { getConsentStatus } from "@/lib/cookieConsent";
 
 const AHREFS_KEY = "lAHSqQ1oPzAYiQnF/4yUWQ";
@@ -46,34 +46,43 @@ function loadAppzi() {
  * Skipped on localhost — Ahrefs logs "Ignoring Event: localhost" otherwise.
  *
  * Ahrefs is cookie-less and always loads.
- * Clarity and Appzi load immediately outside consent regions; elsewhere only after accept.
+ * Clarity uses explicit allowlist (production only, no staging/preview/localhost).
+ * Appzi load immediately outside consent regions; elsewhere only after accept.
  */
 export function AnalyticsScripts({ consentRequired }: { consentRequired: boolean }) {
   useEffect(() => {
-    if (!shouldLoadAnalytics(window.location.hostname)) {
-      return;
+    const hostname = window.location.hostname;
+
+    if (shouldLoadAnalytics(hostname)) {
+      if (!document.querySelector('script[data-analytics="ahrefs"]')) {
+        const ahrefs = document.createElement("script");
+        ahrefs.src = "https://analytics.ahrefs.com/analytics.js";
+        ahrefs.async = true;
+        ahrefs.dataset.key = AHREFS_KEY;
+        ahrefs.dataset.analytics = "ahrefs";
+        document.head.appendChild(ahrefs);
+      }
     }
 
-    if (!document.querySelector('script[data-analytics="ahrefs"]')) {
-      const ahrefs = document.createElement("script");
-      ahrefs.src = "https://analytics.ahrefs.com/analytics.js";
-      ahrefs.async = true;
-      ahrefs.dataset.key = AHREFS_KEY;
-      ahrefs.dataset.analytics = "ahrefs";
-      document.head.appendChild(ahrefs);
-    }
-
-    const clarityAllowed =
+    const clarityHostAllowed = shouldLoadClarity(hostname);
+    const clarityConsentAllowed =
       !consentRequired || getConsentStatus() === "accepted";
 
-    if (clarityAllowed) {
+    if (clarityHostAllowed && clarityConsentAllowed) {
       loadClarity();
+    }
+
+    if (shouldLoadAnalytics(hostname) && clarityConsentAllowed) {
       loadAppzi();
     }
 
     const handleConsent = () => {
-      loadClarity();
-      loadAppzi();
+      if (clarityHostAllowed) {
+        loadClarity();
+      }
+      if (shouldLoadAnalytics(hostname)) {
+        loadAppzi();
+      }
     };
 
     if (consentRequired) {
