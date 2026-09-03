@@ -164,20 +164,8 @@ export function BattleRecordTurnScore({
             
             {/* Command row */}
             {game.showCp && cp !== null ? (
-              <div className="flex items-center gap-3 mb-4 select-none">
+              <div className="flex items-center gap-3 mb-4">
                 <span className="text-xs text-sheet-muted w-12">Command</span>
-                <div className="flex gap-1">
-                  {Array.from({ length: 7 }, (_, i) => (
-                    <div
-                      key={i}
-                      className={`h-2.5 w-2.5 rounded-full ${
-                        i < Math.min(cp, 7)
-                          ? "bg-ember ring-1 ring-ember/30 shadow-sm"
-                          : "bg-parchment-ink/10"
-                      }`}
-                    />
-                  ))}
-                </div>
                 <div className="flex items-center gap-2">
                   <span className="text-base font-semibold tabular-nums">{cp}</span>
                   <span className="text-[11px] text-sheet-muted/70">this round</span>
