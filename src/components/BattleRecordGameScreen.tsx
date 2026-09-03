@@ -557,12 +557,12 @@ export function BattleRecordGameScreen({ gameId }: Props) {
         ) : null}
 
         {layout ? (
-          <details className={PANEL}>
+          <details className={`${PANEL} group`}>
             <summary className="pressable cursor-pointer flex items-center gap-2 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
               <svg
                 viewBox="0 0 20 20"
                 aria-hidden="true"
-                className="h-3 w-3 transition-transform [[open]>&]:rotate-90"
+                className="h-3 w-3 transition-transform group-open:rotate-90"
               >
                 <path
                   d="M7 5l5 5-5 5"

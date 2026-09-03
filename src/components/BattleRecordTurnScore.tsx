@@ -342,12 +342,12 @@ export function BattleRecordTurnScore({
         ) : null}
 
         {/* 2. Primary points */}
-        <details open>
+        <details open className="group">
           <summary className="pressable cursor-pointer flex items-center gap-2 text-xs font-semibold tracking-wide uppercase text-sheet-muted mb-2">
             <svg
               viewBox="0 0 20 20"
               aria-hidden="true"
-              className="h-3 w-3 transition-transform [[open]>&]:rotate-90"
+              className="h-3 w-3 transition-transform group-open:rotate-90"
             >
               <path
                 d="M7 5l5 5-5 5"
@@ -401,12 +401,12 @@ export function BattleRecordTurnScore({
 
         {/* 3. Battle tactics */}
         {cards.length > 0 ? (
-          <details open className="mt-4">
+          <details open className="group mt-4">
             <summary className="pressable cursor-pointer flex items-center gap-2 text-xs font-semibold tracking-wide uppercase text-sheet-muted mb-2">
               <svg
                 viewBox="0 0 20 20"
                 aria-hidden="true"
-                className="h-3 w-3 transition-transform [[open]>&]:rotate-90"
+                className="h-3 w-3 transition-transform group-open:rotate-90"
               >
                 <path
                   d="M7 5l5 5-5 5"

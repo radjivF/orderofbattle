@@ -788,4 +788,20 @@ describe("BattleRecordGameScreen", () => {
     expect(decreaseButtons.length).toBeGreaterThanOrEqual(1);
     expect(increaseButtons.length).toBeGreaterThanOrEqual(1);
   });
+
+  it("chevron rotates on Twist collapse toggle", async () => {
+    const game = activeFixture({ showCp: false });
+    vi.mocked(gameStorage.getGame).mockResolvedValue(game);
+
+    render(<BattleRecordGameScreen gameId="game-chevron" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    const twistSummary = screen.getByText(/Twist · underdog/);
+    const twistDetails = twistSummary.closest("details");
+    const chevron = twistDetails?.querySelector("svg");
+
+    expect(chevron).toBeInTheDocument();
+    expect(chevron?.classList.contains("group-open:rotate-90")).toBe(true);
+    expect(chevron?.classList.contains("transition-transform")).toBe(true);
+  });
 });
