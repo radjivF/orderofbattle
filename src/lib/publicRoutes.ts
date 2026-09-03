@@ -1,4 +1,5 @@
 import { listFactions } from "@/engine/queries";
+import type { MetadataRoute } from "next";
 
 export type PublicRoute = {
   path: string;
@@ -28,6 +29,35 @@ export const STATIC_PUBLIC_ROUTES: PublicRoute[] = [
   { path: "/privacy", title: "Privacy policy" },
   { path: "/terms", title: "Terms of use" },
 ];
+
+const FALLBACK_BASE_URL = "https://www.orderofbattle.app";
+
+export const STATIC_SITEMAP: MetadataRoute.Sitemap = STATIC_PUBLIC_ROUTES.map(
+  ({ path }) => ({
+    url: `${FALLBACK_BASE_URL}${path}`,
+    lastModified: new Date("2026-08-27"),
+    changeFrequency:
+      path === "/"
+        ? ("weekly" as const)
+        : path.startsWith("/guides") || path === "/faq"
+          ? ("monthly" as const)
+          : path.startsWith("/factions/") ||
+              path === "/compare" ||
+              path === "/play"
+            ? ("monthly" as const)
+            : ("monthly" as const),
+    priority:
+      path === "/"
+        ? 1
+        : path.startsWith("/guides") || path === "/faq"
+          ? 0.9
+          : path.startsWith("/factions/") ||
+              path === "/compare" ||
+              path === "/play"
+            ? 0.8
+            : 0.7,
+  }),
+);
 
 export function listPublicRoutes(): PublicRoute[] {
   return [

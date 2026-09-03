@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
-import { listPublicRoutes } from "@/lib/publicRoutes";
-import { getSiteUrl, sitePath } from "@/lib/site";
+import { listPublicRoutes, STATIC_SITEMAP } from "@/lib/publicRoutes";
+import { sitePath } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   try {
@@ -23,15 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
               : 0.7,
     }));
   } catch (error) {
-    console.error("Error generating sitemap:", error);
-    const baseUrl = getSiteUrl();
-    return [
-      {
-        url: baseUrl,
-        lastModified: new Date(),
-        changeFrequency: "weekly",
-        priority: 1,
-      },
-    ];
+    console.error("Sitemap generation failed, using static fallback:", error);
+    return STATIC_SITEMAP;
   }
 }
