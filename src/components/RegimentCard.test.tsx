@@ -415,4 +415,159 @@ describe("RegimentCard", () => {
       sheet.abilities.find((ability) => ability.name === "Full-On Attack")?.effect,
     ).toMatch(/add 1 to hit rolls/i);
   });
+
+  it("shows campaign extras on unselected regiment in PTG list", () => {
+    const faction = getFaction("sylvaneth");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const hero = faction.units.find((unit) => unit.name === "Arch-Revenant");
+    expect(hero).toBeTruthy();
+    if (!hero) return;
+
+    render(
+      <RegimentCard
+        regiment={{
+          id: "reg-2",
+          hero: { id: createId(), unitId: hero.id, reinforced: false },
+          units: [],
+        }}
+        faction={faction}
+        isGeneral={false}
+        canBeGeneral
+        slotCap={4}
+        selected={false}
+        playMode={false}
+        pathToGloryPackIds={["ascension"]}
+        onSelect={vi.fn()}
+        onMakeGeneral={vi.fn()}
+        onPickHero={vi.fn()}
+        onPickUnit={vi.fn()}
+        onOpenDatasheet={vi.fn()}
+        onToggleReinforce={vi.fn()}
+        onDuplicateUnit={vi.fn()}
+        onRemoveUnit={vi.fn()}
+        onRemoveRegiment={vi.fn()}
+        onPatchSelection={vi.fn()}
+      />,
+    );
+
+    expect(screen.getByRole("button", { name: /campaign extras/i })).toBeInTheDocument();
+  });
+
+  it("does not show campaign extras in matched play without packs", () => {
+    const faction = getFaction("sylvaneth");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const hero = faction.units.find((unit) => unit.name === "Arch-Revenant");
+    expect(hero).toBeTruthy();
+    if (!hero) return;
+
+    render(
+      <RegimentCard
+        regiment={{
+          id: "reg-1",
+          hero: { id: createId(), unitId: hero.id, reinforced: false },
+          units: [],
+        }}
+        faction={faction}
+        isGeneral
+        canBeGeneral
+        slotCap={4}
+        selected
+        playMode={false}
+        pathToGloryPackIds={null}
+        onSelect={vi.fn()}
+        onMakeGeneral={vi.fn()}
+        onPickHero={vi.fn()}
+        onPickUnit={vi.fn()}
+        onOpenDatasheet={vi.fn()}
+        onToggleReinforce={vi.fn()}
+        onDuplicateUnit={vi.fn()}
+        onRemoveUnit={vi.fn()}
+        onRemoveRegiment={vi.fn()}
+      />,
+    );
+
+    expect(screen.queryByRole("button", { name: /campaign extras/i })).toBeNull();
+  });
+
+  it("does not show campaign extras in play mode", () => {
+    const faction = getFaction("sylvaneth");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const hero = faction.units.find((unit) => unit.name === "Arch-Revenant");
+    expect(hero).toBeTruthy();
+    if (!hero) return;
+
+    render(
+      <RegimentCard
+        regiment={{
+          id: "reg-1",
+          hero: { id: createId(), unitId: hero.id, reinforced: false },
+          units: [],
+        }}
+        faction={faction}
+        isGeneral
+        canBeGeneral
+        slotCap={4}
+        selected
+        playMode
+        pathToGloryPackIds={["ascension"]}
+        onSelect={vi.fn()}
+        onMakeGeneral={vi.fn()}
+        onPickHero={vi.fn()}
+        onPickUnit={vi.fn()}
+        onOpenDatasheet={vi.fn()}
+        onToggleReinforce={vi.fn()}
+        onDuplicateUnit={vi.fn()}
+        onRemoveUnit={vi.fn()}
+        onRemoveRegiment={vi.fn()}
+      />,
+    );
+
+    expect(screen.queryByRole("button", { name: /campaign extras/i })).toBeNull();
+  });
+
+  it("shows aether ring only on selected regiment", () => {
+    const faction = getFaction("sylvaneth");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const hero = faction.units.find((unit) => unit.name === "Arch-Revenant");
+    expect(hero).toBeTruthy();
+    if (!hero) return;
+
+    const { container } = render(
+      <RegimentCard
+        regiment={{
+          id: "reg-1",
+          hero: { id: createId(), unitId: hero.id, reinforced: false },
+          units: [],
+        }}
+        faction={faction}
+        isGeneral
+        canBeGeneral
+        slotCap={4}
+        selected
+        playMode={false}
+        pathToGloryPackIds={["ascension"]}
+        onSelect={vi.fn()}
+        onMakeGeneral={vi.fn()}
+        onPickHero={vi.fn()}
+        onPickUnit={vi.fn()}
+        onOpenDatasheet={vi.fn()}
+        onToggleReinforce={vi.fn()}
+        onDuplicateUnit={vi.fn()}
+        onRemoveUnit={vi.fn()}
+        onRemoveRegiment={vi.fn()}
+        onPatchSelection={vi.fn()}
+      />,
+    );
+
+    const article = container.querySelector("article");
+    expect(article).toHaveClass("ring-2", "ring-aether");
+  });
 });

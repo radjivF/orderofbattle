@@ -137,7 +137,6 @@ export function RegimentCard({
   const campaignEnabled = Boolean(
     pathToGloryPackIds &&
       pathToGloryPackIds.length > 0 &&
-      selected &&
       !playMode &&
       onPatchSelection,
   );
