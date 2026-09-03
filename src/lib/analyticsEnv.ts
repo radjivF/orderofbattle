@@ -15,3 +15,14 @@ export function shouldLoadAnalytics(
 ): boolean {
   return nodeEnv === "production" && !isAnalyticsLocalHost(hostname);
 }
+
+/**
+ * Clarity allowlist: production domains only.
+ * Prevents staging, Vercel preview URLs, and localhost from polluting the production Clarity project.
+ */
+export function shouldLoadClarity(hostname: string): boolean {
+  return (
+    hostname === "orderofbattle.app" ||
+    hostname === "www.orderofbattle.app"
+  );
+}
