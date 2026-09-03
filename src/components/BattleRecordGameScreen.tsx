@@ -13,7 +13,9 @@ import {
   grantCpForRound,
   grantRageForRound,
   initializeFury,
+  canCompleteBattleTactics,
   isDoubleTurn,
+  isSeizingInitiative,
   matchTotal,
   paintedBonus,
   reopenBattle,
@@ -315,6 +317,7 @@ export function BattleRecordGameScreen({ gameId }: Props) {
   const round = game.rounds[roundIndex]!;
   const dog = underdog(game, roundIndex);
   const double = isDoubleTurn(game, roundIndex);
+  const seize = isSeizingInitiative(game, roundIndex);
   const underdogName =
     dog === "you"
       ? game.yourName
@@ -466,7 +469,7 @@ export function BattleRecordGameScreen({ gameId }: Props) {
             <h2 className="font-serif text-xl">Turn {roundIndex + 1}</h2>
             {trackPriority && double ? (
               <span className="rounded-full bg-aether/15 px-3 py-1 text-xs font-semibold tracking-wide uppercase text-aether ring-1 ring-aether/30">
-                Double turn
+                {seize ? "Seizing the initiative" : "Double turn"}
               </span>
             ) : null}
           </div>
@@ -553,6 +556,8 @@ export function BattleRecordGameScreen({ gameId }: Props) {
               const next = setRoundFirstPlayer(game, 0, attacker);
               void commit(initializeFury(next));
             }}
+            yourCompleteLocked={!canCompleteBattleTactics(game, roundIndex, "you")}
+            opponentCompleteLocked={!canCompleteBattleTactics(game, roundIndex, "opponent")}
           />
         ) : null}
 

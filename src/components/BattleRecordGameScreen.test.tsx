@@ -555,7 +555,7 @@ describe("BattleRecordGameScreen", () => {
     expect(screen.queryByText("Double turn")).not.toBeInTheDocument();
   });
 
-  it("shows Double turn only when last round's second player goes first", async () => {
+  it("shows Seizing the initiative on a double turn (VP lead < 11), not on a non-double", async () => {
     const user = userEvent.setup();
     let game = activeFixture({ skipRoundVp: true });
     game = setRoundFirstPlayer(game, 0, "you");
@@ -567,9 +567,10 @@ describe("BattleRecordGameScreen", () => {
     await screen.findByRole("heading", { name: /Rad vs Alex/ });
 
     await user.click(screen.getByRole("button", { name: "T2" }));
-    expect(screen.getByText("Double turn")).toBeInTheDocument();
+    expect(screen.getByText("Seizing the initiative")).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: "T3" }));
+    expect(screen.queryByText("Seizing the initiative")).not.toBeInTheDocument();
     expect(screen.queryByText("Double turn")).not.toBeInTheDocument();
   });
 
@@ -803,5 +804,35 @@ describe("BattleRecordGameScreen", () => {
     expect(chevron).toBeInTheDocument();
     expect(chevron?.classList.contains("group-open:rotate-90")).toBe(true);
     expect(chevron?.classList.contains("transition-transform")).toBe(true);
+  });
+
+  it("shows Seizing the initiative badge on a double turn with VP lead < 11", async () => {
+    const user = userEvent.setup();
+    let game = activeFixture({ firstPlayer: "you" });
+    game = setRoundVp(game, 0, "you", 5);
+    game = setRoundFirstPlayer(game, 1, "opponent"); // opponent doubles → seize
+    vi.mocked(gameStorage.getGame).mockResolvedValue(game);
+
+    render(<BattleRecordGameScreen gameId="game-seize" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    await user.click(screen.getByRole("button", { name: "T2" }));
+    expect(screen.getByText("Seizing the initiative")).toBeInTheDocument();
+  });
+
+  it("shows Double turn badge when the VP lead is 11+", async () => {
+    const user = userEvent.setup();
+    let game = activeFixture({ firstPlayer: "you" });
+    game = setRoundVp(game, 0, "you", 15);
+    game = setRoundVp(game, 0, "opponent", 4);
+    game = setRoundFirstPlayer(game, 1, "opponent"); // opponent doubles but 11+ gap
+    vi.mocked(gameStorage.getGame).mockResolvedValue(game);
+
+    render(<BattleRecordGameScreen gameId="game-noseize" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    await user.click(screen.getByRole("button", { name: "T2" }));
+    expect(screen.getByText("Double turn")).toBeInTheDocument();
+    expect(screen.queryByText("Seizing the initiative")).not.toBeInTheDocument();
   });
 });

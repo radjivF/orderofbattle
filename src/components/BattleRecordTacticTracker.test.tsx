@@ -89,4 +89,20 @@ describe("BattleRecordTacticTracker", () => {
     await user.click(screen.getByRole("button", { name: "Undo Affray" }));
     expect(onStageChange).toHaveBeenCalledWith(card.id, 0);
   });
+
+  it("locks completing the next stage when the player seized the initiative", () => {
+    render(
+      <BattleRecordTacticTracker
+        title="Rad · secondary (tactics)"
+        cards={[card]}
+        stages={{ [card.id]: 0 }}
+        onStageChange={() => undefined}
+        completeLocked
+      />,
+    );
+
+    const btn = screen.getByRole("button", { name: "Mark Affray done" });
+    expect(btn).toBeDisabled();
+    expect(btn).toHaveTextContent("Seized");
+  });
 });

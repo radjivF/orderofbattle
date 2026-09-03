@@ -46,6 +46,9 @@ type Props = {
   onChangeRage: (player: BattlePlayer, rage: number) => void;
   onChangeCp: (player: BattlePlayer, cp: number) => void;
   onSetAttacker: (attacker: BattlePlayer) => void;
+  /** Per-player tactic-completion lock (seize-the-initiative). */
+  yourCompleteLocked?: boolean;
+  opponentCompleteLocked?: boolean;
 };
 
 export function BattleRecordTurnScore({
@@ -70,11 +73,15 @@ export function BattleRecordTurnScore({
   onChangeRage,
   onChangeCp,
   onSetAttacker,
+  yourCompleteLocked = false,
+  opponentCompleteLocked = false,
 }: Props) {
   const order = turnPlayerOrder(firstPlayer);
   const playerName = activePlayer === "you" ? yourName : opponentName;
   const cards = activePlayer === "you" ? yourCards : opponentCards;
   const stages = activePlayer === "you" ? yourStages : opponentStages;
+  const completeLocked =
+    activePlayer === "you" ? yourCompleteLocked : opponentCompleteLocked;
   const [erupting, setErupting] = useState(false);
   const [spendsExpanded, setSpendsExpanded] = useState(false);
 
@@ -416,6 +423,7 @@ export function BattleRecordTurnScore({
               onStageChange={(cardId, stage) =>
                 onStageChange(activePlayer, cardId, stage)
               }
+              completeLocked={completeLocked}
             />
           </details>
         ) : null}

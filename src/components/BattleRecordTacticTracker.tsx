@@ -32,6 +32,8 @@ type Props = {
   stages: Record<string, BattleTacticStage>;
   onStageChange: (cardId: string, stage: BattleTacticStage) => void;
   embedded?: boolean;
+  /** GHB 2026–27: seizing player cannot complete tactics this turn. */
+  completeLocked?: boolean;
 };
 
 export function BattleRecordTacticTracker({
@@ -40,6 +42,7 @@ export function BattleRecordTacticTracker({
   stages,
   onStageChange,
   embedded = false,
+  completeLocked = false,
 }: Props) {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   if (cards.length === 0) return null;
@@ -61,7 +64,7 @@ export function BattleRecordTacticTracker({
               {STAGES.map(({ key, label }) => {
                 const done = stage >= key;
                 const next = stage + 1 === key;
-                const disabled = !done && !next;
+                const disabled = !done && !next || (completeLocked && next);
                 const openKey = `${card.id}:${key}`;
                 const open = Boolean(expanded[openKey]);
                 return (
@@ -124,7 +127,13 @@ export function BattleRecordTacticTracker({
                               : "bg-parchment-ink/5 text-sheet-muted"
                         }`}
                       >
-                        {done ? "✓ Undo" : next ? "Done" : "—"}
+                        {done
+                          ? "✓ Undo"
+                          : next
+                            ? completeLocked
+                              ? "Seized"
+                              : "Done"
+                            : "—"}
                       </button>
                     </div>
                     {open ? (

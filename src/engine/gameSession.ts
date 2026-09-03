@@ -210,7 +210,43 @@ export function matchTotalAtRoundStart(
   );
 }
 
-/** Underdog for a battle round — whoever had fewer VP at the start of that round. */
+/** GHB 2026–27: a double turn counts as seizing unless the opponent leads by this many VP. */
+export const SEIZE_INITIATIVE_LEAD_VP = 11;
+
+/**
+ * True when a player seized the initiative at the given round (GHB 2026–27 §2.0).
+ * A seize = double turn where the opponent's VP lead is below SEIZE_INITIATIVE_LEAD_VP.
+ */
+export function isSeizingInitiative(
+  session: GameSession,
+  roundIndex: number,
+): boolean {
+  if (!isDoubleTurn(session, roundIndex)) return false;
+  const seizer = session.rounds[roundIndex]?.firstPlayer;
+  if (!seizer) return false;
+  const opponent: BattlePlayer = seizer === "you" ? "opponent" : "you";
+  const seizerVp = matchTotalAtRoundStart(session, roundIndex, seizer);
+  const opponentVp = matchTotalAtRoundStart(session, roundIndex, opponent);
+  return opponentVp - seizerVp < SEIZE_INITIATIVE_LEAD_VP;
+}
+
+/** False for the seizing player on the seize turn — they cannot complete tactics. */
+export function canCompleteBattleTactics(
+  session: GameSession,
+  roundIndex: number,
+  player: BattlePlayer,
+): boolean {
+  if (!isSeizingInitiative(session, roundIndex)) return true;
+  return player !== session.rounds[roundIndex]?.firstPlayer;
+}
+
+/**
+ * Underdog for a battle round.
+ *
+ * GHB 2026–27 §2.0: when a player seizes the initiative, their opponent
+ * always counts as the underdog until that opponent seizes the initiative.
+ * Falls back to the core rule (fewer VP at round start).
+ */
 export function underdog(
   session: GameSession,
   roundIndex: number,
@@ -218,6 +254,17 @@ export function underdog(
   if (roundIndex < 0 || roundIndex >= session.rounds.length) {
     return null;
   }
+
+  let lastSeizer: BattlePlayer | null = null;
+  for (let i = 1; i <= roundIndex; i++) {
+    if (isSeizingInitiative(session, i)) {
+      lastSeizer = session.rounds[i]?.firstPlayer ?? null;
+    }
+  }
+  if (lastSeizer) {
+    return lastSeizer;
+  }
+
   const yours = matchTotalAtRoundStart(session, roundIndex, "you");
   const theirs = matchTotalAtRoundStart(session, roundIndex, "opponent");
   if (yours === theirs) return null;
