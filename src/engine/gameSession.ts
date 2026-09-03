@@ -487,8 +487,8 @@ export function grantCpForRound(
     return session;
   }
   const dog = underdog(session, roundIndex);
-  const yourCp = dog === "opponent" ? 5 : 4;
-  const opponentCp = dog === "you" ? 5 : 4;
+  const yourCp = dog === "you" ? 5 : 4;
+  const opponentCp = dog === "opponent" ? 5 : 4;
   const nextRounds = [...session.rounds];
   nextRounds[roundIndex] = { ...round, yourCp, opponentCp };
   return touch({ ...session, rounds: nextRounds });

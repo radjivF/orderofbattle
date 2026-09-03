@@ -287,47 +287,55 @@ export function BattleRecordTurnScore({
         ) : null}
 
         {/* 2. Primary points */}
-        <ul className="flex flex-col gap-2">
-          {primaryPoints.map((point, index) => {
-            const claim = claims[point.id] ?? { you: false, opponent: false };
-            const pressed =
-              activePlayer === "you" ? claim.you : claim.opponent;
-            return (
-              <li key={point.id}>
-                <button
-                  type="button"
-                  aria-label={`${playerName} scored point ${index + 1}`}
-                  aria-pressed={pressed}
-                  onClick={() => onToggleClaim(point.id, activePlayer)}
-                  className={`flex min-h-11 w-full items-start gap-3 rounded-xl px-3 py-2.5 text-left ring-1 ${
-                    pressed
-                      ? "bg-aether/15 ring-aether/40 text-parchment-ink"
-                      : "bg-parchment-ink/5 ring-parchment-ink/12 text-parchment-ink"
-                  }`}
-                >
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-xs font-semibold tracking-wide uppercase text-sheet-muted">
-                      Point {index + 1} · {point.vp} VP
-                    </span>
-                    <span className="mt-1 block text-sm leading-snug">
-                      {point.label}
-                    </span>
-                  </span>
-                  <span
-                    className="w-4 shrink-0 pt-0.5 text-sm text-aether"
-                    aria-hidden
+        <details open>
+          <summary className="pressable cursor-pointer list-none text-xs font-semibold tracking-wide uppercase text-sheet-muted mb-2">
+            Primary objectives
+          </summary>
+          <ul className="flex flex-col gap-2">
+            {primaryPoints.map((point, index) => {
+              const claim = claims[point.id] ?? { you: false, opponent: false };
+              const pressed =
+                activePlayer === "you" ? claim.you : claim.opponent;
+              return (
+                <li key={point.id}>
+                  <button
+                    type="button"
+                    aria-label={`${playerName} scored point ${index + 1}`}
+                    aria-pressed={pressed}
+                    onClick={() => onToggleClaim(point.id, activePlayer)}
+                    className={`flex min-h-11 w-full items-start gap-3 rounded-xl px-3 py-2.5 text-left ring-1 ${
+                      pressed
+                        ? "bg-aether/15 ring-aether/40 text-parchment-ink"
+                        : "bg-parchment-ink/5 ring-parchment-ink/12 text-parchment-ink"
+                    }`}
                   >
-                    {pressed ? "✓" : ""}
-                  </span>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-xs font-semibold tracking-wide uppercase text-sheet-muted">
+                        Point {index + 1} · {point.vp} VP
+                      </span>
+                      <span className="mt-1 block text-sm leading-snug">
+                        {point.label}
+                      </span>
+                    </span>
+                    <span
+                      className="w-4 shrink-0 pt-0.5 text-sm text-aether"
+                      aria-hidden
+                    >
+                      {pressed ? "✓" : ""}
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </details>
 
         {/* 3. Battle tactics */}
         {cards.length > 0 ? (
-          <div className="mt-4">
+          <details open className="mt-4">
+            <summary className="pressable cursor-pointer list-none text-xs font-semibold tracking-wide uppercase text-sheet-muted mb-2">
+              Battle tactics
+            </summary>
             <BattleRecordTacticTracker
               key={activePlayer}
               embedded
@@ -338,7 +346,7 @@ export function BattleRecordTurnScore({
                 onStageChange(activePlayer, cardId, stage)
               }
             />
-          </div>
+          </details>
         ) : null}
       </div>
     </section>

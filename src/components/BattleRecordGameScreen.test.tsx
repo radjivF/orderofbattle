@@ -672,4 +672,71 @@ describe("BattleRecordGameScreen", () => {
     expect(screen.getByRole("tablist", { name: "Turn players" })).toBeTruthy();
     expect(screen.queryByText(/tactics/i)).not.toBeInTheDocument();
   });
+
+  it("shows list points in ScoreIdentity when listId is set", async () => {
+    const yourList = blankArmy("stormcast-eternals");
+    yourList.id = "list-1k";
+    yourList.name = "My Army";
+    yourList.pointsCap = 1000;
+    armyStore.items = [yourList];
+
+    vi.mocked(gameStorage.getGame).mockResolvedValue(
+      activeFixture({
+        yourListId: "list-1k",
+        yourArmy: "My Army",
+      }),
+    );
+    render(<BattleRecordGameScreen gameId="game-points" />);
+
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+    const scoreSection = screen.getByRole("region", { name: "Match score" });
+    expect(within(scoreSection).getByText(/0pts/)).toBeInTheDocument();
+  });
+
+  it("does not show CP controls when showCp is false", async () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      showCp: false,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+    vi.mocked(gameStorage.getGame).mockResolvedValue(game);
+
+    render(<BattleRecordGameScreen gameId="game-no-cp" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    expect(screen.queryByLabelText("Increase CP")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Decrease CP")).not.toBeInTheDocument();
+  });
+
+  it("shows CP controls and grants 4/4 when tied", async () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      showCp: true,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+    vi.mocked(gameStorage.getGame).mockResolvedValue(game);
+
+    render(<BattleRecordGameScreen gameId="game-cp-tied" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    const scoreSection = screen.getByRole("region", { name: "Match score" });
+    const decreaseButtons = within(scoreSection).getAllByLabelText("Decrease CP");
+    const increaseButtons = within(scoreSection).getAllByLabelText("Increase CP");
+    expect(decreaseButtons).toHaveLength(2);
+    expect(increaseButtons).toHaveLength(2);
+
+    await waitFor(() => {
+      expect(within(scoreSection).getAllByText("4")).toHaveLength(2);
+    });
+  });
 });

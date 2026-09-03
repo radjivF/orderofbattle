@@ -121,7 +121,7 @@ describe("BattleRecordSetupScreen", () => {
     expect(onChange).not.toHaveBeenCalled();
   });
 
-  it("lists battleplans and keeps Start game disabled until a plan is chosen", async () => {
+  it("lists battleplans and hides warning until a plan is chosen", async () => {
     const user = userEvent.setup();
     const onChange = vi.fn();
     const game = createBattleRecord({
@@ -145,12 +145,11 @@ describe("BattleRecordSetupScreen", () => {
     ).toBeInTheDocument();
     const planSelect = screen.getByLabelText("Choose battleplan");
     expect(planSelect.tagName).toBe("SELECT");
+    const startButton = screen.getByRole("button", { name: "Start game" });
+    expect(startButton).toBeEnabled();
     expect(
-      screen.getByRole("button", { name: "Start game" }),
-    ).toBeDisabled();
-    expect(
-      screen.getByText(/Still need a battleplan/),
-    ).toBeInTheDocument();
+      screen.queryByText(/Still need a battleplan/),
+    ).not.toBeInTheDocument();
     expect(
       screen.queryByText(/2 tactics for/),
     ).not.toBeInTheDocument();
@@ -336,7 +335,9 @@ describe("BattleRecordSetupScreen", () => {
     ).toBeTruthy();
   });
 
-  it("keeps the battleplan hint with Start game at the bottom", () => {
+  it("shows battleplan warning after clicking Start game without a plan", async () => {
+    const user = userEvent.setup();
+    const onChange = vi.fn();
     const game = createBattleRecord({
       yourName: "Rad",
       yourArmy: "Stormcast",
@@ -348,14 +349,22 @@ describe("BattleRecordSetupScreen", () => {
     render(
       <BattleRecordSetupScreen
         game={game}
-        onChange={() => undefined}
+        onChange={onChange}
         onBack={() => undefined}
       />,
     );
 
+    const startButton = screen.getByRole("button", { name: "Start game" });
+    expect(startButton).toBeEnabled();
+    expect(
+      screen.queryByText("Still need a battleplan"),
+    ).not.toBeInTheDocument();
+
+    await user.click(startButton);
+
+    expect(onChange).not.toHaveBeenCalled();
     const hint = screen.getByText("Still need a battleplan");
     const battleplan = screen.getByRole("heading", { name: "Battleplan" });
-    expect(screen.getByRole("button", { name: "Start game" })).toBeDisabled();
     expect(
       battleplan.compareDocumentPosition(hint) &
         Node.DOCUMENT_POSITION_FOLLOWING,

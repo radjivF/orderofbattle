@@ -6,12 +6,14 @@ import {
   canStartBattle,
   createBattleRecord,
   finishBattle,
+  grantCpForRound,
   isDoubleTurn,
   matchTotal,
   paintedBonus,
   reopenBattle,
   roundVpTotal,
   setBattleplan,
+  setPlayerCp,
   setPlayerTacticCards,
   setPrimaryClaim,
   setRoundFirstPlayer,
@@ -297,5 +299,218 @@ describe("reopenBattle", () => {
     expect(reopenBattle(game).status).toBe("setup");
     game = startBattle(game);
     expect(reopenBattle(game).status).toBe("active");
+  });
+});
+
+describe("createBattleRecord showCp", () => {
+  it("defaults showCp to false", () => {
+    const game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+    });
+    expect(game.showCp).toBe(false);
+  });
+
+  it("sets showCp from input", () => {
+    const game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      showCp: true,
+    });
+    expect(game.showCp).toBe(true);
+  });
+
+  it("initializes rounds with null CP", () => {
+    const game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      showCp: true,
+    });
+    expect(game.rounds[0]!.yourCp).toBeNull();
+    expect(game.rounds[0]!.opponentCp).toBeNull();
+  });
+});
+
+describe("grantCpForRound", () => {
+  it("does nothing when showCp is false", () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      showCp: false,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+
+    const result = grantCpForRound(game, 0);
+    expect(result.rounds[0]!.yourCp).toBeNull();
+    expect(result.rounds[0]!.opponentCp).toBeNull();
+  });
+
+  it("grants 4 CP to each player when tied", () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      showCp: true,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+
+    game = grantCpForRound(game, 0);
+    expect(game.rounds[0]!.yourCp).toBe(4);
+    expect(game.rounds[0]!.opponentCp).toBe(4);
+  });
+
+  it("grants 5 CP to underdog when opponent leads", () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      showCp: true,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+    game = setRoundVp(game, 0, "opponent", 10);
+
+    game = grantCpForRound(game, 1);
+    expect(game.rounds[1]!.yourCp).toBe(5);
+    expect(game.rounds[1]!.opponentCp).toBe(4);
+  });
+
+  it("grants 5 CP to underdog when you lead", () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      showCp: true,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+    game = setRoundVp(game, 0, "you", 10);
+
+    game = grantCpForRound(game, 1);
+    expect(game.rounds[1]!.yourCp).toBe(4);
+    expect(game.rounds[1]!.opponentCp).toBe(5);
+  });
+
+  it("does not re-grant if CP already set", () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      showCp: true,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+
+    game = grantCpForRound(game, 0);
+    expect(game.rounds[0]!.yourCp).toBe(4);
+    expect(game.rounds[0]!.opponentCp).toBe(4);
+
+    game = setPlayerCp(game, 0, "you", 2);
+    expect(game.rounds[0]!.yourCp).toBe(2);
+
+    game = grantCpForRound(game, 0);
+    expect(game.rounds[0]!.yourCp).toBe(2);
+    expect(game.rounds[0]!.opponentCp).toBe(4);
+  });
+
+  it("does not carry CP to next round", () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      showCp: true,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+
+    game = grantCpForRound(game, 0);
+    game = setPlayerCp(game, 0, "you", 7);
+    expect(game.rounds[0]!.yourCp).toBe(7);
+
+    game = grantCpForRound(game, 1);
+    expect(game.rounds[1]!.yourCp).toBe(4);
+    expect(game.rounds[1]!.opponentCp).toBe(4);
+  });
+});
+
+describe("setPlayerCp", () => {
+  it("sets CP for the specified player and round", () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      showCp: true,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+    game = grantCpForRound(game, 0);
+
+    game = setPlayerCp(game, 0, "you", 2);
+    expect(game.rounds[0]!.yourCp).toBe(2);
+    expect(game.rounds[0]!.opponentCp).toBe(4);
+
+    game = setPlayerCp(game, 0, "opponent", 1);
+    expect(game.rounds[0]!.yourCp).toBe(2);
+    expect(game.rounds[0]!.opponentCp).toBe(1);
+  });
+
+  it("clamps CP to 0 minimum", () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      showCp: true,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+    game = grantCpForRound(game, 0);
+
+    game = setPlayerCp(game, 0, "you", -5);
+    expect(game.rounds[0]!.yourCp).toBe(0);
+  });
+
+  it("clamps CP to 99 maximum", () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      showCp: true,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+    game = grantCpForRound(game, 0);
+
+    game = setPlayerCp(game, 0, "you", 150);
+    expect(game.rounds[0]!.yourCp).toBe(99);
   });
 });

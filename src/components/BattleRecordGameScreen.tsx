@@ -568,10 +568,10 @@ export function BattleRecordGameScreen({ gameId }: Props) {
         ) : null}
 
         {layout ? (
-          <section className={PANEL}>
-            <p className="text-xs font-semibold tracking-wide uppercase text-sheet-muted">
+          <details className={PANEL}>
+            <summary className="pressable cursor-pointer list-none text-xs font-semibold tracking-wide uppercase text-sheet-muted">
               Twist · underdog
-            </p>
+            </summary>
             <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-parchment-ink/85">
               {layout.twistEffect}
             </p>
@@ -599,7 +599,7 @@ export function BattleRecordGameScreen({ gameId }: Props) {
                 ? "Twist applied this turn"
                 : "Mark twist applied this turn"}
             </button>
-          </section>
+          </details>
         ) : null}
 
         {layout ? (
@@ -720,7 +720,6 @@ function ScoreIdentity({
     return formatArmyPoints({
       spearhead,
       pointsSpent: totals?.points ?? 0,
-      pointsCap: list.pointsCap,
     });
   }, [listId, lists]);
 

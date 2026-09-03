@@ -313,7 +313,6 @@ function ArmyPickSheet({
                 const pointsLine = formatArmyPoints({
                   spearhead,
                   pointsSpent: totals?.points ?? 0,
-                  pointsCap: list.pointsCap,
                 });
                 return (
                   <button

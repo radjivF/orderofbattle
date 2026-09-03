@@ -134,7 +134,6 @@ export function BattleRecordSetupScreen({
     return formatArmyPoints({
       spearhead,
       pointsSpent: totals?.points ?? 0,
-      pointsCap: yourList.pointsCap,
     });
   }, [yourList]);
   const opponentArmyPoints = useMemo(() => {
@@ -145,12 +144,12 @@ export function BattleRecordSetupScreen({
     return formatArmyPoints({
       spearhead,
       pointsSpent: totals?.points ?? 0,
-      pointsCap: opponentList.pointsCap,
     });
   }, [opponentList]);
   const layout = getBattleplanLayout(game.battleplanId);
   const ready = canStartBattle(game);
   const gaps = battleSetupGaps(game);
+  const [showWarnings, setShowWarnings] = useState(false);
 
   useEffect(() => {
     const yourPrefill = listTacticPrefill(yourList);
@@ -272,7 +271,7 @@ export function BattleRecordSetupScreen({
                 const id = event.target.value;
                 onChange((prev) => setBattleplan(prev, id));
               }}
-              className={SELECT_CLASS}
+              className={`${SELECT_CLASS} ${showWarnings && !ready ? "ring-1 ring-illegal/45" : ""}`}
             >
               <option value="">Choose battleplan…</option>
               <optgroup label="Table 1">
@@ -386,16 +385,21 @@ export function BattleRecordSetupScreen({
             </button>
           ) : (
             <>
-              {!ready ? (
+              {showWarnings && !ready ? (
                 <p className="text-center text-xs text-parchment [text-shadow:0_1px_8px_rgba(0,0,0,0.85)]">
                   Still need {gaps.join(", ")}
                 </p>
               ) : null}
               <button
                 type="button"
-                disabled={!ready}
-                onClick={() => onChange((prev) => startBattle(prev))}
-                className={`${IOS_LIQUID_CTA_CLASS} w-full disabled:cursor-not-allowed disabled:opacity-40`}
+                onClick={() => {
+                  if (canStartBattle(game)) {
+                    onChange((prev) => startBattle(prev));
+                  } else {
+                    setShowWarnings(true);
+                  }
+                }}
+                className={`${IOS_LIQUID_CTA_CLASS} w-full`}
               >
                 Start game
               </button>
