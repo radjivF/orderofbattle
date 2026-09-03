@@ -239,7 +239,7 @@ describe("builder play tabs", () => {
     expect(card).toContain("listHeroGearSlots");
     expect(card).toContain("cursor-default rounded-2xl");
     expect(cardSlots).toContain(
-      "(canReinforce && onToggleReinforce) || onDuplicate || onRemove",
+      "(extraTrailing && onReplace)",
     );
     expect(cardSlots).toContain("uniqueKeywordBlocksEnhancements");
     expect(builder).toContain("hidePoints={spearhead}");

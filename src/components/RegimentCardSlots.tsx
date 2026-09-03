@@ -22,7 +22,6 @@ import type {
 } from "@/engine/types";
 import {
   BuildSlotRow,
-  EDIT_LINK_BUTTON_COMPACT_CLASS,
   EditLinkButton,
   IosPlusIcon,
   PlaySlotRow,
@@ -277,24 +276,12 @@ function EnhancementRow({
   }
   if (has && label) {
     return (
-      <div className="flex items-start gap-2">
-        <div className="min-w-0 flex-1">
-          <CollapsibleEnhancement
-            kind={kind}
-            label={label}
-            abilities={abilities}
-            onPick={onPick}
-          />
-        </div>
-        <EditLinkButton
-          label={`Change ${kind}`}
-          className={EDIT_LINK_BUTTON_COMPACT_CLASS}
-          onClick={(event) => {
-            event.stopPropagation();
-            onPick();
-          }}
-        />
-      </div>
+      <CollapsibleEnhancement
+        kind={kind}
+        label={label}
+        abilities={abilities}
+        onPick={onPick}
+      />
     );
   }
   return (
@@ -352,6 +339,20 @@ function CollapsibleEnhancement({
         timing={primary.timing}
         declare={primary.declare}
         effect={primary.effect}
+        footer={
+          onPick ? (
+            <button
+              type="button"
+              className="text-sm text-sheet-muted active:opacity-60"
+              onClick={(event) => {
+                event.stopPropagation();
+                onPick();
+              }}
+            >
+              Change {kind}
+            </button>
+          ) : null
+        }
       />
       {rules.slice(1).map((ability) => (
         <ExpandableRuleCard
@@ -453,7 +454,7 @@ export function SlotLine({
       trailing={
         <>
           {extraTrailing}
-          {onReplace ? (
+          {extraTrailing ? null : onReplace ? (
             <EditLinkButton
               label={`Change ${unit.name}`}
               onClick={(event) => {
@@ -462,13 +463,18 @@ export function SlotLine({
               }}
             />
           ) : null}
-          {(canReinforce && onToggleReinforce) || onDuplicate || onRemove ? (
+          {(canReinforce && onToggleReinforce) ||
+          onDuplicate ||
+          onRemove ||
+          (extraTrailing && onReplace) ? (
             <SlotMoreMenu
+              name={unit.name}
               reinforced={reinforced}
               canReinforce={canReinforce}
               onToggleReinforce={onToggleReinforce}
               onDuplicate={onDuplicate}
               onRemove={onRemove}
+              onReplace={extraTrailing ? onReplace : undefined}
             />
           ) : null}
         </>
@@ -504,17 +510,21 @@ export function PlayBindNotes({
 }
 
 export function SlotMoreMenu({
+  name,
   reinforced,
   canReinforce,
   onToggleReinforce,
   onDuplicate,
   onRemove,
+  onReplace,
 }: {
+  name?: string;
   reinforced?: boolean;
   canReinforce?: boolean;
   onToggleReinforce?: () => void;
   onDuplicate?: () => void;
   onRemove?: () => void;
+  onReplace?: () => void;
 }) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -563,6 +573,19 @@ export function SlotMoreMenu({
           className="absolute right-0 top-full z-30 mt-1 min-w-[10rem] overflow-hidden rounded-xl bg-ink-raised py-1 text-parchment shadow-lg ring-1 ring-parchment/15"
           onClick={(event) => event.stopPropagation()}
         >
+          {onReplace ? (
+            <button
+              type="button"
+              role="menuitem"
+              className="flex min-h-11 w-full items-center px-3 text-left text-sm"
+              onClick={() => {
+                onReplace();
+                setOpen(false);
+              }}
+            >
+              Change {name ?? "unit"}
+            </button>
+          ) : null}
           {canReinforce && onToggleReinforce ? (
             <button
               type="button"

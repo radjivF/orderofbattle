@@ -12,6 +12,7 @@ type Props = {
   effect?: string;
   meta?: string;
   trailing?: ReactNode;
+  footer?: ReactNode;
   nested?: boolean;
   /** Reference lists: no resting fill, so 20+ rows read as a page not a stack of buttons. */
   flush?: boolean;
@@ -27,6 +28,7 @@ export function ExpandableRuleCard({
   effect,
   meta,
   trailing,
+  footer,
   nested = false,
   flush = false,
   open: openProp,
@@ -124,6 +126,7 @@ export function ExpandableRuleCard({
               highlight={highlight}
             />
           ) : null}
+          {footer ? <div className="mt-2">{footer}</div> : null}
         </div>
       ) : null}
     </div>
