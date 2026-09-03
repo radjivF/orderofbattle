@@ -513,4 +513,31 @@ describe("setPlayerCp", () => {
     game = setPlayerCp(game, 0, "you", 150);
     expect(game.rounds[0]!.yourCp).toBe(99);
   });
+
+  it("grants 5 CP to underdog when trailing at round start (QA regression)", () => {
+    let game = createBattleRecord({
+      yourName: "Me",
+      yourArmy: "My Army",
+      opponentName: "Rival",
+      opponentArmy: "Rival Army",
+      allowDoubleTurn: true,
+      showCp: true,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+
+    // Round 1: grant CP
+    game = grantCpForRound(game, 0);
+    // Round 1: Me scores 10, Rival scores 3
+    game.rounds[0]!.yourVp = 10;
+    game.rounds[0]!.opponentVp = 3;
+
+    // Round 2 start: Me has 10, Rival has 3 → Rival is underdog → Rival gets 5, Me gets 4
+    const dog = underdog(game, 1);
+    expect(dog).toBe("opponent"); // Rival (opponent) is underdog
+
+    game = grantCpForRound(game, 1);
+    expect(game.rounds[1]!.yourCp).toBe(4); // Me (leader) gets 4
+    expect(game.rounds[1]!.opponentCp).toBe(5); // Rival (underdog) gets 5
+  });
 });

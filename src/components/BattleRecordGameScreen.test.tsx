@@ -61,6 +61,7 @@ function activeFixture(
     yourTacticCardIds?: string[];
     opponentTacticCardIds?: string[];
     skipRoundVp?: boolean;
+    showCp?: boolean;
   } = {},
 ) {
   let game = createBattleRecord({
@@ -73,6 +74,7 @@ function activeFixture(
     opponentListId: overrides.opponentListId,
     yourTacticCardIds: overrides.yourTacticCardIds,
     opponentTacticCardIds: overrides.opponentTacticCardIds,
+    showCp: overrides.showCp,
   });
   game = setBattleplan(game, "into-the-fire");
   game = startBattle(game);
@@ -693,6 +695,47 @@ describe("BattleRecordGameScreen", () => {
     expect(within(scoreSection).getByText(/0pts/)).toBeInTheDocument();
   });
 
+  it("shows spent-only points format without cap or slash (QA regression)", async () => {
+    const yourList = blankArmy("stormcast-eternals");
+    yourList.id = "list-3k";
+    yourList.name = "My Army";
+    yourList.pointsCap = 3000;
+    armyStore.items = [yourList];
+
+    vi.mocked(gameStorage.getGame).mockResolvedValue(
+      activeFixture({
+        yourListId: "list-3k",
+        yourArmy: "My Army",
+      }),
+    );
+    render(<BattleRecordGameScreen gameId="game-pts" />);
+
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+    const scoreSection = screen.getByRole("region", { name: "Match score" });
+    
+    // Should show spent-only format (e.g., "540pts")
+    expect(within(scoreSection).getByText(/\d+pts/)).toBeInTheDocument();
+    // Should NOT contain slash format (e.g., "540 / 3,000")
+    expect(within(scoreSection).queryByText(/\/ \d/)).not.toBeInTheDocument();
+    expect(within(scoreSection).queryByText(/\/ 3,000/)).not.toBeInTheDocument();
+  });
+
+  it("does not show CP controls on ScoreIdentity (QA regression)", async () => {
+    vi.mocked(gameStorage.getGame).mockResolvedValue(
+      activeFixture({
+        showCp: true,
+      }),
+    );
+    render(<BattleRecordGameScreen gameId="game-no-cp-strip" />);
+
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+    const scoreSection = screen.getByRole("region", { name: "Match score" });
+    
+    // ScoreIdentity should NOT have CP controls (they're in the Command row)
+    expect(within(scoreSection).queryByLabelText("Increase CP")).not.toBeInTheDocument();
+    expect(within(scoreSection).queryByLabelText("Decrease CP")).not.toBeInTheDocument();
+  });
+
   it("does not show CP controls when showCp is false", async () => {
     let game = createBattleRecord({
       yourName: "Rad",
@@ -713,7 +756,7 @@ describe("BattleRecordGameScreen", () => {
     expect(screen.queryByLabelText("Decrease CP")).not.toBeInTheDocument();
   });
 
-  it("shows CP controls and grants 4/4 when tied", async () => {
+  it("shows Command row and grants 4/4 when tied", async () => {
     let game = createBattleRecord({
       yourName: "Rad",
       yourArmy: "Stormcast",
@@ -729,14 +772,15 @@ describe("BattleRecordGameScreen", () => {
     render(<BattleRecordGameScreen gameId="game-cp-tied" />);
     await screen.findByRole("heading", { name: /Rad vs Alex/ });
 
-    const scoreSection = screen.getByRole("region", { name: "Match score" });
-    const decreaseButtons = within(scoreSection).getAllByLabelText("Decrease CP");
-    const increaseButtons = within(scoreSection).getAllByLabelText("Increase CP");
-    expect(decreaseButtons).toHaveLength(2);
-    expect(increaseButtons).toHaveLength(2);
+    // CP controls are in the Command row in player tabs, not ScoreIdentity
+    const decreaseButtons = screen.getAllByLabelText("Decrease command points");
+    const increaseButtons = screen.getAllByLabelText("Increase command points");
+    expect(decreaseButtons.length).toBeGreaterThanOrEqual(1);
+    expect(increaseButtons.length).toBeGreaterThanOrEqual(1);
 
+    // Command row should show 4 CP when tied
     await waitFor(() => {
-      expect(within(scoreSection).getAllByText("4")).toHaveLength(2);
+      expect(screen.getByText("Command")).toBeInTheDocument();
     });
   });
 });

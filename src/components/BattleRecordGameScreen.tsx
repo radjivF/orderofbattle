@@ -362,11 +362,6 @@ export function BattleRecordGameScreen({ gameId }: Props) {
               listId={game.yourListId}
               lists={lists}
               underdog={dog === "you"}
-              cp={round.yourCp}
-              showCp={game.showCp}
-              onCpChange={(cp) =>
-                void commit((prev) => setPlayerCp(prev, roundIndex, "you", cp))
-              }
               className="col-start-1"
               onPlay={
                 yourPlayList
@@ -386,13 +381,6 @@ export function BattleRecordGameScreen({ gameId }: Props) {
               listId={game.opponentListId}
               lists={lists}
               underdog={dog === "opponent"}
-              cp={round.opponentCp}
-              showCp={game.showCp}
-              onCpChange={(cp) =>
-                void commit((prev) =>
-                  setPlayerCp(prev, roundIndex, "opponent", cp),
-                )
-              }
               align="right"
               className="col-start-3"
               onPlay={
@@ -692,9 +680,6 @@ function ScoreIdentity({
   listId,
   lists,
   underdog: isUnderdog,
-  cp,
-  showCp,
-  onCpChange,
   align = "left",
   className = "",
   onPlay,
@@ -704,9 +689,6 @@ function ScoreIdentity({
   listId?: string;
   lists: ReturnType<typeof getArmiesSnapshot>;
   underdog: boolean;
-  cp?: number | null;
-  showCp?: boolean;
-  onCpChange?: (cp: number) => void;
   align?: "left" | "right";
   className?: string;
   onPlay?: () => void;
@@ -736,50 +718,6 @@ function ScoreIdentity({
         {army}
         {armyPoints ? ` · ${armyPoints}` : ""}
       </span>
-      {showCp && cp !== null && cp !== undefined && onCpChange ? (
-        <span className="mt-1 flex items-center gap-1.5">
-          <button
-            type="button"
-            aria-label="Decrease CP"
-            onClick={() => {
-              if (cp !== undefined) onCpChange(Math.max(0, cp - 1));
-            }}
-            className="pressable flex h-7 w-7 items-center justify-center rounded-md bg-parchment-ink/8 text-parchment-ink ring-1 ring-parchment-ink/15"
-          >
-            <svg viewBox="0 0 20 20" aria-hidden="true" className="h-4 w-4">
-              <path
-                d="M5 10h10"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
-          <span className="min-w-[2rem] text-center text-sm font-medium tabular-nums text-parchment-ink">
-            <span className="sr-only">CP: </span>
-            {cp}
-          </span>
-          <button
-            type="button"
-            aria-label="Increase CP"
-            onClick={() => {
-              if (cp !== undefined) onCpChange(cp + 1);
-            }}
-            className="pressable flex h-7 w-7 items-center justify-center rounded-md bg-parchment-ink/8 text-parchment-ink ring-1 ring-parchment-ink/15"
-          >
-            <svg viewBox="0 0 20 20" aria-hidden="true" className="h-4 w-4">
-              <path
-                d="M10 5v10M5 10h10"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
-        </span>
-      ) : null}
     </span>
   );
 
