@@ -461,6 +461,27 @@ function applyModifier(
     if (regimentId) {
       list.generalRegimentId = regimentId;
     }
+    if (isPathToGloryList(list)) {
+      if (!list.pathToGlory) {
+        list.pathToGlory = normalizePathToGloryState({ packIds: [] });
+      }
+      list.pathToGlory.warlordSelectionId = selection.id;
+      
+      if (!selection.pathToGlory) {
+        selection.pathToGlory = {
+          renown: 5,
+          pathId: null,
+          pathOptionIds: [],
+          battleWoundId: null,
+          scarId: null,
+        };
+      } else if ((selection.pathToGlory.renown ?? 0) < 5) {
+        selection.pathToGlory = {
+          ...selection.pathToGlory,
+          renown: 5,
+        };
+      }
+    }
     return;
   }
   if (/^reinforced$/i.test(text)) {

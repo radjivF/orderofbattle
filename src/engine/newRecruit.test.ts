@@ -318,6 +318,10 @@ Created with New Recruit
       anvil.name,
     );
 
+    expect(list?.pathToGlory?.warlordSelectionId).toBe(
+      list?.regiments[0]?.hero?.id,
+    );
+
     const hero = list?.regiments[0]?.hero?.pathToGlory;
     expect(hero?.anvilRankId).toBe(
       anvil.anvilRanks?.find((rank) => rank.name === "Lord of Decay")?.id,
@@ -327,6 +331,7 @@ Created with New Recruit
     );
     expect(hero?.pathId).toBe("path-of-the-attacker");
     expect(hero?.pathOptionIds).toContain("4564-988b-2147-1ba8");
+    expect(hero?.renown).toBeGreaterThanOrEqual(5);
     expect(hero?.artefactId).toBe(
       faction.artefacts.find((item) => item.name === "The Carrion Dirge")?.id,
     );
