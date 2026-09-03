@@ -164,7 +164,7 @@ export function BattleRecordTurnScore({
             
             {/* Command row */}
             {game.showCp && cp !== null ? (
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-4 select-none">
                 <span className="text-xs text-sheet-muted w-12">Command</span>
                 <div className="flex gap-1">
                   {Array.from({ length: 7 }, (_, i) => (
