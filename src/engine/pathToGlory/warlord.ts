@@ -1,5 +1,5 @@
 import type { ArmyList, CatalogueUnit, FactionCatalogue, Selection } from "../types";
-import { selectionPoints, unitHasKeyword } from "../queries";
+import { selectionPoints } from "../queries";
 import { isAnvilOfApotheosis } from "./anvil";
 import { pathsForPacks } from "./catalogue";
 import { pathOptionsForRank } from "./pathOptions";
@@ -111,9 +111,7 @@ export function initializeWarlordState(
   }
 
   // Pick first eligible Path
-  const isWizard = unitHasKeyword(unit, "WIZARD");
-  const isPriest = unitHasKeyword(unit, "PRIEST");
-  const eligiblePaths = pathsForPacks(packIds, unit.hero, isWizard, isPriest);
+  const eligiblePaths = pathsForPacks(packIds);
   const firstPath = eligiblePaths[0];
   
   if (!firstPath) {

@@ -143,15 +143,41 @@ export function packLabel(id: PathToGloryPackId): string {
 
 /** New Recruit / App headers like "Path to Glory: Ravaged Coast". */
 export function packsFromImportText(text: string): PathToGloryPackId[] | null {
-  if (!/path\s+to\s+glory/i.test(text)) {
+  // Explicit pack mentions
+  if (/path\s+to\s+glory/i.test(text)) {
+    if (/blighted\s+wilds/i.test(text)) {
+      return resolveBattlepacks("blighted-wilds");
+    }
+    if (/ravaged\s+coast/i.test(text)) {
+      return resolveBattlepacks("ravaged-coast");
+    }
+    return ["ascension"];
+  }
+  
+  // Detect PTG by content markers (path names, renown, scars, battle wounds)
+  // Require at least 2 strong markers to avoid false positives
+  // (Anvil unit name appears in catalogs, so don't use it alone)
+  const hasRenown = /\b\d+\s+renown\b/i.test(text);
+  const hasPath = /\bpath\s+of\s+the\s+(warrior|leader|mage|devout|attacker|defender|artillerist|behemoth|brawler|bulwark|cavalier|colossus|conjurer|dragoon|duellist|guardian|invoker|pack|ruler|sorcerer|warmonger|zealot|foresters|weald-born|alchemist|woodsman|thyrian\s+druid|sacrifice\s+master)\b/i.test(text);
+  const hasScar = /\b(ash-blighted|hissing\s+wheezes|raging\s+agonies|scorched\s+limbs|smouldering\s+scars|unyielding\s+blisters|blood-deep\s+corruption)\b/i.test(text);
+  const hasBattleWounds = /\bbattle\s+wounds?\s*:\s*\d+\b/i.test(text);
+  
+  // Require at least 2 strong markers
+  const markerCount = [hasRenown, hasPath, hasScar, hasBattleWounds].filter(Boolean).length;
+  const looksLikePTG = markerCount >= 2;
+  
+  if (!looksLikePTG) {
     return null;
   }
-  if (/blighted\s+wilds/i.test(text)) {
+  
+  // Infer pack from path names or default to Ascension
+  if (/path\s+of\s+the\s+(foresters|weald-born|alchemist|woodsman|thyrian\s+druid|sacrifice\s+master)\b/i.test(text)) {
     return resolveBattlepacks("blighted-wilds");
   }
-  if (/ravaged\s+coast/i.test(text)) {
+  if (/path\s+of\s+the\s+(artillerist|behemoth|brawler|bulwark|cavalier|colossus|conjurer|dragoon|duellist|guardian|invoker|pack|ruler|sorcerer|warmonger|zealot)\b/i.test(text)) {
     return resolveBattlepacks("ravaged-coast");
   }
+  
   return ["ascension"];
 }
 

@@ -23,9 +23,10 @@ export function applyImportedPathToGloryModifier(
   raw: string,
   selection: Selection,
 ): boolean {
-  if (!isPathToGloryList(list) || !raw) {
+  if (!raw) {
     return false;
   }
+  // Allow PTG modifier application even if list isn't PTG yet (detection may upgrade it)
   const name = tidyImportedModifier(raw);
   if (!name) {
     return false;
@@ -40,7 +41,8 @@ export function applyImportedPathToGloryModifier(
   if (applyWoundOrScar(selection, name)) {
     return true;
   }
-  if (applyHeroGear(selection, faction, name)) {
+  // Only try hero gear if list is PTG (these are PTG-specific enhancements)
+  if (isPathToGloryList(list) && applyHeroGear(selection, faction, name)) {
     return true;
   }
   return false;
