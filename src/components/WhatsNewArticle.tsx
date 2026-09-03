@@ -10,15 +10,14 @@ export function WhatsNewArticle({ items = WHATS_NEW_ITEMS }: Props) {
     <ContentDoc
       kicker="Updates"
       title="What's new in Order of Battle"
-      updated="31 August 2026"
+      updated="3 September 2026"
       crumbs={[
         { href: "/", label: "Home" },
         { href: "/updates", label: "What's new" },
       ]}
     >
       <p>
-        Fixes in this Age of Sigmar army builder release. Play mode and list
-        tools that were easy to miss at the table.
+        New in the army builder. Battle record, and fury for Scourge.
       </p>
 
       {items.length === 0 ? (

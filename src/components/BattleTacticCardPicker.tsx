@@ -99,9 +99,9 @@ export function BattleTacticCardPicker({
               <article
                 className={`w-full rounded-xl ring-1 transition ${shellClass}`}
               >
-                <div className="flex items-start gap-2 px-3 py-3">
+                <div className="flex items-center gap-2 px-3 py-3">
                   <label
-                    className={`flex min-w-0 flex-1 items-start gap-3 ${
+                    className={`flex min-h-11 min-w-0 flex-1 items-center gap-3 ${
                       disabled ? "cursor-not-allowed" : "cursor-pointer"
                     }`}
                   >
@@ -111,10 +111,10 @@ export function BattleTacticCardPicker({
                       disabled={disabled}
                       onChange={() => toggleCard(card.id)}
                       aria-label={`Select ${card.name}`}
-                      className="mt-0.5 size-5 shrink-0 accent-aether disabled:cursor-not-allowed"
+                      className="size-5 shrink-0 accent-aether disabled:cursor-not-allowed"
                     />
                     <span
-                      className={`min-w-0 flex-1 text-left text-xs leading-relaxed ${
+                      className={`min-w-0 flex-1 py-2 text-left text-xs leading-relaxed ${
                         picked
                           ? "text-parchment"
                           : disabled
@@ -141,7 +141,7 @@ export function BattleTacticCardPicker({
                         : `Show ${card.name} details`
                     }
                     onClick={() => toggleExpanded(card.id)}
-                    className="pressable -mr-1 shrink-0 rounded-lg p-1.5 text-parchment/45 hover:bg-parchment/10 hover:text-parchment/70"
+                    className="pressable -mr-1 shrink-0 rounded-lg p-1.5 text-parchment/45 hover:bg-parchment/10 hover:text-parchment/70 min-h-11 flex items-center"
                   >
                     <BattleTacticCollapseChevron open={expanded} />
                   </button>

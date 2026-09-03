@@ -283,7 +283,7 @@ function EnhancementRow({
   return (
     <button
       type="button"
-      className="flex min-h-9 w-fit items-center gap-2.5 text-left text-sm text-sheet-muted"
+      className="pressable flex min-h-9 w-fit cursor-pointer items-center gap-2.5 text-left text-sm text-sheet-muted"
       onClick={(event) => {
         event.stopPropagation();
         onPick();
@@ -313,7 +313,7 @@ function CollapsibleEnhancement({
       return (
         <button
           type="button"
-          className="text-left text-sm text-sheet-muted active:opacity-60"
+          className="pressable cursor-pointer text-left text-sm text-sheet-muted"
           onClick={(event) => {
             event.stopPropagation();
             onPick();
@@ -520,7 +520,7 @@ export function SlotMoreMenu({
         aria-label="More actions"
         aria-expanded={open}
         aria-controls={menuId}
-        className="flex min-h-11 items-center px-2.5 text-sheet-muted"
+        className="pressable flex min-h-11 cursor-pointer items-center px-2.5 text-sheet-muted"
         onClick={(event) => {
           event.stopPropagation();
           setOpen((value) => !value);
@@ -547,7 +547,7 @@ export function SlotMoreMenu({
             <button
               type="button"
               role="menuitem"
-              className="flex min-h-11 w-full items-center px-3 text-left text-sm"
+              className="pressable flex min-h-11 w-full cursor-pointer items-center px-3 text-left text-sm"
               onClick={() => {
                 onToggleReinforce();
                 setOpen(false);
@@ -560,7 +560,7 @@ export function SlotMoreMenu({
             <button
               type="button"
               role="menuitem"
-              className="flex min-h-11 w-full items-center px-3 text-left text-sm"
+              className="pressable flex min-h-11 w-full cursor-pointer items-center px-3 text-left text-sm"
               onClick={() => {
                 onDuplicate();
                 setOpen(false);
@@ -573,7 +573,7 @@ export function SlotMoreMenu({
             <button
               type="button"
               role="menuitem"
-              className="flex min-h-11 w-full items-center px-3 text-left text-sm text-illegal"
+              className="pressable flex min-h-11 w-full cursor-pointer items-center px-3 text-left text-sm text-illegal"
               onClick={() => {
                 onRemove();
                 setOpen(false);

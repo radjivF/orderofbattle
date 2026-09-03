@@ -20,6 +20,7 @@ describe("ExpandableRuleCard", () => {
     const toggle = screen.getByRole("button", {
       name: /Artefact · Ar'gath, the King of Blades/i,
     });
+    expect(toggle.className).toContain("cursor-pointer");
     expect(toggle).toHaveAttribute("aria-expanded", "false");
     expect(
       screen.queryByText(/Ward rolls cannot be made/i),

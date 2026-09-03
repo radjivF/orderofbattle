@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useLayoutEffect, useState, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import { armyOfRenownName, getFaction } from "@/engine/queries";
 import { getSpearhead } from "@/engine/spearhead";
 import type { FactionCatalogue } from "@/engine/types";
@@ -13,6 +14,7 @@ import {
 } from "@/lib/activeMenu";
 import { parseNewListArmyValue } from "@/lib/newListArmyOptions";
 import { factionPickerCounts } from "@/lib/factionSeo";
+import { preloadBackdropArt, towBackdropFactionId } from "@/lib/factionArt";
 import {
   blankArmy,
   blankSpearhead,
@@ -64,6 +66,12 @@ export function LibraryCreateFlow({ open, onOpenChange }: Props) {
   const createCounts = draftFaction
     ? factionPickerCounts(draftFaction)
     : null;
+  const createArtFactionId = draftTowFaction
+    ? towBackdropFactionId(draftTowFaction.id)
+    : (draftParent?.id ??
+      draftFaction?.parentFactionIds?.[0] ??
+      draftFaction?.id ??
+      null);
 
   async function onCreate() {
     if (creating) {
@@ -175,6 +183,13 @@ export function LibraryCreateFlow({ open, onOpenChange }: Props) {
     }
   }, [createSplash, creating]);
 
+  useEffect(() => {
+    if (!createArtFactionId) {
+      return;
+    }
+    void preloadBackdropArt(createArtFactionId);
+  }, [createArtFactionId]);
+
   useLayoutEffect(() => {
     const draft = newListDraftFromSearch(
       new URLSearchParams(window.location.search),
@@ -237,30 +252,28 @@ export function LibraryCreateFlow({ open, onOpenChange }: Props) {
         />
       ) : null}
       {libraryCreatingSplashVisible(creating, createSplash) &&
-      (draftFaction || draftTowFaction) ? (
-        <div className="fixed inset-0 z-[60] text-parchment">
-          <div className="absolute inset-0" aria-hidden="true">
-            {draftFaction ? (
-              <FactionArtLayers
-                factionId={
-                  draftParent?.id ??
-                  draftFaction.parentFactionIds?.[0] ??
-                  draftFaction.id
+      (draftFaction || draftTowFaction) &&
+      typeof document !== "undefined"
+        ? createPortal(
+            <div className="fixed inset-0 z-[60] overflow-hidden text-parchment">
+              <div
+                className="absolute inset-0 overflow-hidden"
+                aria-hidden="true"
+              >
+                <FactionArtLayers factionId={createArtFactionId} />
+              </div>
+              <ListLoadingSplash
+                factionName={
+                  draftTowFaction?.name ??
+                  (draftParent ?? draftFaction)?.name ??
+                  "New list"
                 }
-                scrim={false}
+                label="Creating your list"
               />
-            ) : null}
-          </div>
-          <ListLoadingSplash
-            factionName={
-              draftTowFaction?.name ??
-              (draftParent ?? draftFaction)?.name ??
-              "New list"
-            }
-            label="Creating your list"
-          />
-        </div>
-      ) : null}
+            </div>,
+            document.body,
+          )
+        : null}
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import type { CatalogueUnit } from "@/engine/types";
 import { cleanup, render, screen } from "@/test-utils/render";
-import { SlotLine } from "./RegimentCardSlots";
+import { SlotLine, SlotMoreMenu } from "./RegimentCardSlots";
 
 function unit(overrides: Partial<CatalogueUnit> = {}): CatalogueUnit {
   return {
@@ -40,5 +40,20 @@ describe("SlotLine keyword chips", () => {
     expect(screen.queryByText("WIZARD")).toBeNull();
     expect(screen.queryByText("FLY")).toBeNull();
     expect(screen.getByText("Liberator-Prime")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Liberator-Prime datasheet" }).className,
+    ).toContain("cursor-pointer");
+  });
+});
+
+describe("SlotMoreMenu", () => {
+  afterEach(() => cleanup());
+
+  it("puts a pointer cursor on the more-actions control", () => {
+    render(<SlotMoreMenu onRemove={vi.fn()} />);
+
+    expect(screen.getByRole("button", { name: "More actions" }).className).toContain(
+      "cursor-pointer",
+    );
   });
 });

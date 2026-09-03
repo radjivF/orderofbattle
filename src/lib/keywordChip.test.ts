@@ -16,6 +16,8 @@ describe("keywordChipClass", () => {
     const faction = keywordChipClass("CASTELITE");
 
     expect(hero).toContain("gold-deep");
+    expect(hero).toContain("h-5");
+    expect(hero).not.toContain("h-7");
     expect(infantry).toContain("olive");
     expect(cavalry).toContain("aether");
     expect(monster).toContain("illegal");
@@ -23,7 +25,9 @@ describe("keywordChipClass", () => {
     expect(fly).toContain("sky");
     expect(wizard).toContain("arcane");
     expect(priest).toContain("sigmarite");
+    expect(guarded).toContain("text-illegal");
     expect(guarded).toContain("illegal-lit");
+    expect(guarded).not.toContain("text-illegal-lit");
     expect(champion).toContain("steel");
     expect(guarded).not.toContain("gold-deep");
     expect(faction).toContain("parchment-ink");

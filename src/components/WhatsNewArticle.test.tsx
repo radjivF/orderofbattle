@@ -30,7 +30,7 @@ describe("WhatsNewArticle", () => {
     cleanup();
   });
 
-  it("lists this release's bug fixes", () => {
+  it("lists this release's new features", () => {
     render(<WhatsNewArticle />);
 
     expect(
