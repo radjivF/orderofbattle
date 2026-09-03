@@ -17,6 +17,9 @@ export type GameRound = {
   opponentRage: number;
   /** Flag to prevent double-granting rage when switching between turn tabs. */
   rageGranted: boolean;
+  /** Command Points tracked this round (null = not yet granted). */
+  yourCp: number | null;
+  opponentCp: number | null;
 };
 
 export type GameSession = {
@@ -31,6 +34,8 @@ export type GameSession = {
   /** Empty until chosen during the game. */
   battleplanId: string;
   allowDoubleTurn: boolean;
+  /** Optional CP tracking (default false for older sessions). */
+  showCp?: boolean;
   paintedYou: boolean;
   paintedOpponent: boolean;
   yourTacticCardIds: string[];
@@ -55,6 +60,7 @@ export type CreateBattleRecordInput = {
   opponentName: string;
   opponentArmy: string;
   allowDoubleTurn: boolean;
+  showCp?: boolean;
   paintedYou?: boolean;
   paintedOpponent?: boolean;
   yourTacticCardIds?: string[];
@@ -76,6 +82,8 @@ function emptyRound(): GameRound {
     yourRage: 0,
     opponentRage: 0,
     rageGranted: false,
+    yourCp: null,
+    opponentCp: null,
   };
 }
 
@@ -104,6 +112,7 @@ export type BattleArmyPick = {
   label: string;
   tacticIds: string[];
   listId?: string;
+  pointsLabel?: string;
 };
 
 export function createBattleRecord(
@@ -122,6 +131,7 @@ export function createBattleRecord(
     opponentListId: input.opponentListId || undefined,
     battleplanId: "",
     allowDoubleTurn: input.allowDoubleTurn,
+    showCp: Boolean(input.showCp),
     paintedYou: Boolean(input.paintedYou),
     paintedOpponent: Boolean(input.paintedOpponent),
     yourTacticCardIds,
@@ -363,6 +373,7 @@ export function patchBattleRecord(
       | "yourName"
       | "opponentName"
       | "allowDoubleTurn"
+      | "showCp"
       | "paintedYou"
       | "paintedOpponent"
     >
@@ -462,6 +473,43 @@ export function finishBattle(session: GameSession): GameSession {
     return session;
   }
   return touch({ ...session, status: "done" });
+}
+
+/** Grant CP at the start of a round: 4 base, 5 if underdog. Only grant once. */
+export function grantCpForRound(
+  session: GameSession,
+  roundIndex: number,
+): GameSession {
+  if (!session.showCp) return session;
+  if (roundIndex < 0 || roundIndex >= session.rounds.length) return session;
+  const round = session.rounds[roundIndex]!;
+  if (round.yourCp !== null && round.opponentCp !== null) {
+    return session;
+  }
+  const dog = underdog(session, roundIndex);
+  const yourCp = dog === "opponent" ? 5 : 4;
+  const opponentCp = dog === "you" ? 5 : 4;
+  const nextRounds = [...session.rounds];
+  nextRounds[roundIndex] = { ...round, yourCp, opponentCp };
+  return touch({ ...session, rounds: nextRounds });
+}
+
+export function setPlayerCp(
+  session: GameSession,
+  roundIndex: number,
+  player: BattlePlayer,
+  cp: number,
+): GameSession {
+  if (roundIndex < 0 || roundIndex >= session.rounds.length) return session;
+  const clamped = Math.max(0, Math.min(cp, 99));
+  const round = session.rounds[roundIndex]!;
+  const nextRound =
+    player === "you"
+      ? { ...round, yourCp: clamped }
+      : { ...round, opponentCp: clamped };
+  const nextRounds = [...session.rounds];
+  nextRounds[roundIndex] = nextRound;
+  return touch({ ...session, rounds: nextRounds });
 }
 
 export function reopenBattle(session: GameSession): GameSession {

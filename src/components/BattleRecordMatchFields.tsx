@@ -3,9 +3,12 @@
 import { useId, useMemo, useState, useSyncExternalStore } from "react";
 import type { BattleArmyPick } from "@/engine/gameSession";
 import { getFaction } from "@/engine/queries";
+import { catalogueForList, isSpearheadList } from "@/engine/spearhead";
 import { isTowList } from "@/engine/storedList";
 import type { ArmyList } from "@/engine/types";
+import { summarize } from "@/engine/validate";
 import {
+  formatArmyPoints,
   MODAL_SHEET_SCROLL_CLASS,
   MODAL_SHEET_SCROLL_HOST_CLASS,
   SHEET_HEADER_CLASS,
@@ -42,9 +45,12 @@ function FieldWarning({ id, message }: { id: string; message?: string }) {
 type Values = {
   yourName: string;
   yourArmyLabel: string;
+  yourArmyPoints?: string;
   opponentName: string;
   opponentArmyLabel: string;
+  opponentArmyPoints?: string;
   allowDoubleTurn: boolean;
+  showCp: boolean;
   paintedYou: boolean;
   paintedOpponent: boolean;
 };
@@ -59,6 +65,7 @@ type Props = {
   onYourName: (value: string) => void;
   onOpponentName: (value: string) => void;
   onAllowDoubleTurn: (value: boolean) => void;
+  onShowCp: (value: boolean) => void;
   onPaintedYou: (value: boolean) => void;
   onPaintedOpponent: (value: boolean) => void;
   onPickArmy: (side: PickerTarget, pick: BattleArmyPick) => void;
@@ -70,6 +77,7 @@ export function BattleRecordMatchFields({
   onYourName,
   onOpponentName,
   onAllowDoubleTurn,
+  onShowCp,
   onPaintedYou,
   onPaintedOpponent,
   onPickArmy,
@@ -117,7 +125,18 @@ export function BattleRecordMatchFields({
           className={fieldClass("yourArmy", PICK_BUTTON_CLASS)}
           {...fieldProps("yourArmy")}
         >
-          {values.yourArmyLabel || "Choose army…"}
+          {values.yourArmyLabel ? (
+            <span className="flex flex-col items-start gap-0.5">
+              <span>{values.yourArmyLabel}</span>
+              {values.yourArmyPoints ? (
+                <span className="text-sm text-sheet-muted">
+                  {values.yourArmyPoints}
+                </span>
+              ) : null}
+            </span>
+          ) : (
+            "Choose army…"
+          )}
         </button>
         <FieldWarning id={warnId("yourArmy")} message={warnings?.yourArmy} />
       </div>
@@ -145,7 +164,18 @@ export function BattleRecordMatchFields({
           className={fieldClass("opponentArmy", PICK_BUTTON_CLASS)}
           {...fieldProps("opponentArmy")}
         >
-          {values.opponentArmyLabel || "Choose army…"}
+          {values.opponentArmyLabel ? (
+            <span className="flex flex-col items-start gap-0.5">
+              <span>{values.opponentArmyLabel}</span>
+              {values.opponentArmyPoints ? (
+                <span className="text-sm text-sheet-muted">
+                  {values.opponentArmyPoints}
+                </span>
+              ) : null}
+            </span>
+          ) : (
+            "Choose army…"
+          )}
         </button>
         <FieldWarning
           id={warnId("opponentArmy")}
@@ -166,6 +196,22 @@ export function BattleRecordMatchFields({
           options={[
             { value: "on", label: "Track priority" },
             { value: "off", label: "No initiative" },
+          ]}
+        />
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <p className="text-base text-sheet-muted">Show CP</p>
+        <p className="text-sm text-sheet-muted">
+          Track Command Points with +/− controls on each player strip.
+        </p>
+        <IosSegmentedControl
+          ariaLabel="Show CP"
+          value={values.showCp ? "on" : "off"}
+          onChange={(next) => onShowCp(next === "on")}
+          options={[
+            { value: "off", label: "Off" },
+            { value: "on", label: "On" },
           ]}
         />
       </div>
@@ -261,6 +307,14 @@ function ArmyPickSheet({
             ) : (
               lists.map((list) => {
                 const faction = getFaction(list.factionId);
+                const spearhead = isSpearheadList(list);
+                const catalogue = catalogueForList(list);
+                const totals = catalogue ? summarize(list, catalogue) : null;
+                const pointsLine = formatArmyPoints({
+                  spearhead,
+                  pointsSpent: totals?.points ?? 0,
+                  pointsCap: list.pointsCap,
+                });
                 return (
                   <button
                     key={list.id}
@@ -270,6 +324,7 @@ function ArmyPickSheet({
                         label: list.name,
                         tacticIds: (list.battleTacticCardIds ?? []).slice(0, 2),
                         listId: list.id,
+                        pointsLabel: pointsLine,
                       })
                     }
                     className="rounded-xl bg-parchment-ink/5 px-4 py-3 text-left ring-1 ring-parchment-ink/10"
@@ -279,6 +334,8 @@ function ArmyPickSheet({
                     </p>
                     <p className="mt-0.5 text-sm text-sheet-muted">
                       {faction?.name ?? list.factionId}
+                      {" · "}
+                      {pointsLine}
                       {(list.battleTacticCardIds ?? []).length > 0
                         ? ` · ${(list.battleTacticCardIds ?? []).length} tactics`
                         : ""}

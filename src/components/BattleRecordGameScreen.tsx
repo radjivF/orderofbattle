@@ -10,6 +10,7 @@ import {
   advanceTacticStage,
   canSetFirstPlayer,
   finishBattle,
+  grantCpForRound,
   grantRageForRound,
   initializeFury,
   isDoubleTurn,
@@ -18,6 +19,7 @@ import {
   reopenBattle,
   roundVpTotal,
   setFury,
+  setPlayerCp,
   setPrimaryClaim,
   setRage,
   setRoundFirstPlayer,
@@ -29,9 +31,12 @@ import {
   type BattlePlayer,
   type GameSession,
 } from "@/engine/gameSession";
+import { catalogueForList, isSpearheadList } from "@/engine/spearhead";
 import { isTowList } from "@/engine/storedList";
 import type { ArmyList } from "@/engine/types";
+import { summarize } from "@/engine/validate";
 import {
+  formatArmyPoints,
   IOS_LIQUID_CTA_CLASS,
   LIBRARY_TITLE_CLASS,
   LIBRARY_TITLE_ROW_CLASS,
@@ -168,9 +173,17 @@ export function BattleRecordGameScreen({ gameId }: Props) {
     if (!game || game.status !== "active") {
       return;
     }
-    const withRage = grantRageForRound(game, roundIndex);
-    if (withRage !== game) {
-      void commit(withRage);
+    let next = game;
+    const withRage = grantRageForRound(next, roundIndex);
+    if (withRage !== next) {
+      next = withRage;
+    }
+    const withCp = grantCpForRound(next, roundIndex);
+    if (withCp !== next) {
+      next = withCp;
+    }
+    if (next !== game) {
+      void commit(next);
     }
   }, [game, roundIndex]);
 
@@ -346,7 +359,14 @@ export function BattleRecordGameScreen({ gameId }: Props) {
             <ScoreIdentity
               name={game.yourName}
               army={game.yourArmy}
+              listId={game.yourListId}
+              lists={lists}
               underdog={dog === "you"}
+              cp={round.yourCp}
+              showCp={game.showCp}
+              onCpChange={(cp) =>
+                void commit((prev) => setPlayerCp(prev, roundIndex, "you", cp))
+              }
               className="col-start-1"
               onPlay={
                 yourPlayList
@@ -363,7 +383,16 @@ export function BattleRecordGameScreen({ gameId }: Props) {
             <ScoreIdentity
               name={game.opponentName}
               army={game.opponentArmy}
+              listId={game.opponentListId}
+              lists={lists}
               underdog={dog === "opponent"}
+              cp={round.opponentCp}
+              showCp={game.showCp}
+              onCpChange={(cp) =>
+                void commit((prev) =>
+                  setPlayerCp(prev, roundIndex, "opponent", cp),
+                )
+              }
               align="right"
               className="col-start-3"
               onPlay={
@@ -659,18 +688,42 @@ function scoreExtras(primary: number, tactics: number, painted: number): string 
 function ScoreIdentity({
   name,
   army,
+  listId,
+  lists,
   underdog: isUnderdog,
+  cp,
+  showCp,
+  onCpChange,
   align = "left",
   className = "",
   onPlay,
 }: {
   name: string;
   army: string;
+  listId?: string;
+  lists: ReturnType<typeof getArmiesSnapshot>;
   underdog: boolean;
+  cp?: number | null;
+  showCp?: boolean;
+  onCpChange?: (cp: number) => void;
   align?: "left" | "right";
   className?: string;
   onPlay?: () => void;
 }) {
+  const armyPoints = useMemo(() => {
+    if (!listId || !lists) return null;
+    const list = lists.find((item) => item.id === listId);
+    if (!list || isTowList(list)) return null;
+    const spearhead = isSpearheadList(list);
+    const catalogue = catalogueForList(list);
+    const totals = catalogue ? summarize(list, catalogue) : null;
+    return formatArmyPoints({
+      spearhead,
+      pointsSpent: totals?.points ?? 0,
+      pointsCap: list.pointsCap,
+    });
+  }, [listId, lists]);
+
   const names = (
     <span
       className={`min-w-0 ${align === "right" ? "text-right" : "text-left"}`}
@@ -679,7 +732,50 @@ function ScoreIdentity({
         {name}
         {isUnderdog ? " · underdog" : ""}
       </span>
-      <span className="block truncate text-xs text-sheet-muted/80">{army}</span>
+      <span className="block truncate text-xs text-sheet-muted/80">
+        {army}
+        {armyPoints ? ` · ${armyPoints}` : ""}
+      </span>
+      {showCp && cp !== null && onCpChange ? (
+        <span className="mt-1 flex items-center gap-1.5">
+          <button
+            type="button"
+            aria-label="Decrease CP"
+            onClick={() => onCpChange(Math.max(0, cp - 1))}
+            className="pressable flex h-7 w-7 items-center justify-center rounded-md bg-parchment-ink/8 text-parchment-ink ring-1 ring-parchment-ink/15"
+          >
+            <svg viewBox="0 0 20 20" aria-hidden="true" className="h-4 w-4">
+              <path
+                d="M5 10h10"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
+          <span className="min-w-[2rem] text-center text-sm font-medium tabular-nums text-parchment-ink">
+            <span className="sr-only">CP: </span>
+            {cp}
+          </span>
+          <button
+            type="button"
+            aria-label="Increase CP"
+            onClick={() => onCpChange(cp + 1)}
+            className="pressable flex h-7 w-7 items-center justify-center rounded-md bg-parchment-ink/8 text-parchment-ink ring-1 ring-parchment-ink/15"
+          >
+            <svg viewBox="0 0 20 20" aria-hidden="true" className="h-4 w-4">
+              <path
+                d="M10 5v10M5 10h10"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
+        </span>
+      ) : null}
     </span>
   );
 

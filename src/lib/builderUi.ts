@@ -7,6 +7,18 @@ export function dropCountLabel(drops: number): string {
   return `${drops} ${drops === 1 ? "drop" : "drops"}`;
 }
 
+/** Format points as "spent / cap" for battle record picker and score identity. */
+export function formatArmyPoints(input: {
+  spearhead: boolean;
+  pointsSpent: number;
+  pointsCap: number;
+}): string {
+  if (input.spearhead) {
+    return "Spearhead";
+  }
+  return `${formatPoints(input.pointsSpent)} / ${formatPoints(input.pointsCap)}`;
+}
+
 /** Matched-play cap or Spearhead box — used on library cards and export picker. */
 export function libraryListGameLabel(input: {
   spearhead: boolean;

@@ -20,9 +20,12 @@ import {
   startBattle,
   type GameSession,
 } from "@/engine/gameSession";
+import { catalogueForList, isSpearheadList } from "@/engine/spearhead";
 import { isTowList } from "@/engine/storedList";
 import type { ArmyList } from "@/engine/types";
+import { summarize } from "@/engine/validate";
 import {
+  formatArmyPoints,
   IOS_LIQUID_CTA_CLASS,
   LIBRARY_TITLE_CLASS,
   LIBRARY_TITLE_ROW_CLASS,
@@ -123,6 +126,28 @@ export function BattleRecordSetupScreen({
     () => tacticCardsForPlayer(opponentList, game.opponentTacticCardIds),
     [opponentList, game.opponentTacticCardIds],
   );
+  const yourArmyPoints = useMemo(() => {
+    if (!yourList) return undefined;
+    const spearhead = isSpearheadList(yourList);
+    const catalogue = catalogueForList(yourList);
+    const totals = catalogue ? summarize(yourList, catalogue) : null;
+    return formatArmyPoints({
+      spearhead,
+      pointsSpent: totals?.points ?? 0,
+      pointsCap: yourList.pointsCap,
+    });
+  }, [yourList]);
+  const opponentArmyPoints = useMemo(() => {
+    if (!opponentList) return undefined;
+    const spearhead = isSpearheadList(opponentList);
+    const catalogue = catalogueForList(opponentList);
+    const totals = catalogue ? summarize(opponentList, catalogue) : null;
+    return formatArmyPoints({
+      spearhead,
+      pointsSpent: totals?.points ?? 0,
+      pointsCap: opponentList.pointsCap,
+    });
+  }, [opponentList]);
   const layout = getBattleplanLayout(game.battleplanId);
   const ready = canStartBattle(game);
   const gaps = battleSetupGaps(game);
@@ -178,9 +203,12 @@ export function BattleRecordSetupScreen({
             values={{
               yourName: game.yourName,
               yourArmyLabel: game.yourArmy,
+              yourArmyPoints,
               opponentName: game.opponentName,
               opponentArmyLabel: game.opponentArmy,
+              opponentArmyPoints,
               allowDoubleTurn: game.allowDoubleTurn,
+              showCp: game.showCp ?? false,
               paintedYou: game.paintedYou,
               paintedOpponent: game.paintedOpponent,
             }}
@@ -196,6 +224,9 @@ export function BattleRecordSetupScreen({
               onChange((prev) =>
                 patchBattleRecord(prev, { allowDoubleTurn: value }),
               )
+            }
+            onShowCp={(value) =>
+              onChange((prev) => patchBattleRecord(prev, { showCp: value }))
             }
             onPaintedYou={(value) =>
               onChange((prev) =>

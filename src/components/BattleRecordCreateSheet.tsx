@@ -35,6 +35,7 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
   const [opponentName, setOpponentName] = useState("");
   const [opponentArmy, setOpponentArmy] = useState<BattleArmyPick | null>(null);
   const [allowDoubleTurn, setAllowDoubleTurn] = useState(true);
+  const [showCp, setShowCp] = useState(false);
   const [paintedYou, setPaintedYou] = useState(false);
   const [paintedOpponent, setPaintedOpponent] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -50,6 +51,7 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
       setOpponentName("");
       setOpponentArmy(null);
       setAllowDoubleTurn(true);
+      setShowCp(false);
       setPaintedYou(false);
       setPaintedOpponent(false);
       setSaving(false);
@@ -81,6 +83,7 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
       opponentName,
       opponentArmy: opponentArmy?.label ?? "",
       allowDoubleTurn,
+      showCp,
       paintedYou,
       paintedOpponent,
       yourTacticCardIds: yourArmy?.tacticIds ?? [],
@@ -115,9 +118,12 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
             values={{
               yourName,
               yourArmyLabel: yourArmy?.label ?? "",
+              yourArmyPoints: yourArmy?.pointsLabel,
               opponentName,
               opponentArmyLabel: opponentArmy?.label ?? "",
+              opponentArmyPoints: opponentArmy?.pointsLabel,
               allowDoubleTurn,
+              showCp,
               paintedYou,
               paintedOpponent,
             }}
@@ -125,6 +131,7 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
             onYourName={setYourName}
             onOpponentName={setOpponentName}
             onAllowDoubleTurn={setAllowDoubleTurn}
+            onShowCp={setShowCp}
             onPaintedYou={setPaintedYou}
             onPaintedOpponent={setPaintedOpponent}
             onPickArmy={(side, pick) => {
