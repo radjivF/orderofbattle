@@ -145,14 +145,7 @@ export function BattleRecordTacticTracker({
   );
 
   if (embedded) {
-    return (
-      <div>
-        <h3 className="text-xs font-semibold tracking-wide uppercase text-sheet-muted">
-          Tactics
-        </h3>
-        {list}
-      </div>
-    );
+    return <div>{list}</div>;
   }
 
   return (
