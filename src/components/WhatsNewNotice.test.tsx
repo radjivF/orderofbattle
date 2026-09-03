@@ -3,7 +3,10 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { blankArmy } from "@/engine/listFactories";
 import type { ArmyList } from "@/engine/types";
-import { WHATS_NEW_AUTO_DISMISS_MS } from "@/lib/whatsNew";
+import {
+  WHATS_NEW_AUTO_DISMISS_MS,
+  WHATS_NEW_AUTO_DISMISS_MS_DESKTOP,
+} from "@/lib/whatsNew";
 import { UPDATES_PATH } from "@/lib/updatesPage";
 import { act, cleanup, render, screen } from "@/test-utils/render";
 import { WhatsNewNotice } from "./WhatsNewNotice";
@@ -44,6 +47,25 @@ describe("WhatsNewNotice", () => {
     localStorage.clear();
     armyStore.items = undefined;
     vi.useRealTimers();
+    Object.defineProperty(window, "location", {
+      value: { hostname: "www.orderofbattle.app" },
+      writable: true,
+      configurable: true,
+    });
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      configurable: true,
+      value: vi.fn().mockImplementation((query: string) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      })),
+    });
   });
 
   it("does not show while lists are loading", () => {
@@ -57,14 +79,31 @@ describe("WhatsNewNotice", () => {
     expect(screen.queryByRole("status", { name: "What's new" })).toBeNull();
   });
 
-  it("asks a returning user if they want to see the bug fixes", () => {
+  it("asks a returning user if they want to see the new features", () => {
     armyStore.items = [blankArmy("stormcast-eternals", "My army")];
     render(<WhatsNewNotice />);
 
     const notice = screen.getByRole("status", { name: "What's new" });
-    expect(notice).toHaveTextContent("We fixed a few bugs. Want to see?");
+    expect(notice).toHaveTextContent(
+      "Score a live game from the menu. Scourge of Aqshy has fury dice now.",
+    );
     expect(screen.queryByRole("dialog")).toBeNull();
     expect(screen.queryByRole("list")).toBeNull();
+  });
+
+  it("shows for preview/staging even with empty library", () => {
+    Object.defineProperty(window, "location", {
+      value: { hostname: "preview.vercel.app" },
+      writable: true,
+      configurable: true,
+    });
+    armyStore.items = [];
+    render(<WhatsNewNotice />);
+
+    const notice = screen.getByRole("status", { name: "What's new" });
+    expect(notice).toHaveTextContent(
+      "Score a live game from the menu. Scourge of Aqshy has fury dice now.",
+    );
   });
 
   it("sends See to the updates page instead of stuffing the list in the toast", () => {
@@ -107,6 +146,38 @@ describe("WhatsNewNotice", () => {
 
     unmount();
     render(<WhatsNewNotice />);
+    expect(screen.queryByRole("status", { name: "What's new" })).toBeNull();
+  });
+
+  it("uses longer timeout on desktop", async () => {
+    vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout"] });
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      configurable: true,
+      value: vi.fn().mockImplementation((query: string) => ({
+        matches: query === "(min-width: 768px)",
+        media: query,
+        onchange: null,
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      })),
+    });
+    armyStore.items = [blankArmy("stormcast-eternals", "My army")];
+    render(<WhatsNewNotice />);
+
+    expect(screen.getByRole("status", { name: "What's new" }));
+    await act(async () => {
+      vi.advanceTimersByTime(WHATS_NEW_AUTO_DISMISS_MS);
+    });
+    expect(screen.getByRole("status", { name: "What's new" }));
+    await act(async () => {
+      vi.advanceTimersByTime(
+        WHATS_NEW_AUTO_DISMISS_MS_DESKTOP - WHATS_NEW_AUTO_DISMISS_MS,
+      );
+    });
     expect(screen.queryByRole("status", { name: "What's new" })).toBeNull();
   });
 });
