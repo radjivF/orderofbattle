@@ -2,6 +2,8 @@ import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { BattleRecordMatchFields } from "./BattleRecordMatchFields";
 
+const mockLists: unknown[] = [];
+
 vi.mock("@/lib/storage", () => ({
   subscribeArmies: () => () => {},
   getArmiesSnapshot: () => mockLists,

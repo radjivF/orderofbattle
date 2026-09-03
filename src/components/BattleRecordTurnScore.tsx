@@ -44,6 +44,7 @@ type Props = {
   roundIndex: number;
   onChangeFury: (player: BattlePlayer, fury: number) => void;
   onChangeRage: (player: BattlePlayer, rage: number) => void;
+  onChangeCp: (player: BattlePlayer, cp: number) => void;
   onSetAttacker: (attacker: BattlePlayer) => void;
 };
 
@@ -67,6 +68,7 @@ export function BattleRecordTurnScore({
   roundIndex,
   onChangeFury,
   onChangeRage,
+  onChangeCp,
   onSetAttacker,
 }: Props) {
   const order = turnPlayerOrder(firstPlayer);
@@ -79,6 +81,7 @@ export function BattleRecordTurnScore({
   const round = game.rounds[roundIndex];
   const fury = activePlayer === "you" ? game.yourFury : game.opponentFury;
   const rage = round ? (activePlayer === "you" ? round.yourRage : round.opponentRage) : 0;
+  const cp = round ? (activePlayer === "you" ? round.yourCp : round.opponentCp) : null;
   
   const attacker = round?.firstPlayer;
   const defender = attacker ? (attacker === "you" ? "opponent" : "you") : null;
@@ -91,6 +94,11 @@ export function BattleRecordTurnScore({
 
   function adjustRage(delta: number) {
     onChangeRage(activePlayer, Math.max(0, rage + delta));
+  }
+
+  function adjustCp(delta: number) {
+    if (cp === null) return;
+    onChangeCp(activePlayer, Math.max(0, Math.min(99, cp + delta)));
   }
 
   function spendEruption(amount: 1 | 2 | 3) {
@@ -122,8 +130,8 @@ export function BattleRecordTurnScore({
         }))}
       />
       <div role="tabpanel" className="mt-4">
-        {/* 1. Fury + Rage (Scourge of Aqshy) */}
-        {showScourge && round ? (
+        {/* 1. Fury + Rage + Command (Scourge of Aqshy / Show CP) */}
+        {(showScourge || game.showCp) && round ? (
           <div className="mb-4 rounded-xl bg-parchment-ink/5 p-4 ring-1 ring-parchment-ink/10">
             <div className="flex items-center justify-between mb-3">
               <p className="text-sm font-medium text-parchment-ink">
@@ -155,6 +163,8 @@ export function BattleRecordTurnScore({
             </div>
             
             {/* Fury row */}
+            {showScourge ? (
+              <>
             <div className="flex items-center gap-3 mb-4">
               <span className="text-xs text-sheet-muted w-12">Fury</span>
               <div className="flex gap-1">
@@ -193,7 +203,7 @@ export function BattleRecordTurnScore({
             </div>
 
             {/* Rage row */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 mb-4">
               <button
                 type="button"
                 onClick={() => setSpendsExpanded(!spendsExpanded)}
@@ -283,6 +293,39 @@ export function BattleRecordTurnScore({
                 )}
               </div>
             )}
+              </>
+            ) : null}
+
+            {/* Command row */}
+            {game.showCp && cp !== null ? (
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-sheet-muted w-12">Command</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-base font-semibold tabular-nums">{cp}</span>
+                  <span className="text-[11px] text-sheet-muted/70">this round</span>
+                </div>
+                <div className="ml-auto flex gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => adjustCp(-1)}
+                    disabled={cp <= 0}
+                    aria-label="Decrease command points"
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-parchment-ink/10 text-base font-semibold ring-1 ring-parchment-ink/20 hover:bg-parchment-ink/15 active:bg-parchment-ink/20 disabled:opacity-30"
+                  >
+                    −
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => adjustCp(1)}
+                    disabled={cp >= 99}
+                    aria-label="Increase command points"
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-parchment-ink/10 text-base font-semibold ring-1 ring-parchment-ink/20 hover:bg-parchment-ink/15 active:bg-parchment-ink/20 disabled:opacity-30"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            ) : null}
           </div>
         ) : null}
 
