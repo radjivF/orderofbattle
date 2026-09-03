@@ -736,12 +736,14 @@ function ScoreIdentity({
         {army}
         {armyPoints ? ` · ${armyPoints}` : ""}
       </span>
-      {showCp && cp !== null && onCpChange ? (
+      {showCp && cp !== null && cp !== undefined && onCpChange ? (
         <span className="mt-1 flex items-center gap-1.5">
           <button
             type="button"
             aria-label="Decrease CP"
-            onClick={() => onCpChange(Math.max(0, cp - 1))}
+            onClick={() => {
+              if (cp !== undefined) onCpChange(Math.max(0, cp - 1));
+            }}
             className="pressable flex h-7 w-7 items-center justify-center rounded-md bg-parchment-ink/8 text-parchment-ink ring-1 ring-parchment-ink/15"
           >
             <svg viewBox="0 0 20 20" aria-hidden="true" className="h-4 w-4">
@@ -761,7 +763,9 @@ function ScoreIdentity({
           <button
             type="button"
             aria-label="Increase CP"
-            onClick={() => onCpChange(cp + 1)}
+            onClick={() => {
+              if (cp !== undefined) onCpChange(cp + 1);
+            }}
             className="pressable flex h-7 w-7 items-center justify-center rounded-md bg-parchment-ink/8 text-parchment-ink ring-1 ring-parchment-ink/15"
           >
             <svg viewBox="0 0 20 20" aria-hidden="true" className="h-4 w-4">
