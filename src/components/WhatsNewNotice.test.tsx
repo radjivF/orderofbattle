@@ -3,7 +3,10 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { blankArmy } from "@/engine/listFactories";
 import type { ArmyList } from "@/engine/types";
-import { WHATS_NEW_AUTO_DISMISS_MS } from "@/lib/whatsNew";
+import {
+  WHATS_NEW_AUTO_DISMISS_MS,
+  WHATS_NEW_AUTO_DISMISS_MS_DESKTOP,
+} from "@/lib/whatsNew";
 import { UPDATES_PATH } from "@/lib/updatesPage";
 import { act, cleanup, render, screen } from "@/test-utils/render";
 import { WhatsNewNotice } from "./WhatsNewNotice";
@@ -48,6 +51,20 @@ describe("WhatsNewNotice", () => {
       value: { hostname: "www.orderofbattle.app" },
       writable: true,
       configurable: true,
+    });
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      configurable: true,
+      value: vi.fn().mockImplementation((query: string) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      })),
     });
   });
 
@@ -129,6 +146,38 @@ describe("WhatsNewNotice", () => {
 
     unmount();
     render(<WhatsNewNotice />);
+    expect(screen.queryByRole("status", { name: "What's new" })).toBeNull();
+  });
+
+  it("uses longer timeout on desktop", async () => {
+    vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout"] });
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      configurable: true,
+      value: vi.fn().mockImplementation((query: string) => ({
+        matches: query === "(min-width: 768px)",
+        media: query,
+        onchange: null,
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      })),
+    });
+    armyStore.items = [blankArmy("stormcast-eternals", "My army")];
+    render(<WhatsNewNotice />);
+
+    expect(screen.getByRole("status", { name: "What's new" }));
+    await act(async () => {
+      vi.advanceTimersByTime(WHATS_NEW_AUTO_DISMISS_MS);
+    });
+    expect(screen.getByRole("status", { name: "What's new" }));
+    await act(async () => {
+      vi.advanceTimersByTime(
+        WHATS_NEW_AUTO_DISMISS_MS_DESKTOP - WHATS_NEW_AUTO_DISMISS_MS,
+      );
+    });
     expect(screen.queryByRole("status", { name: "What's new" })).toBeNull();
   });
 });

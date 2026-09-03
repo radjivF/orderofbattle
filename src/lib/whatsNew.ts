@@ -2,8 +2,11 @@ const SEEN_KEY = "oob-whats-new";
 
 export const WHATS_NEW_VERSION = "2026-09-03-battle-record-fury";
 
-/** Collapsed toast hides itself after this. */
+/** Collapsed toast hides itself after this (small screens). */
 export const WHATS_NEW_AUTO_DISMISS_MS = 8_000;
+
+/** Collapsed toast hides itself after this (desktop min-width 768px). */
+export const WHATS_NEW_AUTO_DISMISS_MS_DESKTOP = 20_000;
 
 export const WHATS_NEW_ITEMS = [
   "Battle record lets you score a game (You vs opponent, VP, tactics). Lists stay on the device.",
