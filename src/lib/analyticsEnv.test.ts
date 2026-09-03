@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   isAnalyticsLocalHost,
   shouldLoadAnalytics,
+  shouldLoadClarity,
 } from "@/lib/analyticsEnv";
 
 describe("analyticsEnv", () => {
@@ -28,5 +29,33 @@ describe("analyticsEnv", () => {
     expect(shouldLoadAnalytics("www.orderofbattle.app", "production")).toBe(
       true,
     );
+  });
+
+  describe("shouldLoadClarity", () => {
+    it("allows production domains only", () => {
+      expect(shouldLoadClarity("orderofbattle.app")).toBe(true);
+      expect(shouldLoadClarity("www.orderofbattle.app")).toBe(true);
+    });
+
+    it("blocks staging domain", () => {
+      expect(shouldLoadClarity("staging.orderofbattle.app")).toBe(false);
+    });
+
+    it("blocks Vercel preview URLs", () => {
+      expect(shouldLoadClarity("zheat-git-pr-123-yohan.vercel.app")).toBe(
+        false,
+      );
+      expect(shouldLoadClarity("zheat-preview.vercel.app")).toBe(false);
+    });
+
+    it("blocks localhost", () => {
+      expect(shouldLoadClarity("localhost")).toBe(false);
+      expect(shouldLoadClarity("127.0.0.1")).toBe(false);
+    });
+
+    it("blocks unknown domains", () => {
+      expect(shouldLoadClarity("example.com")).toBe(false);
+      expect(shouldLoadClarity("orderofbattle.dev")).toBe(false);
+    });
   });
 });
