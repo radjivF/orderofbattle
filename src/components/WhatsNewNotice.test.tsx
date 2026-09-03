@@ -57,12 +57,14 @@ describe("WhatsNewNotice", () => {
     expect(screen.queryByRole("status", { name: "What's new" })).toBeNull();
   });
 
-  it("asks a returning user if they want to see the bug fixes", () => {
+  it("asks a returning user if they want to see the new features", () => {
     armyStore.items = [blankArmy("stormcast-eternals", "My army")];
     render(<WhatsNewNotice />);
 
     const notice = screen.getByRole("status", { name: "What's new" });
-    expect(notice).toHaveTextContent("We fixed a few bugs. Want to see?");
+    expect(notice).toHaveTextContent(
+      "Score a live game from the menu. Scourge of Aqshy has fury dice now.",
+    );
     expect(screen.queryByRole("dialog")).toBeNull();
     expect(screen.queryByRole("list")).toBeNull();
   });

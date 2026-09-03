@@ -46,8 +46,11 @@ describe("shouldShowWhatsNew", () => {
 });
 
 describe("WHATS_NEW_ITEMS", () => {
-  it("lists this release's play-mode ability fix", () => {
-    expect(WHATS_NEW_ITEMS.some((item) => /abilit/i.test(item))).toBe(true);
+  it("lists battle record and fury/rage features", () => {
+    expect(WHATS_NEW_ITEMS.some((item) => /battle record/i.test(item))).toBe(
+      true,
+    );
+    expect(WHATS_NEW_ITEMS.some((item) => /fury|rage/i.test(item))).toBe(true);
   });
 });
 
