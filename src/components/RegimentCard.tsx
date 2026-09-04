@@ -130,45 +130,44 @@ export function RegimentCard({
       onClick={playMode ? undefined : onSelect}
     >
       <header className="mb-4 flex items-start justify-between gap-3">
-        <div>
+        <div className="min-w-0 flex-1">
           {isGeneral ? (
             <p className="text-sm font-semibold tracking-wide uppercase text-aether">
               General&apos;s regiment
             </p>
-          ) : playMode || locked ? (
-            <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
-              Regiment
-            </p>
-          ) : canBeGeneral ? (
-            <button
-              type="button"
-              className="min-h-11 text-sm font-semibold tracking-wide uppercase text-sheet-muted"
-              onClick={(event) => {
-                event.stopPropagation();
-                onMakeGeneral();
-              }}
-            >
-              Make general
-            </button>
           ) : (
             <p className="text-sm font-semibold tracking-wide uppercase text-sheet-muted">
               Regiment
             </p>
           )}
-          {hero ? (
-            <button
-              type="button"
-              className="pressable cursor-pointer text-left"
-              onClick={(event) => {
-                event.stopPropagation();
-                onOpenDatasheet(hero);
-              }}
-            >
-              <h2 className="font-serif text-2xl leading-tight">{hero.name}</h2>
-            </button>
-          ) : (
-            <h2 className="font-serif text-2xl leading-tight">Empty regiment</h2>
-          )}
+          <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1">
+            {hero ? (
+              <button
+                type="button"
+                className="pressable min-w-0 cursor-pointer text-left"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onOpenDatasheet(hero);
+                }}
+              >
+                <h2 className="font-serif text-2xl leading-tight">{hero.name}</h2>
+              </button>
+            ) : (
+              <h2 className="font-serif text-2xl leading-tight">Empty regiment</h2>
+            )}
+            {!isGeneral && !playMode && !locked && canBeGeneral ? (
+              <button
+                type="button"
+                className="pressable inline-flex min-h-11 shrink-0 items-center text-sm text-aether underline decoration-aether/40 underline-offset-2"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onMakeGeneral();
+                }}
+              >
+                Make general
+              </button>
+            ) : null}
+          </div>
         </div>
         {!playMode && !locked ? (
           <button
