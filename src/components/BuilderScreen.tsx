@@ -8,7 +8,7 @@ import {
   useState,
   useSyncExternalStore,
 } from "react";
-import { getFaction, loadFaction } from "@/engine/queries";
+import { getFaction } from "@/engine/queries";
 import { catalogueForList, catalogueForListAsync } from "@/engine/spearhead";
 import type { ArmyList } from "@/engine/types";
 import { isTowList } from "@/engine/storedList";
