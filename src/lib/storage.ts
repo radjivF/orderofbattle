@@ -3,6 +3,8 @@ import type { StoredList } from "@/engine/storedList";
 import { isTowList, normalizeStoredList } from "@/engine/storedList";
 import { partitionPortableLists } from "@/engine/listPortable";
 import { prepareImportedArmy } from "@/engine/listFactories";
+import { loadFaction } from "@/engine/queries";
+import { isSpearheadList } from "@/engine/spearhead";
 
 export {
   appendRegimentWithHero,
@@ -166,6 +168,17 @@ async function readAll(): Promise<StoredList[]> {
 async function hydrate() {
   cache = await readAll();
   emit();
+
+  const factionIds = new Set<string>();
+  for (const list of cache) {
+    if (!isTowList(list) && !isSpearheadList(list)) {
+      factionIds.add(list.factionId);
+    }
+  }
+
+  void Promise.all(
+    Array.from(factionIds).map((id) => loadFaction(id).catch(() => undefined)),
+  );
 }
 
 export function subscribeArmies(onStoreChange: () => void) {

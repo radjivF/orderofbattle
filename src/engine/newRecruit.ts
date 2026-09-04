@@ -1,5 +1,9 @@
 import { createId } from "@/lib/id";
-import { battleTactics, factions, regimentsOfRenown } from "./data/load";
+import {
+  battleTactics,
+  getAllFactionsSync,
+  getRegimentsOfRenownSync,
+} from "./data/load";
 import { STANDARD_POINTS_CAPS } from "./pointsCap";
 import { unitBaseName } from "./queries";
 import { inferScourgeRealm } from "./scourgeRealm";
@@ -215,7 +219,8 @@ function parseNewRecruitList(
         rorId = ror?.id ?? null;
         continue;
       }
-      const ror = regimentsOfRenown.find((item) => item.id === rorId);
+      const rorList = getRegimentsOfRenownSync();
+      const ror = rorList?.find((item) => item.id === rorId);
       const selection = parseRorUnit(head, ror?.units ?? []);
       if (selection) {
         rorUnits.push(selection);
@@ -354,7 +359,8 @@ function catalogueCandidates(line: string): string[] {
 }
 
 function findCatalogue(name: string): CatalogueHit | null {
-  const faction = factions.find((item) => namesEqual(item.name, name));
+  const allFactions = getAllFactionsSync();
+  const faction = allFactions.find((item) => namesEqual(item.name, name));
   if (faction) {
     return {
       faction,
@@ -609,7 +615,8 @@ function scourgeCanonicalName(name: string): string {
 }
 
 function findRenown(name: string) {
-  return regimentsOfRenown.find((item) => namesEqual(item.name, name));
+  const rorList = getRegimentsOfRenownSync();
+  return rorList?.find((item) => namesEqual(item.name, name));
 }
 
 function findNamed(

@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { factions, regimentsOfRenown } from "./load";
+import {
+  ensureAllFactions,
+  ensureRegimentsOfRenown,
+} from "./load";
 import {
   catalogueMatchIds,
   getFaction,
@@ -121,7 +124,8 @@ function assertCatalogueShape(faction: FactionCatalogue) {
 }
 
 describe("faction catalogues", () => {
-  it("registers unique ids and core vs AoR split", () => {
+  it("registers unique ids and core vs AoR split", async () => {
+    const factions = await ensureAllFactions();
     uniqueIds(factions, "faction");
     const core = listFactions();
     expect(core.length).toBeGreaterThanOrEqual(25);
@@ -135,7 +139,8 @@ describe("faction catalogues", () => {
     }
   });
 
-  it("keeps every catalogue loadable and summarizable", () => {
+  it("keeps every catalogue loadable and summarizable", async () => {
+    const factions = await ensureAllFactions();
     for (const faction of factions) {
       assertCatalogueShape(faction);
       const list = blankArmy(faction.id);
@@ -148,7 +153,8 @@ describe("faction catalogues", () => {
     }
   });
 
-  it("resolves AoR parents to core factions", () => {
+  it("resolves AoR parents to core factions", async () => {
+    const factions = await ensureAllFactions();
     for (const faction of factions) {
       for (const parentId of faction.parentFactionIds ?? []) {
         const parent = getFaction(parentId);
@@ -161,7 +167,9 @@ describe("faction catalogues", () => {
     }
   });
 
-  it("keeps Regiments of Renown tied to registered core factions", () => {
+  it("keeps Regiments of Renown tied to registered core factions", async () => {
+    await ensureAllFactions();
+    const regimentsOfRenown = await ensureRegimentsOfRenown();
     uniqueIds(regimentsOfRenown, "ror");
     for (const ror of regimentsOfRenown) {
       expect(ror.name).toBeTruthy();

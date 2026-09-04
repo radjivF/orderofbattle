@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { warscrollAbilities } from "./coreRules";
-import { factions } from "./data/load";
+import { ensureAllFactions } from "./data/load";
 import { buildPhaseBoards } from "./phases";
 import { getFaction, listFactions } from "./queries";
 import {
@@ -35,7 +35,8 @@ describe("matched-play lists", () => {
     expect(playPhaseShowsCoreRulesTab(false)).toBe(false);
   });
 
-  it("leaves every matched-play warscroll ability untouched", () => {
+  it("leaves every matched-play warscroll ability untouched", async () => {
+    const factions = await ensureAllFactions();
     for (const faction of factions) {
       for (const unit of faction.units) {
         expect(
@@ -47,7 +48,8 @@ describe("matched-play lists", () => {
     }
   });
 
-  it("summarizes a blank list for every catalogue without Spearhead rules", () => {
+  it("summarizes a blank list for every catalogue without Spearhead rules", async () => {
+    const factions = await ensureAllFactions();
     for (const faction of factions) {
       const list = blankArmy(faction.id);
       expect(isSpearheadList(list)).toBe(false);

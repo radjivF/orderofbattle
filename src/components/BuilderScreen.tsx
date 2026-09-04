@@ -8,8 +8,8 @@ import {
   useState,
   useSyncExternalStore,
 } from "react";
-import { getFaction } from "@/engine/queries";
-import { catalogueForList } from "@/engine/spearhead";
+import { getFaction, loadFaction } from "@/engine/queries";
+import { catalogueForList, catalogueForListAsync } from "@/engine/spearhead";
 import type { ArmyList } from "@/engine/types";
 import { isTowList } from "@/engine/storedList";
 import {
@@ -67,7 +67,18 @@ export function BuilderScreen({ listId, openPlay = false }: Props) {
   );
   const stored = lists?.find((item) => item.id === listId);
   const list = stored && !isTowList(stored) ? stored : undefined;
+  const [factionLoaded, setFactionLoaded] = useState(false);
   const faction = list ? catalogueForList(list) : undefined;
+
+  useEffect(() => {
+    if (!list) {
+      setFactionLoaded(false);
+      return;
+    }
+    void catalogueForListAsync(list).then(() => {
+      setFactionLoaded(true);
+    });
+  }, [list]);
   const artFactionId =
     (faction ? faction.parentFactionIds?.[0] ?? faction.id : null) ??
     rememberedId;
@@ -88,7 +99,7 @@ export function BuilderScreen({ listId, openPlay = false }: Props) {
     scourgeRealm: ArmyList["scourgeRealm"];
   } | null>(null);
 
-  const showSplash = listOpenNeedsSplash(lists !== undefined);
+  const showSplash = listOpenNeedsSplash(lists !== undefined) || (!!list && !factionLoaded);
   const splashName = listOpenSplashFactionName({
     list,
     catalogueName: faction?.name,
