@@ -24,6 +24,7 @@ import {
   setTwistApplied,
   startBattle,
   syncPrimaryVp,
+  tracksCommandPoints,
   underdog,
 } from "./gameSession";
 
@@ -331,6 +332,20 @@ describe("createBattleRecord showCp", () => {
     expect(game.showCp).toBe(false);
   });
 
+  it("treats missing showCp as off", () => {
+    const game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+    });
+    expect(tracksCommandPoints(game)).toBe(false);
+    expect(tracksCommandPoints({ ...game, showCp: undefined })).toBe(false);
+    expect(tracksCommandPoints({ ...game, showCp: false })).toBe(false);
+    expect(tracksCommandPoints({ ...game, showCp: true })).toBe(true);
+  });
+
   it("sets showCp from input", () => {
     const game = createBattleRecord({
       yourName: "Rad",
@@ -423,6 +438,27 @@ describe("grantCpForRound", () => {
     game = startBattle(game);
     game = setRoundVp(game, 0, "you", 10);
 
+    game = grantCpForRound(game, 1);
+    expect(game.rounds[1]!.yourCp).toBe(4);
+    expect(game.rounds[1]!.opponentCp).toBe(5);
+  });
+
+  it("raises the underdog to 5 if CP was granted 4–4 before the lead existed", () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      showCp: true,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+    game = grantCpForRound(game, 1);
+    expect(game.rounds[1]!.yourCp).toBe(4);
+    expect(game.rounds[1]!.opponentCp).toBe(4);
+
+    game = setRoundVp(game, 0, "you", 10);
     game = grantCpForRound(game, 1);
     expect(game.rounds[1]!.yourCp).toBe(4);
     expect(game.rounds[1]!.opponentCp).toBe(5);

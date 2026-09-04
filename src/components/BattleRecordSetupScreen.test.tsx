@@ -135,6 +135,7 @@ describe("BattleRecordSetupScreen", () => {
 
     const group = screen.getByRole("group", { name: "Attacker" });
     expect(group).toBeInTheDocument();
+    expect(document.querySelectorAll(".required-star").length).toBeGreaterThanOrEqual(1);
     expect(screen.getByRole("button", { name: "You = attacker" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Opp = attacker" })).toBeInTheDocument();
 
@@ -169,6 +170,7 @@ describe("BattleRecordSetupScreen", () => {
     ).toBeInTheDocument();
     const planSelect = screen.getByLabelText("Choose battleplan");
     expect(planSelect.tagName).toBe("SELECT");
+    expect(document.querySelectorAll(".required-star").length).toBeGreaterThanOrEqual(1);
     const startButton = screen.getByRole("button", { name: "Start game" });
     expect(startButton).toBeEnabled();
     expect(

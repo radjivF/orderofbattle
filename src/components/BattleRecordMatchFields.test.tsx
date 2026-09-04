@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { cleanup, render, screen } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { BattleRecordMatchFields } from "./BattleRecordMatchFields";
 
 const mockLists: unknown[] = [];
@@ -30,31 +30,44 @@ beforeEach(() => {
   });
 });
 
+afterEach(() => {
+  cleanup();
+});
+
+function fieldProps() {
+  return {
+    values: {
+      yourName: "Player",
+      yourArmyLabel: "My Army",
+      yourArmyPoints: "2860pts",
+      opponentName: "Opponent",
+      opponentArmyLabel: "Opponent Army",
+      opponentArmyPoints: "0pts",
+      allowDoubleTurn: true,
+      showCp: false,
+      paintedYou: false,
+      paintedOpponent: false,
+    },
+    onYourName: () => {},
+    onOpponentName: () => {},
+    onAllowDoubleTurn: () => {},
+    onShowCp: () => {},
+    onPaintedYou: () => {},
+    onPaintedOpponent: () => {},
+    onPickArmy: () => {},
+  };
+}
+
 describe("BattleRecordMatchFields army picker points", () => {
+  it("marks player names as required", () => {
+    render(<BattleRecordMatchFields {...fieldProps()} />);
+    expect(screen.getByLabelText("Your name")).toBeInTheDocument();
+    expect(screen.getByLabelText("Opponent name")).toBeInTheDocument();
+    expect(document.querySelectorAll(".required-star")).toHaveLength(2);
+  });
+
   it("shows points in Your army field with pts suffix", () => {
-    render(
-      <BattleRecordMatchFields
-        values={{
-          yourName: "Player",
-          yourArmyLabel: "My Army",
-          yourArmyPoints: "2860pts",
-          opponentName: "Opponent",
-          opponentArmyLabel: "Opponent Army",
-          opponentArmyPoints: "0pts",
-          allowDoubleTurn: true,
-          showCp: false,
-          paintedYou: false,
-          paintedOpponent: false,
-        }}
-        onYourName={() => {}}
-        onOpponentName={() => {}}
-        onAllowDoubleTurn={() => {}}
-        onShowCp={() => {}}
-        onPaintedYou={() => {}}
-        onPaintedOpponent={() => {}}
-        onPickArmy={() => {}}
-      />,
-    );
+    render(<BattleRecordMatchFields {...fieldProps()} />);
 
     const yourArmyButton = screen.getByRole("button", { name: "Your army" });
     expect(yourArmyButton).toHaveTextContent("My Army");

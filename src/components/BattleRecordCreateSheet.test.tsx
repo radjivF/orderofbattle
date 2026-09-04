@@ -103,6 +103,13 @@ describe("BattleRecordCreateSheet", () => {
     ).toBeTruthy();
     expect(within(dialog).getByText("Track priority")).toBeTruthy();
     expect(within(dialog).getByText("No initiative")).toBeTruthy();
+    expect(
+      within(dialog).getByRole("group", { name: "Show CP" }),
+    ).toBeTruthy();
+    expect(within(dialog).getByRole("button", { name: "On" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
     expect(within(dialog).getByText("Yours painted")).toBeTruthy();
     expect(within(dialog).getByText("Opponent painted")).toBeTruthy();
     expect(within(dialog).queryByLabelText("Battleplan")).toBeNull();
@@ -186,6 +193,7 @@ describe("BattleRecordCreateSheet", () => {
     expect(game.opponentArmy).toBe("");
     expect(game.yourTacticCardIds).toEqual([]);
     expect(game.yourListId).toBeUndefined();
+    expect(game.showCp).toBe(true);
   });
 
   it("keeps the warnings out of the footer action row", async () => {

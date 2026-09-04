@@ -5,6 +5,8 @@ import { blankArmy } from "@/engine/listFactories";
 import {
   createBattleRecord,
   finishBattle,
+  grantCpForRound,
+  patchBattleRecord,
   setBattleplan,
   setRoundFirstPlayer,
   setRoundVp,
@@ -760,6 +762,30 @@ describe("BattleRecordGameScreen", () => {
     expect(screen.queryByLabelText("Increase CP")).not.toBeInTheDocument();
     expect(screen.queryByLabelText("Decrease command points")).not.toBeInTheDocument();
     expect(screen.queryByLabelText("Increase command points")).not.toBeInTheDocument();
+  });
+
+  it("hides Command when Show CP is off even if CP was already granted", async () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      showCp: true,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+    game = grantCpForRound(game, 0);
+    game = patchBattleRecord(game, { showCp: false });
+    vi.mocked(gameStorage.getGame).mockResolvedValue(game);
+
+    render(<BattleRecordGameScreen gameId="game-cp-leftover" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    expect(screen.queryByText("Command")).not.toBeInTheDocument();
+    expect(
+      screen.queryByLabelText("Increase command points"),
+    ).not.toBeInTheDocument();
   });
 
   it("shows Command row and grants 4/4 when tied", async () => {

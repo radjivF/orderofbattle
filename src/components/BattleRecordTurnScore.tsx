@@ -1,8 +1,13 @@
 "use client";
 
 import type { MissionPrimaryPoint } from "@/engine/battleplanLayout";
-import type { BattlePlayer, GameSession } from "@/engine/gameSession";
 import type { BattleTacticCard, BattleTacticStage } from "@/engine/types";
+import {
+  tracksCommandPoints,
+  underdog,
+  type BattlePlayer,
+  type GameSession,
+} from "@/engine/gameSession";
 import { useState } from "react";
 import {
   IOS_LIQUID_CTA_CLASS,
@@ -92,6 +97,7 @@ export function BattleRecordTurnScore({
   const defender = attacker ? (attacker === "you" ? "opponent" : "you") : null;
   const role =
     attacker === activePlayer ? "attacker" : defender === activePlayer ? "defender" : null;
+  const isUnderdog = underdog(game, roundIndex) === activePlayer;
 
   function adjustFury(delta: number) {
     onChangeFury(activePlayer, Math.max(0, Math.min(7, fury + delta)));
@@ -136,7 +142,7 @@ export function BattleRecordTurnScore({
       />
       <div role="tabpanel" className="mt-4">
         {/* 1. Fury + Rage + Command (Scourge of Aqshy / Show CP) */}
-        {(showScourge || game.showCp) && round ? (
+        {(showScourge || tracksCommandPoints(game)) && round ? (
           <div className="mb-4 rounded-xl bg-parchment-ink/5 p-4 ring-1 ring-parchment-ink/10">
             <div className="flex items-center justify-between mb-3">
               <p className="text-sm font-medium text-parchment-ink">
@@ -146,13 +152,18 @@ export function BattleRecordTurnScore({
                     {role}
                   </span>
                 ) : null}
+                {isUnderdog ? (
+                  <span className="ml-2 text-xs text-sheet-muted font-normal">
+                    underdog
+                  </span>
+                ) : null}
               </p>
             </div>
             
             {/* Command row */}
-            {game.showCp && cp !== null ? (
+            {tracksCommandPoints(game) && cp !== null ? (
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-xs text-sheet-muted w-12">Command</span>
+                <span className="w-20 shrink-0 text-xs text-sheet-muted">Command</span>
                 <div className="flex items-center gap-2">
                   <span className="text-base font-semibold tabular-nums">{cp}</span>
                   <span className="text-[11px] text-sheet-muted/70">this round</span>
@@ -187,7 +198,7 @@ export function BattleRecordTurnScore({
               <button
                 type="button"
                 onClick={() => setSpendsExpanded(!spendsExpanded)}
-                className="pressable text-xs text-sheet-muted w-12 text-left min-h-11 flex items-center"
+                className="pressable flex min-h-11 w-20 shrink-0 items-center text-left text-xs text-sheet-muted"
                 aria-label="Toggle rage actions"
               >
                 Rage
@@ -276,7 +287,7 @@ export function BattleRecordTurnScore({
 
             {/* Fury row */}
             <div className="flex items-center gap-3">
-              <span className="text-xs text-sheet-muted w-12">Fury</span>
+              <span className="w-20 shrink-0 text-xs text-sheet-muted">Fury</span>
               <div className="flex gap-1">
                 {Array.from({ length: 7 }, (_, i) => (
                   <div

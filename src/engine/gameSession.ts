@@ -34,7 +34,7 @@ export type GameSession = {
   /** Empty until chosen during the game. */
   battleplanId: string;
   allowDoubleTurn: boolean;
-  /** Optional CP tracking (default false for older sessions). */
+  /** Optional CP tracking. Missing/false on older records — never show Command. */
   showCp?: boolean;
   paintedYou: boolean;
   paintedOpponent: boolean;
@@ -131,7 +131,7 @@ export function createBattleRecord(
     opponentListId: input.opponentListId || undefined,
     battleplanId: "",
     allowDoubleTurn: input.allowDoubleTurn,
-    showCp: Boolean(input.showCp),
+    showCp: input.showCp === true,
     paintedYou: Boolean(input.paintedYou),
     paintedOpponent: Boolean(input.paintedOpponent),
     yourTacticCardIds,
@@ -424,6 +424,11 @@ export function setBattleplan(
   return touch({ ...session, battleplanId });
 }
 
+/** True only when Show CP is on. Missing or false never tracks Command. */
+export function tracksCommandPoints(session: GameSession): boolean {
+  return session.showCp === true;
+}
+
 export function patchBattleRecord(
   session: GameSession,
   patch: Partial<
@@ -534,23 +539,44 @@ export function finishBattle(session: GameSession): GameSession {
   return touch({ ...session, status: "done" });
 }
 
-/** Grant CP at the start of a round: 4 base, 5 if underdog. Only grant once. */
+/** Grant CP at the start of a round: 4 base, 5 if underdog. */
 export function grantCpForRound(
   session: GameSession,
   roundIndex: number,
 ): GameSession {
-  if (!session.showCp) return session;
+  if (!tracksCommandPoints(session)) return session;
   if (roundIndex < 0 || roundIndex >= session.rounds.length) return session;
   const round = session.rounds[roundIndex]!;
-  if (round.yourCp !== null && round.opponentCp !== null) {
-    return session;
-  }
   const dog = underdog(session, roundIndex);
-  const yourCp = dog === "you" ? 5 : 4;
-  const opponentCp = dog === "opponent" ? 5 : 4;
-  const nextRounds = [...session.rounds];
-  nextRounds[roundIndex] = { ...round, yourCp, opponentCp };
-  return touch({ ...session, rounds: nextRounds });
+  const yourTarget = dog === "you" ? 5 : 4;
+  const opponentTarget = dog === "opponent" ? 5 : 4;
+
+  if (round.yourCp === null || round.opponentCp === null) {
+    const nextRounds = [...session.rounds];
+    nextRounds[roundIndex] = {
+      ...round,
+      yourCp: yourTarget,
+      opponentCp: opponentTarget,
+    };
+    return touch({ ...session, rounds: nextRounds });
+  }
+
+  const unspent = (cp: number) => cp === 4 || cp === 5;
+  if (
+    unspent(round.yourCp) &&
+    unspent(round.opponentCp) &&
+    (round.yourCp !== yourTarget || round.opponentCp !== opponentTarget)
+  ) {
+    const nextRounds = [...session.rounds];
+    nextRounds[roundIndex] = {
+      ...round,
+      yourCp: yourTarget,
+      opponentCp: opponentTarget,
+    };
+    return touch({ ...session, rounds: nextRounds });
+  }
+
+  return session;
 }
 
 export function setPlayerCp(

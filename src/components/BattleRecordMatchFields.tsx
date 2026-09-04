@@ -31,6 +31,27 @@ const SELECT_CLASS =
 const PICK_BUTTON_CLASS = `${SELECT_CLASS} text-left`;
 const FIELD_WARN_RING_CLASS = "ring-1 ring-illegal/45";
 
+export function RequiredStar() {
+  return (
+    <svg
+      className="required-star"
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+    >
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+      >
+        <line x1="10" y1="3" x2="10" y2="17" />
+        <line x1="3.9" y1="6.5" x2="16.1" y2="13.5" />
+        <line x1="3.9" y1="13.5" x2="16.1" y2="6.5" />
+      </g>
+    </svg>
+  );
+}
+
 function FieldWarning({ id, message }: { id: string; message?: string }) {
   if (!message) {
     return null;
@@ -95,6 +116,8 @@ export function BattleRecordMatchFields({
   const [picking, setPicking] = useState<PickerTarget | null>(null);
   const warnPrefix = useId();
   const warnId = (field: keyof MatchFieldWarnings) => `${warnPrefix}-${field}`;
+  const yourNameId = `${warnPrefix}-your-name`;
+  const opponentNameId = `${warnPrefix}-opponent-name`;
   const fieldProps = (field: keyof MatchFieldWarnings) =>
     warnings?.[field]
       ? { "aria-invalid": true, "aria-describedby": warnId(field) }
@@ -105,9 +128,15 @@ export function BattleRecordMatchFields({
   return (
     <>
       <div className="flex flex-col gap-2">
-        <label className="flex flex-col gap-2 text-base text-sheet-muted">
-          Your name
+        <label htmlFor={yourNameId} className="flex flex-col gap-2 text-base text-parchment-ink">
+          <span>
+            Your name
+            <RequiredStar />
+          </span>
           <input
+            id={yourNameId}
+            aria-label="Your name"
+            aria-required="true"
             value={values.yourName}
             onChange={(event) => onYourName(event.target.value)}
             className={fieldClass("yourName", SELECT_CLASS)}
@@ -141,9 +170,18 @@ export function BattleRecordMatchFields({
         <FieldWarning id={warnId("yourArmy")} message={warnings?.yourArmy} />
       </div>
       <div className="flex flex-col gap-2">
-        <label className="flex flex-col gap-2 text-base text-sheet-muted">
-          Opponent name
+        <label
+          htmlFor={opponentNameId}
+          className="flex flex-col gap-2 text-base text-parchment-ink"
+        >
+          <span>
+            Opponent name
+            <RequiredStar />
+          </span>
           <input
+            id={opponentNameId}
+            aria-label="Opponent name"
+            aria-required="true"
             value={values.opponentName}
             onChange={(event) => onOpponentName(event.target.value)}
             className={fieldClass("opponentName", SELECT_CLASS)}

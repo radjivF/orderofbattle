@@ -35,7 +35,7 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
   const [opponentName, setOpponentName] = useState("");
   const [opponentArmy, setOpponentArmy] = useState<BattleArmyPick | null>(null);
   const [allowDoubleTurn, setAllowDoubleTurn] = useState(true);
-  const [showCp, setShowCp] = useState(false);
+  const [showCp, setShowCp] = useState(true);
   const [paintedYou, setPaintedYou] = useState(false);
   const [paintedOpponent, setPaintedOpponent] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -51,7 +51,7 @@ export function BattleRecordCreateSheet({ open, onClose, onCreated }: Props) {
       setOpponentName("");
       setOpponentArmy(null);
       setAllowDoubleTurn(true);
-      setShowCp(false);
+      setShowCp(true);
       setPaintedYou(false);
       setPaintedOpponent(false);
       setSaving(false);

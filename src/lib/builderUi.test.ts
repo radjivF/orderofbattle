@@ -774,6 +774,7 @@ describe("iOS polish contracts", () => {
     expect(css).toContain(".modal-sheet");
     expect(css).toContain(".modal-sheet-scroll");
     expect(css).toContain(".modal-sheet-scroll-host");
+    expect(css).toContain("padding-top: 1.25rem");
     expect(css).toContain(".modal-sheet-footer");
     expect(css).toContain(".ios-sheet-actions-row");
     expect(css).toContain("flex-direction: row");

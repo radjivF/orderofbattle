@@ -39,7 +39,7 @@ import {
   subscribeArmies,
 } from "@/lib/storage";
 import { BattleplanBoard } from "./BattleplanBoard";
-import { BattleRecordMatchFields } from "./BattleRecordMatchFields";
+import { BattleRecordMatchFields, RequiredStar } from "./BattleRecordMatchFields";
 import { BattleTacticText } from "./BattleTacticText";
 import { IosNavBackButton } from "./ios/IosNavIconButton";
 import { IosSegmentedControl } from "./ios/IosSegmentedControl";
@@ -265,9 +265,14 @@ export function BattleRecordSetupScreen({
               </optgroup>
             </select>
           </label>
-          <label className="mt-3 flex flex-col gap-2 text-base text-sheet-muted">
-            Choose battleplan
+          <label className="mt-3 flex flex-col gap-2 text-base text-parchment-ink">
+            <span>
+              Choose battleplan
+              <RequiredStar />
+            </span>
             <select
+              aria-label="Choose battleplan"
+              aria-required="true"
               value={game.battleplanId}
               onChange={(event) => {
                 const id = event.target.value;
@@ -306,7 +311,10 @@ export function BattleRecordSetupScreen({
             Choose random
           </button>
           <div className="mt-4 flex flex-col gap-2">
-            <p className="text-base text-sheet-muted">Attacker</p>
+            <p className="text-base text-parchment-ink">
+              Attacker
+              <RequiredStar />
+            </p>
             <p className="text-sm text-sheet-muted">
               Who won the attacker/defender roll. Sets starting Fury.
             </p>
