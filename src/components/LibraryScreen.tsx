@@ -33,7 +33,6 @@ import {
   subscribeLibrarySort,
 } from "@/lib/librarySort";
 import { LibraryEmptyState } from "./LibraryEmptyState";
-import { LibraryCreateFlow } from "./LibraryCreateFlow";
 import { LibraryListCard } from "./LibraryListCard";
 import { LibraryOptionsSheet } from "./LibraryOptionsSheet";
 import {
@@ -48,7 +47,11 @@ import { ConfirmSheetActions } from "./ConfirmSheetActions";
 import { IosNavAddButton, IosNavOptionsButton } from "./ios/IosNavIconButton";
 import { SiteFooter } from "./SiteFooter";
 
-export function LibraryScreen() {
+type LibraryScreenProps = {
+  onCreateListOpen?: (open: boolean) => void;
+};
+
+export function LibraryScreen({ onCreateListOpen }: LibraryScreenProps = {}) {
   const pathname = usePathname();
   const lists = useSyncExternalStore(
     subscribeArmies,
@@ -66,7 +69,6 @@ export function LibraryScreen() {
     getLibrarySortServerSnapshot,
   );
   const [deleteTarget, setDeleteTarget] = useState<StoredList | null>(null);
-  const [picking, setPicking] = useState(false);
   const [librarySheetOpen, setLibrarySheetOpen] = useState(false);
   const displayedLists = useMemo(() => {
     const libraryMenu = menuShowsListLibrary(activeMenu) ? activeMenu : "aos";
@@ -76,6 +78,10 @@ export function LibraryScreen() {
   const onBattleRecord = isBattleRecordPath(pathname);
   const onCoreRules = isCoreRulesPath(pathname);
   const onScourgeRules = isScourgeRulesPath(pathname);
+
+  function openCreateFlow() {
+    onCreateListOpen?.(true);
+  }
 
   async function onDuplicate(list: StoredList) {
     await saveArmy(duplicateArmy(list));
@@ -113,7 +119,7 @@ export function LibraryScreen() {
           <h1 className={LIBRARY_TITLE_CLASS}>My lists</h1>
           <IosNavAddButton
             label="New list"
-            onClick={() => setPicking(true)}
+            onClick={openCreateFlow}
           />
         </div>
       </div>
@@ -135,7 +141,7 @@ export function LibraryScreen() {
           </div>
         ) : displayedLists.length === 0 ? (
           <LibraryEmptyState
-            onCreate={() => setPicking(true)}
+            onCreate={openCreateFlow}
             onImport={() => setLibrarySheetOpen(true)}
           />
         ) : (
@@ -182,8 +188,6 @@ export function LibraryScreen() {
           />
         </ModalFrame>
       ) : null}
-
-      <LibraryCreateFlow open={picking} onOpenChange={setPicking} />
     </div>
   );
 

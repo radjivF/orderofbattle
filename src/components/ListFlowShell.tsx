@@ -19,6 +19,7 @@ import {
 import { ListNavProvider } from "./IosNavSlide";
 import { ListFlowHeader } from "./ListFlowHeader";
 import { LibraryScreen } from "./LibraryScreen";
+import { LibraryCreateFlow } from "./LibraryCreateFlow";
 
 type ListFlowDecor = {
   backdrop?: ReactNode;
@@ -51,6 +52,7 @@ export function ListFlowShell({ children }: { children: ReactNode }) {
   const [libraryChrome, setLibraryChrome] = useState<LibraryChromeValue | null>(
     null,
   );
+  const [createFlowOpen, setCreateFlowOpen] = useState(false);
   const setDecor = useCallback((next: ListFlowDecor) => {
     setDecorState(next);
   }, [setDecorState]);
@@ -77,7 +79,7 @@ export function ListFlowShell({ children }: { children: ReactNode }) {
         {isHome ? children : null}
         <div hidden={isHome}>
           <ListNavProvider
-            libraryLayer={<LibraryScreen />}
+            libraryLayer={<LibraryScreen onCreateListOpen={setCreateFlowOpen} />}
             onShowDetailChange={setNavState}
             header={
               <ListFlowHeader
@@ -92,6 +94,7 @@ export function ListFlowShell({ children }: { children: ReactNode }) {
           >
             {isHome ? null : children}
           </ListNavProvider>
+          <LibraryCreateFlow open={createFlowOpen} onOpenChange={setCreateFlowOpen} />
         </div>
       </ListFlowChromeContext.Provider>
     </ListFlowDecorContext.Provider>
