@@ -5,6 +5,8 @@ import { blankArmy } from "@/engine/listFactories";
 import {
   createBattleRecord,
   finishBattle,
+  grantCpForRound,
+  patchBattleRecord,
   setBattleplan,
   setRoundFirstPlayer,
   setRoundVp,
@@ -61,6 +63,7 @@ function activeFixture(
     yourTacticCardIds?: string[];
     opponentTacticCardIds?: string[];
     skipRoundVp?: boolean;
+    showCp?: boolean;
   } = {},
 ) {
   let game = createBattleRecord({
@@ -73,6 +76,7 @@ function activeFixture(
     opponentListId: overrides.opponentListId,
     yourTacticCardIds: overrides.yourTacticCardIds,
     opponentTacticCardIds: overrides.opponentTacticCardIds,
+    showCp: overrides.showCp,
   });
   game = setBattleplan(game, "into-the-fire");
   game = startBattle(game);
@@ -553,7 +557,7 @@ describe("BattleRecordGameScreen", () => {
     expect(screen.queryByText("Double turn")).not.toBeInTheDocument();
   });
 
-  it("shows Double turn only when last round's second player goes first", async () => {
+  it("shows Seizing the initiative on a double turn (VP lead < 11), not on a non-double", async () => {
     const user = userEvent.setup();
     let game = activeFixture({ skipRoundVp: true });
     game = setRoundFirstPlayer(game, 0, "you");
@@ -565,9 +569,10 @@ describe("BattleRecordGameScreen", () => {
     await screen.findByRole("heading", { name: /Rad vs Alex/ });
 
     await user.click(screen.getByRole("button", { name: "T2" }));
-    expect(screen.getByText("Double turn")).toBeInTheDocument();
+    expect(screen.getByText("Seizing the initiative")).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: "T3" }));
+    expect(screen.queryByText("Seizing the initiative")).not.toBeInTheDocument();
     expect(screen.queryByText("Double turn")).not.toBeInTheDocument();
   });
 
@@ -671,5 +676,189 @@ describe("BattleRecordGameScreen", () => {
 
     expect(screen.getByRole("tablist", { name: "Turn players" })).toBeTruthy();
     expect(screen.queryByText(/tactics/i)).not.toBeInTheDocument();
+  });
+
+  it("shows list points in ScoreIdentity when listId is set", async () => {
+    const yourList = blankArmy("stormcast-eternals");
+    yourList.id = "list-1k";
+    yourList.name = "My Army";
+    yourList.pointsCap = 1000;
+    armyStore.items = [yourList];
+
+    vi.mocked(gameStorage.getGame).mockResolvedValue(
+      activeFixture({
+        yourListId: "list-1k",
+        yourArmy: "My Army",
+      }),
+    );
+    render(<BattleRecordGameScreen gameId="game-points" />);
+
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+    const scoreSection = screen.getByRole("region", { name: "Match score" });
+    expect(within(scoreSection).getByText(/0pts/)).toBeInTheDocument();
+  });
+
+  it("shows spent-only points format without cap or slash (QA regression)", async () => {
+    const yourList = blankArmy("stormcast-eternals");
+    yourList.id = "list-3k";
+    yourList.name = "My Army";
+    yourList.pointsCap = 3000;
+    armyStore.items = [yourList];
+
+    vi.mocked(gameStorage.getGame).mockResolvedValue(
+      activeFixture({
+        yourListId: "list-3k",
+        yourArmy: "My Army",
+      }),
+    );
+    render(<BattleRecordGameScreen gameId="game-pts" />);
+
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+    const scoreSection = screen.getByRole("region", { name: "Match score" });
+    
+    // Should show spent-only format (e.g., "540pts")
+    expect(within(scoreSection).getByText(/\d+pts/)).toBeInTheDocument();
+    // Should NOT contain slash format (e.g., "540 / 3,000")
+    expect(within(scoreSection).queryByText(/\/ \d/)).not.toBeInTheDocument();
+    expect(within(scoreSection).queryByText(/\/ 3,000/)).not.toBeInTheDocument();
+  });
+
+  it("does not show CP controls on ScoreIdentity (QA regression)", async () => {
+    vi.mocked(gameStorage.getGame).mockResolvedValue(
+      activeFixture({
+        showCp: true,
+      }),
+    );
+    render(<BattleRecordGameScreen gameId="game-no-cp-strip" />);
+
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+    const scoreSection = screen.getByRole("region", { name: "Match score" });
+    
+    // ScoreIdentity should NOT have CP controls (they're in the Command row)
+    expect(within(scoreSection).queryByLabelText("Increase CP")).not.toBeInTheDocument();
+    expect(within(scoreSection).queryByLabelText("Decrease CP")).not.toBeInTheDocument();
+  });
+
+  it("does not show CP controls when showCp is false", async () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      showCp: false,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+    vi.mocked(gameStorage.getGame).mockResolvedValue(game);
+
+    render(<BattleRecordGameScreen gameId="game-no-cp" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    // No Command row when showCp is false
+    expect(screen.queryByText("Command")).not.toBeInTheDocument();
+    // No CP controls with either old or new labels
+    expect(screen.queryByLabelText("Decrease CP")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Increase CP")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Decrease command points")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Increase command points")).not.toBeInTheDocument();
+  });
+
+  it("hides Command when Show CP is off even if CP was already granted", async () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      showCp: true,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+    game = grantCpForRound(game, 0);
+    game = patchBattleRecord(game, { showCp: false });
+    vi.mocked(gameStorage.getGame).mockResolvedValue(game);
+
+    render(<BattleRecordGameScreen gameId="game-cp-leftover" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    expect(screen.queryByText("Command")).not.toBeInTheDocument();
+    expect(
+      screen.queryByLabelText("Increase command points"),
+    ).not.toBeInTheDocument();
+  });
+
+  it("shows Command row and grants 4/4 when tied", async () => {
+    let game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: true,
+      showCp: true,
+    });
+    game = setBattleplan(game, "into-the-fire");
+    game = startBattle(game);
+    vi.mocked(gameStorage.getGame).mockResolvedValue(game);
+
+    render(<BattleRecordGameScreen gameId="game-cp-tied" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    // Wait for Command row to appear after grantCpForRound runs
+    await waitFor(() => {
+      expect(screen.getByText("Command")).toBeInTheDocument();
+    });
+
+    // CP controls are in the Command row in player tabs, not ScoreIdentity
+    const decreaseButtons = screen.getAllByLabelText("Decrease command points");
+    const increaseButtons = screen.getAllByLabelText("Increase command points");
+    expect(decreaseButtons.length).toBeGreaterThanOrEqual(1);
+    expect(increaseButtons.length).toBeGreaterThanOrEqual(1);
+  });
+
+  it("chevron rotates on Twist collapse toggle", async () => {
+    const game = activeFixture({ showCp: false });
+    vi.mocked(gameStorage.getGame).mockResolvedValue(game);
+
+    render(<BattleRecordGameScreen gameId="game-chevron" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    const twistSummary = screen.getByText(/Twist · underdog/);
+    const twistDetails = twistSummary.closest("details");
+    const chevron = twistDetails?.querySelector("svg");
+
+    expect(chevron).toBeInTheDocument();
+    expect(chevron?.classList.contains("group-open:rotate-90")).toBe(true);
+    expect(chevron?.classList.contains("transition-transform")).toBe(true);
+  });
+
+  it("shows Seizing the initiative badge on a double turn with VP lead < 11", async () => {
+    const user = userEvent.setup();
+    let game = activeFixture({ firstPlayer: "you" });
+    game = setRoundVp(game, 0, "you", 5);
+    game = setRoundFirstPlayer(game, 1, "opponent"); // opponent doubles → seize
+    vi.mocked(gameStorage.getGame).mockResolvedValue(game);
+
+    render(<BattleRecordGameScreen gameId="game-seize" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    await user.click(screen.getByRole("button", { name: "T2" }));
+    expect(screen.getByText("Seizing the initiative")).toBeInTheDocument();
+  });
+
+  it("shows Double turn badge when the VP lead is 11+", async () => {
+    const user = userEvent.setup();
+    let game = activeFixture({ firstPlayer: "you" });
+    game = setRoundVp(game, 0, "you", 15);
+    game = setRoundVp(game, 0, "opponent", 4);
+    game = setRoundFirstPlayer(game, 1, "opponent"); // opponent doubles but 11+ gap
+    vi.mocked(gameStorage.getGame).mockResolvedValue(game);
+
+    render(<BattleRecordGameScreen gameId="game-noseize" />);
+    await screen.findByRole("heading", { name: /Rad vs Alex/ });
+
+    await user.click(screen.getByRole("button", { name: "T2" }));
+    expect(screen.getByText("Double turn")).toBeInTheDocument();
+    expect(screen.queryByText("Seizing the initiative")).not.toBeInTheDocument();
   });
 });

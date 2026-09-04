@@ -16,13 +16,17 @@ import {
   patchBattleRecord,
   setBattleArmy,
   setBattleplan,
+  setAttacker,
   setPlayerTacticCards,
   startBattle,
   type GameSession,
 } from "@/engine/gameSession";
+import { catalogueForList, isSpearheadList } from "@/engine/spearhead";
 import { isTowList } from "@/engine/storedList";
 import type { ArmyList } from "@/engine/types";
+import { summarize } from "@/engine/validate";
 import {
+  formatArmyPoints,
   IOS_LIQUID_CTA_CLASS,
   LIBRARY_TITLE_CLASS,
   LIBRARY_TITLE_ROW_CLASS,
@@ -35,9 +39,10 @@ import {
   subscribeArmies,
 } from "@/lib/storage";
 import { BattleplanBoard } from "./BattleplanBoard";
-import { BattleRecordMatchFields } from "./BattleRecordMatchFields";
+import { BattleRecordMatchFields, RequiredStar } from "./BattleRecordMatchFields";
 import { BattleTacticText } from "./BattleTacticText";
 import { IosNavBackButton } from "./ios/IosNavIconButton";
+import { IosSegmentedControl } from "./ios/IosSegmentedControl";
 
 type Props = {
   game: GameSession;
@@ -123,9 +128,30 @@ export function BattleRecordSetupScreen({
     () => tacticCardsForPlayer(opponentList, game.opponentTacticCardIds),
     [opponentList, game.opponentTacticCardIds],
   );
+  const yourArmyPoints = useMemo(() => {
+    if (!yourList) return undefined;
+    const spearhead = isSpearheadList(yourList);
+    const catalogue = catalogueForList(yourList);
+    const totals = catalogue ? summarize(yourList, catalogue) : null;
+    return formatArmyPoints({
+      spearhead,
+      pointsSpent: totals?.points ?? 0,
+    });
+  }, [yourList]);
+  const opponentArmyPoints = useMemo(() => {
+    if (!opponentList) return undefined;
+    const spearhead = isSpearheadList(opponentList);
+    const catalogue = catalogueForList(opponentList);
+    const totals = catalogue ? summarize(opponentList, catalogue) : null;
+    return formatArmyPoints({
+      spearhead,
+      pointsSpent: totals?.points ?? 0,
+    });
+  }, [opponentList]);
   const layout = getBattleplanLayout(game.battleplanId);
   const ready = canStartBattle(game);
   const gaps = battleSetupGaps(game);
+  const [showWarnings, setShowWarnings] = useState(false);
 
   useEffect(() => {
     const yourPrefill = listTacticPrefill(yourList);
@@ -178,9 +204,12 @@ export function BattleRecordSetupScreen({
             values={{
               yourName: game.yourName,
               yourArmyLabel: game.yourArmy,
+              yourArmyPoints,
               opponentName: game.opponentName,
               opponentArmyLabel: game.opponentArmy,
+              opponentArmyPoints,
               allowDoubleTurn: game.allowDoubleTurn,
+              showCp: game.showCp ?? false,
               paintedYou: game.paintedYou,
               paintedOpponent: game.paintedOpponent,
             }}
@@ -196,6 +225,9 @@ export function BattleRecordSetupScreen({
               onChange((prev) =>
                 patchBattleRecord(prev, { allowDoubleTurn: value }),
               )
+            }
+            onShowCp={(value) =>
+              onChange((prev) => patchBattleRecord(prev, { showCp: value }))
             }
             onPaintedYou={(value) =>
               onChange((prev) =>
@@ -233,15 +265,20 @@ export function BattleRecordSetupScreen({
               </optgroup>
             </select>
           </label>
-          <label className="mt-3 flex flex-col gap-2 text-base text-sheet-muted">
-            Choose battleplan
+          <label className="mt-3 flex flex-col gap-2 text-base text-parchment-ink">
+            <span>
+              Choose battleplan
+              <RequiredStar />
+            </span>
             <select
+              aria-label="Choose battleplan"
+              aria-required="true"
               value={game.battleplanId}
               onChange={(event) => {
                 const id = event.target.value;
                 onChange((prev) => setBattleplan(prev, id));
               }}
-              className={SELECT_CLASS}
+              className={`${SELECT_CLASS} ${showWarnings && !ready ? "ring-1 ring-illegal/45" : ""}`}
             >
               <option value="">Choose battleplan…</option>
               <optgroup label="Table 1">
@@ -273,6 +310,26 @@ export function BattleRecordSetupScreen({
           >
             Choose random
           </button>
+          <div className="mt-4 flex flex-col gap-2">
+            <p className="text-base text-parchment-ink">
+              Attacker
+              <RequiredStar />
+            </p>
+            <p className="text-sm text-sheet-muted">
+              Who won the attacker/defender roll. Sets starting Fury.
+            </p>
+            <IosSegmentedControl
+              ariaLabel="Attacker"
+              value={game.rounds[0]?.firstPlayer ?? ""}
+              onChange={(next) =>
+                onChange((prev) => setAttacker(prev, next as "you" | "opponent"))
+              }
+              options={[
+                { value: "you", label: "You = attacker" },
+                { value: "opponent", label: "Opp = attacker" },
+              ]}
+            />
+          </div>
         </section>
 
         {layout ? (
@@ -355,16 +412,21 @@ export function BattleRecordSetupScreen({
             </button>
           ) : (
             <>
-              {!ready ? (
+              {showWarnings && !ready ? (
                 <p className="text-center text-xs text-parchment [text-shadow:0_1px_8px_rgba(0,0,0,0.85)]">
                   Still need {gaps.join(", ")}
                 </p>
               ) : null}
               <button
                 type="button"
-                disabled={!ready}
-                onClick={() => onChange((prev) => startBattle(prev))}
-                className={`${IOS_LIQUID_CTA_CLASS} w-full disabled:cursor-not-allowed disabled:opacity-40`}
+                onClick={() => {
+                  if (canStartBattle(game)) {
+                    onChange((prev) => startBattle(prev));
+                  } else {
+                    setShowWarnings(true);
+                  }
+                }}
+                className={`${IOS_LIQUID_CTA_CLASS} w-full`}
               >
                 Start game
               </button>

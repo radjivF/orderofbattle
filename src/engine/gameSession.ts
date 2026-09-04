@@ -17,6 +17,9 @@ export type GameRound = {
   opponentRage: number;
   /** Flag to prevent double-granting rage when switching between turn tabs. */
   rageGranted: boolean;
+  /** Command Points tracked this round (null = not yet granted). */
+  yourCp: number | null;
+  opponentCp: number | null;
 };
 
 export type GameSession = {
@@ -31,6 +34,8 @@ export type GameSession = {
   /** Empty until chosen during the game. */
   battleplanId: string;
   allowDoubleTurn: boolean;
+  /** Optional CP tracking. Missing/false on older records — never show Command. */
+  showCp?: boolean;
   paintedYou: boolean;
   paintedOpponent: boolean;
   yourTacticCardIds: string[];
@@ -55,6 +60,7 @@ export type CreateBattleRecordInput = {
   opponentName: string;
   opponentArmy: string;
   allowDoubleTurn: boolean;
+  showCp?: boolean;
   paintedYou?: boolean;
   paintedOpponent?: boolean;
   yourTacticCardIds?: string[];
@@ -76,6 +82,8 @@ function emptyRound(): GameRound {
     yourRage: 0,
     opponentRage: 0,
     rageGranted: false,
+    yourCp: null,
+    opponentCp: null,
   };
 }
 
@@ -104,6 +112,7 @@ export type BattleArmyPick = {
   label: string;
   tacticIds: string[];
   listId?: string;
+  pointsLabel?: string;
 };
 
 export function createBattleRecord(
@@ -122,6 +131,7 @@ export function createBattleRecord(
     opponentListId: input.opponentListId || undefined,
     battleplanId: "",
     allowDoubleTurn: input.allowDoubleTurn,
+    showCp: input.showCp === true,
     paintedYou: Boolean(input.paintedYou),
     paintedOpponent: Boolean(input.paintedOpponent),
     yourTacticCardIds,
@@ -200,7 +210,43 @@ export function matchTotalAtRoundStart(
   );
 }
 
-/** Underdog for a battle round — whoever had fewer VP at the start of that round. */
+/** GHB 2026–27: a double turn counts as seizing unless the opponent leads by this many VP. */
+export const SEIZE_INITIATIVE_LEAD_VP = 11;
+
+/**
+ * True when a player seized the initiative at the given round (GHB 2026–27 §2.0).
+ * A seize = double turn where the opponent's VP lead is below SEIZE_INITIATIVE_LEAD_VP.
+ */
+export function isSeizingInitiative(
+  session: GameSession,
+  roundIndex: number,
+): boolean {
+  if (!isDoubleTurn(session, roundIndex)) return false;
+  const seizer = session.rounds[roundIndex]?.firstPlayer;
+  if (!seizer) return false;
+  const opponent: BattlePlayer = seizer === "you" ? "opponent" : "you";
+  const seizerVp = matchTotalAtRoundStart(session, roundIndex, seizer);
+  const opponentVp = matchTotalAtRoundStart(session, roundIndex, opponent);
+  return opponentVp - seizerVp < SEIZE_INITIATIVE_LEAD_VP;
+}
+
+/** False for the seizing player on the seize turn — they cannot complete tactics. */
+export function canCompleteBattleTactics(
+  session: GameSession,
+  roundIndex: number,
+  player: BattlePlayer,
+): boolean {
+  if (!isSeizingInitiative(session, roundIndex)) return true;
+  return player !== session.rounds[roundIndex]?.firstPlayer;
+}
+
+/**
+ * Underdog for a battle round.
+ *
+ * GHB 2026–27 §2.0: when a player seizes the initiative, their opponent
+ * always counts as the underdog until that opponent seizes the initiative.
+ * Falls back to the core rule (fewer VP at round start).
+ */
 export function underdog(
   session: GameSession,
   roundIndex: number,
@@ -208,6 +254,17 @@ export function underdog(
   if (roundIndex < 0 || roundIndex >= session.rounds.length) {
     return null;
   }
+
+  let lastSeizer: BattlePlayer | null = null;
+  for (let i = 1; i <= roundIndex; i++) {
+    if (isSeizingInitiative(session, i)) {
+      lastSeizer = session.rounds[i]?.firstPlayer ?? null;
+    }
+  }
+  if (lastSeizer) {
+    return lastSeizer;
+  }
+
   const yours = matchTotalAtRoundStart(session, roundIndex, "you");
   const theirs = matchTotalAtRoundStart(session, roundIndex, "opponent");
   if (yours === theirs) return null;
@@ -247,6 +304,18 @@ export function setRoundFirstPlayer(
   }
   const rounds = session.rounds.map((round, index) =>
     index === roundIndex ? { ...round, firstPlayer } : round,
+  );
+  return touch({ ...session, rounds });
+}
+
+/** Deployment attacker/defender — independent of who takes the first turn. */
+export function setAttacker(
+  session: GameSession,
+  attacker: BattlePlayer,
+): GameSession {
+  if (session.rounds.length === 0) return session;
+  const rounds = session.rounds.map((round, index) =>
+    index === 0 ? { ...round, firstPlayer: attacker } : round,
   );
   return touch({ ...session, rounds });
 }
@@ -355,6 +424,11 @@ export function setBattleplan(
   return touch({ ...session, battleplanId });
 }
 
+/** True only when Show CP is on. Missing or false never tracks Command. */
+export function tracksCommandPoints(session: GameSession): boolean {
+  return session.showCp === true;
+}
+
 export function patchBattleRecord(
   session: GameSession,
   patch: Partial<
@@ -363,6 +437,7 @@ export function patchBattleRecord(
       | "yourName"
       | "opponentName"
       | "allowDoubleTurn"
+      | "showCp"
       | "paintedYou"
       | "paintedOpponent"
     >
@@ -462,6 +537,64 @@ export function finishBattle(session: GameSession): GameSession {
     return session;
   }
   return touch({ ...session, status: "done" });
+}
+
+/** Grant CP at the start of a round: 4 base, 5 if underdog. */
+export function grantCpForRound(
+  session: GameSession,
+  roundIndex: number,
+): GameSession {
+  if (!tracksCommandPoints(session)) return session;
+  if (roundIndex < 0 || roundIndex >= session.rounds.length) return session;
+  const round = session.rounds[roundIndex]!;
+  const dog = underdog(session, roundIndex);
+  const yourTarget = dog === "you" ? 5 : 4;
+  const opponentTarget = dog === "opponent" ? 5 : 4;
+
+  if (round.yourCp === null || round.opponentCp === null) {
+    const nextRounds = [...session.rounds];
+    nextRounds[roundIndex] = {
+      ...round,
+      yourCp: yourTarget,
+      opponentCp: opponentTarget,
+    };
+    return touch({ ...session, rounds: nextRounds });
+  }
+
+  const unspent = (cp: number) => cp === 4 || cp === 5;
+  if (
+    unspent(round.yourCp) &&
+    unspent(round.opponentCp) &&
+    (round.yourCp !== yourTarget || round.opponentCp !== opponentTarget)
+  ) {
+    const nextRounds = [...session.rounds];
+    nextRounds[roundIndex] = {
+      ...round,
+      yourCp: yourTarget,
+      opponentCp: opponentTarget,
+    };
+    return touch({ ...session, rounds: nextRounds });
+  }
+
+  return session;
+}
+
+export function setPlayerCp(
+  session: GameSession,
+  roundIndex: number,
+  player: BattlePlayer,
+  cp: number,
+): GameSession {
+  if (roundIndex < 0 || roundIndex >= session.rounds.length) return session;
+  const clamped = Math.max(0, Math.min(cp, 99));
+  const round = session.rounds[roundIndex]!;
+  const nextRound =
+    player === "you"
+      ? { ...round, yourCp: clamped }
+      : { ...round, opponentCp: clamped };
+  const nextRounds = [...session.rounds];
+  nextRounds[roundIndex] = nextRound;
+  return touch({ ...session, rounds: nextRounds });
 }
 
 export function reopenBattle(session: GameSession): GameSession {

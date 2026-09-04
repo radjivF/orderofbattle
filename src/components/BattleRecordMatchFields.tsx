@@ -3,9 +3,12 @@
 import { useId, useMemo, useState, useSyncExternalStore } from "react";
 import type { BattleArmyPick } from "@/engine/gameSession";
 import { getFaction } from "@/engine/queries";
+import { catalogueForList, isSpearheadList } from "@/engine/spearhead";
 import { isTowList } from "@/engine/storedList";
 import type { ArmyList } from "@/engine/types";
+import { summarize } from "@/engine/validate";
 import {
+  formatArmyPoints,
   MODAL_SHEET_SCROLL_CLASS,
   MODAL_SHEET_SCROLL_HOST_CLASS,
   SHEET_HEADER_CLASS,
@@ -28,6 +31,27 @@ const SELECT_CLASS =
 const PICK_BUTTON_CLASS = `${SELECT_CLASS} text-left`;
 const FIELD_WARN_RING_CLASS = "ring-1 ring-illegal/45";
 
+export function RequiredStar() {
+  return (
+    <svg
+      className="required-star"
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+    >
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+      >
+        <line x1="10" y1="3" x2="10" y2="17" />
+        <line x1="3.9" y1="6.5" x2="16.1" y2="13.5" />
+        <line x1="3.9" y1="13.5" x2="16.1" y2="6.5" />
+      </g>
+    </svg>
+  );
+}
+
 function FieldWarning({ id, message }: { id: string; message?: string }) {
   if (!message) {
     return null;
@@ -42,9 +66,12 @@ function FieldWarning({ id, message }: { id: string; message?: string }) {
 type Values = {
   yourName: string;
   yourArmyLabel: string;
+  yourArmyPoints?: string;
   opponentName: string;
   opponentArmyLabel: string;
+  opponentArmyPoints?: string;
   allowDoubleTurn: boolean;
+  showCp: boolean;
   paintedYou: boolean;
   paintedOpponent: boolean;
 };
@@ -59,6 +86,7 @@ type Props = {
   onYourName: (value: string) => void;
   onOpponentName: (value: string) => void;
   onAllowDoubleTurn: (value: boolean) => void;
+  onShowCp: (value: boolean) => void;
   onPaintedYou: (value: boolean) => void;
   onPaintedOpponent: (value: boolean) => void;
   onPickArmy: (side: PickerTarget, pick: BattleArmyPick) => void;
@@ -70,6 +98,7 @@ export function BattleRecordMatchFields({
   onYourName,
   onOpponentName,
   onAllowDoubleTurn,
+  onShowCp,
   onPaintedYou,
   onPaintedOpponent,
   onPickArmy,
@@ -87,6 +116,8 @@ export function BattleRecordMatchFields({
   const [picking, setPicking] = useState<PickerTarget | null>(null);
   const warnPrefix = useId();
   const warnId = (field: keyof MatchFieldWarnings) => `${warnPrefix}-${field}`;
+  const yourNameId = `${warnPrefix}-your-name`;
+  const opponentNameId = `${warnPrefix}-opponent-name`;
   const fieldProps = (field: keyof MatchFieldWarnings) =>
     warnings?.[field]
       ? { "aria-invalid": true, "aria-describedby": warnId(field) }
@@ -97,9 +128,15 @@ export function BattleRecordMatchFields({
   return (
     <>
       <div className="flex flex-col gap-2">
-        <label className="flex flex-col gap-2 text-base text-sheet-muted">
-          Your name
+        <label htmlFor={yourNameId} className="flex flex-col gap-2 text-base text-parchment-ink">
+          <span>
+            Your name
+            <RequiredStar />
+          </span>
           <input
+            id={yourNameId}
+            aria-label="Your name"
+            aria-required="true"
             value={values.yourName}
             onChange={(event) => onYourName(event.target.value)}
             className={fieldClass("yourName", SELECT_CLASS)}
@@ -117,14 +154,34 @@ export function BattleRecordMatchFields({
           className={fieldClass("yourArmy", PICK_BUTTON_CLASS)}
           {...fieldProps("yourArmy")}
         >
-          {values.yourArmyLabel || "Choose army…"}
+          {values.yourArmyLabel ? (
+            <span className="flex flex-col items-start gap-0.5">
+              <span>{values.yourArmyLabel}</span>
+              {values.yourArmyPoints ? (
+                <span className="text-sm text-sheet-muted">
+                  {values.yourArmyPoints}
+                </span>
+              ) : null}
+            </span>
+          ) : (
+            "Choose army…"
+          )}
         </button>
         <FieldWarning id={warnId("yourArmy")} message={warnings?.yourArmy} />
       </div>
       <div className="flex flex-col gap-2">
-        <label className="flex flex-col gap-2 text-base text-sheet-muted">
-          Opponent name
+        <label
+          htmlFor={opponentNameId}
+          className="flex flex-col gap-2 text-base text-parchment-ink"
+        >
+          <span>
+            Opponent name
+            <RequiredStar />
+          </span>
           <input
+            id={opponentNameId}
+            aria-label="Opponent name"
+            aria-required="true"
             value={values.opponentName}
             onChange={(event) => onOpponentName(event.target.value)}
             className={fieldClass("opponentName", SELECT_CLASS)}
@@ -145,7 +202,18 @@ export function BattleRecordMatchFields({
           className={fieldClass("opponentArmy", PICK_BUTTON_CLASS)}
           {...fieldProps("opponentArmy")}
         >
-          {values.opponentArmyLabel || "Choose army…"}
+          {values.opponentArmyLabel ? (
+            <span className="flex flex-col items-start gap-0.5">
+              <span>{values.opponentArmyLabel}</span>
+              {values.opponentArmyPoints ? (
+                <span className="text-sm text-sheet-muted">
+                  {values.opponentArmyPoints}
+                </span>
+              ) : null}
+            </span>
+          ) : (
+            "Choose army…"
+          )}
         </button>
         <FieldWarning
           id={warnId("opponentArmy")}
@@ -166,6 +234,22 @@ export function BattleRecordMatchFields({
           options={[
             { value: "on", label: "Track priority" },
             { value: "off", label: "No initiative" },
+          ]}
+        />
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <p className="text-base text-sheet-muted">Show CP</p>
+        <p className="text-sm text-sheet-muted">
+          Track Command Points with +/− controls on each player strip.
+        </p>
+        <IosSegmentedControl
+          ariaLabel="Show CP"
+          value={values.showCp ? "on" : "off"}
+          onChange={(next) => onShowCp(next === "on")}
+          options={[
+            { value: "off", label: "Off" },
+            { value: "on", label: "On" },
           ]}
         />
       </div>
@@ -261,6 +345,13 @@ function ArmyPickSheet({
             ) : (
               lists.map((list) => {
                 const faction = getFaction(list.factionId);
+                const spearhead = isSpearheadList(list);
+                const catalogue = catalogueForList(list);
+                const totals = catalogue ? summarize(list, catalogue) : null;
+                const pointsLine = formatArmyPoints({
+                  spearhead,
+                  pointsSpent: totals?.points ?? 0,
+                });
                 return (
                   <button
                     key={list.id}
@@ -270,6 +361,7 @@ function ArmyPickSheet({
                         label: list.name,
                         tacticIds: (list.battleTacticCardIds ?? []).slice(0, 2),
                         listId: list.id,
+                        pointsLabel: pointsLine,
                       })
                     }
                     className="rounded-xl bg-parchment-ink/5 px-4 py-3 text-left ring-1 ring-parchment-ink/10"
@@ -279,6 +371,8 @@ function ArmyPickSheet({
                     </p>
                     <p className="mt-0.5 text-sm text-sheet-muted">
                       {faction?.name ?? list.factionId}
+                      {" · "}
+                      {pointsLine}
                       {(list.battleTacticCardIds ?? []).length > 0
                         ? ` · ${(list.battleTacticCardIds ?? []).length} tactics`
                         : ""}

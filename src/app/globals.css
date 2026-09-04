@@ -369,6 +369,9 @@ a {
   touch-action: pan-y;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  /* Keep first/last labels out from under the host edge fades. */
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 
 .modal-sheet-scroll::-webkit-scrollbar {
@@ -404,18 +407,14 @@ a {
 }
 
 .modal-sheet-scroll-host::after {
-  bottom: 0;
-  background: linear-gradient(
-    to top,
-    var(--parchment),
-    color-mix(in srgb, var(--parchment) 0%, transparent)
-  );
+  display: none;
 }
 
 .modal-sheet-footer {
   flex-shrink: 0;
-  border-top: 0.5px solid color-mix(in srgb, var(--parchment-ink) 8%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--parchment-ink) 18%, transparent);
   background: var(--parchment);
+  box-shadow: none;
 }
 
 @media (min-width: 640px) {
@@ -850,6 +849,15 @@ a {
   box-shadow:
     inset 0 1px 0 rgba(255, 252, 245, 0.7),
     0 10px 28px -14px rgba(0, 0, 0, 0.7);
+}
+
+.required-star {
+  display: inline-block;
+  width: 0.72em;
+  height: 0.72em;
+  margin-left: 0.22em;
+  vertical-align: -0.02em;
+  color: #e10600;
 }
 
 /* Desktop shine only. Phones skip hover glints. */
