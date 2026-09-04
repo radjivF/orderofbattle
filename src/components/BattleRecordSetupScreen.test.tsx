@@ -121,6 +121,30 @@ describe("BattleRecordSetupScreen", () => {
     expect(onChange).not.toHaveBeenCalled();
   });
 
+  it("lets you pick the attacker under Battleplan", async () => {
+    const user = userEvent.setup();
+    const game = createBattleRecord({
+      yourName: "Rad",
+      yourArmy: "Stormcast",
+      opponentName: "Alex",
+      opponentArmy: "Khorne",
+      allowDoubleTurn: false,
+    });
+
+    render(<SetupHarness initial={game} />);
+
+    const group = screen.getByRole("group", { name: "Attacker" });
+    expect(group).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "You = attacker" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Opp = attacker" })).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "You = attacker" }));
+    expect(screen.getByRole("button", { name: "You = attacker" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+  });
+
   it("lists battleplans and hides warning until a plan is chosen", async () => {
     const user = userEvent.setup();
     const onChange = vi.fn();

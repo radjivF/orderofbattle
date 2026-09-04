@@ -20,6 +20,7 @@ import {
   setPrimaryClaim,
   setRoundFirstPlayer,
   setRoundVp,
+  setAttacker,
   setTwistApplied,
   startBattle,
   syncPrimaryVp,
@@ -208,6 +209,20 @@ describe("double turn", () => {
     let game = fresh();
     game = setRoundFirstPlayer(game, 0, "opponent");
     expect(canSetFirstPlayer(game, 1, "opponent")).toBe(true);
+  });
+});
+
+describe("setAttacker", () => {
+  it("sets round 1 first player even when priority tracking is off", () => {
+    const game = createBattleRecord({
+      yourName: "A",
+      yourArmy: "A army",
+      opponentName: "B",
+      opponentArmy: "B army",
+      allowDoubleTurn: false,
+    });
+    const next = setAttacker(game, "opponent");
+    expect(next.rounds[0]!.firstPlayer).toBe("opponent");
   });
 });
 

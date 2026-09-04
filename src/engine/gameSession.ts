@@ -308,6 +308,18 @@ export function setRoundFirstPlayer(
   return touch({ ...session, rounds });
 }
 
+/** Deployment attacker/defender — independent of who takes the first turn. */
+export function setAttacker(
+  session: GameSession,
+  attacker: BattlePlayer,
+): GameSession {
+  if (session.rounds.length === 0) return session;
+  const rounds = session.rounds.map((round, index) =>
+    index === 0 ? { ...round, firstPlayer: attacker } : round,
+  );
+  return touch({ ...session, rounds });
+}
+
 export function setRoundVp(
   session: GameSession,
   roundIndex: number,

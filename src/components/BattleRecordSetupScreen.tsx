@@ -16,6 +16,7 @@ import {
   patchBattleRecord,
   setBattleArmy,
   setBattleplan,
+  setAttacker,
   setPlayerTacticCards,
   startBattle,
   type GameSession,
@@ -41,6 +42,7 @@ import { BattleplanBoard } from "./BattleplanBoard";
 import { BattleRecordMatchFields } from "./BattleRecordMatchFields";
 import { BattleTacticText } from "./BattleTacticText";
 import { IosNavBackButton } from "./ios/IosNavIconButton";
+import { IosSegmentedControl } from "./ios/IosSegmentedControl";
 
 type Props = {
   game: GameSession;
@@ -303,6 +305,23 @@ export function BattleRecordSetupScreen({
           >
             Choose random
           </button>
+          <div className="mt-4 flex flex-col gap-2">
+            <p className="text-base text-sheet-muted">Attacker</p>
+            <p className="text-sm text-sheet-muted">
+              Who won the attacker/defender roll. Sets starting Fury.
+            </p>
+            <IosSegmentedControl
+              ariaLabel="Attacker"
+              value={game.rounds[0]?.firstPlayer ?? ""}
+              onChange={(next) =>
+                onChange((prev) => setAttacker(prev, next as "you" | "opponent"))
+              }
+              options={[
+                { value: "you", label: "You = attacker" },
+                { value: "opponent", label: "Opp = attacker" },
+              ]}
+            />
+          </div>
         </section>
 
         {layout ? (

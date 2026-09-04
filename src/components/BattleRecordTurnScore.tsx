@@ -45,7 +45,6 @@ type Props = {
   onChangeFury: (player: BattlePlayer, fury: number) => void;
   onChangeRage: (player: BattlePlayer, rage: number) => void;
   onChangeCp: (player: BattlePlayer, cp: number) => void;
-  onSetAttacker: (attacker: BattlePlayer) => void;
   /** Per-player tactic-completion lock (seize-the-initiative). */
   yourCompleteLocked?: boolean;
   opponentCompleteLocked?: boolean;
@@ -72,7 +71,6 @@ export function BattleRecordTurnScore({
   onChangeFury,
   onChangeRage,
   onChangeCp,
-  onSetAttacker,
   yourCompleteLocked = false,
   opponentCompleteLocked = false,
 }: Props) {
@@ -90,7 +88,7 @@ export function BattleRecordTurnScore({
   const rage = round ? (activePlayer === "you" ? round.yourRage : round.opponentRage) : 0;
   const cp = round ? (activePlayer === "you" ? round.yourCp : round.opponentCp) : null;
   
-  const attacker = round?.firstPlayer;
+  const attacker = game.rounds[0]?.firstPlayer;
   const defender = attacker ? (attacker === "you" ? "opponent" : "you") : null;
   const role =
     attacker === activePlayer ? "attacker" : defender === activePlayer ? "defender" : null;
@@ -149,24 +147,6 @@ export function BattleRecordTurnScore({
                   </span>
                 ) : null}
               </p>
-              {!game.furyInitialized && (
-                <div className="flex gap-2">
-                  <button
-                    type="button"
-                    onClick={() => onSetAttacker("you")}
-                    className="px-3 py-1.5 text-xs rounded bg-parchment-ink/5 ring-1 ring-parchment-ink/10 hover:bg-parchment-ink/10"
-                  >
-                    You = attacker
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => onSetAttacker("opponent")}
-                    className="px-3 py-1.5 text-xs rounded bg-parchment-ink/5 ring-1 ring-parchment-ink/10 hover:bg-parchment-ink/10"
-                  >
-                    Opp = attacker
-                  </button>
-                </div>
-              )}
             </div>
             
             {/* Command row */}

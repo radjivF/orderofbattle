@@ -552,10 +552,6 @@ export function BattleRecordGameScreen({ gameId }: Props) {
             onChangeFury={(player, fury) => void commit(setFury(game, player, fury))}
             onChangeRage={(player, rage) => void commit(setRage(game, roundIndex, player, rage))}
             onChangeCp={(player, cp) => void commit(setPlayerCp(game, roundIndex, player, cp))}
-            onSetAttacker={(attacker) => {
-              const next = setRoundFirstPlayer(game, 0, attacker);
-              void commit(initializeFury(next));
-            }}
             yourCompleteLocked={!canCompleteBattleTactics(game, roundIndex, "you")}
             opponentCompleteLocked={!canCompleteBattleTactics(game, roundIndex, "opponent")}
           />
