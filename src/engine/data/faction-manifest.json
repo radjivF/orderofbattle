@@ -1,0 +1,833 @@
+[
+  {
+    "id": "big-waaagh",
+    "name": "þ Big Waaagh!",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "ironjawz",
+      "kruleboyz"
+    ],
+    "unitCount": 43,
+    "heroCount": 23
+  },
+  {
+    "id": "blades-of-khorne",
+    "name": "Blades of Khorne",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 41,
+    "heroCount": 23
+  },
+  {
+    "id": "blades-of-khorne-gorechosen-champions",
+    "name": "Blades of Khorne - Gorechosen Champions",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "blades-of-khorne"
+    ],
+    "unitCount": 8,
+    "heroCount": 8
+  },
+  {
+    "id": "blades-of-khorne-the-baleful-lords",
+    "name": "Blades of Khorne - The Baleful Lords",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "blades-of-khorne"
+    ],
+    "unitCount": 4,
+    "heroCount": 4
+  },
+  {
+    "id": "cities-of-sigmar",
+    "name": "Cities of Sigmar",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 66,
+    "heroCount": 32
+  },
+  {
+    "id": "cities-of-sigmar-allies-of-the-free-cities",
+    "name": "Cities of Sigmar - Allies of the Free Cities",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "cities-of-sigmar"
+    ],
+    "unitCount": 56,
+    "heroCount": 24
+  },
+  {
+    "id": "cities-of-sigmar-the-iron-march",
+    "name": "Cities of Sigmar - The Iron March",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "cities-of-sigmar"
+    ],
+    "unitCount": 4,
+    "heroCount": 3
+  },
+  {
+    "id": "daughters-of-khaine",
+    "name": "Daughters of Khaine",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 28,
+    "heroCount": 14
+  },
+  {
+    "id": "daughters-of-khaine-champions-of-the-arena",
+    "name": "Daughters of Khaine - Champions of the Arena",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "daughters-of-khaine"
+    ],
+    "unitCount": 6,
+    "heroCount": 3
+  },
+  {
+    "id": "daughters-of-khaine-the-croneseer-s-pariahs",
+    "name": "Daughters of Khaine - The Croneseer's Pariahs",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "daughters-of-khaine"
+    ],
+    "unitCount": 16,
+    "heroCount": 9
+  },
+  {
+    "id": "daughters-of-khaine-zainthar-kai",
+    "name": "Daughters of Khaine - Zainthar Kai",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "daughters-of-khaine"
+    ],
+    "unitCount": 10,
+    "heroCount": 6
+  },
+  {
+    "id": "disciples-of-tzeentch",
+    "name": "Disciples of Tzeentch",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 35,
+    "heroCount": 18
+  },
+  {
+    "id": "disciples-of-tzeentch-change-cult-uprising",
+    "name": "Disciples of Tzeentch - Change-cult Uprising",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "disciples-of-tzeentch"
+    ],
+    "unitCount": 12,
+    "heroCount": 8
+  },
+  {
+    "id": "disciples-of-tzeentch-the-oracles-of-fate",
+    "name": "Disciples of Tzeentch - The Oracles of Fate",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "disciples-of-tzeentch"
+    ],
+    "unitCount": 17,
+    "heroCount": 9
+  },
+  {
+    "id": "flesh-eater-courts",
+    "name": "Flesh-eater Courts",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 30,
+    "heroCount": 18
+  },
+  {
+    "id": "flesh-eater-courts-new-summercourt",
+    "name": "Flesh-eater Courts - New Summercourt",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "flesh-eater-courts"
+    ],
+    "unitCount": 20,
+    "heroCount": 15
+  },
+  {
+    "id": "flesh-eater-courts-the-equinox-feast",
+    "name": "Flesh-eater Courts - The Equinox Feast",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "flesh-eater-courts"
+    ],
+    "unitCount": 18,
+    "heroCount": 13
+  },
+  {
+    "id": "fyreslayers",
+    "name": "Fyreslayers",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 22,
+    "heroCount": 14
+  },
+  {
+    "id": "fyreslayers-lofnir-drothkeepers",
+    "name": "Fyreslayers - Lofnir Drothkeepers",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "fyreslayers"
+    ],
+    "unitCount": 8,
+    "heroCount": 7
+  },
+  {
+    "id": "gloomspite-gitz",
+    "name": "Gloomspite Gitz",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 51,
+    "heroCount": 20
+  },
+  {
+    "id": "gloomspite-gitz-da-king-s-gitz",
+    "name": "Gloomspite Gitz - Da King's Gitz",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "gloomspite-gitz"
+    ],
+    "unitCount": 27,
+    "heroCount": 9
+  },
+  {
+    "id": "gloomspite-gitz-droggz-s-gitmob",
+    "name": "Gloomspite Gitz - Droggz's Gitmob",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "gloomspite-gitz"
+    ],
+    "unitCount": 11,
+    "heroCount": 4
+  },
+  {
+    "id": "gloomspite-gitz-trugg-s-troggherd",
+    "name": "Gloomspite Gitz - Trugg's Troggherd",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "gloomspite-gitz"
+    ],
+    "unitCount": 6,
+    "heroCount": 2
+  },
+  {
+    "id": "hedonites-of-slaanesh",
+    "name": "Hedonites of Slaanesh",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 38,
+    "heroCount": 21
+  },
+  {
+    "id": "hedonites-of-slaanesh-court-of-the-godlings",
+    "name": "Hedonites of Slaanesh - Court of the Godlings",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "hedonites-of-slaanesh"
+    ],
+    "unitCount": 17,
+    "heroCount": 11
+  },
+  {
+    "id": "hedonites-of-slaanesh-the-decadent-host",
+    "name": "Hedonites of Slaanesh - The Decadent Host",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "hedonites-of-slaanesh"
+    ],
+    "unitCount": 17,
+    "heroCount": 6
+  },
+  {
+    "id": "helsmiths-of-hashut",
+    "name": "Helsmiths of Hashut",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 21,
+    "heroCount": 7
+  },
+  {
+    "id": "helsmiths-of-hashut-taar-s-grand-forgehost",
+    "name": "Helsmiths of Hashut - Taar's Grand Forgehost",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "helsmiths-of-hashut"
+    ],
+    "unitCount": 15,
+    "heroCount": 5
+  },
+  {
+    "id": "helsmiths-of-hashut-ziggurat-stampede",
+    "name": "Helsmiths of Hashut - Ziggurat Stampede",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "helsmiths-of-hashut"
+    ],
+    "unitCount": 7,
+    "heroCount": 2
+  },
+  {
+    "id": "idoneth-deepkin",
+    "name": "Idoneth Deepkin",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 24,
+    "heroCount": 14
+  },
+  {
+    "id": "idoneth-deepkin-the-first-phalanx-of-ionrach",
+    "name": "Idoneth Deepkin - The First Phalanx of Ionrach",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "idoneth-deepkin"
+    ],
+    "unitCount": 12,
+    "heroCount": 6
+  },
+  {
+    "id": "idoneth-deepkin-wardens-of-the-chorrileum",
+    "name": "Idoneth Deepkin - Wardens of the Chorrileum",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "idoneth-deepkin"
+    ],
+    "unitCount": 18,
+    "heroCount": 12
+  },
+  {
+    "id": "ironjawz",
+    "name": "Ironjawz",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 21,
+    "heroCount": 9
+  },
+  {
+    "id": "ironjawz-krazogg-s-grunta-stampede",
+    "name": "Ironjawz - Krazogg's Grunta Stampede",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "ironjawz"
+    ],
+    "unitCount": 5,
+    "heroCount": 1
+  },
+  {
+    "id": "ironjawz-zoggrok-s-ironmongerz",
+    "name": "Ironjawz - Zoggrok's Ironmongerz",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "ironjawz"
+    ],
+    "unitCount": 14,
+    "heroCount": 6
+  },
+  {
+    "id": "kharadron-overlords",
+    "name": "Kharadron Overlords",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 23,
+    "heroCount": 11
+  },
+  {
+    "id": "kharadron-overlords-grundstok-expeditionary-force",
+    "name": "Kharadron Overlords - Grundstok Expeditionary Force",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "kharadron-overlords"
+    ],
+    "unitCount": 10,
+    "heroCount": 7
+  },
+  {
+    "id": "kharadron-overlords-pioneer-outpost",
+    "name": "Kharadron Overlords - Pioneer Outpost",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "kharadron-overlords"
+    ],
+    "unitCount": 13,
+    "heroCount": 3
+  },
+  {
+    "id": "kharadron-overlords-the-magnate-s-crew",
+    "name": "Kharadron Overlords - The Magnate's Crew",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "kharadron-overlords"
+    ],
+    "unitCount": 13,
+    "heroCount": 5
+  },
+  {
+    "id": "kruleboyz",
+    "name": "Kruleboyz",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 22,
+    "heroCount": 14
+  },
+  {
+    "id": "kruleboyz-murkvast-menagerie",
+    "name": "Kruleboyz - Murkvast Menagerie",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "kruleboyz"
+    ],
+    "unitCount": 13,
+    "heroCount": 6
+  },
+  {
+    "id": "lumineth-realm-lords",
+    "name": "Lumineth Realm-lords",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 31,
+    "heroCount": 19
+  },
+  {
+    "id": "lumineth-realm-lords-aelementiri-conclave",
+    "name": "Lumineth Realm-lords - Aelementiri Conclave",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "lumineth-realm-lords"
+    ],
+    "unitCount": 11,
+    "heroCount": 5
+  },
+  {
+    "id": "lumineth-realm-lords-vanari-paragons",
+    "name": "Lumineth Realm-lords - Vanari Paragons",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "lumineth-realm-lords"
+    ],
+    "unitCount": 11,
+    "heroCount": 6
+  },
+  {
+    "id": "maggotkin-of-nurgle",
+    "name": "Maggotkin of Nurgle",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 39,
+    "heroCount": 24
+  },
+  {
+    "id": "maggotkin-of-nurgle-cycle-of-corruption",
+    "name": "Maggotkin of Nurgle - Cycle of Corruption",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "maggotkin-of-nurgle"
+    ],
+    "unitCount": 23,
+    "heroCount": 13
+  },
+  {
+    "id": "maggotkin-of-nurgle-the-gardeners-of-nurgle",
+    "name": "Maggotkin of Nurgle - The Gardeners of Nurgle",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "maggotkin-of-nurgle"
+    ],
+    "unitCount": 16,
+    "heroCount": 11
+  },
+  {
+    "id": "nighthaunt",
+    "name": "Nighthaunt",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 34,
+    "heroCount": 16
+  },
+  {
+    "id": "nighthaunt-the-clattering-procession",
+    "name": "Nighthaunt - The Clattering Procession",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "nighthaunt"
+    ],
+    "unitCount": 7,
+    "heroCount": 4
+  },
+  {
+    "id": "nighthaunt-the-eternal-nightmare",
+    "name": "Nighthaunt - The Eternal Nightmare",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "nighthaunt"
+    ],
+    "unitCount": 21,
+    "heroCount": 10
+  },
+  {
+    "id": "ogor-mawtribes",
+    "name": "Ogor Mawtribes",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 40,
+    "heroCount": 20
+  },
+  {
+    "id": "ogor-mawtribes-beastclaw-alfrostun",
+    "name": "Ogor Mawtribes - Beastclaw Alfrostun",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "ogor-mawtribes"
+    ],
+    "unitCount": 16,
+    "heroCount": 9
+  },
+  {
+    "id": "ogor-mawtribes-mawseeker-gollop",
+    "name": "Ogor Mawtribes - Mawseeker Gollop",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "ogor-mawtribes"
+    ],
+    "unitCount": 6,
+    "heroCount": 3
+  },
+  {
+    "id": "ogor-mawtribes-meatfist-mawtribe",
+    "name": "Ogor Mawtribes - Meatfist Mawtribe",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "ogor-mawtribes"
+    ],
+    "unitCount": 11,
+    "heroCount": 5
+  },
+  {
+    "id": "ogor-mawtribes-the-roving-maw",
+    "name": "Ogor Mawtribes - The Roving Maw",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "ogor-mawtribes"
+    ],
+    "unitCount": 13,
+    "heroCount": 4
+  },
+  {
+    "id": "ossiarch-bonereapers",
+    "name": "Ossiarch Bonereapers",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 30,
+    "heroCount": 14
+  },
+  {
+    "id": "ossiarch-bonereapers-the-lance-of-ossia",
+    "name": "Ossiarch Bonereapers - The Lance of Ossia",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "ossiarch-bonereapers"
+    ],
+    "unitCount": 5,
+    "heroCount": 3
+  },
+  {
+    "id": "ossiarch-bonereapers-the-null-myriad",
+    "name": "Ossiarch Bonereapers - The Null Myriad",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "ossiarch-bonereapers"
+    ],
+    "unitCount": 17,
+    "heroCount": 6
+  },
+  {
+    "id": "seraphon",
+    "name": "Seraphon",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 37,
+    "heroCount": 17
+  },
+  {
+    "id": "skaven",
+    "name": "Skaven",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 51,
+    "heroCount": 24
+  },
+  {
+    "id": "skaven-thanquol-s-mutated-menagerie",
+    "name": "Skaven - Thanquol's Mutated Menagerie",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "skaven"
+    ],
+    "unitCount": 7,
+    "heroCount": 2
+  },
+  {
+    "id": "skaven-the-great-grand-gnawhorde",
+    "name": "Skaven - The Great-grand Gnawhorde",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "skaven"
+    ],
+    "unitCount": 31,
+    "heroCount": 14
+  },
+  {
+    "id": "slaves-to-darkness",
+    "name": "Slaves to Darkness",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 58,
+    "heroCount": 24
+  },
+  {
+    "id": "slaves-to-darkness-legion-of-the-first-prince",
+    "name": "Slaves to Darkness - Legion of the First Prince",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "slaves-to-darkness"
+    ],
+    "unitCount": 8,
+    "heroCount": 5
+  },
+  {
+    "id": "slaves-to-darkness-the-swords-of-chaos",
+    "name": "Slaves to Darkness - The Swords of Chaos",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "slaves-to-darkness"
+    ],
+    "unitCount": 4,
+    "heroCount": 3
+  },
+  {
+    "id": "slaves-to-darkness-tribes-of-the-snow-peaks",
+    "name": "Slaves to Darkness - Tribes of the Snow Peaks",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "slaves-to-darkness"
+    ],
+    "unitCount": 10,
+    "heroCount": 4
+  },
+  {
+    "id": "sons-of-behemat",
+    "name": "Sons of Behemat",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 11,
+    "heroCount": 8
+  },
+  {
+    "id": "sons-of-behemat-king-brodd-s-stomp",
+    "name": "Sons of Behemat - King Brodd's Stomp",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "sons-of-behemat"
+    ],
+    "unitCount": 10,
+    "heroCount": 7
+  },
+  {
+    "id": "soulblight-gravelords",
+    "name": "Soulblight Gravelords",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 52,
+    "heroCount": 30
+  },
+  {
+    "id": "soulblight-gravelords-barrow-legion",
+    "name": "Soulblight Gravelords - Barrow Legion",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "soulblight-gravelords"
+    ],
+    "unitCount": 9,
+    "heroCount": 4
+  },
+  {
+    "id": "soulblight-gravelords-knights-of-the-crimson-keep",
+    "name": "Soulblight Gravelords - Knights of the Crimson Keep",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "soulblight-gravelords"
+    ],
+    "unitCount": 6,
+    "heroCount": 2
+  },
+  {
+    "id": "soulblight-gravelords-scions-of-nulahmia",
+    "name": "Soulblight Gravelords - Scions of Nulahmia",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "soulblight-gravelords"
+    ],
+    "unitCount": 8,
+    "heroCount": 6
+  },
+  {
+    "id": "stormcast-eternals",
+    "name": "Stormcast Eternals",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 87,
+    "heroCount": 45
+  },
+  {
+    "id": "stormcast-eternals-draconith-skywing",
+    "name": "Stormcast Eternals - Draconith Skywing",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "stormcast-eternals"
+    ],
+    "unitCount": 5,
+    "heroCount": 4
+  },
+  {
+    "id": "stormcast-eternals-heroes-of-the-first-forged",
+    "name": "Stormcast Eternals - Heroes of the First-Forged",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "stormcast-eternals"
+    ],
+    "unitCount": 22,
+    "heroCount": 19
+  },
+  {
+    "id": "stormcast-eternals-ruination-brotherhood",
+    "name": "Stormcast Eternals - Ruination Brotherhood",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "stormcast-eternals"
+    ],
+    "unitCount": 33,
+    "heroCount": 11
+  },
+  {
+    "id": "sylvaneth",
+    "name": "Sylvaneth",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": null,
+    "unitCount": 28,
+    "heroCount": 12
+  },
+  {
+    "id": "sylvaneth-lords-of-the-clan",
+    "name": "Sylvaneth - Lords of the Clan",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "sylvaneth"
+    ],
+    "unitCount": 11,
+    "heroCount": 5
+  },
+  {
+    "id": "sylvaneth-soulpod-guardians",
+    "name": "Sylvaneth - Soulpod Guardians",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "sylvaneth"
+    ],
+    "unitCount": 11,
+    "heroCount": 4
+  },
+  {
+    "id": "sylvaneth-the-evergreen-hunt",
+    "name": "Sylvaneth - The Evergreen Hunt",
+    "game": "Age of Sigmar 4th",
+    "pointsCapDefault": 2000,
+    "parentFactionIds": [
+      "sylvaneth"
+    ],
+    "unitCount": 9,
+    "heroCount": 2
+  }
+]

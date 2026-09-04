@@ -100,11 +100,11 @@ function OpenSheetButton({
       <span
         className={
           subtitleBeside
-            ? "flex min-w-0 flex-1 flex-wrap items-baseline justify-between gap-x-2 py-2 pr-2"
+            ? "flex min-w-0 flex-1 items-baseline justify-between gap-x-2 py-2 pr-2"
             : "min-w-0 py-2 pr-2"
         }
       >
-        <p className={nameClassName}>
+        <p className={`${nameClassName} ${subtitleBeside ? "min-w-0 truncate" : ""}`}>
           {name}
           {reinforced ? (
             <span className="ml-2 font-sans text-xs text-sheet-muted">
@@ -159,11 +159,7 @@ export function PlaySlotRow({
         onOpenSheet={openSheet}
         reinforced={reinforced}
         iconClassName={`${SHEET_LINK_ICON_WRAP_CLASS} h-10 w-10 sm:h-11 sm:w-11`}
-        nameClassName={
-          subtitleBeside
-            ? "min-w-0 font-serif text-base leading-snug sm:text-lg sm:leading-tight"
-            : "font-serif text-base leading-snug sm:text-lg sm:leading-tight"
-        }
+        nameClassName="font-serif text-base leading-snug sm:text-lg sm:leading-tight"
         subtitleClassName={
           subtitleBeside
             ? "shrink-0 text-sm font-medium text-parchment-ink"

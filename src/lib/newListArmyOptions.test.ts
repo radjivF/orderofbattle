@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { listArmiesOfRenown } from "@/engine/queries";
 import { listSpearheadsForFaction } from "@/engine/spearhead";
 import {
@@ -7,8 +7,12 @@ import {
   newListArmySelectHasExtras,
   parseNewListArmyValue,
 } from "./newListArmyOptions";
+import { ensureAllFactions } from "@/engine/data/load";
 
 describe("newListArmySelectGroups", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
   it("groups Stormcast as faction, Army of Renown, and Spearhead", () => {
     const groups = newListArmySelectGroups("stormcast-eternals");
     const labels = groups.map((group) => group.label);
@@ -43,6 +47,10 @@ describe("newListArmySelectGroups", () => {
 });
 
 describe("newList army select values", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("round-trips spearhead values without colliding with faction ids", () => {
     const encoded = encodeNewListArmyValue({
       kind: "spearhead",

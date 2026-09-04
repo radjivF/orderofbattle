@@ -1,8 +1,9 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { createId } from "@/lib/id";
 import { blankArmy } from "@/lib/storage";
 import { armyRoster, CORE_PLAY_PHASES } from "./phases";
 import { getFaction } from "./queries";
+import { ensureAllFactions } from "@/engine/data/load";
 
 describe("CORE_PLAY_PHASES", () => {
   it("lists army through end phases in order", () => {
@@ -19,6 +20,10 @@ describe("CORE_PLAY_PHASES", () => {
 });
 
 describe("armyRoster", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("includes hero and companion selections", () => {
     const faction = getFaction("sylvaneth");
     expect(faction).toBeTruthy();

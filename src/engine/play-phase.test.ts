@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { createId } from "@/lib/id";
 import { blankArmy, blankSpearhead } from "@/lib/storage";
 import {
@@ -15,8 +15,13 @@ import {
 import { getSpearhead, spearheadAsFaction } from "./spearhead";
 import type { ManifestationModel } from "./types";
 import { summarize } from "./validate";
+import { ensureAllFactions } from "@/engine/data/load";
 
 describe("play stat lines", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("formats move for play phase unit rows", () => {
     const faction = getFaction("daughters-of-khaine");
     expect(faction).toBeTruthy();
@@ -48,6 +53,10 @@ describe("play stat lines", () => {
 });
 
 describe("regimentPlayGroups", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("groups roster units by regiment for movement phase", () => {
     const faction = getFaction("sylvaneth");
     expect(faction).toBeTruthy();
@@ -161,6 +170,10 @@ describe("spearhead army phase", () => {
 });
 
 describe("buildPhaseBoards movement split", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("keeps roster abilities on unit selection ids for movement grouping", () => {
     const faction = getFaction("sylvaneth");
     expect(faction).toBeTruthy();
@@ -204,6 +217,10 @@ describe("buildPhaseBoards movement split", () => {
 });
 
 describe("manifestation lore points", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("counts paid GHB manifestation lores in army totals", () => {
     const faction = getFaction("daughters-of-khaine");
     expect(faction).toBeTruthy();
@@ -276,6 +293,10 @@ describe("formation phase routing", () => {
 });
 
 describe("battle formation points", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("counts paid GHB battle formations in army totals", () => {
     const faction = getFaction("daughters-of-khaine");
     expect(faction).toBeTruthy();

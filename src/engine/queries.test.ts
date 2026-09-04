@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { createId } from "@/lib/id";
 import { blankArmy } from "@/lib/storage";
 import {
@@ -8,8 +8,12 @@ import {
   listFactions,
   selectionPoints,
 } from "./queries";
+import { ensureAllFactions } from "@/engine/data/load";
 
 describe("listFactions", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
   it("lists parent factions with Stormcast first", () => {
     const factions = listFactions();
     expect(factions.length).toBeGreaterThan(0);
@@ -19,6 +23,10 @@ describe("listFactions", () => {
 });
 
 describe("getFaction", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("returns catalogue by id", () => {
     expect(getFaction("stormcast-eternals")?.name).toContain("Stormcast");
     expect(getFaction("missing-faction")).toBeUndefined();
@@ -26,6 +34,10 @@ describe("getFaction", () => {
 });
 
 describe("selectionPoints", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("doubles points when reinforced", () => {
     const faction = getFaction("stormcast-eternals");
     expect(faction).toBeTruthy();
@@ -41,6 +53,10 @@ describe("selectionPoints", () => {
 });
 
 describe("canJoinRegiment", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("blocks a hero from joining its own regiment as a duplicate", () => {
     const faction = getFaction("sylvaneth");
     expect(faction).toBeTruthy();
@@ -68,6 +84,10 @@ describe("canJoinRegiment", () => {
 });
 
 describe("canBeGeneral", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("restricts general to warmaster regiments when present", () => {
     const faction = getFaction("hedonites-of-slaanesh");
     expect(faction).toBeTruthy();

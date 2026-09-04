@@ -10,14 +10,18 @@ import {
   advanceTacticStage,
   canSetFirstPlayer,
   finishBattle,
+  grantCpForRound,
   grantRageForRound,
   initializeFury,
+  canCompleteBattleTactics,
   isDoubleTurn,
+  isSeizingInitiative,
   matchTotal,
   paintedBonus,
   reopenBattle,
   roundVpTotal,
   setFury,
+  setPlayerCp,
   setPrimaryClaim,
   setRage,
   setRoundFirstPlayer,
@@ -29,9 +33,12 @@ import {
   type BattlePlayer,
   type GameSession,
 } from "@/engine/gameSession";
+import { catalogueForList, isSpearheadList } from "@/engine/spearhead";
 import { isTowList } from "@/engine/storedList";
 import type { ArmyList } from "@/engine/types";
+import { summarize } from "@/engine/validate";
 import {
+  formatArmyPoints,
   IOS_LIQUID_CTA_CLASS,
   LIBRARY_TITLE_CLASS,
   LIBRARY_TITLE_ROW_CLASS,
@@ -168,9 +175,17 @@ export function BattleRecordGameScreen({ gameId }: Props) {
     if (!game || game.status !== "active") {
       return;
     }
-    const withRage = grantRageForRound(game, roundIndex);
-    if (withRage !== game) {
-      void commit(withRage);
+    let next = game;
+    const withRage = grantRageForRound(next, roundIndex);
+    if (withRage !== next) {
+      next = withRage;
+    }
+    const withCp = grantCpForRound(next, roundIndex);
+    if (withCp !== next) {
+      next = withCp;
+    }
+    if (next !== game) {
+      void commit(next);
     }
   }, [game, roundIndex]);
 
@@ -302,6 +317,7 @@ export function BattleRecordGameScreen({ gameId }: Props) {
   const round = game.rounds[roundIndex]!;
   const dog = underdog(game, roundIndex);
   const double = isDoubleTurn(game, roundIndex);
+  const seize = isSeizingInitiative(game, roundIndex);
   const underdogName =
     dog === "you"
       ? game.yourName
@@ -346,6 +362,8 @@ export function BattleRecordGameScreen({ gameId }: Props) {
             <ScoreIdentity
               name={game.yourName}
               army={game.yourArmy}
+              listId={game.yourListId}
+              lists={lists}
               underdog={dog === "you"}
               className="col-start-1"
               onPlay={
@@ -363,6 +381,8 @@ export function BattleRecordGameScreen({ gameId }: Props) {
             <ScoreIdentity
               name={game.opponentName}
               army={game.opponentArmy}
+              listId={game.opponentListId}
+              lists={lists}
               underdog={dog === "opponent"}
               align="right"
               className="col-start-3"
@@ -449,7 +469,7 @@ export function BattleRecordGameScreen({ gameId }: Props) {
             <h2 className="font-serif text-xl">Turn {roundIndex + 1}</h2>
             {trackPriority && double ? (
               <span className="rounded-full bg-aether/15 px-3 py-1 text-xs font-semibold tracking-wide uppercase text-aether ring-1 ring-aether/30">
-                Double turn
+                {seize ? "Seizing the initiative" : "Double turn"}
               </span>
             ) : null}
           </div>
@@ -531,18 +551,31 @@ export function BattleRecordGameScreen({ gameId }: Props) {
             roundIndex={roundIndex}
             onChangeFury={(player, fury) => void commit(setFury(game, player, fury))}
             onChangeRage={(player, rage) => void commit(setRage(game, roundIndex, player, rage))}
-            onSetAttacker={(attacker) => {
-              const next = setRoundFirstPlayer(game, 0, attacker);
-              void commit(initializeFury(next));
-            }}
+            onChangeCp={(player, cp) => void commit(setPlayerCp(game, roundIndex, player, cp))}
+            yourCompleteLocked={!canCompleteBattleTactics(game, roundIndex, "you")}
+            opponentCompleteLocked={!canCompleteBattleTactics(game, roundIndex, "opponent")}
           />
         ) : null}
 
         {layout ? (
-          <section className={PANEL}>
-            <p className="text-xs font-semibold tracking-wide uppercase text-sheet-muted">
+          <details className={`${PANEL} group`}>
+            <summary className="pressable cursor-pointer flex items-center gap-2 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
+              <svg
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+                className="h-3 w-3 transition-transform group-open:rotate-90"
+              >
+                <path
+                  d="M7 5l5 5-5 5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
               Twist · underdog
-            </p>
+            </summary>
             <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-parchment-ink/85">
               {layout.twistEffect}
             </p>
@@ -570,7 +603,7 @@ export function BattleRecordGameScreen({ gameId }: Props) {
                 ? "Twist applied this turn"
                 : "Mark twist applied this turn"}
             </button>
-          </section>
+          </details>
         ) : null}
 
         {layout ? (
@@ -659,6 +692,8 @@ function scoreExtras(primary: number, tactics: number, painted: number): string 
 function ScoreIdentity({
   name,
   army,
+  listId,
+  lists,
   underdog: isUnderdog,
   align = "left",
   className = "",
@@ -666,11 +701,26 @@ function ScoreIdentity({
 }: {
   name: string;
   army: string;
+  listId?: string;
+  lists: ReturnType<typeof getArmiesSnapshot>;
   underdog: boolean;
   align?: "left" | "right";
   className?: string;
   onPlay?: () => void;
 }) {
+  const armyPoints = useMemo(() => {
+    if (!listId || !lists) return null;
+    const list = lists.find((item) => item.id === listId);
+    if (!list || isTowList(list)) return null;
+    const spearhead = isSpearheadList(list);
+    const catalogue = catalogueForList(list);
+    const totals = catalogue ? summarize(list, catalogue) : null;
+    return formatArmyPoints({
+      spearhead,
+      pointsSpent: totals?.points ?? 0,
+    });
+  }, [listId, lists]);
+
   const names = (
     <span
       className={`min-w-0 ${align === "right" ? "text-right" : "text-left"}`}
@@ -679,7 +729,10 @@ function ScoreIdentity({
         {name}
         {isUnderdog ? " · underdog" : ""}
       </span>
-      <span className="block truncate text-xs text-sheet-muted/80">{army}</span>
+      <span className="block truncate text-xs text-sheet-muted/80">
+        {army}
+        {armyPoints ? ` · ${armyPoints}` : ""}
+      </span>
     </span>
   );
 

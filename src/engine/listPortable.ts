@@ -1,6 +1,12 @@
 import { createId } from "@/lib/id";
 import { SITE_NAME } from "@/lib/site";
-import { battleTactics, factions, regimentsOfRenown } from "./data/load";
+import {
+  battleTactics,
+  ensureAllFactions,
+  getAllFactionsSync,
+  ensureRegimentsOfRenown,
+  getRegimentsOfRenownSync,
+} from "./data/load";
 import { exportArmyListText, exportFileName } from "./exportText";
 import { looksLikeImportedList, parseNewRecruitLists } from "./newRecruit";
 import { parsePointsCap } from "./pointsCap";
@@ -57,6 +63,10 @@ export function portableMimeType(format: PortableFormat): string {
   return format === "json"
     ? "application/json;charset=utf-8"
     : "text/plain;charset=utf-8";
+}
+
+export async function ensureCataloguesForImport(): Promise<void> {
+  await Promise.all([ensureAllFactions(), ensureRegimentsOfRenown()]);
 }
 
 export function parsePortableLists(raw: string): ParsePortableResult {
@@ -311,7 +321,8 @@ function parseListBlock(block: string): ArmyList | null {
     if (rorHeader) {
       flushRegiment();
       const rorName = rorHeader[1]?.replace(/ \((unknown)\)$/, "") ?? "";
-      const ror = regimentsOfRenown.find((item) => item.name === rorName);
+      const rorList = getRegimentsOfRenownSync();
+      const ror = rorList?.find((item) => item.name === rorName);
       rorId = ror?.id ?? null;
       rorUnits = [];
       section = "ror";
@@ -348,8 +359,9 @@ function parseListBlock(block: string): ArmyList | null {
       continue;
     }
     if (section === "ror") {
-      const ror = rorId
-        ? regimentsOfRenown.find((item) => item.id === rorId)
+      const rorList = getRegimentsOfRenownSync();
+      const ror = rorId && rorList
+        ? rorList.find((item) => item.id === rorId)
         : undefined;
       const selection = parseRorSelectionLine(line, ror?.units ?? []);
       if (selection) {
@@ -406,7 +418,8 @@ type CatalogueHit = {
 };
 
 function findCatalogue(name: string): CatalogueHit | null {
-  const faction = factions.find((item) => item.name === name);
+  const allFactions = getAllFactionsSync();
+  const faction = allFactions.find((item) => item.name === name);
   if (faction) {
     return {
       faction,

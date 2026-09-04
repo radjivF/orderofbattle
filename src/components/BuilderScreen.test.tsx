@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, beforeAll, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { cleanup, render, screen } from "@/test-utils/render";
 import {
@@ -7,6 +7,7 @@ import {
   LIST_LANDING_CONTENT_VISIBLE_CLASS,
 } from "@/lib/builderUi";
 import { BuilderScreen } from "./BuilderScreen";
+import { ensureAllFactions } from "@/engine/data/load";
 
 const { list, noHeroList, art, listOpen } = vi.hoisted(() => {
   const now = Date.now();
@@ -137,6 +138,10 @@ function landing() {
 }
 
 describe("BuilderScreen", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   beforeEach(() => {
     cleanup();
     HTMLElement.prototype.scrollIntoView = vi.fn();

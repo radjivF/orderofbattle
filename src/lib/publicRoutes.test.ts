@@ -1,7 +1,11 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { listPublicRoutes, STATIC_PUBLIC_ROUTES } from "./publicRoutes";
+import { ensureAllFactions } from "@/engine/data/load";
 
 describe("publicRoutes", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
   it("includes static marketing routes", () => {
     expect(STATIC_PUBLIC_ROUTES.some((route) => route.path === "/faq")).toBe(
       true,

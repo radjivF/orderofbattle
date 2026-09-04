@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { isCommandAbility } from "@/engine/commands";
 import {
   buildPhaseBoards,
@@ -17,6 +17,7 @@ import {
   playPhasePanelAbilities,
   playPhasePanelCommands,
 } from "./playPhasePanel";
+import { ensureAllFactions } from "@/engine/data/load";
 
 function armyWithUnits(
   faction: FactionCatalogue,
@@ -80,6 +81,10 @@ function missingPanelRows(
 }
 
 describe("playPhasePanelAbilities", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("keeps Vampire Lord Sanguine Blur on Hero, not only Army", () => {
     const faction = getFaction("soulblight-gravelords")!;
     const hero = faction.units.find((unit) => unit.name === "Vampire Lord")!;

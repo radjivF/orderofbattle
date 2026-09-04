@@ -1,5 +1,5 @@
-import { listRegimentsOfRenown } from "@/engine/queries";
 import type { FactionCatalogue } from "@/engine/types";
+import type { FactionMetadata } from "@/engine/data/load";
 
 export type FactionSeoStats = {
   unitCount: number;
@@ -17,7 +17,6 @@ export type FactionSeoStats = {
 export function factionSeoStats(faction: FactionCatalogue): FactionSeoStats {
   const heroes = faction.units.filter((unit) => unit.hero);
   const unique = faction.units.filter((unit) => unit.unique);
-  const ror = listRegimentsOfRenown(faction.id);
   return {
     unitCount: faction.units.length,
     heroCount: heroes.length,
@@ -28,20 +27,28 @@ export function factionSeoStats(faction: FactionCatalogue): FactionSeoStats {
     manifestationLoreNames: faction.manifestationLores.map((item) =>
       item.name,
     ),
-    rorCount: ror.length,
-    rorNames: ror.map((item) => item.name),
+    rorCount: 0,
+    rorNames: [],
     pointsCap: faction.pointsCapDefault,
   };
 }
 
 /** Hero vs non-hero warscroll counts for faction pickers. */
-export function factionPickerCounts(faction: FactionCatalogue): {
+export function factionPickerCounts(
+  factionOrMetadata: FactionCatalogue | FactionMetadata,
+): {
   heroes: number;
   units: number;
 } {
-  const heroes = faction.units.filter((unit) => unit.hero).length;
+  if ("units" in factionOrMetadata) {
+    const heroes = factionOrMetadata.units.filter((unit) => unit.hero).length;
+    return {
+      heroes,
+      units: factionOrMetadata.units.length - heroes,
+    };
+  }
   return {
-    heroes,
-    units: faction.units.length - heroes,
+    heroes: factionOrMetadata.heroCount,
+    units: factionOrMetadata.unitCount - factionOrMetadata.heroCount,
   };
 }

@@ -1,12 +1,16 @@
-import { describe, expect, it, vi } from "vitest";
+import { beforeAll, describe, expect, it, vi } from "vitest";
 import { createId } from "@/lib/id";
 import { blankArmy } from "@/lib/storage";
 import { getFaction } from "@/engine/queries";
 import { render, screen, within } from "@/test-utils/render";
 import userEvent from "@testing-library/user-event";
 import { PlayMagicBoard } from "./PlayMagicBoard";
+import { ensureAllFactions } from "@/engine/data/load";
 
 describe("PlayMagicBoard", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
   it("shows spell lores for matched Stormcast lists", () => {
     const faction = getFaction("stormcast-eternals");
     expect(faction).toBeTruthy();

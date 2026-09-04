@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import {
   commandAbilityCost,
   coreCommandsForPhase,
@@ -13,6 +13,7 @@ import {
 import { getFaction, listFactions } from "@/engine/queries";
 import type { UnitAbility } from "@/engine/types";
 import { blankArmy } from "@/lib/storage";
+import { ensureAllFactions } from "@/engine/data/load";
 
 function commandAbilitiesIn(
   factionId: string,
@@ -72,6 +73,10 @@ describe("UNIVERSAL_COMMAND_RULES", () => {
 });
 
 describe("faction Command abilities", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("maps every Command timing to a play phase (no silent dump to Army)", () => {
     const ambiguous: string[] = [];
     for (const faction of listFactions()) {

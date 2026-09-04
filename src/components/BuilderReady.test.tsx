@@ -1,10 +1,11 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, beforeAll, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { createId } from "@/lib/id";
 import { blankArmy } from "@/lib/storage";
 import { getFaction } from "@/engine/queries";
 import { cleanup, render, screen } from "@/test-utils/render";
 import { BuilderReady } from "./BuilderReady";
+import { ensureAllFactions } from "@/engine/data/load";
 
 vi.mock("./ListFlowShell", () => ({
   useListFlowChrome: () => ({
@@ -54,6 +55,10 @@ function khorneListWithHero() {
 }
 
 describe("BuilderReady issue banner", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   beforeEach(() => {
     cleanup();
     HTMLElement.prototype.scrollIntoView = vi.fn();

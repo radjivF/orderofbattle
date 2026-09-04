@@ -11,15 +11,21 @@ import type {
   Selection,
   UnitStats,
 } from "./types";
-import { factions, regimentsOfRenown } from "./data/load";
+import {
+  factionMetadata,
+  ensureFaction,
+  getFactionSync,
+  ensureRegimentsOfRenown,
+  getRegimentsOfRenownSync,
+  type FactionMetadata,
+} from "./data/load";
 
-const byFaction = new Map(factions.map((faction) => [faction.id, faction]));
-const byRenown = new Map(
-  regimentsOfRenown.map((item) => [item.id, item]),
-);
+export function getFactionMetadata(id: string): FactionMetadata | undefined {
+  return factionMetadata.find((faction) => faction.id === id);
+}
 
-export function listFactions(): FactionCatalogue[] {
-  return factions
+export function listFactionMetadata(): FactionMetadata[] {
+  return factionMetadata
     .filter((faction) => !faction.parentFactionIds?.length)
     .sort((a, b) => {
       if (a.id === "stormcast-eternals") {
@@ -32,19 +38,39 @@ export function listFactions(): FactionCatalogue[] {
     });
 }
 
-export function listArmiesOfRenown(
+export async function loadFaction(id: string): Promise<FactionCatalogue | undefined> {
+  return ensureFaction(id);
+}
+
+export function listFactions(): FactionCatalogue[] {
+  const metadata = listFactionMetadata();
+  return metadata
+    .map((meta) => getFactionSync(meta.id))
+    .filter((f): f is FactionCatalogue => f !== undefined);
+}
+
+export function listArmiesOfRenownMetadata(
   factionId: string,
-): FactionCatalogue[] {
-  return factions
+): FactionMetadata[] {
+  return factionMetadata
     .filter((faction) => faction.parentFactionIds?.includes(factionId))
     .sort((a, b) => armyOfRenownName(a).localeCompare(armyOfRenownName(b)));
 }
 
-export function isArmyOfRenown(faction: FactionCatalogue): boolean {
+export function listArmiesOfRenown(
+  factionId: string,
+): FactionCatalogue[] {
+  const metadata = listArmiesOfRenownMetadata(factionId);
+  return metadata
+    .map((meta) => getFactionSync(meta.id))
+    .filter((f): f is FactionCatalogue => f !== undefined);
+}
+
+export function isArmyOfRenown(faction: FactionCatalogue | FactionMetadata): boolean {
   return Boolean(faction.parentFactionIds?.length);
 }
 
-export function armyOfRenownName(faction: FactionCatalogue): string {
+export function armyOfRenownName(faction: FactionCatalogue | FactionMetadata): string {
   if (!isArmyOfRenown(faction)) {
     return faction.name;
   }
@@ -59,21 +85,47 @@ export function catalogueMatchIds(faction: FactionCatalogue): string[] {
 }
 
 export function getFaction(id: string): FactionCatalogue | undefined {
-  return byFaction.get(id);
+  return getFactionSync(id);
 }
 
 export function getRegimentOfRenown(
   id: string,
 ): RegimentOfRenown | undefined {
-  return byRenown.get(id);
+  const ror = getRegimentsOfRenownSync();
+  if (!ror) {
+    return undefined;
+  }
+  return ror.find((item) => item.id === id);
+}
+
+export async function loadRegimentOfRenown(
+  id: string,
+): Promise<RegimentOfRenown | undefined> {
+  const ror = await ensureRegimentsOfRenown();
+  return ror.find((item) => item.id === id);
 }
 
 export function listRegimentsOfRenown(
   factionId: string,
 ): RegimentOfRenown[] {
+  const ror = getRegimentsOfRenownSync();
+  if (!ror) {
+    return [];
+  }
   const faction = getFaction(factionId);
   const ids = faction ? catalogueMatchIds(faction) : [factionId];
-  return regimentsOfRenown
+  return ror
+    .filter((item) => item.factionIds.some((id) => ids.includes(id)))
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+export async function loadListRegimentsOfRenown(
+  factionId: string,
+): Promise<RegimentOfRenown[]> {
+  const ror = await ensureRegimentsOfRenown();
+  const faction = await loadFaction(factionId);
+  const ids = faction ? catalogueMatchIds(faction) : [factionId];
+  return ror
     .filter((item) => item.factionIds.some((id) => ids.includes(id)))
     .sort((a, b) => a.name.localeCompare(b.name));
 }

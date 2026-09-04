@@ -1,10 +1,14 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { getFaction, listRegimentsOfRenown } from "./queries";
 import { blankArmy } from "@/lib/storage";
 import { createId } from "@/lib/id";
 import { summarize } from "./validate";
+import { ensureAllFactions, ensureRegimentsOfRenown } from "@/engine/data/load";
 
 describe("list drops", () => {
+  beforeAll(async () => {
+    await Promise.all([ensureAllFactions(), ensureRegimentsOfRenown()]);
+  });
   it("counts zero drops on an empty list", () => {
     const faction = getFaction("stormcast-eternals");
     expect(faction).toBeTruthy();

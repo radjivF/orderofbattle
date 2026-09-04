@@ -1,5 +1,5 @@
-import { listFactions } from "@/engine/queries";
-import type { FactionCatalogue } from "@/engine/types";
+import { listFactionMetadata } from "@/engine/queries";
+import type { FactionMetadata } from "@/engine/data/load";
 
 export type GrandAlliance = "order" | "destruction" | "chaos" | "death";
 
@@ -56,12 +56,12 @@ export function grandAllianceForFaction(factionId: string): GrandAlliance {
 export type FactionGrandAllianceGroup = {
   alliance: GrandAlliance;
   label: string;
-  factions: FactionCatalogue[];
+  factions: FactionMetadata[];
 };
 
 /** Core factions grouped by Grand Alliance; full list, scrollable. */
 export function listFactionsByGrandAlliance(): FactionGrandAllianceGroup[] {
-  const sorted = listFactions();
+  const sorted = listFactionMetadata();
   return GRAND_ALLIANCE_ORDER.map((alliance) => ({
     alliance,
     label: GRAND_ALLIANCE_LABELS[alliance],
