@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import {
   exportArmyListText,
   exportFileName,
@@ -6,8 +6,12 @@ import {
 import { getFaction, heroesOf, unitsForRealm } from "@/engine/queries";
 import { createId } from "@/lib/id";
 import { blankArmy } from "@/lib/storage";
+import { ensureAllFactions } from "@/engine/data/load";
 
 describe("exportArmyListText", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
   it("formats a list with regiment, points, and formation", () => {
     const faction = getFaction("stormcast-eternals");
     expect(faction).toBeTruthy();

@@ -1,6 +1,6 @@
 import type { StoredList } from "@/engine/storedList";
 import { isTowList } from "@/engine/storedList";
-import { getFaction } from "@/engine/queries";
+import { getFactionMetadata } from "@/engine/queries";
 import { getTowFaction } from "@/engine/tow/queries";
 
 export type LibrarySortMode = "recent" | "alphabetic";
@@ -58,7 +58,7 @@ export function libraryAlphabeticSortLabel(list: StoredList): string {
     if (isTowList(list)) {
       return getTowFaction(list.factionId)?.name ?? "Unknown faction";
     }
-    return getFaction(list.factionId)?.name ?? "Unknown faction";
+    return getFactionMetadata(list.factionId)?.name ?? "Unknown faction";
   }
   return name;
 }

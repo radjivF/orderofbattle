@@ -1,8 +1,12 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { getFaction } from "@/engine/queries";
 import { factionPickerCounts } from "./factionSeo";
+import { ensureAllFactions } from "@/engine/data/load";
 
 describe("factionPickerCounts", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
   it("splits heroes from non-hero units", () => {
     const faction = getFaction("lumineth-realm-lords");
     expect(faction).toBeTruthy();

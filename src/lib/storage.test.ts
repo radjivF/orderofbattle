@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { createId } from "./id";
 import {
   appendRegimentWithHero,
@@ -9,6 +9,7 @@ import {
 } from "@/engine/listFactories";
 import { getFaction } from "@/engine/queries";
 import { getSpearhead } from "@/engine/spearhead";
+import { ensureAllFactions } from "@/engine/data/load";
 
 describe("blankArmy", () => {
   it("creates a matched list with faction defaults", () => {
@@ -36,6 +37,10 @@ describe("blankSpearhead", () => {
 });
 
 describe("appendRegimentWithHero", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("adds a regiment and sets general when missing", () => {
     const list = blankArmy("stormcast-eternals");
     const faction = getFaction("stormcast-eternals");

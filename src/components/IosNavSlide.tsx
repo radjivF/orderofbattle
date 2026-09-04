@@ -39,7 +39,7 @@ import {
   peekListOpenFactionId,
   rememberListNavigation,
 } from "@/lib/listTransition";
-import { getFaction } from "@/engine/queries";
+import { getFactionMetadata } from "@/engine/queries";
 import { IndexBackdropLayer } from "./IndexBackdrop";
 import { ListLoadingSplash } from "./ListLoadingSplash";
 
@@ -313,7 +313,7 @@ export function ListNavProvider({
 
   const openFactionId = peekListOpenFactionId();
   const pendingSplashName = openFactionId
-    ? getFaction(openFactionId)?.name
+    ? getFactionMetadata(openFactionId)?.name
     : peekListOpenDisplayName();
   const factionLayer = backdrop ?? cachedBackdrop;
   const factionOnScreen = listFlowShowsFactionBackdrop({

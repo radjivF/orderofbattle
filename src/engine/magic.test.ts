@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import {
   combatModifierNotes,
   parseEffectChoices,
@@ -13,6 +13,7 @@ import {
 } from "./magic";
 import { getFaction, preferredUnitForRealm } from "./queries";
 import type { ArmyList } from "./types";
+import { ensureAllFactions } from "@/engine/data/load";
 
 function unitByName(
   faction: NonNullable<ReturnType<typeof getFaction>>,
@@ -82,6 +83,10 @@ describe("parseEffectChoices", () => {
 });
 
 describe("powerIsUnlimited", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("detects Unlimited in keywords", () => {
     const faction = getFaction("soulblight-gravelords");
     const spell = faction?.spellLores[0]?.powers.find(
@@ -94,6 +99,10 @@ describe("powerIsUnlimited", () => {
 });
 
 describe("powerBindMaxTargets", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("defaults to 1 for single-target spells", () => {
     const faction = getFaction("soulblight-gravelords");
     const spell = faction?.units
@@ -127,6 +136,10 @@ describe("parsePowerBindTargets", () => {
 });
 
 describe("Daughters of Khaine magic binds", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("classifies friendly targets vs enemy notes", () => {
     const faction = getFaction("daughters-of-khaine");
     expect(faction).toBeTruthy();

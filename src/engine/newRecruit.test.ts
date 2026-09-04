@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { parsePortableLists } from "./listPortable";
 import {
   looksLikeAosApp,
@@ -6,6 +6,7 @@ import {
   parseNewRecruitLists,
 } from "./newRecruit";
 import { getFaction, getUnit } from "./queries";
+import { ensureAllFactions, ensureRegimentsOfRenown } from "@/engine/data/load";
 
 const SOULBLIGHT_NEW_RECRUIT = `Full (2540 points) - General's Handbook 2025-26
 
@@ -64,6 +65,10 @@ Created with newrecruit.eu v35.70
 `;
 
 describe("newRecruit", () => {
+  beforeAll(async () => {
+    await Promise.all([ensureAllFactions(), ensureRegimentsOfRenown()]);
+  });
+
   it("detects New Recruit text and ignores Order of Battle exports", () => {
     expect(looksLikeNewRecruit(SOULBLIGHT_NEW_RECRUIT)).toBe(true);
     expect(

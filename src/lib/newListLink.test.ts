@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { getFaction, listArmiesOfRenown } from "@/engine/queries";
 import {
   NEW_LIST_FACTION_PARAM,
@@ -10,6 +10,7 @@ import {
   newListPath,
   resolveNewListFaction,
 } from "./newListLink";
+import { ensureAllFactions } from "@/engine/data/load";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 
@@ -26,6 +27,10 @@ describe("newListPath", () => {
 });
 
 describe("newListDraftFromSearch", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("ignores unrelated query strings", () => {
     expect(newListDraftFromSearch(new URLSearchParams("foo=1"))).toBeNull();
   });

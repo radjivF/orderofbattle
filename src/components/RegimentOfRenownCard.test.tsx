@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { blankArmy } from "@/engine/listFactories";
 import { listRegimentsOfRenown } from "@/engine/queries";
@@ -8,6 +8,7 @@ import {
   buildRoRSelections,
   RegimentOfRenownCard,
 } from "./RegimentOfRenownCard";
+import { ensureAllFactions, ensureRegimentsOfRenown } from "@/engine/data/load";
 
 function gloomspiteRorList() {
   const ror = listRegimentsOfRenown("gloomspite-gitz").find(
@@ -29,6 +30,9 @@ function gloomspiteRorList() {
 }
 
 describe("RegimentOfRenownCard", () => {
+  beforeAll(async () => {
+    await Promise.all([ensureAllFactions(), ensureRegimentsOfRenown()]);
+  });
   beforeEach(() => {
     cleanup();
     Object.defineProperty(window, "matchMedia", {

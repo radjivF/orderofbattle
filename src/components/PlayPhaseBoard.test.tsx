@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { createId } from "@/lib/id";
 import { blankArmy, blankSpearhead } from "@/lib/storage";
@@ -6,6 +6,7 @@ import { getFaction } from "@/engine/queries";
 import { getSpearhead, spearheadAsFaction } from "@/engine/spearhead";
 import { cleanup, render, screen, within } from "@/test-utils/render";
 import { PlayPhaseBoard } from "./PlayPhaseBoard";
+import { ensureAllFactions } from "@/engine/data/load";
 
 function listWithNamedHero(factionId: string, unitName: string) {
   const faction = getFaction(factionId);
@@ -65,6 +66,9 @@ async function openPhase(user: ReturnType<typeof userEvent.setup>, name: string)
 }
 
 describe("PlayPhaseBoard", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
   beforeEach(() => {
     cleanup();
   });

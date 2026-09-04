@@ -1,11 +1,15 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { createId } from "@/lib/id";
 import { getFaction } from "@/engine/queries";
 import { cleanup, render, screen } from "@/test-utils/render";
 import { RegimentCard } from "./RegimentCard";
+import { ensureAllFactions } from "@/engine/data/load";
 
 describe("RegimentCard", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
   afterEach(() => cleanup());
   it("renders hero name and add-unit action in build mode", () => {
     const faction = getFaction("sylvaneth");

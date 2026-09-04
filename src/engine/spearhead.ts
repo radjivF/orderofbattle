@@ -5,7 +5,7 @@ import type {
   SpearheadCatalogue,
 } from "./types";
 import { spearheads } from "./data/spearhead/manifest";
-import { getFaction } from "./queries";
+import { getFaction, loadFaction } from "./queries";
 
 const byId = new Map(spearheads.map((item) => [item.id, item]));
 
@@ -57,6 +57,16 @@ export function catalogueForList(
     return box ? spearheadAsFaction(box) : undefined;
   }
   return getFaction(list.factionId);
+}
+
+export async function catalogueForListAsync(
+  list: ArmyList,
+): Promise<FactionCatalogue | undefined> {
+  if (isSpearheadList(list) && list.spearheadId) {
+    const box = getSpearhead(list.spearheadId);
+    return box ? spearheadAsFaction(box) : undefined;
+  }
+  return loadFaction(list.factionId);
 }
 
 export function spearheadGeneralUnit(

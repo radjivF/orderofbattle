@@ -2,6 +2,7 @@
 
 import {
   armyOfRenownName,
+  loadFaction,
 } from "@/engine/queries";
 import type { FactionCatalogue } from "@/engine/types";
 import { listFactionsByGrandAlliance } from "@/lib/factionAlliance";
@@ -152,15 +153,20 @@ export function LibraryCreateSheet({
                 {group.label}
               </p>
               <ul className="flex flex-col">
-                {group.factions.map((faction) => (
-                  <li key={faction.id}>
+                {group.factions.map((factionMeta) => (
+                  <li key={factionMeta.id}>
                     <button
                       type="button"
-                      onClick={() => onSelectFaction(faction)}
+                      onClick={async () => {
+                        const loaded = await loadFaction(factionMeta.id);
+                        if (loaded) {
+                          onSelectFaction(loaded);
+                        }
+                      }}
                       className="flex min-h-12 w-full items-center rounded-lg px-3 py-2.5 text-left hover:bg-parchment-ink/5"
                     >
                       <span className="min-w-0 font-serif text-xl text-parchment-ink">
-                        {faction.name}
+                        {factionMeta.name}
                       </span>
                     </button>
                   </li>

@@ -1,8 +1,9 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { createId } from "@/lib/id";
 import { blankArmy } from "@/lib/storage";
 import { canJoinRegiment, getFaction } from "./queries";
 import { pruneOrphanEnhancements, regimentSlotCap, summarize } from "./validate";
+import { ensureAllFactions } from "@/engine/data/load";
 
 describe("regimentSlotCap", () => {
   it("allows four slots for the general regiment", () => {
@@ -15,6 +16,10 @@ describe("regimentSlotCap", () => {
 });
 
 describe("summarize", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("flags a regiment without a hero", () => {
     const faction = getFaction("stormcast-eternals");
     expect(faction).toBeTruthy();
@@ -161,6 +166,10 @@ describe("summarize", () => {
 });
 
 describe("pruneOrphanEnhancements", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("drops artefact picks when the hero is removed", () => {
     const faction = getFaction("stormcast-eternals");
     expect(faction).toBeTruthy();

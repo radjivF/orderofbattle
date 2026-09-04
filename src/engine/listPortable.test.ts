@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { exportArmyListText } from "./exportText";
 import {
   LIST_IMPORT_HELP,
@@ -15,8 +15,12 @@ import { getFaction, heroesOf, unitsForRealm } from "./queries";
 import { catalogueForList } from "./spearhead";
 import { createId } from "@/lib/id";
 import { blankArmy } from "@/lib/storage";
+import { ensureAllFactions } from "@/engine/data/load";
 
 describe("listPortable", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
   it("round-trips a list through the export text file", () => {
     const faction = getFaction("stormcast-eternals");
     expect(faction).toBeTruthy();

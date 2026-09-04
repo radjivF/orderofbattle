@@ -1,9 +1,10 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, beforeAll, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import type { CatalogueUnit } from "@/engine/types";
 import { listRegimentsOfRenown } from "@/engine/queries";
 import { cleanup, render, screen } from "@/test-utils/render";
 import { DatasheetSheet } from "./DatasheetSheet";
+import { ensureRegimentsOfRenown } from "@/engine/data/load";
 
 function unit(overrides: Partial<CatalogueUnit> = {}): CatalogueUnit {
   return {
@@ -98,6 +99,10 @@ describe("DatasheetSheet keywords", () => {
 });
 
 describe("DatasheetSheet Regiment of Renown", () => {
+  beforeAll(async () => {
+    await ensureRegimentsOfRenown();
+  });
+
   beforeEach(() => {
     cleanup();
     Object.defineProperty(window, "matchMedia", {
