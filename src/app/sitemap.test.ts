@@ -1,8 +1,12 @@
-import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
+import { describe, expect, it, vi, beforeEach, afterEach, beforeAll } from "vitest";
 import sitemap from "@/app/sitemap";
 import * as publicRoutes from "@/lib/publicRoutes";
+import { ensureAllFactions } from "@/engine/data/load";
 
 describe("sitemap", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
   it("returns a valid sitemap with URLs", () => {
     const result = sitemap();
     expect(Array.isArray(result)).toBe(true);

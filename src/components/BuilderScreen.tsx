@@ -8,7 +8,7 @@ import {
   useState,
   useSyncExternalStore,
 } from "react";
-import { getFaction } from "@/engine/queries";
+import { getFactionMetadata } from "@/engine/queries";
 import { catalogueForList, catalogueForListAsync } from "@/engine/spearhead";
 import type { ArmyList } from "@/engine/types";
 import { isTowList } from "@/engine/storedList";
@@ -67,17 +67,13 @@ export function BuilderScreen({ listId, openPlay = false }: Props) {
   );
   const stored = lists?.find((item) => item.id === listId);
   const list = stored && !isTowList(stored) ? stored : undefined;
-  const [factionLoaded, setFactionLoaded] = useState(false);
   const faction = list ? catalogueForList(list) : undefined;
 
   useEffect(() => {
     if (!list) {
-      setFactionLoaded(false);
       return;
     }
-    void catalogueForListAsync(list).then(() => {
-      setFactionLoaded(true);
-    });
+    void catalogueForListAsync(list);
   }, [list]);
   const artFactionId =
     (faction ? faction.parentFactionIds?.[0] ?? faction.id : null) ??
@@ -99,13 +95,13 @@ export function BuilderScreen({ listId, openPlay = false }: Props) {
     scourgeRealm: ArmyList["scourgeRealm"];
   } | null>(null);
 
-  const showSplash = listOpenNeedsSplash(lists !== undefined) || (!!list && !factionLoaded);
+  const showSplash = listOpenNeedsSplash(lists !== undefined) || (!!list && !faction);
   const splashName = listOpenSplashFactionName({
     list,
     catalogueName: faction?.name,
-    parentFactionName: list ? getFaction(list.factionId)?.name : undefined,
+    parentFactionName: list ? getFactionMetadata(list.factionId)?.name : undefined,
     rememberedFactionName: rememberedId
-      ? getFaction(rememberedId)?.name
+      ? getFactionMetadata(rememberedId)?.name
       : undefined,
     listNameFallback: rememberedDisplayName,
   });

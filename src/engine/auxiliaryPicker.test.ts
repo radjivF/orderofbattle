@@ -1,10 +1,14 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import {
   auxiliaryPickerUnits,
   getFaction,
 } from "@/engine/queries";
+import { ensureAllFactions } from "@/engine/data/load";
 
 describe("auxiliaryPickerUnits", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
   it("includes heroes so units like Harbinger of Decay can be auxiliaries", () => {
     const faction = getFaction("maggotkin-of-nurgle");
     expect(faction).toBeTruthy();

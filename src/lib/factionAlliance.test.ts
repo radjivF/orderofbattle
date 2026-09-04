@@ -1,12 +1,16 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { listFactions } from "@/engine/queries";
 import {
   GRAND_ALLIANCE_ORDER,
   grandAllianceForFaction,
   listFactionsByGrandAlliance,
 } from "./factionAlliance";
+import { ensureAllFactions } from "@/engine/data/load";
 
 describe("factionAlliance", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
   it("maps every core faction to a Grand Alliance", () => {
     for (const faction of listFactions()) {
       expect(() => grandAllianceForFaction(faction.id)).not.toThrow();

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { getFaction } from "@/engine/queries";
+import { getFaction, getFactionMetadata } from "@/engine/queries";
 import { catalogueForList, isSpearheadList } from "@/engine/spearhead";
 import { formatPoints } from "@/engine/pointsCap";
 import { isTowList, type StoredList } from "@/engine/storedList";
@@ -32,9 +32,9 @@ function rememberOpenList(list: StoredList) {
     rememberListNavigation("forward");
     return;
   }
-  const faction = getFaction(list.factionId);
+  const metadata = getFactionMetadata(list.factionId);
   const artId =
-    faction?.parentFactionIds?.[0] ??
+    metadata?.parentFactionIds?.[0] ??
     (factionArtSrc(list.factionId) ? list.factionId : null) ??
     list.factionId;
   rememberListOpen(artId, listOpenDisplayNameForHeader(list), list.scourgeRealm);
@@ -54,6 +54,7 @@ function cardMeta(list: StoredList) {
       artClass: "",
     };
   }
+  const metadata = getFactionMetadata(list.factionId);
   const faction = getFaction(list.factionId);
   const playCatalogue = catalogueForList(list);
   const totals = playCatalogue ? summarize(list, playCatalogue) : null;
@@ -62,15 +63,15 @@ function cardMeta(list: StoredList) {
   );
   const spearhead = isSpearheadList(list);
   return {
-    factionName: faction?.name ?? "Unknown faction",
+    factionName: metadata?.name ?? "Unknown faction",
     pointsLine: spearhead
       ? "Spearhead"
       : `${formatPoints(totals?.points ?? 0)} / ${formatPoints(list.pointsCap)}`,
     detail: spearhead
       ? (playCatalogue?.name ?? "Spearhead")
       : (formation?.name ?? "No formation"),
-    artSrc: catalogueArtSrc(faction),
-    artClass: catalogueArtClass(faction),
+    artSrc: catalogueArtSrc(metadata ? { ...metadata, parentFactionIds: metadata.parentFactionIds ?? undefined } : faction),
+    artClass: catalogueArtClass(metadata ? { ...metadata, parentFactionIds: metadata.parentFactionIds ?? undefined } : faction),
   };
 }
 

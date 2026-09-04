@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { battleTacticsForRealm } from "./data/load";
 import { buildPhaseBoards } from "./phases";
 import {
@@ -17,8 +17,12 @@ import {
 import { createId } from "@/lib/id";
 import type { ArmyList, BattleTacticStage } from "./types";
 import { pruneOrphanEnhancements, summarize } from "./validate";
+import { ensureAllFactions } from "@/engine/data/load";
 
 describe("unitsForPicker", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
   it("lists core and SoA sheets separately", () => {
     const faction = getFaction("stormcast-eternals");
     expect(faction).toBeTruthy();
@@ -40,6 +44,10 @@ describe("unitsForPicker", () => {
 });
 
 describe("optionMatches", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("treats core and SoA variants as the same regiment option", () => {
     const faction = getFaction("stormcast-eternals");
     expect(faction).toBeTruthy();
@@ -160,6 +168,10 @@ describe("battle tactic cards", () => {
 });
 
 describe("special enhancements", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("prunes picks when bearer is removed", () => {
     const faction = getFaction("stormcast-eternals");
     expect(faction).toBeTruthy();
@@ -374,6 +386,10 @@ describe("special enhancements", () => {
 });
 
 describe("scourge warscroll rules", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("flags two variants of the same unit in one army", () => {
     const faction = getFaction("stormcast-eternals");
     expect(faction).toBeTruthy();
@@ -517,6 +533,10 @@ describe("scourge warscroll rules", () => {
 });
 
 describe("play phase boards", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("includes special enhancement abilities on the passive board", () => {
     const faction = getFaction("stormcast-eternals");
     expect(faction).toBeTruthy();

@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, beforeAll, describe, expect, it, vi } from "vitest";
 import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { blankArmy } from "@/engine/listFactories";
@@ -12,6 +12,7 @@ import {
 } from "@/engine/gameSession";
 import * as gameStorage from "@/lib/gameStorage";
 import type { StoredList } from "@/engine/storedList";
+import { ensureAllFactions } from "@/engine/data/load";
 
 const armyStore: { items: StoredList[] } = { items: [] };
 const armyListeners = new Set<() => void>();
@@ -111,6 +112,10 @@ beforeEach(() => {
 });
 
 describe("BattleRecordGameScreen", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("scrolls to the top when starting the battle from setup", async () => {
     const user = userEvent.setup();
     let game = createBattleRecord({

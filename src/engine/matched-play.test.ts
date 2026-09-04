@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { warscrollAbilities } from "./coreRules";
 import { ensureAllFactions } from "./data/load";
 import { buildPhaseBoards } from "./phases";
@@ -16,6 +16,9 @@ import {
 } from "@/lib/builderUi";
 
 describe("matched-play lists", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
   it("creates matched lists, not Spearhead", () => {
     const list = blankArmy("stormcast-eternals");
     expect(list.kind).toBe("matched");

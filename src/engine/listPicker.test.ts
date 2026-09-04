@@ -1,10 +1,14 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { createId } from "@/lib/id";
 import { blankArmy } from "./listFactories";
 import { dropEnhancements, pickerUnitsFor, takenUniqueBases } from "./listPicker";
 import { getFaction } from "./queries";
+import { ensureAllFactions } from "@/engine/data/load";
 
 describe("listPicker", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
   it("tracks unique bases across the roster", () => {
     const faction = getFaction("stormcast-eternals");
     expect(faction).toBeTruthy();

@@ -1,6 +1,6 @@
 "use client";
 
-import { getFaction } from "@/engine/queries";
+import { getFactionMetadata } from "@/engine/queries";
 import {
   catalogueForList,
   isSpearheadList,
@@ -31,7 +31,7 @@ function exportSubtitle(list: StoredList): string {
   }
   const playCatalogue = catalogueForList(list);
   return libraryListExportSubtitle({
-    factionName: getFaction(list.factionId)?.name ?? "Unknown faction",
+    factionName: getFactionMetadata(list.factionId)?.name ?? "Unknown faction",
     spearhead: isSpearheadList(list),
     pointsCap: list.pointsCap,
     spearheadBoxName: playCatalogue?.name,

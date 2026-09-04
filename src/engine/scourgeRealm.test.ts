@@ -1,12 +1,16 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeAll } from "vitest";
 import { battleTacticsForRealm } from "./data/load";
 import { getFaction, unitsForPicker } from "./queries";
 import { blankArmy } from "@/lib/storage";
 import { createId } from "@/lib/id";
 import { inferScourgeRealm, listUsesScourgeContent } from "./scourgeRealm";
 import { summarize } from "./validate";
+import { ensureAllFactions } from "@/engine/data/load";
 
 describe("listUsesScourgeContent", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
   it("is false for a core-only blank list", () => {
     const faction = getFaction("blades-of-khorne");
     expect(faction).toBeTruthy();
@@ -157,6 +161,10 @@ describe("inferScourgeRealm", () => {
 });
 
 describe("scourge season validation", () => {
+  beforeAll(async () => {
+    await ensureAllFactions();
+  });
+
   it("warns to pick a scourge season when scourge content is on the list", () => {
     const faction = getFaction("stormcast-eternals");
     expect(faction).toBeTruthy();
