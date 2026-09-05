@@ -62,68 +62,88 @@ export function PlayMagicBoard({
 
   return (
     <div className="flex flex-col gap-5">
-      {showSpells ? (
-        <section className="rounded-2xl bg-parchment p-5 text-parchment-ink">
-          <h2 className="font-serif text-2xl">Spells</h2>
-          <p className="mt-1 text-sm text-sheet-muted">
-            {content.spellLoreName ?? "None"}
-          </p>
-          {content.spells.length > 0 ? (
-            <ul className="mt-4 flex flex-col gap-3">
-              {content.spells.map((row) => {
-                const key = powerBindKey("spell", row.power.name);
-                return (
-                  <li key={`${row.source}-${row.power.name}`}>
-                    <PowerCard
-                      row={row}
-                      bindKey={key}
-                      list={list}
-                      faction={faction}
-                      boundValue={list.powerBinds?.[key] ?? null}
-                      onBind={onBindPower}
-                    />
-                  </li>
-                );
-              })}
-            </ul>
-          ) : (
-            <p className="mt-4 text-sm text-sheet-muted">
-              Pick a spell lore in Build.
-            </p>
-          )}
-        </section>
-      ) : null}
+      {showSpells || showPrayers ? (
+        <details className="rounded-2xl bg-parchment p-5 text-parchment-ink group">
+          <summary className="pressable cursor-pointer flex items-center gap-2 text-xs font-semibold tracking-wide uppercase text-sheet-muted">
+            <svg
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+              className="h-3 w-3 transition-transform group-open:rotate-90"
+            >
+              <path
+                fill="currentColor"
+                d="M7.5 5 12.5 10 7.5 15"
+              />
+            </svg>
+            Magic / Prayer
+          </summary>
+          
+          <div className="mt-4 flex flex-col gap-5">
+            {showSpells ? (
+              <section>
+                <h2 className="font-serif text-2xl">Spells</h2>
+                <p className="mt-1 text-sm text-sheet-muted">
+                  {content.spellLoreName ?? "None"}
+                </p>
+                {content.spells.length > 0 ? (
+                  <ul className="mt-4 flex flex-col gap-3">
+                    {content.spells.map((row) => {
+                      const key = powerBindKey("spell", row.power.name);
+                      return (
+                        <li key={`${row.source}-${row.power.name}`}>
+                          <PowerCard
+                            row={row}
+                            bindKey={key}
+                            list={list}
+                            faction={faction}
+                            boundValue={list.powerBinds?.[key] ?? null}
+                            onBind={onBindPower}
+                          />
+                        </li>
+                      );
+                    })}
+                  </ul>
+                ) : (
+                  <p className="mt-4 text-sm text-sheet-muted">
+                    Pick a spell lore in Build.
+                  </p>
+                )}
+              </section>
+            ) : null}
 
-      {showPrayers ? (
-        <section className="rounded-2xl bg-parchment p-5 text-parchment-ink">
-          <h2 className="font-serif text-2xl">Prayers</h2>
-          <p className="mt-1 text-sm text-sheet-muted">
-            {content.prayerLoreName ?? "None"}
-          </p>
-          {content.prayers.length > 0 ? (
-            <ul className="mt-4 flex flex-col gap-3">
-              {content.prayers.map((row) => {
-                const key = powerBindKey("prayer", row.power.name);
-                return (
-                  <li key={`${row.source}-${row.power.name}`}>
-                    <PowerCard
-                      row={row}
-                      bindKey={key}
-                      list={list}
-                      faction={faction}
-                      boundValue={list.powerBinds?.[key] ?? null}
-                      onBind={onBindPower}
-                    />
-                  </li>
-                );
-              })}
-            </ul>
-          ) : (
-            <p className="mt-4 text-sm text-sheet-muted">
-              Pick a prayer lore in Build, or leave as None.
-            </p>
-          )}
-        </section>
+            {showPrayers ? (
+              <section>
+                <h2 className="font-serif text-2xl">Prayers</h2>
+                <p className="mt-1 text-sm text-sheet-muted">
+                  {content.prayerLoreName ?? "None"}
+                </p>
+                {content.prayers.length > 0 ? (
+                  <ul className="mt-4 flex flex-col gap-3">
+                    {content.prayers.map((row) => {
+                      const key = powerBindKey("prayer", row.power.name);
+                      return (
+                        <li key={`${row.source}-${row.power.name}`}>
+                          <PowerCard
+                            row={row}
+                            bindKey={key}
+                            list={list}
+                            faction={faction}
+                            boundValue={list.powerBinds?.[key] ?? null}
+                            onBind={onBindPower}
+                          />
+                        </li>
+                      );
+                    })}
+                  </ul>
+                ) : (
+                  <p className="mt-4 text-sm text-sheet-muted">
+                    Pick a prayer lore in Build, or leave as None.
+                  </p>
+                )}
+              </section>
+            ) : null}
+          </div>
+        </details>
       ) : null}
 
       {showManifestations ? (

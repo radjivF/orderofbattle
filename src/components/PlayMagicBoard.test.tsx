@@ -11,7 +11,7 @@ describe("PlayMagicBoard", () => {
   beforeAll(async () => {
     await ensureAllFactions();
   });
-  it("shows spell lores for matched Stormcast lists", () => {
+  it("shows spell lores for matched Stormcast lists", async () => {
     const faction = getFaction("stormcast-eternals");
     expect(faction).toBeTruthy();
     if (!faction) return;
@@ -40,6 +40,14 @@ describe("PlayMagicBoard", () => {
       />,
     );
 
+    const summary = screen.getAllByText(/magic \/ prayer/i)[0];
+    expect(summary).toBeInTheDocument();
+    const details = summary?.closest("details");
+    expect(details).toBeInTheDocument();
+    
+    const user = userEvent.setup();
+    await user.click(summary);
+    
     expect(screen.getByRole("heading", { name: /spells/i })).toBeInTheDocument();
   });
 
@@ -81,6 +89,10 @@ describe("PlayMagicBoard", () => {
       />,
     );
 
+    const user = userEvent.setup();
+    const summary = screen.getAllByText(/magic \/ prayer/i)[0];
+    await user.click(summary);
+
     expect(screen.getByText("Vile Transference")).toBeInTheDocument();
     expect(
       within(
@@ -93,7 +105,6 @@ describe("PlayMagicBoard", () => {
     if (!dictatCard) return;
     expect(within(dictatCard).getByText(/on unit/i)).toBeInTheDocument();
 
-    const user = userEvent.setup();
     await user.click(
       within(dictatCard).getByRole("combobox", { name: /on unit/i }),
     );
@@ -149,6 +160,10 @@ describe("PlayMagicBoard", () => {
       />,
     );
 
+    const user = userEvent.setup();
+    const summary = screen.getAllByText(/magic \/ prayer/i)[0];
+    await user.click(summary);
+
     const killaCard = screen.getByText("Killa Beat").closest("article");
     expect(killaCard).toBeTruthy();
     if (!killaCard) return;
@@ -156,7 +171,6 @@ describe("PlayMagicBoard", () => {
     expect(within(killaCard).queryByRole("listbox")).not.toBeInTheDocument();
     expect(within(killaCard).getByText(/ardboyz/i)).toBeInTheDocument();
 
-    const user = userEvent.setup();
     await user.click(
       within(killaCard).getByRole("combobox", { name: /on unit/i }),
     );
