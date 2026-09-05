@@ -11,7 +11,7 @@ describe("PlayMagicBoard", () => {
   beforeAll(async () => {
     await ensureAllFactions();
   });
-  it("shows spell lores for matched Stormcast lists", () => {
+  it("shows spell lores for matched Stormcast lists", async () => {
     const faction = getFaction("stormcast-eternals");
     expect(faction).toBeTruthy();
     if (!faction) return;
@@ -40,7 +40,15 @@ describe("PlayMagicBoard", () => {
       />,
     );
 
-    expect(screen.getByRole("heading", { name: /spells/i })).toBeInTheDocument();
+    const spellsSummary = screen.getAllByText(/^spells$/i)[0];
+    expect(spellsSummary).toBeInTheDocument();
+    const details = spellsSummary?.closest("details");
+    expect(details).toBeInTheDocument();
+    
+    const user = userEvent.setup();
+    await user.click(spellsSummary);
+    
+    expect(screen.getAllByText(/lore of the storm/i)[0]).toBeInTheDocument();
   });
 
   it("shows Unlimited label and multi-unit target pickers", async () => {
@@ -81,6 +89,10 @@ describe("PlayMagicBoard", () => {
       />,
     );
 
+    const user = userEvent.setup();
+    const spellsSummary = screen.getAllByText(/^spells$/i)[0];
+    await user.click(spellsSummary);
+
     expect(screen.getByText("Vile Transference")).toBeInTheDocument();
     expect(
       within(
@@ -93,7 +105,6 @@ describe("PlayMagicBoard", () => {
     if (!dictatCard) return;
     expect(within(dictatCard).getByText(/on unit/i)).toBeInTheDocument();
 
-    const user = userEvent.setup();
     await user.click(
       within(dictatCard).getByRole("combobox", { name: /on unit/i }),
     );
@@ -149,6 +160,10 @@ describe("PlayMagicBoard", () => {
       />,
     );
 
+    const user = userEvent.setup();
+    const prayersSummary = screen.getAllByText(/^prayers$/i)[0];
+    await user.click(prayersSummary);
+
     const killaCard = screen.getByText("Killa Beat").closest("article");
     expect(killaCard).toBeTruthy();
     if (!killaCard) return;
@@ -156,7 +171,6 @@ describe("PlayMagicBoard", () => {
     expect(within(killaCard).queryByRole("listbox")).not.toBeInTheDocument();
     expect(within(killaCard).getByText(/ardboyz/i)).toBeInTheDocument();
 
-    const user = userEvent.setup();
     await user.click(
       within(killaCard).getByRole("combobox", { name: /on unit/i }),
     );
@@ -167,5 +181,53 @@ describe("PlayMagicBoard", () => {
       "prayer:Killa Beat",
       `${ardboyzId},${brutesId}`,
     );
+  });
+
+  it("shows prayer lores for Maggotkin even without PRIEST keyword", async () => {
+    const faction = getFaction("maggotkin-of-nurgle");
+    expect(faction).toBeTruthy();
+    if (!faction) return;
+
+    const poxbringer = faction.units.find((unit) =>
+      unit.name.includes("Poxbringer"),
+    );
+    expect(poxbringer).toBeTruthy();
+    if (!poxbringer) return;
+
+    const prayerLore = faction.prayerLores.find(
+      (lore) => lore.name === "Lore of Virulence",
+    );
+    expect(prayerLore).toBeTruthy();
+    if (!prayerLore) return;
+
+    const list = {
+      ...blankArmy(faction.id),
+      prayerLoreId: prayerLore.id,
+      regiments: [
+        {
+          id: "reg-1",
+          hero: { id: createId(), unitId: poxbringer.id, reinforced: false },
+          units: [],
+        },
+      ],
+    };
+
+    render(
+      <PlayMagicBoard
+        list={list}
+        faction={faction}
+        onOpenSheet={vi.fn()}
+        onBindPower={vi.fn()}
+      />,
+    );
+
+    const prayersSummary = screen.getAllByText(/^prayers$/i)[0];
+    expect(prayersSummary).toBeInTheDocument();
+
+    const user = userEvent.setup();
+    await user.click(prayersSummary);
+
+    expect(screen.getAllByText("Lore of Virulence")[0]).toBeInTheDocument();
+    expect(screen.getAllByText("Bloated with Sickness")[0]).toBeInTheDocument();
   });
 });

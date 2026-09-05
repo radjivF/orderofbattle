@@ -83,7 +83,7 @@ export function builderPlayTabs(spearhead: boolean): {
     { value: "units", label: "Units" },
     {
       value: "magic",
-      label: "Magic",
+      label: "Magic / Prayer",
       ariaLabel: "Magic and prayer lores",
     },
     {
