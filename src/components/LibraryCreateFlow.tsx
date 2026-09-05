@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useLayoutEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { armyOfRenownName, getFaction } from "@/engine/queries";
 import { getSpearhead } from "@/engine/spearhead";
@@ -10,6 +10,7 @@ import type { TowFactionCatalogue } from "@/engine/tow/types";
 import {
   getActiveMenuServerSnapshot,
   getActiveMenuSnapshot,
+  menuShowsListLibrary,
   subscribeActiveMenu,
 } from "@/lib/activeMenu";
 import { parseNewListArmyValue } from "@/lib/newListArmyOptions";
@@ -45,6 +46,10 @@ export function LibraryCreateFlow({ open, onOpenChange }: Props) {
     getActiveMenuSnapshot,
     getActiveMenuServerSnapshot,
   );
+  const createMenu = useMemo(
+    () => (menuShowsListLibrary(activeMenu) ? activeMenu : "aos"),
+    [activeMenu],
+  );
   const [draftFaction, setDraftFaction] = useState<FactionCatalogue | null>(
     null,
   );
@@ -77,7 +82,7 @@ export function LibraryCreateFlow({ open, onOpenChange }: Props) {
     if (creating) {
       return;
     }
-    if (activeMenu === "tow") {
+    if (createMenu === "tow") {
       if (!draftTowFaction) {
         return;
       }
@@ -207,7 +212,7 @@ export function LibraryCreateFlow({ open, onOpenChange }: Props) {
 
   return (
     <>
-      {open && !creating && activeMenu === "tow" ? (
+      {open && !creating && createMenu === "tow" ? (
         <TowCreateSheet
           open
           creating={creating}
@@ -226,7 +231,7 @@ export function LibraryCreateFlow({ open, onOpenChange }: Props) {
           onBackToFactions={backToFactionPicker}
         />
       ) : null}
-      {open && !creating && activeMenu === "aos" ? (
+      {open && !creating && createMenu === "aos" ? (
         <LibraryCreateSheet
           open
           creating={creating}

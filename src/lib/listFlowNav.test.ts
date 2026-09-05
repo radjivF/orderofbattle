@@ -374,7 +374,7 @@ describe("list flow navigation wiring", () => {
     const dashboard = readSource("app/(flow)/dashboard/page.tsx");
     const nav = readSource("components/IosNavSlide.tsx");
 
-    expect(shell).toContain('libraryLayer={<LibraryScreen />}');
+    expect(shell).toContain('libraryLayer={<LibraryScreen onCreateListOpen={setCreateFlowOpen} />}');
     expect(shell).toContain("listFlowHeaderMode");
     expect(shell).toContain("listFlowIsHome");
     expect(shell).toContain("hidden={isHome}");
